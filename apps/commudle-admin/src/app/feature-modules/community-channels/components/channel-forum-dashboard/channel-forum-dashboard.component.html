@@ -1,13 +1,21 @@
 <div class="community-channels-dashboard page-padding">
-  <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-[72px]': !sidebarExpanded }">
+  <div
+    [ngClass]="{
+      'com-w-[21rem]': sidebarExpanded,
+      'com-w-[72px]': !sidebarExpanded
+    }"
+  >
     <commudle-sidebar
-      [isExpanded]="sidebarExpanded"
-      (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
       [expandedWidth]="ESidebarWidth.XL"
       [forWindow]="false"
+      [eventName]="sidebarEventName"
+      [showExpandedButton]="false"
     >
       <div class="com-flex">
         <div class="left-section">
+          <div (click)="toggleSidebar()" class="sidebar-expand-icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+          </div>
           <div
             class="icons !com-bg-[#EFF9FF]"
             (click)="openChannelOrForums(discussionType.CHANNEL)"

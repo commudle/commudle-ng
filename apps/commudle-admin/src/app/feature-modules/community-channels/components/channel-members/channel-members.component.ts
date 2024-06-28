@@ -1,55 +1,66 @@
-import {
-  Component,
-  OnDestroy,
-  OnInit,
-  EventEmitter,
-  Output,
-  Input,
-  ElementRef,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
-import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
-import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
+import { Component, OnDestroy, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import * as _ from 'lodash';
-import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
+import { CommunityChannelManagerService, CommunityChannelsService, ToastrService } from '@commudle/shared-services';
+import { Subscription } from 'rxjs';
+import { EUserRoles, ICommunityChannel, IPageInfo, IUser, IUserRolesUser } from '@commudle/shared-models';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
 
 @Component({
   selector: 'app-channel-members',
   templateUrl: './channel-members.component.html',
   styleUrls: ['./channel-members.component.scss'],
 })
-export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   @Input() channelOrForum: ICommunityChannel;
   @Input() discussionType;
+  subscriptions: Subscription[] = [];
   EUserRoles = EUserRoles;
-  subscriptions = [];
-  channelUsers: IUserRolesUser[] = [];
+  channelMembers: IUserRolesUser[] = [];
+  admins: IUserRolesUser[] = [];
   allUsers: IUserRolesUser[] = [];
-  page = 1;
-  count = 10;
-  currentUser: ICurrentUser;
+  currentUser: IUser;
   currentUserIsAdmin = false;
-  total = 0;
   isLoading = false;
   @Output() closeMembersList = new EventEmitter<number>();
   channelRoles = {};
   forumsRoles = {};
-  @ViewChild('notificationRef') notificationRef: ElementRef;
   isSuperAdmin = true;
+
+  pageInfo: IPageInfo;
+  totalMembers = 0;
+  totalOrganizers = 0;
 
   constructor(
     private communityChannelsService: CommunityChannelsService,
     private libAuthWatchService: LibAuthwatchService,
-    private toastLogService: LibToastLogService,
+    private toastrService: ToastrService,
     private communityChannelManagerService: CommunityChannelManagerService,
   ) {}
 
   ngOnInit(): void {
+    this.getCurrentUser();
+
+    // get roles as per discussion type
+    if (this.discussionType === 'channel') {
+      this.getChannelRoles();
+    } else if (this.discussionType === 'forum') {
+      this.getForumsRoles();
+    }
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((sub: Subscription) => sub.unsubscribe());
+  }
+
+  ngOnChanges(): void {
+    this.channelMembers = [];
+    this.admins = [];
+    this.getAdmins();
+    this.getMembers();
+  }
+
+  // details of current user
+  getCurrentUser() {
     this.subscriptions.push(
       this.libAuthWatchService.currentUser$.subscribe((data) => {
         this.currentUser = data;
@@ -58,91 +69,83 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
         }
       }),
     );
-    if (this.discussionType === 'channel') {
-      this.subscriptions.push(
-        this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
-          this.channelRoles = data;
-          this.channelRoles[this.channelOrForum.id].find((k) => {
+  }
+
+  // get roles of channels and check admin for forums
+  getChannelRoles() {
+    this.subscriptions.push(
+      this.communityChannelManagerService.allChannelRoles$.subscribe((data) => {
+        this.channelRoles = data;
+        this.channelRoles[this.channelOrForum.id].find((k) => {
+          this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
+        });
+      }),
+    );
+  }
+
+  // get roles of forums and check admin for forums
+  getForumsRoles() {
+    this.subscriptions.push(
+      this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
+        this.forumsRoles = data;
+        if (this.forumsRoles[this.channelOrForum.id]) {
+          this.forumsRoles[this.channelOrForum.id].find((k) => {
             this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
           });
-        }),
-      );
-    } else if (this.discussionType === 'forum') {
-      this.subscriptions.push(
-        this.communityChannelManagerService.allForumRoles$.subscribe((data) => {
-          this.forumsRoles = data;
-          if (this.forumsRoles[this.channelOrForum.id]) {
-            this.forumsRoles[this.channelOrForum.id].find((k) => {
-              this.currentUserIsAdmin = k === EUserRoles.COMMUNITY_CHANNEL_ADMIN;
-            });
-          }
-        }),
-      );
-    }
+        }
+      }),
+    );
   }
 
-  ngOnDestroy() {
-    for (const subs of this.subscriptions) {
-      subs.unsubscribe();
-    }
-  }
-
-  ngAfterViewInit() {
-    const options = {
-      root: null,
-      threshold: 1,
-    };
-    const observer = new IntersectionObserver(this.checkIntersection.bind(this), options);
-    observer.observe(this.notificationRef.nativeElement);
-  }
-
-  checkIntersection(entries: IntersectionObserverEntry[]) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        this.getMembers();
-      } else {
-        this.isLoading = false;
-      }
-    });
-  }
-
-  // get members
+  // get members only not admins
   getMembers() {
-    if (!this.total || this.channelUsers.length < this.total) {
+    if (!this.isLoading) {
       this.isLoading = true;
       this.subscriptions.push(
         this.communityChannelsService
-          .channelForumMembersIndex(this.channelOrForum.id, this.page, this.count)
+          .channelForumMembersIndex(this.channelOrForum.id, this.pageInfo?.end_cursor)
           .subscribe((data) => {
-            if (data.user_roles_users) {
-              this.channelUsers = this.channelUsers.concat(data.user_roles_users);
-              this.page = data.page + 1;
-              this.total = data.total;
-              this.isLoading = false;
-            }
+            this.channelMembers = this.channelMembers.concat(
+              data.page.reduce((acc, value) => [...acc, value.data], []),
+            );
+            this.pageInfo = data.page_info;
+            this.totalMembers = data.total;
+            this.isLoading = false;
           }),
       );
     }
   }
 
-  // toggle role
-  toggleAdmin(index) {
-    // send request to toggle
-    const username = this.channelUsers[index].user.name;
-    let alertMessage;
-    let isAdmin = false;
-    if (this.channelUsers[index].user_role.name === 'community_channel_admin') {
-      isAdmin = true;
-      alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOrForum.name}?`;
-    } else {
-      alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
-    }
+  // get admin of channels not members
+  getAdmins() {
+    this.subscriptions.push(
+      this.communityChannelsService.getChannelAdmins(this.channelOrForum.id).subscribe((data) => {
+        this.admins = this.admins.concat(data.user_roles_users);
+        this.totalOrganizers = data.total;
+      }),
+    );
+  }
+
+  //make admin
+  addAdmin(index: number, userRolesUserId: number) {
+    const username = this.channelMembers[index].user.name;
+    const alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOrForum.name}?`;
     if (window.confirm(alertMessage)) {
-      this.communityChannelsService.memberToggleAdmin(this.channelUsers[index].id).subscribe((data) => {
-        this.channelUsers[index] = data;
-        if (isAdmin && this.channelUsers[index].id === this.currentUser.id) {
-          window.location.reload();
-        }
+      this.communityChannelsService.memberToggleAdmin(userRolesUserId).subscribe((data) => {
+        this.channelMembers.splice(index, 1);
+        this.admins.push(data);
+      });
+    }
+  }
+
+  // remove from admin
+  removeAdmin(index: number, userRolesUserId: number) {
+    const username = this.channelMembers[index].user.name;
+    const alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
+    if (window.confirm(alertMessage)) {
+      this.communityChannelsService.memberToggleAdmin(userRolesUserId).subscribe((data) => {
+        this.admins.splice(index, 1);
+        this.channelMembers.unshift(data);
       });
     }
   }
@@ -152,7 +155,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     if (window.confirm(`Are you sure you want to exit ${this.channelOrForum.name}?`)) {
       this.communityChannelsService.memberExitChannel(this.channelOrForum.id).subscribe((data) => {
         this.allUsers.splice(index, 1);
-        this.toastLogService.successDialog('You have exited this channel');
+        this.toastrService.successDialog('You have exited this channel');
         window.location.reload();
       });
     }
@@ -162,12 +165,12 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, AfterViewInit
     // TODO CHANNEL ask for a confirmation in a dialog
     if (
       window.confirm(
-        `Are you sure you want to remove ${this.channelUsers[index].user.name} from ${this.channelOrForum.name}?`,
+        `Are you sure you want to remove ${this.channelMembers[index].user.name} from ${this.channelOrForum.name}?`,
       )
     ) {
-      this.communityChannelsService.removeMemberFromChannelForum(this.channelUsers[index].id).subscribe((data) => {
-        this.channelUsers.splice(index, 1);
-        this.toastLogService.successDialog('Removed');
+      this.communityChannelsService.removeMemberFromChannelForum(this.channelMembers[index].id).subscribe((data) => {
+        this.channelMembers.splice(index, 1);
+        this.toastrService.successDialog('Removed');
       });
     }
   }

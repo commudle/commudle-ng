@@ -1,6 +1,8 @@
 <nb-card>
   <nb-card-header>
-    <span>Registration</span>
+    <span
+      >Registration<commudle-help-section [helpDictionaryName]="'hackathon-registrations'"></commudle-help-section
+    ></span>
     <a
       *ngIf="communityId && hackathon && hackathonResponseGroupDetails"
       [routerLink]="[

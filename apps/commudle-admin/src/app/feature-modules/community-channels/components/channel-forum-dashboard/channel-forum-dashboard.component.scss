@@ -66,6 +66,12 @@
   }
 }
 
+.sidebar-expand-icon {
+  @apply com-flex;
+  fa-icon {
+    @apply com-text-2xl com-mx-auto com-cursor-pointer com-mt-3;
+  }
+}
 .icons {
   @apply com-m-2 com-w-14 com-h-14 com-rounded-lg  com-flex com-flex-col com-cursor-pointer;
 

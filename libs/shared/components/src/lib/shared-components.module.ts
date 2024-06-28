@@ -4,7 +4,14 @@ import { RouterModule } from '@angular/router';
 import { EditorModule } from '@commudle/editor';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { InfiniteScrollModule } from '@commudle/infinite-scroll';
-import { NbButtonModule, NbContextMenuModule, NbIconModule, NbTooltipModule } from '@commudle/theme';
+import {
+  NbButtonModule,
+  NbCardModule,
+  NbContextMenuModule,
+  NbIconModule,
+  NbPopoverModule,
+  NbTooltipModule,
+} from '@commudle/theme';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { MessageComponent } from './components/discussion/message/message.component';
 import { VoteComponent } from './components/vote/vote.component';
@@ -14,6 +21,8 @@ import { CommunityForumMessageComponent } from './components/channel-discussion/
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { VotersComponent } from './components/vote/voters/voters.component';
+import { UserProfileMiniCardComponent } from './components/user-profile/user-profile-mini-card/user-profile-mini-card.component';
 @NgModule({
   declarations: [
     DiscussionComponent,
@@ -24,6 +33,8 @@ import { FaqComponent } from './components/faq/faq.component';
     CommunityForumMessageComponent,
     LoadingSpinnerComponent,
     FaqComponent,
+    VotersComponent,
+    UserProfileMiniCardComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +44,8 @@ import { FaqComponent } from './components/faq/faq.component';
     NbIconModule,
     NbTooltipModule,
     NbButtonModule,
+    NbPopoverModule,
+    NbCardModule,
     InViewportDirective,
     NbContextMenuModule,
     FontAwesomeModule,
