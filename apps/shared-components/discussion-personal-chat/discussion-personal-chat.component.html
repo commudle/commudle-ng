@@ -34,6 +34,7 @@
         (contentChange)="sendMessage($event)"
         [validators]="validators"
       ></commudle-editor>
+      <p *ngIf="currentUser && blocked" class="blocked-text">You have blocked this User</p>
 
       <button *ngIf="!currentUser" nbButton fullWidth status="primary" class="login-button" (click)="login()">
         Post a Message
