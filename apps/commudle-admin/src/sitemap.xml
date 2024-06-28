@@ -22,7 +22,7 @@
     <loc>https://json.commudle.com/sitemaps/sitemap_newsletters.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://json.commudle.com/sitemaps/sitemap_public_page.xml</loc>
+    <loc>https://json.commudle.com/sitemaps/sitemap_public_pages.xml</loc>
   </sitemap>
   <sitemap>
     <loc>https://json.commudle.com/sitemaps/sitemap_users_1.xml</loc>
@@ -34,7 +34,7 @@
     <loc>https://json.commudle.com/sitemaps/sitemap_users_3.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://json.commudle.com/sitemaps/sitemap_custom_page.xml</loc>
+    <loc>https://json.commudle.com/sitemaps/sitemap_custom_pages.xml</loc>
   </sitemap>
   <sitemap>
     <loc>https://json.commudle.com/sitemaps/sitemap_book.xml</loc>
@@ -49,6 +49,6 @@
     <loc>https://json.commudle.com/sitemaps/sitemap_case_studies.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://json.commudle.com/sitemaps/sitemap_community_newsletter.xml</loc>
+    <loc>https://json.commudle.com/sitemaps/sitemap_community_newsletters.xml</loc>
   </sitemap>
 </sitemapindex>
