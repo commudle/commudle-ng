@@ -4,6 +4,10 @@
   [inViewportOptions]="{ threshold: [0] }"
   class="message-container"
   inViewport
+  (mouseenter)="onHoverEnter(message.id)"
+  (mouseleave)="onHoverLeave(message.id)"
+  longPress
+  (longPress)="onLongPress(message.id)"
 >
   <div class="action-icons-hover">
     <nb-actions *ngIf="currentUser && showActionButton[message.id]" class="suffix com-bg-white" size="tiny">
@@ -66,56 +70,49 @@
     </nb-actions>
   </div>
   <div [ngClass]="{ 'highlight-background': !(message.user.id === currentUser.id) }" class="message">
-    <div
-      (mouseenter)="onHoverEnter(message.id)"
-      (mouseleave)="onHoverLeave(message.id)"
-      longPress
-      (longPress)="onLongPress(message.id)"
-    >
-      <div class="prefix d-flex align-items-start">
-        <img
-          alt="{{ message.user.name }}"
-          class="avatar"
-          src="{{ message.user.photo.i32 }}"
-          title="{{ message.user.name }}"
-        />
-        <div class="user-container">
-          <div class="user d-flex align-items-center">
-            <p class="name">
-              <a [routerLink]="['/users', message.user.username]">{{ message.user.name }}</a>
-            </p>
-            <img
-              *ngIf="message.user.is_expert"
-              alt="Expert Tick"
-              class="expert-icon"
-              src="/assets/images/Expert-Tick.svg"
-              title="Expert Tick"
-            />
-            <p class="time">
-              {{ moment(message.created_at).format('h:mm A') }}
-            </p>
-          </div>
-          <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
+    <div class="prefix d-flex align-items-start">
+      <img
+        alt="{{ message.user.name }}"
+        class="avatar"
+        src="{{ message.user.photo.i32 }}"
+        title="{{ message.user.name }}"
+      />
+      <div class="user-container">
+        <div class="user d-flex align-items-center">
+          <p class="name">
+            <a [routerLink]="['/users', message.user.username]">{{ message.user.name }}</a>
+          </p>
+          <img
+            *ngIf="message.user.is_expert"
+            alt="Expert Tick"
+            class="expert-icon"
+            src="/assets/images/Expert-Tick.svg"
+            title="Expert Tick"
+          />
+          <p class="time">
+            {{ moment(message.created_at).format('h:mm A') }}
+          </p>
         </div>
+        <commudle-editor [content]="message.content" [editable]="false"></commudle-editor>
       </div>
-      <nb-actions *ngIf="currentUser" class="votes-display" size="tiny">
-        <nb-action
-          *ngIf="totalVotesCount > 0"
-          [disabled]="isVotingBlocked"
-          [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }"
-        >
-          <app-votes-display
-            (isBlocked)="isVotingBlocked = $event"
-            (votesCount)="totalVotesCount = $event"
-            [votableId]="message.id"
-            icon="heart-outline"
-            size="small"
-            votableType="UserMessage"
-            [textAlignment]="'after'"
-          ></app-votes-display>
-        </nb-action>
-      </nb-actions>
     </div>
+    <nb-actions *ngIf="currentUser" class="votes-display" size="tiny">
+      <nb-action
+        *ngIf="totalVotesCount > 0"
+        [disabled]="isVotingBlocked"
+        [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }"
+      >
+        <app-votes-display
+          (isBlocked)="isVotingBlocked = $event"
+          (votesCount)="totalVotesCount = $event"
+          [votableId]="message.id"
+          icon="heart-outline"
+          size="small"
+          votableType="UserMessage"
+          [textAlignment]="'after'"
+        ></app-votes-display>
+      </nb-action>
+    </nb-actions>
     <div *ngIf="canReply" class="replies">
       <app-message
         (sendDelete)="emitDelete(reply.id, reply.user.id === currentUser.id)"
