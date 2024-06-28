@@ -7,5 +7,12 @@
     [status]="(vote$ | async)?.voted ? 'danger' : 'basic'"
   >
   </nb-icon>
-  <span *ngIf="(vote$ | async)?.total">{{ (vote$ | async)?.total }}</span>
+  <span
+    [nbPopoverContext]="{ votableId: votableId, votableType: votableType }"
+    [nbPopover]="VotersComponent"
+    nbPopoverTrigger="hover"
+    *ngIf="(vote$ | async)?.total"
+  >
+    {{ (vote$ | async)?.total }}
+  </span>
 </div>
