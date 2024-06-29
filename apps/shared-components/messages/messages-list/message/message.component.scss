@@ -42,11 +42,9 @@ p {
   }
 
   .replies {
-    margin-left: $space-32;
+    @apply com-pl-8;
 
     .reply-form {
-      margin-top: $space-8;
-
       emoji-mart {
         display: none;
         width: clamp(250px, 100%, 360px);
