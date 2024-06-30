@@ -1,9 +1,9 @@
+/// <reference types="@types/google.accounts"/>
+
 import { EventEmitter } from '@angular/core';
 import { BehaviorSubject, filter, skip, take } from 'rxjs';
 import { BaseLoginProvider } from '../entities/base-login-provider';
 import { SocialUser } from '../entities/social-user';
-
-declare let google: any;
 
 export interface GoogleInitOptions {
   /**
@@ -41,13 +41,11 @@ const defaultInitOptions: GoogleInitOptions = {
 export class GoogleLoginProvider extends BaseLoginProvider {
   public static readonly PROVIDER_ID: string = 'GOOGLE';
 
-  public override readonly changeUser = new EventEmitter<SocialUser | null>();
+  public readonly changeUser = new EventEmitter<SocialUser | null>();
 
   private readonly _socialUser = new BehaviorSubject<SocialUser | null>(null);
   private readonly _accessToken = new BehaviorSubject<string | null>(null);
-  private readonly _receivedAccessToken = new EventEmitter<string | null>();
-
-  // @ts-ignore
+  private readonly _receivedAccessToken = new EventEmitter<string>();
   private _tokenClient: google.accounts.oauth2.TokenClient | undefined;
 
   constructor(private clientId: string, private readonly initOptions?: GoogleInitOptions) {
@@ -62,25 +60,26 @@ export class GoogleLoginProvider extends BaseLoginProvider {
     this._accessToken.pipe(skip(1)).subscribe(this._receivedAccessToken);
   }
 
-  initialize(autoLogin?: boolean): Promise<void> {
+  initialize(autoLogin?: boolean, lang?: string): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        this.loadScript(GoogleLoginProvider.PROVIDER_ID, 'https://accounts.google.com/gsi/client', () => {
+        this.loadScript(GoogleLoginProvider.PROVIDER_ID, this.getGoogleLoginScriptSrc(lang), () => {
           google.accounts.id.initialize({
             client_id: this.clientId,
             auto_select: autoLogin,
-            callback: ({ credential }: any) => this._socialUser.next(this.createSocialUser(credential)),
+            callback: ({ credential }) => this._socialUser.next(this.createSocialUser(credential)),
             prompt_parent_id: this.initOptions?.prompt_parent_id,
-            itp_support: this.initOptions?.oneTapEnabled,
+            itp_support: this.initOptions.oneTapEnabled,
+            use_fedcm_for_prompt: this.initOptions.oneTapEnabled,
           });
 
-          if (this.initOptions?.oneTapEnabled) {
+          if (this.initOptions.oneTapEnabled) {
             this._socialUser
               .pipe(filter((user) => user === null))
               .subscribe(() => google.accounts.id.prompt(console.debug));
           }
 
-          if (this.initOptions?.scopes) {
+          if (this.initOptions.scopes) {
             const scope =
               this.initOptions.scopes instanceof Array
                 ? this.initOptions.scopes.filter((s) => s).join(' ')
@@ -90,12 +89,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
               client_id: this.clientId,
               scope,
               prompt: this.initOptions.prompt,
-              callback: (tokenResponse: {
-                error: any;
-                error_description: any;
-                error_uri: any;
-                access_token: string | null;
-              }) => {
+              callback: (tokenResponse) => {
                 if (tokenResponse.error) {
                   this._accessToken.error({
                     code: tokenResponse.error,
@@ -136,7 +130,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
     });
   }
 
-  getAccessToken(): Promise<any> {
+  getAccessToken(): Promise<string> {
     return new Promise((resolve, reject) => {
       if (!this._tokenClient) {
         if (this._socialUser.value) {
@@ -205,5 +199,9 @@ export class GoogleLoginProvider extends BaseLoginProvider {
         .join(''),
     );
     return JSON.parse(jsonPayload);
+  }
+
+  private getGoogleLoginScriptSrc(lang: string): string {
+    return lang ? `https://accounts.google.com/gsi/client?hl=${lang}` : 'https://accounts.google.com/gsi/client';
   }
 }

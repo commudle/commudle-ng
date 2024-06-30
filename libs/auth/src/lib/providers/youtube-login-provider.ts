@@ -44,10 +44,10 @@ export class YoutubeLoginProvider extends BaseLoginProvider {
     this._code.pipe(skip(1)).subscribe(this._receivedCode);
   }
 
-  initialize(autoLogin?: boolean): Promise<void> {
+  initialize(autoLogin?: boolean, lang?: string): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        this.loadScript(YoutubeLoginProvider.PROVIDER_ID, 'https://accounts.google.com/gsi/client', () => {
+        this.loadScript(YoutubeLoginProvider.PROVIDER_ID, this.getGoogleLoginScriptSrc(lang), () => {
           google.accounts.id.initialize({
             client_id: this.clientId,
             auto_select: autoLogin,
@@ -164,5 +164,9 @@ export class YoutubeLoginProvider extends BaseLoginProvider {
         .join(''),
     );
     return JSON.parse(jsonPayload);
+  }
+
+  private getGoogleLoginScriptSrc(lang: string): string {
+    return lang ? `https://accounts.google.com/gsi/client?hl=${lang}` : 'https://accounts.google.com/gsi/client';
   }
 }
