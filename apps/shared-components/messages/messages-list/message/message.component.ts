@@ -1,14 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Injector,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-  HostListener,
-} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Injector, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { SeoService } from '@commudle/shared-services';
@@ -20,6 +10,7 @@ import { IUserMessage } from 'apps/shared-models/user_message.model';
 import { IEditorValidator } from '@commudle/editor';
 // import { UserMessageReceiptHandlerService } from '@commudle/shared-services';
 import * as moment from 'moment';
+import { SVotesService } from 'apps/shared-components/services/s-votes.service';
 
 @Component({
   selector: 'app-message',
@@ -60,6 +51,7 @@ export class MessageComponent implements OnInit {
     // private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
     private injector: Injector,
     private seoService: SeoService,
+    private votesService: SVotesService,
   ) {
     this.replyForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
@@ -74,6 +66,7 @@ export class MessageComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.getAllVotes();
     this.seoSchema();
   }
 
@@ -163,5 +156,11 @@ export class MessageComponent implements OnInit {
 
   onLongPress(id) {
     this.showActionButton[id] = true;
+  }
+
+  getAllVotes() {
+    this.votesService.pGetVotesCount('UserMessage', this.message.id).subscribe((data) => {
+      this.totalVotesCount = data.total;
+    });
   }
 }

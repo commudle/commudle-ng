@@ -123,6 +123,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
               case this.voteChannel.ACTIONS.TOGGLE_VOTE: {
                 data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
                 this.myVote = data.increment && data.user_id === this.currentUser.id;
+                this.votesCount.emit(this.totalVotes);
                 break;
               }
               case this.voteChannel.ACTIONS.ERROR: {
