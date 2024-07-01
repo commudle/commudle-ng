@@ -211,10 +211,16 @@ export class EditLabComponent implements OnInit, OnDestroy {
 
   // Header image functionality
   displaySelectedHeaderImage(event: any) {
+    const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    const maxSize = 3 * 1024 * 1024; // 3 MB in bytes
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      if (file.size > 2425190) {
-        this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
+      if (file.size > maxSize) {
+        this.toastLogService.warningDialog('Image should be less than 3 Mb', 3000);
+        return;
+      }
+      if (!allowedTypes.includes(file.type)) {
+        this.toastLogService.warningDialog('Please upload a valid image file (PNG, JPG, JPEG)');
         return;
       }
       this.uploadedHeaderImageFile = file;
