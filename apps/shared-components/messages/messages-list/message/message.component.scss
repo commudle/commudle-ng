@@ -77,10 +77,7 @@ nb-action {
   @apply com-flex com-flex-shrink-0 com-h-6 com-p-6px com-m-0 hover:com-bg-gray-100 #{!important};
 
   p {
-    color: $spanish-gray;
-    font-size: $fs-h6;
-    line-height: 14px;
-    margin-top: $space-1;
+    @apply com-text-Spanish-Gray com-text-xs;
   }
 
   fa-icon {
