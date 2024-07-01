@@ -73,7 +73,7 @@ p {
   nb-card-body {
     @apply md:com-px-6 com-px-4 com-py-4;
     .banner-image {
-      @apply md:com-w-[900px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
+      @apply md:com-w-[900px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
     }
 
     .controls {
