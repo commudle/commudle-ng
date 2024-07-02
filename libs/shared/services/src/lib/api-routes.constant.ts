@@ -405,6 +405,7 @@ export const API_ROUTES = {
       POLLS: 'api/v2/track_slots/public/polls',
     },
     TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/track_slots_by_date',
+    TRACK_SLOTS_BY_DATE_AND_LOCATION: 'api/v2/track_slots/track_slot_by_date_and_location',
   },
 
   // communication_mailers

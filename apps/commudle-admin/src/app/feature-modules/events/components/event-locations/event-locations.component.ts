@@ -22,6 +22,8 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import moment from 'moment';
+import { ILocation } from 'apps/shared-models/location.model';
+import { ILocations } from 'apps/shared-models/locations.model';
 
 @Component({
   selector: 'app-event-locations',
@@ -52,6 +54,7 @@ export class EventLocationsComponent implements OnInit {
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
   isLoading = true;
+  eventDatesLocation: ILocations[];
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
@@ -87,18 +90,18 @@ export class EventLocationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEventsDate();
+    // this.getEventsDate();
     this.getEventLocations();
     this.getEventSpeakers();
   }
 
-  getEventLocations() {
-    this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
-      this.eventLocations = data.event_locations;
-      this.changeDetectorRef.markForCheck();
-      this.isLoading = false;
-    });
-  }
+  // getEventLocations() {
+  //   this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
+  //     this.eventLocations = data.event_locations;
+  //     this.changeDetectorRef.markForCheck();
+  //     this.isLoading = false;
+  //   });
+  // }
 
   getEventSpeakers() {
     this.dataFormEntityResponseGroupsService.getEventSpeakers(this.event.id).subscribe((data) => {
@@ -318,9 +321,19 @@ export class EventLocationsComponent implements OnInit {
     this.eventLocationForm.get('location').get('map_link').setValue(place.url);
   }
 
-  getEventsDate() {
+  getEventLocations() {
     this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
-      this.eventDates = data.map((event) => moment(event.date).format('Do MMMM'));
+      this.eventDatesLocation = data;
+      this.eventLocations = data.reduce((acc, event) => acc.concat(event.locations), []);
+      // this.eventDates = data.map((event) => moment(event.date).format('Do MMMM'));
     });
   }
+
+  // getFormattedDate(date) {
+  //   if (date) {
+  //     console.log(date);
+  //     console.log(moment(date).format('Do MMMM'));
+  //     return moment(date).format('Do MMMM');
+  //   }
+  // }
 }

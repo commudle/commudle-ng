@@ -44,7 +44,7 @@ import * as moment from 'moment';
 })
 export class EventLocationTracksComponent implements OnInit {
   @Input() eventLocations: IEventLocation[] = [];
-  @Input() eventLocationTracks: IEventLocationTrack[] = [];
+  @Input() sessionDate: Date;
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() eventLocationId;
@@ -56,6 +56,7 @@ export class EventLocationTracksComponent implements OnInit {
   @Output() updateSession = new EventEmitter();
   @Output() removeSession = new EventEmitter();
 
+  eventLocationTracks: IEventLocationTrack[] = [];
   windowRef;
   eventStartTimePicker;
   eventEndTimePicker;
@@ -118,6 +119,7 @@ export class EventLocationTracksComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getLocationTracks();
     this.setTrackVisibility();
     const visibility = this.eventLocationTracks.length <= 2;
     for (const event_location_track of this.eventLocationTracks) {
@@ -463,5 +465,12 @@ export class EventLocationTracksComponent implements OnInit {
     while (speakerIdsArray.length > 0) {
       speakerIdsArray.removeAt(0);
     }
+  }
+
+  getLocationTracks() {
+    this.trackSlotsService.getTrackSlots(this.sessionDate, this.eventLocationId).subscribe((data: any) => {
+      this.eventLocationTracks = data;
+      console.log(this.eventLocationTracks);
+    });
   }
 }

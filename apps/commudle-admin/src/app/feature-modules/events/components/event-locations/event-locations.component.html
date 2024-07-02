@@ -12,20 +12,71 @@
       Add Location
     </button>
   </div>
-  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-  <div *ngIf="eventLocations">
-    <nb-card *ngIf="eventLocations.length > 0" class="event-locations-list">
+  <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
+  <div *ngIf="eventDatesLocation">
+    <nb-card *ngIf="eventDatesLocation.length > 0" class="event-locations-list">
       <div class="event-location">
-        <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
+        <nb-tabset *ngIf="eventDatesLocation" id="tabset" name="tabset" #tabset>
           <nb-tab
-            *ngFor="let date of eventDates; let i = index"
-            tabTitle="{{ date }}"
+            *ngFor="let data of eventDatesLocation; let i = index"
+            tabTitle="{{ moment(data.date).format('Do MMMM') }}"
             class="tab"
             [active]="i === activeTabIndex"
             id="addTab"
             name="addTab"
             #addTab
           >
+            <div *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
+              <div *ngFor="let el of data.locations; let i = index">
+                <button nbButton outline>{{ el.name }}</button>
+                <div class="event-location-tracks">
+                  <div *ngIf="el.address" class="map-location">
+                    <p class="address">
+                      <strong>Address: </strong>
+                      <a href="{{ el.map_link }}" target="_blank">{{ el.address }}</a>
+                      &nbsp;
+                      <fa-icon
+                        *ngIf="event.editable"
+                        (click)="showEditEventLocationForm(el)"
+                        [icon]="faPen"
+                        class="edit-location-icon"
+                      >
+                      </fa-icon>
+                      &nbsp;
+                      <fa-icon
+                        *ngIf="event.editable"
+                        (click)="confirmDeleteEventLocation(el)"
+                        [icon]="faTrash"
+                        class="delete-location-icon"
+                      ></fa-icon>
+                    </p>
+
+                    <p class="link-to-map">
+                      <small>
+                        <a href="{{ el.map_link }}" target="_blank">
+                          <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map
+                        </a>
+                      </small>
+                    </p>
+                  </div>
+                  <app-event-location-tracks
+                    (addSession)="addSlot($event, i)"
+                    (addTrack)="addTrack($event, i)"
+                    (removeSession)="removeSlot($event, i)"
+                    (removeTrack)="removeTrack($event, i)"
+                    (updateSession)="updateSlot($event, i)"
+                    (updateTrack)="updateTrack($event, i)"
+                    [community]="community"
+                    [eventLocationId]="el.id"
+                    [eventLocations]="eventLocations"
+                    [eventSpeakers]="eventSpeakers"
+                    [event]="event"
+                    [sessionDate]="data.date"
+                  >
+                  </app-event-location-tracks>
+                </div>
+              </div>
+            </div>
           </nb-tab>
         </nb-tabset>
         <!-- <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
@@ -292,7 +343,7 @@
 </ng-template>
 
 <ng-template #helpText let-data>
-  <h5>Here's how it works</h5>
+  <h5 class="com-cursor-pointer">Here's how it works</h5>
   <div>
     <ul>
       <li>You can choose between an online (live streaming) and an offline (at a physical space) event</li>
