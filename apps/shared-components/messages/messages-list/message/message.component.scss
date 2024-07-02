@@ -66,11 +66,11 @@ p {
 }
 
 .highlight-background {
-  @apply com-bg-blue-50;
+  @apply com-bg-gray-100;
 }
 
 .action-icons-hover {
-  @apply com-flex com-justify-end com-mb-[-12px] com-mr-6 com-h-6;
+  @apply com-mt-[-22px] com-mr-6;
 }
 
 nb-action {

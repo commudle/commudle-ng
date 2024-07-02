@@ -5,11 +5,10 @@
 }
 
 .messages-list-container {
-  height: 100%;
-  position: relative;
+  @apply com-h-full com-relative;
 
   .messages-list {
-    @apply md:com-px-0 com-px-4 com-h-full com-overflow-auto;
+    @apply md:com-px-0 com-px-4 com-pt-4 com-h-full com-overflow-auto;
 
     &.compressed {
       height: calc(100% - 32px);
