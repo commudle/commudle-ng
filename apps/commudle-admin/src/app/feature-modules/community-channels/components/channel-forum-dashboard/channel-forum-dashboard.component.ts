@@ -75,7 +75,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.updateSelectedChannelOrForum();
     this.setMeta();
     this.getCurrentUser();
-    this.sidebarService.setSidebarVisibility(this.sidebarEventName, false);
+    this.sidebarService.setSidebarVisibility(this.sidebarEventName, true);
 
     switch (this.parentType) {
       case EDbModels.KOMMUNITY:
