@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ViewCell } from 'angular2-smart-table';
+import { Component, Input, OnInit } from '@angular/core';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { FormResponsesComponent } from 'apps/shared-components/form-responses/form-responses.component';
 import { NbWindowService } from '@commudle/theme';
@@ -9,7 +8,7 @@ import { NbWindowService } from '@commudle/theme';
   templateUrl: './community-forms-list-actions.component.html',
   styleUrls: ['./community-forms-list-actions.component.scss'],
 })
-export class CommunityFormsListActionsComponent implements ViewCell, OnInit {
+export class CommunityFormsListActionsComponent implements OnInit {
   @Input() value: string | number;
   @Input() rowData: IDataForm;
 

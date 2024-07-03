@@ -2,8 +2,9 @@
   "name": "commudle-admin",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/commudle-admin/src",
   "prefix": "commudle",
+  "sourceRoot": "apps/commudle-admin/src",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-builders/custom-webpack:browser",
@@ -18,7 +19,7 @@
         "outputPath": "dist/apps/commudle-admin",
         "index": "apps/commudle-admin/src/index.html",
         "main": "apps/commudle-admin/src/main.ts",
-        "polyfills": "apps/commudle-admin/src/polyfills.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/commudle-admin/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -36,7 +37,7 @@
         "styles": [
           "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
           "apps/commudle-admin/src/styles.scss",
-          "./node_modules/grapesjs/dist/css/grapes.min.css"
+          "node_modules/grapesjs/dist/css/grapes.min.css"
         ],
         "scripts": [],
         "serviceWorker": true,
@@ -47,8 +48,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "3.5mb",
-              "maximumError": "7mb"
+              "maximumWarning": "4mb",
+              "maximumError": "8mb"
             },
             {
               "type": "anyComponentStyle",
@@ -94,23 +95,30 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/commudle-admin/**/*.ts", "apps/commudle-admin/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/commudle-admin/jest.config.ts",
         "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
       }
     },
-    "deploy": {
-      "executor": "@nx-extend/firebase-hosting:deploy",
+    "serve-static": {
+      "executor": "@nx/web:file-server",
       "options": {
-        "site": "commudle-eacee"
+        "buildTarget": "commudle-admin:build"
       }
     },
     "compodoc": {
@@ -124,7 +132,12 @@
           "exportFormat": "json"
         }
       }
+    },
+    "deploy": {
+      "executor": "@nx-extend/firebase-hosting:deploy",
+      "options": {
+        "site": "commudle-eacee"
+      }
     }
-  },
-  "tags": []
+  }
 }
