@@ -12,7 +12,7 @@
     (longPress)="onLongPress(message.id)"
   >
     <div [ngClass]="{ 'highlight-background': showActionButton[message.id] }" class="message">
-      <div class="com-flex">
+      <div class="message-content">
         <div class="prefix d-flex align-items-start">
           <img
             alt="{{ message.user.name }}"
