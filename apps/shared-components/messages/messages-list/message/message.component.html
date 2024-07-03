@@ -101,12 +101,8 @@
           </nb-actions>
         </div>
       </div>
-      <nb-actions *ngIf="currentUser" class="votes-display" size="tiny">
-        <nb-action
-          *ngIf="totalVotesCount > 0"
-          [disabled]="isVotingBlocked"
-          [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }"
-        >
+      <nb-actions *ngIf="currentUser && totalVotesCount > 0" class="votes-display" size="tiny">
+        <nb-action [disabled]="isVotingBlocked" [ngClass]="{ 'com-pointer-events-none': isVotingBlocked }">
           <app-votes-display
             (isBlocked)="isVotingBlocked = $event"
             (votesCount)="totalVotesCount = $event"
