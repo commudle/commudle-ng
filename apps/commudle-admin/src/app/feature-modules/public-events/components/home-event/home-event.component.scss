@@ -46,7 +46,9 @@
           }
 
           span {
-            @apply com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
+            a {
+              @apply com-no-underline com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
+            }
           }
         }
       }

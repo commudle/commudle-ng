@@ -1,0 +1,6 @@
+<div *ngIf="helpDictionaryUrl" class="container">
+  <button nbButton ghost class="toggle" (click)="closeSidebar()">
+    <fa-icon [icon]="faXmark" class="com-cursor-pointer"></fa-icon>
+  </button>
+  <iframe [src]="helpDictionaryUrl | safe : 'resourceUrl'" width="100%" height="100%" id="iframe"></iframe>
+</div>

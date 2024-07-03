@@ -14,7 +14,7 @@ import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
 import { UserMessageReceiptHandlerService } from '../../../services/user-message-receipt-handler.service';
 import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/services/community-channel-handler.service';
-import { NbMenuService, NbWindowRef, NbWindowService } from '@commudle/theme';
+import { NbDialogRef, NbDialogService, NbMenuService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -32,6 +32,8 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   @Input() messagePinned = false;
   @Input() channelOrForum: ICommunityChannel;
 
+  EUserRoles = EUserRoles;
+
   channelsRoles = {};
   channelOrForumId: number;
 
@@ -40,7 +42,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   faThumbtack = faThumbtack;
 
   @ViewChild('editMessageTemplate', { static: true }) editMessageTemplate: TemplateRef<any>;
-  editMessageTemplateRef: NbWindowRef;
+  editMessageTemplateRef: NbDialogRef<any>;
 
   validators: IEditorValidator = {
     required: true,
@@ -62,7 +64,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
     public communityChannelHandlerService: CommunityChannelHandlerService,
     private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
     private shareService: ShareService,
-    private nbWindowService: NbWindowService,
+    private dialogService: NbDialogService,
     private nbMenuService: NbMenuService,
     private communityChannelManagerService: CommunityChannelManagerService,
     private activatedRoute: ActivatedRoute,
@@ -166,10 +168,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   openEditForm(): void {
-    this.editMessageTemplateRef = this.nbWindowService.open(this.editMessageTemplate, {
-      title: 'Edit your message',
-      windowClass: 'remove-overflow-mention',
-    });
+    this.editMessageTemplateRef = this.dialogService.open(this.editMessageTemplate);
   }
 
   togglePinStatus() {

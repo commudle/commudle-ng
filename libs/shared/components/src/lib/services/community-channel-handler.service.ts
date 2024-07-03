@@ -254,6 +254,8 @@ export class CommunityChannelHandlerService {
         });
         this.loading.next(false);
       });
+    } else {
+      this.loading.next(false);
     }
   }
 

@@ -20,7 +20,7 @@ nb-card {
 }
 
 nb-card-header {
-  @apply com-flex com-justify-between com-px-4 com-py-3 com-border-Bright-Gray;
+  @apply com-flex com-justify-between com-items-center com-px-4 com-py-2 com-border-Bright-Gray;
   .heading {
     @apply com-flex;
 

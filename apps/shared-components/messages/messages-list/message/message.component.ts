@@ -3,11 +3,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { InViewportDirective } from '@commudle/in-viewport';
 import { SeoService } from '@commudle/shared-services';
 import { faGrin } from '@fortawesome/free-regular-svg-icons';
+import { faCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NoWhitespaceValidator } from 'apps/shared-helper-modules/custom-validators.validator';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IUserMessage } from 'apps/shared-models/user_message.model';
+import { IEditorValidator } from '@commudle/editor';
 // import { UserMessageReceiptHandlerService } from '@commudle/shared-services';
 import * as moment from 'moment';
+import { SVotesService } from 'apps/shared-components/services/s-votes.service';
 
 @Component({
   selector: 'app-message',
@@ -21,15 +24,21 @@ export class MessageComponent implements OnInit {
   @Input() currentUser: ICurrentUser;
   @Input() allActions;
   @Input() permittedActions;
+  @Input() showFlagIcon = true;
+  @Input() showReplyIcon = true;
   @Output() sendReply: EventEmitter<any> = new EventEmitter<any>();
   @Output() sendFlag: EventEmitter<number> = new EventEmitter<number>();
   @Output() sendDelete = new EventEmitter();
+  faCircle = faCircle;
+  faTrash = faTrash;
+  showActionButton: boolean[] = [false];
 
   moment = moment;
 
   showReplyForm = false;
   showEmojiPicker = false;
   isVotingBlocked = false;
+  totalVotesCount: number;
 
   replyForm;
 
@@ -42,13 +51,22 @@ export class MessageComponent implements OnInit {
     // private userMessageReceiptHandlerService: UserMessageReceiptHandlerService,
     private injector: Injector,
     private seoService: SeoService,
+    private votesService: SVotesService,
   ) {
     this.replyForm = this.fb.group({
       content: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(200), NoWhitespaceValidator]],
     });
   }
 
+  validators: IEditorValidator = {
+    required: true,
+    minLength: 1,
+    maxLength: 200,
+    noWhitespace: true,
+  };
+
   ngOnInit(): void {
+    this.getAllVotes();
     this.seoSchema();
   }
 
@@ -126,5 +144,23 @@ export class MessageComponent implements OnInit {
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
     return doc.body.textContent || '';
+  }
+
+  onHoverEnter(id) {
+    this.showActionButton[id] = true;
+  }
+
+  onHoverLeave(id) {
+    this.showActionButton[id] = false;
+  }
+
+  onLongPress(id) {
+    this.showActionButton[id] = true;
+  }
+
+  getAllVotes() {
+    this.votesService.pGetVotesCount('UserMessage', this.message.id).subscribe((data) => {
+      this.totalVotesCount = data.total;
+    });
   }
 }

@@ -1,29 +1,19 @@
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
-import {
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { EUserRolesUserStatus, IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
-import { NB_WINDOW, NbMenuService, NbWindowService } from '@commudle/theme';
+import { NB_WINDOW, NbMenuService } from '@commudle/theme';
 import { filter, map } from 'rxjs/operators';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { UserChatsService } from 'apps/commudle-admin/src/app/feature-modules/user-chats/services/user-chats.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-member',
   templateUrl: './member.component.html',
   styleUrls: ['./member.component.scss'],
 })
-export class MemberComponent implements OnInit, OnDestroy, OnChanges {
-  subscriptions = [];
+export class MemberComponent implements OnInit, OnDestroy {
   @Input() userRolesUser: IUserRolesUser;
   @Input() currentUserIsAdmin: boolean;
   @Output() makeAdmin = new EventEmitter();
@@ -36,26 +26,18 @@ export class MemberComponent implements OnInit, OnDestroy, OnChanges {
   currentUser: ICurrentUser;
 
   contextMenuItems = [];
+  subscriptions: Subscription[] = [];
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private menuService: NbMenuService,
-    private windowService: NbWindowService,
     private userChatsService: UserChatsService,
     @Inject(NB_WINDOW) private window,
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.authWatchService.currentUser$.subscribe((data) => {
-        this.currentUser = data;
-        this.showLiveStatus = !!data;
-        this.setContextMenuItems();
-      }),
-    );
+    this.getCurrentUser();
   }
-
-  ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnDestroy() {
     for (const subs of this.subscriptions) {
@@ -63,6 +45,14 @@ export class MemberComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  getCurrentUser() {
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+        this.setContextMenuItems();
+      }),
+    );
+  }
   setContextMenuItems() {
     this.contextMenuItems = [
       {

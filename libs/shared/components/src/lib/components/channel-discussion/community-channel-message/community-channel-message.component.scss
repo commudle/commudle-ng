@@ -58,12 +58,19 @@
       @apply com-flex com-gap-3.5 com-items-center com-text-slate-500 com-text-xs;
 
       .reply {
-        @apply com-text-sm com-font-normal;
+        @apply com-text-xs com-font-medium;
       }
     }
 
     .replies {
       @apply com-mt-1.5;
     }
+  }
+}
+
+.edit-message {
+  @apply com-h-36 com-min-w-[300px] com-w-max;
+  nb-card-header {
+    @apply com-flex com-items-center com-justify-between;
   }
 }

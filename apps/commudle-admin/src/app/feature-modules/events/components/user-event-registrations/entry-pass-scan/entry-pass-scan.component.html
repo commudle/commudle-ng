@@ -3,7 +3,11 @@
     <div class="one-column-layout">
       <nb-card class="entry-pass-scan-container">
         <nb-card-header>
-          <h2 class="fs-h2">{{ event.name }}</h2>
+          <h2 class="fs-h2">
+            {{ event.name }}
+            <commudle-help-section [helpDictionaryName]="'event-qr-attendance'"></commudle-help-section>
+          </h2>
+
           <!-- <div class="actions">
             <a
               [routerLink]="['/communities', community.slug, 'events', event.slug]"

@@ -23,7 +23,7 @@
     .community-channel-discussion {
       flex-grow: 1;
       width: 1000px;
-      @apply com-ml-2px  com-border-0 com-border-l com-border-gray-200 com-border-solid;
+      @apply com-ml-2px  com-border-0 com-border-l com-border-Bright-Gray com-border-solid;
     }
   }
 
@@ -66,6 +66,12 @@
   }
 }
 
+.sidebar-expand-icon {
+  @apply com-flex;
+  fa-icon {
+    @apply com-text-2xl com-mx-auto com-cursor-pointer com-mt-3;
+  }
+}
 .icons {
   @apply com-m-2 com-w-14 com-h-14 com-rounded-lg  com-flex com-flex-col com-cursor-pointer;
 

@@ -9,6 +9,10 @@ p {
     .actions {
       @apply com-flex com-gap-2;
     }
+
+    h2 {
+      @apply com-flex com-items-center;
+    }
   }
 
   nb-card-body {
