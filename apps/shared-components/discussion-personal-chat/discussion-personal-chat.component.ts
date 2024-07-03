@@ -11,6 +11,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import * as moment from 'moment';
 import { DiscussionPersonalChatChannel } from '../services/websockets/discussion-personal-chat.channel';
+import { IEditorValidator } from '@commudle/editor';
 
 @Component({
   selector: 'app-discussion-personal-chat',
@@ -40,6 +41,15 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
   showEmojiForm = false;
   @ViewChild('inputElement', { static: true }) inputElement: ElementRef;
   @ViewChild('messagesContainer') private messagesContainer: ElementRef;
+
+  validators: IEditorValidator = {
+    required: true,
+    minLength: 1,
+    maxLength: 500,
+    noWhitespace: true,
+  };
+
+  groupedMessages: { date: string; messages: IUserMessage[] }[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -110,6 +120,7 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
             this.allMessagesLoaded = true;
           }
           this.messages.unshift(...data.user_messages.reverse());
+          this.groupedMessages = this.groupMessagesByDate(this.messages);
           this.loadingMessages = false;
           if (this.nextPage === 1) {
             this.scrollToBottom();
@@ -120,14 +131,30 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
     }
   }
 
+  groupMessagesByDate(messages) {
+    const groupedMessages = {};
+    messages.forEach((message) => {
+      const date = new Date(message.created_at).toISOString().split('T')[0];
+      if (!groupedMessages[date]) {
+        groupedMessages[date] = [];
+      }
+      groupedMessages[date].push(message);
+    });
+
+    return Object.keys(groupedMessages).map((date) => ({
+      date,
+      messages: groupedMessages[date],
+    }));
+  }
+
   toggleReplyForm(messageId) {
     this.showReplyForm = this.showReplyForm === messageId ? 0 : messageId;
   }
 
-  sendMessage() {
+  sendMessage(content) {
     this.discussionChatChannel.sendData(this.discussion.id, this.discussionChatChannel.ACTIONS.ADD, {
       user_message: {
-        content: this.chatMessageForm.get('content').value,
+        content,
       },
     });
     this.chatMessageForm.reset();
@@ -174,42 +201,137 @@ export class DiscussionPersonalChatComponent implements OnInit, OnDestroy {
             break;
           }
           case this.discussionChatChannel.ACTIONS.ADD: {
-            this.messages.push(data.user_message);
+            const newMessageObj = {
+              date: new Date(data.user_message.created_at).toISOString().split('T')[0],
+              messages: [data.user_message],
+            };
+            const existingDateIndex = this.groupedMessages.findIndex((item) => item.date === newMessageObj.date);
+
+            if (existingDateIndex !== -1) {
+              this.groupedMessages[existingDateIndex].messages.push(data.user_message);
+            } else {
+              this.groupedMessages.push(newMessageObj);
+            }
+
             this.scrollToBottom();
             this.newMessage.emit();
             break;
           }
           case this.discussionChatChannel.ACTIONS.REPLY: {
-            this.messages[this.findMessageIndex(data.parent_id)].user_messages.push(data.user_message);
+            const parentId = data.parent_id;
+            const reply = data.user_message;
+            const parentIndex = this.groupedMessages.findIndex((item) =>
+              item.messages.some((message) => message.id === parentId),
+            );
+
+            if (parentIndex !== -1) {
+              const parentMessage = this.groupedMessages[parentIndex].messages.find(
+                (message) => message.id === parentId,
+              );
+              if (!parentMessage.user_messages) {
+                parentMessage.user_messages = [];
+              }
+              parentMessage.user_messages.push(reply);
+            }
+
             this.newMessage.emit();
             break;
           }
           case this.discussionChatChannel.ACTIONS.DELETE: {
             if (data.parent_type === 'Discussion') {
-              this.messages.splice(this.findMessageIndex(data.user_message_id), 1);
+              const messageIndex = this.groupedMessages.findIndex((item) =>
+                item.messages.some((message) => message.id === data.user_message_id),
+              );
+              if (messageIndex !== -1) {
+                const message = this.groupedMessages[messageIndex].messages.find(
+                  (message) => message.id === data.user_message_id,
+                );
+                const messageIndexInDate = this.groupedMessages[messageIndex].messages.indexOf(message);
+                this.groupedMessages[messageIndex].messages.splice(messageIndexInDate, 1);
+
+                if (this.groupedMessages[messageIndex].messages.length === 0) {
+                  this.groupedMessages.splice(messageIndex, 1);
+                }
+              }
             } else {
-              const qi = this.findMessageIndex(data.parent_id);
-              if (this.messages[qi]) {
-                this.messages[qi].user_messages.splice(this.findReplyIndex(qi, data.user_message_id), 1);
+              const parentIndex = this.groupedMessages.findIndex((item) =>
+                item.messages.some((message) => message.id === data.parent_id),
+              );
+              if (parentIndex !== -1) {
+                const parentMessage = this.groupedMessages[parentIndex].messages.find(
+                  (message) => message.id === data.parent_id,
+                );
+                if (parentMessage.user_messages) {
+                  const replyIndex = parentMessage.user_messages.findIndex(
+                    (reply) => reply.id === data.user_message_id,
+                  );
+                  if (replyIndex !== -1) {
+                    parentMessage.user_messages.splice(replyIndex, 1);
+                  }
+                }
               }
             }
             break;
           }
           case this.discussionChatChannel.ACTIONS.FLAG: {
             if (data.parent_type === 'Discussion') {
-              this.messages[this.findMessageIndex(data.user_message_id)].flags_count += data.flag;
+              const messageIndex = this.groupedMessages.findIndex((item) =>
+                item.messages.some((message) => message.id === data.user_message_id),
+              );
+              if (messageIndex !== -1) {
+                const message = this.groupedMessages[messageIndex].messages.find(
+                  (message) => message.id === data.user_message_id,
+                );
+                message.flags_count += data.flag;
+              }
             } else {
-              const qi = this.findMessageIndex(data.parent_id);
-              this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].flags_count += data.flag;
+              const parentIndex = this.groupedMessages.findIndex((item) =>
+                item.messages.some((message) => message.id === data.parent_id),
+              );
+              if (parentIndex !== -1) {
+                const parentMessage = this.groupedMessages[parentIndex].messages.find(
+                  (message) => message.id === data.parent_id,
+                );
+                if (parentMessage.user_messages) {
+                  const replyIndex = parentMessage.user_messages.findIndex(
+                    (reply) => reply.id === data.user_message_id,
+                  );
+                  if (replyIndex !== -1) {
+                    parentMessage.user_messages[replyIndex].flags_count += data.flag;
+                  }
+                }
+              }
             }
             break;
           }
           case this.discussionChatChannel.ACTIONS.VOTE: {
             if (data.parent_type === 'Discussion') {
-              this.messages[this.findMessageIndex(data.user_message_id)].votes_count += data.vote;
+              const messageIndex = this.groupedMessages.findIndex((item) =>
+                item.messages.some((message) => message.id === data.user_message_id),
+              );
+              if (messageIndex !== -1) {
+                const message = this.groupedMessages[messageIndex].messages.find(
+                  (message) => message.id === data.user_message_id,
+                );
+                message.votes_count += data.vote;
+              }
             } else {
-              const qi = this.findMessageIndex(data.parent_id);
-              this.messages[qi].user_messages[this.findReplyIndex(qi, data.user_message_id)].votes_count += data.vote;
+              const parentIndex = this.groupedMessages.findIndex((item) =>
+                item.messages.some((message) => message.id === data.parent_id),
+              );
+              if (parentIndex !== -1) {
+                const parentMessage = this.groupedMessages[parentIndex].messages.find(
+                  (message) => message.id === data.parent_id,
+                );
+                if (parentMessage.user_messages) {
+                  const replyIndex = parentMessage.user_messages.findIndex(
+                    (reply) => reply.id === data.user_message_id,
+                  );
+                  if (replyIndex !== -1) {
+                    parentMessage.user_messages[replyIndex].votes_count += data.vote;
+                  }
+                }
+              }
             }
             break;
           }

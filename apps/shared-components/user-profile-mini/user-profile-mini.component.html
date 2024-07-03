@@ -1,5 +1,10 @@
 <div class="user {{ size }}">
-  <app-user-live-status *ngIf="showLiveStatus" [userId]="user.id"></app-user-live-status>
+  <app-user-live-status
+    *ngIf="showLiveStatus || showOnlineText"
+    [showLiveStatus]="showLiveStatus"
+    [userId]="user.id"
+    (isOnline)="HandleOnlineStatus($event)"
+  ></app-user-live-status>
   <div class="profile-picture {{ size }}">
     <img alt="{{ user.name }}" src="{{ user.photo.i64 }}" title="{{ user.name }}" />
   </div>
@@ -16,6 +21,7 @@
         title="Expert Tick"
       />
     </p>
+    <p *ngIf="isOnline && showOnlineText" class="active-now">Active Now</p>
     <p *ngIf="designation" class="designation {{ size }}">
       {{ user.designation | slice : 0 : 50 }}
       <span *ngIf="user.designation?.length > 25">...</span>
