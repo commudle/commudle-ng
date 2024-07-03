@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService, YoutubeLoginProvider } from '@commudle/auth';
 import { ICommunityAuthToken, IEmbeddedVideoStream, IEvent } from '@commudle/shared-models';
 import { ToastrService } from '@commudle/shared-services';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './event-streaming.component.html',
   styleUrls: ['./event-streaming.component.scss'],
 })
-export class EventStreamingComponent implements OnInit {
+export class EventStreamingComponent implements AfterContentInit {
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
   @Input() event: IEvent;
 
@@ -34,7 +34,7 @@ export class EventStreamingComponent implements OnInit {
     authService.initialize_one(YoutubeLoginProvider.PROVIDER_ID);
   }
 
-  ngOnInit(): void {
+  ngAfterContentInit(): void {
     this.getToken();
   }
 
