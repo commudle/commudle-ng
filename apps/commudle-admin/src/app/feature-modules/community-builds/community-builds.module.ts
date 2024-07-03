@@ -42,6 +42,8 @@ import { BuildsComponent } from './components/community-builds/builds/builds.com
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
 import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-shared-components/featured-projects/featured-projects.component';
+import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-share
     ExploreExpertsComponent,
     BuildsComponent,
   ],
+  exports: [BuildsTopBuildersComponent, ExploreExpertsComponent],
+  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   imports: [
     CommonModule,
     CommunityBuildsRoutingModule,
@@ -74,14 +78,13 @@ import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-share
     MiniUserProfileModule,
     SharedComponentsModule,
     PublicHomeListEventsModule,
-
     //Standalone
     FeaturedProjectsCardComponent,
     TopBuildersCardComponent,
     SkeletonCardsComponent,
     ListingPagesLayoutComponent,
     FeaturedProjectsComponent,
-
+    HelpSectionComponent,
     // Nebular
     NbCardModule,
     NbSelectModule,
@@ -92,11 +95,9 @@ import { FeaturedProjectsComponent } from 'apps/commudle-admin/src/app/app-share
     NbCheckboxModule,
     NbTagModule,
     NbTooltipModule,
-
     //FontAwesomeModule
     FontAwesomeModule,
+    AppSharedComponentsModule,
   ],
-  exports: [BuildsTopBuildersComponent, ExploreExpertsComponent],
-  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class CommunityBuildsModule {}

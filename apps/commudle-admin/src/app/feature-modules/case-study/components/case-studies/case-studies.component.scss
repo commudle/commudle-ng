@@ -17,7 +17,7 @@
     .case-studies-cards {
       @apply com-flex com-flex-wrap com-gap-8 md:com-px-0 com-px-4;
       div {
-        @apply md:com-w-[624px] com-w-full;
+        @apply md:com-w-[620px] com-w-full com-border com-border-solid com-border-Bright-Gray com-rounded-2xl com-p-4 com-shadow-lg;
       }
     }
   }

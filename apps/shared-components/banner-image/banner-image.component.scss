@@ -25,7 +25,7 @@
     .image-section {
       @apply com-flex com-justify-center;
       img {
-        @apply com-h-full com-absolute com-top-0;
+        @apply com-h-full com-max-w-full com-absolute com-top-0 com-object-contain;
       }
     }
   }

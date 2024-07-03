@@ -3,6 +3,7 @@
     <h6>
       <nb-icon icon="headphones-outline"></nb-icon>
       Team
+      <commudle-help-section [helpDictionaryName]="'event-volunteer'"></commudle-help-section>
     </h6>
   </nb-card-header>
   <nb-card-body>
@@ -68,6 +69,8 @@
           </div>
         </form>
       </div>
+
+      <app-loading-spinner *ngIf="loadingVolunteers"></app-loading-spinner>
       <div *ngIf="volunteers.length > 0">
         <div class="volunteers">
           <table>

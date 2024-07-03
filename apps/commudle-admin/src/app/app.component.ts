@@ -13,6 +13,8 @@ import { CookieConsentService } from './services/cookie-consent.service';
 import { ProfileStatusBarService } from './services/profile-status-bar.service';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
+import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
+import { ESidebarPosition, ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 @Component({
   selector: 'commudle-root',
   templateUrl: './app.component.html',
@@ -28,6 +30,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   isDarkMode = false;
   userTheme;
   systemTheme;
+  ESidebarPosition = ESidebarPosition;
+  ESidebarWidth = ESidebarWidth;
 
   private isDarkModeSubscription: Subscription;
 
@@ -47,6 +51,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     private cableService: CableService,
     private darkModeService: DarkModeService,
     private themeService: NbThemeService,
+    public helpSidebarService: SidebarService,
   ) {
     this.apiRoutes.setBaseUrl(environment.base_url);
     this.actionCableConnectionSocket.setBaseUrl(environment.anycable_url);
@@ -76,6 +81,9 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     this.removeSchemaOnRouteChange();
     this.themeCheck();
+    this.closeSidebarOnRouteChange();
+
+    this.helpSidebarService.setSidebarVisibility('helpSection', false, true, ESidebarPosition.RIGHT);
   }
 
   ngAfterViewChecked(): void {
@@ -101,6 +109,17 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.seoService.removeSchema();
+      }
+    });
+  }
+
+  closeSidebarOnRouteChange(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        const isVisible = this.helpSidebarService.getSidebarVisibility('helpSection');
+        if (isVisible) {
+          this.helpSidebarService.closeSidebar('helpSection');
+        }
       }
     });
   }

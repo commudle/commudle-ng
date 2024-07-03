@@ -149,6 +149,12 @@ export class CommunityChannelManagerService {
     this.selectedChannel.next(channel);
   }
 
+  updateChannel(channel: ICommunityChannel) {
+    if (this.selectedChannel.value.id === channel.id) {
+      this.selectedChannel.next(channel);
+    }
+  }
+
   setForum(forum) {
     this.selectedForum.next(forum);
   }

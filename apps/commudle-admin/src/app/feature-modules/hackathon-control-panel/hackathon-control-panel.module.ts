@@ -42,6 +42,7 @@ import { HackathonControlPanelEmailsComponent } from 'apps/commudle-admin/src/ap
 import { HackathonWinnerAnnouncementEmailerComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-winner-announcement-emailer/hackathon-winner-announcement-emailer.component';
 import { HackathonStatusFilterGeneralEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-status-filter-general-emails/hackathon-status-filter-general-emails.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
     //components
     SidebarComponent,
+    HelpSectionComponent,
 
     //nebular
     NbButtonModule,

@@ -1,0 +1,38 @@
+<div class="features">
+  <nb-card>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item
+          *ngFor="let feature of features; let i = index"
+          class="clickable"
+          [class.active]="feature.slug.current === selectedFeatureSlug"
+        >
+          <div class="feature" (click)="toggleShowAnswers(feature.slug.current, i)">
+            <div class="feature-item">
+              <div class="heading">
+                <div *ngIf="feature.icon" class="logo">
+                  <img alt="{{ feature.title }}" [src]="imageUrl(feature.icon).url()" title="{{ feature.title }}" />
+                </div>
+                <h2>
+                  {{ feature.title }}
+                </h2>
+              </div>
+              <div *ngIf="showSubHeading[i] && feature.features" class="sub-heading">
+                <ul *ngFor="let subheading of feature.features">
+                  <li>{{ subheading }}</li>
+                </ul>
+              </div>
+              <p *ngIf="showSubHeading[i]" class="description">{{ feature.description }}</p>
+            </div>
+            <div *ngIf="feature.features">
+              <fa-icon [icon]="showSubHeading[i] ? faMinus : faAdd"></fa-icon>
+            </div>
+          </div>
+          <div *ngIf="isMobileView && showSubHeading[i]">
+            <commudle-features-content [selectedFeature]="selectedFeature"></commudle-features-content>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>
+</div>

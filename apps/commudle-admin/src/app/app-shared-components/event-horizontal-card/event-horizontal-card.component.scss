@@ -19,7 +19,7 @@ nb-card {
         }
 
         .upcoming-card-details-desktop {
-          @apply md:com-p-3 md:com-pb-0 com-px-4 com-py-5;
+          @apply md:com-p-3 md:com-pb-0 com-px-4 com-py-5 com-overflow-hidden;
           flex: 1;
           div {
             @apply com-flex com-flex-col;

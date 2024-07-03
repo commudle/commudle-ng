@@ -1,13 +1,21 @@
 <div class="community-channels-dashboard page-padding">
-  <div [ngClass]="{ 'com-w-[21rem]': sidebarExpanded, 'com-w-[72px]': !sidebarExpanded }">
+  <div
+    [ngClass]="{
+      'com-w-[21rem]': sidebarExpanded,
+      'com-w-[72px]': !sidebarExpanded
+    }"
+  >
     <commudle-sidebar
-      [isExpanded]="sidebarExpanded"
-      (toggleSidebar)="sidebarExpanded = !sidebarExpanded"
       [expandedWidth]="ESidebarWidth.XL"
       [forWindow]="false"
+      [eventName]="sidebarEventName"
+      [showExpandedButton]="false"
     >
       <div class="com-flex">
         <div class="left-section">
+          <div (click)="toggleSidebar()" class="sidebar-expand-icon">
+            <fa-icon [icon]="faBars"></fa-icon>
+          </div>
           <div
             class="icons !com-bg-[#EFF9FF]"
             (click)="openChannelOrForums(discussionType.CHANNEL)"
@@ -33,14 +41,14 @@
             <app-community-channel-list
               [groupedChannels]="channels"
               (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
-              [isCommunityOrganizer]="isCommunityOrganizer"
+              [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
             ></app-community-channel-list>
           </div>
 
           <!-- forum list -->
           <div *ngIf="forumsList && !channelsList && discussionTypeForum">
             <app-community-forum-list
-              [isCommunityOrganizer]="isCommunityOrganizer"
+              [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
               [selectedForumName]="forumName"
               (updateSelectedForum)="updateSelectedChannelOrForum($event)"
             ></app-community-forum-list>
@@ -77,7 +85,7 @@
     <!-- //Form Name List shows after selecting form group -->
     <commudle-community-forum
       *ngIf="forumsNamesList"
-      [isCommunityOrganizer]="isCommunityOrganizer"
+      [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
       (updateSelectedForum)="checkSelectedForum()"
     ></commudle-community-forum>
 

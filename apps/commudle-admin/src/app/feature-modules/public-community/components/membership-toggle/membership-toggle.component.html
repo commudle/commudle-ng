@@ -55,19 +55,28 @@
   </nb-card>
 </ng-template>
 
-<ng-template #removeMemberDialog>
+<ng-template #removeMemberDialog let-ref="dialogRef">
   <nb-card class="confirmation-dialog">
-    <nb-card-header>Confirmation</nb-card-header>
+    <nb-card-header
+      ><span>Are You Sure?</span
+      ><button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon></button
+    ></nb-card-header>
     <nb-card-body>
       <div>
-        <p>Are you sure you want to leave {{ community.name }}?</p>
+        <p>If you choose to leave this community, all the following roles will be deleted:</p>
+      </div>
+      <div>
+        <ul *ngFor="let uru of userRolesUserList">
+          <li>{{ uru.parent_name }} ({{ uru.user_role.name | capitalizeAndRemoveUnderscore }})</li>
+        </ul>
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="toggleMembership(); dialogRef.close()" ghost nbButton status="link">
-        <span>Yes, I will leave</span>
+      <button (click)="toggleMembership(); dialogRef.close()" outline nbButton status="danger">
+        Yes, I will leave
       </button>
-      <button (click)="dialogRef.close()" ghost nbButton status="link"><span>No, I'm staying</span></button>
+      <button (click)="dialogRef.close()" nbButton status="primary">No, I'm staying</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

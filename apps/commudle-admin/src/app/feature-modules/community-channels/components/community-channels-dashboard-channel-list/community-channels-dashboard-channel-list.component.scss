@@ -4,7 +4,7 @@ nb-card {
   @apply com-h-full com-m-0 com-border-none;
 
   nb-card-header {
-    @apply com-sticky com-top-0 com-z-20 com-bg-white;
+    @apply com-flex com-items-center com-sticky com-top-0 com-z-10 com-bg-white;
   }
 
   nb-card-body.channels-list-cards {

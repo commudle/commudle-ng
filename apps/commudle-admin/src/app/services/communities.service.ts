@@ -108,6 +108,7 @@ export class CommunitiesService {
     mini?: boolean,
     after?: string,
     limit?: number,
+    community_group_id?: number,
     query?: string,
     month?: boolean,
     year?: boolean,
@@ -127,6 +128,9 @@ export class CommunitiesService {
     }
     if (limit) {
       params = params.set('limit', limit);
+    }
+    if (community_group_id) {
+      params = params.set('community_group_id', community_group_id);
     }
     if (month) {
       params = params.set('monthly', month);

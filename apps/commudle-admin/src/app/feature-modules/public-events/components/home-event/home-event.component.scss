@@ -46,7 +46,9 @@
           }
 
           span {
-            @apply com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
+            a {
+              @apply com-no-underline com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
+            }
           }
         }
       }
@@ -56,7 +58,7 @@
       .home-event-discussion {
         @apply com-mx-0 md:com-rounded-[10px] com-rounded-none;
         nb-card-header {
-          @apply com-py-4 md:com-px-6 com-px-4;
+          @apply com-py-4 md:com-px-6 com-px-4 com-flex com-items-center com-justify-between;
           h6 {
             @apply md:com-font-semibold com-font-bold;
           }

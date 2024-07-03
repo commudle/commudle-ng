@@ -7,8 +7,8 @@ import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { Subscription } from 'rxjs';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { ICommunity } from '@commudle/shared-models';
-import { SeoService } from '@commudle/shared-services';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
+import { NbDialogService } from '@commudle/theme';
 
 @Component({
   selector: 'app-community-channel',
@@ -28,11 +28,12 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
   isLoading = true;
 
   faUsers = faUsers;
+  timeout: any;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
     private discussionsService: DiscussionsService,
-    private seoService: SeoService,
+    private nbDialogService: NbDialogService,
   ) {}
 
   ngOnInit() {
@@ -89,5 +90,9 @@ export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
 
   toggleMembersList() {
     this.showMembersList = !this.showMembersList;
+  }
+
+  onLongPress(dialog) {
+    this.nbDialogService.open(dialog);
   }
 }

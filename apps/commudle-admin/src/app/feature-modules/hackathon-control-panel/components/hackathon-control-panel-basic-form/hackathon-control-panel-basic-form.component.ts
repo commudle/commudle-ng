@@ -159,9 +159,9 @@ export class HackathonControlPanelBasicFormComponent implements OnInit, OnDestro
     }
 
     // Validate file size
-    const maxSizeInBytes = 10 * 1024 * 1024; // 10 MB
+    const maxSizeInBytes = 5 * 1024 * 1024; // 5 MB
     if (file.size > maxSizeInBytes) {
-      this.toastrService.warningDialog('File size exceeds 10 MB limit.');
+      this.toastrService.warningDialog('File size exceeds 5 MB limit.');
 
       return;
     }

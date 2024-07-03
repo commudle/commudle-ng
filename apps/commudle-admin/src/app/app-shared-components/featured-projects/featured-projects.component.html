@@ -3,6 +3,7 @@
     'container-scroll': isMobileView || showCardsHorizontal,
     container: !(isMobileView || showCardsHorizontal)
   }"
+  id="featured-builds"
 >
   <nb-card-body>
     <div class="heading">
@@ -13,7 +14,7 @@
         <fa-icon [icon]="faLightbulb"></fa-icon>
       </button>
       <div class="text">
-        <h3 class="title">FEATURED BUILDS</h3>
+        <h3 class="title"><a [routerLink]="'.'" fragment="featured-builds">FEATURED BUILDS</a></h3>
         <h4 class="sub-heading">We found these innovative!</h4>
       </div>
     </div>

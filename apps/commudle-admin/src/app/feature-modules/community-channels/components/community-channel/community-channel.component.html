@@ -1,28 +1,42 @@
-<div
-  class="com-h-10 com-flex com-border-0 com-mx-4 com-border-b com-border-gray-200 com-border-solid com-justify-between com-items-center"
->
-  <span class="com-my-auto com-text-sm com-line-clamp-2"> {{ selectedChannel?.description }} </span>
-  <div (click)="toggleMembersList()" class="com-cursor-pointer">
-    <fa-icon [icon]="faUsers"></fa-icon>
+<section class="discussion-container">
+  <div class="description-container" longPress (longPress)="onLongPress(description)">
+    <span class="description" [nbTooltip]="selectedChannel?.description"> {{ selectedChannel?.description }} </span>
+    <div (click)="toggleMembersList()" class="com-cursor-pointer">
+      <fa-icon [icon]="faUsers"></fa-icon>
+    </div>
   </div>
-</div>
 
-<div *ngIf="!discussion && isLoading" class="com-h-[100vh] com-flex com-items-center com-justify-center">
-  <app-loading-spinner></app-loading-spinner>
-</div>
-<div *ngIf="discussion && !isLoading" class="com-ml-2">
-  <commudle-channel-discussion
-    [discussionId]="discussion.id"
-    [channelOrForum]="selectedChannel"
-    discussionParent="channels"
-    discussionType="channel"
-  ></commudle-channel-discussion>
-</div>
+  <div *ngIf="!discussion && isLoading" class="com-h-[100vh] com-flex com-items-center com-justify-center">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div *ngIf="discussion && !isLoading">
+    <commudle-channel-discussion
+      [discussionId]="discussion.id"
+      [channelOrForum]="selectedChannel"
+      discussionParent="channels"
+      discussionType="channel"
+    ></commudle-channel-discussion>
+  </div>
 
-<div class="com-absolute com-bottom-0 com-right-0 com-h-full" *ngIf="showMembersList">
-  <app-channel-members
-    (closeMembersList)="toggleMembersList()"
-    [channelOrForum]="selectedChannel"
-    discussionType="channel"
-  ></app-channel-members>
-</div>
+  <div class="com-absolute com-bottom-0 com-right-0 com-h-full" *ngIf="showMembersList">
+    <app-channel-members
+      (closeMembersList)="toggleMembersList()"
+      [channelOrForum]="selectedChannel"
+      discussionType="channel"
+    ></app-channel-members>
+  </div>
+</section>
+
+<ng-template #description let-ref="dialogRef">
+  <nb-card class="channel-description-dialog">
+    <nb-card-header>
+      <span>Channel Description</span>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      {{ selectedChannel?.description }}
+    </nb-card-body>
+  </nb-card>
+</ng-template>

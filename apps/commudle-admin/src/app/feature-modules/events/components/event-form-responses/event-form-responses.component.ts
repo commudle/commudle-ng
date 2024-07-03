@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ColumnMode, SortType } from '@commudle/ngx-datatable';
-import { NbWindowService } from '@commudle/theme';
+import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
@@ -81,6 +81,7 @@ export class EventFormResponsesComponent implements OnInit {
   EQuestionTypes = EQuestionTypes;
   RegistrationTypeNames = RegistrationTypeNames;
   eventLocations: IEventLocation[];
+  dialogRef: any;
 
   //TODO past event stats
   constructor(
@@ -94,6 +95,7 @@ export class EventFormResponsesComponent implements OnInit {
     private toastLogService: LibToastLogService,
     private appUsersService: AppUsersService,
     private eventLocationsService: EventLocationsService,
+    private dialogService: NbDialogService,
   ) {
     this.searchForm = this.fb.group({
       name: [''],
@@ -346,11 +348,9 @@ export class EventFormResponsesComponent implements OnInit {
     });
   }
 
-  bulkStatusChangeConfirmation() {
-    this.windowRef = this.windowService.open(this.confirmStatusChange, {
-      title: `Change Bulk Status?`,
-    });
-    this.windowRef.onClose.subscribe(() => {
+  bulkStatusChangeConfirmation(dialog: TemplateRef<any>) {
+    this.dialogRef = this.dialogService.open(dialog);
+    this.dialogRef.onClose.subscribe(() => {
       this.bulkStatus = null;
       this.bulkStatusChangeForCanceled = false;
     });
@@ -371,7 +371,7 @@ export class EventFormResponsesComponent implements OnInit {
         }
       });
     this.bulkStatus = null;
-    this.windowRef.close();
+    this.dialogRef.close();
   }
 
   changeFromRegistrationStatus(event) {

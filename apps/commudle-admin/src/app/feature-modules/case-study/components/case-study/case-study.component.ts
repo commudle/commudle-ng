@@ -10,7 +10,7 @@ import { ICaseStudy } from 'apps/shared-models/case-study.model';
   styleUrls: ['./case-study.component.scss'],
 })
 export class CaseStudyComponent implements OnInit, OnDestroy {
-  caseStudyPageHeader: ICaseStudy;
+  caseStudyPage: ICaseStudy;
   richTextChallenges: string;
   richTextSolution: string;
   richTextStats: any[] = [];
@@ -25,7 +25,7 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
     this.footerService.changeFooterStatus(true);
     this.activatedRoute.params.subscribe((params) => {
       const slug = params.slug;
-      this.getHeaderText(slug);
+      this.getCaseStudyText(slug);
     });
   }
 
@@ -33,12 +33,12 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
     this.footerService.changeFooterStatus(false);
   }
 
-  getHeaderText(slug: string) {
+  getCaseStudyText(slug: string) {
     this.cmsService.getDataBySlug(slug).subscribe((data) => {
-      this.caseStudyPageHeader = data;
+      this.caseStudyPage = data;
       this.richTextChallenges = this.cmsService.getHtmlFromBlock(data, 'challenge');
-      this.richTextSolution = this.cmsService.getHtmlFromBlock(data, 'solution');
-      this.caseStudyPageHeader.stats.forEach((stat) => {
+      this.richTextSolution = this.cmsService.getHtmlFromBlock(this.caseStudyPage.solution[0], 'solution');
+      this.caseStudyPage.stats.forEach((stat) => {
         this.richTextStats.push(this.cmsService.getHtmlFromBlock(stat));
       });
     });

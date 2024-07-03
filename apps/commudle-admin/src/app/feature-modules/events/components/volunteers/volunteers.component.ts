@@ -27,6 +27,8 @@ export class VolunteersComponent implements OnInit {
   userRolesUserForm;
   roleDesignations: Observable<string[]>;
 
+  loadingVolunteers = true;
+
   constructor(
     private userRolesUsersService: UserRolesUsersService,
     private fb: FormBuilder,
@@ -65,6 +67,7 @@ export class VolunteersComponent implements OnInit {
   getVolunteers() {
     this.userRolesUsersService.getEventVolunteers(this.event.slug).subscribe((data) => {
       this.volunteers = data.user_roles_users;
+      this.loadingVolunteers = false;
       this.changeDetectorRef.markForCheck();
     });
   }
