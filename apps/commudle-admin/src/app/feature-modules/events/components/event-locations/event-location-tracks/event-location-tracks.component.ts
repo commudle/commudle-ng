@@ -470,7 +470,7 @@ export class EventLocationTracksComponent implements OnInit {
   getLocationTracks() {
     this.trackSlotsService.getTrackSlots(this.sessionDate, this.eventLocationId).subscribe((data: any) => {
       this.eventLocationTracks = data;
-      console.log(this.eventLocationTracks);
+      console.log(this.eventLocationTracks, 'tracks');
     });
   }
 }

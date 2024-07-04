@@ -3,7 +3,7 @@
     *ngIf="event.editable"
     (click)="showAddTrackForm()"
     nbButton
-    size="tiny"
+    size="medium"
     status="primary"
     class="add-track-button"
   >
@@ -17,8 +17,7 @@
         (click)="changeTrackSlotVisibility(!trackSlotVisibility[elt.id], elt.id)"
       >
         <nb-accordion-item-header>
-          <p class="track-name">{{ elt.id }}</p>
-          <!-- change to name after api -->
+          <p class="track-name">{{ elt.name }}</p>
           &nbsp;
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
           <div *ngIf="event.editable" class="actions">
@@ -177,7 +176,7 @@
               </nb-list-item>
             </nb-list>
           </ng-container>
-          <!-- <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Speaker Slots Added</div> -->
+          <div *ngIf="elt.track_slots.length === 0" class="no-slots-yet">No Speaker Slots Added</div>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>

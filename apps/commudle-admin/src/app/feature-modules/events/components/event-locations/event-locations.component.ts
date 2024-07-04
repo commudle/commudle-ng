@@ -50,14 +50,18 @@ export class EventLocationsComponent implements OnInit {
 
   @Input() event: IEvent;
   @Input() community: ICommunity;
-  eventLocations: IEventLocation[];
+  // eventLocations: IEventLocation[];
+  eventLocations;
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
   isLoading = true;
+  // eventDatesLocation: ILocations[];
   eventDatesLocation: ILocations[];
+  admin = true;
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
+  selectedLocation;
 
   @ViewChild('tabset') tabsetEl: NbTabsetComponent;
   @ViewChild('addTab') addTabEl: NbTabComponent;
@@ -165,10 +169,13 @@ export class EventLocationsComponent implements OnInit {
   addEventLocation() {
     this.windowRef.close();
     this.eventLocationsService.createEventLocation(this.event.id, this.eventLocationForm.value).subscribe((data) => {
+      console.log(data);
       this.eventLocations.push(data);
+      console.log(this.eventLocations);
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Location added!');
       this.changeDetectorRef.markForCheck();
+      // this.getEventLocations();
     });
   }
 
@@ -322,11 +329,25 @@ export class EventLocationsComponent implements OnInit {
   }
 
   getEventLocations() {
-    this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
+    console.log('locations called');
+    this.trackSlotsService.getEventDates(this.event.slug, this.admin).subscribe((data: any) => {
       this.eventDatesLocation = data;
+      // this.eventLocations = data;
       this.eventLocations = data.reduce((acc, event) => acc.concat(event.locations), []);
+      if (this.eventLocations) {
+        console.log('onInit');
+        this.selectLocation(this.eventLocations[0]);
+      }
+      console.log(this.eventLocations, 'location');
+      this.changeDetectorRef.markForCheck();
+      this.isLoading = false;
       // this.eventDates = data.map((event) => moment(event.date).format('Do MMMM'));
     });
+  }
+
+  selectLocation(location: ILocation) {
+    this.selectedLocation = location;
+    console.log(this.selectedLocation, 'selected');
   }
 
   // getFormattedDate(date) {

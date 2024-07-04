@@ -58,8 +58,8 @@ export class TrackSlotsService {
     return this.http.get<IPolls>(this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.POLLS), { params });
   }
 
-  getEventDates(eventId): Observable<ILocations> {
-    const params = new HttpParams().set('event_id', eventId);
+  getEventDates(eventId, admin): Observable<ILocations> {
+    const params = new HttpParams().set('event_id', eventId).set('admin', admin);
     return this.http.get<ILocations>(this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.TRACK_SLOTS_BY_DATE), {
       params,
     });
