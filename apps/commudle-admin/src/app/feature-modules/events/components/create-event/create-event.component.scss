@@ -47,3 +47,12 @@
     @apply com-m-0;
   }
 }
+
+.event-type {
+  > div {
+    @apply com-flex com-gap-3;
+    > div {
+      @apply com-flex com-gap-2 com-items-center;
+    }
+  }
+}
