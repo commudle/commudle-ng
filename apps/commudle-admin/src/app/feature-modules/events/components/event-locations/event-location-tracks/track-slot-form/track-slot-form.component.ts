@@ -59,7 +59,7 @@ export class TrackSlotFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.eventLocations);
+    console.log(this.eventLocTrack);
     this.getEventSpeakers();
     if (this.operationType === 'create') {
       this.updateNewTrackSlot();

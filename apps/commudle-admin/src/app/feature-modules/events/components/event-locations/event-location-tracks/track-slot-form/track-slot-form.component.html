@@ -29,20 +29,20 @@
                   >+ Add Location /Tracks</a
                 >
               </nb-option> -->
-              <!-- <nb-option-group *ngFor="let location of eventLocations" title="{{ location.location.name }}">
-                <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
-                  {{ ltrack.name }}
-                </nb-option>
-              </nb-option-group> -->
-              <span
+              <!-- <nb-option-group *ngFor="let location of eventLocations" title="{{ location.location.name }}"> -->
+              <nb-option *ngFor="let ltrack of eventLocationTracks" [value]="ltrack.id">
+                {{ ltrack.name }}
+              </nb-option>
+              <!-- </nb-option-group> -->
+              <!-- <span
                 *ngIf="
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.touched &&
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.invalid &&
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.required
                 "
               >
-                <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
-              </span>
+                <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert> -->
+              <!-- </span> -->
             </nb-select>
           </div>
           <div

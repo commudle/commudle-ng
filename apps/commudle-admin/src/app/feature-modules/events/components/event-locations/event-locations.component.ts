@@ -55,8 +55,9 @@ export class EventLocationsComponent implements OnInit {
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
   isLoading = true;
+  eventDatesLocation;
   // eventDatesLocation: ILocations[];
-  eventDatesLocation: ILocations[];
+  // eventDatesLocation: ILocations[];
   admin = true;
 
   eventLocationForm;
@@ -169,34 +170,37 @@ export class EventLocationsComponent implements OnInit {
   addEventLocation() {
     this.windowRef.close();
     this.eventLocationsService.createEventLocation(this.event.id, this.eventLocationForm.value).subscribe((data) => {
-      console.log(data);
-      this.eventLocations.push(data);
-      console.log(this.eventLocations);
+      this.eventDatesLocation.forEach((event) => {
+        event.event_locations.push(data);
+      });
+      //After - Push whole data event.locations.push(data.location);
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Location added!');
       this.changeDetectorRef.markForCheck();
-      // this.getEventLocations();
+      this.changeDetectorRef.detectChanges();
     });
   }
 
   showEditEventLocationForm(eventLocation) {
     this.eventLocationForm.reset();
-    this.selectedEventType = eventLocation.event_type;
-    this.toggleEventTypeValidations(this.selectedEventType);
-    this.eventLocationForm.patchValue({
-      event_type: this.selectedEventType,
-    });
+    // After - this.selectedEventType = eventLocation.event_type;
+    // After - this.toggleEventTypeValidations(this.selectedEventType);
+    // After - this.eventLocationForm.patchValue({
+    //   event_type: this.selectedEventType,
+    // });
 
-    switch (this.selectedEventType) {
-      case EEventType.OFFLINE_ONLY:
-        this.eventLocationForm.get('location').patchValue(eventLocation.location);
-        break;
-      case EEventType.ONLINE_ONLY:
-        if (eventLocation.embedded_video_stream) {
-          this.eventLocationForm.get('embedded_video_stream').patchValue(eventLocation.embedded_video_stream);
-        }
-        break;
-    }
+    // After - switch (this.selectedEventType) {
+    //   case EEventType.OFFLINE_ONLY:
+    //     this.eventLocationForm.get('location').patchValue(eventLocation.location);
+    //     break;
+    //   case EEventType.ONLINE_ONLY:
+    //     if (eventLocation.embedded_video_stream) {
+    //       this.eventLocationForm.get('embedded_video_stream').patchValue(eventLocation.embedded_video_stream);
+    //     }
+    //     break;
+    // }
+
+    this.eventLocationForm.get('location').patchValue(eventLocation.location);
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
@@ -208,14 +212,45 @@ export class EventLocationsComponent implements OnInit {
   editEventLocation(eventLocation) {
     this.windowRef.close();
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
-      const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
+      let locationIndex = -1;
+      this.eventDatesLocation.forEach((dateLocation) => {
+        const index = dateLocation.event_locations.findIndex((k) => k.id === eventLocation.id);
+        if (index !== -1) {
+          locationIndex = index;
+          dateLocation.event_locations[index] = data;
+        }
+      });
+
       this.activeTabIndex = locationIndex;
-      this.eventLocations[locationIndex] = data;
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
       this.changeDetectorRef.markForCheck();
     });
   }
+
+  // editEventLocation(eventLocation) {
+  //   console.log(eventLocation, 'location');
+  //   this.windowRef.close();
+  //   this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
+  //     console.log(data, 'data');
+  //     let locationIndex = -1;
+  //     this.eventDatesLocation.forEach((dateLocation) => {
+  //       const index = dateLocation.event_locations.findIndex((k) => {
+  //         return k.id === data.id;
+  //       });
+  //       if (index !== -1) {
+  //         locationIndex = index;
+  //         dateLocation.event_locations[index] = data;
+  //       }
+  //     });
+
+  //     this.activeTabIndex = locationIndex;
+  //     // this.eventDatesLocation[locationIndex] = data;
+  //     this.eventLocationForm.reset();
+  //     this.toastLogService.successDialog('Updated');
+  //     this.changeDetectorRef.markForCheck();
+  //   });
+  // }
 
   confirmDeleteEventLocation(eventLocation) {
     this.windowRef = this.windowService.open(this.deleteEventLocationTemplate, {
@@ -237,16 +272,11 @@ export class EventLocationsComponent implements OnInit {
     this.activateTabAdd();
   }
 
-  addTrack(newTrack, locationIndex) {
-    this.eventLocations[locationIndex].event_location_tracks.push(newTrack);
-    this.changeDetectorRef.markForCheck();
-  }
-
-  updateTrack(track, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === track.id);
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition] = track;
-    this.changeDetectorRef.markForCheck();
-  }
+  // updateTrack(track, locationIndex) {
+  //   const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === track.id);
+  //   this.eventLocations[locationIndex].event_location_tracks[trackPosition] = track;
+  //   this.changeDetectorRef.markForCheck();
+  // }
 
   removeTrack(trackId, locationIndex) {
     const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === trackId);
@@ -329,32 +359,18 @@ export class EventLocationsComponent implements OnInit {
   }
 
   getEventLocations() {
-    console.log('locations called');
-    this.trackSlotsService.getEventDates(this.event.slug, this.admin).subscribe((data: any) => {
+    this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
       this.eventDatesLocation = data;
-      // this.eventLocations = data;
-      this.eventLocations = data.reduce((acc, event) => acc.concat(event.locations), []);
-      if (this.eventLocations) {
-        console.log('onInit');
-        this.selectLocation(this.eventLocations[0]);
-      }
-      console.log(this.eventLocations, 'location');
+      // this.eventLocations = data.reduce((acc, event) => acc.concat(event.locations), []);
+      this.selectLocation(data[0].event_locations[0]);
       this.changeDetectorRef.markForCheck();
       this.isLoading = false;
       // this.eventDates = data.map((event) => moment(event.date).format('Do MMMM'));
     });
   }
 
-  selectLocation(location: ILocation) {
+  selectLocation(location) {
     this.selectedLocation = location;
-    console.log(this.selectedLocation, 'selected');
+    this.changeDetectorRef.detectChanges();
   }
-
-  // getFormattedDate(date) {
-  //   if (date) {
-  //     console.log(date);
-  //     console.log(moment(date).format('Do MMMM'));
-  //     return moment(date).format('Do MMMM');
-  //   }
-  // }
 }

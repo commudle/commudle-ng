@@ -27,24 +27,28 @@
             #addTab
           >
             <div id="tabset" name="tabset" #tabset class="locations-tracks">
-              <div class="com-w-full">
+              <div *ngIf="data?.event_locations" class="com-w-full">
                 <div class="locations">
-                  <button
-                    *ngFor="let el of data.locations; let i = index"
-                    nbButton
-                    outline
-                    [status]="el === selectedLocation ? 'info' : 'basic'"
-                    (click)="selectLocation(el)"
-                  >
-                    {{ el.name }}
-                    <!-- change to name -->
-                  </button>
+                  <div *ngFor="let el of data.event_locations; let i = index">
+                    <button
+                      *ngIf="el.location"
+                      nbButton
+                      outline
+                      [status]="el === selectedLocation ? 'info' : 'basic'"
+                      (click)="selectLocation(el)"
+                    >
+                      {{ el.location.name }}
+                      <!-- change to name -->
+                    </button>
+                  </div>
                 </div>
                 <div *ngIf="selectedLocation" class="event-location-tracks">
-                  <div *ngIf="selectedLocation?.address" class="map-location">
+                  <div *ngIf="selectedLocation?.location.address" class="map-location">
                     <p class="address">
                       <span>Address: </span>
-                      <a href="{{ selectedLocation.map_link }}" target="_blank">{{ selectedLocation.address }}</a>
+                      <a href="{{ selectedLocation.location.map_link }}" target="_blank">{{
+                        selectedLocation.location.address
+                      }}</a>
                       &nbsp;
                       <fa-icon
                         *ngIf="event.editable"
@@ -63,21 +67,18 @@
                     </p>
 
                     <p class="link-to-map">
-                      <a href="{{ selectedLocation.map_link }}" target="_blank">
+                      <a href="{{ selectedLocation.location.map_link }}" target="_blank">
                         <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map
                       </a>
                     </p>
                   </div>
                   <app-event-location-tracks
                     (addSession)="addSlot($event, i)"
-                    (addTrack)="addTrack($event, i)"
                     (removeSession)="removeSlot($event, i)"
                     (removeTrack)="removeTrack($event, i)"
                     (updateSession)="updateSlot($event, i)"
-                    (updateTrack)="updateTrack($event, i)"
                     [community]="community"
-                    [eventLocationId]="selectedLocation.id"
-                    [eventLocations]="eventLocations"
+                    [eventLocation]="selectedLocation"
                     [eventSpeakers]="eventSpeakers"
                     [event]="event"
                     [sessionDate]="data.date"
