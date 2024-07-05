@@ -166,7 +166,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTracks[index].track_slots.push(data);
   }
 
-  showEditSlotForm(trackSlot) {
+  showEditSlotForm(trackSlot, eltIndex) {
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
         operationType: 'edit',
@@ -177,23 +177,29 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       },
     });
     dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
-      this.editSlot(data, trackSlot.id);
+      this.editSlot(data, trackSlot.id, eltIndex);
       dialogRef.close();
     });
   }
 
-  editSlot(data, trackSlotId) {
-    const eventLocationTrack = this.eventLocationTracks.find((track) =>
-      track.track_slots.some((slot) => slot.id === trackSlotId),
-    );
-    if (eventLocationTrack) {
-      eventLocationTrack.track_slots = eventLocationTrack.track_slots.map((slot) => {
-        return slot.id === trackSlotId ? data : slot;
-      });
-      this.sortedTrackSlots[eventLocationTrack.id] = this.sortTrackSlots(eventLocationTrack.track_slots);
-      this.changeDetectorRef.markForCheck();
+  editSlot(data, trackSlotId, eltIndex) {
+    if (data.event_location_track_id != this.eventLocationTracks[eltIndex].id) {
+      this.sortedTrackSlots[data.event_location_track_id].push(data);
+      this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
+        this.sortedTrackSlots[data.event_location_track_id],
+      );
+    } else {
+      const eventLocationTrack = this.eventLocationTracks.find((track) =>
+        track.track_slots.some((slot) => slot.id === trackSlotId),
+      );
+      if (eventLocationTrack) {
+        eventLocationTrack.track_slots = eventLocationTrack.track_slots.map((slot) => {
+          return slot.id === trackSlotId ? data : slot;
+        });
+        this.sortedTrackSlots[eventLocationTrack.id] = this.sortTrackSlots(eventLocationTrack.track_slots);
+        this.changeDetectorRef.markForCheck();
+      }
     }
-    this.updateSession.emit(data);
     this.toastLogService.successDialog('Slot Updated!');
     this.trackSlotForm.reset();
     this.changeDetectorRef.markForCheck();
@@ -467,7 +473,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   getLocationTracks() {
     this.trackSlotsService.getTrackSlots(this.eventLocation.location.id).subscribe((data: any) => {
       this.eventLocationTracks = data;
-      console.log(this.eventLocationTracks);
       const visibility = this.eventLocationTracks.length <= 2;
       for (const event_location_track of this.eventLocationTracks) {
         this.trackSlotVisibility[event_location_track.id] = visibility;

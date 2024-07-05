@@ -69,7 +69,7 @@
                         <div
                           *ngIf="event.editable"
                           class="edit"
-                          (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                          (click)="showEditSlotForm(slot, elti); $event.stopPropagation()"
                         >
                           <fa-icon [icon]="faPen"></fa-icon>
                         </div>
@@ -125,7 +125,7 @@
                       <div
                         *ngIf="event.editable"
                         class="edit"
-                        (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                        (click)="showEditSlotForm(slot, elti); $event.stopPropagation()"
                       >
                         <fa-icon [icon]="faPen"></fa-icon>
                       </div>
