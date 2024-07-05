@@ -34,15 +34,15 @@
                 {{ ltrack.name }}
               </nb-option>
               <!-- </nb-option-group> -->
-              <!-- <span
+              <span
                 *ngIf="
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.touched &&
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.invalid &&
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.required
                 "
               >
-                <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert> -->
-              <!-- </span> -->
+                <commudle-alert [error]="true" errorMessage="Required Field"></commudle-alert>
+              </span>
             </nb-select>
           </div>
           <div

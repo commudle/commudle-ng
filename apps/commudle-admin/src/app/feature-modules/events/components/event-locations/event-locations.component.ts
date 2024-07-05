@@ -200,7 +200,7 @@ export class EventLocationsComponent implements OnInit {
     //     break;
     // }
 
-    this.eventLocationForm.get('location').patchValue(eventLocation.location);
+    this.eventLocationForm.patchValue(eventLocation);
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
@@ -212,16 +212,27 @@ export class EventLocationsComponent implements OnInit {
   editEventLocation(eventLocation) {
     this.windowRef.close();
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
-      let locationIndex = -1;
       this.eventDatesLocation.forEach((dateLocation) => {
-        const index = dateLocation.event_locations.findIndex((k) => k.id === eventLocation.id);
+        const index = dateLocation.event_locations.findIndex((k) => {
+          return k.id === eventLocation.id;
+        });
         if (index !== -1) {
-          locationIndex = index;
           dateLocation.event_locations[index] = data;
         }
+
+        this.selectLocation(dateLocation.event_locations[index]);
       });
 
-      this.activeTabIndex = locationIndex;
+      // let locationIndex = -1;
+      // this.eventDatesLocation.forEach((dateLocation) => {
+      //   const index = dateLocation.event_locations.findIndex((k) => k.id === eventLocation.id);
+      //   if (index !== -1) {
+      //     locationIndex = index;
+      //     dateLocation.event_locations[index] = data;
+      //   }
+      // });
+
+      // this.activeTabIndex = locationIndex;
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
       this.changeDetectorRef.markForCheck();
@@ -266,8 +277,19 @@ export class EventLocationsComponent implements OnInit {
         this.changeDetectorRef.markForCheck();
       });
     }
-    const locationIndex = this.eventLocations.findIndex((k) => k.id === eventLocation.id);
-    this.eventLocations.splice(locationIndex, 1);
+    this.eventDatesLocation.forEach((dateLocation) => {
+      const index = dateLocation.event_locations.findIndex((k) => {
+        return k.id === eventLocation.id;
+      });
+      if (index !== -1) {
+        dateLocation.event_locations.splice(index, 1);
+      }
+    });
+
+    if (this.selectedLocation && this.selectedLocation.id === eventLocation.id) {
+      this.selectLocation(this.eventDatesLocation[0].event_locations[0]);
+    }
+
     this.windowRef.close();
     this.activateTabAdd();
   }
@@ -369,8 +391,8 @@ export class EventLocationsComponent implements OnInit {
     });
   }
 
-  selectLocation(location) {
-    this.selectedLocation = location;
+  selectLocation(eventLocation) {
+    this.selectedLocation = eventLocation;
     this.changeDetectorRef.detectChanges();
   }
 }

@@ -120,7 +120,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    console.log(this.eventLocation);
     this.setTrackVisibility();
     this.minSlotDate = moment(this.event.start_time).toDate();
   }
@@ -146,6 +145,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       context: {
         operationType: 'create',
         // eventLocations: this.eventLocations,
+        eventLocationTracks: this.eventLocationTracks,
         startTime: startTime,
         eventLocTrack: eventLocTrack,
         minSlotDate: this.minSlotDate,
