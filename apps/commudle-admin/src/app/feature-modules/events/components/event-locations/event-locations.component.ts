@@ -16,7 +16,7 @@ import { EventLocationsService } from 'apps/commudle-admin/src/app/services/even
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 import { EEmbeddedVideoStreamSources } from 'apps/shared-models/enums/embedded_video_stream_sources.enum';
-import { EEventType, IEventLocation } from 'apps/shared-models/event-location.model';
+import { EEventType, IEventDatesLocation, IEventLocation } from 'apps/shared-models/event-location.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
@@ -52,8 +52,7 @@ export class EventLocationsComponent implements OnInit {
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
   isLoading = true;
-  eventDatesLocation;
-  // eventDatesLocation: ILocations[];
+  eventDatesLocation: IEventDatesLocation[];
   admin = true;
 
   eventLocationForm;
@@ -245,14 +244,30 @@ export class EventLocationsComponent implements OnInit {
     this.activateTabAdd();
   }
 
+  // addSlot(newTrackSlot, locationIndex) {
+  //   const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => {
+  //     console.log(k.id)
+  //     k.id === newTrackSlot.event_location_track_id;
+  //   });
+  //   this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
+  //     ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
+  //     newTrackSlot,
+  //   ];
+  //   this.changeDetectorRef.markForCheck();
+  // }
+
   addSlot(newTrackSlot, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
-      (k) => k.id === newTrackSlot.event_location_track_id,
-    );
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
-      ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
-      newTrackSlot,
-    ];
+    console.log(newTrackSlot);
+    console.log(newTrackSlot.event_location_track_id);
+    console.log(locationIndex);
+    // const trackPosition = this.eventDatesLocation[locationIndex].event_location_tracks.findIndex((k) => {
+    //   console.log(k.id);
+    //   k.id === newTrackSlot.event_location_track_id;
+    // });
+    // this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
+    //   ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
+    //   newTrackSlot,
+    // ];
     this.changeDetectorRef.markForCheck();
   }
 
