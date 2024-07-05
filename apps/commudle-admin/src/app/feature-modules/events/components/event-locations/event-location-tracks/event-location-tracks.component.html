@@ -22,7 +22,7 @@
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
           <div *ngIf="event.editable" class="actions">
             <button
-              (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
+              (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
               nbButton
               size="tiny"
               status="primary"
@@ -43,7 +43,7 @@
         <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0" (click)="$event.stopPropagation()">
           <div
             class="add-session"
-            (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
+            (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
             *ngIf="event.editable"
           >
             <fa-icon [icon]="faPlus"></fa-icon>

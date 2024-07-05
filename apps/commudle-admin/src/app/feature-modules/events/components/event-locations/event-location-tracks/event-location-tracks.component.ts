@@ -136,7 +136,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     }
   }
 
-  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack) {
+  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack, index?) {
     this.trackSlotForm.reset();
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
@@ -149,12 +149,12 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       },
     });
     dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
-      this.addSlot(data);
+      this.addSlot(data, index);
       dialogRef.close();
     });
   }
 
-  addSlot(data) {
+  addSlot(data, index) {
     this.sortedTrackSlots[data.event_location_track_id].push(data);
     this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
       this.sortedTrackSlots[data.event_location_track_id],
@@ -162,8 +162,8 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
 
     this.trackSlotForm.reset();
     this.toastLogService.successDialog('Slot Added!');
-    this.changeDetectorRef.markForCheck();
-    this.addSession.emit(data);
+
+    this.eventLocationTracks[index].track_slots.push(data);
   }
 
   showEditSlotForm(trackSlot) {
