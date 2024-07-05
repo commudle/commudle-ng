@@ -245,11 +245,6 @@ export class EventLocationsComponent implements OnInit {
     this.activateTabAdd();
   }
 
-  removeTrack(trackId, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === trackId);
-    this.eventLocations[locationIndex].event_location_tracks.splice(trackPosition, 1);
-  }
-
   addSlot(newTrackSlot, locationIndex) {
     const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
       (k) => k.id === newTrackSlot.event_location_track_id,

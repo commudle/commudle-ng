@@ -50,9 +50,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
   @Input() eventLocation;
   @Input() eventSpeakers;
-  @Output() addTrack = new EventEmitter();
-  @Output() updateTrack = new EventEmitter();
-  @Output() removeTrack = new EventEmitter();
   @Output() addSession = new EventEmitter();
   @Output() updateSession = new EventEmitter();
   @Output() removeSession = new EventEmitter();
