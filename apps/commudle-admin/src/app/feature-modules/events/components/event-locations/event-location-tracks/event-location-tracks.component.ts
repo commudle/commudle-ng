@@ -144,7 +144,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
         operationType: 'create',
-        // eventLocations: this.eventLocations,
         eventLocationTracks: this.eventLocationTracks,
         startTime: startTime,
         eventLocTrack: eventLocTrack,
@@ -469,10 +468,8 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   getLocationTracks() {
-    // console.log(this.eventLocation, 'id');
     this.trackSlotsService.getTrackSlots(this.eventLocation.location.id).subscribe((data: any) => {
       this.eventLocationTracks = data;
-      // console.log(this.eventLocationTracks);
       const visibility = this.eventLocationTracks.length <= 2;
       for (const event_location_track of this.eventLocationTracks) {
         this.trackSlotVisibility[event_location_track.id] = visibility;

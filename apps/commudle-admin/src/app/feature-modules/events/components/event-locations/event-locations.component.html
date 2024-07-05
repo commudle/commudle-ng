@@ -12,7 +12,7 @@
       Add Location
     </button>
   </div>
-  <!-- <app-loading-spinner *ngIf="isLoading"></app-loading-spinner> -->
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
   <div *ngIf="eventDatesLocation">
     <nb-card *ngIf="eventDatesLocation.length > 0" class="event-locations-list">
       <div class="event-location">
@@ -38,7 +38,6 @@
                       (click)="selectLocation(el)"
                     >
                       {{ el.location.name }}
-                      <!-- change to name -->
                     </button>
                   </div>
                 </div>
@@ -89,68 +88,6 @@
             </div>
           </nb-tab>
         </nb-tabset>
-        <!-- <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
-          <nb-tab
-            *ngFor="let el of eventLocations; let i = index"
-            badgePosition="top right"
-            badgeStatus="primary"
-            badgeText="{{ el.event_location_tracks.length > 1 ? el.event_location_tracks.length + ' Tracks' : '' }}"
-            tabIcon="{{ getTabIcon(el) }}"
-            tabTitle="{{ getLocationName(el) }}"
-            class="tab"
-            [active]="i === activeTabIndex"
-            id="addTab"
-            name="addTab"
-            #addTab
-          >
-            <div class="event-location-tracks">
-              <div *ngIf="el.location" class="map-location">
-                <p class="address">
-                  <strong>Address: </strong>
-                  <a href="{{ el.location.map_link }}" target="_blank">{{ el.location.address }}</a>
-                  &nbsp;
-                  <fa-icon
-                    *ngIf="event.editable"
-                    (click)="showEditEventLocationForm(el)"
-                    [icon]="faPen"
-                    class="edit-location-icon"
-                  >
-                  </fa-icon>
-                  &nbsp;
-                  <fa-icon
-                    *ngIf="event.editable"
-                    (click)="confirmDeleteEventLocation(el)"
-                    [icon]="faTrash"
-                    class="delete-location-icon"
-                  ></fa-icon>
-                </p>
-
-                <p class="link-to-map">
-                  <small>
-                    <a href="{{ el.location.map_link }}" target="_blank">
-                      <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map
-                    </a>
-                  </small>
-                </p>
-              </div>
-              <app-event-location-tracks
-                (addSession)="addSlot($event, i)"
-                (addTrack)="addTrack($event, i)"
-                (removeSession)="removeSlot($event, i)"
-                (removeTrack)="removeTrack($event, i)"
-                (updateSession)="updateSlot($event, i)"
-                (updateTrack)="updateTrack($event, i)"
-                [community]="community"
-                [eventLocationId]="el.id"
-                [eventLocationTracks]="el.event_location_tracks"
-                [eventLocations]="eventLocations"
-                [eventSpeakers]="eventSpeakers"
-                [event]="event"
-              >
-              </app-event-location-tracks>
-            </div>
-          </nb-tab>
-        </nb-tabset> -->
       </div>
     </nb-card>
   </div>

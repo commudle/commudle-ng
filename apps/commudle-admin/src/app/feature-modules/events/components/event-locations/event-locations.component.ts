@@ -22,8 +22,6 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
 import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
 import moment from 'moment';
-import { ILocation } from 'apps/shared-models/location.model';
-import { ILocations } from 'apps/shared-models/locations.model';
 
 @Component({
   selector: 'app-event-locations',
@@ -50,13 +48,11 @@ export class EventLocationsComponent implements OnInit {
 
   @Input() event: IEvent;
   @Input() community: ICommunity;
-  // eventLocations: IEventLocation[];
   eventLocations;
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
   isLoading = true;
   eventDatesLocation;
-  // eventDatesLocation: ILocations[];
   // eventDatesLocation: ILocations[];
   admin = true;
 
@@ -95,18 +91,9 @@ export class EventLocationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getEventsDate();
     this.getEventLocations();
     this.getEventSpeakers();
   }
-
-  // getEventLocations() {
-  //   this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
-  //     this.eventLocations = data.event_locations;
-  //     this.changeDetectorRef.markForCheck();
-  //     this.isLoading = false;
-  //   });
-  // }
 
   getEventSpeakers() {
     this.dataFormEntityResponseGroupsService.getEventSpeakers(this.event.id).subscribe((data) => {
@@ -173,7 +160,6 @@ export class EventLocationsComponent implements OnInit {
       this.eventDatesLocation.forEach((event) => {
         event.event_locations.push(data);
       });
-      //After - Push whole data event.locations.push(data.location);
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Location added!');
       this.changeDetectorRef.markForCheck();
@@ -218,50 +204,15 @@ export class EventLocationsComponent implements OnInit {
         });
         if (index !== -1) {
           dateLocation.event_locations[index] = data;
+          this.activeTabIndex = index;
         }
-
         this.selectLocation(dateLocation.event_locations[index]);
       });
-
-      // let locationIndex = -1;
-      // this.eventDatesLocation.forEach((dateLocation) => {
-      //   const index = dateLocation.event_locations.findIndex((k) => k.id === eventLocation.id);
-      //   if (index !== -1) {
-      //     locationIndex = index;
-      //     dateLocation.event_locations[index] = data;
-      //   }
-      // });
-
-      // this.activeTabIndex = locationIndex;
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
       this.changeDetectorRef.markForCheck();
     });
   }
-
-  // editEventLocation(eventLocation) {
-  //   console.log(eventLocation, 'location');
-  //   this.windowRef.close();
-  //   this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
-  //     console.log(data, 'data');
-  //     let locationIndex = -1;
-  //     this.eventDatesLocation.forEach((dateLocation) => {
-  //       const index = dateLocation.event_locations.findIndex((k) => {
-  //         return k.id === data.id;
-  //       });
-  //       if (index !== -1) {
-  //         locationIndex = index;
-  //         dateLocation.event_locations[index] = data;
-  //       }
-  //     });
-
-  //     this.activeTabIndex = locationIndex;
-  //     // this.eventDatesLocation[locationIndex] = data;
-  //     this.eventLocationForm.reset();
-  //     this.toastLogService.successDialog('Updated');
-  //     this.changeDetectorRef.markForCheck();
-  //   });
-  // }
 
   confirmDeleteEventLocation(eventLocation) {
     this.windowRef = this.windowService.open(this.deleteEventLocationTemplate, {
@@ -293,12 +244,6 @@ export class EventLocationsComponent implements OnInit {
     this.windowRef.close();
     this.activateTabAdd();
   }
-
-  // updateTrack(track, locationIndex) {
-  //   const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === track.id);
-  //   this.eventLocations[locationIndex].event_location_tracks[trackPosition] = track;
-  //   this.changeDetectorRef.markForCheck();
-  // }
 
   removeTrack(trackId, locationIndex) {
     const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === trackId);
@@ -383,11 +328,9 @@ export class EventLocationsComponent implements OnInit {
   getEventLocations() {
     this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
       this.eventDatesLocation = data;
-      // this.eventLocations = data.reduce((acc, event) => acc.concat(event.locations), []);
       this.selectLocation(data[0].event_locations[0]);
       this.changeDetectorRef.markForCheck();
       this.isLoading = false;
-      // this.eventDates = data.map((event) => moment(event.date).format('Do MMMM'));
     });
   }
 

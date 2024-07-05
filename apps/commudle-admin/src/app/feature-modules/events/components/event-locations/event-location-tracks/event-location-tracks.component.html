@@ -19,7 +19,7 @@
         <nb-accordion-item-header>
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
-          <!-- <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon> -->
+          <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
           <div *ngIf="event.editable" class="actions">
             <button
               (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
