@@ -1,4 +1,4 @@
-<div class="streaming">
+<div *ngIf="embeddedVideoStream?.id" class="streaming">
   <ng-container *ngIf="communityAuthToken; else loginButton">
     <button (click)="logoutFromYoutube()" nbButton type="button">Disconnect from YouTube</button>
 

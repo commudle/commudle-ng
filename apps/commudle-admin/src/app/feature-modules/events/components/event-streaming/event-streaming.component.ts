@@ -35,7 +35,7 @@ export class EventStreamingComponent implements AfterContentInit {
   }
 
   ngAfterContentInit(): void {
-    this.getToken();
+    if (this.embeddedVideoStream.id) this.getToken();
   }
 
   getToken() {
