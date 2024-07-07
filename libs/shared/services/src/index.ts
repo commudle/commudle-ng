@@ -11,7 +11,6 @@ export * from './lib/discussion.service';
 export * from './lib/event-ticket-order.service';
 export * from './lib/faq.service';
 export * from './lib/google-tag-manager.service';
-export * from './lib/metamask.service';
 export * from './lib/note.service';
 export * from './lib/payment-setting.service';
 export * from './lib/round.service';

@@ -1,0 +1,19 @@
+<div class="dapp-wallet">
+  <div *ngIf="wallet; else connectTemplate" class="dapp-wallet__connected">
+    <div class="wallet-info">
+      <div class="wallet-info__address">
+        <span>{{ wallet.address }}</span>
+        <button nbButton size="tiny" (click)="copyAddress()" ghost>
+          <nb-icon icon="copy"></nb-icon>
+        </button>
+      </div>
+    </div>
+    <div class="wallet-actions">
+      <button nbButton size="tiny" (click)="disconnectWallet()">Disconnect</button>
+    </div>
+  </div>
+
+  <ng-template #connectTemplate>
+    <button nbButton (click)="connectWallet()">Connect Wallet</button>
+  </ng-template>
+</div>

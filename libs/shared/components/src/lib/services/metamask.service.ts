@@ -22,7 +22,7 @@ export class MetamaskService {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error.
         // If this happens, the user rejected the connection request.
-        return Promise.reject('Please connect to MetaMask.');
+        return Promise.reject('User rejected connection request. Please try again.');
       } else {
         return Promise.reject(err);
       }

@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.dapp-wallet {
+  @apply com-mt-4;
+
+  .dapp-wallet__connected {
+    .wallet-actions {
+      @apply com-mt-2;
+    }
+  }
+}
