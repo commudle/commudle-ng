@@ -17,6 +17,7 @@ export class TestimonialCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.testimonials.forEach((testimonial) => {
+      this.setSchema(testimonial);
       if (testimonial.username) {
         this.usersService.getProfile(testimonial.username).subscribe((data) => {
           if (data) {
@@ -25,7 +26,6 @@ export class TestimonialCardComponent implements OnInit {
         });
       }
     });
-    // this.setSchema();
   }
 
   imageUrl(source: any) {
@@ -36,22 +36,19 @@ export class TestimonialCardComponent implements OnInit {
     this.showFullTestimonial[index] = !this.showFullTestimonial[index];
   }
 
-  // setSchema() {
-  //   const testimonialData = this.testimonials.map((testimonial) => {
-  //     return {
-  //       '@type': 'Review',
-  //       name: testimonial.name,
-  //       reviewBody: testimonial.content,
-  //       datePublished: testimonial.createdAt,
-  //       author: { '@type': 'Person', name: 'Commudle' },
-  //       publisher: { '@type': 'Organization', name: 'Commudle' },
-  //     };
-  //   });
-  //   this.seoService.setSchema({
-  //     '@context': 'https://schema.org',
-  //     '@type': 'Product',
-  //     name: 'Commudle',
-  //     mainEntity: testimonialData,
-  //   });
-  // }
+  setSchema(testimonial) {
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: 'Commudle',
+      image: 'https://www.commudle.com/assets/images/commudle-logo-full.png',
+      review: {
+        '@type': 'Review',
+        reviewBody: testimonial.content,
+        datePublished: testimonial.createdAt,
+        author: { '@type': 'Person', name: testimonial.name },
+        publisher: { '@type': 'Organization', name: 'Commudle' },
+      },
+    });
+  }
 }
