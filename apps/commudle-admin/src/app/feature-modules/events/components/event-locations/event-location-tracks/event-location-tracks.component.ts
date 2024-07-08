@@ -166,7 +166,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTracks[index].track_slots.push(data);
   }
 
-  showEditSlotForm(trackSlot, eltIndex) {
+  showEditSlotForm(trackSlot, eltIndex, slotIndex) {
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
         operationType: 'edit',
@@ -177,13 +177,17 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       },
     });
     dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
-      this.editSlot(data, trackSlot.id, eltIndex);
+      this.editSlot(data, trackSlot.id, eltIndex, slotIndex);
       dialogRef.close();
     });
   }
 
-  editSlot(data, trackSlotId, eltIndex) {
+  editSlot(data, trackSlotId, eltIndex, slotIndex) {
     if (data.event_location_track_id != this.eventLocationTracks[eltIndex].id) {
+      this.eventLocationTracks[eltIndex].track_slots.splice(slotIndex, 1);
+      this.sortedTrackSlots[this.eventLocationTracks[eltIndex].id] = this.sortedTrackSlots[
+        this.eventLocationTracks[eltIndex].id
+      ].filter((slot) => slot.id !== trackSlotId);
       this.sortedTrackSlots[data.event_location_track_id].push(data);
       this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
         this.sortedTrackSlots[data.event_location_track_id],
