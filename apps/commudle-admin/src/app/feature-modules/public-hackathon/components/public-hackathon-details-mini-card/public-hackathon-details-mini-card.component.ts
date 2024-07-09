@@ -12,7 +12,7 @@ import { IHackathonTeam, IUser } from '@commudle/shared-models';
 })
 export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
-  @Input() userTeamDetails: IHackathonTeam;
+  @Input() userTeamDetails: IHackathonTeam[];
   @Input() hrgId: number;
   currentDate: Date;
   hackathonApplicationStartDate: Date;
