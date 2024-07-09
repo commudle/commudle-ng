@@ -91,11 +91,13 @@ export class CommunitiesListComponent implements OnInit, OnDestroy {
   }
 
   updateSeoTitle() {
-    this.seoTitle = this.query ? `${this.query} - Developer Community` : 'Developer Community';
+    this.seoTitle = this.query
+      ? `${this.query} - Join Leading Developer Communities`
+      : 'Join Leading Developer Communities';
 
     this.seoService.setTags(
       this.seoTitle,
-      'Commudle is the best platform for dev communities and forums. Connect with more than 40,000 developers & their communities from diverse backgrounds who constantly share & learn and stay up to date. Sign up now!',
+      'Discover and join top developer communities on Commudle. Connect with peers, participate in events, hackathons, share knowledge & projects, and advance your career. Start building your network today!',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
