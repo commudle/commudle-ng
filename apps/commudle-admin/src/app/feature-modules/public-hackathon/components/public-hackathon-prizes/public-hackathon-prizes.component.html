@@ -21,11 +21,11 @@
     </ng-template>
   </div>
   <div class="right-column">
-    <nb-card *ngIf="userTeamDetails">
+    <nb-card>
       <nb-card-body>
         <commudle-public-hackathon-details-mini-card
           [hackathon]="hackathon"
-          [userTeamDetails]="userTeamDetails[0]"
+          [userTeamDetails]="userTeamDetails"
           [hrgId]="hrgId"
         >
         </commudle-public-hackathon-details-mini-card
