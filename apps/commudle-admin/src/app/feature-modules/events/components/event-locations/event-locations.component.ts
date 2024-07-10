@@ -154,6 +154,15 @@ export class EventLocationsComponent implements OnInit {
   }
 
   addEventLocation() {
+    if (this.selectedEventType === EEventType.ONLINE_ONLY) {
+      this.eventLocationForm.patchValue({
+        location: {
+          name: 'Online',
+          address: 'NA',
+          map_link: 'NA',
+        },
+      });
+    }
     this.windowRef.close();
     this.eventLocationsService.createEventLocation(this.event.id, this.eventLocationForm.value).subscribe((data) => {
       this.eventDatesLocation.forEach((event) => {
@@ -168,24 +177,31 @@ export class EventLocationsComponent implements OnInit {
 
   showEditEventLocationForm(eventLocation) {
     this.eventLocationForm.reset();
-    // After - this.selectedEventType = eventLocation.event_type;
-    // After - this.toggleEventTypeValidations(this.selectedEventType);
-    // After - this.eventLocationForm.patchValue({
-    //   event_type: this.selectedEventType,
-    // });
+    this.selectedEventType = eventLocation.event_type;
+    this.toggleEventTypeValidations(this.selectedEventType);
+    this.eventLocationForm.patchValue({
+      event_type: this.selectedEventType,
+    });
 
-    // After - switch (this.selectedEventType) {
-    //   case EEventType.OFFLINE_ONLY:
-    //     this.eventLocationForm.get('location').patchValue(eventLocation.location);
-    //     break;
-    //   case EEventType.ONLINE_ONLY:
-    //     if (eventLocation.embedded_video_stream) {
-    //       this.eventLocationForm.get('embedded_video_stream').patchValue(eventLocation.embedded_video_stream);
-    //     }
-    //     break;
-    // }
+    switch (this.selectedEventType) {
+      case EEventType.OFFLINE_ONLY:
+        this.eventLocationForm.get('location').patchValue(eventLocation.location);
+        break;
+      case EEventType.ONLINE_ONLY:
+        this.eventLocationForm.patchValue({
+          location: {
+            name: 'Online',
+            address: 'NA',
+            map_link: 'NA',
+          },
+        });
+        if (eventLocation.embedded_video_stream) {
+          this.eventLocationForm.get('embedded_video_stream').patchValue(eventLocation.embedded_video_stream);
+        }
+        break;
+    }
 
-    this.eventLocationForm.patchValue(eventLocation);
+    // this.eventLocationForm.patchValue(eventLocation);
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
@@ -196,7 +212,17 @@ export class EventLocationsComponent implements OnInit {
 
   editEventLocation(eventLocation) {
     this.windowRef.close();
+    // if (this.selectedEventType === EEventType.ONLINE_ONLY) {
+    //   this.eventLocationForm.patchValue({
+    //     location: {
+    //       name: 'Online',
+    //       address: 'NA',
+    //       map_link: 'NA',
+    //     },
+    //   });
+    // }
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
+      console.log(data);
       this.eventDatesLocation.forEach((dateLocation) => {
         const index = dateLocation.event_locations.findIndex((k) => {
           return k.id === eventLocation.id;

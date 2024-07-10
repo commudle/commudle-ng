@@ -193,3 +193,11 @@
 nb-accordion-item {
   @apply com-bg-white;
 }
+
+.embedded-dialog {
+  @apply com-w-[30dvw] com-max-h-[90dvh];
+
+  nb-card-header {
+    @apply com-p-0;
+  }
+}

@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -19,6 +28,8 @@ import { Subscription } from 'rxjs';
 export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
   @Input() community: ICommunity;
+  @Input() embeddedVideoStreamfromTrackSlot = false;
+  @Output() embeddedVideoStream = new EventEmitter<IEmbeddedVideoStream>();
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   evs = <IEmbeddedVideoStream>{};
@@ -51,7 +62,9 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
       streamable_id: this.event.id,
     });
 
+    // if (this.embeddedVideoStreamfromTrackSlot) {
     this.getEmbeddedVideoStream();
+    // }
 
     this.subscription = this.authService.currentUser$.subscribe((data: ICurrentUser) => {
       this.currentUser = data;
@@ -82,16 +95,20 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   createOrUpdate() {
-    this.embeddedVideoStreamsService.createOrUpdate(this.embeddedVideoStreamForm.value).subscribe((data) => {
-      delete this.evs;
-      // firing after 1 second because it doesn't update the value otherwise
-      setTimeout(() => {
-        this.evs = data;
-      }, 100);
-      this.embeddedVideoStreamForm.patchValue(data);
-      this.updateValidators();
-      this.toastLogService.successDialog('Saved!');
-    });
+    if (this.embeddedVideoStreamfromTrackSlot) {
+      this.embeddedVideoStream.emit(this.embeddedVideoStreamForm.value);
+    } else {
+      this.embeddedVideoStreamsService.createOrUpdate(this.embeddedVideoStreamForm.value).subscribe((data) => {
+        delete this.evs;
+        // firing after 1 second because it doesn't update the value otherwise
+        setTimeout(() => {
+          this.evs = data;
+        }, 100);
+        this.embeddedVideoStreamForm.patchValue(data);
+        this.updateValidators();
+        this.toastLogService.successDialog('Saved!');
+      });
+    }
   }
 
   updateValidators() {

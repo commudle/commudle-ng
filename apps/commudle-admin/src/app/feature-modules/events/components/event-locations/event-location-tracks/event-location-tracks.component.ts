@@ -80,6 +80,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   timeBlocks = [];
   eventLocationTrackForm;
   trackSlotForm;
+  dialogRef;
 
   trackSlotVisibility = {};
   sortedTrackSlots = {};
@@ -88,6 +89,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @ViewChild('trackSlotFormTemplate') trackSlotFormTemplate: TemplateRef<any>;
   @ViewChild('deleteTrackSlotTemplate') deleteTrackSlotTemplate: TemplateRef<any>;
   @ViewChild('tracksContainer') private tracksContainer: ElementRef;
+  @ViewChild('embeddedVideoTemplate') embeddedVideoTemplate: TemplateRef<any>;
 
   constructor(
     private windowService: NbWindowService,
@@ -101,6 +103,12 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTrackForm = this.fb.group({
       event_location_track: this.fb.group({
         name: ['', Validators.required],
+      }),
+      embedded_video_stream: this.fb.group({
+        source: [''],
+        embed_code: [''],
+        zoom_host_email: ['', Validators.email],
+        zoom_password: [''],
       }),
     });
     this.trackSlotForm = this.fb.group({
@@ -238,13 +246,17 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     });
   }
 
+  // this.eventLocationTrackForm.get('event_location_track').value,
+  // this.eventLocationTrackForm.value
   createTrack() {
-    this.windowRef.close();
+    console.log(this.eventLocationTrackForm.value);
+    // this.windowRef.close();
     this.eventLocationTracksService
       .createEventLocationTrack(
         this.event.id,
         this.eventLocation.id,
         this.eventLocationTrackForm.get('event_location_track').value,
+        this.eventLocationTrackForm.get('embedded_video_stream').value,
       )
       .subscribe((data) => {
         this.eventLocationTracks.push(data);
@@ -254,6 +266,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         this.eventLocationTrackForm.reset();
         this.changeDetectorRef.markForCheck();
       });
+    this.windowRef.close();
   }
 
   showEditTrackForm(eventLocationTrack) {
@@ -277,10 +290,14 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   editTrack(eventLocationTrackId) {
     this.windowRef.close();
     this.eventLocationTracksService
-      .updateEventLocationTrack(eventLocationTrackId, this.eventLocationTrackForm.get('event_location_track').value)
+      .updateEventLocationTrack(
+        eventLocationTrackId,
+        this.eventLocationTrackForm.get('event_location_track').value,
+        this.eventLocationTrackForm.get('embedded_video_stream').value,
+      )
       .subscribe((data) => {
         const trackPosition = this.eventLocationTracks.findIndex((k) => k.id === eventLocationTrackId);
-        this.eventLocationTracks[trackPosition].name = data.name;
+        this.eventLocationTracks[trackPosition] = data;
         this.toastLogService.successDialog(`Updated to ${data.name}`);
         this.eventLocationTrackForm.reset();
         this.changeDetectorRef.markForCheck();
@@ -483,5 +500,20 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
       }
     });
+  }
+
+  openEmbeddedLink() {
+    this.dialogRef = this.dialogService.open(this.embeddedVideoTemplate, {
+      closeOnBackdropClick: false,
+      closeOnEsc: false,
+    });
+  }
+
+  updateEmbededContent(data) {
+    console.log(data, 'called');
+    this.eventLocationTrackForm.get('embedded_video_stream').patchValue(data);
+    console.log(this.eventLocationTrackForm.value);
+    this.dialogRef.close();
+    this.createTrack();
   }
 }

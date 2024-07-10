@@ -21,6 +21,10 @@
           &nbsp;
           <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
           <div *ngIf="event.editable" class="actions">
+            <button (click)="openEmbeddedLink(); $event.stopPropagation()" nbButton size="tiny" status="info">
+              Add Embedded Video
+            </button>
+            &nbsp;
             <button
               (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
               nbButton
@@ -206,7 +210,7 @@
         </span>
       </div>
 
-      <div
+      <!-- <div
         *ngIf="eventLocation && eventLocation.event_type === EEventType.ONLINE_ONLY"
         class="online-event-fields"
         formGroupName="embedded_video_stream"
@@ -262,7 +266,7 @@
             <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
           </label>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="save-button-bottom">
@@ -288,5 +292,24 @@
   <div>
     <button (click)="deleteSlot(true, data.trackSlot)" nbButton status="link">Yes</button> &nbsp;
     <button (click)="deleteSlot(false, data.trackSlot)" nbButton status="link">No</button>
+  </div>
+</ng-template>
+
+<ng-template #embeddedVideoTemplate let-ref="dialogRef">
+  <div>
+    <nb-card class="embedded-dialog">
+      <nb-card-header>
+        <button nbButton ghost (click)="ref.close()">
+          <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
+      ></nb-card-header>
+      <nb-card-body>
+        <app-event-embedded-video-stream
+          [event]="event"
+          [community]="community"
+          [embeddedVideoStreamfromTrackSlot]="true"
+          (embeddedVideoStream)="updateEmbededContent($event)"
+        ></app-event-embedded-video-stream>
+      </nb-card-body>
+    </nb-card>
   </div>
 </ng-template>

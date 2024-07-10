@@ -98,17 +98,17 @@
     [formGroup]="eventLocationForm"
     class="event-location-form"
   >
-    <!-- <nb-radio-group
+    <nb-radio-group
       (valueChange)="toggleEventTypeValidations($event)"
       class="options"
       formControlName="event_type"
       name="event-type"
     >
       <nb-radio [value]="EEventType.OFFLINE_ONLY"> Offline Event </nb-radio>
-      <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE"> Offline + Live Stream </nb-radio>
+      <!-- <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE"> Offline + Live Stream </nb-radio> -->
       <nb-radio [value]="EEventType.ONLINE_ONLY"> Live Stream Only </nb-radio>
-    </nb-radio-group> -->
-    <div class="offline-event-fields" formGroupName="location">
+    </nb-radio-group>
+    <div *ngIf="selectedEventType === EEventType.OFFLINE_ONLY" class="offline-event-fields" formGroupName="location">
       <div>
         <label fullWidth>
           Name*
@@ -155,17 +155,17 @@
         </span>
       </div>
     </div>
-    <!-- <div
+    <div
       *ngIf="selectedEventType === EEventType.ONLINE_ONLY"
       class="online-event-fields"
       formGroupName="embedded_video_stream"
     >
-      <p>
+      <!-- <p>
         <small>
           <i>Fill these if your event has a common overall video stream for viewing</i>
         </small>
-      </p>
-      <div>
+      </p> -->
+      <!-- <div>
         <nb-select
           (selectedChange)="updateZoomValidators()"
           formControlName="source"
@@ -181,9 +181,9 @@
           <nb-option [value]="EEmbeddedVideoStreamSources.OTHER"> Other (Embedded Iframe) </nb-option>
           <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM" disabled> Zoom </nb-option>
         </nb-select>
-      </div>
+      </div> -->
 
-      <div>
+      <!-- <div>
         <label>
           <span
             *ngIf="
@@ -228,12 +228,11 @@
           >
             Required Field
           </span>
-          <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea
-          >
+          <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea>
         </label>
-      </div>
+      </div> -->
 
-      <div
+      <!-- <div
         *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM"
       >
         <label>
@@ -250,8 +249,8 @@
           </span>
           <input formControlName="zoom_host_email" fullWidth nbInput placeholder="Type email id here" />
         </label>
-      </div>
-      <div
+      </div> -->
+      <!-- <div
         *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM"
       >
         <label>
@@ -268,9 +267,8 @@
           </span>
           <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
         </label>
-      </div>
+      </div> -->
     </div>
-    -->
 
     <div class="save-button-bottom">
       <button [disabled]="!eventLocationForm.valid" fullWidth nbButton status="info" type="submit">Save</button>

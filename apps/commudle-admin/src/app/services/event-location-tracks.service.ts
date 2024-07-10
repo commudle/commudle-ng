@@ -7,43 +7,39 @@ import { IEventLocations } from 'apps/shared-models/event-locations.model';
 import { IEventLocationTrack } from 'apps/shared-models/event-location-track.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventLocationTracksService {
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService
-  ) { }
-
-
-  createEventLocationTrack(eventId, eventLocationId, eventLocationTrack): Observable<IEventLocationTrack> {
-    return this.http.post<IEventLocationTrack>(
-      this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT_LOCATION_TRACK),
-      {
-        event_id: eventId,
-        event_location_id: eventLocationId,
-        event_location_track: eventLocationTrack
-      }
-    );
+  createEventLocationTrack(
+    eventId,
+    eventLocationId,
+    eventLocationTrack,
+    eventEmbeddedForm,
+  ): Observable<IEventLocationTrack> {
+    return this.http.post<IEventLocationTrack>(this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT_LOCATION_TRACK), {
+      event_id: eventId,
+      event_location_id: eventLocationId,
+      event_location_track: eventLocationTrack,
+      embedded_video_stream: eventEmbeddedForm,
+    });
   }
 
-  updateEventLocationTrack(eventLocationTrackId, eventLocationTrack): Observable<IEventLocationTrack> {
-    return this.http.put<IEventLocationTrack>(
-      this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_LOCATION_TRACK),
-      {
-        event_location_track_id: eventLocationTrackId,
-        event_location_track: eventLocationTrack
-      }
-    );
+  updateEventLocationTrack(
+    eventLocationTrackId,
+    eventLocationTrack,
+    eventEmbeddedForm,
+  ): Observable<IEventLocationTrack> {
+    return this.http.put<IEventLocationTrack>(this.apiRoutesService.getRoute(API_ROUTES.UPDATE_EVENT_LOCATION_TRACK), {
+      event_location_track_id: eventLocationTrackId,
+      event_location_track: eventLocationTrack,
+      embedded_video_stream: eventEmbeddedForm,
+    });
   }
 
   deleteEventLocationTrack(eventLocationTrackId): Observable<any> {
-    let params = new HttpParams().set('event_location_track_id', eventLocationTrackId)
-    return this.http.delete<any>(
-      this.apiRoutesService.getRoute(API_ROUTES.DELETE_EVENT_LOCATION_TRACK),
-      { params }
-    );
+    const params = new HttpParams().set('event_location_track_id', eventLocationTrackId);
+    return this.http.delete<any>(this.apiRoutesService.getRoute(API_ROUTES.DELETE_EVENT_LOCATION_TRACK), { params });
   }
-
 }

@@ -1,4 +1,5 @@
-<div *ngIf="!event.custom_agenda" class="embedded-video-stream">
+<!-- *ngIf="!event.custom_agenda" -->
+<div class="embedded-video-stream">
   <div class="embedded-video-stream-form">
     <form (ngSubmit)="createOrUpdate()" *ngIf="event.editable" [formGroup]="embeddedVideoStreamForm">
       <div>
