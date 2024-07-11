@@ -45,5 +45,5 @@ export interface IEventSearch extends IEvent {
 export enum EEventType {
   OFFLINE = 'offline',
   ONLINE = 'online',
-  HYBRID = 'hybrid',
+  // HYBRID = 'hybrid',
 }

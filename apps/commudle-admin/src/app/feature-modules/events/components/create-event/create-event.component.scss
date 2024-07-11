@@ -50,7 +50,7 @@
 
 .event-type {
   > div {
-    @apply com-flex com-gap-3;
+    @apply com-flex com-gap-2 com-mt-1;
     > div {
       @apply com-flex com-gap-2 com-items-center;
     }

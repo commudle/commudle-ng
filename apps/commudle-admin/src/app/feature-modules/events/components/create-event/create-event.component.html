@@ -65,9 +65,11 @@
 
           <div class="event-type">
             <label>Event Type *</label>
-            <div *ngFor="let type of EEventType | keyvalue">
-              <input [id]="type.key" [value]="type.value" formControlName="event_type" type="radio" />
-              <label [for]="type.key">{{ type.value | titlecase }}</label>
+            <div>
+              <div *ngFor="let type of EEventType | keyvalue">
+                <input [id]="type.key" [value]="type.value" formControlName="event_type" type="radio" />
+                <label [for]="type.key">{{ type.value | titlecase }}</label>
+              </div>
             </div>
             <span
               *ngIf="
