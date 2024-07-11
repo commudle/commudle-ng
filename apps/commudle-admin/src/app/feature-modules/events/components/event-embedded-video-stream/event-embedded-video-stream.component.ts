@@ -62,9 +62,9 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
       streamable_id: this.event.id,
     });
 
-    // if (this.embeddedVideoStreamfromTrackSlot) {
-    this.getEmbeddedVideoStream();
-    // }
+    if (!this.embeddedVideoStreamfromTrackSlot) {
+      this.getEmbeddedVideoStream();
+    }
 
     this.subscription = this.authService.currentUser$.subscribe((data: ICurrentUser) => {
       this.currentUser = data;

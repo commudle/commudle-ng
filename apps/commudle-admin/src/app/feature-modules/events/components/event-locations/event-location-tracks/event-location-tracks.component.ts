@@ -256,7 +256,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         this.event.id,
         this.eventLocation.id,
         this.eventLocationTrackForm.get('event_location_track').value,
-        this.eventLocationTrackForm.get('embedded_video_stream').value,
       )
       .subscribe((data) => {
         this.eventLocationTracks.push(data);
@@ -514,6 +513,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTrackForm.get('embedded_video_stream').patchValue(data);
     console.log(this.eventLocationTrackForm.value);
     this.dialogRef.close();
-    this.createTrack();
+    // this.editTrack();
   }
 }

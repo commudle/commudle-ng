@@ -12,17 +12,11 @@ import { IEventLocationTrack } from 'apps/shared-models/event-location-track.mod
 export class EventLocationTracksService {
   constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
-  createEventLocationTrack(
-    eventId,
-    eventLocationId,
-    eventLocationTrack,
-    eventEmbeddedForm,
-  ): Observable<IEventLocationTrack> {
+  createEventLocationTrack(eventId, eventLocationId, eventLocationTrack): Observable<IEventLocationTrack> {
     return this.http.post<IEventLocationTrack>(this.apiRoutesService.getRoute(API_ROUTES.CREATE_EVENT_LOCATION_TRACK), {
       event_id: eventId,
       event_location_id: eventLocationId,
       event_location_track: eventLocationTrack,
-      embedded_video_stream: eventEmbeddedForm,
     });
   }
 
