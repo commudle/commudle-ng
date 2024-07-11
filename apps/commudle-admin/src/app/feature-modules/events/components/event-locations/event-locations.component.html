@@ -42,7 +42,12 @@
                   </div>
                 </div>
                 <div *ngIf="selectedLocation" class="event-location-tracks">
-                  <div *ngIf="selectedLocation?.location.address" class="map-location">
+                  <div
+                    *ngIf="
+                      selectedLocation?.location.address && selectedLocation.event_type === EEventType.OFFLINE_ONLY
+                    "
+                    class="map-location"
+                  >
                     <p class="address">
                       <span>Address: </span>
                       <a href="{{ selectedLocation.location.map_link }}" target="_blank">{{
