@@ -1,0 +1,20 @@
+.heading {
+  @apply com-text-base com-font-semibold com-text-Yankees-Blue;
+}
+
+.registration-types {
+  @apply com-grid lg:com-grid-cols-4 md:com-grid-cols-3 com-grid-cols-2 com-gap-4;
+  .registration-type {
+    @apply com-border com-border-solid com-border-Bright-Gray com-rounded-2xl com-w-full com-h-20 com-text-center hover:com-border-primary-500 hover:com-bg-sky-50 hover:com-cursor-pointer;
+    &.active {
+      @apply com-border-primary-500 com-bg-sky-50;
+    }
+    span {
+      @apply com-flex com-justify-center com-items-center com-h-full com-text-xl com-font-semibold;
+    }
+  }
+}
+
+.form-attach-dialog {
+  @apply com-max-h-[90dvh] com-w-full md:com-w-[60dvw];
+}
