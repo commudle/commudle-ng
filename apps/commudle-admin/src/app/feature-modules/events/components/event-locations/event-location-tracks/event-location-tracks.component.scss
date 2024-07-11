@@ -198,6 +198,9 @@ nb-accordion-item {
   @apply com-w-[30dvw] com-max-h-[90dvh];
 
   nb-card-header {
-    @apply com-p-0;
+    @apply com-flex com-justify-between com-items-center com-py-2;
+    h2 {
+      @apply com-text-lg com-font-medium com-text-black;
+    }
   }
 }

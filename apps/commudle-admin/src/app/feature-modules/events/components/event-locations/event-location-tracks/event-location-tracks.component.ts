@@ -249,8 +249,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   // this.eventLocationTrackForm.get('event_location_track').value,
   // this.eventLocationTrackForm.value
   createTrack() {
-    console.log(this.eventLocationTrackForm.value);
-    // this.windowRef.close();
     this.eventLocationTracksService
       .createEventLocationTrack(
         this.event.id,
@@ -286,17 +284,20 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     });
   }
 
-  editTrack(eventLocationTrackId) {
-    this.windowRef.close();
+  // this.eventLocationTrackForm.get('embedded_video_stream').value,
+  editTrack(eventLocationTrackId, embeddedFormData) {
     this.eventLocationTracksService
       .updateEventLocationTrack(
         eventLocationTrackId,
         this.eventLocationTrackForm.get('event_location_track').value,
-        this.eventLocationTrackForm.get('embedded_video_stream').value,
+        embeddedFormData,
       )
       .subscribe((data) => {
+        console.log(data, 'data');
         const trackPosition = this.eventLocationTracks.findIndex((k) => k.id === eventLocationTrackId);
+        // this.eventLocationTracks[trackPosition].embedded_video_stream = embeddedFormData;
         this.eventLocationTracks[trackPosition] = data;
+        this.windowRef.close();
         this.toastLogService.successDialog(`Updated to ${data.name}`);
         this.eventLocationTrackForm.reset();
         this.changeDetectorRef.markForCheck();
@@ -501,18 +502,26 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     });
   }
 
-  openEmbeddedLink() {
+  openEmbeddedLink(eventLocationTrack, elti) {
     this.dialogRef = this.dialogService.open(this.embeddedVideoTemplate, {
       closeOnBackdropClick: false,
       closeOnEsc: false,
+      context: {
+        eventLocationTrack: eventLocationTrack,
+        elti: elti,
+        embeddedVideoStream: eventLocationTrack.embedded_video_stream,
+      },
     });
   }
 
-  updateEmbededContent(data) {
-    console.log(data, 'called');
-    this.eventLocationTrackForm.get('embedded_video_stream').patchValue(data);
-    console.log(this.eventLocationTrackForm.value);
+  updateEmbededContent(embeddedFormData, eventLocationTrack, elti, embeddedVideoStream) {
     this.dialogRef.close();
-    // this.editTrack();
+    this.editTrack(eventLocationTrack.id, embeddedFormData);
   }
 }
+
+// console.log(data, 'called');
+// this.eventLocationTracks[elti].embedded_video_stream = data;
+// console.log(this.eventLocationTracks[elti].embedded_video_stream);
+// this.eventLocationTrackForm.get('embedded_video_stream').patchValue(data);
+// console.log(this.eventLocationTrackForm.get('embedded_video_stream').value);

@@ -19,10 +19,15 @@
         <nb-accordion-item-header>
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
-          <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
           <div *ngIf="event.editable" class="actions">
-            <button (click)="openEmbeddedLink(); $event.stopPropagation()" nbButton size="tiny" status="info">
-              Add Embedded Video
+            <button
+              *ngIf="elt.event_type === EEventType.ONLINE_ONLY"
+              (click)="openEmbeddedLink(elt, elti); $event.stopPropagation()"
+              nbButton
+              size="tiny"
+              status="info"
+            >
+              {{ elt.embedded_video_stream === null ? 'Add Video Streaming' : 'Edit Video Streaming' }}
             </button>
             &nbsp;
             <button
@@ -189,7 +194,7 @@
 
 <ng-template #eventLocationTrackFormTemplate let-data>
   <form
-    (ngSubmit)="data.operationType === 'create' ? createTrack() : editTrack(data.eventLocationTrackId)"
+    (ngSubmit)="data.operationType === 'create' ? createTrack() : editTrack(data.eventLocationTrackId, data)"
     [formGroup]="eventLocationTrackForm"
     class="event-location-track-form"
   >
@@ -295,11 +300,12 @@
   </div>
 </ng-template>
 
-<ng-template #embeddedVideoTemplate let-ref="dialogRef">
+<ng-template #embeddedVideoTemplate let-data let-ref="dialogRef">
   <div>
     <nb-card class="embedded-dialog">
       <nb-card-header>
-        <button nbButton ghost (click)="ref.close()">
+        <h2>Video Streaming</h2>
+        <button nbButton (click)="ref.close()">
           <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
       ></nb-card-header>
       <nb-card-body>
@@ -307,7 +313,9 @@
           [event]="event"
           [community]="community"
           [embeddedVideoStreamfromTrackSlot]="true"
-          (embeddedVideoStream)="updateEmbededContent($event)"
+          (embeddedVideoStream)="
+            updateEmbededContent($event, data.eventLocationTrack, data.elti, data.embeddedVideoStream)
+          "
         ></app-event-embedded-video-stream>
       </nb-card-body>
     </nb-card>
