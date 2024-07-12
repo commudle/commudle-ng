@@ -30,9 +30,17 @@
         <form [formGroup]="eventDataFormEntityGroupForm">
           <div formGroupName="data_form_entity_group">
             <div class="name">
+              <div class="question-heading">1. Select your form and form name</div>
               <label fullWidth>
-                Name*
-                <input fieldSize="small" formControlName="name" placeholder="Form Name" fullWidth nbInput type="text" />
+                <span> Form Name*</span>
+                <input
+                  fieldSize="small"
+                  formControlName="name"
+                  placeholder="Select your form name"
+                  fullWidth
+                  nbInput
+                  type="text"
+                />
                 <span
                   *ngIf="
                     eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched &&
@@ -44,10 +52,23 @@
                 </span>
               </label>
             </div>
+            <div
+              class="user-details"
+              *ngIf="
+                !(selectedRegistrationType.name === 'feedback' || selectedRegistrationType.name === 'communication')
+              "
+            >
+              <div class="question-heading">
+                2. Choose which fields are absolutely necessary for registering. Remember, a shorter form leads to
+                quicker signups.
+              </div>
+              <commudle-user-details-checkbox-form
+                (userDetailsFormValues)="createEdfeg($event)"
+              ></commudle-user-details-checkbox-form>
+            </div>
             <div class="data-form-select">
               <label>
-                Select Form*
-                <br />
+                <span>Select Existing Form*</span>
                 <div class="com-flex com-items-center">
                   <div class="select">
                     <select
@@ -57,8 +78,7 @@
                           eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
                       }"
                     >
-                      <option disabled selected value="">Which Form?</option>
-
+                      <option disabled selected value="">Select Existing Form</option>
                       <option *ngFor="let df of communityDataForms" [value]="df.id">
                         {{ df.name | titlecase }}
                       </option>
@@ -92,7 +112,16 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button type="submit" (click)="createEdfeg(); ref.close()">Save</button>
+      <button
+        nbButton
+        fullWidth
+        status="primary"
+        type="submit"
+        (click)="getValueOrUpdateEdfeg(); ref.close()"
+        [disabled]="!eventDataFormEntityGroupForm.valid"
+      >
+        Save
+      </button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

@@ -1,0 +1,131 @@
+<div class="form-values">
+  <form [formGroup]="userDetailsForm">
+    <div>
+      <div class="group-name">PERSONAL</div>
+      <div class="group-values">
+        <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('name').value }">
+          <input type="checkbox" formControlName="name" (click)="$event.preventDefault()" />
+          <span class="checkmark"></span>
+          Name
+        </label>
+
+        <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('profile_image').value }">
+          <input type="checkbox" formControlName="profile_image" (click)="$event.preventDefault()" />
+          <span class="checkmark"></span>
+          Profile Image
+        </label>
+
+        <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('email').value }">
+          <input type="checkbox" formControlName="email" (click)="$event.preventDefault()" />
+          <span class="checkmark"></span>
+          Email
+        </label>
+
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('designation').value }">
+          <input type="checkbox" formControlName="designation" />
+          <span class="checkmark"></span>
+          Designation
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('about_me').value }">
+          <input type="checkbox" formControlName="about_me" />
+          <span class="checkmark"></span>
+          About
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('location').value }">
+          <input type="checkbox" formControlName="location" />
+          <span class="checkmark"></span>
+          Location
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div class="group-name">EXPERIENCE</div>
+      <div class="group-values">
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('work_experience_months').value }">
+          <input type="checkbox" formControlName="work_experience_months" />
+          <span class="checkmark"></span>
+          Work Experience
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('education').value }">
+          <input type="checkbox" formControlName="education" />
+          <span class="checkmark"></span>
+          Education
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div class="group-name">CONTACT</div>
+      <div class="group-values">
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('phone').value }">
+          <input type="checkbox" formControlName="phone" />
+          <span class="checkmark"></span>
+          Phone Number
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div class="group-name">SOCIAL LINKS</div>
+      <div class="group-values">
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('twitter').value }">
+          <input type="checkbox" formControlName="twitter" />
+          <span class="checkmark"></span>
+          Twitter
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('linkedin').value }">
+          <input type="checkbox" formControlName="linkedin" />
+          <span class="checkmark"></span>
+          Linkedin
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('dribbble').value }">
+          <input type="checkbox" formControlName="dribbble" />
+          <span class="checkmark"></span>
+          Dribbble
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('youtube').value }">
+          <input type="checkbox" formControlName="youtube" />
+          <span class="checkmark"></span>
+          Youtube
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('medium').value }">
+          <input type="checkbox" formControlName="medium" />
+          <span class="checkmark"></span>
+          Medium
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('behance').value }">
+          <input type="checkbox" formControlName="behance" />
+          <span class="checkmark"></span>
+          Behance
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('gitlab').value }">
+          <input type="checkbox" formControlName="gitlab" />
+          <span class="checkmark"></span>
+          Gitlab
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('github').value }">
+          <input type="checkbox" formControlName="github" />
+          <span class="checkmark"></span>
+          Github
+        </label>
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('facebook').value }">
+          <input type="checkbox" formControlName="facebook" />
+          <span class="checkmark"></span>
+          Facebook
+        </label>
+      </div>
+    </div>
+
+    <div *ngIf="showGoodiesContainer">
+      <div class="group-name">GOODIES</div>
+      <div class="group-values">
+        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('tshirt_size').value }">
+          <input type="checkbox" formControlName="tshirt_size" />
+          <span class="checkmark"></span>
+          Tshirt Size
+        </label>
+      </div>
+    </div>
+  </form>
+</div>

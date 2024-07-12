@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEvent } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
@@ -7,6 +7,7 @@ import { IDataForm } from 'apps/shared-models/data_form.model';
 import { IRegistrationType } from 'apps/shared-models/registration_type.model';
 import { ToastrService } from '@commudle/shared-services';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
+import { UserDetailsCheckboxFormComponent } from 'apps/shared-components/user-details-checkbox-form/user-details-checkbox-form.component';
 @Component({
   selector: 'commudle-new-form-attach-groups',
   templateUrl: './new-form-attach-groups.component.html',
@@ -17,6 +18,8 @@ export class NewFormAttachGroupsComponent implements OnInit {
   @Input() communityDataForms: IDataForm[] = [];
   @Input() event: IEvent;
   @Output() edfegCreated = new EventEmitter<IEventDataFormEntityGroup>();
+  @ViewChild(UserDetailsCheckboxFormComponent) UserDetailsCheckbox: UserDetailsCheckboxFormComponent;
+
   selectedRegistrationType: IRegistrationType;
   eventDataFormEntityGroupForm: FormGroup;
 
@@ -29,7 +32,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
     this.eventDataFormEntityGroupForm = this.fb.group({
       data_form_entity_group: this.fb.group({
         name: ['', Validators.required],
-        registration_type_id: ['', Validators.required],
+        registration_type_id: [''],
         data_form_id: ['', Validators.required],
       }),
     });
@@ -38,10 +41,19 @@ export class NewFormAttachGroupsComponent implements OnInit {
   ngOnInit() {}
 
   openDialogBox(tempRef) {
+    this.resetForm();
     this.nbDialogBox.open(tempRef);
   }
 
-  createEdfeg() {
+  getValueOrUpdateEdfeg() {
+    if (this.selectedRegistrationType.name === 'feedback' || this.selectedRegistrationType.name === 'communication') {
+      this.createEdfeg();
+    } else {
+      this.UserDetailsCheckbox.updateValues();
+    }
+  }
+
+  createEdfeg(userDetailsFormValues = {}) {
     const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
     this.edfegService
       .createEventDataFormEntityGroup(
@@ -49,6 +61,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
         formData.name,
         this.selectedRegistrationType.id,
         formData.data_form_id,
+        userDetailsFormValues,
       )
       .subscribe((data) => {
         this.edfegCreated.emit(data);
