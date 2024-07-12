@@ -16,6 +16,7 @@ export interface IHackathonTeam {
   notes: INote[];
   hackathon_winners: IHackathonWinner[];
   hackathon_id: number;
+  acceptance_mail_sent: boolean;
   prize_selected: boolean; //use for display only not related to API requests
 }
 

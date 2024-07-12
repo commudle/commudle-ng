@@ -161,7 +161,7 @@
             fullWidth
             (click)="generateTeamRegistrationStatusNotification(selectedTeamDetails.id)"
           >
-            Send Acceptance Email
+            {{ selectedTeamDetails.acceptance_mail_sent ? 'resend Acceptance Email' : 'Send Acceptance Email' }}
           </button>
           <button
             nbButton
