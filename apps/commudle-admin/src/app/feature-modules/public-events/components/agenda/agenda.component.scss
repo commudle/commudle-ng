@@ -1,5 +1,14 @@
 nb-tabset nb-tab {
-  padding: 0;
+  @apply com-p-0;
+}
+
+nb-tabset {
+  @apply com-overflow-hidden;
+  &::ng-deep {
+    ul {
+      @apply com-overflow-x-scroll com-overflow-y-hidden;
+    }
+  }
 }
 
 nb-card-body {
