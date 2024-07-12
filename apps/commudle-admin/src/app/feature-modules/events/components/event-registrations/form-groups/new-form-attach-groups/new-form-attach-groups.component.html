@@ -107,6 +107,27 @@
                 </span>
               </label>
             </div>
+            <div
+              class="custom-questions"
+              *ngIf="!eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
+            >
+              <app-new-data-form
+                (newDataForm)="submit($event)"
+                formName="Hackathon Attendee Registration Form"
+                [stickSubmitButtonBottom]="true"
+                [showNameDescriptionFiled]="false"
+                [minQuestionCount]="1"
+              >
+              </app-new-data-form>
+            </div>
+            <div *ngIf="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value">
+              <commudle-edit-data-form
+                [dataFormId]="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
+                [showNameDescriptionFiled]="false"
+                [centerLayout]="false"
+                (updateFormDataEvent)="updateData($event)"
+              ></commudle-edit-data-form>
+            </div>
           </div>
         </form>
       </div>

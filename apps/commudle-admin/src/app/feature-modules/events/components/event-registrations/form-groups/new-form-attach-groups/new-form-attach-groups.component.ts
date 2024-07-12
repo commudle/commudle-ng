@@ -79,4 +79,8 @@ export class NewFormAttachGroupsComponent implements OnInit {
       },
     });
   }
+
+  submit(data) {}
+
+  updateData(data) {}
 }
