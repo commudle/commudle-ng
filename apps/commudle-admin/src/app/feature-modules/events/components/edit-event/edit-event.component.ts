@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { NbWindowRef } from '@commudle/theme';
+import { EEventType } from '@commudle/shared-models';
 @Component({
   selector: 'app-edit-event',
   templateUrl: './edit-event.component.html',
@@ -64,6 +65,8 @@ export class EditEventComponent implements OnInit {
           outdent indent | removeformat | help',
   };
 
+  EEventType = EEventType;
+
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -81,6 +84,7 @@ export class EditEventComponent implements OnInit {
         start_time_pick: [''],
         end_time_pick: [''],
         timezone: ['', Validators.required],
+        event_type: ['', Validators.required],
       }),
     });
   }
@@ -134,6 +138,7 @@ export class EditEventComponent implements OnInit {
       name: this.event.name,
       description: this.event.description,
       timezone: this.event.timezone,
+      event_type: this.event.event_type,
     });
 
     if (this.event.start_time) {
