@@ -31,8 +31,10 @@ export class AgendaComponent implements OnInit {
   @Input() showShareButton = true;
 
   eventLocations: IEventLocation[] = [];
-
+  eventDatesLocation: any[];
+  // IEventDatesLocation[];
   isLoading = true;
+  selectedLocation;
 
   constructor(
     private eventLocationsService: EventLocationsService,
@@ -42,18 +44,22 @@ export class AgendaComponent implements OnInit {
 
   ngOnInit() {
     if (this.event.custom_agenda) {
-      this.getEventLocations();
+      // this.getEventLocations();
     }
+    this.getDatesEventLocations();
+    // if (this.eventDatesLocation.length > 0) {
+    //   this.selectLocation(this.eventDatesLocation[0].event_locations[0]);
+    // }
   }
 
-  getEventLocations() {
-    this.eventLocationsService.pGetEventLocations(this.event.id).subscribe((data) => {
-      this.eventLocations = data.event_locations;
-      this.isLoading = false;
-      this.setSchema();
-      this.changeDetectorRef.markForCheck();
-    });
-  }
+  // getEventLocations() {
+  //   this.eventLocationsService.pGetEventLocations(this.event.id).subscribe((data) => {
+  //     this.eventLocations = data.event_locations;
+  //     this.isLoading = false;
+  //     this.setSchema();
+  //     this.changeDetectorRef.markForCheck();
+  //   });
+  // }
 
   setSchema() {
     if (this.event.start_time && this.eventLocations.length > 0 && this.eventLocations[0].location) {
@@ -90,17 +96,17 @@ export class AgendaComponent implements OnInit {
     }
   }
 
-  getLocationName(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream
-      ? 'Video Stream'
-      : eventLocation.location
-      ? eventLocation.location.name
-      : '';
-  }
+  // getLocationName(eventLocation: IEventLocation) {
+  //   return eventLocation.embedded_video_stream
+  //     ? 'Video Stream'
+  //     : eventLocation.location
+  //     ? eventLocation.location.name
+  //     : '';
+  // }
 
-  getTabIcon(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream ? 'video' : 'pin';
-  }
+  // getTabIcon(eventLocation: IEventLocation) {
+  //   return eventLocation.embedded_video_stream ? 'video' : 'pin';
+  // }
 
   updateSessionPreference(data, locationIndex) {
     this.eventLocations[locationIndex].event_location_tracks[data.track_index].track_slots[
@@ -125,5 +131,21 @@ export class AgendaComponent implements OnInit {
     });
 
     return upcomingEvents;
+  }
+
+  getDatesEventLocations() {
+    this.eventLocationsService.getEventDates(this.event.slug).subscribe((data: any) => {
+      this.eventDatesLocation = data;
+      console.log(data);
+      this.selectLocation(data[0].event_locations[0]);
+      this.setSchema();
+      this.isLoading = false;
+      this.changeDetectorRef.markForCheck();
+    });
+  }
+
+  selectLocation(eventLocation) {
+    this.selectedLocation = eventLocation;
+    // this.changeDetectorRef.detectChanges();
   }
 }

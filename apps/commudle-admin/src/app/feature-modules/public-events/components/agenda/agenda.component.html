@@ -54,23 +54,47 @@
       </div>
     </ng-container>
     <h6 *ngIf="eventLocations.length > 1">This Event Is At Multiple Locations!</h6>
-    <nb-tabset *ngIf="eventLocations.length > 0">
-      <nb-tab
-        *ngFor="let el of eventLocations; let i = index"
-        badgePosition="top right"
-        badgeStatus="primary"
-        badgeText="{{ el.event_location_tracks.length > 1 ? el.event_location_tracks.length + ' Tracks' : '' }}"
-        tabIcon="{{ getTabIcon(el) }}"
-        tabTitle="{{ getLocationName(el) }}"
-      >
-        <app-event-location-tracks
-          (updateSessionPreference)="updateSessionPreference($event, i)"
-          *ngIf="el.location || el.embedded_video_stream"
-          [community]="community"
-          [eventLocation]="el"
-          [event]="event"
-        ></app-event-location-tracks>
-      </nb-tab>
-    </nb-tabset>
+
+    <div *ngIf="eventDatesLocation">
+      <nb-card *ngIf="eventDatesLocation.length > 0" class="event-locations-list">
+        <div class="event-location">
+          <nb-tabset id="tabset" name="tabset" #tabset>
+            <nb-tab
+              *ngFor="let data of eventDatesLocation; let i = index"
+              tabTitle="{{ moment(data.date).format('Do MMMM') }}"
+              class="tab"
+            >
+              <div id="tabset" name="tabset" #tabset class="locations-tracks">
+                <div *ngIf="data?.event_locations" class="com-w-full">
+                  <div class="locations">
+                    <div *ngFor="let el of data.event_locations; let i = index">
+                      <button
+                        *ngIf="el.location"
+                        nbButton
+                        outline
+                        [status]="el === selectedLocation ? 'primary' : 'basic'"
+                        (click)="selectLocation(el)"
+                      >
+                        {{ el.location.name }}
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="selectedLocation" class="event-location-tracks">
+                    <app-event-location-tracks
+                      *ngIf="selectedLocation.location || selectedLocation.embedded_video_stream"
+                      (updateSessionPreference)="updateSessionPreference($event, i)"
+                      [community]="community"
+                      [eventLocation]="selectedLocation"
+                      [event]="event"
+                      [eventLocationDate]="data.date"
+                    ></app-event-location-tracks>
+                  </div>
+                </div>
+              </div>
+            </nb-tab>
+          </nb-tabset>
+        </div>
+      </nb-card>
+    </div>
   </nb-card-body>
 </nb-card>
