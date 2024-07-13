@@ -61,8 +61,48 @@ export class AgendaComponent implements OnInit {
   //   });
   // }
 
+  // setSchema() {
+  //   if (this.event.start_time && this.eventLocations.length > 0 && this.eventLocations[0].location) {
+  //     this.seoService.setSchema({
+  //       '@context': 'https://schema.org',
+  //       '@type': 'Event',
+  //       name: this.event.name,
+  //       description: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
+  //       image: this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
+  //       startDate: this.event.start_time,
+  //       endDate: this.event.end_time,
+  //       eventStatus: 'https://schema.org/EventScheduled',
+  //       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  //       location: {
+  //         '@type': 'Place',
+  //         name: this.eventLocations[0].location.address,
+  //         address: {
+  //           '@type': 'PostalAddress',
+  //           streetAddress: this.eventLocations[0].location.address,
+  //           addressCountry: 'IN',
+  //         },
+  //       },
+  //       organizer: {
+  //         '@type': 'Organization',
+  //         name: this.community.name,
+  //         url: environment.app_url + '/communities/' + this.community.slug,
+  //       },
+  //       offers: {
+  //         '@type': 'Offer',
+  //         name: this.event.name,
+  //         url: environment.app_url + '/communities/' + this.community.slug + '/events/' + this.event.slug,
+  //       },
+  //     });
+  //   }
+  // }
+
+  //Modified
   setSchema() {
-    if (this.event.start_time && this.eventLocations.length > 0 && this.eventLocations[0].location) {
+    if (
+      this.event.start_time &&
+      this.eventDatesLocation.length > 0 &&
+      this.eventDatesLocation[0].event_locations[0].location
+    ) {
       this.seoService.setSchema({
         '@context': 'https://schema.org',
         '@type': 'Event',
@@ -75,10 +115,10 @@ export class AgendaComponent implements OnInit {
         eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
         location: {
           '@type': 'Place',
-          name: this.eventLocations[0].location.address,
+          name: this.eventDatesLocation[0].event_locations[0].location.address,
           address: {
             '@type': 'PostalAddress',
-            streetAddress: this.eventLocations[0].location.address,
+            streetAddress: this.eventDatesLocation[0].event_locations[0].location.address,
             addressCountry: 'IN',
           },
         },
@@ -122,6 +162,12 @@ export class AgendaComponent implements OnInit {
       el.event_location_tracks.forEach((elt) => elt.track_slots.forEach((slot) => allEvents.push(slot))),
     );
 
+    // this.eventDatesLocation.forEach((el) => {
+    //   el.event_locations.forEach((elt) => {
+    //     console.log(elt);
+    //   });
+    // });
+
     allEvents = _.sortBy(allEvents, (slot) => moment(slot.start_time));
 
     allEvents.forEach((slot) => {
@@ -130,6 +176,7 @@ export class AgendaComponent implements OnInit {
       }
     });
 
+    console.log(upcomingEvents, 'upcomingEvents');
     return upcomingEvents;
   }
 
