@@ -36,8 +36,10 @@
                       outline
                       [status]="el === selectedLocation ? 'info' : 'basic'"
                       (click)="selectLocation(el)"
+                      size="small"
                     >
-                      {{ el.location.name }}
+                      <fa-icon [icon]="el.event_type === EEventType.ONLINE_ONLY ? faVideo : faLocationDot"></fa-icon
+                      >{{ el.location.name }}
                     </button>
                   </div>
                 </div>
@@ -114,6 +116,9 @@
           Name*
           <input formControlName="name" fullWidth nbInput type="text" />
         </label>
+        <span *ngIf="invalidLocationName"
+          ><commudle-alert [error]="true" [errorMessage]="'Location with same name already exists!'"></commudle-alert
+        ></span>
         <span
           *ngIf="
             eventLocationForm['controls'].location['controls'].name.touched &&

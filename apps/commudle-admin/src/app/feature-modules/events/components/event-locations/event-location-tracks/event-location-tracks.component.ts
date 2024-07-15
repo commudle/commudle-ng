@@ -310,7 +310,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         const trackPosition = this.eventLocationTracks.findIndex((k) => k.id === eventLocationTrackId);
         // this.eventLocationTracks[trackPosition].embedded_video_stream = embeddedFormData;
         this.eventLocationTracks[trackPosition] = data;
-        this.windowRef.close();
+        this.windowRef?.close();
         this.toastLogService.successDialog(`Updated to ${data.name}`);
         this.eventLocationTrackForm.reset();
         this.changeDetectorRef.markForCheck();

@@ -10,7 +10,15 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NbTabComponent, NbTabsetComponent, NbWindowService } from '@commudle/theme';
-import { faLink, faMapPin, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLink,
+  faLocationDot,
+  faMapPin,
+  faPen,
+  faPlusCircle,
+  faTrash,
+  faVideo,
+} from '@fortawesome/free-solid-svg-icons';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -58,6 +66,9 @@ export class EventLocationsComponent implements OnInit {
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
   selectedLocation;
+  faLocationDot = faLocationDot;
+  faVideo = faVideo;
+  invalidLocationName = false;
 
   @ViewChild('tabset') tabsetEl: NbTabsetComponent;
   @ViewChild('addTab') addTabEl: NbTabComponent;
@@ -154,6 +165,7 @@ export class EventLocationsComponent implements OnInit {
   }
 
   addEventLocation() {
+    this.invalidLocationName = false;
     if (this.selectedEventType === EEventType.ONLINE_ONLY) {
       this.eventLocationForm.patchValue({
         location: {
@@ -162,6 +174,15 @@ export class EventLocationsComponent implements OnInit {
           map_link: 'NA',
         },
       });
+    }
+
+    const locationName = this.eventLocationForm.get('location').get('name').value;
+
+    if (locationName !== 'Online') {
+      if (this.locationNameExists(locationName)) {
+        this.invalidLocationName = true;
+        return;
+      }
     }
     this.windowRef.close();
     this.eventLocationsService.createEventLocation(this.event.id, this.eventLocationForm.value).subscribe((data) => {
@@ -173,6 +194,17 @@ export class EventLocationsComponent implements OnInit {
       this.changeDetectorRef.markForCheck();
       this.changeDetectorRef.detectChanges();
     });
+  }
+
+  locationNameExists(name: string): boolean {
+    for (const dateLocation of this.eventDatesLocation) {
+      for (const loc of dateLocation.event_locations) {
+        if (loc.location?.name.toLowerCase() === name.toLowerCase()) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   showEditEventLocationForm(eventLocation) {
@@ -211,6 +243,15 @@ export class EventLocationsComponent implements OnInit {
   }
 
   editEventLocation(eventLocation) {
+    this.invalidLocationName = false;
+    const locationName = this.eventLocationForm.get('location').get('name').value;
+
+    if (locationName !== 'Online') {
+      if (this.locationNameExists(locationName)) {
+        this.invalidLocationName = true;
+        return;
+      }
+    }
     this.windowRef.close();
     // if (this.selectedEventType === EEventType.ONLINE_ONLY) {
     //   this.eventLocationForm.patchValue({

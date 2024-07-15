@@ -64,14 +64,21 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
         streamable_id: this.event.id,
       });
     } else {
-      this.embeddedVideoStreamForm.patchValue({
-        streamable_type: this.embeddedFormData.streamable_type,
-        streamable_id: this.embeddedFormData.streamable_id,
-        source: this.embeddedFormData.source,
-        embed_code: this.embeddedFormData.embed_code,
-        zoom_host_email: this.embeddedFormData.zoom_host_email,
-        zoom_password: this.embeddedFormData.zoom_password,
-      });
+      if (this.embeddedFormData) {
+        this.embeddedVideoStreamForm.patchValue({
+          streamable_type: this.embeddedFormData.streamable_type,
+          streamable_id: this.embeddedFormData.streamable_id,
+          source: this.embeddedFormData.source,
+          embed_code: this.embeddedFormData.embed_code,
+          zoom_host_email: this.embeddedFormData.zoom_host_email,
+          zoom_password: this.embeddedFormData.zoom_password,
+        });
+      } else {
+        this.embeddedVideoStreamForm.patchValue({
+          streamable_type: 'Event',
+          streamable_id: this.event.id,
+        });
+      }
       this.updateValidators();
     }
 
@@ -100,8 +107,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   getEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.get(this.event.id).subscribe((data) => {
       if (data) {
-        console.log(data);
-        console.log(this.embeddedVideoStreamForm);
         this.evs = data;
         this.embeddedVideoStreamForm.patchValue(data);
         console.log(this.embeddedVideoStreamForm.value);

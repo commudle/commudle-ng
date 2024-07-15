@@ -90,4 +90,8 @@
 
 .locations {
   @apply com-flex com-flex-row com-gap-4 com-mb-[18px];
+
+  fa-icon {
+    @apply com-mr-1 com-text-sm;
+  }
 }

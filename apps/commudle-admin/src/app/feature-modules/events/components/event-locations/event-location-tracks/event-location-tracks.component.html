@@ -20,6 +20,19 @@
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
           <div *ngIf="event.editable" class="actions">
+            <a
+              *ngIf="elt.event_type === EEventType.ONLINE_ONLY"
+              nbButton
+              status="primary"
+              nbButton
+              [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+              target="_blank"
+              size="tiny"
+            >
+              <nb-icon icon="external-link"></nb-icon>
+              Public Session Page
+            </a>
+            &nbsp;
             <button
               *ngIf="elt.event_type === EEventType.ONLINE_ONLY"
               (click)="openEmbeddedLink(elt, elti); $event.stopPropagation()"
@@ -60,7 +73,7 @@
           </div>
           <ng-container *ngFor="let group of sortedTrackSlots[elt.id] | groupByDate : 'start_time'">
             <!-- Display the date -->
-            <div class="group-date">{{ group.date }}</div>
+            <!-- <div class="group-date">{{ group.date }}</div> -->
             <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
               <nb-list-item *ngFor="let slot of group.slots; let tsi = index">
                 <div
