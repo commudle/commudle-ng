@@ -109,7 +109,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
       if (data) {
         this.evs = data;
         this.embeddedVideoStreamForm.patchValue(data);
-        console.log(this.embeddedVideoStreamForm.value);
         this.updateValidators();
       }
     });
@@ -134,7 +133,6 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   updateValidators() {
-    console.log('validators called');
     // remove the required validator from zoom attributes
     this.embeddedVideoStreamForm.get('zoom_host_email').clearValidators();
     this.embeddedVideoStreamForm.get('zoom_password').clearValidators();

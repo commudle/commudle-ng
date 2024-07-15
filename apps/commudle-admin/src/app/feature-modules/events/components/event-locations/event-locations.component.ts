@@ -35,7 +35,6 @@ import moment from 'moment';
   selector: 'app-event-locations',
   templateUrl: './event-locations.component.html',
   styleUrls: ['./event-locations.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationsComponent implements OnInit {
   @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
@@ -233,7 +232,6 @@ export class EventLocationsComponent implements OnInit {
         break;
     }
 
-    // this.eventLocationForm.patchValue(eventLocation);
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
@@ -253,17 +251,7 @@ export class EventLocationsComponent implements OnInit {
       }
     }
     this.windowRef.close();
-    // if (this.selectedEventType === EEventType.ONLINE_ONLY) {
-    //   this.eventLocationForm.patchValue({
-    //     location: {
-    //       name: 'Online',
-    //       address: 'NA',
-    //       map_link: 'NA',
-    //     },
-    //   });
-    // }
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
-      console.log(data);
       this.eventDatesLocation.forEach((dateLocation) => {
         const index = dateLocation.event_locations.findIndex((k) => {
           return k.id === eventLocation.id;
@@ -311,45 +299,6 @@ export class EventLocationsComponent implements OnInit {
     this.activateTabAdd();
   }
 
-  // addSlot(newTrackSlot, locationIndex) {
-  //   const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => {
-  //     console.log(k.id)
-  //     k.id === newTrackSlot.event_location_track_id;
-  //   });
-  //   this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
-  //     ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
-  //     newTrackSlot,
-  //   ];
-  //   this.changeDetectorRef.markForCheck();
-  // }
-
-  addSlot(newTrackSlot, locationIndex) {
-    console.log(newTrackSlot);
-    console.log(newTrackSlot.event_location_track_id);
-    console.log(locationIndex);
-    // const trackPosition = this.eventDatesLocation[locationIndex].event_location_tracks.findIndex((k) => {
-    //   console.log(k.id);
-    //   k.id === newTrackSlot.event_location_track_id;
-    // });
-    // this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
-    //   ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
-    //   newTrackSlot,
-    // ];
-    this.changeDetectorRef.markForCheck();
-  }
-
-  updateSlot(trackSlot, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
-      (k) => k.id == trackSlot.event_location_track_id,
-    );
-
-    const slotPosition = this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.findIndex(
-      (k) => k.id == trackSlot.id,
-    );
-
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots[slotPosition] = trackSlot;
-  }
-
   removeSlot(trackSlot, locationIndex) {
     const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
       (k) => k.id == trackSlot.event_location_track_id,
@@ -367,18 +316,6 @@ export class EventLocationsComponent implements OnInit {
 
   openHelpTextWindow() {
     this.windowService.open(this.helpText, { title: 'How to Add Agenda!' });
-  }
-
-  getTabIcon(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream ? 'video' : 'pin';
-  }
-
-  getLocationName(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream
-      ? 'Video Stream'
-      : eventLocation.location
-      ? eventLocation.location.name
-      : '';
   }
 
   activateTabAdd() {

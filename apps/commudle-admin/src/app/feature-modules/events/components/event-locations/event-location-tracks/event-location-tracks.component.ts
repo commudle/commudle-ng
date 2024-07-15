@@ -41,7 +41,6 @@ import * as moment from 'moment';
   selector: 'app-event-location-tracks',
   templateUrl: './event-location-tracks.component.html',
   styleUrls: ['./event-location-tracks.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() eventLocations: IEventLocation[] = [];
@@ -50,8 +49,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
   @Input() eventLocation;
   @Input() eventSpeakers;
-  @Output() addSession = new EventEmitter();
-  @Output() updateSession = new EventEmitter();
   @Output() removeSession = new EventEmitter();
 
   eventLocationTracks: IEventLocationTrack[] = [];
@@ -69,7 +66,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
   faPlus = faPlus;
   EEventType = EEventType;
-  // eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   tags: string[] = [];
   embeddedFormData;
@@ -247,8 +243,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     });
   }
 
-  // this.eventLocationTrackForm.get('event_location_track').value,
-  // this.eventLocationTrackForm.value
   createTrack() {
     this.eventLocationTracksService
       .createEventLocationTrack(
@@ -272,7 +266,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTrackForm.get('event_location_track').patchValue({
       name: eventLocationTrack.name,
     });
-    // console.log(this.eventLocationTrackForm.value);
     if (eventLocationTrack.embedded_video_stream) {
       this.eventLocationTrackForm.get('event_location_track').patchValue({
         // @ts-ignore
@@ -289,16 +282,10 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     });
   }
 
-  // this.eventLocationTrackForm.get('embedded_video_stream').value,
   editTrack(eventLocationTrackId, embeddedFormData, eventLocationTrack) {
     this.eventLocationTrackForm.get('event_location_track').patchValue({
       name: eventLocationTrack.name,
     });
-    // console.log(eventLocationTrack),
-    // this.eventLocationTrackForm.get('event_location_track').patchValue({
-    //   name: eventLocationTrack.name,
-    // });
-    // console.log(embeddedFormData);
     this.eventLocationTracksService
       .updateEventLocationTrack(
         eventLocationTrackId,
@@ -306,9 +293,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         embeddedFormData,
       )
       .subscribe((data) => {
-        console.log(data, 'data');
         const trackPosition = this.eventLocationTracks.findIndex((k) => k.id === eventLocationTrackId);
-        // this.eventLocationTracks[trackPosition].embedded_video_stream = embeddedFormData;
         this.eventLocationTracks[trackPosition] = data;
         this.windowRef?.close();
         this.toastLogService.successDialog(`Updated to ${data.name}`);
