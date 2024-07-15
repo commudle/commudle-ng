@@ -29,6 +29,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() embeddedVideoStreamfromTrackSlot = false;
+  @Input() embeddedFormData;
   @Output() embeddedVideoStream = new EventEmitter<IEmbeddedVideoStream>();
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
@@ -57,10 +58,22 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.embeddedVideoStreamForm.patchValue({
-      streamable_type: 'Event',
-      streamable_id: this.event.id,
-    });
+    if (!this.embeddedVideoStreamfromTrackSlot) {
+      this.embeddedVideoStreamForm.patchValue({
+        streamable_type: 'Event',
+        streamable_id: this.event.id,
+      });
+    } else {
+      this.embeddedVideoStreamForm.patchValue({
+        streamable_type: this.embeddedFormData.streamable_type,
+        streamable_id: this.embeddedFormData.streamable_id,
+        source: this.embeddedFormData.source,
+        embed_code: this.embeddedFormData.embed_code,
+        zoom_host_email: this.embeddedFormData.zoom_host_email,
+        zoom_password: this.embeddedFormData.zoom_password,
+      });
+      this.updateValidators();
+    }
 
     if (!this.embeddedVideoStreamfromTrackSlot) {
       this.getEmbeddedVideoStream();
@@ -87,8 +100,11 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   getEmbeddedVideoStream() {
     this.embeddedVideoStreamsService.get(this.event.id).subscribe((data) => {
       if (data) {
+        console.log(data);
+        console.log(this.embeddedVideoStreamForm);
         this.evs = data;
         this.embeddedVideoStreamForm.patchValue(data);
+        console.log(this.embeddedVideoStreamForm.value);
         this.updateValidators();
       }
     });
@@ -97,6 +113,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   createOrUpdate() {
     if (this.embeddedVideoStreamfromTrackSlot) {
       this.embeddedVideoStream.emit(this.embeddedVideoStreamForm.value);
+      this.toastLogService.successDialog('Saved!');
     } else {
       this.embeddedVideoStreamsService.createOrUpdate(this.embeddedVideoStreamForm.value).subscribe((data) => {
         delete this.evs;
@@ -112,6 +129,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   updateValidators() {
+    console.log('validators called');
     // remove the required validator from zoom attributes
     this.embeddedVideoStreamForm.get('zoom_host_email').clearValidators();
     this.embeddedVideoStreamForm.get('zoom_password').clearValidators();

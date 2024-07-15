@@ -194,7 +194,11 @@
 
 <ng-template #eventLocationTrackFormTemplate let-data>
   <form
-    (ngSubmit)="data.operationType === 'create' ? createTrack() : editTrack(data.eventLocationTrackId, data)"
+    (ngSubmit)="
+      data.operationType === 'create'
+        ? createTrack()
+        : editTrack(data.eventLocationTrackId, data, data.eventLocationTrack)
+    "
     [formGroup]="eventLocationTrackForm"
     class="event-location-track-form"
   >
@@ -316,6 +320,7 @@
           (embeddedVideoStream)="
             updateEmbededContent($event, data.eventLocationTrack, data.elti, data.embeddedVideoStream)
           "
+          [embeddedFormData]="eventLocationTracks[data.elti].embedded_video_stream"
         ></app-event-embedded-video-stream>
       </nb-card-body>
     </nb-card>

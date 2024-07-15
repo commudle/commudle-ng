@@ -72,6 +72,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   // eventLocation: IEventLocation;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   tags: string[] = [];
+  embeddedFormData;
 
   moment = moment;
   minSlotDate;
@@ -271,7 +272,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTrackForm.get('event_location_track').patchValue({
       name: eventLocationTrack.name,
     });
-
+    // console.log(this.eventLocationTrackForm.value);
     if (eventLocationTrack.embedded_video_stream) {
       this.eventLocationTrackForm.get('event_location_track').patchValue({
         // @ts-ignore
@@ -280,12 +281,24 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     }
     this.windowRef = this.windowService.open(this.eventLocationTrackFormTemplate, {
       title: `Edit ${eventLocationTrack.name}`,
-      context: { operationType: 'edit', eventLocationTrackId: eventLocationTrack.id },
+      context: {
+        operationType: 'edit',
+        eventLocationTrackId: eventLocationTrack.id,
+        eventLocationTrack: eventLocationTrack,
+      },
     });
   }
 
   // this.eventLocationTrackForm.get('embedded_video_stream').value,
-  editTrack(eventLocationTrackId, embeddedFormData) {
+  editTrack(eventLocationTrackId, embeddedFormData, eventLocationTrack) {
+    this.eventLocationTrackForm.get('event_location_track').patchValue({
+      name: eventLocationTrack.name,
+    });
+    // console.log(eventLocationTrack),
+    // this.eventLocationTrackForm.get('event_location_track').patchValue({
+    //   name: eventLocationTrack.name,
+    // });
+    // console.log(embeddedFormData);
     this.eventLocationTracksService
       .updateEventLocationTrack(
         eventLocationTrackId,
@@ -503,6 +516,14 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   openEmbeddedLink(eventLocationTrack, elti) {
+    this.eventLocationTrackForm.get('event_location_track').patchValue({
+      name: eventLocationTrack.name,
+    });
+    if (eventLocationTrack.embedded_video_stream) {
+      this.eventLocationTrackForm.get('event_location_track').patchValue({
+        embedded_video_stream: eventLocationTrack.embedded_video_stream,
+      });
+    }
     this.dialogRef = this.dialogService.open(this.embeddedVideoTemplate, {
       closeOnBackdropClick: false,
       closeOnEsc: false,
@@ -515,13 +536,9 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   updateEmbededContent(embeddedFormData, eventLocationTrack, elti, embeddedVideoStream) {
+    this.embeddedFormData = embeddedFormData;
+    this.eventLocationTracks[elti].embedded_video_stream = embeddedFormData;
     this.dialogRef.close();
-    this.editTrack(eventLocationTrack.id, embeddedFormData);
+    this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
   }
 }
-
-// console.log(data, 'called');
-// this.eventLocationTracks[elti].embedded_video_stream = data;
-// console.log(this.eventLocationTracks[elti].embedded_video_stream);
-// this.eventLocationTrackForm.get('embedded_video_stream').patchValue(data);
-// console.log(this.eventLocationTrackForm.get('embedded_video_stream').value);
