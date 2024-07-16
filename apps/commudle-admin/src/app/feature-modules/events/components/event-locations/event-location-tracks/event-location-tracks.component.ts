@@ -68,7 +68,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   EEventType = EEventType;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   tags: string[] = [];
-  embeddedFormData;
+  // embeddedFormData;
   isLoading = true;
 
   moment = moment;
@@ -284,10 +284,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   editTrack(eventLocationTrackId, embeddedFormData, eventLocationTrack) {
-    console.log(embeddedFormData);
-    // this.eventLocationTrackForm.get('event_location_track').patchValue({
-    //   name: eventLocationTrack.name,
-    // });
     this.eventLocationTracksService
       .updateEventLocationTrack(
         eventLocationTrackId,
@@ -523,8 +519,8 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       },
     });
   }
-
-  updateEmbededContent(embeddedFormData, eventLocationTrack, elti, embeddedVideoStream) {
+  // embeddedVideoStream
+  updateEmbededContent(embeddedFormData, eventLocationTrack, elti) {
     // this.embeddedFormData = embeddedFormData;
     this.eventLocationTracks[elti].embedded_video_stream = embeddedFormData;
     this.dialogRef.close();

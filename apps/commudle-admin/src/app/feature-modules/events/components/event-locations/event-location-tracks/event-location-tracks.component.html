@@ -22,7 +22,7 @@
           &nbsp;
           <div *ngIf="event.editable" class="actions">
             <a
-              *ngIf="elt.event_type === EEventType.ONLINE_ONLY"
+              *ngIf="elt.event_type === EEventType.ONLINE_ONLY && elt.embedded_video_stream"
               nbButton
               status="primary"
               nbButton
@@ -330,9 +330,7 @@
           [event]="event"
           [community]="community"
           [embeddedVideoStreamfromTrackSlot]="true"
-          (embeddedVideoStream)="
-            updateEmbededContent($event, data.eventLocationTrack, data.elti, data.embeddedVideoStream)
-          "
+          (embeddedVideoStream)="updateEmbededContent($event, data.eventLocationTrack, data.elti)"
           [embeddedFormData]="eventLocationTracks[data.elti].embedded_video_stream"
         ></app-event-embedded-video-stream>
       </nb-card-body>
