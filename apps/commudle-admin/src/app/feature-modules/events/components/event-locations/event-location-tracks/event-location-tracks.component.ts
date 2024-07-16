@@ -267,7 +267,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTrackForm.get('event_location_track').patchValue({
       name: eventLocationTrack.name,
     });
-    console.log(eventLocationTrack.embedded_video_stream, 'show');
     if (eventLocationTrack.embedded_video_stream) {
       this.eventLocationTrackForm.get('event_location_track').patchValue({
         // @ts-ignore
@@ -529,6 +528,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     // this.embeddedFormData = embeddedFormData;
     this.eventLocationTracks[elti].embedded_video_stream = embeddedFormData;
     this.dialogRef.close();
-    // this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
+    this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
   }
 }
