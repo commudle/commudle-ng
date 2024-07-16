@@ -33,6 +33,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() eventLocation: IEventLocation;
   @Input() eventLocationDate: Date;
   @Output() updateSessionPreference = new EventEmitter();
+  @Output() TrackSlotsDetails = new EventEmitter();
   sortedTrackSlots = {};
   trackSlotVisibility = {};
   viewMoreSection = true;
@@ -55,16 +56,14 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     if (this.seoService.isBot) {
       this.visibility = true;
     } else {
-      this.visibility = this.eventLocation.event_location_tracks.length <= 2;
+      this.visibility = this.eventLocation.event_location_tracks?.length <= 2;
       this.setTrackVisibility();
     }
     // this.getLocationTracks();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('ngOnChanges triggered', changes);
     if (changes.eventLocation || changes.eventLocationDate) {
-      console.log('eventLocation or eventLocationDate changed');
       this.getLocationTracks();
     }
   }
@@ -98,21 +97,23 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   setTrackVisibility() {
     // this.trackSlotVisibility = {}; // Reset this
     // this.sortedTrackSlots = {}; // Reset this
-    this.visibility = this.eventLocationTracks.length <= 2;
-    for (const event_location_track of this.eventLocationTracks) {
-      this.trackSlotVisibility[event_location_track.id] = this.visibility;
-      this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
-    }
-    if (this.activatedRoute.snapshot.queryParamMap.get('track_id')) {
-      this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')] = true;
-      if (this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')]) {
-        setTimeout(() => {
-          document.getElementById(this.activatedRoute.snapshot.queryParamMap.get('track_id')).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-            inline: 'nearest',
-          });
-        }, 100);
+    if (this.eventLocationTracks) {
+      this.visibility = this.eventLocationTracks.length <= 2;
+      for (const event_location_track of this.eventLocationTracks) {
+        this.trackSlotVisibility[event_location_track.id] = this.visibility;
+        this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+      }
+      if (this.activatedRoute.snapshot.queryParamMap.get('track_id')) {
+        this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')] = true;
+        if (this.trackSlotVisibility[this.activatedRoute.snapshot.queryParamMap.get('track_id')]) {
+          setTimeout(() => {
+            document.getElementById(this.activatedRoute.snapshot.queryParamMap.get('track_id')).scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest',
+            });
+          }, 100);
+        }
       }
     }
   }
@@ -123,7 +124,9 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       .getLocationTracks(this.eventLocation.location.id, this.eventLocationDate)
       .subscribe((data: any) => {
         this.eventLocationTracks = data;
-        console.log(data, 'data');
+        if (data) {
+          this.TrackSlotsDetails.emit(this.eventLocationTracks);
+        }
         this.setTrackVisibility();
         this.isLoading = false;
         this.changeDetectorRef.detectChanges();

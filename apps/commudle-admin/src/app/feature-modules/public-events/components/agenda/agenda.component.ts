@@ -35,6 +35,7 @@ export class AgendaComponent implements OnInit {
   // IEventDatesLocation[];
   isLoading = true;
   selectedLocation;
+  upcomingEvents: Array<ITrackSlot> = [];
 
   constructor(
     private eventLocationsService: EventLocationsService,
@@ -47,6 +48,7 @@ export class AgendaComponent implements OnInit {
       // this.getEventLocations();
     }
     this.getDatesEventLocations();
+    // this.getUpcomingEvents(data);
     // if (this.eventDatesLocation.length > 0) {
     //   this.selectLocation(this.eventDatesLocation[0].event_locations[0]);
     // }
@@ -154,13 +156,22 @@ export class AgendaComponent implements OnInit {
     ].user_vote = data.preference;
   }
 
-  getUpcomingEvents() {
+  getUpcomingEvents(data) {
+    // const upcomingEvents: Array<ITrackSlot> = [];
+    console.log(data);
     let allEvents: Array<ITrackSlot> = [];
-    const upcomingEvents: Array<ITrackSlot> = [];
+    this.upcomingEvents = [];
 
-    this.eventLocations.forEach((el) =>
-      el.event_location_tracks.forEach((elt) => elt.track_slots.forEach((slot) => allEvents.push(slot))),
-    );
+    // this.eventLocations.forEach((el) =>
+    //   el.event_location_tracks.forEach((elt) => elt.track_slots.forEach((slot) => allEvents.push(slot))),
+    // );
+
+    data.forEach((elt) => {
+      // console.log(elt);
+      elt.track_slots.forEach((slot) => {
+        allEvents.push(slot);
+      });
+    });
 
     // this.eventDatesLocation.forEach((el) => {
     //   el.event_locations.forEach((elt) => {
@@ -172,13 +183,23 @@ export class AgendaComponent implements OnInit {
 
     allEvents.forEach((slot) => {
       if (moment(slot.start_time).isAfter(moment()) && moment().isAfter(moment(this.event.start_time))) {
-        upcomingEvents.push(slot);
+        // console.log(slot);
+        this.upcomingEvents.push(slot);
       }
     });
 
-    console.log(upcomingEvents, 'upcomingEvents');
-    return upcomingEvents;
+    // console.log(this.upcomingEvents, 'upcomingEvents');
+    // return this.upcomingEvents;
   }
+
+  // trackSlotsDetails(data) {
+  //   data.forEach((elt) => {
+  //     console.log(elt);
+  //     elt.track_slots.forEach((slot)=>{
+  //       allEvents.push(slot);
+  //     });
+  //   });
+  // }
 
   getDatesEventLocations() {
     this.eventLocationsService.getEventDates(this.event.slug).subscribe((data: any) => {

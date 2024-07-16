@@ -13,10 +13,10 @@
   </nb-card-header>
   <nb-card-body>
     <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-    <ng-container *ngIf="getUpcomingEvents().length > 0">
+    <ng-container *ngIf="upcomingEvents.length > 0">
       <h6>Upcoming Sessions</h6>
       <div class="event-upcoming">
-        <nb-card *ngFor="let slot of getUpcomingEvents()">
+        <nb-card *ngFor="let slot of upcomingEvents">
           <nb-card-body>
             <div class="upcoming-session-time">
               <nb-icon icon="clock-outline"></nb-icon>&nbsp;
@@ -83,6 +83,7 @@
                     <app-event-location-tracks
                       *ngIf="selectedLocation.location || selectedLocation.embedded_video_stream"
                       (updateSessionPreference)="updateSessionPreference($event, i)"
+                      (TrackSlotsDetails)="getUpcomingEvents($event)"
                       [community]="community"
                       [eventLocation]="selectedLocation"
                       [event]="event"

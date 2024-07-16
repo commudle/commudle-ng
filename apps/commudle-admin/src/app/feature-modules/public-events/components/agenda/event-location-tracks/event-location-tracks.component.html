@@ -18,7 +18,7 @@
         (click)="changeTrackSlotVisibility(!trackSlotVisibility[elt.id], elt.id)"
       >
         <nb-accordion-item-header [id]="elt.id">
-          <p class="track-name">{{ elt.id }}</p>
+          <p class="track-name">{{ elt.name }}</p>
         </nb-accordion-item-header>
         <nb-accordion-item-body class="com-rounded-b-2xl">
           <nb-list *ngIf="trackSlotVisibility[elt.id]">
