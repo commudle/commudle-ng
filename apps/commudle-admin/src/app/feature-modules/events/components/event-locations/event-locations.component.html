@@ -16,7 +16,7 @@
   <div *ngIf="eventDatesLocation">
     <nb-card *ngIf="eventDatesLocation.length > 0" class="event-locations-list">
       <div class="event-location">
-        <nb-tabset *ngIf="eventDatesLocation" id="tabset" name="tabset" #tabset>
+        <nb-tabset *ngIf="eventDatesLocation" id="tabset" name="tabset" #tabset (changeTab)="onTabChange($event)">
           <nb-tab
             *ngFor="let data of eventDatesLocation; let i = index"
             tabTitle="{{ moment(data.date).format('Do MMMM') }}"

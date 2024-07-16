@@ -73,12 +73,13 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
           zoom_host_email: this.embeddedFormData.zoom_host_email,
           zoom_password: this.embeddedFormData.zoom_password,
         });
-      } else {
-        this.embeddedVideoStreamForm.patchValue({
-          streamable_type: 'Event',
-          streamable_id: this.event.id,
-        });
       }
+      // else {
+      //   this.embeddedVideoStreamForm.patchValue({
+      //     streamable_type: '',
+      //     streamable_id: this.event.id,
+      //   });
+      // }
       this.updateValidators();
     }
 

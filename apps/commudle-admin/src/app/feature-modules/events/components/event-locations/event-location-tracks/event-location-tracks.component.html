@@ -10,7 +10,8 @@
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp; Add Track
   </button>
-  <div class="track-container">
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+  <div class="track-container" *ngIf="!isLoading">
     <nb-accordion *ngFor="let elt of eventLocationTracks; let elti = index" class="com-mb-3 com-shadow-none">
       <nb-accordion-item
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
@@ -72,7 +73,7 @@
             &nbsp; Add New Session
           </div>
           <ng-container *ngFor="let group of sortedTrackSlots[elt.id] | groupByDate : 'start_time'">
-            <!-- <div class="group-date">{{ group.date }}</div> -->
+            <div class="group-date">{{ group.date }}</div>
             <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
               <nb-list-item *ngFor="let slot of group.slots; let tsi = index">
                 <div

@@ -188,6 +188,7 @@ export class EventLocationsComponent implements OnInit {
       this.eventDatesLocation.forEach((event) => {
         event.event_locations.push(data);
       });
+      this.selectLocation(data);
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Location added!');
       this.changeDetectorRef.markForCheck();
@@ -351,5 +352,18 @@ export class EventLocationsComponent implements OnInit {
   selectLocation(eventLocation) {
     this.selectedLocation = eventLocation;
     this.changeDetectorRef.detectChanges();
+  }
+
+  onTabChange(event: any) {
+    const tabIndex = this.eventDatesLocation.findIndex((d) => {
+      const formattedDate = moment(d.date).format('Do MMMM');
+      return formattedDate === event.tabTitle;
+    });
+    if (tabIndex !== -1) {
+      this.activeTabIndex = tabIndex;
+      if (this.eventDatesLocation[tabIndex] && this.eventDatesLocation[tabIndex].event_locations.length > 0) {
+        this.selectLocation(this.eventDatesLocation[tabIndex].event_locations[0]);
+      }
+    }
   }
 }

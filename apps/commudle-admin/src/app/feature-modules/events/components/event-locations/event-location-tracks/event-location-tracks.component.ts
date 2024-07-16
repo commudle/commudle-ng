@@ -69,6 +69,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   tags: string[] = [];
   embeddedFormData;
+  isLoading = true;
 
   moment = moment;
   minSlotDate;
@@ -266,6 +267,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTrackForm.get('event_location_track').patchValue({
       name: eventLocationTrack.name,
     });
+    console.log(eventLocationTrack.embedded_video_stream, 'show');
     if (eventLocationTrack.embedded_video_stream) {
       this.eventLocationTrackForm.get('event_location_track').patchValue({
         // @ts-ignore
@@ -283,9 +285,10 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   editTrack(eventLocationTrackId, embeddedFormData, eventLocationTrack) {
-    this.eventLocationTrackForm.get('event_location_track').patchValue({
-      name: eventLocationTrack.name,
-    });
+    console.log(embeddedFormData);
+    // this.eventLocationTrackForm.get('event_location_track').patchValue({
+    //   name: eventLocationTrack.name,
+    // });
     this.eventLocationTracksService
       .updateEventLocationTrack(
         eventLocationTrackId,
@@ -490,8 +493,10 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   getLocationTracks() {
+    this.isLoading = true;
     this.trackSlotsService.getTrackSlots(this.eventLocation.location.id).subscribe((data: any) => {
       this.eventLocationTracks = data;
+      this.isLoading = false;
       const visibility = this.eventLocationTracks.length <= 2;
       for (const event_location_track of this.eventLocationTracks) {
         this.trackSlotVisibility[event_location_track.id] = visibility;
@@ -521,9 +526,9 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   updateEmbededContent(embeddedFormData, eventLocationTrack, elti, embeddedVideoStream) {
-    this.embeddedFormData = embeddedFormData;
+    // this.embeddedFormData = embeddedFormData;
     this.eventLocationTracks[elti].embedded_video_stream = embeddedFormData;
     this.dialogRef.close();
-    this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
+    // this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
   }
 }

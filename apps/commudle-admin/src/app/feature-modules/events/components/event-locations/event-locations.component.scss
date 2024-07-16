@@ -5,7 +5,13 @@
 
   .event-location {
     nb-tabset {
-      @apply com-overflow-x-auto;
+      @apply com-overflow-hidden;
+
+      &::ng-deep {
+        ul {
+          @apply com-overflow-x-scroll com-overflow-y-hidden;
+        }
+      }
       nb-tab {
         @apply com-m-0 com-p-3;
 
