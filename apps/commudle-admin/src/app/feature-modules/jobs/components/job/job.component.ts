@@ -22,11 +22,13 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
 import { LibErrorHandlerService } from 'apps/lib-error-handler/src/lib/lib-error-handler.service';
-
+import { EnumFormatPipe } from 'apps/shared-pipes/enum-format.pipe';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-job',
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.scss'],
+  providers: [EnumFormatPipe],
 })
 export class JobComponent implements OnInit, OnDestroy {
   @ViewChild('createJobApplicationDialog') createJobApplicationDialog: TemplateRef<any>;
@@ -61,12 +63,19 @@ export class JobComponent implements OnInit, OnDestroy {
     private seoService: SeoService,
     private route: Router,
     private errorHandler: LibErrorHandlerService,
+    private enumFormatPipe: EnumFormatPipe,
+    private datePipe: DatePipe,
   ) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(this.authWatchService.currentUser$.subscribe((data) => (this.currentUser = data)));
-
-    this.subscriptions.push(this.activatedRoute.params.subscribe((data) => this.getJob(data.id)));
+    this.subscriptions.push(
+      this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
+      }),
+    ),
+      this.activatedRoute.params.subscribe((data) => {
+        this.getJob(data.id);
+      });
   }
 
   ngOnDestroy(): void {
@@ -76,7 +85,9 @@ export class JobComponent implements OnInit, OnDestroy {
   getJob(id: number): void {
     this.subscriptions.push(
       this.jobService.getJob(id).subscribe((value) => {
+        console.log('🚀 ~ JobComponent ~ this.jobService.getJob ~ value:', value);
         this.job = value;
+        this.setSchemaData();
         this.setMeta();
       }),
     );
@@ -146,5 +157,43 @@ export class JobComponent implements OnInit, OnDestroy {
         this.createJobApplication();
       }
     });
+  }
+
+  setSchemaData() {
+    const formattedDate = this.datePipe.transform(this.job.updated_at, 'yyyy-MM-dd');
+    const employmentType = this.enumFormatPipe.transform(this.job.job_type);
+
+    // Common schema data
+    const schemaData: any = {
+      '@context': 'https://schema.org/',
+      '@type': 'JobPosting',
+      title: this.job.position,
+      description: this.job.description,
+      hiringOrganization: {
+        '@type': 'Organization',
+        name: this.job.company,
+      },
+      employmentType: employmentType,
+      datePosted: formattedDate,
+    };
+
+    // Add unique properties based on location type
+    if (this.job.location_type === EJobLocationType.REMOTE) {
+      schemaData.applicantLocationRequirements = {
+        '@type': 'Country',
+        name: 'IN',
+      };
+      schemaData.jobLocationType = 'TELECOMMUTE';
+    } else {
+      schemaData.jobLocation = {
+        '@type': 'Place',
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'IN',
+        },
+      };
+    }
+
+    this.seoService.setSchema(schemaData);
   }
 }
