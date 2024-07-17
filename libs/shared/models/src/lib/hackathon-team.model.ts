@@ -3,6 +3,8 @@ import { IRound } from './round.model';
 import { INote } from './note.model';
 import { IEntityUpdate } from './entity-update.model';
 import { IHackathonWinner } from './hackathon-winner.model';
+import { ICommunity } from './community.model';
+import { IHackathon } from './hackathon.model';
 
 export interface IHackathonTeam {
   id: number;
@@ -18,6 +20,8 @@ export interface IHackathonTeam {
   hackathon_id: number;
   acceptance_mail_sent: boolean;
   prize_selected: boolean; //use for display only not related to API requests
+  hackathon: IHackathon;
+  community: ICommunity;
 }
 
 export enum EHackathonRegistrationStatus {

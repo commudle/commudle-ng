@@ -10,7 +10,11 @@ p {
     .details {
       @apply com-flex;
       .community-build-card-image {
-        @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden;
+        @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden com-relative;
+
+        app-badge {
+          @apply md:com-hidden com-absolute com-top-3 com-right-0;
+        }
       }
 
       .community-build-card-details {
@@ -23,7 +27,11 @@ p {
           }
 
           .time {
-            @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
+            @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1 com-mr-4;
+          }
+
+          app-badge {
+            @apply md:com-flex com-hidden;
           }
         }
         .description {
