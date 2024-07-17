@@ -46,10 +46,13 @@
                 <div *ngIf="selectedLocation" class="event-location-tracks">
                   <div *ngIf="selectedLocation?.location.address" class="map-location">
                     <p class="address">
-                      <span>Address: </span>
-                      <a href="{{ selectedLocation.location.map_link }}" target="_blank">{{
-                        selectedLocation.location.address
-                      }}</a>
+                      <span *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY">Address: </span>
+                      <a
+                        *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY"
+                        href="{{ selectedLocation.location.map_link }}"
+                        target="_blank"
+                        >{{ selectedLocation.location.address }}</a
+                      >
                       &nbsp;
                       <fa-icon
                         *ngIf="event.editable"
@@ -67,7 +70,7 @@
                       ></fa-icon>
                     </p>
 
-                    <p class="link-to-map">
+                    <p *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY" class="link-to-map">
                       <a href="{{ selectedLocation.location.map_link }}" target="_blank">
                         <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map
                       </a>
