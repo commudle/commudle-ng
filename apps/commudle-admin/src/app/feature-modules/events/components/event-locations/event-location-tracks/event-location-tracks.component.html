@@ -27,6 +27,7 @@
               status="primary"
               nbButton
               [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+              [queryParams]="{ event_location_track_id: elt.id }"
               target="_blank"
               size="tiny"
             >
@@ -329,9 +330,10 @@
         <app-event-embedded-video-stream
           [event]="event"
           [community]="community"
-          [embeddedVideoStreamfromTrackSlot]="true"
+          [embeddedVideoStreamFromTrackSlot]="true"
           (embeddedVideoStream)="updateEmbededContent($event, data.eventLocationTrack, data.elti)"
           [embeddedFormData]="eventLocationTracks[data.elti].embedded_video_stream"
+          [eventLocationTrackId]="data.eventLocationTrack.id"
         ></app-event-embedded-video-stream>
       </nb-card-body>
     </nb-card>

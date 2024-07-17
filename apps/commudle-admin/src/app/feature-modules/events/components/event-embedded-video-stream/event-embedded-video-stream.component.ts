@@ -28,8 +28,9 @@ import { Subscription } from 'rxjs';
 export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   @Input() event: IEvent;
   @Input() community: ICommunity;
-  @Input() embeddedVideoStreamfromTrackSlot = false;
+  @Input() embeddedVideoStreamFromTrackSlot = false;
   @Input() embeddedFormData;
+  @Input() eventLocationTrackId: number;
   @Output() embeddedVideoStream = new EventEmitter<IEmbeddedVideoStream>();
 
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
@@ -58,7 +59,7 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (!this.embeddedVideoStreamfromTrackSlot) {
+    if (!this.embeddedVideoStreamFromTrackSlot) {
       this.embeddedVideoStreamForm.patchValue({
         streamable_type: 'Event',
         streamable_id: this.event.id,
@@ -73,17 +74,16 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
           zoom_host_email: this.embeddedFormData.zoom_host_email,
           zoom_password: this.embeddedFormData.zoom_password,
         });
+      } else {
+        this.embeddedVideoStreamForm.patchValue({
+          streamable_type: 'EventLocationTrack',
+          streamable_id: this.eventLocationTrackId,
+        });
       }
-      // else {
-      //   this.embeddedVideoStreamForm.patchValue({
-      //     streamable_type: '',
-      //     streamable_id: this.event.id,
-      //   });
-      // }
       this.updateValidators();
     }
 
-    if (!this.embeddedVideoStreamfromTrackSlot) {
+    if (!this.embeddedVideoStreamFromTrackSlot) {
       this.getEmbeddedVideoStream();
     }
 
@@ -116,9 +116,8 @@ export class EventEmbeddedVideoStreamComponent implements OnInit, OnDestroy {
   }
 
   createOrUpdate() {
-    if (this.embeddedVideoStreamfromTrackSlot) {
+    if (this.embeddedVideoStreamFromTrackSlot) {
       this.embeddedVideoStream.emit(this.embeddedVideoStreamForm.value);
-      this.toastLogService.successDialog('Saved!');
     } else {
       this.embeddedVideoStreamsService.createOrUpdate(this.embeddedVideoStreamForm.value).subscribe((data) => {
         delete this.evs;
