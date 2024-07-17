@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
@@ -44,24 +36,8 @@ export class AgendaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (this.event.custom_agenda) {
-      // this.getEventLocations();
-    }
     this.getDatesEventLocations();
-    // this.getUpcomingEvents(data);
-    // if (this.eventDatesLocation.length > 0) {
-    //   this.selectLocation(this.eventDatesLocation[0].event_locations[0]);
-    // }
   }
-
-  // getEventLocations() {
-  //   this.eventLocationsService.pGetEventLocations(this.event.id).subscribe((data) => {
-  //     this.eventLocations = data.event_locations;
-  //     this.isLoading = false;
-  //     this.setSchema();
-  //     this.changeDetectorRef.markForCheck();
-  //   });
-  // }
 
   // setSchema() {
   //   if (this.event.start_time && this.eventLocations.length > 0 && this.eventLocations[0].location) {
@@ -138,18 +114,6 @@ export class AgendaComponent implements OnInit {
     }
   }
 
-  // getLocationName(eventLocation: IEventLocation) {
-  //   return eventLocation.embedded_video_stream
-  //     ? 'Video Stream'
-  //     : eventLocation.location
-  //     ? eventLocation.location.name
-  //     : '';
-  // }
-
-  // getTabIcon(eventLocation: IEventLocation) {
-  //   return eventLocation.embedded_video_stream ? 'video' : 'pin';
-  // }
-
   updateSessionPreference(data, locationIndex) {
     this.eventLocations[locationIndex].event_location_tracks[data.track_index].track_slots[
       data.track_slot_index
@@ -183,23 +147,11 @@ export class AgendaComponent implements OnInit {
 
     allEvents.forEach((slot) => {
       if (moment(slot.start_time).isAfter(moment()) && moment().isAfter(moment(this.event.start_time))) {
-        // console.log(slot);
         this.upcomingEvents.push(slot);
       }
     });
-
-    // console.log(this.upcomingEvents, 'upcomingEvents');
     // return this.upcomingEvents;
   }
-
-  // trackSlotsDetails(data) {
-  //   data.forEach((elt) => {
-  //     console.log(elt);
-  //     elt.track_slots.forEach((slot)=>{
-  //       allEvents.push(slot);
-  //     });
-  //   });
-  // }
 
   getDatesEventLocations() {
     this.eventLocationsService.getEventDates(this.event.slug).subscribe((data: any) => {
@@ -214,6 +166,5 @@ export class AgendaComponent implements OnInit {
 
   selectLocation(eventLocation) {
     this.selectedLocation = eventLocation;
-    // this.changeDetectorRef.detectChanges();
   }
 }

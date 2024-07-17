@@ -59,7 +59,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       this.visibility = this.eventLocation.event_location_tracks?.length <= 2;
       this.setTrackVisibility();
     }
-    // this.getLocationTracks();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -67,11 +66,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       this.getLocationTracks();
     }
   }
-
-  // ngOnChanges() {
-  //   console.log(this.eventLocation, 'onInit');
-  //   this.getLocationTracks();
-  // }
 
   toggleVote(trackSlotId, trackSlotIndex, trackIndex) {
     this.trackSlotsService.pToggleVote(trackSlotId).subscribe((data) => {
@@ -95,8 +89,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   setTrackVisibility() {
-    // this.trackSlotVisibility = {}; // Reset this
-    // this.sortedTrackSlots = {}; // Reset this
     if (this.eventLocationTracks) {
       this.visibility = this.eventLocationTracks.length <= 2;
       for (const event_location_track of this.eventLocationTracks) {
