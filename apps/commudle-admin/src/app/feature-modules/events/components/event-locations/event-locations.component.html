@@ -170,8 +170,8 @@
         <small>
           <i>Fill these if your event has a common overall video stream for viewing</i>
         </small>
-      </p> -->
-      <!-- <div>
+      </p>
+      <div>
         <nb-select
           (selectedChange)="updateZoomValidators()"
           formControlName="source"
@@ -187,9 +187,9 @@
           <nb-option [value]="EEmbeddedVideoStreamSources.OTHER"> Other (Embedded Iframe) </nb-option>
           <nb-option [value]="EEmbeddedVideoStreamSources.ZOOM" disabled> Zoom </nb-option>
         </nb-select>
-      </div> -->
+      </div>
 
-      <!-- <div>
+      <div>
         <label>
           <span
             *ngIf="
@@ -236,9 +236,9 @@
           </span>
           <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea>
         </label>
-      </div> -->
+      </div>
 
-      <!-- <div
+      <div
         *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM"
       >
         <label>
@@ -255,8 +255,8 @@
           </span>
           <input formControlName="zoom_host_email" fullWidth nbInput placeholder="Type email id here" />
         </label>
-      </div> -->
-      <!-- <div
+      </div>
+      <div
         *ngIf="eventLocationForm.get('embedded_video_stream').get('source').value === EEmbeddedVideoStreamSources.ZOOM"
       >
         <label>

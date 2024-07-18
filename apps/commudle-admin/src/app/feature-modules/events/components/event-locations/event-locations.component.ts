@@ -64,7 +64,7 @@ export class EventLocationsComponent implements OnInit {
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
-  selectedLocation;
+  selectedLocation: IEventLocation;
   faLocationDot = faLocationDot;
   faVideo = faVideo;
   invalidLocationName = false;

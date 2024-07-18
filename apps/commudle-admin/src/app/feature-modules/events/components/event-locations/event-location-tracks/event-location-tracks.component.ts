@@ -47,7 +47,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() sessionDate: Date;
   @Input() event: IEvent;
   @Input() community: ICommunity;
-  @Input() eventLocation;
+  @Input() eventLocation: IEventLocation;
   @Input() eventSpeakers;
   @Output() removeSession = new EventEmitter();
 
@@ -68,7 +68,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   EEventType = EEventType;
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   tags: string[] = [];
-  // embeddedFormData;
   isLoading = true;
 
   moment = moment;
@@ -519,9 +518,8 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       },
     });
   }
-  // embeddedVideoStream
+
   updateEmbededContent(embeddedFormData, eventLocationTrack, elti) {
-    // this.embeddedFormData = embeddedFormData;
     this.eventLocationTracks[elti].embedded_video_stream = embeddedFormData;
     this.dialogRef.close();
     this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
