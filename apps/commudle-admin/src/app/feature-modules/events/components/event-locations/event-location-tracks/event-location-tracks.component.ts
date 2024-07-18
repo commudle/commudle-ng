@@ -151,6 +151,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         eventLocTrack: eventLocTrack,
         minSlotDate: this.minSlotDate,
         event: this.event,
+        community: this.community,
       },
     });
     dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {

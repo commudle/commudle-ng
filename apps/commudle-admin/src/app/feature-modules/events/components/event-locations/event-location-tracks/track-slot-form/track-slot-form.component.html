@@ -21,19 +21,23 @@
               fullWidth
               class="select-track"
             >
-              <!-- <nb-option *ngIf="eventLocations.length === 0 || eventLocations[0].event_location_tracks.length === 0">
+              <nb-option *ngIf="eventLocationTracks.length === 0">
                 <a
                   [routerLink]="['./admin/communities', community.slug, 'event-dashboard', event.slug, 'agenda']"
                   (click)="close()"
                   class="com-text-blac com-no-underline"
                   >+ Add Location /Tracks</a
                 >
-              </nb-option> -->
+              </nb-option>
               <!-- <nb-option-group *ngFor="let location of eventLocations" title="{{ location.location.name }}"> -->
               <nb-option *ngFor="let ltrack of eventLocationTracks" [value]="ltrack.id">
                 {{ ltrack.name }}
               </nb-option>
               <!-- </nb-option-group> -->
+              <!-- <nb-option *ngFor="let ltrack of location.event_location_tracks" [value]="ltrack.id">
+                  {{ ltrack.name }}
+                </nb-option> -->
+
               <span
                 *ngIf="
                   trackSlotForm['controls'].track_slot['controls'].event_location_track_id.touched &&
