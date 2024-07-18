@@ -89,6 +89,7 @@ import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/pa
 import { BackButtonComponent } from './back-button/back-button.component';
 import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 import { UserDetailsCheckboxFormComponent } from './user-details-checkbox-form/user-details-checkbox-form.component';
+import { UserDetailsFormComponent } from './user-details-form/user-details-form.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { UserDetailsCheckboxFormComponent } from './user-details-checkbox-form/u
     PaymentDetailComponent,
     PaymentLogEdfegComponent,
     UserDetailsCheckboxFormComponent,
+    UserDetailsFormComponent,
   ],
   imports: [
     CommonModule,
@@ -230,6 +232,7 @@ import { UserDetailsCheckboxFormComponent } from './user-details-checkbox-form/u
     PaymentLogEdfegComponent,
     PaymentDetailComponent,
     UserDetailsCheckboxFormComponent,
+    UserDetailsFormComponent,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })

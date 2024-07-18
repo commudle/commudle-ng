@@ -36,6 +36,14 @@
               </div>
             </nb-card-body>
           </nb-card>
+          <nb-card>
+            <nb-card-body>
+              <commudle-user-details-form
+                [userFormDetails]="dataFormEntity.user_details"
+                (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
+              ></commudle-user-details-form>
+            </nb-card-body>
+          </nb-card>
 
           <div class="data-form-fill-body">
             <app-data-form-fill

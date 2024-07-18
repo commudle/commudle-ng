@@ -183,4 +183,6 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
     }
   }
+
+  UpdateOrSubmitResponse(value) {}
 }

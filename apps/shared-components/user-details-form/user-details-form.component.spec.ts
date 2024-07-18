@@ -3,20 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PublicHackathonUserDetailsFormComponent } from './public-hackathon-user-details-form.component';
+import { UserDetailsFormComponent } from './user-details-form.component';
 
-describe('PublicHackathonUserDetailsFormComponent', () => {
-  let component: PublicHackathonUserDetailsFormComponent;
-  let fixture: ComponentFixture<PublicHackathonUserDetailsFormComponent>;
+describe('UserDetailsFormComponent', () => {
+  let component: UserDetailsFormComponent;
+  let fixture: ComponentFixture<UserDetailsFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PublicHackathonUserDetailsFormComponent],
+      declarations: [UserDetailsFormComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PublicHackathonUserDetailsFormComponent);
+    fixture = TestBed.createComponent(UserDetailsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
