@@ -53,7 +53,7 @@
         </nb-card>
       </div>
     </ng-container>
-    <h6 *ngIf="eventLocations.length > 1">This Event Is At Multiple Locations!</h6>
+    <h6 *ngIf="eventDatesLocation?.length > 1">This Event Is At Multiple Locations!</h6>
 
     <div *ngIf="eventDatesLocation">
       <nb-card *ngIf="eventDatesLocation.length > 0" class="event-locations-list">

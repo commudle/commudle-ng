@@ -39,42 +39,6 @@ export class AgendaComponent implements OnInit {
     this.getDatesEventLocations();
   }
 
-  // setSchema() {
-  //   if (this.event.start_time && this.eventLocations.length > 0 && this.eventLocations[0].location) {
-  //     this.seoService.setSchema({
-  //       '@context': 'https://schema.org',
-  //       '@type': 'Event',
-  //       name: this.event.name,
-  //       description: this.event.description.replace(/<[^>]*>/g, '').substring(0, 200),
-  //       image: this.event.header_image_path ? this.event.header_image_path : this.community.logo_path,
-  //       startDate: this.event.start_time,
-  //       endDate: this.event.end_time,
-  //       eventStatus: 'https://schema.org/EventScheduled',
-  //       eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  //       location: {
-  //         '@type': 'Place',
-  //         name: this.eventLocations[0].location.address,
-  //         address: {
-  //           '@type': 'PostalAddress',
-  //           streetAddress: this.eventLocations[0].location.address,
-  //           addressCountry: 'IN',
-  //         },
-  //       },
-  //       organizer: {
-  //         '@type': 'Organization',
-  //         name: this.community.name,
-  //         url: environment.app_url + '/communities/' + this.community.slug,
-  //       },
-  //       offers: {
-  //         '@type': 'Offer',
-  //         name: this.event.name,
-  //         url: environment.app_url + '/communities/' + this.community.slug + '/events/' + this.event.slug,
-  //       },
-  //     });
-  //   }
-  // }
-
-  //Modified
   setSchema() {
     if (
       this.event.start_time &&
@@ -121,27 +85,14 @@ export class AgendaComponent implements OnInit {
   }
 
   getUpcomingEvents(data) {
-    // const upcomingEvents: Array<ITrackSlot> = [];
-    console.log(data);
     let allEvents: Array<ITrackSlot> = [];
     this.upcomingEvents = [];
 
-    // this.eventLocations.forEach((el) =>
-    //   el.event_location_tracks.forEach((elt) => elt.track_slots.forEach((slot) => allEvents.push(slot))),
-    // );
-
     data.forEach((elt) => {
-      // console.log(elt);
       elt.track_slots.forEach((slot) => {
         allEvents.push(slot);
       });
     });
-
-    // this.eventDatesLocation.forEach((el) => {
-    //   el.event_locations.forEach((elt) => {
-    //     console.log(elt);
-    //   });
-    // });
 
     allEvents = _.sortBy(allEvents, (slot) => moment(slot.start_time));
 
@@ -150,13 +101,11 @@ export class AgendaComponent implements OnInit {
         this.upcomingEvents.push(slot);
       }
     });
-    // return this.upcomingEvents;
   }
 
   getDatesEventLocations() {
     this.eventLocationsService.getEventDates(this.event.slug).subscribe((data: any) => {
       this.eventDatesLocation = data;
-      console.log(data);
       this.selectLocation(data[0].event_locations[0]);
       this.setSchema();
       this.isLoading = false;
