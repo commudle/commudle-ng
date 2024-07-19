@@ -529,4 +529,8 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.dialogRef.close();
     this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
   }
+
+  splitTags(tag: string): string[] {
+    return tag ? tag.split(/[\s\n]+/) : [];
+  }
 }
