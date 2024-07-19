@@ -5,7 +5,13 @@
 
   .event-location {
     nb-tabset {
-      @apply com-overflow-x-auto;
+      @apply com-overflow-hidden;
+
+      &::ng-deep {
+        ul {
+          @apply com-overflow-x-scroll com-overflow-y-hidden;
+        }
+      }
       nb-tab {
         @apply com-m-0 com-p-3;
 
@@ -16,16 +22,27 @@
         .address {
           @apply com-mb-2;
 
+          span {
+            @apply com-text-base com-font-extrabold com-text-Yankees-Blue;
+          }
+
+          a {
+            @apply com-no-underline com-text-base com-font-medium com-text-primary-500;
+          }
+
           .edit-location-icon {
-            @apply com-mx-2 com-cursor-pointer;
+            @apply com-mx-2 com-cursor-pointer com-text-base;
           }
           .delete-location-icon {
-            @apply com-cursor-pointer;
+            @apply com-cursor-pointer com-text-base;
           }
         }
 
         .link-to-map {
-          @apply com-mb-4;
+          @apply com-mb-6;
+          a {
+            @apply com-no-underline com-text-base com-font-medium com-text-primary-500;
+          }
         }
       }
     }
@@ -57,6 +74,7 @@
 }
 
 .help-text-button {
+  @apply com-cursor-pointer;
   p {
     margin: 0 0 0.5rem;
   }
@@ -70,4 +88,16 @@
 
 .event-location-form {
   @apply md:com-w-[40vw] com-w-full;
+}
+
+.locations-tracks {
+  @apply com-flex com-flex-row;
+}
+
+.locations {
+  @apply com-flex com-flex-row com-gap-4 com-mb-[18px];
+
+  fa-icon {
+    @apply com-mr-1 com-text-sm;
+  }
 }

@@ -34,7 +34,7 @@
       ::ng-deep {
         div {
           .item-body {
-            @apply com-px-0 md:com-px-1;
+            @apply com-px-0 md:com-px-2;
           }
         }
       }
@@ -192,4 +192,15 @@
 
 nb-accordion-item {
   @apply com-bg-white;
+}
+
+.embedded-dialog {
+  @apply com-w-[30dvw] com-max-h-[90dvh];
+
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center com-py-2;
+    h2 {
+      @apply com-text-lg com-font-medium com-text-black;
+    }
+  }
 }

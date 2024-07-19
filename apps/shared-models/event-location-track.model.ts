@@ -9,4 +9,5 @@ export interface IEventLocationTrack {
   description: string;
   track_slots: ITrackSlot[];
   embedded_video_stream: IEmbeddedVideoStream;
+  event_type: string;
 }
