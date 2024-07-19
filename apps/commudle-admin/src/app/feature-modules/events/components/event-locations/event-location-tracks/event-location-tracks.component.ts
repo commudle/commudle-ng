@@ -194,6 +194,10 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       this.sortedTrackSlots[this.eventLocationTracks[eltIndex].id] = this.sortedTrackSlots[
         this.eventLocationTracks[eltIndex].id
       ].filter((slot) => slot.id !== trackSlotId);
+      const newTrackIndex = this.eventLocationTracks.findIndex((track) => track.id === data.event_location_track_id);
+      if (newTrackIndex !== -1) {
+        this.eventLocationTracks[newTrackIndex].track_slots.push(data);
+      }
       this.sortedTrackSlots[data.event_location_track_id].push(data);
       this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
         this.sortedTrackSlots[data.event_location_track_id],
@@ -212,7 +216,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     }
     this.toastLogService.successDialog('Slot Updated!');
     this.trackSlotForm.reset();
-    this.changeDetectorRef.markForCheck();
+    this.changeDetectorRef.detectChanges();
   }
 
   confirmDeleteSlot(trackSlot) {
