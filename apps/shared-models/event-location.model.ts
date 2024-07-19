@@ -11,9 +11,13 @@ export interface IEventLocation {
   event_type: string;
 }
 
+export interface IEventDatesLocation {
+  date: Date;
+  event_locations: IEventLocation[];
+}
 
 export enum EEventType {
   OFFLINE_ONLY = 'offline_only',
   OFFLINE_AND_ONLINE = 'offline_and_online',
-  ONLINE_ONLY = 'online_only'
+  ONLINE_ONLY = 'online_only',
 }
