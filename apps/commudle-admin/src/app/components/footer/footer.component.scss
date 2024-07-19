@@ -13,6 +13,9 @@ footer {
     a {
       @apply com-text-gray-400 hover:com-text-gray-500;
     }
+    fa-icon {
+      @apply com-text-lg;
+    }
   }
 
   .footer-links {
