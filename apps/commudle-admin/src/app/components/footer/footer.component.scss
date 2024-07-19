@@ -10,6 +10,7 @@ a {
 
 footer {
   .footer-social-links {
+    @apply com-flex com-items-center;
     a {
       @apply com-text-gray-400 hover:com-text-gray-500;
     }
