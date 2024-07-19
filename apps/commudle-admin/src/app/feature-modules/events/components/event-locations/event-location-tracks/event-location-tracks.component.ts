@@ -49,7 +49,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
   @Input() eventSpeakers;
-  @Output() removeSession = new EventEmitter();
 
   eventLocationTracks: IEventLocationTrack[] = [];
   windowRef;
@@ -229,8 +228,17 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   deleteSlot(deleteConf, trackSlot) {
     if (deleteConf) {
       this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
-        this.removeSession.emit(trackSlot);
-        this.toastLogService.successDialog('Deleted');
+        const trackIndex = this.eventLocationTracks.findIndex(
+          (track) => track.id === trackSlot.event_location_track_id,
+        );
+        if (trackIndex !== -1) {
+          const slotIndex = this.eventLocationTracks[trackIndex].track_slots.findIndex(
+            (slot) => slot.id === trackSlot.id,
+          );
+          if (slotIndex !== -1) {
+            this.eventLocationTracks[trackIndex].track_slots.splice(slotIndex, 1);
+          }
+        }
         this.sortedTrackSlots[trackSlot.event_location_track_id] = this.sortedTrackSlots[
           trackSlot.event_location_track_id
         ].filter((slot) => slot.id !== trackSlot.id);

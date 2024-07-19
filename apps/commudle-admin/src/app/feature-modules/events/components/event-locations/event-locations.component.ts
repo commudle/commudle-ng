@@ -300,17 +300,6 @@ export class EventLocationsComponent implements OnInit {
     this.activateTabAdd();
   }
 
-  removeSlot(trackSlot, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
-      (k) => k.id == trackSlot.event_location_track_id,
-    );
-
-    const slotPosition = this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.findIndex(
-      (k) => k.id == trackSlot.id,
-    );
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.splice(slotPosition, 1);
-  }
-
   sanitizedEmbeddedHTML(val) {
     return this.sanitizer.bypassSecurityTrustHtml(val);
   }
