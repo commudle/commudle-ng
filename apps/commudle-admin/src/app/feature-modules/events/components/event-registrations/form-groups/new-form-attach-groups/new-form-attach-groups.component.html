@@ -63,7 +63,7 @@
                 quicker signups.
               </div>
               <commudle-user-details-checkbox-form
-                (userDetailsFormValues)="createEdfeg($event)"
+                (userDetailsFormValues)="updateAndCreateEdfeg($event)"
               ></commudle-user-details-checkbox-form>
             </div>
             <div class="data-form-select">
@@ -117,6 +117,7 @@
                 [stickSubmitButtonBottom]="true"
                 [showNameDescriptionFiled]="false"
                 [minQuestionCount]="1"
+                [showSubmitButton]="false"
               >
               </app-new-data-form>
             </div>
@@ -126,6 +127,7 @@
                 [showNameDescriptionFiled]="false"
                 [centerLayout]="false"
                 (updateFormDataEvent)="updateData($event)"
+                [showSubmitButton]="false"
               ></commudle-edit-data-form>
             </div>
           </div>

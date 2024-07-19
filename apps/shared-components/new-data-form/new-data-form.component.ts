@@ -29,6 +29,7 @@ export class NewDataFormComponent implements OnInit {
   @Input() stickSubmitButtonBottom = false;
   @Input() showNameDescriptionFiled = true;
   @Input() formName: string = '';
+  @Input() showSubmitButton = true;
 
   @Output() newDataForm = new EventEmitter();
 
