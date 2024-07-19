@@ -405,6 +405,8 @@ export const API_ROUTES = {
       TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote',
       LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions',
       POLLS: 'api/v2/track_slots/public/polls',
+      TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/public/track_slots_by_date',
+      TRACK_SLOTS_BY_DATE_AND_LOCATION: 'api/v2/track_slots/public/track_slot_by_date_and_location',
     },
   },
 

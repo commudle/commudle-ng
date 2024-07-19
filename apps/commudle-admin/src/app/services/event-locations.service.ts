@@ -45,4 +45,22 @@ export class EventLocationsService {
       params,
     });
   }
+
+  // IEventDatesLocation>
+  getEventDates(eventId): Observable<any> {
+    const params = new HttpParams().set('event_id', eventId);
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.TRACK_SLOTS_BY_DATE), {
+      params,
+    });
+  }
+
+  getLocationTracks(LocationId, date): Observable<any> {
+    const params = new HttpParams().set('location_id', LocationId).set('date', date);
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.TRACK_SLOTS_BY_DATE_AND_LOCATION),
+      {
+        params,
+      },
+    );
+  }
 }
