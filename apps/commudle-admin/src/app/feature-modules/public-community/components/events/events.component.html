@@ -47,8 +47,12 @@
                           </p>
                           <p class="event-timing">
                             <span *ngIf="event.end_time !== null"
-                              >{{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} onwards</span
-                            >
+                              >{{ moment(event.start_time).format('dddd, MMM Do, YYYY - h:mm a') }} to
+                            </span>
+
+                            <span *ngIf="event.end_time !== null">{{
+                              moment(event.end_time).format('dddd, MMM Do, YYYY - h:mm a')
+                            }}</span>
                             <span *ngIf="event.end_time === null">Date and time to be announced soon</span>
                           </p>
                         </div>
