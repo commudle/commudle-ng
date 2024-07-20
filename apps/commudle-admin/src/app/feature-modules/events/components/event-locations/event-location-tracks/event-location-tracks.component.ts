@@ -49,7 +49,6 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
   @Input() eventSpeakers;
-  @Output() removeSession = new EventEmitter();
 
   eventLocationTracks: IEventLocationTrack[] = [];
   windowRef;
@@ -194,6 +193,10 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
       this.sortedTrackSlots[this.eventLocationTracks[eltIndex].id] = this.sortedTrackSlots[
         this.eventLocationTracks[eltIndex].id
       ].filter((slot) => slot.id !== trackSlotId);
+      const newTrackIndex = this.eventLocationTracks.findIndex((track) => track.id === data.event_location_track_id);
+      if (newTrackIndex !== -1) {
+        this.eventLocationTracks[newTrackIndex].track_slots.push(data);
+      }
       this.sortedTrackSlots[data.event_location_track_id].push(data);
       this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
         this.sortedTrackSlots[data.event_location_track_id],
@@ -212,7 +215,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     }
     this.toastLogService.successDialog('Slot Updated!');
     this.trackSlotForm.reset();
-    this.changeDetectorRef.markForCheck();
+    this.changeDetectorRef.detectChanges();
   }
 
   confirmDeleteSlot(trackSlot) {
@@ -225,8 +228,17 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   deleteSlot(deleteConf, trackSlot) {
     if (deleteConf) {
       this.trackSlotsService.deleteTrackSlot(trackSlot.id).subscribe((data) => {
-        this.removeSession.emit(trackSlot);
-        this.toastLogService.successDialog('Deleted');
+        const trackIndex = this.eventLocationTracks.findIndex(
+          (track) => track.id === trackSlot.event_location_track_id,
+        );
+        if (trackIndex !== -1) {
+          const slotIndex = this.eventLocationTracks[trackIndex].track_slots.findIndex(
+            (slot) => slot.id === trackSlot.id,
+          );
+          if (slotIndex !== -1) {
+            this.eventLocationTracks[trackIndex].track_slots.splice(slotIndex, 1);
+          }
+        }
         this.sortedTrackSlots[trackSlot.event_location_track_id] = this.sortedTrackSlots[
           trackSlot.event_location_track_id
         ].filter((slot) => slot.id !== trackSlot.id);
@@ -524,5 +536,9 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     this.eventLocationTracks[elti].embedded_video_stream = embeddedFormData;
     this.dialogRef.close();
     this.editTrack(eventLocationTrack.id, embeddedFormData, eventLocationTrack);
+  }
+
+  splitTags(tag: string): string[] {
+    return tag ? tag.split(/[\s\n]+/) : [];
   }
 }
