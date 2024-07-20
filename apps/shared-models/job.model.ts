@@ -17,6 +17,8 @@ export interface IJob {
   status: EJobStatus;
   description: string;
   updated_at: string;
+  created_at: string;
+  expired_at: string;
   user: IUser;
   tags: ITag[];
   job_applications_count: number;

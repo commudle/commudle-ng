@@ -85,7 +85,6 @@ export class JobComponent implements OnInit, OnDestroy {
   getJob(id: number): void {
     this.subscriptions.push(
       this.jobService.getJob(id).subscribe((value) => {
-        console.log('🚀 ~ JobComponent ~ this.jobService.getJob ~ value:', value);
         this.job = value;
         this.setSchemaData();
         this.setMeta();
@@ -160,7 +159,8 @@ export class JobComponent implements OnInit, OnDestroy {
   }
 
   setSchemaData() {
-    const formattedDate = this.datePipe.transform(this.job.updated_at, 'yyyy-MM-dd');
+    const datePosted = this.datePipe.transform(this.job.created_at, 'yyyy-MM-dd');
+    const validThrough = this.datePipe.transform(this.job.expired_at, 'yyyy-MM-dd');
     const employmentType = this.enumFormatPipe.transform(this.job.job_type);
 
     // Common schema data
@@ -174,17 +174,32 @@ export class JobComponent implements OnInit, OnDestroy {
         name: this.job.company,
       },
       employmentType: employmentType,
-      datePosted: formattedDate,
+      datePosted: datePosted,
+      validThrough: validThrough,
     };
 
-    // Add unique properties based on location type
+    // Schema data for base salary under job
+    if (this.job.min_salary !== 0) {
+      schemaData.baseSalary = {
+        '@type': 'MonetaryAmount',
+        currency: this.job.salary_currency,
+        value: {
+          '@type': 'QuantitativeValue',
+          minValue: this.job.min_salary,
+          maxValue: this.job.max_salary,
+          unitText: this.job.salary_type,
+        },
+      };
+    }
+    // schema data for remote job
     if (this.job.location_type === EJobLocationType.REMOTE) {
       schemaData.applicantLocationRequirements = {
         '@type': 'Country',
         name: 'IN',
       };
       schemaData.jobLocationType = 'TELECOMMUTE';
-    } else {
+    } // schema data for non remote location job
+    else {
       schemaData.jobLocation = {
         '@type': 'Place',
         address: {
