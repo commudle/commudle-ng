@@ -1,5 +1,7 @@
 <nb-card>
-  <nb-card-header>Rounds</nb-card-header>
+  <nb-card-header
+    >Rounds<commudle-help-section [helpDictionaryName]="'hackathon-rounds'"></commudle-help-section
+  ></nb-card-header>
   <nb-card-body>
     <div (click)="openRoundDialogBox(addRoundsDialogBox)" class="add-round-button">
       <fa-icon [icon]="icons.faPlus"></fa-icon>

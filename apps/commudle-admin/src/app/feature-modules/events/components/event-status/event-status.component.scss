@@ -2,3 +2,7 @@
   border: 1px solid lightgray;
   border-radius: 4px;
 }
+
+.category-heading {
+  @apply com-text-sm com-font-semibold com-my-2  com-flex com-items-center com-pb-1;
+}

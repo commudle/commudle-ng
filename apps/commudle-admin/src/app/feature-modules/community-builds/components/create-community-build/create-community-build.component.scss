@@ -1,6 +1,7 @@
 .community-build {
   nb-card.page-header {
     h1 {
+      @apply com-flex com-items-center;
       font-weight: 300;
 
       nb-icon {

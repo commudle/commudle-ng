@@ -8,7 +8,7 @@
         <span class="dot">&#x2022;</span>
         <span>
           Registrations starts on -
-          {{ hackathon.start_date | date : 'dd MMM yyyy' }}
+          {{ hackathon.application_start_date | date : 'dd MMM yyyy' }}
         </span>
       </span>
 
@@ -60,7 +60,8 @@
     <div class="interested-members">
       <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>
     </div>
-    <div class="action" *ngIf="hrgId && !userTeamDetails && hackathonStatus !== 'Closed'">
+    <br />
+    <div class="action" *ngIf="hrgId && userTeamDetails?.length === 0 && hackathonStatus !== 'Closed'">
       <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
     </div>
   </div>

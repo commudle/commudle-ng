@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { EEventType } from '@commudle/shared-models';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IEvent } from 'apps/shared-models/event.model';
@@ -75,6 +76,7 @@ export class CreateEventComponent implements OnInit {
     license_key: 'gpl',
   };
 
+  EEventType = EEventType;
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -92,6 +94,7 @@ export class CreateEventComponent implements OnInit {
         start_time_pick: [''],
         end_time_pick: [''],
         timezone: [momentTimezone.tz.guess(), Validators.required],
+        event_type: ['', Validators.required],
       }),
     });
   }

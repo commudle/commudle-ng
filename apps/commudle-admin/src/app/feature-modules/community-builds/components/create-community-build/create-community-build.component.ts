@@ -285,8 +285,14 @@ export class CreateCommunityBuildComponent implements OnInit, OnDestroy {
   addImages(event) {
     if (event.target.files && event.target.files.length > 0) {
       for (const file of event.target.files) {
-        if (file.size > 2425190) {
-          this.toastLogService.warningDialog('Image should be less than 2 Mb', 3000);
+        const allowedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+        const maxSize = 3 * 1024 * 1024; // 3 MB in bytes
+        if (file.size > maxSize) {
+          this.toastLogService.warningDialog('Image should be less than 3 Mb', 3000);
+          return;
+        }
+        if (!allowedTypes.includes(file.type)) {
+          this.toastLogService.warningDialog('Please upload a valid image file (PNG, JPG, JPEG)');
           return;
         }
         const imgFile: IAttachedFile = {

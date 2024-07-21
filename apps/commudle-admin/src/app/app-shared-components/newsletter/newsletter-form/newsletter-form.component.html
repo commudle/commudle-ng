@@ -2,7 +2,9 @@
   <div class="back-button" (click)="backPage()">
     <fa-icon [icon]="icons.faChevronLeft" class="com-mr-1"></fa-icon> Back to List of Newsletters
   </div>
-  <h6>Create Newsletter</h6>
+  <h6>
+    Create Newsletter <commudle-help-section [helpDictionaryName]="'community-newsletter'"></commudle-help-section>
+  </h6>
   <form [formGroup]="newsletterForm">
     <div class="title">
       <label for="title">Title*</label>

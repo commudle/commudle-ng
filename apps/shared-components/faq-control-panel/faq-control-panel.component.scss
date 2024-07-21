@@ -16,3 +16,7 @@
 .actions {
   @apply com-flex com-justify-between;
 }
+
+nb-card-header {
+  @apply com-flex com-items-center;
+}

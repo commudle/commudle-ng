@@ -95,6 +95,8 @@ export const API_ROUTES = {
     DISCUSSION_MESSAGES: 'api/v2/community_channels/discussion_messages',
     DISCUSSION_MESSAGES_SCROLL: 'api/v2/community_channels/discussion_messages_paginated',
     SEND_MESSAGE_BY_EMAIL_TO_ALL_MEMBERS: 'api/v2/community_channels/send_message_by_email_to_all_members',
+    GET_DEFAULT_CHANNEL: 'api/v2/community_channels/get_default_channel',
+    GET_CHANNEL_ADMINS: 'api/v2/community_channels/get_channel_admins',
     MEMBERS: {
       INDEX: 'api/v2/community_channels/members',
       INVITE: 'api/v2/community_channels/members/invite',
@@ -126,6 +128,7 @@ export const API_ROUTES = {
       EVENTS: 'api/v2/community_groups/public/events',
       COMMUNITY_CHANNELS: 'api/v2/community_groups/public/community_channels',
       ACTIVE_COMMUNITIES_AND_CHANNELS: 'api/v2/community_groups/public/active_communities_and_channels',
+      ORGANIZERS_ALL_COMMUNITIES: 'api/v2/community_groups/public/organizers_all_communities',
     },
   },
 
@@ -403,11 +406,15 @@ export const API_ROUTES = {
     CREATE: 'api/v2/track_slots',
     UPDATE: 'api/v2/track_slots',
     DELETE: 'api/v2/track_slots',
+    TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/track_slots_by_date',
+    TRACK_SLOTS_BY_DATE_AND_LOCATION: 'api/v2/track_slots/track_slot_by_date_and_location',
     PUBLIC: {
       GET: 'api/v2/track_slots/public_show',
       TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote',
       LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions',
       POLLS: 'api/v2/track_slots/public/polls',
+      TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/public/track_slots_by_date',
+      TRACK_SLOTS_BY_DATE_AND_LOCATION: 'api/v2/track_slots/public/track_slot_by_date_and_location',
     },
   },
 

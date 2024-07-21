@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserRolesUsersService } from 'apps/commudle-admin/src/app/services/user_roles_users.service';
+import { IPageInfo, IUser } from '@commudle/shared-models';
+import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
-import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { Subscription } from 'rxjs';
 
@@ -13,15 +13,17 @@ import { Subscription } from 'rxjs';
 })
 export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
   communityGroup: ICommunityGroup;
-  team: IUserRolesUser[] = [];
+  team: IUser[] = [];
   subscriptions: Subscription[] = [];
-
+  IPageInfo: IPageInfo;
+  total = 0;
+  limit = 8;
   isLoading = true;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private userRolesUserService: UserRolesUsersService,
     private seoService: SeoService,
+    private communityGroupsService: CommunityGroupsService,
   ) {}
 
   ngOnInit() {
@@ -47,11 +49,16 @@ export class CommunityGroupTeamComponent implements OnInit, OnDestroy {
   }
 
   getTeam() {
+    this.isLoading = true;
     this.subscriptions.push(
-      this.userRolesUserService.pGetCommunityGroupLeaders(this.communityGroup.slug).subscribe((data) => {
-        this.team = data.user_roles_users;
-        this.isLoading = false;
-      }),
+      this.communityGroupsService
+        .pGetOrganizersAllCommunities(this.communityGroup.slug, this.limit, this.IPageInfo?.end_cursor)
+        .subscribe((data) => {
+          this.team = this.team.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+          this.IPageInfo = data.page_info;
+          this.total = data.total;
+          this.isLoading = false;
+        }),
     );
   }
 }

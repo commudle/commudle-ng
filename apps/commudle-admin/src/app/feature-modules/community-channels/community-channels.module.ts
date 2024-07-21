@@ -53,6 +53,7 @@ import { SharedComponentsModule } from '@commudle/shared-components';
 import { CommunityForumMessageComponent } from './components/community-forum-message/community-forum-message.component';
 import { ArchiveComponent } from './components/channel-settings/archive/archive.component';
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +100,7 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
 
     //standalone modules
     SidebarComponent,
+    HelpSectionComponent,
 
     // nebular
     NbInputModule,

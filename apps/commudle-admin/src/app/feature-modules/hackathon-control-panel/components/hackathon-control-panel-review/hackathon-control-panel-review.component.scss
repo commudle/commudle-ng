@@ -104,12 +104,15 @@ nb-card-body {
   @apply com-my-3;
 
   .note-list {
-    @apply com-flex com-gap-2 com-items-center;
+    @apply com-flex com-flex-col com-gap-0.5;
+    .delete-note {
+      @apply com-text-red-500;
+    }
   }
   .note {
     @apply com-flex com-gap-2 com-items-center com-my-3;
     .action-button {
-      @apply com-flex com-flex-col com-justify-between;
+      @apply com-flex com-flex-col com-justify-between com-gap-3;
     }
   }
   button {
@@ -134,4 +137,8 @@ nb-card-body {
   nb-card-header {
     @apply com-flex com-justify-between com-items-center;
   }
+}
+
+.header {
+  @apply com-flex com-items-center com-mb-2;
 }

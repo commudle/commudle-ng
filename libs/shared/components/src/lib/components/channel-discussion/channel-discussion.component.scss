@@ -6,7 +6,7 @@
   @apply com-grid com-grid-rows-1;
 
   .messages-list {
-    @apply com-overflow-auto com-flex com-flex-col-reverse com-gap-3;
+    @apply com-overflow-auto com-flex com-flex-col-reverse com-gap-3 com-px-2;
   }
 
   .no-messages {
@@ -22,6 +22,14 @@ commudle-community-forum-message:not(:last-child) {
   @apply com-flex com-flex-col-reverse;
 }
 
-.pinned-message {
-  @apply com-shadow-sm com-h-20 com-bg-white com-overflow-y-auto;
+.pinned-messages {
+  @apply com-z-10  com-border-0 com-border-l-2 com-border-solid com-border-primary-500;
+  .pinned-message {
+    @apply com-bg-Anti-Flash-White com-shadow-sm com-h-20 com-overflow-y-auto;
+  }
+}
+
+commudle-editor,
+.messages-list {
+  @apply com-mx-2;
 }

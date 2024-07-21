@@ -18,3 +18,7 @@
 .judge-cards {
   @apply com-grid com-grid-cols-3 com-gap-x-5 com-bg-gray-200;
 }
+
+nb-card-header {
+  @apply com-flex com-items-center;
+}

@@ -120,6 +120,8 @@ import { UserprofileDetailsComponent } from './feature-modules/homepage/componen
 
 import * as Sentry from '@sentry/angular-ivy';
 import { Router } from '@angular/router';
+import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
@@ -206,7 +208,8 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     InfiniteScrollModule,
     UserProfileComponent,
     UserprofileDetailsComponent,
-
+    SidebarComponent,
+    HelpSectionComponent,
     // external service modules
     LibErrorHandlerModule,
     AuthModule,

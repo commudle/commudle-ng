@@ -58,6 +58,30 @@
         </p>
       </ng-container>
       <div [innerHTML]="cBuild.description"></div>
+      <div *ngIf="cBuild.hackathon_team" class="hackathon-badge">
+        <p>This build was uploaded as a hackathon project</p>
+        <div class="badge-name">
+          <app-badge
+            [text]="'Hackathon'"
+            [fontColor]="'com-text-yellow-700'"
+            [fontSize]="'small'"
+            [borderRadius]="'round'"
+            [color]="'com-bg-gray-100'"
+          ></app-badge>
+          <p>{{ cBuild.hackathon_team.hackathon.name }}</p>
+          <a
+            *ngIf="cBuild.hackathon_team.community"
+            [routerLink]="[
+              '/communities',
+              cBuild.hackathon_team.community.slug,
+              'hackathons',
+              cBuild.hackathon_team.hackathon.slug,
+              'projects'
+            ]"
+            >View All Projects<fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon
+          ></a>
+        </div>
+      </div>
     </div>
     <div class="com-mt-8">
       <app-votes-display
@@ -97,7 +121,7 @@
         <commudle-banner-image
           [headerImagePath]="this.currImage.url"
           [name]="cBuild.name"
-          [aspectRatio]="'180/127'"
+          [aspectRatio]="'2/1'"
           [topRightCurve]="false"
           [topLeftCurve]="false"
           [bottomRightCurve]="false"

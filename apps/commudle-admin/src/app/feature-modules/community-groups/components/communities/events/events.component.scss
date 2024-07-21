@@ -19,3 +19,7 @@ table {
 .view-more-button {
   @apply com-my-4;
 }
+
+.time {
+  @apply md:com-text-xs com-text-[10px] md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus com-line-clamp-1;
+}

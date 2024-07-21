@@ -60,6 +60,7 @@ export class UserTrackSlotsComponent implements OnInit {
         minSlotDate: this.minSlotDate,
         trackSlot: trackSlot,
         event: this.event,
+        eventLocationTracks: this.eventLocationTracks,
       },
     });
     this.dialogRef.componentRef.instance.editFormOutput.subscribe((data) => {
@@ -83,6 +84,7 @@ export class UserTrackSlotsComponent implements OnInit {
         community: this.community,
         event: this.event,
         selectedSpeakerSlot: this.row.id,
+        eventLocationTracks: this.eventLocationTracks,
       },
     });
     this.dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {

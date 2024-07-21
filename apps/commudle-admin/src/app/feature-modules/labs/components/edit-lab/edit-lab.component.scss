@@ -105,7 +105,7 @@
       @apply com-p-6;
 
       p {
-        @apply com-text-sm com-font-medium com-text-gray-500 com-m-0 com-mb-4;
+        @apply com-flex com-flex-col com-text-sm com-font-medium com-text-gray-500 com-m-0 com-mb-4;
       }
       .help-video {
         @apply com-flex com-flex-col com-justify-center com-items-center com-border com-border-solid com-border-gray-300 com-rounded-lg com-relative com-w-full com-p-6;

@@ -13,6 +13,7 @@ import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { ISessions } from 'apps/shared-models/sessions.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
+import { IPaginationCount } from '@commudle/shared-models';
 @Injectable({
   providedIn: 'root',
 })
@@ -123,11 +124,20 @@ export class EventsService {
     return this.http.get<IEvents>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.RANDOM_PAST), { params });
   }
 
-  pGetCommunityEvents(communityId): Observable<IEvents> {
-    const params = new HttpParams().set('community_id', communityId);
-    return this.http.get<IEvents>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INDEX_BY_COMMUNITY), {
-      params,
-    });
+  pGetCommunityEvents(when, communityId, page?: number, count?: number): Observable<IPaginationCount<IEvent>> {
+    let params = new HttpParams().set('when', when).set('community_id', communityId);
+    if (page) {
+      params = params.set('page', page);
+    }
+    if (count) {
+      params = params.set('count', count);
+    }
+    return this.http.get<IPaginationCount<IEvent>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INDEX_BY_COMMUNITY),
+      {
+        params,
+      },
+    );
   }
 
   pGetEvent(eventId): Observable<IEvent> {
@@ -215,13 +225,16 @@ export class EventsService {
     );
   }
 
-  getTechSessions(after?, limit?): Observable<IPagination<ISessions>> {
+  getTechSessions(after?, limit?, community_group_id?): Observable<IPagination<ISessions>> {
     let params = new HttpParams();
     if (after) {
       params = params.set('after', after);
     }
     if (limit) {
       params = params.set('limit', limit);
+    }
+    if (community_group_id) {
+      params = params.set('community_group_id', community_group_id);
     }
     return this.http.get<IPagination<ISessions>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.TECH_SESSIONS),

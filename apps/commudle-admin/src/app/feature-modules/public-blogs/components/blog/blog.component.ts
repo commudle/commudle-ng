@@ -8,6 +8,7 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 import { SeoService } from 'apps/shared-services/seo.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons';
+import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
   selector: 'app-blog',
@@ -37,16 +38,20 @@ export class BlogComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private appUsersService: AppUsersService,
     private seoService: SeoService,
+    private footerService: FooterService,
   ) {
     activatedRoute.params.subscribe(() => {
       this.getData();
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.footerService.changeFooterStatus(true);
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.footerService.changeFooterStatus(false);
   }
 
   imageUrl(source: any) {

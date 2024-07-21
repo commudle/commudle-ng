@@ -2,20 +2,20 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { faMagnifyingGlass, faUser, faHashtag, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faUser, faHashtag, faMessage, faBars } from '@fortawesome/free-solid-svg-icons';
 import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels, EUserRoles } from '@commudle/shared-models';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ESidebarWidth } from 'apps/shared-components/sidebar/enum/sidebar.enum';
 import { CommunityGroupsService } from 'apps/commudle-admin/src/app/services/community-groups.service';
+import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
 @Component({
   selector: 'commudle-channel-forum-dashboard',
   templateUrl: './channel-forum-dashboard.component.html',
   styleUrls: ['./channel-forum-dashboard.component.scss'],
 })
 export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
-  // @Input() selectedCommunity: ICommunity;
   @Input() showCommunityList = false;
   @Input() parent: ICommunity | ICommunityGroup;
   @Input() parentType: EDbModels;
@@ -43,6 +43,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   faUser = faUser;
   faHashtag = faHashtag;
   faMessage = faMessage;
+  faBars = faBars;
   discussionType = EDiscussionType;
 
   discussionTypeForum = false;
@@ -56,6 +57,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   emailToken: string;
   ESidebarWidth = ESidebarWidth;
   isSuperAdmin = false;
+  sidebarEventName = 'channelForum';
   constructor(
     private authWatchService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -64,6 +66,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     private router: Router,
     private communitiesService: CommunitiesService,
     private communityGroupsService: CommunityGroupsService,
+    public sidebarService: SidebarService,
   ) {}
 
   ngOnInit() {
@@ -72,6 +75,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.updateSelectedChannelOrForum();
     this.setMeta();
     this.getCurrentUser();
+    this.sidebarService.setSidebarVisibility(this.sidebarEventName, true);
 
     switch (this.parentType) {
       case EDbModels.KOMMUNITY:
@@ -84,8 +88,6 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
         break;
     }
     this.setParent();
-
-    this.sidebarExpanded = !(window.innerWidth <= 640);
 
     if (this.discussionTypeForum && this.selectedChannelOrFormId) {
       this.checkSelectedForum();
@@ -104,6 +106,14 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
         }
       }),
     );
+
+    //set sidebar expanded state
+    // eslint-disable-next-line no-prototype-builtins
+    if (this.sidebarService.setSidebar$.hasOwnProperty(this.sidebarEventName)) {
+      this.sidebarService.setSidebar$[this.sidebarEventName].subscribe((data) => {
+        this.sidebarExpanded = data;
+      });
+    }
   }
 
   ngOnDestroy() {
@@ -113,6 +123,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   getCurrentUser() {
     this.subscriptions.push(
       this.authWatchService.currentUser$.subscribe((data) => {
+        this.currentUser = data;
         this.communityChannelManagerService.setCurrentUser(data);
         if (this.currentUser.user_roles.includes(EUserRoles.SYSTEM_ADMINISTRATOR)) {
           this.isSuperAdmin = true;
@@ -168,7 +179,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   getQueryParamsData() {
     this.token = this.activatedRoute.snapshot.params.token;
     this.emailToken = this.activatedRoute.snapshot.params.email_token;
-    this.discussionTypeForum = this.activatedRoute.snapshot.url.join('/').includes('forums');
+    this.discussionTypeForum = this.router.url.includes('/forums');
     this.forumName = this.activatedRoute.snapshot.queryParamMap.get('category');
     this.selectedChannelOrFormId = this.activatedRoute.snapshot.params.community_channel_id;
   }
@@ -235,5 +246,9 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
       `Interact with members in channels for ${this.parent.name}! Share knowledge, network & grow together!`,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  toggleSidebar() {
+    this.sidebarService.toggleSidebarVisibility(this.sidebarEventName);
   }
 }

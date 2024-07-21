@@ -1,3 +1,6 @@
+<div class="category-heading">
+  Event Status<commudle-help-section [helpDictionaryName]="'event-status'"></commudle-help-section>
+</div>
 <section *ngIf="event.editable">
   <nb-button-group
     (valueChange)="updateStatus($event[0])"

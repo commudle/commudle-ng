@@ -1,0 +1,24 @@
+ul {
+  @apply com-pl-0;
+  list-style-type: none;
+}
+
+.voters-list-container {
+  @apply com-max-w-[192px] com-max-h-48 com-overflow-y-scroll;
+}
+
+.load-more-button {
+  @apply com-w-full com-flex com-mt-2 com-justify-center;
+}
+
+.users-list {
+  @apply com-h-[90dvh] md:com-h-[70dvh];
+  nb-card-header {
+    @apply com-flex com-items-center com-justify-between;
+  }
+  nb-card-body {
+    .users {
+      @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-py-3;
+    }
+  }
+}

@@ -39,3 +39,20 @@
     content: ' *';
   }
 }
+
+.help-section {
+  @apply com-flex com-items-center;
+
+  h3 {
+    @apply com-m-0;
+  }
+}
+
+.event-type {
+  > div {
+    @apply com-flex com-gap-2 com-mt-1;
+    > div {
+      @apply com-flex com-gap-2 com-items-center;
+    }
+  }
+}

@@ -5,7 +5,10 @@
   </div>
   <nb-card>
     <nb-card-body>
-      <h3>Create an Event For {{ community.name }}</h3>
+      <div class="help-section">
+        <h3>Create an Event For {{ community.name }}</h3>
+        <commudle-help-section [helpDictionaryName]="'event-create'"></commudle-help-section>
+      </div>
       <p>Let's begin by adding some details</p>
     </nb-card-body>
   </nb-card>
@@ -58,6 +61,26 @@
                 </nb-option>
               </nb-select>
             </label>
+          </div>
+
+          <div class="event-type">
+            <label>Event Type *</label>
+            <div>
+              <div *ngFor="let type of EEventType | keyvalue">
+                <input [id]="type.key" [value]="type.value" formControlName="event_type" type="radio" />
+                <label [for]="type.key">{{ type.value | titlecase }}</label>
+              </div>
+            </div>
+            <span
+              *ngIf="
+                eventForm['controls'].event['controls'].event_type.touched &&
+                eventForm['controls'].event['controls'].event_type.invalid &&
+                eventForm['controls'].event['controls'].event_type.errors.required
+              "
+            >
+              <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
+            </span>
+            <br />
           </div>
 
           <div role="individual">

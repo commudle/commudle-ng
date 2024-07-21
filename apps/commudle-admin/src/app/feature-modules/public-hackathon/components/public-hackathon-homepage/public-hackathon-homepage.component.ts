@@ -20,6 +20,7 @@ import {
   faArrowTrendUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { SeoService } from '@commudle/shared-services';
+import { AuthService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-public-hackathon-homepage',
@@ -57,16 +58,20 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     private hackathonService: HackathonService,
     private router: Router,
     private seoService: SeoService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
     this.checkFragment();
     this.getHackathonAndCommunity();
-    this.getHackathonCurrentRegistrationDetails();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.updateHeaderVariation();
       }
+    });
+
+    this.authService.currentUser$.subscribe((currentUser) => {
+      if (currentUser) this.getHackathonCurrentRegistrationDetails();
     });
   }
 

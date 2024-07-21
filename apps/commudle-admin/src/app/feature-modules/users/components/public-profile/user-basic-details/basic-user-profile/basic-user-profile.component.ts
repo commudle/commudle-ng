@@ -26,6 +26,6 @@ export class BasicUserProfileComponent implements OnInit {
   }
 
   updateUserDetails() {
-    this.userProfileManagerService.updateUserDetails(true);
+    this.userProfileManagerService.updateUserDetails(true, this.currentUser);
   }
 }

@@ -36,3 +36,4 @@ export * from './lib/razorpay-payment.model';
 export * from './lib/event-ticket-order.model';
 export * from './lib/hackathon.model';
 export * from './lib/community-group.model';
+export * from './lib/help-dictionary.model';
