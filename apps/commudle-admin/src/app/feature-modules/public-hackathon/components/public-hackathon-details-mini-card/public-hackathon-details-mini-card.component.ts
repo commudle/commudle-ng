@@ -12,8 +12,8 @@ import { IHackathonTeam, IUser } from '@commudle/shared-models';
 })
 export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
-  @Input() userTeamDetails: IHackathonTeam[];
   @Input() hrgId: number;
+  userTeamDetails: IHackathonTeam[];
   currentDate: Date;
   hackathonApplicationStartDate: Date;
   hackathonApplicationEndDate: Date;
@@ -34,6 +34,7 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
 
   ngOnInit() {
     this.fetchInterestedMembers();
+    this.getTeamDetails();
     if (this.hackathon.application_start_date && this.hackathon.application_end_date)
       this.calculateHackathonDatesStatus();
     if (this.hackathon.total_prize_amount) {
@@ -42,6 +43,14 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
         amount: this.hackathon.total_prize_amount[currency],
       }));
     }
+  }
+
+  getTeamDetails() {
+    this.hackathonService
+      .getHackathonCurrentRegistrationDetails(this.hackathon.id)
+      .subscribe((data: IHackathonTeam[]) => {
+        this.userTeamDetails = data;
+      });
   }
 
   calculateHackathonDatesStatus() {

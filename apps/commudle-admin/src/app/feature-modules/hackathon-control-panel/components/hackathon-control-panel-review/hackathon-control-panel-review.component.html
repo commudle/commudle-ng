@@ -300,7 +300,7 @@
       <div *ngIf="selectedTeamDetails.entity_updates.length > 0">
         <label>Updates</label>
         <div *ngFor="let update of selectedTeamDetails.entity_updates">
-          <div class="border-box-text">{{ update.details }}</div>
+          <div class="border-box-text" [innerHTML]="update.details"></div>
         </div>
       </div>
 
