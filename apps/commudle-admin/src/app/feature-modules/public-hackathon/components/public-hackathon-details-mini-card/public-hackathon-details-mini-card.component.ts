@@ -2,7 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IHackathon, EHackathonLocationType } from 'apps/shared-models/hackathon.model';
 import { faGlobe, faAward } from '@fortawesome/free-solid-svg-icons';
-import { countries_details } from '@commudle/shared-services';
+import { AuthService, countries_details } from '@commudle/shared-services';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonTeam, IUser } from '@commudle/shared-models';
 @Component({
@@ -14,6 +14,7 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
   @Input() hrgId: number;
   userTeamDetails: IHackathonTeam[];
+  currentUser: IUser;
   currentDate: Date;
   hackathonApplicationStartDate: Date;
   hackathonApplicationEndDate: Date;
@@ -30,11 +31,14 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   hackathonStatus: string;
   daysLeft: number;
 
-  constructor(private hackathonService: HackathonService) {}
+  constructor(private hackathonService: HackathonService, private authService: AuthService) {}
 
   ngOnInit() {
     this.fetchInterestedMembers();
-    this.getTeamDetails();
+    this.authService.currentUser$.subscribe((data) => {
+      if (data) this.getTeamDetails();
+      this.currentUser = data;
+    });
     if (this.hackathon.application_start_date && this.hackathon.application_end_date)
       this.calculateHackathonDatesStatus();
     if (this.hackathon.total_prize_amount) {

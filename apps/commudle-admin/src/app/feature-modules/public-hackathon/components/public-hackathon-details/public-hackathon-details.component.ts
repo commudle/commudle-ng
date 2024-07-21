@@ -74,12 +74,12 @@ export class PublicHackathonDetailsComponent implements OnInit {
         this.isOrganizerCheck();
       }),
     ),
-      this.authWatchService.currentUser$.subscribe((currentUser) => {
-        if (currentUser) {
-          this.getHackathonResponseGroup();
-          this.getHackathonCurrentRegistrationDetails();
-        }
-      }),
+      this.getHackathonResponseGroup();
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
+      if (currentUser) {
+        this.getHackathonCurrentRegistrationDetails();
+      }
+    }),
       this.checkFragment();
   }
 
