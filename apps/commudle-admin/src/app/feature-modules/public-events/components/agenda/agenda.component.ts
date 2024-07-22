@@ -116,4 +116,16 @@ export class AgendaComponent implements OnInit {
   selectLocation(eventLocation) {
     this.selectedLocation = eventLocation;
   }
+
+  onTabChange(event: any) {
+    const tabIndex = this.eventDatesLocation.findIndex((d) => {
+      const formattedDate = moment(d.date).format('Do MMMM');
+      return formattedDate === event.tabTitle;
+    });
+    if (tabIndex !== -1) {
+      if (this.eventDatesLocation[tabIndex] && this.eventDatesLocation[tabIndex].event_locations.length > 0) {
+        this.selectLocation(this.eventDatesLocation[tabIndex].event_locations[0]);
+      }
+    }
+  }
 }
