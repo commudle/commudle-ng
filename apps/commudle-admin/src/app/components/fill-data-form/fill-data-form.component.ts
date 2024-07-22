@@ -183,7 +183,23 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   }
 
   updateUserDetails(event) {
-    this.userProfileManagerService.userProfileForm.patchValue(event);
+    this.userProfileManagerService.userProfileForm.patchValue({
+      name: event.name ? event.name : this.currentUser.name,
+      about_me: event.about_me ? event.about_me : this.currentUser.about_me,
+      designation: event.designation ? event.designation : this.currentUser.designation,
+      location: event.location ? event.location : this.currentUser.location,
+      gender: event.gender ? event.gender : this.currentUser.gender,
+      personal_website: event.personal_website ? event.personal_website : this.currentUser.personal_website,
+      github: event.github ? event.github : this.currentUser.github,
+      linkedin: event.linkedin ? event.linkedin : this.currentUser.linkedin,
+      twitter: event.twitter ? event.twitter : this.currentUser.twitter,
+      dribbble: event.dribbble ? event.dribbble : this.currentUser.dribbble,
+      behance: event.behance ? event.behance : this.currentUser.behance,
+      medium: event.medium ? event.medium : this.currentUser.medium,
+      gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
+      facebook: event.facebook ? event.facebook : this.currentUser.facebook,
+      youtube: event.youtube ? event.youtube : this.currentUser.youtube,
+    });
     this.userProfileManagerService.updateUserDetails(false, this.currentUser);
     this.submitForm();
   }
