@@ -71,7 +71,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
     }
   }
 
-  createEdfeg(userDetailsFormValues = {}) {
+  createEdfeg() {
     const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
     this.edfegService
       .createEventDataFormEntityGroup(
@@ -79,7 +79,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
         formData.name,
         this.selectedRegistrationType.id,
         formData.data_form_id,
-        userDetailsFormValues,
+        this.userDetailsFormValues,
       )
       .subscribe((data) => {
         this.edfegCreated.emit(data);
