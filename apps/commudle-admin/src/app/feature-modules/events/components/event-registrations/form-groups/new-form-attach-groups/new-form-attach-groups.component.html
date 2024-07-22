@@ -113,6 +113,7 @@
             >
               <app-new-data-form
                 (newDataForm)="submit($event)"
+                (invalidFormValue)="invalidDataForm()"
                 formName="Hackathon Attendee Registration Form"
                 [stickSubmitButtonBottom]="true"
                 [showNameDescriptionFiled]="false"
@@ -140,7 +141,7 @@
         fullWidth
         status="primary"
         type="submit"
-        (click)="getValueOrUpdateEdfeg(); ref.close()"
+        (click)="getValueOrUpdateEdfeg()"
         [disabled]="!eventDataFormEntityGroupForm.valid"
       >
         Save

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent } from '@commudle/shared-models';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { IRegistrationType } from 'apps/shared-models/registration_type.model';
@@ -25,6 +25,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
   @ViewChild(UserDetailsCheckboxFormComponent) UserDetailsCheckbox: UserDetailsCheckboxFormComponent;
   @ViewChild(EditDataFormComponent) editDataFormComponent: EditDataFormComponent;
   @ViewChild(NewDataFormComponent) newDataFormComponent: NewDataFormComponent;
+  dialogRef: NbDialogRef<any>;
 
   selectedRegistrationType: IRegistrationType;
   eventDataFormEntityGroupForm: FormGroup;
@@ -50,7 +51,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
 
   openDialogBox(tempRef) {
     this.resetForm();
-    this.nbDialogBox.open(tempRef);
+    this.dialogRef = this.nbDialogBox.open(tempRef);
   }
 
   getValueOrUpdateEdfeg() {
@@ -84,6 +85,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
         this.edfegCreated.emit(data);
         this.toastrService.successDialog('Form Created');
         this.resetForm();
+        this.dialogRef.close();
       });
   }
 
@@ -112,5 +114,9 @@ export class NewFormAttachGroupsComponent implements OnInit {
         this.createEdfeg();
       }
     });
+  }
+
+  invalidDataForm() {
+    this.toastrService.warningDialog('Question is invalid or may be empty');
   }
 }
