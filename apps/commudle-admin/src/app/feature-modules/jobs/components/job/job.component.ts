@@ -159,6 +159,7 @@ export class JobComponent implements OnInit, OnDestroy {
   }
 
   setSchemaData() {
+    const jobLocation = this.job.location.split(',');
     const datePosted = this.datePipe.transform(this.job.created_at, 'yyyy-MM-dd');
     const validThrough = this.datePipe.transform(this.job.expired_at, 'yyyy-MM-dd');
     const employmentType = this.enumFormatPipe.transform(this.job.job_type);
@@ -195,7 +196,7 @@ export class JobComponent implements OnInit, OnDestroy {
     if (this.job.location_type === EJobLocationType.REMOTE) {
       schemaData.applicantLocationRequirements = {
         '@type': 'Country',
-        name: 'IN',
+        name: jobLocation[1],
       };
       schemaData.jobLocationType = 'TELECOMMUTE';
     } // schema data for non remote location job
@@ -204,7 +205,8 @@ export class JobComponent implements OnInit, OnDestroy {
         '@type': 'Place',
         address: {
           '@type': 'PostalAddress',
-          addressCountry: 'IN',
+          addressLocality: jobLocation[0],
+          addressCountry: jobLocation[1],
         },
       };
     }
