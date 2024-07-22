@@ -86,7 +86,6 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
-        console.log(this.hackathon);
         this.community = data.community;
         this.updateHeaderVariation();
         this.getContactInfo();
