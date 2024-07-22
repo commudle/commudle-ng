@@ -181,17 +181,17 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   }
 
   updateUserDetails(event) {
-    console.log('🚀 ~ FillDataFormComponent ~ updateUserDetails ~ event:', event);
-    // this.submitForm();
+    this.submitForm();
   }
 
   submitForm() {
-    console.log('🚀 ~ FillDataFormComponent ~ submitForm ~  this.dataFormEntity;:', this.dataFormEntity);
-    // this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-    //   this.toastLogService.successDialog('Saved!');
-    //   this.redirectTo();
-    //   this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
-    // });
+    this.dataFormEntityResponsesService
+      .submitDataFormEntityResponse(this.dataFormEntity.id, this.formAnswers)
+      .subscribe(() => {
+        this.toastLogService.successDialog('Saved!');
+        this.redirectTo();
+        this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+      });
   }
 
   redirectTo() {
@@ -201,6 +201,4 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
     }
   }
-
-  UpdateOrSubmitResponse(value) {}
 }
