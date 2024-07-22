@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICommunity } from 'apps/shared-models/community.model';
-import { IEventLocation } from 'apps/shared-models/event-location.model';
+import { IEventDatesLocation, IEventLocation } from 'apps/shared-models/event-location.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { ITrackSlot } from 'apps/shared-models/track-slot.model';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -23,8 +23,7 @@ export class AgendaComponent implements OnInit {
   @Input() showShareButton = true;
 
   eventLocations: IEventLocation[] = [];
-  eventDatesLocation: any[];
-  // IEventDatesLocation[];
+  eventDatesLocation: IEventDatesLocation[];
   isLoading = true;
   selectedLocation;
   upcomingEvents: Array<ITrackSlot> = [];

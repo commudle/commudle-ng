@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { IEventLocations } from 'apps/shared-models/event-locations.model';
-import { IEventLocation } from 'apps/shared-models/event-location.model';
+import { IEventDatesLocation, IEventLocation } from 'apps/shared-models/event-location.model';
 
 @Injectable({
   providedIn: 'root',
@@ -46,12 +46,14 @@ export class EventLocationsService {
     });
   }
 
-  // IEventDatesLocation>
-  getEventDates(eventId): Observable<any> {
+  getEventDates(eventId): Observable<IEventDatesLocation> {
     const params = new HttpParams().set('event_id', eventId);
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.TRACK_SLOTS_BY_DATE), {
-      params,
-    });
+    return this.http.get<IEventDatesLocation>(
+      this.apiRoutesService.getRoute(API_ROUTES.TRACK_SLOTS.PUBLIC.TRACK_SLOTS_BY_DATE),
+      {
+        params,
+      },
+    );
   }
 
   getLocationTracks(LocationId, date): Observable<any> {
