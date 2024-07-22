@@ -111,7 +111,7 @@
       <option value="XXXL">XXXL</option>
     </select>
   </div>
-  <div class="action-buttons">
+  <div class="action-buttons" *ngIf="showActionButtons">
     <button status="primary" nbButton disabled>Previous</button>
     <button status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">Next</button>
   </div>

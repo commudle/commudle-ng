@@ -13,6 +13,7 @@ import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 })
 export class UserDetailsFormComponent implements OnInit {
   @Input() userFormDetails;
+  @Input() showActionButtons = true;
   @Input() hackathonUserResponse: IHackathonUserResponse;
   @Output() submitUserDetailsEvent = new EventEmitter<any>();
 

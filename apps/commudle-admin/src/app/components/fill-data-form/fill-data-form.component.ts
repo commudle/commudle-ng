@@ -18,6 +18,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
@@ -40,8 +41,10 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   gtmData: any = {};
   userProfileDetails: IUserStat;
   faArrowRight = faArrowRight;
+  formAnswers = {};
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
+  @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -168,12 +171,27 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  submitForm($event) {
-    this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-      this.toastLogService.successDialog('Saved!');
-      this.redirectTo();
-      this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
-    });
+  updateUserDetailsAndSubmitForm($event) {
+    this.formAnswers = $event;
+    if (this.dataFormEntity.user_details) {
+      this.userDetailsFormComponent.submitUserDetails();
+    } else {
+      this.submitForm();
+    }
+  }
+
+  updateUserDetails(event) {
+    console.log('🚀 ~ FillDataFormComponent ~ updateUserDetails ~ event:', event);
+    // this.submitForm();
+  }
+
+  submitForm() {
+    console.log('🚀 ~ FillDataFormComponent ~ submitForm ~  this.dataFormEntity;:', this.dataFormEntity);
+    // this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
+    //   this.toastLogService.successDialog('Saved!');
+    //   this.redirectTo();
+    //   this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+    // });
   }
 
   redirectTo() {
