@@ -86,6 +86,7 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
+        console.log(this.hackathon);
         this.community = data.community;
         this.updateHeaderVariation();
         this.getContactInfo();
@@ -151,29 +152,36 @@ export class PublicHackathonHomepageComponent implements OnInit, OnDestroy {
 
   setSchema() {
     if (this.hackathon.start_date) {
+      let location: object, eventStatus: string;
+      if (this.hackathon.hackathon_location_type === 'offline') {
+        location = {
+          '@type': 'Place',
+          name: this.hackathon.location_name,
+          address: this.hackathon.location_address,
+        };
+        eventStatus = 'OfflineEventAttendanceMode';
+      } else {
+        location = {
+          '@type': 'VirtualLocation',
+          url: environment.app_url + '/communities/' + this.community.slug + '/hackathons/' + this.hackathon.slug,
+        };
+        eventStatus = 'OnlineEventAttendanceMode';
+      }
       this.seoService.setSchema({
         '@context': 'https://schema.org',
         '@type': 'Event',
         name: this.hackathon.name,
         description: this.hackathon.description.replace(/<[^>]*>/g, '').substring(0, 200),
-        image: this.hackathon.banner_image ? this.hackathon.banner_image : this.community.logo_path,
+        image: this.hackathon.banner_image ? this.hackathon.banner_image.url : this.community.logo_path,
         startDate: this.hackathon.start_date,
         endDate: this.hackathon.end_date,
         eventStatus: 'https://schema.org/EventScheduled',
-        eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
-        location: {
-          '@type': 'VirtualLocation',
-          url: environment.app_url + '/communities/' + this.community.slug + '/hackathons/' + this.hackathon.slug,
-        },
+        eventAttendanceMode: 'https://schema.org/' + eventStatus,
+        location: location,
         organizer: {
           '@type': 'Organization',
           name: this.community.name,
           url: environment.app_url + '/communities/' + this.community.slug,
-        },
-        offers: {
-          '@type': 'Offer',
-          name: this.hackathon.name,
-          url: environment.app_url + '/communities/' + this.community.slug + '/hackathons/' + this.hackathon.slug,
         },
       });
     }
