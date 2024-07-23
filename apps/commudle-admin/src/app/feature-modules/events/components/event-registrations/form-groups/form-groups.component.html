@@ -1,4 +1,11 @@
 <div class="event-data-form-groups">
+  <commudle-new-form-attach-groups
+    [registrationTypes]="registrationTypes"
+    [communityDataForms]="communityDataForms"
+    [event]="event"
+    [community]="community"
+    (edfegCreated)="updateEdfegList($event)"
+  ></commudle-new-form-attach-groups>
   <div>
     <div *ngIf="eventDataFormEntityGroups.length > 0" class="event-data-form-groups-list">
       <nb-card
@@ -212,7 +219,7 @@
     </div>
   </div>
 
-  <div *ngIf="event.editable">
+  <!-- <div *ngIf="event.editable">
     <nb-card class="!com-m-0">
       <nb-card-body>
         <div class="create-form">
@@ -223,11 +230,6 @@
               below
             </p>
           </div>
-          <!-- <div class="create-form-button">
-        <button nbButton (click)="openNewFormWindow()" class="create-button" size="small" status="primary">
-          <nb-icon icon="plus-outline"></nb-icon>Create New Form
-        </button>
-      </div> -->
         </div>
         <form
           (ngSubmit)="createEventDataFormEntityGroup()"
@@ -350,7 +352,7 @@
         </form>
       </nb-card-body>
     </nb-card>
-  </div>
+  </div> -->
 </div>
 
 <ng-template #newDataFormTemplate let-data>
