@@ -2,6 +2,7 @@
 import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from '@commudle/shared-services';
 import { RazorpayService, StripeHandlerService, countries_details } from '@commudle/shared-services';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { Subscription } from 'rxjs';
@@ -87,6 +88,7 @@ export class CommunityBankDetailsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private dialogService: NbDialogService,
     private razorPayService: RazorpayService,
+    private toastrService: ToastrService,
   ) {
     this.countryForm = this.fb.group({
       country: ['', Validators.required],
@@ -235,11 +237,13 @@ export class CommunityBankDetailsComponent implements OnInit, OnDestroy {
         (data) => {
           this.isLoading = false;
           if (data) {
+            this.toastrService.successDialog('Account Created Successfully');
             this.razorpayAccounts.push(data);
             this.dialogRef.close();
           }
         },
         (error) => {
+          this.toastrService.warningDialog(error);
           this.isLoading = false;
         },
       );
