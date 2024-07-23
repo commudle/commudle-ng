@@ -26,8 +26,8 @@
           <span class="checkmark"></span>
           Designation
         </label>
-        <label class="custom-checkbox" [ngClass]="{ active: userDetailsForm.get('about_me').value }">
-          <input type="checkbox" formControlName="about_me" />
+        <label class="custom-checkbox selected" [ngClass]="{ active: userDetailsForm.get('about_me').value }">
+          <input type="checkbox" formControlName="about_me" (click)="$event.preventDefault()" />
           <span class="checkmark"></span>
           About
         </label>
