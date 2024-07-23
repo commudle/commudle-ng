@@ -18,7 +18,7 @@ export class UserDetailsCheckboxFormComponent implements OnInit {
       profile_image: true,
       email: true,
       designation: false,
-      about_me: false,
+      about_me: true,
       location: false,
       work_experience_months: false,
       education: false,
