@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class UserDetailsCheckboxFormComponent implements OnInit {
   @Input() showGoodiesContainer = false;
+  @Input() showExperienceField = true;
   @Output() userDetailsFormValues = new EventEmitter<{}>();
   userDetailsForm: FormGroup;
   constructor(private fb: FormBuilder) {
