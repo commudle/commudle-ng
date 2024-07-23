@@ -243,7 +243,6 @@
             <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
-              [border]="false"
             ></commudle-alert>
 
             <!-- Customer facing business name -->
@@ -262,7 +261,6 @@
             <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
-              [border]="false"
             ></commudle-alert>
             <!--  Contact Name -->
             <label>
@@ -652,10 +650,17 @@
                   </span>
                 </label>
 
-                <!-- GST -->
+                <!-- GST Number -->
                 <label>
-                  GST
-                  <input fieldSize="small" formControlName="gst" placeholder="GST" fullWidth nbInput type="string" />
+                  GST Number
+                  <input
+                    fieldSize="small"
+                    formControlName="gst"
+                    placeholder="GST Number"
+                    fullWidth
+                    nbInput
+                    type="string"
+                  />
                 </label>
                 <commudle-alert
                   message="In case of registered business, Commudle is not responsible for your GST payment to the government. It is solely your company's responsibility to pay GST and any other taxes to the government on time."

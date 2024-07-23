@@ -454,7 +454,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     if (!this.ticketPaidAlready) {
       this.discountCodeService
         .canBeApplied(
-          this.promoCode,
+          this.promoCode.toUpperCase(),
           this.dataFormEntity.entity_id,
           this.paymentDetails.price,
           this.event.id,
