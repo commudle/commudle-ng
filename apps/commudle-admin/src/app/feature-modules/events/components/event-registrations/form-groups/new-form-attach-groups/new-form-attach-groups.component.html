@@ -4,7 +4,7 @@
     <div
       *ngFor="let rt of registrationTypes"
       class="registration-type"
-      (click)="selectedRegistrationType = rt; openDialogBox(formAttachDialogBox)"
+      (click)="selectedRegistrationType = rt; openDialogBox()"
     >
       <span> {{ rt.name | titlecase }}</span>
     </div>
@@ -13,7 +13,11 @@
 
 <ng-template #formAttachDialogBox let-data let-ref="dialogRef">
   <nb-card class="form-attach-dialog">
-    <nb-card-header> <span>Attach New Form</span> </nb-card-header>
+    <nb-card-header>
+      <span>{{ this.eventDataFormEntityGroup ? 'Edit Form' : 'Attach New Form' }}</span>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon></button
+    ></nb-card-header>
     <nb-card-body>
       <div class="registration-types">
         <div
@@ -60,25 +64,23 @@
             >
               <div class="question-heading">
                 2. Choose which fields are absolutely necessary for registering. Remember, a shorter form leads to
-                quicker signups.
+                quicker signup.
               </div>
               <commudle-user-details-checkbox-form
+                [userDetails]="eventDataFormEntityGroup?.user_details"
                 (userDetailsFormValues)="updateAndCreateEdfeg($event)"
               ></commudle-user-details-checkbox-form>
             </div>
             <div class="data-form-select">
               <div class="question-heading">Additional Form Questions.</div>
               <label>
-                <span>Select Existing Form*</span>
-                <div class="com-flex com-items-center">
-                  <div class="select">
-                    <select formControlName="data_form_id">
-                      <option value=""><strong>+</strong> CREATE NEW FORM</option>
-                      <option *ngFor="let df of communityDataForms" [value]="df.id">
-                        {{ df.name | titlecase }}
-                      </option>
-                    </select>
-                  </div>
+                <div class="select">
+                  <select formControlName="data_form_id">
+                    <option value=""><strong>+</strong> CREATE NEW FORM</option>
+                    <option *ngFor="let df of communityDataForms" [value]="df.id">
+                      {{ df.name | titlecase }}
+                    </option>
+                  </select>
                 </div>
                 <span
                   *ngIf="

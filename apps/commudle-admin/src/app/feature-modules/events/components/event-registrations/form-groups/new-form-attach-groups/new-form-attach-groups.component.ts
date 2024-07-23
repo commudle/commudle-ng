@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent } from '@commudle/shared-models';
 import { NbDialogRef, NbDialogService } from '@commudle/theme';
@@ -21,12 +21,13 @@ export class NewFormAttachGroupsComponent implements OnInit {
   @Input() communityDataForms: IDataForm[] = [];
   @Input() event: IEvent;
   @Input() community: ICommunity;
+  @Input() eventDataFormEntityGroup: IEventDataFormEntityGroup;
   @Output() edfegCreated = new EventEmitter<IEventDataFormEntityGroup>();
   @ViewChild(UserDetailsCheckboxFormComponent) UserDetailsCheckbox: UserDetailsCheckboxFormComponent;
   @ViewChild(EditDataFormComponent) editDataFormComponent: EditDataFormComponent;
   @ViewChild(NewDataFormComponent) newDataFormComponent: NewDataFormComponent;
   dialogRef: NbDialogRef<any>;
-
+  @ViewChild('formAttachDialogBox', { read: TemplateRef }) formAttachDialogBoxTemplate: TemplateRef<HTMLElement>;
   selectedRegistrationType: IRegistrationType;
   eventDataFormEntityGroupForm: FormGroup;
   userDetailsFormValues: object;
@@ -49,9 +50,24 @@ export class NewFormAttachGroupsComponent implements OnInit {
 
   ngOnInit() {}
 
-  openDialogBox(tempRef) {
+  openDialogBox(registrationTypes?, edfeg?, communityDataForms?) {
     this.resetForm();
-    this.dialogRef = this.nbDialogBox.open(tempRef);
+    if (registrationTypes) {
+      this.registrationTypes = registrationTypes;
+    }
+    if (edfeg) {
+      this.eventDataFormEntityGroup = edfeg;
+      this.selectedRegistrationType = edfeg.registration_type;
+      this.eventDataFormEntityGroupForm.get('data_form_entity_group').patchValue({
+        name: edfeg.data_form_entity.name,
+        registration_type_id: edfeg.registration_type.id,
+        data_form_id: edfeg.data_form_entity.data_form_id,
+      });
+    }
+    if (communityDataForms) {
+      this.communityDataForms = communityDataForms;
+    }
+    this.dialogRef = this.nbDialogBox.open(this.formAttachDialogBoxTemplate);
   }
 
   getValueOrUpdateEdfeg() {
@@ -71,7 +87,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
     }
   }
 
-  createEdfeg() {
+  createOrUpdateEdfeg() {
     const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
     this.edfegService
       .createEventDataFormEntityGroup(
@@ -103,7 +119,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
     this.dataFormsService.createDataForm(newFormData, this.community.id, 'Kommunity').subscribe((data) => {
       if (data) {
         this.eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').setValue(data.id);
-        this.createEdfeg();
+        this.createOrUpdateEdfeg();
       }
     });
   }
@@ -111,7 +127,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
   updateData(formResponse) {
     this.dataFormsService.updateDataForm(formResponse).subscribe((data) => {
       if (data) {
-        this.createEdfeg();
+        this.createOrUpdateEdfeg();
       }
     });
   }

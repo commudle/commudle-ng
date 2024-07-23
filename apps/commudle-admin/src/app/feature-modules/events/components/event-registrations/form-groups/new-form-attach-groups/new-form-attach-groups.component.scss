@@ -17,6 +17,9 @@
 
 .form-attach-dialog {
   @apply com-max-h-[90dvh] com-w-full md:com-w-[60dvw];
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
   label {
     @apply com-flex com-flex-col com-gap-1;
   }

@@ -17,16 +17,9 @@
           <div class="form-details">
             <p class="name">
               {{ edfeg.name }}
-              <fa-icon
-                [icon]="faPenToSquare"
-                (click)="openUpdateEventDataFormGroup(updateEventDataFormGroup, edfeg, i)"
-                class="clickable"
-              ></fa-icon>
+              <fa-icon [icon]="faPenToSquare" (click)="openUpdateEventDataFormGroup(edfeg)" class="clickable"></fa-icon>
             </p>
             <p class="type">Form type: {{ edfeg.registration_type.name | titlecase }}</p>
-            <a [routerLink]="['/forms', edfeg.data_form_entity.data_form_id, 'edit']" target="_blank">
-              Edit Form Questions
-            </a>
           </div>
 
           <!-- edfeg status and rsvp toggle -->
