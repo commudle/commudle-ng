@@ -64,6 +64,10 @@ export class UserDetailsFormComponent implements OnInit {
   }
 
   submitUserDetails() {
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+      return;
+    }
     this.submitUserDetailsEvent.emit(this.userForm.value);
   }
 
