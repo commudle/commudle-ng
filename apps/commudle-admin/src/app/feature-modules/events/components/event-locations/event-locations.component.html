@@ -43,7 +43,7 @@
                     </button>
                   </div>
                 </div>
-                <div *ngIf="selectedLocation" class="event-location-tracks">
+                <div *ngIf="selectedLocation">
                   <div *ngIf="selectedLocation?.location.address" class="map-location">
                     <p class="address">
                       <span *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY">Address: </span>
@@ -76,19 +76,21 @@
                       </a>
                     </p>
                   </div>
-                  <app-event-location-tracks
-                    [community]="community"
-                    [eventLocation]="selectedLocation"
-                    [eventSpeakers]="eventSpeakers"
-                    [event]="event"
-                    [eventLocationDate]="data.date"
-                  >
-                  </app-event-location-tracks>
                 </div>
               </div>
             </div>
           </nb-tab>
         </nb-tabset>
+        <div *ngIf="selectedLocation && selectedDate" class="event-location-tracks">
+          <app-event-location-tracks
+            [community]="community"
+            [eventLocation]="selectedLocation"
+            [eventSpeakers]="eventSpeakers"
+            [event]="event"
+            [eventLocationDate]="selectedDate"
+          >
+          </app-event-location-tracks>
+        </div>
       </div>
     </nb-card>
   </div>

@@ -1,6 +1,6 @@
 .event-location-tracks {
   .add-track-button {
-    @apply com-text-sm com-mb-2;
+    @apply com-text-sm com-mb-4;
   }
 
   .track-container {
@@ -34,7 +34,7 @@
       ::ng-deep {
         div {
           .item-body {
-            @apply com-px-0 md:com-px-2;
+            @apply com-px-0 md:com-px-2 md:com-pt-4 com-pb-6;
           }
         }
       }

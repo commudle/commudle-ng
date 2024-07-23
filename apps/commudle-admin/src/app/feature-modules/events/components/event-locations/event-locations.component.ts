@@ -68,6 +68,7 @@ export class EventLocationsComponent implements OnInit {
   faLocationDot = faLocationDot;
   faVideo = faVideo;
   invalidLocationName = false;
+  selectedDate: Date;
 
   @ViewChild('tabset') tabsetEl: NbTabsetComponent;
   @ViewChild('addTab') addTabEl: NbTabComponent;
@@ -332,6 +333,7 @@ export class EventLocationsComponent implements OnInit {
   getEventLocations() {
     this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
       this.eventDatesLocation = data;
+      this.selectedDate = data[0].date;
       this.selectLocation(data[0].event_locations[0]);
       this.changeDetectorRef.markForCheck();
       this.isLoading = false;
@@ -346,6 +348,9 @@ export class EventLocationsComponent implements OnInit {
   onTabChange(event: any) {
     const tabIndex = this.eventDatesLocation.findIndex((d) => {
       const formattedDate = moment(d.date).format('Do MMMM');
+      if (formattedDate === event.tabTitle) {
+        this.selectedDate = d.date;
+      }
       return formattedDate === event.tabTitle;
     });
     if (tabIndex !== -1) {
