@@ -67,34 +67,18 @@
               ></commudle-user-details-checkbox-form>
             </div>
             <div class="data-form-select">
+              <div class="question-heading">Additional Form Questions.</div>
               <label>
                 <span>Select Existing Form*</span>
                 <div class="com-flex com-items-center">
                   <div class="select">
-                    <select
-                      formControlName="data_form_id"
-                      [ngClass]="{
-                        'com-text-[#8E9BB3]':
-                          eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value === ''
-                      }"
-                    >
-                      <option disabled selected value="">Select Existing Form</option>
+                    <select formControlName="data_form_id">
+                      <option value=""><strong>+</strong> CREATE NEW FORM</option>
                       <option *ngFor="let df of communityDataForms" [value]="df.id">
                         {{ df.name | titlecase }}
                       </option>
                     </select>
                   </div>
-                  <a
-                    *ngIf="eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value"
-                    [routerLink]="[
-                      '/forms',
-                      eventDataFormEntityGroupForm.get('data_form_entity_group').get('data_form_id').value,
-                      'edit'
-                    ]"
-                    target="_blank"
-                  >
-                    <nb-icon icon="eye" nbTooltip="View Form" status="info"></nb-icon>
-                  </a>
                 </div>
                 <span
                   *ngIf="
@@ -114,7 +98,7 @@
               <app-new-data-form
                 (newDataForm)="submit($event)"
                 (invalidFormValue)="invalidDataForm()"
-                formName="Event Form"
+                [formName]="selectedRegistrationType.name + ' - ' + this.event.name"
                 [stickSubmitButtonBottom]="true"
                 [showNameDescriptionFiled]="false"
                 [minQuestionCount]="1"
