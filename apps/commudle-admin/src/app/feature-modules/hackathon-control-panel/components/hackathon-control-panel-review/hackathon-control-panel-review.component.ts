@@ -175,6 +175,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
       if (data) {
         this.selectedTeamDetails.acceptance_mail_sent = true;
         this.toastrService.successDialog('Emails are being delivered!');
+        this.selectedTeamDetails.acceptance_mail_sent = true;
       }
     });
   }

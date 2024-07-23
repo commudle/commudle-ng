@@ -34,6 +34,8 @@ import { RazorpayService } from '@commudle/shared-services';
 import { EDbModels, IRazorpayOrder } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
+import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
+import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
 
 declare const Razorpay: any;
 @Component({
@@ -109,6 +111,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   showEventTicketOrder;
   isLoadingPayment = false;
   userProfileDetails: IUserStat;
+  formAnswers = {};
+
+  @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -130,6 +135,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private discountCodeService: DiscountCodesService,
     private razorpayService: RazorpayService,
     private appUsersService: AppUsersService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit() {
@@ -383,13 +389,23 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       }),
     );
   }
+  updateUserDetailsAndSubmitForm($event) {
+    this.formAnswers = $event;
+    if (this.dataFormEntity.user_details) {
+      this.userDetailsFormComponent.submitUserDetails();
+    } else {
+      this.submitForm();
+    }
+  }
 
   //submit user form details
-  submitForm($event) {
-    this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-      this.redirectTo();
-      this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
-    });
+  submitForm() {
+    this.dataFormEntityResponsesService
+      .submitDataFormEntityResponse(this.dataFormEntity.id, this.formAnswers)
+      .subscribe(() => {
+        this.redirectTo();
+        this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+      });
   }
 
   // Generate new additional user form
@@ -629,5 +645,27 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   // Reloads the current window location.
   reload() {
     window.location.reload();
+  }
+
+  updateUserDetails(event) {
+    this.userProfileManagerService.userProfileForm.patchValue({
+      name: event.name ? event.name : this.currentUser.name,
+      about_me: event.about_me ? event.about_me : this.currentUser.about_me,
+      designation: event.designation ? event.designation : this.currentUser.designation,
+      location: event.location ? event.location : this.currentUser.location,
+      gender: event.gender ? event.gender : this.currentUser.gender,
+      personal_website: event.personal_website ? event.personal_website : this.currentUser.personal_website,
+      github: event.github ? event.github : this.currentUser.github,
+      linkedin: event.linkedin ? event.linkedin : this.currentUser.linkedin,
+      twitter: event.twitter ? event.twitter : this.currentUser.twitter,
+      dribbble: event.dribbble ? event.dribbble : this.currentUser.dribbble,
+      behance: event.behance ? event.behance : this.currentUser.behance,
+      medium: event.medium ? event.medium : this.currentUser.medium,
+      gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
+      facebook: event.facebook ? event.facebook : this.currentUser.facebook,
+      youtube: event.youtube ? event.youtube : this.currentUser.youtube,
+    });
+    this.userProfileManagerService.updateUserDetails(false, this.currentUser);
+    this.submitForm();
   }
 }

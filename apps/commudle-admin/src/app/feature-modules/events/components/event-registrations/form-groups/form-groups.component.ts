@@ -179,21 +179,25 @@ export class FormGroupsComponent implements OnInit {
     return this.communityDataForms.find((k) => k.id === dataFormId).name;
   }
 
-  createEventDataFormEntityGroup() {
-    const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
-    this.eventDataFormEntityGroupsService
-      .createEventDataFormEntityGroup(
-        this.event.id,
-        formData.name,
-        formData.registration_type_id,
-        formData.data_form_id,
-      )
-      .subscribe((data) => {
-        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, data];
-        this.toastLogService.successDialog('Form Created');
-        this.resetForm();
-        this.changeDetectorRef.markForCheck();
-      });
+  // createEventDataFormEntityGroup() {
+  //   const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
+  //   this.eventDataFormEntityGroupsService
+  //     .createEventDataFormEntityGroup(
+  //       this.event.id,
+  //       formData.name,
+  //       formData.registration_type_id,
+  //       formData.data_form_id,
+  //     )
+  //     .subscribe((data) => {
+  //       this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, data];
+  //       this.toastLogService.successDialog('Form Created');
+  //       this.resetForm();
+  //       this.changeDetectorRef.markForCheck();
+  //     });
+  // }
+
+  updateEdfegList(edfeg) {
+    this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, edfeg];
   }
 
   deleteEventDataFormEntityGroup(eventDataFormEntityGroupId, index) {

@@ -19,6 +19,7 @@ export interface IDataFormEntity {
     form_type_name: string;
   };
   auto_close_responses_count: number;
+  user_details: any;
 }
 
 export enum Visibility {

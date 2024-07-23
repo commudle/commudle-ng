@@ -29,7 +29,13 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
-  createEventDataFormEntityGroup(eventId, name, registrationTypeId, dataFormId): Observable<IEventDataFormEntityGroup> {
+  createEventDataFormEntityGroup(
+    eventId,
+    name,
+    registrationTypeId,
+    dataFormId,
+    userDetails,
+  ): Observable<IEventDataFormEntityGroup> {
     return this.http.post<IEventDataFormEntityGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.CREATE),
       {
@@ -37,6 +43,7 @@ export class EventDataFormEntityGroupsService {
         name: name,
         registration_type_id: registrationTypeId,
         data_form_id: dataFormId,
+        user_details: userDetails,
       },
     );
   }

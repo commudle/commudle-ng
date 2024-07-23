@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SeoService } from '@commudle/shared-services';
@@ -18,10 +18,11 @@ import { filter, map } from 'rxjs';
   templateUrl: './edit-data-form.component.html',
   styleUrls: ['./edit-data-form.component.scss'],
 })
-export class EditDataFormComponent implements OnInit {
+export class EditDataFormComponent implements OnInit, OnChanges {
   @Input() dataFormId: number;
   @Input() showNameDescriptionFiled = true;
   @Input() centerLayout = true;
+  @Input() showSubmitButton = true;
   @Output() updateFormDataEvent: EventEmitter<any> = new EventEmitter<any>();
 
   faTrashAlt = faTrashAlt;
@@ -93,17 +94,19 @@ export class EditDataFormComponent implements OnInit {
         questions: this.fb.array([]),
       }),
     });
+  }
 
-    // set the controls
+  ngOnDestroy() {
+    this.seoService.noIndex(false);
+  }
+
+  ngOnChanges(): void {
+    // set the dataForm
     this.dataFormsService.getDataFormDetails(this.dataFormId).subscribe((dataForm) => {
       this.dataForm = dataForm;
       this.seoService.setTitle(`Edit ${this.dataForm.name} Form`);
       this.fillExistingDataForm();
     });
-  }
-
-  ngOnDestroy() {
-    this.seoService.noIndex(false);
   }
 
   // drag and drop function by CDK
