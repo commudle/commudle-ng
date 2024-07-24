@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { EventTicketOrderService } from '@commudle/shared-services';
-import { NbDialogService } from '@commudle/theme';
+// import { EventTicketOrderService } from '@commudle/shared-services';
+// import { NbDialogService } from '@commudle/theme';
 import { IUser } from '@commudle/shared-models';
 
 @Component({
@@ -16,7 +16,9 @@ export class UserPaymentDetailsComponent implements OnInit {
   subscription: Subscription[] = [];
   paidUser;
   otherUsers: IUser[] = [];
-  constructor(private eventTicketOrderService: EventTicketOrderService, private dialogService: NbDialogService) {}
+  constructor() // private eventTicketOrderService: EventTicketOrderService,
+  // private dialogService: NbDialogService,
+  {}
 
   @ViewChild('refundDialogBox') refundDialogBox: TemplateRef<any>;
 
@@ -32,22 +34,22 @@ export class UserPaymentDetailsComponent implements OnInit {
     }
   }
 
-  checkRefund(eventTicketOrderId) {
-    this.subscription.push(
-      this.eventTicketOrderService.checkRefundAmount(eventTicketOrderId).subscribe((data) => {
-        this.refundAmount = data.refund_amount;
-        this.open(eventTicketOrderId);
-      }),
-    );
-  }
+  // checkRefund(eventTicketOrderId) {
+  //   this.subscription.push(
+  //     this.eventTicketOrderService.checkRefundAmount(eventTicketOrderId).subscribe((data) => {
+  //       this.refundAmount = data.refund_amount;
+  //       this.open(eventTicketOrderId);
+  //     }),
+  //   );
+  // }
 
-  createRefund(eventTicketOrderId) {
-    this.subscription.push(this.eventTicketOrderService.createRefund(eventTicketOrderId).subscribe((data) => {}));
-  }
+  // createRefund(eventTicketOrderId) {
+  //   this.subscription.push(this.eventTicketOrderService.createRefund(eventTicketOrderId).subscribe((data) => {}));
+  // }
 
-  open(eventTicketOrderId) {
-    this.dialogService.open(this.refundDialogBox, {
-      context: eventTicketOrderId,
-    });
-  }
+  // open(eventTicketOrderId) {
+  //   this.dialogService.open(this.refundDialogBox, {
+  //     context: eventTicketOrderId,
+  //   });
+  // }
 }

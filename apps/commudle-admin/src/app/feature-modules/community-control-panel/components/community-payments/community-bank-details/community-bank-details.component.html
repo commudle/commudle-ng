@@ -15,6 +15,7 @@
   <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
     <tr>
       <th>Type</th>
+      <th width="120">Commudle Fee</th>
       <th>Active/Status</th>
       <th>Email</th>
       <th>Charges Enabled</th>
@@ -28,6 +29,7 @@
           <img [src]="staticAssets.stripe.url" alt="stripe" sizes="100" />
         </div>
       </td>
+      <td></td>
       <td>
         <p>{{ stripeAccount.active }}</p>
       </td>
@@ -97,6 +99,7 @@
           <img [src]="staticAssets.razorpay.url" alt="Razorpay" sizes="100" />
         </div>
       </td>
+      <td>{{ razorpayAccount.commudle_fee_percentage }}% + 18% GST</td>
       <td>{{ razorpayAccount.account_details.attributes.status | titlecase }}</td>
       <td>{{ razorpayAccount.account_details.attributes.email }}</td>
       <td>Not Applicable</td>
