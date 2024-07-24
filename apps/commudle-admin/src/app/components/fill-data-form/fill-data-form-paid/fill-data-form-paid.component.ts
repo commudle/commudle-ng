@@ -502,7 +502,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   // click for open payment box and get ticket order id
   createTicketOrder() {
     this.eventTicketOrderService
-      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
+      .createEventTicketOrder(
+        this.formData,
+        this.dataFormEntity.entity_id,
+        this.promoCodeApplied ? this.promoCode.toUpperCase() : '',
+      )
       .subscribe((data) => {
         if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
           this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
@@ -596,6 +600,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       amount: Math.round((this.totalPrice + this.totalTaxAmount) * 100),
       currency: 'INR',
     };
+    if (orderDetails.amount === 0) {
+      this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
+        closeOnBackdropClick: false,
+      });
+      return;
+    }
     this.razorpayService.createOrFindOrder(orderDetails, etoId).subscribe((data: IRazorpayOrder) => {
       this.razorPaySubmit(data);
     });
@@ -626,8 +636,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         email: this.currentUser.email,
         contact: this.currentUser.phone ? this.currentUser.phone : '',
       },
+      modal: {
+        ondismiss: () => {
+          console.error('Checkout form closed by the user');
+          this.isLoadingPayment = false;
+          this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+          });
+        },
+      },
     };
-
     const rzp1 = new Razorpay(options);
     rzp1.on('payment.failed', (response: any) => {
       {
