@@ -87,15 +87,6 @@
                       <p class="end-time">{{ moment(slot.end_time).format('HH:mm') }}</p>
                     </div>
                     <div class="session-title">
-                      <div *ngIf="slot.tags_list" class="tags">
-                        <app-badge
-                          *ngFor="let tag of splitTags(slot.tags_list)"
-                          [fontSize]="'small'"
-                          [text]="tag"
-                          [fontColor]="'com-text-tWhite'"
-                          [color]="'com-bg-primary-500'"
-                        ></app-badge>
-                      </div>
                       <p>{{ slot.session_title }}</p>
                       <div *appBreakpoints="'<=md'" class="mobile-action-buttons">
                         <div
@@ -115,6 +106,15 @@
                             <fa-icon [icon]="faPaperclip"></fa-icon>
                           </a>
                         </div>
+                      </div>
+                      <div *ngIf="slot.tags_list" class="tags">
+                        <app-badge
+                          *ngFor="let tag of splitTags(slot.tags_list)"
+                          [fontSize]="'small'"
+                          [text]="tag"
+                          [fontColor]="'com-text-tWhite'"
+                          [color]="'com-bg-primary-500'"
+                        ></app-badge>
                       </div>
                     </div>
                     <div *appBreakpoints="'<=md'" class="com-flex com-justify-between com-flex-col">
