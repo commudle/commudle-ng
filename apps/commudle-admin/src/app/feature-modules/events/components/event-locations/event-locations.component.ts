@@ -346,6 +346,7 @@ export class EventLocationsComponent implements OnInit {
   }
 
   onTabChange(event: any) {
+    console.log(this.selectedLocation);
     const tabIndex = this.eventDatesLocation.findIndex((d) => {
       const formattedDate = moment(d.date).format('Do MMMM');
       if (formattedDate === event.tabTitle) {
@@ -356,7 +357,8 @@ export class EventLocationsComponent implements OnInit {
     if (tabIndex !== -1) {
       this.activeTabIndex = tabIndex;
       if (this.eventDatesLocation[tabIndex] && this.eventDatesLocation[tabIndex].event_locations.length > 0) {
-        this.selectLocation(this.eventDatesLocation[tabIndex].event_locations[0]);
+        this.selectLocation(this.selectedLocation);
+        // this.selectLocation(this.eventDatesLocation[tabIndex].event_locations[0]);
       }
     }
   }
