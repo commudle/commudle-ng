@@ -37,7 +37,7 @@
                       <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
                     </div>
                   </div>
-                  <div *ngIf="slot.tags_list">
+                  <div *ngIf="slot.tags_list" class="tags">
                     <app-badge
                       *ngFor="let tag of slot.tags_list.split(',')"
                       [fontSize]="'small'"
