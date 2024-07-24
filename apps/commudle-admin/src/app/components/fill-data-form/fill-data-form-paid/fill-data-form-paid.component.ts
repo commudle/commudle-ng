@@ -507,26 +507,33 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.dataFormEntity.entity_id,
         this.promoCodeApplied ? this.promoCode.toUpperCase() : '',
       )
-      .subscribe((data) => {
-        if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
-          this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-          this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
-          this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
-        } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
-          this.createOrUpdateRazorpayOrder(data.id);
-        }
-        if (data.discount_code_expires_at) {
-          this.targetDate = new Date(data.discount_code_expires_at);
-          if (this.targetDate) {
-            this.updateTimeRemaining();
-            if (this.showTimer) {
-              setInterval(() => {
-                this.updateTimeRemaining();
-              }, 1000);
+      .subscribe(
+        (data) => {
+          if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+            this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+            this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+            this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+          } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+            this.createOrUpdateRazorpayOrder(data.id);
+          }
+          if (data.discount_code_expires_at) {
+            this.targetDate = new Date(data.discount_code_expires_at);
+            if (this.targetDate) {
+              this.updateTimeRemaining();
+              if (this.showTimer) {
+                setInterval(() => {
+                  this.updateTimeRemaining();
+                }, 1000);
+              }
             }
           }
-        }
-      });
+        },
+        (error) => {
+          this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+          });
+        },
+      );
   }
 
   updateTickerOrder() {
@@ -536,26 +543,33 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.showEventTicketOrder.uuid,
         this.promoCodeApplied ? this.promoCode : '',
       )
-      .subscribe((data) => {
-        if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
-          this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-          this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
-          this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
-        } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
-          this.createOrUpdateRazorpayOrder(data.id);
-        }
-        if (data.discount_code_expires_at) {
-          this.targetDate = new Date(data.discount_code_expires_at);
-          if (this.targetDate) {
-            this.updateTimeRemaining();
-            if (this.showTimer) {
-              setInterval(() => {
-                this.updateTimeRemaining();
-              }, 1000);
+      .subscribe(
+        (data) => {
+          if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+            this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+            this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+            this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+          } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+            this.createOrUpdateRazorpayOrder(data.id);
+          }
+          if (data.discount_code_expires_at) {
+            this.targetDate = new Date(data.discount_code_expires_at);
+            if (this.targetDate) {
+              this.updateTimeRemaining();
+              if (this.showTimer) {
+                setInterval(() => {
+                  this.updateTimeRemaining();
+                }, 1000);
+              }
             }
           }
-        }
-      });
+        },
+        (error) => {
+          this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+          });
+        },
+      );
   }
 
   // for Payment confirm Function from stripe
