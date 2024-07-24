@@ -52,6 +52,11 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <commudle-alert
+        [info]="true"
+        message="All the confirmed payments will automatically receive an entry pass"
+      ></commudle-alert>
+      <br />
       <form [formGroup]="paidTicketingForm">
         <div formGroupName="paid_ticket_setting" class="com-w-full com-flex com-flex-col com-gap-2">
           <div class="com-flex com-gap-2 com-w-full">
