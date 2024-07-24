@@ -46,7 +46,9 @@
             </button>
             &nbsp;
             <button
-              (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
+              (click)="
+                showAddSlotForm(event.id, event.start_time, elt, eventLocationDate, elti); $event.stopPropagation()
+              "
               nbButton
               size="tiny"
               status="primary"
@@ -67,7 +69,9 @@
         <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0" (click)="$event.stopPropagation()">
           <div
             class="add-session"
-            (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
+            (click)="
+              showAddSlotForm(event.id, event.start_time, elt, eventLocationDate, elti); $event.stopPropagation()
+            "
             *ngIf="event.editable"
           >
             <fa-icon [icon]="faPlus"></fa-icon>
@@ -110,7 +114,7 @@
                       <div *ngIf="slot.tags_list" class="tags">
                         <app-badge
                           *ngFor="let tag of splitTags(slot.tags_list)"
-                          [fontSize]="'small'"
+                          [fontSize]="'extraSmall'"
                           [text]="tag"
                           [fontColor]="'com-text-tWhite'"
                           [color]="'com-bg-primary-500'"
