@@ -5,6 +5,7 @@ export interface IRazorpayAccount {
   account_id: string;
   bank_details: IBankDetails;
   product_id: string;
+  commudle_fee_percentage: number;
 }
 
 export interface IBankDetails {
