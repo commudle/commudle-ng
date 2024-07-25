@@ -305,7 +305,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="com-mt-4">
+                <div class="com-mt-4" *ngIf="paymentDetails.multi_person_ticket">
                   <button (click)="addNewUser()" class="add-another-user">+ Add Another Recipient</button>
                 </div>
               </div>
