@@ -1,11 +1,4 @@
 <div>
-  <div class="help-text-button">
-    <p>
-      <small>
-        <a (click)="openHelpTextWindow()">How does this work?</a>
-      </small>
-    </p>
-  </div>
   <div *ngIf="event.editable">
     <button (click)="showAddEventLocationForm()" nbButton status="primary">
       <nb-icon icon="plus-circle-outline"></nb-icon>
@@ -290,32 +283,5 @@
   <div>
     <button (click)="deleteEventLocation(true, data.eventLocation)" nbButton status="link">Yes</button> &nbsp;
     <button (click)="deleteEventLocation(false, data.eventLocation)" nbButton status="link">No</button>
-  </div>
-</ng-template>
-
-<ng-template #helpText let-data>
-  <h5>Here's how it works</h5>
-  <div>
-    <ul>
-      <li>You can choose between an online (live streaming) and an offline (at a physical space) event</li>
-      <li>An event can have multiple locations (physical or online)</li>
-      <li>Each location can have multiple tracks</li>
-      <li>Each track can have multiple speaker sessions in timed slots</li>
-    </ul>
-  </div>
-
-  <h5>Choosing online locations</h5>
-  <div>
-    <ul>
-      <li>Dimensions of embedded video: 560px by 340px</li>
-      <li>Any embeddable video can be put up in the event.</li>
-      <li>You can have a common online stream for the complete event</li>
-      <li>
-        OR you can choose to enter a different stream for each track [if filled, this will override the event stream]
-      </li>
-      <li>
-        OR you can have individual streams for each session [if filled, this will override both track and event streams]
-      </li>
-    </ul>
   </div>
 </ng-template>
