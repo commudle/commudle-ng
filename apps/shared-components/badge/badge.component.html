@@ -8,10 +8,7 @@
   class="{{ position }} {{ color }}"
 >
   <div>
-    <p
-      [ngClass]="{ 'small-text': fontSize == 'small', 'extra-small-text': fontSize == 'extraSmall' }"
-      class="{{ fontColor }}"
-    >
+    <p [ngClass]="{ 'small-text': fontSize == 'small', 'x-small-text': fontSize == 'x-small' }" class="{{ fontColor }}">
       <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
       {{ text }}
     </p>
