@@ -19,7 +19,12 @@
           <div class="form-details">
             <p class="name">
               {{ edfeg.name }}
-              <fa-icon [icon]="faPenToSquare" (click)="openUpdateEventDataFormGroup(edfeg)" class="clickable"></fa-icon>
+              <fa-icon
+                *ngIf="event.editable"
+                [icon]="faPenToSquare"
+                (click)="openUpdateEventDataFormGroup(edfeg)"
+                class="clickable"
+              ></fa-icon>
             </p>
             <p class="type">Form type: {{ edfeg.registration_type.name | titlecase }}</p>
           </div>
