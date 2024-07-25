@@ -71,7 +71,7 @@ export class PaymentSettingsComponent implements OnInit {
           country: [''],
           seller_name: [''],
           seller_address: [''],
-          multi_person_ticket: [''],
+          multi_person_ticket: [false],
         }),
       },
       {
