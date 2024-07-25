@@ -140,7 +140,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     }
   }
 
-  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack, index?) {
+  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack, eventLocationDate, index?) {
     this.trackSlotForm.reset();
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
@@ -151,6 +151,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         minSlotDate: this.minSlotDate,
         event: this.event,
         community: this.community,
+        selectedLocationDate: eventLocationDate,
       },
     });
     dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {

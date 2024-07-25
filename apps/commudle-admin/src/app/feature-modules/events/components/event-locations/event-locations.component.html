@@ -34,7 +34,7 @@
                       *ngIf="el.location"
                       nbButton
                       outline
-                      [status]="el === selectedLocation ? 'info' : 'basic'"
+                      [status]="el.id === selectedLocation?.id ? 'info' : 'basic'"
                       (click)="selectLocation(el)"
                       size="small"
                     >
