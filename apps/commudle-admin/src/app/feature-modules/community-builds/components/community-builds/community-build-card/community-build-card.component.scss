@@ -3,7 +3,7 @@ p {
 }
 
 .community-build-card {
-  @apply com-flex com-flex-row com-no-underline com-overflow-hidden md:com-items-center com-justify-between;
+  @apply com-flex com-flex-row com-no-underline com-overflow-hidden com-justify-between;
 
   a {
     @apply com-no-underline;
@@ -43,5 +43,5 @@ p {
   }
 }
 .votes {
-  @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] md:com-py-3 com-py-1 md:com-rounded-lg com-rounded-none;
+  @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] md:com-py-3 com-py-1 md:com-rounded-lg com-rounded-none md:com-h-fit;
 }
