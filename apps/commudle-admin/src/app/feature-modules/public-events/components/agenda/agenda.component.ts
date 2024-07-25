@@ -104,11 +104,15 @@ export class AgendaComponent implements OnInit {
 
   getDatesEventLocations() {
     this.eventLocationsService.getEventDates(this.event.slug).subscribe((data: any) => {
-      this.eventDatesLocation = data;
-      this.selectLocation(data[0].event_locations[0]);
-      this.setSchema();
-      this.isLoading = false;
-      this.changeDetectorRef.markForCheck();
+      if (data) {
+        this.eventDatesLocation = data;
+        if (data.event_locations) {
+          this.selectLocation(data[0].event_locations[0]);
+        }
+        this.setSchema();
+        this.isLoading = false;
+        this.changeDetectorRef.markForCheck();
+      }
     });
   }
 
