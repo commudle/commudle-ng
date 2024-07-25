@@ -3,7 +3,7 @@ p {
 }
 
 .community-build-card {
-  @apply com-flex com-flex-row com-no-underline com-overflow-hidden com-items-center com-justify-between;
+  @apply com-flex com-flex-row com-no-underline com-overflow-hidden com-justify-between;
 
   a {
     @apply com-no-underline;
@@ -13,7 +13,7 @@ p {
         @apply com-flex com-justify-center com-items-center md:com-w-[135px] md:com-h-[90px] com-w-[102px] com-h-[68px] com-overflow-hidden com-relative;
 
         app-badge {
-          @apply md:com-hidden com-absolute com-top-3;
+          @apply md:com-hidden com-absolute com-top-4 com-border com-left-6px com-border-solid com-border-tChocolate-Traditional com-rounded-3xl;
         }
       }
 
@@ -31,7 +31,7 @@ p {
           }
 
           app-badge {
-            @apply md:com-flex com-hidden;
+            @apply md:com-flex com-hidden com-border com-border-solid com-border-tChocolate-Traditional com-rounded-3xl;
           }
         }
         .description {
@@ -43,5 +43,5 @@ p {
   }
 }
 .votes {
-  @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] com-py-3 md:com-rounded-lg com-rounded-none;
+  @apply md:com-ml-[68px] com-ml-2 md:com-border com-border-0 com-border-Bright-Gray com-border-l com-border-solid com-px-[18px] md:com-py-3 com-py-1 md:com-rounded-lg com-rounded-none md:com-h-fit;
 }
