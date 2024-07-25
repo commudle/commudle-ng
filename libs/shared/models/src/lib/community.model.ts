@@ -29,6 +29,7 @@ export interface ICommunity {
   upcoming_events?: IUpcomingEvents[];
   upcoming_events_count: number;
   has_refund_policy: boolean;
+  upcoming_hackathons_count: number;
 }
 
 export interface ICommunitySearch extends ICommunity {

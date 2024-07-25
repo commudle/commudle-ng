@@ -7,6 +7,7 @@ import { CBuildTypeDisplay, EBuildType, ICommunityBuild } from 'apps/shared-mode
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-community-build-details',
@@ -24,6 +25,7 @@ export class CommunityBuildDetailsComponent implements OnInit {
   embedCode: any;
   currImage = null;
   singleImage: boolean;
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
 
   moment = moment;
 

@@ -1,5 +1,6 @@
 <div class="event-data-form-groups">
   <commudle-new-form-attach-groups
+    *ngIf="event.editable"
     [registrationTypes]="registrationTypes"
     [communityDataForms]="communityDataForms"
     [event]="event"
@@ -177,7 +178,7 @@
 
           <!-- payment Details -->
           <div *ngIf="community.payments_enabled">
-            <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK">
+            <div *ngIf="edfeg.registration_type.name !== ERegistrationTypeNames.FEEDBACK && event.editable">
               <input type="checkbox" (change)="onSwitchToggled(edfeg.id)" [checked]="edfeg.is_paid" />
               <span class="com-text-primary-500"> Paid Ticketing</span>
             </div>

@@ -215,9 +215,11 @@ export class EventFormResponsesComponent implements OnInit {
   getEventLocationTracks() {
     this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
       this.eventLocations = data.event_locations;
-      for (const eventLocation of data.event_locations) {
-        for (const eventLocationTrack of eventLocation.event_location_tracks) {
-          this.eventLocationTracks.push(eventLocationTrack);
+      if (data.event_locations) {
+        for (const eventLocation of data.event_locations) {
+          for (const eventLocationTrack of eventLocation.event_location_tracks) {
+            this.eventLocationTracks.push(eventLocationTrack);
+          }
         }
       }
     });

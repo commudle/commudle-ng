@@ -15,7 +15,7 @@ import {
   IRound,
 } from '@commudle/shared-models';
 import { EInvitationStatus, IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
-import { faXmark, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
@@ -35,6 +35,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   selectedUserDetails: IHackathonUserResponse;
   faXmark = faXmark;
   faPlus = faPlus;
+  faCheck = faCheck;
   notesForm;
   notes: INote[];
   dialogRef: NbDialogRef<unknown>;
@@ -172,6 +173,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   generateTeamRegistrationStatusNotification(teamId) {
     this.hackathonService.generateTeamRegistrationStatusNotification(teamId).subscribe((data) => {
       if (data) {
+        this.selectedTeamDetails.acceptance_mail_sent = true;
         this.toastrService.successDialog('Emails are being delivered!');
         this.selectedTeamDetails.acceptance_mail_sent = true;
       }

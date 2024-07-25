@@ -10,7 +10,7 @@
       (sendReply)="emitReply(message.id, $event)"
       *ngFor="let message of messages"
       [allActions]="allActions"
-      [canReply]="true"
+      [canReply]="true && discussionOpen"
       [currentUser]="currentUser"
       [message]="message"
       [permittedActions]="permittedActions"

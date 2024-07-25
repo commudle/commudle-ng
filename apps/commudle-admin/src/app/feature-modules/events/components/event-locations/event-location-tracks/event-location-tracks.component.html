@@ -3,14 +3,15 @@
     *ngIf="event.editable"
     (click)="showAddTrackForm()"
     nbButton
-    size="tiny"
+    size="medium"
     status="primary"
     class="add-track-button"
   >
     <fa-icon [icon]="faPlusCircle"></fa-icon>
     &nbsp; Add Track
   </button>
-  <div class="track-container">
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+  <div class="track-container" *ngIf="!isLoading">
     <nb-accordion *ngFor="let elt of eventLocationTracks; let elti = index" class="com-mb-3 com-shadow-none">
       <nb-accordion-item
         collapsed="{{ !trackSlotVisibility[elt.id] }}"
@@ -19,16 +20,39 @@
         <nb-accordion-item-header>
           <p class="track-name">{{ elt.name }}</p>
           &nbsp;
-          <nb-icon *ngIf="elt.embedded_video_stream" icon="video-outline"></nb-icon>
           <div *ngIf="event.editable" class="actions">
+            <a
+              *ngIf="elt.event_type === EEventType.ONLINE_ONLY && elt.embedded_video_stream"
+              nbButton
+              status="primary"
+              nbButton
+              [routerLink]="['/communities', community.slug, 'events', event.slug, 'session']"
+              [queryParams]="{ event_location_track_id: elt.id }"
+              target="_blank"
+              size="tiny"
+            >
+              <nb-icon icon="external-link"></nb-icon>
+              Public Session Page
+            </a>
+            &nbsp;
             <button
-              (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
+              *ngIf="elt.event_type === EEventType.ONLINE_ONLY"
+              (click)="openEmbeddedLink(elt, elti); $event.stopPropagation()"
+              nbButton
+              size="tiny"
+              status="info"
+            >
+              {{ elt.embedded_video_stream === null ? 'Add Video Streaming' : 'Edit Video Streaming' }}
+            </button>
+            &nbsp;
+            <button
+              (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
               nbButton
               size="tiny"
               status="primary"
             >
               <nb-icon icon="plus"></nb-icon>
-              Add Speaker Slot
+              Add New Session
             </button>
             &nbsp;
             <button (click)="showEditTrackForm(elt); $event.stopPropagation()" nbButton size="tiny" status="info">
@@ -43,14 +67,13 @@
         <nb-accordion-item-body class="com-rounded-b-2xl com-p-0 com-m-0" (click)="$event.stopPropagation()">
           <div
             class="add-session"
-            (click)="showAddSlotForm(event.id, event.start_time, elt); $event.stopPropagation()"
+            (click)="showAddSlotForm(event.id, event.start_time, elt, elti); $event.stopPropagation()"
             *ngIf="event.editable"
           >
             <fa-icon [icon]="faPlus"></fa-icon>
             &nbsp; Add New Session
           </div>
           <ng-container *ngFor="let group of sortedTrackSlots[elt.id] | groupByDate : 'start_time'">
-            <!-- Display the date -->
             <div class="group-date">{{ group.date }}</div>
             <nb-list *ngIf="trackSlotVisibility[elt.id]" class="com-p-0">
               <nb-list-item *ngFor="let slot of group.slots; let tsi = index">
@@ -69,7 +92,7 @@
                         <div
                           *ngIf="event.editable"
                           class="edit"
-                          (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                          (click)="showEditSlotForm(slot, elti, tsi); $event.stopPropagation()"
                         >
                           <fa-icon [icon]="faPen"></fa-icon>
                         </div>
@@ -83,6 +106,15 @@
                             <fa-icon [icon]="faPaperclip"></fa-icon>
                           </a>
                         </div>
+                      </div>
+                      <div *ngIf="slot.tags_list" class="tags">
+                        <app-badge
+                          *ngFor="let tag of splitTags(slot.tags_list)"
+                          [fontSize]="'small'"
+                          [text]="tag"
+                          [fontColor]="'com-text-tWhite'"
+                          [color]="'com-bg-primary-500'"
+                        ></app-badge>
                       </div>
                     </div>
                     <div *appBreakpoints="'<=md'" class="com-flex com-justify-between com-flex-col">
@@ -125,7 +157,7 @@
                       <div
                         *ngIf="event.editable"
                         class="edit"
-                        (click)="showEditSlotForm(slot); $event.stopPropagation()"
+                        (click)="showEditSlotForm(slot, elti, tsi); $event.stopPropagation()"
                       >
                         <fa-icon [icon]="faPen"></fa-icon>
                       </div>
@@ -185,7 +217,11 @@
 
 <ng-template #eventLocationTrackFormTemplate let-data>
   <form
-    (ngSubmit)="data.operationType === 'create' ? createTrack() : editTrack(data.eventLocationTrackId)"
+    (ngSubmit)="
+      data.operationType === 'create'
+        ? createTrack()
+        : editTrack(data.eventLocationTrackId, data, data.eventLocationTrack)
+    "
     [formGroup]="eventLocationTrackForm"
     class="event-location-track-form"
   >
@@ -206,7 +242,7 @@
         </span>
       </div>
 
-      <div
+      <!-- <div
         *ngIf="eventLocation && eventLocation.event_type === EEventType.ONLINE_ONLY"
         class="online-event-fields"
         formGroupName="embedded_video_stream"
@@ -262,7 +298,7 @@
             <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
           </label>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="save-button-bottom">
@@ -288,5 +324,27 @@
   <div>
     <button (click)="deleteSlot(true, data.trackSlot)" nbButton status="link">Yes</button> &nbsp;
     <button (click)="deleteSlot(false, data.trackSlot)" nbButton status="link">No</button>
+  </div>
+</ng-template>
+
+<ng-template #embeddedVideoTemplate let-data let-ref="dialogRef">
+  <div>
+    <nb-card class="embedded-dialog">
+      <nb-card-header>
+        <h2>Video Streaming</h2>
+        <button nbButton (click)="ref.close()">
+          <fa-icon [icon]="faXmark" class="cross-icon"></fa-icon></button
+      ></nb-card-header>
+      <nb-card-body>
+        <app-event-embedded-video-stream
+          [event]="event"
+          [community]="community"
+          [embeddedVideoStreamFromTrackSlot]="true"
+          (embeddedVideoStream)="updateEmbededContent($event, data.eventLocationTrack, data.elti)"
+          [embeddedFormData]="eventLocationTracks[data.elti].embedded_video_stream"
+          [eventLocationTrackId]="data.eventLocationTrack.id"
+        ></app-event-embedded-video-stream>
+      </nb-card-body>
+    </nb-card>
   </div>
 </ng-template>

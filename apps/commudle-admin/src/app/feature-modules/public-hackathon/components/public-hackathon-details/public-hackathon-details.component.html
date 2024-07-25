@@ -112,11 +112,10 @@
         </button>
       </nb-card-body>
     </nb-card>
-    <nb-card *ngIf="userTeamDetails">
+    <nb-card>
       <nb-card-body
         ><commudle-public-hackathon-details-mini-card
           [hackathon]="hackathon"
-          [userTeamDetails]="userTeamDetails[0]"
           [hrgId]="hrgId"
         ></commudle-public-hackathon-details-mini-card
       ></nb-card-body>

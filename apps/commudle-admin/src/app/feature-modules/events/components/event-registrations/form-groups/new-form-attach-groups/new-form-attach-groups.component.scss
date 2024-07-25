@@ -8,9 +8,17 @@
     @apply com-border com-border-solid com-border-Bright-Gray com-rounded-2xl com-w-full com-h-20 com-text-center hover:com-border-primary-500 hover:com-bg-sky-50 hover:com-cursor-pointer;
     &.active {
       @apply com-border-primary-500 com-bg-sky-50;
+      span {
+        @apply com-text-tYankees-Blue;
+      }
     }
     span {
       @apply com-flex com-justify-center com-items-center com-h-full com-text-xl com-font-semibold;
+    }
+  }
+  .registration-type:hover {
+    span {
+      @apply com-text-tYankees-Blue;
     }
   }
 }

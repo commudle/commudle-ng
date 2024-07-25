@@ -311,13 +311,18 @@
               </div>
             </nb-card-body>
           </nb-card>
-          <div class="com-my-2 com-px-2" *ngIf="!ticketPaidAlready">
+          <div class="com-my-2 com-px-2">
             <commudle-alert
               [info]="true"
               message="For any technical support please reach out to paid_ticket_support@commudle.com"
             ></commudle-alert>
           </div>
-
+          <div class="com-my-2 com-px-2">
+            <commudle-alert
+              [info]="true"
+              message="For any refund related queries please reach out to the event organizers, Commudle is not responsible for any refund or disputes between the ticket purchasing party and the ticket seller."
+            ></commudle-alert>
+          </div>
           <div class="com-px-2" *ngIf="!ticketPaidAlready">
             <button
               nbButton
@@ -373,6 +378,7 @@
           <span #consentAnimation></span>
         </div>
         <p class="com-text-xl com-my-1">Purchase Successful!</p>
+        <p class="com-text-xl com-my-1">You will receive the entry pass on your email</p>
         <commudle-alert
           *ngIf="showEventTicketOrder.eto_users.length > 1"
           [info]="true"

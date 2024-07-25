@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IHackathonTeam } from '@commudle/shared-models';
+import { AuthService } from '@commudle/shared-services';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
@@ -25,13 +26,16 @@ export class PublicHackathonUserDashboardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private hrgService: HackathonResponseGroupService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
-        this.getHackathonCurrentRegistrationDetails();
+        this.authService.currentUser$.subscribe((currentUser) => {
+          if (currentUser) this.getHackathonCurrentRegistrationDetails();
+        });
       }),
       this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
         this.hrgId = data.id;
