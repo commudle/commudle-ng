@@ -16,9 +16,7 @@ export class UserPaymentDetailsComponent implements OnInit {
   subscription: Subscription[] = [];
   paidUser;
   otherUsers: IUser[] = [];
-  constructor() // private eventTicketOrderService: EventTicketOrderService,
-  // private dialogService: NbDialogService,
-  {}
+  constructor() {} // private dialogService: NbDialogService, // private eventTicketOrderService: EventTicketOrderService,
 
   @ViewChild('refundDialogBox') refundDialogBox: TemplateRef<any>;
 

@@ -27,6 +27,7 @@ export class TrackSlotFormComponent implements OnInit {
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() selectedSpeakerSlot = '';
+  @Input() selectedLocationDate: Date;
   eventSpeakers;
   icons = {
     faXmark,
@@ -80,7 +81,7 @@ export class TrackSlotFormComponent implements OnInit {
     const endTime = new Date(startTime.getTime() + 30 * 60000);
     this.trackSlotForm.get('track_slot').patchValue({
       event_location_track_id: this.eventLocTrack.id,
-      date: this.formatDate(this.event.start_time),
+      date: this.selectedLocationDate,
       start_time: this.timeFormat(startTime),
       end_time: this.timeFormat(endTime),
     });
