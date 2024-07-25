@@ -23,6 +23,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
   @Input() community: ICommunity;
   @Input() eventDataFormEntityGroup: IEventDataFormEntityGroup;
   @Output() edfegCreated = new EventEmitter<IEventDataFormEntityGroup>();
+  @Output() edfegUpdated = new EventEmitter<IEventDataFormEntityGroup>();
   @ViewChild(UserDetailsCheckboxFormComponent) UserDetailsCheckbox: UserDetailsCheckboxFormComponent;
   @ViewChild(EditDataFormComponent) editDataFormComponent: EditDataFormComponent;
   @ViewChild(NewDataFormComponent) newDataFormComponent: NewDataFormComponent;
@@ -51,6 +52,7 @@ export class NewFormAttachGroupsComponent implements OnInit {
   ngOnInit() {}
 
   openDialogBox(registrationTypes?, edfeg?, communityDataForms?) {
+    this.eventDataFormEntityGroup = null;
     this.resetForm();
     if (registrationTypes) {
       this.registrationTypes = registrationTypes;
@@ -74,7 +76,11 @@ export class NewFormAttachGroupsComponent implements OnInit {
     if (this.selectedRegistrationType.name === 'feedback' || this.selectedRegistrationType.name === 'communication') {
       this.updateAndCreateEdfeg();
     } else {
-      this.UserDetailsCheckbox.updateValues();
+      if (this.eventDataFormEntityGroup !== null && this.eventDataFormEntityGroup.user_details !== null) {
+        this.UserDetailsCheckbox.updateValues();
+      } else {
+        this.updateAndCreateEdfeg();
+      }
     }
   }
 
@@ -88,6 +94,14 @@ export class NewFormAttachGroupsComponent implements OnInit {
   }
 
   createOrUpdateEdfeg() {
+    if (this.eventDataFormEntityGroup) {
+      this.updateEdfeg(this.eventDataFormEntityGroup.id);
+    } else {
+      this.createEdfeg();
+    }
+  }
+
+  createEdfeg() {
     const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
     this.edfegService
       .createEventDataFormEntityGroup(
@@ -101,6 +115,16 @@ export class NewFormAttachGroupsComponent implements OnInit {
         this.edfegCreated.emit(data);
         this.toastrService.successDialog('Form Created');
         this.resetForm();
+        this.dialogRef.close();
+      });
+  }
+
+  updateEdfeg(edfegId) {
+    this.edfegService
+      .updateEventDataFormEntityGroup(edfegId, this.eventDataFormEntityGroupForm.get('data_form_entity_group'))
+      .subscribe((data) => {
+        this.edfegUpdated.emit(data);
+        this.toastrService.successDialog('Form Updated');
         this.dialogRef.close();
       });
   }

@@ -286,15 +286,10 @@ export class FormGroupsComponent implements OnInit {
     this.newFormAttachGroupsComponent.openDialogBox(this.registrationTypes, edfeg, this.communityDataForms);
   }
 
-  updateEventDataFormEntityGroup(edfeg, index) {
-    this.eventDataFormEntityGroupsService
-      .updateEventDataFormEntityGroup(edfeg.id, this.updateEventDataFormEntityGroupForm)
-      .subscribe((data) => {
-        this.eventDataFormEntityGroups[index] = data;
-        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups]; // Trigger change detection
-        this.toastLogService.successDialog('Form Updated');
-        this.changeDetectorRef.markForCheck();
-      });
+  updateEventDataFormEntityGroup(edfeg) {
+    const index = this.eventDataFormEntityGroups.findIndex((k) => k.id === edfeg.id);
+    this.eventDataFormEntityGroups[index] = edfeg;
+    this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups];
   }
 
   resetForm() {

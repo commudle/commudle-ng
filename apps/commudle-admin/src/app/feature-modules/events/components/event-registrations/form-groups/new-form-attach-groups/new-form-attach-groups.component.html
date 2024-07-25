@@ -59,7 +59,9 @@
             <div
               class="user-details"
               *ngIf="
-                !(selectedRegistrationType.name === 'feedback' || selectedRegistrationType.name === 'communication')
+                !(selectedRegistrationType.name === 'feedback' || selectedRegistrationType.name === 'communication') &&
+                (eventDataFormEntityGroup === null ||
+                  (eventDataFormEntityGroup !== null && eventDataFormEntityGroup.user_details !== null))
               "
             >
               <div class="question-heading">
