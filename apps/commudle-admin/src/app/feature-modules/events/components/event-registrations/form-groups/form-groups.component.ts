@@ -15,6 +15,7 @@ import { PaymentSettingService, RazorpayService, StripeHandlerService } from '@c
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { EmailerComponent } from 'apps/commudle-admin/src/app/app-shared-components/emailer/emailer.component';
+import { NewFormAttachGroupsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-registrations/form-groups/new-form-attach-groups/new-form-attach-groups.component';
 import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/data-form-entities.service';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
@@ -66,6 +67,8 @@ export class FormGroupsComponent implements OnInit {
 
   @ViewChild('newDataFormTemplate') newDataFormTemplate: TemplateRef<any>;
   @Output() showDiscountCoupons = new EventEmitter<boolean>();
+
+  @ViewChild(NewFormAttachGroupsComponent) newFormAttachGroupsComponent: NewFormAttachGroupsComponent;
 
   constructor(
     private eventDataFormEntityGroupsService: EventDataFormEntityGroupsService,
@@ -179,23 +182,6 @@ export class FormGroupsComponent implements OnInit {
     return this.communityDataForms.find((k) => k.id === dataFormId).name;
   }
 
-  // createEventDataFormEntityGroup() {
-  //   const formData = this.eventDataFormEntityGroupForm.get('data_form_entity_group').value;
-  //   this.eventDataFormEntityGroupsService
-  //     .createEventDataFormEntityGroup(
-  //       this.event.id,
-  //       formData.name,
-  //       formData.registration_type_id,
-  //       formData.data_form_id,
-  //     )
-  //     .subscribe((data) => {
-  //       this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, data];
-  //       this.toastLogService.successDialog('Form Created');
-  //       this.resetForm();
-  //       this.changeDetectorRef.markForCheck();
-  //     });
-  // }
-
   updateEdfegList(edfeg) {
     this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups, edfeg];
   }
@@ -296,28 +282,14 @@ export class FormGroupsComponent implements OnInit {
     });
   }
 
-  openUpdateEventDataFormGroup(dialog: TemplateRef<any>, dfe, index) {
-    this.updateEventDataFormEntityGroupForm.patchValue({
-      name: dfe.name,
-      registration_type_id: dfe.registration_type.id,
-    });
-    this.dialogService.open(dialog, {
-      context: {
-        dfe: dfe,
-        index: index,
-      },
-    });
+  openUpdateEventDataFormGroup(edfeg) {
+    this.newFormAttachGroupsComponent.openDialogBox(this.registrationTypes, edfeg, this.communityDataForms);
   }
 
-  updateEventDataFormEntityGroup(edfeg, index) {
-    this.eventDataFormEntityGroupsService
-      .updateEventDataFormEntityGroup(edfeg.id, this.updateEventDataFormEntityGroupForm)
-      .subscribe((data) => {
-        this.eventDataFormEntityGroups[index] = data;
-        this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups]; // Trigger change detection
-        this.toastLogService.successDialog('Form Updated');
-        this.changeDetectorRef.markForCheck();
-      });
+  updateEventDataFormEntityGroup(edfeg) {
+    const index = this.eventDataFormEntityGroups.findIndex((k) => k.id === edfeg.id);
+    this.eventDataFormEntityGroups[index] = edfeg;
+    this.eventDataFormEntityGroups = [...this.eventDataFormEntityGroups];
   }
 
   resetForm() {
