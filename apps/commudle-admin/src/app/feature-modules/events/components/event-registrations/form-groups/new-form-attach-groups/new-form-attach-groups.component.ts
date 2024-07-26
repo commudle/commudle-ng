@@ -76,7 +76,10 @@ export class NewFormAttachGroupsComponent implements OnInit {
     if (this.selectedRegistrationType.name === 'feedback' || this.selectedRegistrationType.name === 'communication') {
       this.updateAndCreateEdfeg();
     } else {
-      if (this.eventDataFormEntityGroup !== null && this.eventDataFormEntityGroup.user_details !== null) {
+      if (
+        this.eventDataFormEntityGroup === null ||
+        (this.eventDataFormEntityGroup !== null && this.eventDataFormEntityGroup.user_details !== null)
+      ) {
         this.UserDetailsCheckbox.updateValues();
       } else {
         this.updateAndCreateEdfeg();
@@ -121,7 +124,11 @@ export class NewFormAttachGroupsComponent implements OnInit {
 
   updateEdfeg(edfegId) {
     this.edfegService
-      .updateEventDataFormEntityGroup(edfegId, this.eventDataFormEntityGroupForm.get('data_form_entity_group'))
+      .updateEventDataFormEntityGroup(
+        edfegId,
+        this.eventDataFormEntityGroupForm.get('data_form_entity_group'),
+        this.userDetailsFormValues,
+      )
       .subscribe((data) => {
         this.edfegUpdated.emit(data);
         this.toastrService.successDialog('Form Updated');
