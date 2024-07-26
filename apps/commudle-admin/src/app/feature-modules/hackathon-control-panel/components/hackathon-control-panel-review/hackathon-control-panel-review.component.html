@@ -43,6 +43,12 @@
             <div class="date">
               {{ moment(userResponse.team.created_at).format('DD MMM YYYY') }}
             </div>
+            <div *ngIf="userResponse.team.community_build" (click)="$event.stopPropagation()">
+              Submit Project:
+              <a [routerLink]="['/builds', userResponse.team.community_build.slug]" target="_blank">{{
+                userResponse.team.community_build.name
+              }}</a>
+            </div>
           </div>
           <div *ngIf="userResponse.team.round" class="round-name">
             {{ userResponse.team.round?.name }}
