@@ -24,6 +24,14 @@ div {
         @apply com-text-sm;
       }
     }
+
+    &.xx-small-text {
+      @apply com-py-2px com-px-1 com-leading-3 com-text-8px com-font-medium;
+
+      nb-icon {
+        @apply com-text-sm;
+      }
+    }
   }
 
   &.rectangle {
