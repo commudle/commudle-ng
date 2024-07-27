@@ -9,7 +9,11 @@
 >
   <div>
     <p
-      [ngClass]="{ 'small-text': fontSize == 'small', 'xx-small-text': fontSize == 'xx-small' }"
+      [ngClass]="{
+        'small-text': fontSize == 'small',
+        'x-small-text': fontSize == 'x-small',
+        'xx-small-text': fontSize == 'xx-small'
+      }"
       class="{{ fontColor }}"
     >
       <nb-icon *ngIf="nbIcon" icon="{{ nbIcon }}"></nb-icon>
