@@ -1,7 +1,8 @@
-import { AfterContentInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { AuthService, YoutubeLoginProvider } from '@commudle/auth';
 import { ICommunityAuthToken, IEmbeddedVideoStream, IEvent } from '@commudle/shared-models';
 import { ToastrService } from '@commudle/shared-services';
+import { NbDialogService } from '@commudle/theme';
 import { CommunityAuthTokensService } from 'apps/commudle-admin/src/app/services/community-auth-tokens.service';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { Subscription } from 'rxjs';
@@ -30,6 +31,7 @@ export class EventStreamingComponent implements AfterContentInit {
     private communityAuthTokensService: CommunityAuthTokensService,
     private embeddedVideoStreamService: EmbeddedVideoStreamsService,
     private toastrService: ToastrService,
+    private nbDialogService: NbDialogService,
   ) {
     authService.initialize_one(YoutubeLoginProvider.PROVIDER_ID);
   }
@@ -82,12 +84,15 @@ export class EventStreamingComponent implements AfterContentInit {
   createStream() {
     this.loaders.createStream = true;
     this.subscriptions.push(
-      this.embeddedVideoStreamService.createLivestream(this.event.id, 'Event').subscribe((res) => {
-        if (res) {
-          this.toastrService.successDialog('Stream created');
-          this.refreshEmbeddedVideoStream.emit();
-          this.loaders.createStream = false;
-        }
+      this.embeddedVideoStreamService.createLivestream(this.event.id, 'Event').subscribe({
+        next: (res) => {
+          if (res) {
+            this.toastrService.successDialog('Stream created');
+            this.refreshEmbeddedVideoStream.emit();
+            this.loaders.createStream = false;
+          }
+        },
+        error: () => (this.loaders.createStream = false),
       }),
     );
   }
@@ -103,5 +108,9 @@ export class EventStreamingComponent implements AfterContentInit {
         }
       }),
     );
+  }
+
+  openDialog(templateRef: TemplateRef<any>) {
+    this.nbDialogService.open(templateRef);
   }
 }

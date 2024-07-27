@@ -15,7 +15,7 @@
     </ng-container>
 
     <ng-template #createStreamButton>
-      <button (click)="createStream()" [nbSpinner]="loaders.createStream" nbButton type="button">
+      <button (click)="openDialog(liveStreamEnabledDialog)" [nbSpinner]="loaders.createStream" nbButton type="button">
         Create new stream
       </button>
     </ng-template>
@@ -25,3 +25,25 @@
     <button (click)="loginToYoutube()" nbButton type="button">Connect to YouTube</button>
   </ng-template>
 </div>
+
+<ng-template #liveStreamEnabledDialog let-ref="dialogRef">
+  <nb-card class="com-max-w-2xl">
+    <nb-card-header class="com-flex com-justify-between">
+      <p class="com-m-0">Enable live streaming on your YouTube account</p>
+      <button (click)="ref.close()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        Before you can create a stream, make sure you have enabled live streaming on your YouTube account. It can take
+        up to 24 hours for this feature to be enabled.
+      </p>
+      <a href="https://www.youtube.com/live_dashboard" target="_blank">Go to YouTube Studio</a>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="ref.close()" nbButton ghost status="warning">Cancel</button>
+      <button (click)="createStream(); ref.close()" nbButton status="success">Continue &rightarrow;</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
