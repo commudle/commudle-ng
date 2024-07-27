@@ -24,7 +24,8 @@
   <nb-card-body>
     <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
-        <th width="500px">Name</th>
+        <th width="300px">Name</th>
+        <th>Round</th>
         <th width="200px">Updates</th>
         <th width="200px">Notes</th>
         <th>Application Status</th>
@@ -43,13 +44,15 @@
             <div class="date">
               {{ moment(userResponse.team.created_at).format('DD MMM YYYY') }}
             </div>
-            <div *ngIf="userResponse.team.community_build" (click)="$event.stopPropagation()">
-              Submit Project:
-              <a [routerLink]="['/builds', userResponse.team.community_build.slug]" target="_blank">{{
-                userResponse.team.community_build.name
-              }}</a>
+            <div *ngIf="userResponse.team.community_build" (click)="$event.stopPropagation()" class="project-link">
+              Link to project:
+              <a [routerLink]="['/builds', userResponse.team.community_build.slug]" target="_blank">
+                <fa-icon [icon]="faUpRightFromSquare"></fa-icon> {{ userResponse.team.community_build.name }}</a
+              >
             </div>
           </div>
+        </td>
+        <td>
           <div *ngIf="userResponse.team.round" class="round-name">
             {{ userResponse.team.round?.name }}
           </div>
