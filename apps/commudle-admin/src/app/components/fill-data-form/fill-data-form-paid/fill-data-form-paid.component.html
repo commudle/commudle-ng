@@ -55,6 +55,7 @@
                 [existingResponses]="selectedFormResponse"
                 [eventId]="event ? event.id : ''"
                 [submitButtonText]="ticketPaidAlready ? 'Save' : 'Submit & Pay'"
+                [showSubmitButton]="ticketPaidAlready ? true : isMobileView ? false : true"
               >
               </app-data-form-fill>
               <p *ngIf="dataFormEntity.multi_response" class="text-info">
