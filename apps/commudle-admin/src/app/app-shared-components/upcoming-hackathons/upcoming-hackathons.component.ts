@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '@commudle/shared-environments';
-import { IHackathon } from '@commudle/shared-models';
+import { ICommunity, IHackathon } from '@commudle/shared-models';
 import { SeoService } from '@commudle/shared-services';
+import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IPageInfo } from 'apps/shared-models/page-info.model';
 
@@ -19,8 +20,13 @@ export class UpcomingHackathonsComponent implements OnInit {
   page_info: IPageInfo;
   environment = environment;
   schemaForHackathon = [];
+  community: ICommunity;
 
-  constructor(private hackathonService: HackathonService, private seoService: SeoService) {}
+  constructor(
+    private hackathonService: HackathonService,
+    private seoService: SeoService,
+    private communitiesService: CommunitiesService,
+  ) {}
 
   ngOnInit(): void {
     this.getUpcomingHackathons();
@@ -43,6 +49,9 @@ export class UpcomingHackathonsComponent implements OnInit {
 
   setSchema() {
     for (const upcomingHackathon of this.upcomingHackathons) {
+      this.communitiesService.getCommunityDetails(upcomingHackathon.kommunity_slug).subscribe((data) => {
+        this.community = data;
+      });
       if (upcomingHackathon.start_date) {
         let location: object, hackathonStatus: string;
         if (upcomingHackathon.hackathon_location_type === 'offline') {
@@ -69,7 +78,7 @@ export class UpcomingHackathonsComponent implements OnInit {
           '@type': 'Event',
           name: upcomingHackathon.name,
           description: upcomingHackathon.description.replace(/<[^>]*>/g, '').substring(0, 200),
-          // image: upcomingHackathon.banner_image ? upcomingHackathon.banner_image.url : this.community.logo_path,
+          image: upcomingHackathon.banner_image ? upcomingHackathon.banner_image.url : this.community?.logo_path,
           startDate: upcomingHackathon.start_date,
           endDate: upcomingHackathon.end_date,
           eventStatus: 'https://schema.org/EventScheduled',
