@@ -222,7 +222,7 @@
             </label>
 
             <!-- Business Name* -->
-            <label>
+            <!-- <label>
               Business Name*
               <input
                 fieldSize="small"
@@ -241,12 +241,12 @@
               >
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
-            </label>
+            </label> -->
 
-            <commudle-alert
+            <!-- <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
-            ></commudle-alert>
+            ></commudle-alert> -->
 
             <!-- Customer facing business name -->
             <label>
@@ -936,15 +936,8 @@
         </div>
 
         <div *ngIf="selectedCountry === 'India'">
-          <button
-            (click)="createRazorpayAccount()"
-            [disabled]="!razorpayAccountForm.valid || isLoading || !settlementDetailsForm.valid"
-            fullWidth
-            nbButton
-            size="small"
-            status="primary"
-            type="submit"
-          >
+          <!-- [disabled]="!razorpayAccountForm.valid || isLoading || !settlementDetailsForm.valid" -->
+          <button (click)="createRazorpayAccount()" fullWidth nbButton size="small" status="primary" type="submit">
             Proceed with Razorpay
           </button>
         </div>
