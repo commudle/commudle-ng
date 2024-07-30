@@ -194,7 +194,7 @@
                   <app-badge
                     *ngIf="community.upcoming_events_count > 0"
                     class="-com-mt-4"
-                    text="New"
+                    text="{{ community.upcoming_events_count }} New"
                     [fontColor]="'com-text-tWhite'"
                     [fontSize]="'small'"
                     [borderRadius]="'round'"
@@ -206,10 +206,20 @@
                 </a>
                 <a
                   [routerLink]="['hackathons']"
-                  class="d-flex"
+                  class="d-flex com-relative"
                   routerLinkActive="active"
                   *ngIf="community.hackathon_enabled"
                 >
+                  <app-badge
+                    *ngIf="community.upcoming_hackathons_count > 0"
+                    class="-com-mt-4"
+                    text="{{ community.upcoming_hackathons_count }} New"
+                    [fontColor]="'com-text-tWhite'"
+                    [fontSize]="'small'"
+                    [borderRadius]="'round'"
+                    [color]="'com-bg-orange-500'"
+                    [position]="'top right'"
+                  ></app-badge>
                   <img
                     [src]="
                       isHackathonActive

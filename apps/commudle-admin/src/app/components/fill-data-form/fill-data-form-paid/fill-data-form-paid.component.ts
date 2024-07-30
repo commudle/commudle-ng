@@ -36,6 +36,7 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
+import { ResponsiveService } from 'apps/shared-services/responsive.service';
 
 declare const Razorpay: any;
 @Component({
@@ -112,6 +113,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   isLoadingPayment = false;
   userProfileDetails: IUserStat;
   formAnswers = {};
+  isMobileView = false;
 
   @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
@@ -136,12 +138,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private razorpayService: RazorpayService,
     private appUsersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
+    private responsiveService: ResponsiveService,
   ) {}
 
   ngOnInit() {
     this.fetchDataFormEntity();
     this.setRedirectPath();
     this.setupCurrentUser();
+    this.isMobileView = this.responsiveService.isMobileView();
   }
 
   ngAfterViewInit(): void {

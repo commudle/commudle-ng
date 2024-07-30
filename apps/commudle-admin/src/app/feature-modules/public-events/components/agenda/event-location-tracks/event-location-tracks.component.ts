@@ -124,4 +124,8 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         this.changeDetectorRef.detectChanges();
       });
   }
+
+  splitTags(tag: string): string[] {
+    return tag ? tag.split(/[\s\n]+/) : [];
+  }
 }

@@ -15,7 +15,7 @@ import {
   IRound,
 } from '@commudle/shared-models';
 import { EInvitationStatus, IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
-import { faXmark, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faPlus, faCheck, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
@@ -36,6 +36,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   faXmark = faXmark;
   faPlus = faPlus;
   faCheck = faCheck;
+  faUpRightFromSquare = faUpRightFromSquare;
   notesForm;
   notes: INote[];
   dialogRef: NbDialogRef<unknown>;

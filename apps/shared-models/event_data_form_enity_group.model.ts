@@ -16,4 +16,5 @@ export interface IEventDataFormEntityGroup {
   summary_registration_counts: any;
   event: IEvent;
   community: ICommunity;
+  user_details: any;
 }
