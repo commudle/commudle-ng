@@ -106,4 +106,11 @@ export class RazorpayService {
       params,
     });
   }
+
+  createMissingRzpPayment(paymentId): Observable<IRazorpayOrder> {
+    return this.http.post<IRazorpayOrder>(
+      this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_MISSING_RZP_PAYMENT),
+      { payment_id: paymentId },
+    );
+  }
 }
