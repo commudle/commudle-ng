@@ -213,6 +213,7 @@ export const API_ROUTES = {
     TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
     INDEX_BY_COMMUNITY: 'api/v2/event_data_form_entity_groups/index_by_community',
     LIST: 'api/v2/event_data_form_entity_groups/list',
+    EMAIL_PAYMENT_DETAILS_CSV: 'api/v2/event_data_form_entity_groups/email_payment_details_csv',
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
