@@ -50,7 +50,7 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
   setMeta(): void {
     this.seoService.setTags(
       `${this.caseStudyPage.title} - Case Study`,
-      '${this.caseStudyPage.metaDescription}',
+      this.caseStudyPage.metaDescription,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }
