@@ -37,6 +37,8 @@ import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
 import { ResponsiveService } from 'apps/shared-services/responsive.service';
+import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { ICustomPage } from 'apps/shared-models/custom-page.model';
 
 declare const Razorpay: any;
 @Component({
@@ -114,6 +116,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   userProfileDetails: IUserStat;
   formAnswers = {};
   isMobileView = false;
+  refundPolicy: ICustomPage;
 
   @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
@@ -139,6 +142,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private appUsersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
     private responsiveService: ResponsiveService,
+    private customPageService: CustomPageService,
   ) {}
 
   ngOnInit() {
@@ -383,7 +387,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     this.subscriptions.push(
       this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
         this.community = data;
-
+        if (this.community.has_refund_policy) {
+          this.getRefundPolicyPageData();
+        }
         if (!this.event.header_image_path) {
           this.seoService.setTag('og:image', this.community.logo_path);
         }
@@ -703,5 +709,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     });
     this.userProfileManagerService.updateUserDetails(false, this.currentUser);
     this.submitForm();
+  }
+
+  getRefundPolicyPageData() {
+    this.customPageService.getRefundPolicyPage(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
+      if (data) {
+        this.community.has_refund_policy = true;
+        this.refundPolicy = data;
+      }
+    });
   }
 }
