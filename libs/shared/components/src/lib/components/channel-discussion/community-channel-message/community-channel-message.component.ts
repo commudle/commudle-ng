@@ -87,10 +87,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
           if (event.item.title === 'Edit') {
             this.openEditForm();
           } else if (event.item.title === 'Delete') {
-            this.communityChannelHandlerService.sendDelete(
-              this.message.id,
-              this.message.user.id === this.authService.getCurrentUser().id,
-            );
+            this.communityChannelHandlerService.sendDelete(this.message.id);
           } else if (event.item.title === 'Share This Message') {
             this.share();
           } else if (event.item.title === 'Pin Message') {
@@ -108,18 +105,21 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
       }
       if (
         this.authService.getCurrentUser()?.id === this.message.user.id ||
-        this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+        this.channelsRoles[this.channelOrForum.id]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
       ) {
         this.contextMenuItems.push({
           title: this.message.pinned ? 'Unpin Message' : 'Pin Message',
         });
       }
-      if (this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) {
+      if (this.channelsRoles[this.channelOrForum.id]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)) {
         this.contextMenuItems.push({
           title: 'Email to all members',
         });
       }
-      if (this.authService.getCurrentUser().id === this.message.user.id) {
+      if (
+        this.authService.getCurrentUser().id === this.message.user.id ||
+        this.channelsRoles[this.channelOrForum.id]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+      ) {
         this.contextMenuItems.push({
           title: 'Delete',
         });
