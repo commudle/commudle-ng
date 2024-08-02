@@ -19,6 +19,7 @@ import { EventRegistrationsComponent } from 'apps/commudle-admin/src/app/feature
 import { SponsorsComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/sponsors/sponsors.component';
 import { CommunityEmailsListComponent } from 'apps/commudle-admin/src/app/feature-modules/reusable-components/components/community-emails-list/community-emails-list.component';
 import { EventCheckedInListComponent } from 'apps/commudle-admin/src/app/feature-modules/events/components/event-checked-in-list/event-checked-in-list.component';
+import { QuestionTypesResolver } from 'apps/shared-resolvers/question-types.resolver';
 
 const routes = [
   {
@@ -66,6 +67,9 @@ const routes = [
               {
                 path: 'registrations',
                 component: EventRegistrationsComponent,
+                resolve: {
+                  questionTypes: QuestionTypesResolver,
+                },
               },
               {
                 path: 'collaborations',

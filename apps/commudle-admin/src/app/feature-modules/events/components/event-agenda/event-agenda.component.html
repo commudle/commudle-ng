@@ -47,9 +47,12 @@
           Public Session Page
           <nb-icon icon="external-link"></nb-icon>
         </a>
-        <p *ngIf="event.custom_registration">
-          <small>*Speakers can be selected by using Speaker Form in the registrations section above!</small>
-        </p>
+        <div *ngIf="event.custom_registration" class="info-message">
+          <commudle-alert
+            [info]="true"
+            [message]="'Speakers can be selected by using Speaker Form in the registrations section above!'"
+          ></commudle-alert>
+        </div>
         <app-event-locations *ngIf="event.custom_agenda" [community]="community" [event]="event"></app-event-locations>
         <app-event-speakers
           *ngIf="!event.custom_agenda && !event.custom_registration"

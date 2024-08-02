@@ -23,7 +23,6 @@ import { SharedComponentsModule as NewSharedComponentsModule } from '@commudle/s
 import { PublicHackathonDetailsMiniCardComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-details-mini-card/public-hackathon-details-mini-card.component';
 import { PublicHackathonFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PublicHackathonUserDetailsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-user-details-form/public-hackathon-user-details-form.component';
 import { PublicHackathonTeammateFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-teammate-form/public-hackathon-teammate-form.component';
 import { PublicHackathonProjectDetailsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-project-details-form/public-hackathon-project-details-form.component';
 import { PublicHackathonCustomQuestionsFormComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-form/public-hackathon-custom-questions-form/public-hackathon-custom-questions-form.component';
@@ -65,7 +64,6 @@ import { PublicHackathonRegistrationComponent } from 'apps/commudle-admin/src/ap
     PublicHackathonChannelsComponent,
     PublicHackathonDetailsMiniCardComponent,
     PublicHackathonFormComponent,
-    PublicHackathonUserDetailsFormComponent,
     PublicHackathonTeammateFormComponent,
     PublicHackathonProjectDetailsFormComponent,
     PublicHackathonCustomQuestionsFormComponent,

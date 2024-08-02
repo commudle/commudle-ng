@@ -4,4 +4,9 @@
   tr:nth-child(odd) {
     @apply com-bg-gray-100;
   }
+
+  span,
+  td {
+    @apply com-text-black;
+  }
 }

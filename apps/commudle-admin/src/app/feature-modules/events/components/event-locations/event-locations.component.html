@@ -1,83 +1,89 @@
 <div>
-  <div class="help-text-button">
-    <p>
-      <small>
-        <a (click)="openHelpTextWindow()">How does this work?</a>
-      </small>
-    </p>
-  </div>
   <div *ngIf="event.editable">
     <button (click)="showAddEventLocationForm()" nbButton status="primary">
       <nb-icon icon="plus-circle-outline"></nb-icon>
-      &nbsp; Add Location
+      Add Location
     </button>
   </div>
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-  <div *ngIf="eventLocations">
-    <nb-card *ngIf="eventLocations.length > 0" class="event-locations-list">
+  <div *ngIf="eventDatesLocation">
+    <nb-card *ngIf="eventDatesLocation.length > 0" class="event-locations-list">
       <div class="event-location">
-        <nb-tabset *ngIf="eventLocations" id="tabset" name="tabset" #tabset>
+        <nb-tabset *ngIf="eventDatesLocation" id="tabset" name="tabset" #tabset (changeTab)="onTabChange($event)">
           <nb-tab
-            *ngFor="let el of eventLocations; let i = index"
-            badgePosition="top right"
-            badgeStatus="primary"
-            badgeText="{{ el.event_location_tracks.length > 1 ? el.event_location_tracks.length + ' Tracks' : '' }}"
-            tabIcon="{{ getTabIcon(el) }}"
-            tabTitle="{{ getLocationName(el) }}"
+            *ngFor="let data of eventDatesLocation; let i = index"
+            tabTitle="{{ moment(data.date).format('Do MMMM') }}"
             class="tab"
             [active]="i === activeTabIndex"
             id="addTab"
             name="addTab"
             #addTab
           >
-            <div class="event-location-tracks">
-              <div *ngIf="el.location" class="map-location">
-                <p class="address">
-                  <strong>Address: </strong>
-                  <a href="{{ el.location.map_link }}" target="_blank">{{ el.location.address }}</a>
-                  &nbsp;
-                  <fa-icon
-                    *ngIf="event.editable"
-                    (click)="showEditEventLocationForm(el)"
-                    [icon]="faPen"
-                    class="edit-location-icon"
-                  >
-                  </fa-icon>
-                  &nbsp;
-                  <fa-icon
-                    *ngIf="event.editable"
-                    (click)="confirmDeleteEventLocation(el)"
-                    [icon]="faTrash"
-                    class="delete-location-icon"
-                  ></fa-icon>
-                </p>
+            <div id="tabset" name="tabset" #tabset class="locations-tracks">
+              <div *ngIf="data?.event_locations" class="com-w-full">
+                <div class="locations">
+                  <div *ngFor="let el of data.event_locations; let i = index">
+                    <button
+                      *ngIf="el.location"
+                      nbButton
+                      outline
+                      [status]="el.id === selectedLocation?.id ? 'primary' : 'basic'"
+                      (click)="selectLocation(el)"
+                      size="small"
+                    >
+                      <fa-icon [icon]="el.event_type === EEventType.ONLINE_ONLY ? faVideo : faLocationDot"></fa-icon
+                      >{{ el.location.name }}
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="selectedLocation">
+                  <div *ngIf="selectedLocation?.location.address" class="map-location">
+                    <p class="address">
+                      <span *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY">Address: </span>
+                      <a
+                        *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY"
+                        href="{{ selectedLocation.location.map_link }}"
+                        target="_blank"
+                        >{{ selectedLocation.location.address }}</a
+                      >
+                      &nbsp;
+                      <fa-icon
+                        *ngIf="event.editable"
+                        (click)="showEditEventLocationForm(selectedLocation)"
+                        [icon]="faPen"
+                        class="edit-location-icon"
+                      >
+                      </fa-icon>
+                      &nbsp;
+                      <fa-icon
+                        *ngIf="event.editable"
+                        (click)="confirmDeleteEventLocation(selectedLocation)"
+                        [icon]="faTrash"
+                        class="delete-location-icon"
+                      ></fa-icon>
+                    </p>
 
-                <p class="link-to-map">
-                  <small>
-                    <a href="{{ el.location.map_link }}" target="_blank">
-                      <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map
-                    </a>
-                  </small>
-                </p>
+                    <p *ngIf="selectedLocation.event_type === EEventType.OFFLINE_ONLY" class="link-to-map">
+                      <a href="{{ selectedLocation.location.map_link }}" target="_blank">
+                        <fa-icon [icon]="faLink"></fa-icon> &nbsp; Link to Map
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
-              <app-event-location-tracks
-                (addSession)="addSlot($event, i)"
-                (addTrack)="addTrack($event, i)"
-                (removeSession)="removeSlot($event, i)"
-                (removeTrack)="removeTrack($event, i)"
-                (updateSession)="updateSlot($event, i)"
-                (updateTrack)="updateTrack($event, i)"
-                [community]="community"
-                [eventLocationId]="el.id"
-                [eventLocationTracks]="el.event_location_tracks"
-                [eventLocations]="eventLocations"
-                [eventSpeakers]="eventSpeakers"
-                [event]="event"
-              >
-              </app-event-location-tracks>
             </div>
           </nb-tab>
         </nb-tabset>
+        <div *ngIf="selectedLocation && selectedDate" class="event-location-tracks">
+          <app-event-location-tracks
+            [community]="community"
+            [eventLocation]="selectedLocation"
+            [eventSpeakers]="eventSpeakers"
+            [event]="event"
+            [eventLocationDate]="selectedDate"
+          >
+          </app-event-location-tracks>
+        </div>
       </div>
     </nb-card>
   </div>
@@ -89,22 +95,25 @@
     [formGroup]="eventLocationForm"
     class="event-location-form"
   >
-    <!-- <nb-radio-group
+    <nb-radio-group
       (valueChange)="toggleEventTypeValidations($event)"
       class="options"
       formControlName="event_type"
       name="event-type"
     >
       <nb-radio [value]="EEventType.OFFLINE_ONLY"> Offline Event </nb-radio>
-      <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE"> Offline + Live Stream </nb-radio>
+      <!-- <nb-radio [value]="EEventType.OFFLINE_AND_ONLINE"> Offline + Live Stream </nb-radio> -->
       <nb-radio [value]="EEventType.ONLINE_ONLY"> Live Stream Only </nb-radio>
-    </nb-radio-group> -->
-    <div class="offline-event-fields" formGroupName="location">
+    </nb-radio-group>
+    <div *ngIf="selectedEventType === EEventType.OFFLINE_ONLY" class="offline-event-fields" formGroupName="location">
       <div>
         <label fullWidth>
           Name*
           <input formControlName="name" fullWidth nbInput type="text" />
         </label>
+        <span *ngIf="invalidLocationName"
+          ><commudle-alert [error]="true" [errorMessage]="'Location with same name already exists!'"></commudle-alert
+        ></span>
         <span
           *ngIf="
             eventLocationForm['controls'].location['controls'].name.touched &&
@@ -146,12 +155,12 @@
         </span>
       </div>
     </div>
-    <!-- <div
+    <div
       *ngIf="selectedEventType === EEventType.ONLINE_ONLY"
       class="online-event-fields"
       formGroupName="embedded_video_stream"
     >
-      <p>
+      <!-- <p>
         <small>
           <i>Fill these if your event has a common overall video stream for viewing</i>
         </small>
@@ -219,8 +228,7 @@
           >
             Required Field
           </span>
-          <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea
-          >
+          <textarea formControlName="embed_code" fullWidth nbInput placeholder=""></textarea>
         </label>
       </div>
 
@@ -259,9 +267,8 @@
           </span>
           <input formControlName="zoom_password" fullWidth nbInput placeholder="Type password here" />
         </label>
-      </div>
+      </div> -->
     </div>
-    -->
 
     <div class="save-button-bottom">
       <button [disabled]="!eventLocationForm.valid" fullWidth nbButton status="info" type="submit">Save</button>
@@ -276,32 +283,5 @@
   <div>
     <button (click)="deleteEventLocation(true, data.eventLocation)" nbButton status="link">Yes</button> &nbsp;
     <button (click)="deleteEventLocation(false, data.eventLocation)" nbButton status="link">No</button>
-  </div>
-</ng-template>
-
-<ng-template #helpText let-data>
-  <h5>Here's how it works</h5>
-  <div>
-    <ul>
-      <li>You can choose between an online (live streaming) and an offline (at a physical space) event</li>
-      <li>An event can have multiple locations (physical or online)</li>
-      <li>Each location can have multiple tracks</li>
-      <li>Each track can have multiple speaker sessions in timed slots</li>
-    </ul>
-  </div>
-
-  <h5>Choosing online locations</h5>
-  <div>
-    <ul>
-      <li>Dimensions of embedded video: 560px by 340px</li>
-      <li>Any embeddable video can be put up in the event.</li>
-      <li>You can have a common online stream for the complete event</li>
-      <li>
-        OR you can choose to enter a different stream for each track [if filled, this will override the event stream]
-      </li>
-      <li>
-        OR you can have individual streams for each session [if filled, this will override both track and event streams]
-      </li>
-    </ul>
   </div>
 </ng-template>

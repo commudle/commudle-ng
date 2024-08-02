@@ -52,6 +52,11 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <commudle-alert
+        [info]="true"
+        message="All the confirmed payments will automatically receive an entry pass"
+      ></commudle-alert>
+      <br />
       <form [formGroup]="paidTicketingForm">
         <div formGroupName="paid_ticket_setting" class="com-w-full com-flex com-flex-col com-gap-2">
           <div class="com-flex com-gap-2 com-w-full">
@@ -98,6 +103,12 @@
             </label>
           </div>
 
+          <div class="com-w-full">
+            <label for="multi_person_ticket">
+              <nb-checkbox formControlName="multi_person_ticket"> Allow Group Ticket</nb-checkbox>
+            </label>
+          </div>
+
           <!-- Bank Ac* -->
           <label>
             Bank Ac*
@@ -116,8 +127,8 @@
                   (****{{ rt.details.external_accounts.data[0].last4 }}) - (Stripe)
                 </option>
                 <option *ngFor="let ra of razorpayAccounts" [value]="ra.uuid">
-                  {{ ra.bank_details.active_configuration.settlements.beneficiary_name }}
-                  (****{{ ra.bank_details.active_configuration.settlements.account_number.toString().slice(-4) }}) -
+                  {{ ra.bank_details?.active_configuration.settlements.beneficiary_name }}
+                  (****{{ ra.bank_details?.active_configuration.settlements.account_number.toString().slice(-4) }}) -
                   (Razorpay)
                 </option>
                 <option value="connect-bank-account">+ Connect Bank Account</option>
@@ -138,7 +149,7 @@
             <commudle-alert
               [info]="true"
               [message]="
-                'Commudle fees for this ticket will be 2% + GST' +
+                'Commudle fees for this ticket will be 1% + GST' +
                 ((paidTicketingForm.controls.paid_ticket_setting.get('currency').value === 'inr' ? '₹' : '$') +
                   this.commudleFeeAmount)
               "

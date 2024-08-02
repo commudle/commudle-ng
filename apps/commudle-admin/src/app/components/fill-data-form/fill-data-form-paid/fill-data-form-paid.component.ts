@@ -34,6 +34,9 @@ import { RazorpayService } from '@commudle/shared-services';
 import { EDbModels, IRazorpayOrder } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
+import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
+import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
+import { ResponsiveService } from 'apps/shared-services/responsive.service';
 
 declare const Razorpay: any;
 @Component({
@@ -109,6 +112,10 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   showEventTicketOrder;
   isLoadingPayment = false;
   userProfileDetails: IUserStat;
+  formAnswers = {};
+  isMobileView = false;
+
+  @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -130,12 +137,15 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private discountCodeService: DiscountCodesService,
     private razorpayService: RazorpayService,
     private appUsersService: AppUsersService,
+    private userProfileManagerService: UserProfileManagerService,
+    private responsiveService: ResponsiveService,
   ) {}
 
   ngOnInit() {
     this.fetchDataFormEntity();
     this.setRedirectPath();
     this.setupCurrentUser();
+    this.isMobileView = this.responsiveService.isMobileView();
   }
 
   ngAfterViewInit(): void {
@@ -383,13 +393,23 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       }),
     );
   }
+  updateUserDetailsAndSubmitForm($event) {
+    this.formAnswers = $event;
+    if (this.dataFormEntity.user_details) {
+      this.userDetailsFormComponent.submitUserDetails();
+    } else {
+      this.submitForm();
+    }
+  }
 
   //submit user form details
-  submitForm($event) {
-    this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-      this.redirectTo();
-      this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
-    });
+  submitForm() {
+    this.dataFormEntityResponsesService
+      .submitDataFormEntityResponse(this.dataFormEntity.id, this.formAnswers)
+      .subscribe(() => {
+        this.redirectTo();
+        this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+      });
   }
 
   // Generate new additional user form
@@ -438,7 +458,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     if (!this.ticketPaidAlready) {
       this.discountCodeService
         .canBeApplied(
-          this.promoCode,
+          this.promoCode.toUpperCase(),
           this.dataFormEntity.entity_id,
           this.paymentDetails.price,
           this.event.id,
@@ -486,27 +506,38 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   // click for open payment box and get ticket order id
   createTicketOrder() {
     this.eventTicketOrderService
-      .createEventTicketOrder(this.formData, this.dataFormEntity.entity_id, this.promoCodeApplied ? this.promoCode : '')
-      .subscribe((data) => {
-        if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
-          this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-          this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
-          this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
-        } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
-          this.createOrUpdateRazorpayOrder(data.id);
-        }
-        if (data.discount_code_expires_at) {
-          this.targetDate = new Date(data.discount_code_expires_at);
-          if (this.targetDate) {
-            this.updateTimeRemaining();
-            if (this.showTimer) {
-              setInterval(() => {
-                this.updateTimeRemaining();
-              }, 1000);
+      .createEventTicketOrder(
+        this.formData,
+        this.dataFormEntity.entity_id,
+        this.promoCodeApplied ? this.promoCode.toUpperCase() : '',
+      )
+      .subscribe(
+        (data) => {
+          if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+            this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+            this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+            this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+          } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+            this.createOrUpdateRazorpayOrder(data.id);
+          }
+          if (data.discount_code_expires_at) {
+            this.targetDate = new Date(data.discount_code_expires_at);
+            if (this.targetDate) {
+              this.updateTimeRemaining();
+              if (this.showTimer) {
+                setInterval(() => {
+                  this.updateTimeRemaining();
+                }, 1000);
+              }
             }
           }
-        }
-      });
+        },
+        (error) => {
+          this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+          });
+        },
+      );
   }
 
   updateTickerOrder() {
@@ -516,26 +547,33 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.showEventTicketOrder.uuid,
         this.promoCodeApplied ? this.promoCode : '',
       )
-      .subscribe((data) => {
-        if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
-          this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
-          this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
-          this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
-        } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
-          this.createOrUpdateRazorpayOrder(data.id);
-        }
-        if (data.discount_code_expires_at) {
-          this.targetDate = new Date(data.discount_code_expires_at);
-          if (this.targetDate) {
-            this.updateTimeRemaining();
-            if (this.showTimer) {
-              setInterval(() => {
-                this.updateTimeRemaining();
-              }, 1000);
+      .subscribe(
+        (data) => {
+          if (data.bank_ac_type === EDbModels.STRIPE_CONNECT_ACCOUNT) {
+            this.elementsOptions.clientSecret = data.stripe_payment_intent.details.client_secret;
+            this.stripePaymentIntendId = data.stripe_payment_intent.stripe_pi_id;
+            this.paymentDialogRef = this.dialogService.open(this.paymentDialog, { closeOnBackdropClick: false });
+          } else if (data.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
+            this.createOrUpdateRazorpayOrder(data.id);
+          }
+          if (data.discount_code_expires_at) {
+            this.targetDate = new Date(data.discount_code_expires_at);
+            if (this.targetDate) {
+              this.updateTimeRemaining();
+              if (this.showTimer) {
+                setInterval(() => {
+                  this.updateTimeRemaining();
+                }, 1000);
+              }
             }
           }
-        }
-      });
+        },
+        (error) => {
+          this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+          });
+        },
+      );
   }
 
   // for Payment confirm Function from stripe
@@ -580,6 +618,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       amount: Math.round((this.totalPrice + this.totalTaxAmount) * 100),
       currency: 'INR',
     };
+    if (orderDetails.amount === 0) {
+      this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
+        closeOnBackdropClick: false,
+      });
+      return;
+    }
     this.razorpayService.createOrFindOrder(orderDetails, etoId).subscribe((data: IRazorpayOrder) => {
       this.razorPaySubmit(data);
     });
@@ -610,8 +654,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         email: this.currentUser.email,
         contact: this.currentUser.phone ? this.currentUser.phone : '',
       },
+      modal: {
+        ondismiss: () => {
+          console.error('Checkout form closed by the user');
+          this.isLoadingPayment = false;
+          this.dialogService.open(this.paymentErrorDialog, {
+            closeOnBackdropClick: false,
+          });
+        },
+      },
     };
-
     const rzp1 = new Razorpay(options);
     rzp1.on('payment.failed', (response: any) => {
       {
@@ -629,5 +681,27 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   // Reloads the current window location.
   reload() {
     window.location.reload();
+  }
+
+  updateUserDetails(event) {
+    this.userProfileManagerService.userProfileForm.patchValue({
+      name: event.name ? event.name : this.currentUser.name,
+      about_me: event.about_me ? event.about_me : this.currentUser.about_me,
+      designation: event.designation ? event.designation : this.currentUser.designation,
+      location: event.location ? event.location : this.currentUser.location,
+      gender: event.gender ? event.gender : this.currentUser.gender,
+      personal_website: event.personal_website ? event.personal_website : this.currentUser.personal_website,
+      github: event.github ? event.github : this.currentUser.github,
+      linkedin: event.linkedin ? event.linkedin : this.currentUser.linkedin,
+      twitter: event.twitter ? event.twitter : this.currentUser.twitter,
+      dribbble: event.dribbble ? event.dribbble : this.currentUser.dribbble,
+      behance: event.behance ? event.behance : this.currentUser.behance,
+      medium: event.medium ? event.medium : this.currentUser.medium,
+      gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
+      facebook: event.facebook ? event.facebook : this.currentUser.facebook,
+      youtube: event.youtube ? event.youtube : this.currentUser.youtube,
+    });
+    this.userProfileManagerService.updateUserDetails(false, this.currentUser);
+    this.submitForm();
   }
 }

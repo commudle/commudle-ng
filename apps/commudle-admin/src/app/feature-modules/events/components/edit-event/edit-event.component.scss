@@ -48,3 +48,12 @@
 nb-card {
   @apply com-mx-0;
 }
+
+.event-type {
+  > div {
+    @apply com-mt-1;
+    > div {
+      @apply com-flex com-gap-2 com-items-center;
+    }
+  }
+}

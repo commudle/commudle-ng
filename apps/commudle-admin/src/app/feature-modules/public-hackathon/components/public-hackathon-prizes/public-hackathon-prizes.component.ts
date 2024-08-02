@@ -5,7 +5,7 @@ import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { countries_details as countryDetails } from '@commudle/shared-services';
+import { AuthService, countries_details as countryDetails } from '@commudle/shared-services';
 import { IHackathonPrize, IHackathonTeam } from '@commudle/shared-models';
 
 @Component({
@@ -25,6 +25,7 @@ export class PublicHackathonPrizesComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private hackathonService: HackathonService,
     private hrgService: HackathonResponseGroupService,
+    private authService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -32,10 +33,12 @@ export class PublicHackathonPrizesComponent implements OnInit {
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
         this.getPrizes();
-        this.getHackathonCurrentRegistrationDetails();
+        this.authService.currentUser$.subscribe((currentUser) => {
+          if (currentUser) this.getHackathonCurrentRegistrationDetails();
+        });
       }),
     );
-    this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
+    this.hrgService.pShowHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
       if (data) this.hrgId = data.id;
     });
   }
