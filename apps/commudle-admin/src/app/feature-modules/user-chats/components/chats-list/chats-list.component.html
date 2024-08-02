@@ -19,14 +19,15 @@
             [disableAnchor]="true"
             [size]="'small'"
             [user]="chatUser.user"
+            [alignStart]="true"
           ></app-user-profile-mini>
-          <app-badge
+          <!-- <app-badge
             *ngIf="currentUser && chatUser.unread_user_ids.includes(currentUser.id)"
             [color]="'com-bg-Giants-Orange'"
             [fontSize]="'small'"
             [text]="'Unread'"
             [fontColor]="'com-text-tWhite'"
-          ></app-badge>
+          ></app-badge> -->
         </nb-list-item>
       </nb-list>
     </nb-card-body>

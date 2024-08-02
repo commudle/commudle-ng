@@ -1,4 +1,4 @@
-<div class="user {{ size }}">
+<div class="user {{ size }}" [ngClass]="{ 'align-start': alignStart }">
   <app-user-live-status
     *ngIf="showLiveStatus || showOnlineText"
     [showLiveStatus]="showLiveStatus"
