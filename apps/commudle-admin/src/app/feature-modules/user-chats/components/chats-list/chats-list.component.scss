@@ -29,6 +29,14 @@
 
   nb-list-item {
     @apply com-px-3 com-py-2;
+
+    .last_message {
+      @apply com-text-xs com-font-normal com-text-black com-m-0 com-ml-12 com-mt-[-16px];
+    }
+
+    .user-profile {
+      @apply com-flex com-flex-col;
+    }
   }
 
   .selectedUser {

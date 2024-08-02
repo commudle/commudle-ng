@@ -14,13 +14,16 @@
           [ngClass]="{ selectedUser: selectedChatUser === chatUser }"
           class="clickable"
         >
-          <app-user-profile-mini
-            [showLiveStatus]="showLiveStatus"
-            [disableAnchor]="true"
-            [size]="'small'"
-            [user]="chatUser.user"
-            [alignStart]="true"
-          ></app-user-profile-mini>
+          <div class="user-profile">
+            <app-user-profile-mini
+              [showLiveStatus]="showLiveStatus"
+              [disableAnchor]="true"
+              [size]="'small'"
+              [user]="chatUser.user"
+              [alignStart]="true"
+            ></app-user-profile-mini>
+            <p class="last_message">{{ chatUser.last_message.content }}</p>
+          </div>
           <!-- <app-badge
             *ngIf="currentUser && chatUser.unread_user_ids.includes(currentUser.id)"
             [color]="'com-bg-Giants-Orange'"
