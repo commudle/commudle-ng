@@ -225,6 +225,9 @@ export class CommunityBankDetailsComponent implements OnInit, OnDestroy {
   }
 
   createRazorpayAccount() {
+    this.razorpayAccountForm.patchValue({
+      legal_business_name: this.settlementDetailsForm.get('settlements').get('beneficiary_name').value,
+    });
     this.isLoading = true;
     this.razorPayService
       .createRazorpayAccount(
