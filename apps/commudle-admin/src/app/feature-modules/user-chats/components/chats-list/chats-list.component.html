@@ -22,7 +22,26 @@
               [user]="chatUser.user"
               [alignStart]="true"
             ></app-user-profile-mini>
+            <p class="date">{{ moment(chatUser.last_message.created_at).format('ll') }}</p>
+          </div>
+          <div class="latest-message-count">
             <p class="last_message">{{ chatUser.last_message.content }}</p>
+            <app-badge
+              *ngIf="currentUser"
+              [text]="chatUser.unread_messages_count"
+              [fontColor]="'com-text-white'"
+              [fontSize]="'xx-small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-primary-500'"
+            ></app-badge>
+            <!-- <app-badge
+              *ngIf="currentUser"
+              [text]="chatUser.unread_messages_count"
+              [fontColor]="'com-text-white'"
+              [fontSize]="'xx-small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-primary-500'"
+            ></app-badge> -->
           </div>
           <!-- <app-badge
             *ngIf="currentUser && chatUser.unread_user_ids.includes(currentUser.id)"

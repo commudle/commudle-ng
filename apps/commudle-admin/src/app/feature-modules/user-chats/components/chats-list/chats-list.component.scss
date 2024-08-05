@@ -27,15 +27,26 @@
     }
   }
 
-  nb-list-item {
-    @apply com-px-3 com-py-2;
+  nb-list {
+    @apply com-w-full;
+    nb-list-item {
+      @apply com-px-3 com-py-2 com-flex com-flex-col com-justify-between com-items-start;
 
-    .last_message {
-      @apply com-text-xs com-font-normal com-text-black com-m-0 com-ml-12 com-mt-[-16px];
-    }
+      .user-profile {
+        @apply com-flex com-flex-row com-justify-between com-w-full;
 
-    .user-profile {
-      @apply com-flex com-flex-col;
+        .date {
+          @apply com-m-0 com-text-xs com-font-normal com-text-gray-500 com-pt-2;
+        }
+      }
+
+      .latest-message-count {
+        @apply com-flex com-flex-row com-justify-between com-m-0 com-pl-12 com-mt-[-16px] com-w-full;
+
+        .last_message {
+          @apply com-text-xs com-font-normal com-text-black com-m-0 com-line-clamp-2;
+        }
+      }
     }
   }
 

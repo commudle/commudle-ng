@@ -4,6 +4,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussionFollower } from 'apps/shared-models/discussion-follower.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-chats-list',
@@ -20,6 +21,7 @@ export class ChatsListComponent implements OnInit {
   showLiveStatus = false;
   showChat = false;
   unreadCount = 0;
+  moment = moment;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -43,6 +45,7 @@ export class ChatsListComponent implements OnInit {
 
   liveUpdates() {
     this.userChatNotificationsChannel.newMessagesCounter$.subscribe((value) => {
+      console.log(value);
       if (value.length > 0) {
         this.moveUserToTop.emit(value);
         this.unreadCount = value.length;
