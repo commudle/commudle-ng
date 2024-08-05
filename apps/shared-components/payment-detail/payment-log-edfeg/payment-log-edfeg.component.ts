@@ -1,13 +1,15 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EUserRoles, IRazorpayPayment } from '@commudle/shared-models';
-import { RazorpayService } from '@commudle/shared-services';
+import { RazorpayService, ToastrService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import * as moment from 'moment';
 import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
+import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 
 @Component({
   selector: 'commudle-payment-log-edfeg',
@@ -25,18 +27,23 @@ export class PaymentLogEdfegComponent implements OnInit {
   isSystemAdmin = false;
   currentUser: ICurrentUser;
   faChevronLeft = faChevronLeft;
+  eventDataFormEntityGroup: IEventDataFormEntityGroup;
+  transferCreating = false;
   constructor(
     private activatedRoute: ActivatedRoute,
     private razorpayService: RazorpayService,
     private dialogService: NbDialogService,
     private authWatchService: LibAuthwatchService,
     private location: Location,
+    private edfegService: EventDataFormEntityGroupsService,
+    private toastrService: ToastrService,
   ) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.activatedRoute.params.subscribe((params) => {
       this.edfegId = params['edfeg_id'];
+      this.getEdfegDetails();
       this.fetchPaymentDetails();
     });
 
@@ -61,8 +68,25 @@ export class PaymentLogEdfegComponent implements OnInit {
     });
   }
 
-  createPaymentTransfer(paymentId, orderId) {
-    this.razorpayService.createPaymentTransfer(orderId, paymentId).subscribe();
+  getEdfegDetails() {
+    this.edfegService.getEventDataFormEntityGroup(this.edfegId).subscribe((data) => {
+      this.eventDataFormEntityGroup = data;
+    });
+  }
+
+  createPaymentTransfer(rzpPaymentId) {
+    this.transferCreating = true;
+    this.razorpayService.createPaymentTransfer(rzpPaymentId).subscribe(
+      (data) => {
+        if (data) {
+          this.toastrService.successDialog('Transfer created successfully');
+        }
+        this.transferCreating = false;
+      },
+      () => {
+        this.transferCreating = false;
+      },
+    );
   }
 
   viewTransferDetails(transferId, dialog: TemplateRef<any>) {

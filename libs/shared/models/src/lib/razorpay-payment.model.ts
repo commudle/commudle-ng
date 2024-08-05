@@ -8,4 +8,5 @@ export interface IRazorpayPayment {
   payment_response: [];
   order: IRazorpayOrder;
   transfer_id: string;
+  status: string;
 }
