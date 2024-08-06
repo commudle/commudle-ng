@@ -44,6 +44,20 @@ HTML Emmet's
   & > *:nth-child(3) {
     @apply com-col-span-6;
   }
+
+  &.medium {
+    & > *:nth-child(1) {
+      @apply com-col-span-5;
+    }
+
+    & > *:nth-child(2) {
+      @apply com-col-span-12;
+    }
+
+    & > *:nth-child(3) {
+      @apply com-col-span-7;
+    }
+  }
 }
 
 /*

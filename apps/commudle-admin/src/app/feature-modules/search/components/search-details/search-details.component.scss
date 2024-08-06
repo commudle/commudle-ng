@@ -33,18 +33,18 @@ a {
   }
 
   .designation {
-    @apply com-m-0 com-text-xs com-font-normal com-line-clamp-1 com-mb-1 com-text-Quartz;
+    @apply com-m-0 com-text-xs com-font-normal com-line-clamp-2 com-mb-1 com-text-Quartz;
 
     ::ng-deep {
       p {
-        @apply com-m-0;
+        @apply com-m-0 com-text-xs com-font-normal;
       }
     }
   }
 
   .followers-count,
   .members-count {
-    @apply com-text-xs com-font-medium com-text-black com-m-0;
+    @apply com-text-xs com-font-medium com-text-Dark-Jungle-Green com-m-0;
 
     span {
       @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus com-m-0 com-ml-1;

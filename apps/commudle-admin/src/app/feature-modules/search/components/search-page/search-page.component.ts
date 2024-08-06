@@ -25,6 +25,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   builds: ICommunityBuild[] = [];
   events: IEvent[] = [];
   socialResources: ISpeakerResource[] = [];
+  upcomingEvents: IEvent[] = [];
 
   usersPage = 1;
   communitiesPage = 1;
@@ -32,6 +33,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   buildsPage = 1;
   eventsPage = 1;
   socialResourcesPage = 1;
+  upcomingEventsPage = 1;
 
   usersTotal = 0;
   communitiesTotal = 0;
@@ -39,6 +41,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   buildsTotal = 0;
   eventsTotal = 0;
   socialResourcesTotal = 0;
+  upcomingEventsTotal = 0;
 
   searchLoader = true;
   canLoadMoreUser = false;
@@ -47,6 +50,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreBuild = false;
   canLoadMoreEvent = false;
   canLoadMoreContent = false;
+  canLoadMoreUpcomingEvents = false;
 
   seoTitle = '';
   seoDescription = '';
@@ -87,18 +91,21 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.builds = [];
     this.events = [];
     this.socialResources = [];
+    this.upcomingEvents = [];
     this.usersPage = 1;
     this.communitiesPage = 1;
     this.labsPage = 1;
     this.buildsPage = 1;
     this.eventsPage = 1;
     this.socialResourcesPage = 1;
+    this.upcomingEventsPage = 1;
     this.usersTotal = 0;
     this.communitiesTotal = 0;
     this.labsTotal = 0;
     this.buildsTotal = 0;
     this.eventsTotal = 0;
     this.socialResourcesTotal = 0;
+    this.upcomingEventsTotal = 0;
   }
 
   getUsers() {
@@ -215,6 +222,27 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       });
   }
 
+  getUpcomingEvents() {
+    this.canLoadMoreUpcomingEvents = true;
+    this.searchService
+      .getSearchResults(this.query, this.upcomingEventsPage, this.count, 'UpcomingEvents')
+      .subscribe((value: any) => {
+        this.upcomingEvents = [...this.upcomingEvents, ...value.results];
+        console.log(this.upcomingEvents);
+        if (this.upcomingEvents.length > 0 && !this.filters.includes('Upcoming Events')) {
+          this.filters.push('Upcoming Events');
+        }
+        if (this.upcomingEventsPage === 1) {
+          this.upcomingEventsTotal = value.total;
+          this.total += this.upcomingEventsTotal;
+        }
+        this.upcomingEventsPage++;
+        this.gtmService(this.query);
+        this.searchLoader = false;
+        this.canLoadMoreUpcomingEvents = false;
+      });
+  }
+
   onFilterChange(filter: string) {
     this.searchLoader = true;
     this.clearResults();
@@ -254,6 +282,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.getBuilds();
       this.getEvents();
       this.getContent();
+      this.getUpcomingEvents();
     } else {
       this.selectedFilters.forEach((filter) => {
         switch (filter) {
@@ -274,6 +303,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
             break;
           case 'Content':
             this.getContent();
+            break;
+          case 'Upcoming Events':
+            this.getUpcomingEvents();
             break;
         }
       });

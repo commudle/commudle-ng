@@ -24,11 +24,33 @@
     }
   }
   .container {
+    .three-column-layout {
+      @apply com-pt-6;
+
+      .left-column {
+        @apply md:com-pr-[30px];
+        nb-card {
+          @apply com-m-0;
+
+          nb-card-header {
+            @apply com-text-sm com-font-semibold com-text-black;
+          }
+
+          nb-card-body {
+            @apply com-px-4 com-py-0;
+
+            .query-results-heading {
+              @apply com-py-2 com-m-0 com-text-sm com-font-medium com-text-Yankees-Blue;
+            }
+          }
+        }
+      }
+    }
     .main-column {
-      @apply com-p-0 md:com-pr-30px md:com-pl-0 com-px-4;
+      @apply com-p-0 md:com-px-0 com-px-4;
     }
     .results-count {
-      @apply com-m-0 com-mt-4 com-text-base com-font-semibold com-text-gray-500;
+      @apply com-m-0 com-text-base com-font-semibold com-text-gray-500;
     }
 
     .option-name {
@@ -70,10 +92,19 @@
             @apply md:com-w-[272px] com-w-full;
           }
         }
+
+        .upcoming-cards {
+          @apply com-grid com-grid-cols-1 com-w-full;
+
+          .upcoming-card {
+            @apply com-w-full;
+            // md:com-w-[428px]
+          }
+        }
       }
 
       .search-result {
-        @apply com-px-0 com-pt-4 com-pb-2 com-cursor-pointer com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+        @apply com-px-0 com-pt-3 com-pb-2 com-cursor-pointer com-w-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
 
         nb-user {
           &::ng-deep {
@@ -89,7 +120,7 @@
     }
 
     .right-column {
-      @apply com-p-0 md:com-pl-30px com-pl-0 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
+      @apply com-p-0 md:com-pl-30px com-pl-0;
     }
   }
 
@@ -122,12 +153,16 @@
   }
 
   .load-more {
-    @apply com-flex com-self-center com-m-0 com-mt-4;
+    @apply com-flex com-self-center com-m-0 com-my-4 com-border com-border-solid com-border-Bright-Gray;
   }
 
   .speakers-upcoming,
   .tech-sessions,
   .speakers {
     @apply com-m-0 md:com-mt-4 com-mt-10;
+  }
+
+  .divided-line {
+    @apply com-border com-border-solid com-border-Bright-Gray;
   }
 }
