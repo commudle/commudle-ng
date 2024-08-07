@@ -7,9 +7,9 @@
     <table>
       <tr>
         <th>Payment Id</th>
-        <th>Status</th>
+        <!-- <th>Status</th> -->
         <th>Paid by</th>
-        <th>Other Users Details</th>
+        <th>Group ticket users</th>
         <th>Total amount</th>
         <th>Discount amount</th>
         <th>Tax amount</th>
@@ -19,12 +19,12 @@
       </tr>
       <tr *ngFor="let rpd of razorpayPaymentDetails">
         <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
-        <td *ngIf="rpd">{{ rpd?.order.status }}</td>
+        <!-- <td *ngIf="rpd">{{ rpd?.order.status }}</td> -->
         <td *ngIf="rpd">{{ rpd?.order.orderable.user.name }}</td>
         <td *ngIf="rpd">
-          <details>
+          <details *ngIf="rpd?.order.orderable.eto_users.length > 1">
             <summary>Other users details</summary>
-            <div *ngIf="rpd?.order.orderable.eto_users && rpd?.order.orderable.eto_users.length > 0; else noOtherUsers">
+            <div *ngIf="rpd?.order.orderable.eto_users">
               <div *ngFor="let user of rpd?.order.orderable.eto_users">
                 <div *ngIf="user.email !== rpd?.order.orderable.user.email">
                   {{ user.name }}
