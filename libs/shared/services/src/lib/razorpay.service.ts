@@ -58,7 +58,7 @@ export class RazorpayService {
     );
   }
 
-  createOrUpdatePayment(response, hasError: boolean = false, paymentId?: number): Observable<any> {
+  createOrUpdatePayment(response, hasError: boolean = false, paymentId?: string): Observable<any> {
     let params = new HttpParams();
     let requestBody: { has_error?: boolean; payment_error?: any; payment_details?: any } = {}; // Define the type of requestBody
 
