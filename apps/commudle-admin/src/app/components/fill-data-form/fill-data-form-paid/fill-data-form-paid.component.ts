@@ -623,6 +623,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const orderDetails = {
       amount: Math.round((this.totalPrice + this.totalTaxAmount) * 100),
       currency: 'INR',
+      notes: {
+        event_name: this.event.name,
+        event_id: this.event.id,
+        user_email: this.currentUser.email,
+        edfeg_id: this.dataFormEntity.entity_id,
+      },
     };
     if (orderDetails.amount === 0) {
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
@@ -641,6 +647,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const options = {
       key: environment.razorpay_key,
       order_id: order.rzp_order_id,
+      notes: {
+        event_name: this.event.name,
+        event_id: this.event.id,
+        user_email: this.currentUser.email,
+        edfeg_id: this.dataFormEntity.entity_id,
+      },
       handler: (response: any) => {
         {
           this.razorpayService
@@ -663,6 +675,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         contact: this.currentUser.phone ? this.currentUser.phone : '',
       },
       modal: {
+        escape: false,
+        reload: false,
         ondismiss: () => {
           console.error('Checkout form closed by the user');
           this.isLoadingPayment = false;
