@@ -7,6 +7,17 @@
     <strong>{{ eventDataFormEntityGroup.name }}</strong>
   </div>
 
+  <form [formGroup]="searchForm">
+    <input
+      formControlName="search"
+      nbInput
+      type="text"
+      fullWidth
+      placeholder="Search with Name, Email, Payment Id, Transfer Id"
+    />
+  </form>
+  <br />
+
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
   <ng-container *ngIf="!isLoading && razorpayPaymentDetails?.length > 0; else noDetailFound">

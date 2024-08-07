@@ -10,6 +10,8 @@ import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'commudle-payment-log-edfeg',
@@ -29,6 +31,9 @@ export class PaymentLogEdfegComponent implements OnInit {
   faChevronLeft = faChevronLeft;
   eventDataFormEntityGroup: IEventDataFormEntityGroup;
   transferCreating = false;
+
+  searchForm: FormGroup;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private razorpayService: RazorpayService,
@@ -37,7 +42,12 @@ export class PaymentLogEdfegComponent implements OnInit {
     private location: Location,
     private edfegService: EventDataFormEntityGroupsService,
     private toastrService: ToastrService,
-  ) {}
+    private fb: FormBuilder,
+  ) {
+    this.searchForm = this.fb.group({
+      search: [''],
+    });
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -55,17 +65,22 @@ export class PaymentLogEdfegComponent implements OnInit {
         this.isSystemAdmin = false;
       }
     });
+    this.searchForm.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
+      this.fetchPaymentDetails();
+    });
   }
 
   fetchPaymentDetails() {
     this.isLoading = true;
-    this.razorpayService.getAllPaymentDetails(this.edfegId, this.page, this.count).subscribe((data) => {
-      this.razorpayPaymentDetails = data.values;
-      this.total = data.total;
-      this.page = data.page;
-      this.count = data.count;
-      this.isLoading = false;
-    });
+    this.razorpayService
+      .getAllPaymentDetails(this.edfegId, this.page, this.count, this.searchForm.get('search').value)
+      .subscribe((data) => {
+        this.razorpayPaymentDetails = data.values;
+        this.total = data.total;
+        this.page = data.page;
+        this.count = data.count;
+        this.isLoading = false;
+      });
   }
 
   getEdfegDetails() {
