@@ -655,16 +655,18 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       },
       handler: (response: any) => {
         {
-          this.razorpayService.createOrUpdatePayment(response, false, order?.razorpay_payment?.id).subscribe((data) => {
-            this.fetchPaidTicketingData();
-            this.checkEventTicketOrder(this.dataFormEntity.entity_id);
-            this.ticketPaidAlready = true;
-            this.toastLogService.successDialog('Your Payment Was Received Successfully');
-            this.isLoadingPayment = false;
-            this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
-              closeOnBackdropClick: false,
+          this.razorpayService
+            .createOrUpdatePayment(response, false, order?.razorpay_payment?.rzp_payment_id)
+            .subscribe((data) => {
+              this.fetchPaidTicketingData();
+              this.checkEventTicketOrder(this.dataFormEntity.entity_id);
+              this.ticketPaidAlready = true;
+              this.toastLogService.successDialog('Your Payment Was Received Successfully');
+              this.isLoadingPayment = false;
+              this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
+                closeOnBackdropClick: false,
+              });
             });
-          });
         }
       },
       prefill: {
@@ -688,7 +690,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     rzp1.on('payment.failed', (response: any) => {
       {
         this.razorpayService
-          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
+          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.rzp_payment_id)
           .subscribe((data) => {
             this.isLoadingPayment = false;
             alert('Message from Razorpay:' + response.error.description);
