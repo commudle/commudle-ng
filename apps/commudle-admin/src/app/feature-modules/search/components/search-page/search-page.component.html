@@ -126,8 +126,8 @@
                         (click)="getUpcomingEvents()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreUpcomingEvents"
                       >
                         Load More
@@ -169,8 +169,8 @@
                   <div *ngFor="let user of users" class="search-result com-border-t-0">
                     <commudle-search-details [option]="user"></commudle-search-details>
                   </div>
-                  <div class="can-load-more-spinner">
-                    <app-loading-spinner *ngIf="canLoadMoreUser"></app-loading-spinner>
+                  <div class="can-load-more-spinner" *ngIf="canLoadMoreUser">
+                    <app-loading-spinner></app-loading-spinner>
                   </div>
                   <div class="load-more">
                     <button
@@ -178,8 +178,8 @@
                       (click)="getUsers()"
                       nbButton
                       outline
-                      size="tiny"
-                      status="basic"
+                      size="small"
+                      status="info"
                       [disabled]="canLoadMoreUser"
                     >
                       Load More
@@ -201,8 +201,8 @@
                         ></commudle-featured-projects-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreBuild"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreBuild">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
@@ -210,8 +210,8 @@
                         (click)="getBuilds()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreBuild"
                       >
                         Load More
@@ -229,8 +229,8 @@
                         <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreLab"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreLab">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
@@ -238,8 +238,8 @@
                         (click)="getLabs()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreLab"
                       >
                         Load More
@@ -257,8 +257,8 @@
                         <commudle-event-card [event]="event"></commudle-event-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreEvent"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreEvent">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
@@ -266,8 +266,8 @@
                         (click)="getEvents()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreEvent"
                       >
                         Load More
@@ -288,8 +288,8 @@
                         <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreContent"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreContent">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
@@ -297,8 +297,8 @@
                         (click)="getContent()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreContent"
                       >
                         Load More
