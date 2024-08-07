@@ -9,4 +9,5 @@ export interface IRazorpayPayment {
   order: IRazorpayOrder;
   transfer_id: string;
   status: string;
+  created_at: Date;
 }

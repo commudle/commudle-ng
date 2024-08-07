@@ -13,7 +13,7 @@
     <table>
       <tr>
         <th>Payment Id</th>
-        <!-- <th>Status</th> -->
+        <th width="120">Created At</th>
         <th>Order Status on Commudle</th>
         <th>Paid by</th>
         <th>Group ticket users</th>
@@ -22,11 +22,11 @@
         <th>Tax amount</th>
         <th>Application fee amount</th>
         <th>Payment gateway fee</th>
-        <th>Actions</th>
+        <th>Transfer Details</th>
       </tr>
       <tr *ngFor="let rpd of razorpayPaymentDetails">
         <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
-        <!-- <td *ngIf="rpd">{{ rpd?.order.status }}</td> -->
+        <td *ngIf="rpd">{{ moment(rpd.created_at).format('DD MMM YYYY') }}</td>
         <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
         <td *ngIf="rpd">
           {{ rpd?.order.orderable.user.name }}
@@ -65,6 +65,8 @@
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
         </td>
         <td *ngIf="rpd && rpd?.order.orderable.status === 'paid'">
+          <small *ngIf="rpd">{{ rpd.transfer_id }}</small>
+          <br />
           <button
             *ngIf="!rpd?.transfer_id && isSystemAdmin"
             nbButton
