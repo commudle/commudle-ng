@@ -27,9 +27,6 @@
       <tr *ngFor="let rpd of razorpayPaymentDetails">
         <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
         <!-- <td *ngIf="rpd">{{ rpd?.order.status }}</td> -->
-         <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
-        <td *ngIf="rpd">{{ rpd?.order.orderable.user.name }}</td>
-        <td *ngIf="rpd">{{ rpd?.order.status }}</td>
         <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
         <td *ngIf="rpd">
           {{ rpd?.order.orderable.user.name }}
