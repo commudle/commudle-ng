@@ -75,8 +75,16 @@ export class RazorpayService {
     });
   }
 
-  getAllPaymentDetails(edfegId: number | string, page = 1, count = 10): Observable<IPaginationCount<IRazorpayPayment>> {
-    const params = new HttpParams().set('edfeg_id', edfegId).set('page', page).set('count', count);
+  getAllPaymentDetails(
+    edfegId: number | string,
+    page = 1,
+    count = 10,
+    search = '',
+  ): Observable<IPaginationCount<IRazorpayPayment>> {
+    let params = new HttpParams().set('edfeg_id', edfegId).set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IPaginationCount<IRazorpayPayment>>(
       this.baseApiService.getRoute(API_ROUTES.RAZORPAY.GET_ALL_PAYMENT_DETAILS),
       {
