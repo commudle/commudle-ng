@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataFormEntitiesService } from 'apps/commudle-admin/src/app/services/data-form-entities.service';
 import { IDataFormEntity } from 'apps/shared-models/data_form_entity.model';
 import { Subscription, interval } from 'rxjs';
@@ -16,13 +16,17 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
   formClosed = false;
   intervalSubscription: Subscription;
   faTriangleExclamation = faTriangleExclamation;
+  event_slug: string;
+  kommunity_slug: string;
 
   @ViewChild('formClosedDialog', { static: true }) formClosedDialog: TemplateRef<any>;
+  @ViewChild('alreadyExistDfe', { static: true }) alreadyExistDfe: TemplateRef<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataFormEntitiesService: DataFormEntitiesService,
     private dialogService: NbDialogService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +35,12 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
         this.dataFormEntitiesService.getDataFormEntity(params.data_form_entity_id).subscribe((data) => {
           this.dataFormEntity = data;
           this.formClosed = !this.dataFormEntity.user_can_fill_form; // this will always return true for organizers
+          if (
+            this.dataFormEntity.form_type.form_type_name === 'attendee' ||
+            this.dataFormEntity.form_type.form_type_name === 'speaker'
+          ) {
+            this.checkAlreadyFilledEntryPassForm(params.data_form_entity_id);
+          }
           if (!this.formClosed) {
             this.checkFormStatus(params.data_form_entity_id);
           }
@@ -63,5 +73,21 @@ export class CheckFillDataFormComponent implements OnInit, OnDestroy {
     if (this.intervalSubscription) {
       this.intervalSubscription.unsubscribe();
     }
+  }
+
+  checkAlreadyFilledEntryPassForm(dataFormId) {
+    this.subscriptions.push(
+      this.dataFormEntitiesService.checkAlreadyFilledEntryPassForm(dataFormId).subscribe((data) => {
+        this.event_slug = data.event.slug;
+        this.kommunity_slug = data.event.kommunity_slug;
+        if (data.filled_another_form) {
+          this.dialogService.open(this.alreadyExistDfe, { context: data });
+        }
+      }),
+    );
+  }
+
+  redirectToEvent() {
+    this.router.navigate(['communities', this.kommunity_slug, 'events', this.event_slug]);
   }
 }
