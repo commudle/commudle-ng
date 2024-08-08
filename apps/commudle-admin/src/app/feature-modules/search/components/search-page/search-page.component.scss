@@ -1,5 +1,5 @@
 .base-layout {
-  @apply com-px-0 com-py-10;
+  @apply com-px-0 com-py-6;
 
   .search-input {
     @apply md:com-m-0 com-mx-4;
@@ -25,7 +25,7 @@
   }
   .container {
     .three-column-layout {
-      @apply com-pt-6;
+      @apply com-pt-4;
 
       .left-column {
         @apply md:com-pr-[30px];
@@ -81,7 +81,7 @@
           .lab-card,
           .build-card,
           .social-resource-card {
-            @apply md:com-w-[428px] com-w-full;
+            @apply md:com-w-[312px] com-w-full;
           }
         }
 
@@ -121,6 +121,12 @@
 
     .right-column {
       @apply com-p-0 md:com-pl-30px com-pl-0;
+
+      .advertisement {
+        nb-card {
+          @apply com-m-0;
+        }
+      }
     }
   }
 
@@ -154,12 +160,6 @@
 
   .load-more {
     @apply com-flex com-self-center com-m-0 com-my-4 com-border com-border-solid com-border-Bright-Gray;
-  }
-
-  .speakers-upcoming,
-  .tech-sessions,
-  .speakers {
-    @apply com-m-0 md:com-mt-4 com-mt-10;
   }
 
   .divided-line {

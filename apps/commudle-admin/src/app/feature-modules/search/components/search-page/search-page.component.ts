@@ -6,6 +6,7 @@ import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/searc
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { TitleCasePipe } from '@angular/common';
+import { ISessions } from 'apps/shared-models/sessions.model';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -25,6 +26,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   builds: ICommunityBuild[] = [];
   events: IEvent[] = [];
   socialResources: ISpeakerResource[] = [];
+  speakerResources: ISessions[] = [];
   upcomingEvents: IEvent[] = [];
 
   usersPage = 1;
@@ -33,6 +35,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   buildsPage = 1;
   eventsPage = 1;
   socialResourcesPage = 1;
+  speakerResourcesPage = 1;
+  peakerResources;
   upcomingEventsPage = 1;
 
   usersTotal = 0;
@@ -41,6 +45,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   buildsTotal = 0;
   eventsTotal = 0;
   socialResourcesTotal = 0;
+  speakerResourcesTotal = 0;
   upcomingEventsTotal = 0;
 
   searchLoader = true;
@@ -51,6 +56,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreEvent = false;
   canLoadMoreContent = false;
   canLoadMoreUpcomingEvents = false;
+  canLoadMoreSpeakerResources = false;
 
   seoTitle = '';
   seoDescription = '';
@@ -91,6 +97,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.builds = [];
     this.events = [];
     this.socialResources = [];
+    this.speakerResources = [];
     this.upcomingEvents = [];
     this.usersPage = 1;
     this.communitiesPage = 1;
@@ -98,6 +105,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.buildsPage = 1;
     this.eventsPage = 1;
     this.socialResourcesPage = 1;
+    this.speakerResourcesPage = 1;
     this.upcomingEventsPage = 1;
     this.usersTotal = 0;
     this.communitiesTotal = 0;
@@ -105,6 +113,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.buildsTotal = 0;
     this.eventsTotal = 0;
     this.socialResourcesTotal = 0;
+    this.speakerResourcesTotal = 0;
     this.upcomingEventsTotal = 0;
   }
 
@@ -220,6 +229,25 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         this.searchLoader = false;
         this.canLoadMoreContent = false;
       });
+  }
+
+  getSpeakerResources() {
+    this.canLoadMoreSpeakerResources = true;
+    this.searchService.getSearchResults(this.query, this.speakerResourcesPage, this.count).subscribe((value: any) => {
+      this.speakerResources = [...this.speakerResources, ...value.results];
+      console.log(this.speakerResources);
+      if (this.speakerResources.length > 0 && !this.filters.includes('Content')) {
+        this.filters.push('Content');
+      }
+      if (this.speakerResourcesPage === 1) {
+        this.speakerResourcesTotal = value.total;
+        this.total += this.speakerResourcesTotal;
+      }
+      this.speakerResourcesPage++;
+      this.gtmService(this.query);
+      this.searchLoader = false;
+      this.canLoadMoreSpeakerResources = false;
+    });
   }
 
   getUpcomingEvents() {

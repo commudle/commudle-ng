@@ -220,55 +220,30 @@
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
+                  *ngIf="
+                    speakerResources.length > 0 &&
+                    (selectedFilters.includes('Tech Talks') || selectedFilters.includes('All'))
+                  "
                 >
                   <div class="results-container">
-                    <p class="query-results-heading">Labs</p>
-                    <div class="labs-card com-border-t-0">
-                      <div *ngFor="let lab of labs" class="lab-card">
-                        <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
+                    <p class="query-results-heading">Tech Talks</p>
+                    <div class="speaker-resources-card com-border-t-0">
+                      <div *ngFor="let speakerResource of speakerResources" class="speaker-resource-card">
+                        <commudle-tech-sessions-card [session]="speakerResource"></commudle-tech-sessions-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner" *ngIf="canLoadMoreLab">
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreSpeakerResources">
                       <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
-                        *ngIf="labsTotal > labs.length"
-                        (click)="getLabs()"
+                        *ngIf="speakerResourcesTotal > speakerResources.length"
+                        (click)="getSpeakerResources()"
                         nbButton
                         outline
                         size="small"
                         status="info"
-                        [disabled]="canLoadMoreLab"
-                      >
-                        Load More
-                      </button>
-                    </div>
-                  </div>
-                </nb-list-item>
-                <nb-list-item
-                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
-                >
-                  <div class="results-container">
-                    <p class="query-results-heading">Events</p>
-                    <div class="events-card com-border-t-0">
-                      <div *ngFor="let event of events" class="event-card">
-                        <commudle-event-card [event]="event"></commudle-event-card>
-                      </div>
-                    </div>
-                    <div class="can-load-more-spinner" *ngIf="canLoadMoreEvent">
-                      <app-loading-spinner></app-loading-spinner>
-                    </div>
-                    <div class="load-more">
-                      <button
-                        *ngIf="eventsTotal > events.length"
-                        (click)="getEvents()"
-                        nbButton
-                        outline
-                        size="small"
-                        status="info"
-                        [disabled]="canLoadMoreEvent"
+                        [disabled]="canLoadMoreSpeakerResources"
                       >
                         Load More
                       </button>
@@ -306,21 +281,69 @@
                     </div>
                   </div>
                 </nb-list-item>
+                <nb-list-item
+                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Labs</p>
+                    <div class="labs-card com-border-t-0">
+                      <div *ngFor="let lab of labs" class="lab-card">
+                        <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreLab">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="labsTotal > labs.length"
+                        (click)="getLabs()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreLab"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Events</p>
+                    <div class="events-card com-border-t-0">
+                      <div *ngFor="let event of events" class="event-card">
+                        <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreEvent">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="eventsTotal > events.length"
+                        (click)="getEvents()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreEvent"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
               </nb-list>
             </div>
           </div>
 
           <div class="right-column">
-            <div class="speakers-upcoming">
-              <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-            </div>
-            <div class="speakers">
-              <commudle-public-home-list-events-speakers
-                [parentType]="'communities'"
-              ></commudle-public-home-list-events-speakers>
-            </div>
-            <div class="tech-sessions">
-              <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+            <div class="advertisement">
+              <nb-card>Advertisement</nb-card>
             </div>
           </div>
         </div>
