@@ -77,9 +77,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchStatusService.setSearchStatus(false);
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
+    this.activatedRoute.params.subscribe((params: Params) => {
       this.searchLoader = true;
-      this.query = params.q;
+      this.query = params.query;
       this.updateSeoTitle();
 
       this.filters = [];
@@ -187,8 +187,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.buildsPage, this.count, 'CommunityBuild')
       .subscribe((value: any) => {
         this.builds = [...this.builds, ...value.results];
-        if (this.builds.length > 0 && !this.filters.includes('Community Builds')) {
-          this.filters.push('Community Builds');
+        if (this.builds.length > 0 && !this.filters.includes('Builds')) {
+          this.filters.push('Builds');
         }
         if (this.buildsPage === 1) {
           this.buildsTotal = value.total;
@@ -356,7 +356,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
           case 'Labs':
             this.getLabs();
             break;
-          case 'Community Builds':
+          case 'Builds':
             this.getBuilds();
             break;
           case 'Events':

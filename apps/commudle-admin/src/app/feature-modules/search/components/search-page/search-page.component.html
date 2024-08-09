@@ -34,54 +34,87 @@
       <div class="container">
         <div class="three-column-layout medium">
           <div class="left-column">
-            <nb-card>
-              <nb-card-header>On This Page</nb-card-header>
-              <nb-card-body>
-                <div
+            <div class="com-sticky com-top-[86px]">
+              <nb-card *ngIf="total > 0">
+                <nb-card-header>On This Page</nb-card-header>
+                <nb-card-body>
+                  <!-- <div
                   *ngIf="
-                    communities.length > 0 &&
-                    (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
+                    upcomingEvents.length > 0 &&
+                    (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
                   "
                 >
-                  <p class="query-results-heading">Communities</p>
-                </div>
-                <div *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))">
-                  <p class="query-results-heading">Users</p>
-                </div>
-                <div
+                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="upcoming-events">Upcoming Events</a></p>
+                </div> -->
+                  <div
+                    *ngIf="
+                      communities.length > 0 &&
+                      (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
+                    "
+                  >
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="communities">Communities</a></p>
+                  </div>
+                  <!-- <div
                   *ngIf="
-                    builds.length > 0 &&
-                    (selectedFilters.includes('Community Builds') || selectedFilters.includes('All'))
+                    organizations.length > 0 &&
+                    (selectedFilters.includes('Organizations') || selectedFilters.includes('All'))
                   "
                 >
-                  <p class="query-results-heading">Builds</p>
-                </div>
-                <div *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))">
-                  <p class="query-results-heading">Labs</p>
-                </div>
-                <div
-                  *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
-                >
-                  <p class="query-results-heading">Events</p>
-                </div>
-                <div
-                  *ngIf="
-                    socialResources.length > 0 &&
-                    (selectedFilters.includes('Content') || selectedFilters.includes('All'))
-                  "
-                >
-                  <p class="query-results-heading">Content</p>
-                </div>
-                <div
+                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="organizations">Organizations</a></p>
+                </div> -->
+                  <div
+                    *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))"
+                  >
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="users">Users</a></p>
+                  </div>
+                  <div
+                    *ngIf="builds.length > 0 && (selectedFilters.includes('Builds') || selectedFilters.includes('All'))"
+                  >
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="builds">Builds</a></p>
+                  </div>
+                  <div
+                    *ngIf="
+                      speakerResources.length > 0 &&
+                      (selectedFilters.includes('Tech Talks') || selectedFilters.includes('All'))
+                    "
+                  >
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="tech-talks">Tech Talks</a></p>
+                  </div>
+                  <div
+                    *ngIf="
+                      socialResources.length > 0 &&
+                      (selectedFilters.includes('Content') || selectedFilters.includes('All'))
+                    "
+                  >
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="content">Content</a></p>
+                  </div>
+                  <!-- <div
                   *ngIf="
                     communityNewsletters.length > 0 &&
                     (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
                   "
                 >
-                  <p class="query-results-heading">Community Newsletters</p>
-                </div>
-              </nb-card-body>
-            </nb-card>
+                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="community-newsletters">Community Newsletters</a></p>
+                </div> -->
+                  <!-- <div
+                  *ngIf="
+                    mainNewsletters.length > 0 &&
+                    (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
+                  "
+                >
+                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="community-newsletters">Commudle Newsletters</a></p>
+                </div> -->
+                  <div *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))">
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="labs">Labs</a></p>
+                  </div>
+                  <div
+                    *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
+                  >
+                    <p class="query-results-heading"><a [routerLink]="'.'" fragment="events">Events</a></p>
+                  </div>
+                </nb-card-body>
+              </nb-card>
+            </div>
           </div>
           <div class="main-column">
             <app-skeleton-cards
@@ -110,7 +143,7 @@
                 "
                 class="results-count"
               >
-                {{ total }} Result {{ total > 1 ? 's' : '' }} Found
+                {{ total }} Result{{ total > 1 ? 's' : '' }} Found
               </p>
               <nb-list>
                 <!-- <nb-list-item
@@ -118,6 +151,7 @@
                     upcomingEvents.length > 0 &&
                     (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
                   "
+                  id="upcoming-events"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Upcoming Events</p>
@@ -149,6 +183,7 @@
                     communities.length > 0 &&
                     (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
                   "
+                  id="communities"
                 >
                   <p class="query-results-heading">Communities</p>
                   <div *ngFor="let community of communities" class="search-result com-border-t-0">
@@ -174,6 +209,7 @@
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))"
+                  id="users"
                 >
                   <p class="query-results-heading">Users</p>
                   <div *ngFor="let user of users" class="search-result com-border-t-0">
@@ -197,10 +233,8 @@
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="
-                    builds.length > 0 &&
-                    (selectedFilters.includes('Community Builds') || selectedFilters.includes('All'))
-                  "
+                  *ngIf="builds.length > 0 && (selectedFilters.includes('Builds') || selectedFilters.includes('All'))"
+                  id="builds"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Builds</p>
@@ -234,6 +268,7 @@
                     speakerResources.length > 0 &&
                     (selectedFilters.includes('Tech Talks') || selectedFilters.includes('All'))
                   "
+                  id="tech-talks"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Tech Talks</p>
@@ -265,6 +300,7 @@
                     socialResources.length > 0 &&
                     (selectedFilters.includes('Content') || selectedFilters.includes('All'))
                   "
+                  id="content"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Content</p>
@@ -296,6 +332,7 @@
                     communityNewsletters.length > 0 &&
                     (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
                   "
+                  id="community-newsletters"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Community Newsletters</p>
@@ -324,6 +361,7 @@
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))"
+                  id="labs"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Labs</p>
@@ -352,12 +390,13 @@
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
+                  id="events"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Events</p>
                     <div class="events-card com-border-t-0">
                       <div *ngFor="let event of events" class="event-card">
-                        <!-- <commudle-event-card [event]="event"></commudle-event-card> -->
+                        <commudle-event-card [event]="event"></commudle-event-card>
                       </div>
                     </div>
                     <div class="can-load-more-spinner" *ngIf="canLoadMoreEvent">
@@ -381,7 +420,6 @@
               </nb-list>
             </div>
           </div>
-
           <div class="right-column">
             <div class="advertisement">
               <nb-card>Advertisement</nb-card>

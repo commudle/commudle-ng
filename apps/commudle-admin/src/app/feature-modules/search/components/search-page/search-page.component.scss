@@ -28,7 +28,8 @@
       @apply com-pt-4;
 
       .left-column {
-        @apply md:com-pr-[30px];
+        @apply md:com-pr-[30px] com-relative;
+
         nb-card {
           @apply com-m-0;
 
@@ -40,7 +41,11 @@
             @apply com-px-4 com-py-0;
 
             .query-results-heading {
-              @apply com-py-2 com-m-0 com-text-sm com-font-medium com-text-Yankees-Blue;
+              @apply com-py-2 com-m-0;
+
+              a {
+                @apply com-no-underline com-text-sm com-font-medium com-text-Yankees-Blue;
+              }
             }
           }
         }
@@ -86,10 +91,10 @@
         }
 
         .events-card {
-          @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-5 com-w-full;
+          @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-4 com-w-full;
 
           .event-card {
-            @apply md:com-w-[272px] com-w-full;
+            @apply md:com-w-[202px] com-w-full;
           }
         }
 
