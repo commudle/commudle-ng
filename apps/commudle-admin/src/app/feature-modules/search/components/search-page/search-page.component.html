@@ -39,27 +39,28 @@
               <nb-card-body>
                 <div
                   *ngIf="
-                    communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
+                    communities.length > 0 &&
+                    (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
                   "
                 >
                   <p class="query-results-heading">Communities</p>
                 </div>
-                <div *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))">
+                <div *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))">
                   <p class="query-results-heading">Users</p>
                 </div>
                 <div
                   *ngIf="
                     builds.length > 0 &&
-                    (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
+                    (selectedFilters.includes('Community Builds') || selectedFilters.includes('All'))
                   "
                 >
                   <p class="query-results-heading">Builds</p>
                 </div>
-                <div *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))">
+                <div *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))">
                   <p class="query-results-heading">Labs</p>
                 </div>
                 <div
-                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
                 >
                   <p class="query-results-heading">Events</p>
                 </div>
@@ -70,6 +71,14 @@
                   "
                 >
                   <p class="query-results-heading">Content</p>
+                </div>
+                <div
+                  *ngIf="
+                    communityNewsletters.length > 0 &&
+                    (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
+                  "
+                >
+                  <p class="query-results-heading">Community Newsletters</p>
                 </div>
               </nb-card-body>
             </nb-card>
@@ -101,10 +110,10 @@
                 "
                 class="results-count"
               >
-                {{ total }} Results Found
+                {{ total }} Result {{ total > 1 ? 's' : '' }} Found
               </p>
               <nb-list>
-                <nb-list-item
+                <!-- <nb-list-item
                   *ngIf="
                     upcomingEvents.length > 0 &&
                     (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
@@ -114,7 +123,7 @@
                     <p class="query-results-heading">Upcoming Events</p>
                     <div class="upcoming-cards com-border-t-0">
                       <div *ngFor="let event of upcomingEvents" class="upcoming-card">
-                        <!-- <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card> -->
+                        <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
                       </div>
                     </div>
                     <div class="can-load-more-spinner" *ngIf="canLoadMoreUpcomingEvents">
@@ -134,10 +143,11 @@
                       </button>
                     </div>
                   </div>
-                </nb-list-item>
+                </nb-list-item> -->
                 <nb-list-item
                   *ngIf="
-                    communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
+                    communities.length > 0 &&
+                    (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
                   "
                 >
                   <p class="query-results-heading">Communities</p>
@@ -160,10 +170,10 @@
                       Load More
                     </button>
                   </div>
-                  <hr class="divided-line" />
+                  <!-- <hr class="divided-line" /> -->
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
+                  *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))"
                 >
                   <p class="query-results-heading">Users</p>
                   <div *ngFor="let user of users" class="search-result com-border-t-0">
@@ -189,7 +199,7 @@
                 <nb-list-item
                   *ngIf="
                     builds.length > 0 &&
-                    (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
+                    (selectedFilters.includes('Community Builds') || selectedFilters.includes('All'))
                   "
                 >
                   <div class="results-container">
@@ -229,7 +239,7 @@
                     <p class="query-results-heading">Tech Talks</p>
                     <div class="speaker-resources-card com-border-t-0">
                       <div *ngFor="let speakerResource of speakerResources" class="speaker-resource-card">
-                        <commudle-tech-sessions-card [session]="speakerResource"></commudle-tech-sessions-card>
+                        <!-- <commudle-tech-sessions-card [session]="speakerResource"></commudle-tech-sessions-card> -->
                       </div>
                     </div>
                     <div class="can-load-more-spinner" *ngIf="canLoadMoreSpeakerResources">
@@ -282,7 +292,38 @@
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
+                  *ngIf="
+                    communityNewsletters.length > 0 &&
+                    (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
+                  "
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Community Newsletters</p>
+                    <div class="community-newsletters-card com-border-t-0">
+                      <div *ngFor="let communityNewsletter of communityNewsletters" class="community-newsletters-card">
+                        <!-- <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card> -->
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreCommunityNewsletters">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="communityNewslettersTotal > communityNewsletters.length"
+                        (click)="getCommunityNewsletters()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreCommunityNewsletters"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Labs</p>
@@ -310,7 +351,7 @@
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Events</p>

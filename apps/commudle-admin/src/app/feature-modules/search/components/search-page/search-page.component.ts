@@ -7,6 +7,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { SeoService } from 'apps/shared-services/seo.service';
 import { TitleCasePipe } from '@angular/common';
 import { ISessions } from 'apps/shared-models/sessions.model';
+import { INewsletter } from 'apps/shared-models/newsletter.model';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -28,6 +29,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   socialResources: ISpeakerResource[] = [];
   speakerResources: ISessions[] = [];
   upcomingEvents: IEvent[] = [];
+  communityNewsletters: INewsletter[] = [];
 
   usersPage = 1;
   communitiesPage = 1;
@@ -38,6 +40,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   speakerResourcesPage = 1;
   peakerResources;
   upcomingEventsPage = 1;
+  communityNewslettersPage = 1;
 
   usersTotal = 0;
   communitiesTotal = 0;
@@ -47,6 +50,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   socialResourcesTotal = 0;
   speakerResourcesTotal = 0;
   upcomingEventsTotal = 0;
+  communityNewslettersTotal = 0;
 
   searchLoader = true;
   canLoadMoreUser = false;
@@ -57,6 +61,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreContent = false;
   canLoadMoreUpcomingEvents = false;
   canLoadMoreSpeakerResources = false;
+  canLoadMoreCommunityNewsletters = false;
 
   seoTitle = '';
   seoDescription = '';
@@ -99,6 +104,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.socialResources = [];
     this.speakerResources = [];
     this.upcomingEvents = [];
+    this.communityNewsletters = [];
     this.usersPage = 1;
     this.communitiesPage = 1;
     this.labsPage = 1;
@@ -107,6 +113,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.socialResourcesPage = 1;
     this.speakerResourcesPage = 1;
     this.upcomingEventsPage = 1;
+    this.communityNewslettersPage = 1;
     this.usersTotal = 0;
     this.communitiesTotal = 0;
     this.labsTotal = 0;
@@ -115,14 +122,15 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.socialResourcesTotal = 0;
     this.speakerResourcesTotal = 0;
     this.upcomingEventsTotal = 0;
+    this.communityNewslettersTotal = 0;
   }
 
   getUsers() {
     this.canLoadMoreUser = true;
     this.searchService.getSearchResults(this.query, this.usersPage, this.count, 'User').subscribe((value: any) => {
       this.users = [...this.users, ...value.results];
-      if (this.users.length > 0 && !this.filters.includes('User')) {
-        this.filters.push('User');
+      if (this.users.length > 0 && !this.filters.includes('Users')) {
+        this.filters.push('Users');
       }
       if (this.usersPage === 1) {
         this.usersTotal = value.total;
@@ -141,8 +149,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.communitiesPage, this.count, 'Kommunity')
       .subscribe((value: any) => {
         this.communities = [...this.communities, ...value.results];
-        if (this.communities.length > 0 && !this.filters.includes('Community')) {
-          this.filters.push('Community');
+        if (this.communities.length > 0 && !this.filters.includes('Communities')) {
+          this.filters.push('Communities');
         }
         if (this.communitiesPage === 1) {
           this.communitiesTotal = value.total;
@@ -159,8 +167,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.canLoadMoreLab = true;
     this.searchService.getSearchResults(this.query, this.labsPage, this.count, 'Lab').subscribe((value: any) => {
       this.labs = [...this.labs, ...value.results];
-      if (this.labs.length > 0 && !this.filters.includes('Lab')) {
-        this.filters.push('Lab');
+      if (this.labs.length > 0 && !this.filters.includes('Labs')) {
+        this.filters.push('Labs');
       }
       if (this.labsPage === 1) {
         this.labsTotal = value.total;
@@ -179,8 +187,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.buildsPage, this.count, 'CommunityBuild')
       .subscribe((value: any) => {
         this.builds = [...this.builds, ...value.results];
-        if (this.builds.length > 0 && !this.filters.includes('Community Build')) {
-          this.filters.push('Community Build');
+        if (this.builds.length > 0 && !this.filters.includes('Community Builds')) {
+          this.filters.push('Community Builds');
         }
         if (this.buildsPage === 1) {
           this.buildsTotal = value.total;
@@ -197,8 +205,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.canLoadMoreEvent = true;
     this.searchService.getSearchResults(this.query, this.eventsPage, this.count, 'Event').subscribe((value: any) => {
       this.events = [...this.events, ...value.results];
-      if (this.events.length > 0 && !this.filters.includes('Event')) {
-        this.filters.push('Event');
+      if (this.events.length > 0 && !this.filters.includes('Events')) {
+        this.filters.push('Events');
       }
       if (this.eventsPage === 1) {
         this.eventsTotal = value.total;
@@ -233,21 +241,23 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   getSpeakerResources() {
     this.canLoadMoreSpeakerResources = true;
-    this.searchService.getSearchResults(this.query, this.speakerResourcesPage, this.count).subscribe((value: any) => {
-      this.speakerResources = [...this.speakerResources, ...value.results];
-      console.log(this.speakerResources);
-      if (this.speakerResources.length > 0 && !this.filters.includes('Content')) {
-        this.filters.push('Content');
-      }
-      if (this.speakerResourcesPage === 1) {
-        this.speakerResourcesTotal = value.total;
-        this.total += this.speakerResourcesTotal;
-      }
-      this.speakerResourcesPage++;
-      this.gtmService(this.query);
-      this.searchLoader = false;
-      this.canLoadMoreSpeakerResources = false;
-    });
+    this.searchService
+      .getSearchResults(this.query, this.speakerResourcesPage, this.count, 'SpeakerResource')
+      .subscribe((value: any) => {
+        this.speakerResources = [...this.speakerResources, ...value.results];
+        console.log(this.speakerResources);
+        if (this.speakerResources.length > 0 && !this.filters.includes('Tech Talks')) {
+          this.filters.push('Tech Talks');
+        }
+        if (this.speakerResourcesPage === 1) {
+          this.speakerResourcesTotal = value.total;
+          this.total += this.speakerResourcesTotal;
+        }
+        this.speakerResourcesPage++;
+        this.gtmService(this.query);
+        this.searchLoader = false;
+        this.canLoadMoreSpeakerResources = false;
+      });
   }
 
   getUpcomingEvents() {
@@ -256,7 +266,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.upcomingEventsPage, this.count, 'UpcomingEvents')
       .subscribe((value: any) => {
         this.upcomingEvents = [...this.upcomingEvents, ...value.results];
-        console.log(this.upcomingEvents);
+        // console.log(this.upcomingEvents);
         if (this.upcomingEvents.length > 0 && !this.filters.includes('Upcoming Events')) {
           this.filters.push('Upcoming Events');
         }
@@ -268,6 +278,27 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         this.gtmService(this.query);
         this.searchLoader = false;
         this.canLoadMoreUpcomingEvents = false;
+      });
+  }
+
+  getCommunityNewsletters() {
+    this.canLoadMoreCommunityNewsletters = true;
+    this.searchService
+      .getSearchResults(this.query, this.communityNewslettersPage, this.count, 'Newsletter')
+      .subscribe((value: any) => {
+        this.communityNewsletters = [...this.communityNewsletters, ...value.results];
+        console.log(this.communityNewsletters);
+        if (this.communityNewsletters.length > 0 && !this.filters.includes('Community Newsletters')) {
+          this.filters.push('Community Newsletters');
+        }
+        if (this.communityNewslettersPage === 1) {
+          this.communityNewslettersTotal = value.total;
+          this.total += this.communityNewslettersTotal;
+        }
+        this.communityNewslettersPage++;
+        this.gtmService(this.query);
+        this.searchLoader = false;
+        this.canLoadMoreCommunityNewsletters = false;
       });
   }
 
@@ -310,31 +341,39 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.getBuilds();
       this.getEvents();
       this.getContent();
-      this.getUpcomingEvents();
+      this.getSpeakerResources();
+      this.getCommunityNewsletters();
+      // this.getUpcomingEvents();
     } else {
       this.selectedFilters.forEach((filter) => {
         switch (filter) {
-          case 'User':
+          case 'Users':
             this.getUsers();
             break;
-          case 'Community':
+          case 'Communities':
             this.getCommunity();
             break;
-          case 'Lab':
+          case 'Labs':
             this.getLabs();
             break;
-          case 'Community Build':
+          case 'Community Builds':
             this.getBuilds();
             break;
-          case 'Event':
+          case 'Events':
             this.getEvents();
             break;
           case 'Content':
             this.getContent();
             break;
-          case 'Upcoming Events':
-            this.getUpcomingEvents();
+          case 'Tech Talks':
+            this.getSpeakerResources();
             break;
+          case 'Community Newsletters':
+            this.getCommunityNewsletters();
+            break;
+          // case 'Upcoming Events':
+          //   this.getUpcomingEvents();
+          //   break;
         }
       });
     }

@@ -4,6 +4,10 @@ a {
 .user,
 .community {
   @apply com-flex com-flex-row com-justify-between;
+
+  a {
+    @apply com-mr-[76px];
+  }
   .user-profile-image {
     @apply com-w-10 com-h-10 com-mr-4 com-flex-shrink-0 com-overflow-hidden com-rounded-full com-bg-tWhite;
 
