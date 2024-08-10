@@ -10,27 +10,35 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NbTabComponent, NbTabsetComponent, NbWindowService } from '@commudle/theme';
-import { faLink, faMapPin, faPen, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLink,
+  faLocationDot,
+  faMapPin,
+  faPen,
+  faPlusCircle,
+  faTrash,
+  faVideo,
+} from '@fortawesome/free-solid-svg-icons';
 import { DataFormEntityResponseGroupsService } from 'apps/commudle-admin/src/app/services/data-form-entity-response-groups.service';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 import { EEmbeddedVideoStreamSources } from 'apps/shared-models/enums/embedded_video_stream_sources.enum';
-import { EEventType, IEventLocation } from 'apps/shared-models/event-location.model';
+import { EEventType, IEventDatesLocation, IEventLocation } from 'apps/shared-models/event-location.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { GooglePlacesAutocompleteService } from 'apps/commudle-admin/src/app/services/google-places-autocomplete.service';
+import { TrackSlotsService } from 'apps/commudle-admin/src/app/services/track_slots.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-event-locations',
   templateUrl: './event-locations.component.html',
   styleUrls: ['./event-locations.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventLocationsComponent implements OnInit {
   @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
   @ViewChild('deleteEventLocationTemplate') deleteEventLocationTemplate: TemplateRef<any>;
-  @ViewChild('helpText') helpText: TemplateRef<any>;
 
   faLink = faLink;
   faMapPin = faMapPin;
@@ -41,15 +49,25 @@ export class EventLocationsComponent implements OnInit {
   EEmbeddedVideoStreamSources = EEmbeddedVideoStreamSources;
   activeTabIndex = -1;
 
+  moment = moment;
+  eventDates;
+
   @Input() event: IEvent;
   @Input() community: ICommunity;
-  eventLocations: IEventLocation[];
+  eventLocations;
   eventSpeakers: IDataFormEntityResponseGroup[];
   windowRef;
   isLoading = true;
+  eventDatesLocation: IEventDatesLocation[];
+  admin = true;
 
   eventLocationForm;
   selectedEventType = EEventType.OFFLINE_ONLY;
+  selectedLocation: IEventLocation;
+  faLocationDot = faLocationDot;
+  faVideo = faVideo;
+  invalidLocationName = false;
+  selectedDate: Date;
 
   @ViewChild('tabset') tabsetEl: NbTabsetComponent;
   @ViewChild('addTab') addTabEl: NbTabComponent;
@@ -63,6 +81,7 @@ export class EventLocationsComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private googlePlacesAutocompleteService: GooglePlacesAutocompleteService,
     private changeDetectorRef: ChangeDetectorRef,
+    private trackSlotsService: TrackSlotsService,
   ) {
     this.eventLocationForm = this.fb.group({
       location: this.fb.group({
@@ -83,14 +102,6 @@ export class EventLocationsComponent implements OnInit {
   ngOnInit() {
     this.getEventLocations();
     this.getEventSpeakers();
-  }
-
-  getEventLocations() {
-    this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
-      this.eventLocations = data.event_locations;
-      this.changeDetectorRef.markForCheck();
-      this.isLoading = false;
-    });
   }
 
   getEventSpeakers() {
@@ -153,13 +164,47 @@ export class EventLocationsComponent implements OnInit {
   }
 
   addEventLocation() {
+    this.invalidLocationName = false;
+    if (this.selectedEventType === EEventType.ONLINE_ONLY) {
+      this.eventLocationForm.patchValue({
+        location: {
+          name: 'Online',
+          address: 'NA',
+          map_link: 'NA',
+        },
+      });
+    }
+
+    const locationName = this.eventLocationForm.get('location').get('name').value;
+
+    if (locationName !== 'Online') {
+      if (this.locationNameExists(locationName)) {
+        this.invalidLocationName = true;
+        return;
+      }
+    }
     this.windowRef.close();
     this.eventLocationsService.createEventLocation(this.event.id, this.eventLocationForm.value).subscribe((data) => {
-      this.eventLocations.push(data);
+      this.eventDatesLocation.forEach((event) => {
+        event.event_locations.push(data);
+      });
+      this.selectLocation(data);
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Location added!');
       this.changeDetectorRef.markForCheck();
+      this.changeDetectorRef.detectChanges();
     });
+  }
+
+  locationNameExists(name: string): boolean {
+    for (const dateLocation of this.eventDatesLocation) {
+      for (const loc of dateLocation.event_locations) {
+        if (loc.location?.name.toLowerCase() === name.toLowerCase()) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   showEditEventLocationForm(eventLocation) {
@@ -175,11 +220,19 @@ export class EventLocationsComponent implements OnInit {
         this.eventLocationForm.get('location').patchValue(eventLocation.location);
         break;
       case EEventType.ONLINE_ONLY:
+        this.eventLocationForm.patchValue({
+          location: {
+            name: 'Online',
+            address: 'NA',
+            map_link: 'NA',
+          },
+        });
         if (eventLocation.embedded_video_stream) {
           this.eventLocationForm.get('embedded_video_stream').patchValue(eventLocation.embedded_video_stream);
         }
         break;
     }
+
     this.windowRef = this.windowService.open(this.eventLocationFormTemplate, {
       title: `Edit Location`,
       context: { operationType: 'edit', eventLocation: eventLocation },
@@ -189,11 +242,27 @@ export class EventLocationsComponent implements OnInit {
   }
 
   editEventLocation(eventLocation) {
+    this.invalidLocationName = false;
+    const locationName = this.eventLocationForm.get('location').get('name').value;
+
+    if (locationName !== 'Online') {
+      if (this.locationNameExists(locationName)) {
+        this.invalidLocationName = true;
+        return;
+      }
+    }
     this.windowRef.close();
     this.eventLocationsService.updateEventLocation(eventLocation.id, this.eventLocationForm.value).subscribe((data) => {
-      const locationIndex = this.eventLocations.findIndex((k) => k.id === data.id);
-      this.activeTabIndex = locationIndex;
-      this.eventLocations[locationIndex] = data;
+      this.eventDatesLocation.forEach((dateLocation) => {
+        const index = dateLocation.event_locations.findIndex((k) => {
+          return k.id === eventLocation.id;
+        });
+        if (index !== -1) {
+          dateLocation.event_locations[index] = data;
+          this.activeTabIndex = index;
+        }
+        this.selectLocation(dateLocation.event_locations[index]);
+      });
       this.eventLocationForm.reset();
       this.toastLogService.successDialog('Updated');
       this.changeDetectorRef.markForCheck();
@@ -214,80 +283,25 @@ export class EventLocationsComponent implements OnInit {
         this.changeDetectorRef.markForCheck();
       });
     }
-    const locationIndex = this.eventLocations.findIndex((k) => k.id === eventLocation.id);
-    this.eventLocations.splice(locationIndex, 1);
+    this.eventDatesLocation.forEach((dateLocation) => {
+      const index = dateLocation.event_locations.findIndex((k) => {
+        return k.id === eventLocation.id;
+      });
+      if (index !== -1) {
+        dateLocation.event_locations.splice(index, 1);
+      }
+    });
+
+    if (this.selectedLocation && this.selectedLocation.id === eventLocation.id) {
+      this.selectLocation(this.eventDatesLocation[0].event_locations[0]);
+    }
+
     this.windowRef.close();
     this.activateTabAdd();
   }
 
-  addTrack(newTrack, locationIndex) {
-    this.eventLocations[locationIndex].event_location_tracks.push(newTrack);
-    this.changeDetectorRef.markForCheck();
-  }
-
-  updateTrack(track, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === track.id);
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition] = track;
-    this.changeDetectorRef.markForCheck();
-  }
-
-  removeTrack(trackId, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex((k) => k.id === trackId);
-    this.eventLocations[locationIndex].event_location_tracks.splice(trackPosition, 1);
-  }
-
-  addSlot(newTrackSlot, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
-      (k) => k.id === newTrackSlot.event_location_track_id,
-    );
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots = [
-      ...this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots,
-      newTrackSlot,
-    ];
-    this.changeDetectorRef.markForCheck();
-  }
-
-  updateSlot(trackSlot, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
-      (k) => k.id == trackSlot.event_location_track_id,
-    );
-
-    const slotPosition = this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.findIndex(
-      (k) => k.id == trackSlot.id,
-    );
-
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots[slotPosition] = trackSlot;
-  }
-
-  removeSlot(trackSlot, locationIndex) {
-    const trackPosition = this.eventLocations[locationIndex].event_location_tracks.findIndex(
-      (k) => k.id == trackSlot.event_location_track_id,
-    );
-
-    const slotPosition = this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.findIndex(
-      (k) => k.id == trackSlot.id,
-    );
-    this.eventLocations[locationIndex].event_location_tracks[trackPosition].track_slots.splice(slotPosition, 1);
-  }
-
   sanitizedEmbeddedHTML(val) {
     return this.sanitizer.bypassSecurityTrustHtml(val);
-  }
-
-  openHelpTextWindow() {
-    this.windowService.open(this.helpText, { title: 'How to Add Agenda!' });
-  }
-
-  getTabIcon(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream ? 'video' : 'pin';
-  }
-
-  getLocationName(eventLocation: IEventLocation) {
-    return eventLocation.embedded_video_stream
-      ? 'Video Stream'
-      : eventLocation.location
-      ? eventLocation.location.name
-      : '';
   }
 
   activateTabAdd() {
@@ -309,5 +323,36 @@ export class EventLocationsComponent implements OnInit {
       .get('address')
       .setValue(place.name + ', ' + place.formatted_address);
     this.eventLocationForm.get('location').get('map_link').setValue(place.url);
+  }
+
+  getEventLocations() {
+    this.trackSlotsService.getEventDates(this.event.slug).subscribe((data: any) => {
+      this.eventDatesLocation = data;
+      this.selectedDate = data[0].date;
+      this.selectLocation(data[0].event_locations[0]);
+      this.changeDetectorRef.markForCheck();
+      this.isLoading = false;
+    });
+  }
+
+  selectLocation(eventLocation) {
+    this.selectedLocation = eventLocation;
+    this.changeDetectorRef.detectChanges();
+  }
+
+  onTabChange(event: any) {
+    const tabIndex = this.eventDatesLocation.findIndex((d) => {
+      const formattedDate = moment(d.date).format('Do MMMM');
+      if (formattedDate === event.tabTitle) {
+        this.selectedDate = d.date;
+      }
+      return formattedDate === event.tabTitle;
+    });
+    if (tabIndex !== -1) {
+      this.activeTabIndex = tabIndex;
+      if (this.eventDatesLocation[tabIndex] && this.eventDatesLocation[tabIndex].event_locations.length > 0) {
+        this.selectLocation(this.selectedLocation);
+      }
+    }
   }
 }

@@ -1,6 +1,5 @@
 .embedded-video-stream {
-  display: flex;
-  flex-direction: column;
+  @apply com-bg-white com-flex com-flex-col;
 
   .embedded-video-stream-form {
     order: 2;

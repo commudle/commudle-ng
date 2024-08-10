@@ -83,10 +83,7 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
           if (event.item.title === 'Edit') {
             this.openEditForm();
           } else if (event.item.title === 'Delete') {
-            this.communityChannelHandlerService.sendDelete(
-              this.message.id,
-              this.message.user.id === this.authService.getCurrentUser().id,
-            );
+            this.communityChannelHandlerService.sendDelete(this.message.id);
             // } else if (event.item.title === 'Pin Message') {
             //   // this.pinMessage(this.message);
             // } else if (event.item.title === 'Unpin Message') {

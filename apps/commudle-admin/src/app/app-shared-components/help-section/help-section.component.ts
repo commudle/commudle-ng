@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.service';
-import { help_dictionary } from '@commudle/shared-services';
+import { GoogleTagManagerService, help_dictionary } from '@commudle/shared-services';
 import { IHelpDictionary, EHelpDictionaryType } from '@commudle/shared-models';
 import { HelpDictionaryService } from 'apps/commudle-admin/src/app/services/help-dictionary.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NbTooltipModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -22,7 +22,12 @@ export class HelpSectionComponent implements OnInit {
   helpDictionary = help_dictionary;
   helpDictionaryData: IHelpDictionary;
   EHelpDictionaryType = EHelpDictionaryType;
-  constructor(private helpSidebarService: SidebarService, private helpDictionaryService: HelpDictionaryService) {}
+  constructor(
+    private helpSidebarService: SidebarService,
+    private helpDictionaryService: HelpDictionaryService,
+    private gtm: GoogleTagManagerService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.getHelpSectionData();
@@ -32,10 +37,19 @@ export class HelpSectionComponent implements OnInit {
     if (this.helpDictionaryData && this.helpDictionaryData.type === EHelpDictionaryType.URL) {
       this.helpDictionaryService.getHelpDictionaryIframe(this.helpDictionaryData.url);
       this.helpSidebarService.openSidebar('helpSection');
+      this.gtmService(this.helpDictionaryData);
     }
   }
 
   getHelpSectionData() {
     this.helpDictionaryData = this.helpDictionary[this.helpDictionaryName];
+  }
+
+  gtmService(helpData) {
+    this.gtm.dataLayerPushEvent('click-help', {
+      com_type: helpData.type,
+      com_help_url: helpData.url,
+      com_page_url: this.router.url,
+    });
   }
 }

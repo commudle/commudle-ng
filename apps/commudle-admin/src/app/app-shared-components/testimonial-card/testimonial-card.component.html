@@ -6,7 +6,7 @@
         [ngClass]="{ 'com-pointer-events-none': !testimonial.username }"
       >
         <div class="top-card">
-          <div *ngIf="testimonial.user" class="image">
+          <div *ngIf="testimonial.user && !testimonial.image" class="image">
             <img [src]="testimonial.user.photo?.i64" alt="{{ testimonial.name }}" />
           </div>
           <div *ngIf="testimonial.image" class="image">

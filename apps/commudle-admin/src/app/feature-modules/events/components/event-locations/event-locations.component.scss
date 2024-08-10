@@ -1,13 +1,20 @@
 .event-locations-list {
-  @apply com-mx-0 com-my-5 com-py-2;
+  @apply com-m-0 com-mt-4 com-p-0;
   display: flex;
   flex-direction: column;
 
   .event-location {
+    @apply com-py-2;
     nb-tabset {
-      @apply com-overflow-x-auto;
+      @apply com-overflow-hidden;
+
+      &::ng-deep {
+        ul {
+          @apply com-overflow-x-scroll com-overflow-y-hidden;
+        }
+      }
       nb-tab {
-        @apply com-m-0 com-p-3;
+        @apply com-m-0 com-px-6 com-py-4;
 
         p {
           @apply com-m-0 com-p-0;
@@ -16,16 +23,27 @@
         .address {
           @apply com-mb-2;
 
+          span {
+            @apply com-text-base com-font-extrabold com-text-Yankees-Blue;
+          }
+
+          a {
+            @apply com-no-underline com-text-base com-font-medium com-text-primary-500;
+          }
+
           .edit-location-icon {
-            @apply com-mx-2 com-cursor-pointer;
+            @apply com-mx-2 com-cursor-pointer com-text-base;
           }
           .delete-location-icon {
-            @apply com-cursor-pointer;
+            @apply com-cursor-pointer com-text-base;
           }
         }
 
         .link-to-map {
-          @apply com-mb-4;
+          @apply com-mb-2;
+          a {
+            @apply com-no-underline com-text-base com-font-medium com-text-primary-500;
+          }
         }
       }
     }
@@ -56,12 +74,6 @@
   margin-top: 1rem;
 }
 
-.help-text-button {
-  p {
-    margin: 0 0 0.5rem;
-  }
-}
-
 .embedded-video-popover {
   min-width: 150px;
   min-height: 150px;
@@ -70,4 +82,20 @@
 
 .event-location-form {
   @apply md:com-w-[40vw] com-w-full;
+}
+
+.locations-tracks {
+  @apply com-flex com-flex-row;
+}
+
+.locations {
+  @apply com-flex com-flex-row com-gap-4 com-mb-[18px];
+
+  fa-icon {
+    @apply com-mr-1 com-text-sm;
+  }
+}
+
+.event-location-tracks {
+  @apply com-m-0 com-py-0 com-px-6;
 }

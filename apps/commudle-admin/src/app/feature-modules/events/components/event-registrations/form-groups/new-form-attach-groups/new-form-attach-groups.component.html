@@ -1,0 +1,140 @@
+<div>
+  <h3 class="heading">Select a type of form you want to attach</h3>
+  <div class="registration-types">
+    <div
+      *ngFor="let rt of registrationTypes"
+      class="registration-type"
+      (click)="selectedRegistrationType = rt; openDialogBox()"
+    >
+      <span> {{ rt.name | titlecase }}</span>
+    </div>
+  </div>
+</div>
+
+<ng-template #formAttachDialogBox let-data let-ref="dialogRef">
+  <nb-card class="form-attach-dialog">
+    <nb-card-header>
+      <span>{{ this.eventDataFormEntityGroup ? 'Edit Form' : 'Attach New Form' }}</span>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon></button
+    ></nb-card-header>
+    <nb-card-body>
+      <div class="registration-types">
+        <div
+          *ngFor="let rt of registrationTypes"
+          (click)="selectedRegistrationType = rt"
+          class="registration-type"
+          [ngClass]="{ active: selectedRegistrationType.id === rt.id }"
+        >
+          <span> {{ rt.name | titlecase }}</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <form [formGroup]="eventDataFormEntityGroupForm">
+          <div formGroupName="data_form_entity_group">
+            <div class="name">
+              <div class="question-heading">1. Select your form and form name</div>
+              <label fullWidth>
+                <span> Form Name*</span>
+                <input
+                  fieldSize="small"
+                  formControlName="name"
+                  placeholder="Select your form name"
+                  fullWidth
+                  nbInput
+                  type="text"
+                />
+                <span
+                  *ngIf="
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').touched &&
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').invalid &&
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('name').errors.required
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+              </label>
+            </div>
+            <div
+              class="user-details"
+              *ngIf="
+                !(selectedRegistrationType.name === 'feedback' || selectedRegistrationType.name === 'communication') &&
+                (eventDataFormEntityGroup === null ||
+                  (eventDataFormEntityGroup !== null && eventDataFormEntityGroup.user_details !== null))
+              "
+            >
+              <div class="question-heading">
+                2. Choose which fields are absolutely necessary for registering. Remember, a shorter form leads to
+                quicker signup.
+              </div>
+              <commudle-user-details-checkbox-form
+                [userDetails]="eventDataFormEntityGroup?.user_details"
+                [showExperienceField]="false"
+                (userDetailsFormValues)="updateAndCreateEdfeg($event)"
+              ></commudle-user-details-checkbox-form>
+            </div>
+            <div class="data-form-select">
+              <div class="question-heading">Additional Form Questions.</div>
+              <label>
+                <div class="select">
+                  <select formControlName="data_form_id">
+                    <option value=""><strong>+</strong> CREATE NEW FORM</option>
+                    <option *ngFor="let df of communityDataForms" [value]="df.id">
+                      {{ df.name | titlecase }}
+                    </option>
+                  </select>
+                </div>
+                <span
+                  *ngIf="
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').touched &&
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').invalid &&
+                    eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').errors.required
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Please select a form'"></commudle-alert>
+                </span>
+              </label>
+            </div>
+            <div
+              class="custom-questions"
+              *ngIf="!eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
+            >
+              <app-new-data-form
+                (newDataForm)="submit($event)"
+                (invalidFormValue)="invalidDataForm()"
+                [formName]="selectedRegistrationType.name + ' - ' + this.event.name"
+                [stickSubmitButtonBottom]="true"
+                [showNameDescriptionFiled]="false"
+                [minQuestionCount]="1"
+                [showSubmitButton]="false"
+              >
+              </app-new-data-form>
+            </div>
+            <div *ngIf="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value">
+              <commudle-edit-data-form
+                [dataFormId]="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
+                [showNameDescriptionFiled]="false"
+                [centerLayout]="false"
+                (updateFormDataEvent)="updateData($event)"
+                [showSubmitButton]="false"
+              ></commudle-edit-data-form>
+            </div>
+          </div>
+        </form>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        fullWidth
+        status="primary"
+        type="submit"
+        (click)="getValueOrUpdateEdfeg()"
+        [disabled]="!eventDataFormEntityGroupForm.valid"
+      >
+        Save
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

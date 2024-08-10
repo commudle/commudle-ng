@@ -71,6 +71,7 @@ export class PaymentSettingsComponent implements OnInit {
           country: [''],
           seller_name: [''],
           seller_address: [''],
+          multi_person_ticket: [false],
         }),
       },
       {
@@ -178,6 +179,7 @@ export class PaymentSettingsComponent implements OnInit {
       country: ticketDetails.country,
       seller_name: ticketDetails.seller_name,
       seller_address: ticketDetails.seller_address,
+      multi_person_ticket: ticketDetails.multi_person_ticket,
     });
   }
 

@@ -215,9 +215,11 @@ export class EventFormResponsesComponent implements OnInit {
   getEventLocationTracks() {
     this.eventLocationsService.getEventLocations(this.event.slug).subscribe((data) => {
       this.eventLocations = data.event_locations;
-      for (const eventLocation of data.event_locations) {
-        for (const eventLocationTrack of eventLocation.event_location_tracks) {
-          this.eventLocationTracks.push(eventLocationTrack);
+      if (data.event_locations) {
+        for (const eventLocation of data.event_locations) {
+          for (const eventLocationTrack of eventLocation.event_location_tracks) {
+            this.eventLocationTracks.push(eventLocationTrack);
+          }
         }
       }
     });
@@ -436,5 +438,13 @@ export class EventFormResponsesComponent implements OnInit {
       this.forms[i] = null;
       this.getResponses();
     }
+  }
+
+  sendPaymentCsv() {
+    this.eventDataFormEntityGroupsService.mailPaymentCSV(this.eventDataFormEntityGroupId).subscribe((data) => {
+      if (data) {
+        this.toastLogService.successDialog('Payment CSV will be delivered to your email!', 5000);
+      }
+    });
   }
 }

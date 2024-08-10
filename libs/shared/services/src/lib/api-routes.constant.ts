@@ -213,6 +213,7 @@ export const API_ROUTES = {
     TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
     INDEX_BY_COMMUNITY: 'api/v2/event_data_form_entity_groups/index_by_community',
     LIST: 'api/v2/event_data_form_entity_groups/list',
+    EMAIL_PAYMENT_DETAILS_CSV: 'api/v2/event_data_form_entity_groups/email_payment_details_csv',
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
@@ -270,6 +271,7 @@ export const API_ROUTES = {
     AUTOMATION: 'api/v2/data_form_entities/automation',
     FORM_STATUS: 'api/v2/data_form_entities/form_status',
     EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
+    CHECK_ALREADY_FILLED_ENTRY_PASS_FORM: 'api/v2/data_form_entities/check_already_filled_entry_pass_form',
   },
 
   // registration_statuses
@@ -398,11 +400,15 @@ export const API_ROUTES = {
     CREATE: 'api/v2/track_slots',
     UPDATE: 'api/v2/track_slots',
     DELETE: 'api/v2/track_slots',
+    TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/track_slots_by_date',
+    TRACK_SLOTS_BY_DATE_AND_LOCATION: 'api/v2/track_slots/track_slot_by_date_and_location',
     PUBLIC: {
       GET: 'api/v2/track_slots/public_show',
       TOGGLE_VOTE: 'api/v2/track_slots/public_toggle_vote',
       LIVE_EVENT_SESSIONS: 'api/v2/track_slots/public_live_event_sessions',
       POLLS: 'api/v2/track_slots/public/polls',
+      TRACK_SLOTS_BY_DATE: 'api/v2/track_slots/public/track_slots_by_date',
+      TRACK_SLOTS_BY_DATE_AND_LOCATION: 'api/v2/track_slots/public/track_slot_by_date_and_location',
     },
   },
 
@@ -918,5 +924,6 @@ export const API_ROUTES = {
     GET_ALL_PAYMENT_DETAILS: 'api/v2/razorpay/get_all_payment_details', //GET
     CREATE_TRANSFER: 'api/v2/razorpay/create_transfer', //GET
     GET_TRANSFER_DETAILS: 'api/v2/razorpay/get_transfer_details', //GET
+    CREATE_MISSING_RZP_PAYMENT: 'api/v2/razorpay/create_missing_rzp_payment', //GET
   },
 };

@@ -65,12 +65,16 @@ p {
   }
 }
 
+.message-content {
+  @apply com-relative com-mb-2px;
+}
+
 .highlight-background {
   @apply com-bg-gray-100;
 }
 
 .action-icons-hover {
-  @apply com-mt-[-22px] com-mr-6;
+  @apply com-absolute com-top-0 com-right-0 com-mt-[-22px] com-mr-6;
 }
 
 nb-action {

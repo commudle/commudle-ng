@@ -1,9 +1,18 @@
 nb-tabset nb-tab {
-  padding: 0;
+  @apply com-p-0;
+}
+
+nb-tabset {
+  @apply com-overflow-hidden;
+  &::ng-deep {
+    ul {
+      @apply com-overflow-x-scroll com-overflow-y-hidden;
+    }
+  }
 }
 
 nb-card-body {
-  @apply com-pb-0;
+  @apply md:com-pb-4 com-pb-0;
   h6 {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -84,4 +93,12 @@ nb-card {
       justify-content: center;
     }
   }
+}
+
+.locations {
+  @apply com-flex com-flex-row com-gap-4 com-m-4;
+}
+
+.event-locations-list {
+  @apply com-m-0;
 }
