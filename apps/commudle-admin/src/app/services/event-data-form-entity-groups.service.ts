@@ -129,8 +129,12 @@ export class EventDataFormEntityGroupsService {
     communityId: number | string,
     page: number,
     count: number,
+    search = '',
   ): Observable<IEventDataFormEntityGroups> {
-    const params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    let params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.INDEX_BY_COMMUNITY),
       { params },

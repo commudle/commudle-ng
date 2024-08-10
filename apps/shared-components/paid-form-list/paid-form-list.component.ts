@@ -30,9 +30,10 @@ export class PaidFormListComponent implements OnInit {
     this.getEdfegData();
     this.searchForm.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
       this.page = 1;
-      this.getEdfegList();
+      this.getEdfegData();
     });
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
@@ -48,13 +49,15 @@ export class PaidFormListComponent implements OnInit {
   getEdfegListByCommunity() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.edfergService.getIndexByCommunity(this.communityId, this.page, this.count).subscribe((data) => {
-        this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
-        this.total = data.total;
-        this.page = data.page;
-        this.count = data.count;
-        this.isLoading = false;
-      }),
+      this.edfergService
+        .getIndexByCommunity(this.communityId, this.page, this.count, this.searchForm.get('search').value)
+        .subscribe((data) => {
+          this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
+          this.total = data.total;
+          this.page = data.page;
+          this.count = data.count;
+          this.isLoading = false;
+        }),
     );
   }
   getEdfegList() {
