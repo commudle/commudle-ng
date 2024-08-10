@@ -1,3 +1,11 @@
+<br />
+<br />
+
+<form [formGroup]="searchForm">
+  <input formControlName="search" nbInput type="text" fullWidth placeholder="Search with Name, Event name" />
+</form>
+<br />
+
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 <nb-card *ngFor="let edfeg of eventDataFormEntityGroup" class="edfeg">
   <nb-card-body [routerLink]="[edfeg.id]">

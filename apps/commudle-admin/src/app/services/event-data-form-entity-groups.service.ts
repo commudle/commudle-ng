@@ -137,8 +137,11 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
-  getList(page: number, count: number): Observable<IEventDataFormEntityGroups> {
-    const params = new HttpParams().set('page', page).set('count', count);
+  getList(page: number, count: number, search = ''): Observable<IEventDataFormEntityGroups> {
+    let params = new HttpParams().set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.LIST),
       { params },
