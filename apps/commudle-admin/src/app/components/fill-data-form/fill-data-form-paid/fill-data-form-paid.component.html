@@ -55,6 +55,7 @@
                 [existingResponses]="selectedFormResponse"
                 [eventId]="event ? event.id : ''"
                 [submitButtonText]="ticketPaidAlready ? 'Save' : 'Submit & Pay'"
+                [showSubmitButton]="ticketPaidAlready ? true : isMobileView ? false : true"
               >
               </app-data-form-fill>
               <p *ngIf="dataFormEntity.multi_response" class="text-info">
@@ -318,10 +319,18 @@
             ></commudle-alert>
           </div>
           <div class="com-my-2 com-px-2">
-            <commudle-alert
-              [info]="true"
-              message="For any refund related queries please reach out to the event organizers, Commudle is not responsible for any refund or disputes between the ticket purchasing party and the ticket seller."
-            ></commudle-alert>
+            <commudle-alert [info]="true">
+              <div infoContent>
+                For any refund related queries please reach out to the event organizers, Commudle is not responsible for
+                any refund or disputes between the ticket purchasing party and the ticket seller.
+                <a
+                  *ngIf="community?.has_refund_policy"
+                  [routerLink]="['/communities', community.slug, 'p', refundPolicy?.slug]"
+                  target="_blank"
+                  >{{ refundPolicy?.title }}</a
+                >
+              </div></commudle-alert
+            >
           </div>
           <div class="com-px-2" *ngIf="!ticketPaidAlready">
             <button

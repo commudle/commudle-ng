@@ -36,6 +36,9 @@ import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
+import { ResponsiveService } from 'apps/shared-services/responsive.service';
+import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { ICustomPage } from 'apps/shared-models/custom-page.model';
 
 declare const Razorpay: any;
 @Component({
@@ -112,6 +115,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   isLoadingPayment = false;
   userProfileDetails: IUserStat;
   formAnswers = {};
+  isMobileView = false;
+  refundPolicy: ICustomPage;
 
   @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
@@ -136,12 +141,15 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private razorpayService: RazorpayService,
     private appUsersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
+    private responsiveService: ResponsiveService,
+    private customPageService: CustomPageService,
   ) {}
 
   ngOnInit() {
     this.fetchDataFormEntity();
     this.setRedirectPath();
     this.setupCurrentUser();
+    this.isMobileView = this.responsiveService.isMobileView();
   }
 
   ngAfterViewInit(): void {
@@ -379,7 +387,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     this.subscriptions.push(
       this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
         this.community = data;
-
+        if (this.community.has_refund_policy) {
+          this.getRefundPolicyPageData();
+        }
         if (!this.event.header_image_path) {
           this.seoService.setTag('og:image', this.community.logo_path);
         }
@@ -645,16 +655,18 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       },
       handler: (response: any) => {
         {
-          this.razorpayService.createOrUpdatePayment(response, false, order?.razorpay_payment?.id).subscribe((data) => {
-            this.fetchPaidTicketingData();
-            this.checkEventTicketOrder(this.dataFormEntity.entity_id);
-            this.ticketPaidAlready = true;
-            this.toastLogService.successDialog('Your Payment Was Received Successfully');
-            this.isLoadingPayment = false;
-            this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
-              closeOnBackdropClick: false,
+          this.razorpayService
+            .createOrUpdatePayment(response, false, order?.razorpay_payment?.rzp_payment_id)
+            .subscribe((data) => {
+              this.fetchPaidTicketingData();
+              this.checkEventTicketOrder(this.dataFormEntity.entity_id);
+              this.ticketPaidAlready = true;
+              this.toastLogService.successDialog('Your Payment Was Received Successfully');
+              this.isLoadingPayment = false;
+              this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
+                closeOnBackdropClick: false,
+              });
             });
-          });
         }
       },
       prefill: {
@@ -678,7 +690,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     rzp1.on('payment.failed', (response: any) => {
       {
         this.razorpayService
-          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
+          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.rzp_payment_id)
           .subscribe((data) => {
             this.isLoadingPayment = false;
             alert('Message from Razorpay:' + response.error.description);
@@ -713,5 +725,14 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     });
     this.userProfileManagerService.updateUserDetails(false, this.currentUser);
     this.submitForm();
+  }
+
+  getRefundPolicyPageData() {
+    this.customPageService.getRefundPolicyPage(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
+      if (data) {
+        this.community.has_refund_policy = true;
+        this.refundPolicy = data;
+      }
+    });
   }
 }

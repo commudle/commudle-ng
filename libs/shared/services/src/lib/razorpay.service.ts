@@ -58,7 +58,7 @@ export class RazorpayService {
     );
   }
 
-  createOrUpdatePayment(response, hasError: boolean = false, paymentId?: number): Observable<any> {
+  createOrUpdatePayment(response, hasError: boolean = false, paymentId?: string): Observable<any> {
     let params = new HttpParams();
     let requestBody: { has_error?: boolean; payment_error?: any; payment_details?: any } = {}; // Define the type of requestBody
 
@@ -75,8 +75,16 @@ export class RazorpayService {
     });
   }
 
-  getAllPaymentDetails(edfegId: number | string, page = 1, count = 10): Observable<IPaginationCount<IRazorpayPayment>> {
-    const params = new HttpParams().set('edfeg_id', edfegId).set('page', page).set('count', count);
+  getAllPaymentDetails(
+    edfegId: number | string,
+    page = 1,
+    count = 10,
+    search = '',
+  ): Observable<IPaginationCount<IRazorpayPayment>> {
+    let params = new HttpParams().set('edfeg_id', edfegId).set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IPaginationCount<IRazorpayPayment>>(
       this.baseApiService.getRoute(API_ROUTES.RAZORPAY.GET_ALL_PAYMENT_DETAILS),
       {
@@ -100,5 +108,12 @@ export class RazorpayService {
     return this.http.get<any>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.GET_TRANSFER_DETAILS), {
       params,
     });
+  }
+
+  createMissingRzpPayment(paymentId): Observable<IRazorpayOrder> {
+    return this.http.post<IRazorpayOrder>(
+      this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_MISSING_RZP_PAYMENT),
+      { payment_id: paymentId },
+    );
   }
 }

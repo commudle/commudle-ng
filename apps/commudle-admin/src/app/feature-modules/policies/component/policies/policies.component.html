@@ -1,12 +1,18 @@
-<nb-card *ngIf="privacyPolicy">
-  <nb-card-header>
-    <h1>{{ privacyPolicy.title }}</h1>
-    <p>
-      <small> Last updated on: {{ privacyPolicy.last_updated_at | date : 'medium' }} </small>
-    </p>
-  </nb-card-header>
+<div class="base-layout">
+  <div class="container">
+    <div class="one-column-layout">
+      <nb-card *ngIf="privacyPolicy">
+        <nb-card-header>
+          <h1>{{ privacyPolicy.title }}</h1>
+          <p>
+            <small> Last updated on: {{ privacyPolicy.last_updated_at | date : 'medium' }} </small>
+          </p>
+        </nb-card-header>
 
-  <nb-card-body>
-    <div [innerHTML]="content"></div>
-  </nb-card-body>
-</nb-card>
+        <nb-card-body>
+          <div [innerHTML]="content"></div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+</div>

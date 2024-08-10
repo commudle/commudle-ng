@@ -39,8 +39,8 @@
                   </div>
                   <div *ngIf="slot.tags_list" class="tags">
                     <app-badge
-                      *ngFor="let tag of slot.tags_list.split(',')"
-                      [fontSize]="'small'"
+                      *ngFor="let tag of splitTags(slot.tags_list)"
+                      [fontSize]="'x-small'"
                       [text]="tag"
                       [fontColor]="'com-text-white'"
                       [color]="'com-bg-primary-500'"

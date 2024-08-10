@@ -39,7 +39,6 @@ import moment from 'moment';
 export class EventLocationsComponent implements OnInit {
   @ViewChild('eventLocationFormTemplate') eventLocationFormTemplate: TemplateRef<any>;
   @ViewChild('deleteEventLocationTemplate') deleteEventLocationTemplate: TemplateRef<any>;
-  @ViewChild('helpText') helpText: TemplateRef<any>;
 
   faLink = faLink;
   faMapPin = faMapPin;
@@ -303,10 +302,6 @@ export class EventLocationsComponent implements OnInit {
 
   sanitizedEmbeddedHTML(val) {
     return this.sanitizer.bypassSecurityTrustHtml(val);
-  }
-
-  openHelpTextWindow() {
-    this.windowService.open(this.helpText, { title: 'How to Add Agenda!' });
   }
 
   activateTabAdd() {
