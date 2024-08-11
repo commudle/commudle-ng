@@ -1,6 +1,6 @@
-import { EventEmitter, Injectable } from '@angular/core';
+/// <reference types="@types/google.maps" />
 
-declare const google: any;
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class GooglePlacesAutocompleteService {
 
   constructor() {}
 
-  initAutocomplete(inputElement: HTMLInputElement, types: string = '(cities)') {
+  initAutocomplete(inputElement: HTMLInputElement, types = '(cities)') {
     this.autocomplete = new google.maps.places.Autocomplete(inputElement, {
       types: [types],
     });
