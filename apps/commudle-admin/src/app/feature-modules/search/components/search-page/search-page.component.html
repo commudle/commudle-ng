@@ -43,6 +43,8 @@
                     upcomingEvents.length > 0 &&
                     (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
                   "
+                  [ngClass]="{ active: currentFragment === 'communities' }"
+                  class="items-heading"
                 >
                   <p class="query-results-heading"><a [routerLink]="'.'" fragment="upcoming-events">Upcoming Events</a></p>
                 </div> -->
@@ -51,6 +53,8 @@
                       communities.length > 0 &&
                       (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
                     "
+                    [ngClass]="{ active: currentFragment === 'communities' }"
+                    class="items-heading"
                   >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="communities">Communities</a></p>
                   </div>
@@ -59,16 +63,22 @@
                     organizations.length > 0 &&
                     (selectedFilters.includes('Organizations') || selectedFilters.includes('All'))
                   "
+                  [ngClass]="{ active: currentFragment === 'communities' }"
+                  class="items-heading"
                 >
                   <p class="query-results-heading"><a [routerLink]="'.'" fragment="organizations">Organizations</a></p>
                 </div> -->
                   <div
                     *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))"
+                    [ngClass]="{ active: currentFragment === 'users' }"
+                    class="items-heading"
                   >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="users">Users</a></p>
                   </div>
                   <div
                     *ngIf="builds.length > 0 && (selectedFilters.includes('Builds') || selectedFilters.includes('All'))"
+                    [ngClass]="{ active: currentFragment === 'builds' }"
+                    class="items-heading"
                   >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="builds">Builds</a></p>
                   </div>
@@ -77,6 +87,8 @@
                       speakerResources.length > 0 &&
                       (selectedFilters.includes('Tech Talks') || selectedFilters.includes('All'))
                     "
+                    [ngClass]="{ active: currentFragment === 'tech-talks' }"
+                    class="items-heading"
                   >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="tech-talks">Tech Talks</a></p>
                   </div>
@@ -85,6 +97,8 @@
                       socialResources.length > 0 &&
                       (selectedFilters.includes('Content') || selectedFilters.includes('All'))
                     "
+                    [ngClass]="{ active: currentFragment === 'content' }"
+                    class="items-heading"
                   >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="content">Content</a></p>
                   </div>
@@ -93,6 +107,8 @@
                     communityNewsletters.length > 0 &&
                     (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
                   "
+                  [ngClass]="{ active: currentFragment === 'communities' }"
+                  class="items-heading"
                 >
                   <p class="query-results-heading"><a [routerLink]="'.'" fragment="community-newsletters">Community Newsletters</a></p>
                 </div> -->
@@ -101,14 +117,22 @@
                     mainNewsletters.length > 0 &&
                     (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
                   "
+                  [ngClass]="{ active: currentFragment === 'communities' }"
+                  class="items-heading"
                 >
                   <p class="query-results-heading"><a [routerLink]="'.'" fragment="community-newsletters">Commudle Newsletters</a></p>
                 </div> -->
-                  <div *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))">
+                  <div
+                    *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))"
+                    [ngClass]="{ active: currentFragment === 'labs' }"
+                    class="items-heading"
+                  >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="labs">Labs</a></p>
                   </div>
                   <div
                     *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
+                    [ngClass]="{ active: currentFragment === 'events' }"
+                    class="items-heading"
                   >
                     <p class="query-results-heading"><a [routerLink]="'.'" fragment="events">Events</a></p>
                   </div>

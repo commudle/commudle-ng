@@ -38,7 +38,7 @@
           }
 
           nb-card-body {
-            @apply com-px-4 com-py-0;
+            @apply com-p-0;
 
             .query-results-heading {
               @apply com-py-2 com-m-0;
@@ -170,4 +170,12 @@
   .divided-line {
     @apply com-border com-border-solid com-border-Bright-Gray;
   }
+}
+
+.active {
+  @apply com-bg-gray-100;
+}
+
+.items-heading {
+  @apply com-px-4 com-py-0;
 }

@@ -65,6 +65,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   seoTitle = '';
   seoDescription = '';
+  currentFragment = '';
 
   constructor(
     private searchService: SearchService,
@@ -87,6 +88,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.results = [];
       this.total = 0;
       this.getAllData();
+    });
+    this.activatedRoute.fragment.subscribe((fragment) => {
+      this.currentFragment = fragment ? fragment : '';
     });
   }
 
