@@ -34,7 +34,7 @@ export class FeaturesComponent implements OnInit, OnDestroy {
     'What are the different pricing plans?',
     'How do new members find my community on Commudle automatically?',
     'I want to migrate my existing community to Commudle, how to do it?',
-    'Does Commudle have a payment gateway?',
+    'Yes, your can sell tickets for your events. We have built integration with Razorpay for our Indian users. Paid ticketing for international users is underway.',
   ];
 
   answers = [

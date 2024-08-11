@@ -47,3 +47,31 @@ p {
 app-loading-spinner {
   @apply com-my-4;
 }
+
+.default-channel-container {
+  @apply com-border-primary-500 com-overflow-hidden;
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+    .name-count {
+      @apply com-flex com-items-center com-gap-4;
+      .channel-name {
+        @apply com-font-semibold com-text-Auro-Metal-Saurus com-text-base;
+      }
+      .members-count {
+        @apply com-bg-Bright-Gray com-rounded-3xl com-px-3 com-py-1;
+      }
+    }
+  }
+  nb-card-body {
+    @apply com-p-0 #{!important};
+    .description-container {
+      @apply com-bg-blue-50 com-h-14 com-flex com-items-center com-px-4;
+      .description {
+        @apply com-line-clamp-1 com-text-Yankees-Blue;
+      }
+    }
+    commudle-channel-discussion {
+      @apply com-pb-1.5 com-h-500px com-bg-white;
+    }
+  }
+}

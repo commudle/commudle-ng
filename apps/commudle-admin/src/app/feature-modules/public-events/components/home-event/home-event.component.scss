@@ -1,14 +1,14 @@
 .base-layout {
-  @apply com-p-4 com-pb-8;
+  @apply com-pb-8;
   .container {
     .details-section {
       @apply com-mx-0;
       nb-card-body {
-        @apply com-flex com-justify-between com-items-center com-py-0;
+        @apply com-flex com-justify-between com-items-center;
         .details {
-          @apply com-flex com-gap-3 com-items-center;
+          @apply com-flex com-flex-col;
           .event-name {
-            @apply com-text-Yankees-Blue com-text-4xl com-font-bold;
+            @apply com-text-Yankees-Blue com-text-4xl com-font-bold com-m-0 com-mb-4;
           }
         }
         // .social-links {
@@ -46,7 +46,9 @@
           }
 
           span {
-            @apply com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
+            a {
+              @apply com-no-underline com-text-base com-ml-2 com-font-semibold com-text-Yankees-Blue;
+            }
           }
         }
       }

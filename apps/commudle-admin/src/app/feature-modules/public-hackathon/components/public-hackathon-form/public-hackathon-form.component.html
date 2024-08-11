@@ -48,13 +48,11 @@
           <nb-card-body>
             <nb-stepper orientation="horizontal" [linear]="true" #stepper>
               <nb-step label="Profile">
-                <div>
-                  <commudle-public-hackathon-user-details-form
-                    [hackathonResponseGroup]="hackathonResponseGroup"
-                    [hackathonUserResponse]="hackathonUserResponse"
-                    (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
-                  ></commudle-public-hackathon-user-details-form>
-                </div>
+                <commudle-user-details-form
+                  [userFormDetails]="hackathonResponseGroup.user_details"
+                  [hackathonUserResponse]="hackathonUserResponse"
+                  (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
+                ></commudle-user-details-form>
               </nb-step>
               <nb-step label="Team Details">
                 <commudle-public-hackathon-teammate-form

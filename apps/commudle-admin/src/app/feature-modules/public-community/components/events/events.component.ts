@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import * as momentTimezone from 'moment-timezone';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -19,6 +19,8 @@ export class EventsComponent implements OnInit {
   momentTimezone = momentTimezone;
   community: ICommunity;
   events: IEvent[] = [];
+  isLoadingPastEvents = true;
+  isLoadingUpcomingEvents = true;
   isLoading = true;
 
   eventForSchema = [];
@@ -29,33 +31,53 @@ export class EventsComponent implements OnInit {
   faCalendarDays = faCalendarDays;
   faCalendarCheck = faCalendarCheck;
 
+  count = 9;
+  page = 1;
+  total = 0;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private seoService: SeoService,
+    private router: Router,
   ) {}
 
   ngOnInit() {
+    const params = this.activatedRoute.snapshot.queryParams;
+    if (Object.keys(params).length > 0) {
+      if (params.page) {
+        this.page = Number(params.page);
+      }
+    }
+
     this.activatedRoute.parent.data.subscribe((data) => {
       this.community = data.community;
-      this.getEvents();
+      this.getUpcomingEvents();
+      this.getPastEvents();
       this.seoService.setTitle(`Events | ${this.community.name}`);
     });
   }
 
-  getEvents() {
-    this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
-      this.events = data.events;
-
-      this.events.forEach((event) => {
-        if (moment(event.end_time) > moment() || event.end_time === null) {
-          this.upcomingEvents.push(event);
-        } else {
-          this.pastEvents.push(event);
-        }
-      });
+  getPastEvents() {
+    this.isLoadingPastEvents = true;
+    this.eventsService.pGetCommunityEvents('past', this.community.id, this.page, this.count).subscribe((data) => {
+      this.pastEvents = data.values;
       this.setSchema();
+      this.total = data.total;
+      this.page = data.page;
+      this.count = data.count;
+      this.isLoadingPastEvents = false;
       this.isLoading = false;
+      this.router.navigate([], { queryParams: { page: this.page } });
+    });
+  }
+
+  getUpcomingEvents() {
+    this.isLoadingUpcomingEvents = true;
+    this.eventsService.pGetCommunityEvents('future', this.community.id).subscribe((data) => {
+      this.upcomingEvents = data.values;
+      this.setSchema();
+      this.isLoadingUpcomingEvents = false;
     });
   }
 

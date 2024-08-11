@@ -18,6 +18,8 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
+import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 @Component({
   selector: 'app-fill-data-form',
   templateUrl: './fill-data-form.component.html',
@@ -40,8 +42,10 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
   gtmData: any = {};
   userProfileDetails: IUserStat;
   faArrowRight = faArrowRight;
+  formAnswers = {};
 
   @ViewChild('formConfirmationDialog', { static: true }) formConfirmationDialog: TemplateRef<any>;
+  @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,6 +61,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     private authWatchService: LibAuthwatchService,
     private gtm: GoogleTagManagerService,
     private appUsersService: AppUsersService,
+    private userProfileManagerService: UserProfileManagerService,
   ) {}
 
   ngOnInit() {
@@ -168,12 +173,45 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
     });
   }
 
-  submitForm($event) {
-    this.dataFormEntityResponsesService.submitDataFormEntityResponse(this.dataFormEntity.id, $event).subscribe(() => {
-      this.toastLogService.successDialog('Saved!');
-      this.redirectTo();
-      this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+  updateUserDetailsAndSubmitForm($event) {
+    this.formAnswers = $event;
+    if (this.dataFormEntity.user_details) {
+      this.userDetailsFormComponent.submitUserDetails();
+    } else {
+      this.submitForm();
+    }
+  }
+
+  updateUserDetails(event) {
+    this.userProfileManagerService.userProfileForm.patchValue({
+      name: event.name ? event.name : this.currentUser.name,
+      about_me: event.about_me ? event.about_me : this.currentUser.about_me,
+      designation: event.designation ? event.designation : this.currentUser.designation,
+      location: event.location ? event.location : this.currentUser.location,
+      gender: event.gender ? event.gender : this.currentUser.gender,
+      personal_website: event.personal_website ? event.personal_website : this.currentUser.personal_website,
+      github: event.github ? event.github : this.currentUser.github,
+      linkedin: event.linkedin ? event.linkedin : this.currentUser.linkedin,
+      twitter: event.twitter ? event.twitter : this.currentUser.twitter,
+      dribbble: event.dribbble ? event.dribbble : this.currentUser.dribbble,
+      behance: event.behance ? event.behance : this.currentUser.behance,
+      medium: event.medium ? event.medium : this.currentUser.medium,
+      gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
+      facebook: event.facebook ? event.facebook : this.currentUser.facebook,
+      youtube: event.youtube ? event.youtube : this.currentUser.youtube,
     });
+    this.userProfileManagerService.updateUserDetails(false, this.currentUser);
+    this.submitForm();
+  }
+
+  submitForm() {
+    this.dataFormEntityResponsesService
+      .submitDataFormEntityResponse(this.dataFormEntity.id, this.formAnswers)
+      .subscribe(() => {
+        this.toastLogService.successDialog('Saved!');
+        this.redirectTo();
+        this.gtm.dataLayerPushEvent('submit-form', this.gtmData);
+      });
   }
 
   redirectTo() {

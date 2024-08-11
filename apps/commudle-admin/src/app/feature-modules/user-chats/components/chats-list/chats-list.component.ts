@@ -15,6 +15,7 @@ export class ChatsListComponent implements OnInit {
   @Input() allPersonalChatUsers: IDiscussionFollower[];
   @Output() getChat: EventEmitter<IDiscussionFollower> = new EventEmitter<IDiscussionFollower>();
   @Output() moveUserToTop: EventEmitter<IDiscussionFollower[]> = new EventEmitter<IDiscussionFollower[]>();
+  selectedChatUser: IDiscussionFollower;
 
   showLiveStatus = false;
   showChat = false;
@@ -36,6 +37,7 @@ export class ChatsListComponent implements OnInit {
   }
 
   openChat(chatUser) {
+    this.selectedChatUser = chatUser;
     this.getChat.emit(chatUser);
   }
 

@@ -7,6 +7,18 @@
     }
   }
 
+  nb-card-header {
+    @apply com-m-0 com-flex com-items-center;
+
+    p {
+      @apply com-m-0;
+    }
+  }
+
+  .change-bulk-btn {
+    @apply com-m-0 com-flex com-items-center;
+  }
+
   .data-table-container {
     @media screen and (max-width: 800px) {
       .desktop-hidden {
@@ -105,7 +117,8 @@
   flex-wrap: wrap;
 
   button,
-  nb-select {
+  nb-select,
+  a {
     margin: 0.5rem;
   }
 }
@@ -146,4 +159,15 @@
 
 fa-icon {
   @apply com-text-gray-500;
+}
+
+.change-status-dialog {
+  @apply md:com-w-500px;
+
+  nb-card-header {
+    @apply com-flex com-flex-row com-items-center;
+    p {
+      @apply com-m-0 com-text-base com-text-black com-font-medium;
+    }
+  }
 }

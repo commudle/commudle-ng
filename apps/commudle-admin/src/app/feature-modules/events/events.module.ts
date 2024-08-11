@@ -72,6 +72,7 @@ import { EventAgendaComponent } from './components/event-agenda/event-agenda.com
 import { EventRegistrationsComponent } from './components/event-registrations/event-registrations.component';
 import { DiscountCouponsComponent } from './components/event-registrations/discount-coupons/discount-coupons.component';
 import { PaymentSettingsComponent } from './components/event-registrations/form-groups/payment-settings/payment-settings.component';
+import { NewFormAttachGroupsComponent } from './components/event-registrations/form-groups/new-form-attach-groups/new-form-attach-groups.component';
 import { DiscountCouponFormComponent } from './components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { UserPaymentDetailsComponent } from './components/event-form-responses/user-payment-details/user-payment-details.component';
 import { UserTrackSlotsComponent } from './components/event-form-responses/user-track-slots/user-track-slots.component';
@@ -80,6 +81,7 @@ import { EventFormResponsesGraphComponent } from './components/event-form-respon
 import { EditorModule as NewEditorModule } from '@commudle/editor';
 import { NextStepCardComponent } from './components/next-step-card/next-step-card.component';
 import { EventCheckedInListComponent } from './components/event-checked-in-list/event-checked-in-list.component';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +123,7 @@ import { EventCheckedInListComponent } from './components/event-checked-in-list/
     EventFormResponsesGraphComponent,
     NextStepCardComponent,
     EventCheckedInListComponent,
+    NewFormAttachGroupsComponent,
   ],
   exports: [UserDetailsComponent, UserEngagementDataComponent],
   imports: [
@@ -144,6 +147,7 @@ import { EventCheckedInListComponent } from './components/event-checked-in-list/
     //standalone
     SidebarComponent,
     BackButtonComponent,
+    HelpSectionComponent,
     //Nebular
     NbButtonModule,
     NbCardModule,

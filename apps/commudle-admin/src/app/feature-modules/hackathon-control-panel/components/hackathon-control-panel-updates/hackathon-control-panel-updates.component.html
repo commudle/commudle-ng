@@ -1,7 +1,9 @@
 <div>
   <nb-card class="updates">
     <nb-card-body>
-      <h6 class="com-mt-0 com-mb-2">Updates</h6>
+      <h6 class="com-mt-0 com-mb-2">
+        <span>Updates</span><commudle-help-section [helpDictionaryName]="'hackathon-updates'"></commudle-help-section>
+      </h6>
       <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
       <div *ngFor="let eu of updates; let i = index" class="updates">
         <div>

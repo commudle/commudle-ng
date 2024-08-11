@@ -2,7 +2,7 @@
   @apply com-relative;
 
   .chats-list {
-    @apply com-hidden com-border-0 com-m-0 com-absolute com-w-300px com-overflow-hidden com-right-3 com-bottom-32 com-shadow-Chat-box;
+    @apply com-hidden com-border-0 com-m-0 com-absolute com-w-[360px] com-overflow-hidden com-right-3 com-bottom-32 com-shadow-Chat-box;
     @apply md:com-bottom-24;
 
     &.active {
@@ -10,7 +10,7 @@
     }
 
     nb-card-header {
-      @apply com-p-4;
+      @apply com-py-4 com-px-3;
     }
 
     nb-card-body {
@@ -25,5 +25,13 @@
     nb-icon {
       @apply com-ml-0 #{!important};
     }
+  }
+
+  nb-list-item {
+    @apply com-px-3 com-py-2;
+  }
+
+  .selectedUser {
+    @apply com-bg-slate-100;
   }
 }

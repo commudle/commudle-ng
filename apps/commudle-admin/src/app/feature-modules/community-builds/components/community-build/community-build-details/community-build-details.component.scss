@@ -73,7 +73,7 @@ p {
   nb-card-body {
     @apply md:com-px-6 com-px-4 com-py-4;
     .banner-image {
-      @apply md:com-w-[900px] md:com-h-[635px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
+      @apply md:com-w-[900px] com-overflow-y-auto com-w-full com-h-auto com-scrollbar-hide;
     }
 
     .controls {
@@ -90,6 +90,32 @@ p {
 
     img {
       @apply com-w-full;
+    }
+  }
+}
+
+.hackathon-badge {
+  @apply com-flex com-flex-col com-pt-4 com-border-0 com-border-t com-border-solid com-border-Bright-Gray md:com-items-start com-items-center;
+  p {
+    @apply com-m-0 com-text-sm com-font-semibold com-text-AuroMetalSaurus com-pb-3 md:com-text-left com-text-center;
+  }
+  .badge-name {
+    @apply com-flex md:com-flex-row com-flex-col com-items-center md:com-p-3 com-p-10px com-border com-border-solid com-border-Bright-Gray com-rounded-md com-max-w-max;
+
+    app-badge {
+      @apply com-mr-3 md:com-mb-0 com-mb-2;
+    }
+
+    p {
+      @apply com-text-sm com-font-semibold com-text-Yankees-Blue com-p-0 com-m-0 com-mr-6 md:com-mb-0 com-mb-3;
+    }
+
+    a {
+      @apply com-no-underline com-text-sm com-font-semibold com-text-primary-500;
+
+      fa-icon {
+        @apply com-m-0 com-ml-2;
+      }
     }
   }
 }

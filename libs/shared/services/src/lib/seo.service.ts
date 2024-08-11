@@ -13,7 +13,7 @@ export class SeoService {
   public isBot: boolean;
   private isBotLegacy: boolean;
   private host: string;
-  private prohibitedQueryParams = ['q', 'track_slot_id'];
+  private prohibitedQueryParams = ['q', 'track_slot_id', 'page'];
 
   constructor(
     private meta: Meta,

@@ -13,11 +13,27 @@
           [bottomLeftCurve]="false"
           [aspectRatio]="'3/2'"
         ></commudle-banner-image>
+        <app-badge
+          *ngIf="communityBuild.hackathon_team"
+          [text]="'Hackathon'"
+          [fontColor]="'com-text-tChocolate-Traditional'"
+          [fontSize]="'xx-small'"
+          [borderRadius]="'round'"
+          [color]="'com-bg-Seashell'"
+        ></app-badge>
       </div>
       <div class="community-build-card-details">
         <div class="community-build-card-title-time">
           <h5 class="title">{{ communityBuild.name }}</h5>
           <p class="time">{{ moment(communityBuild.created_at).format('MMM Do, YYYY') }}</p>
+          <app-badge
+            *ngIf="communityBuild.hackathon_team"
+            [text]="'Hackathon'"
+            [fontColor]="'com-text-tChocolate-Traditional'"
+            [fontSize]="'small'"
+            [borderRadius]="'round'"
+            [color]="'com-bg-Seashell'"
+          ></app-badge>
         </div>
         <p class="description">{{ communityBuild.description }}</p>
         <div *appBreakpoints="'>lg'" class="app-user-profile-card">

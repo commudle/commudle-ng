@@ -71,6 +71,8 @@ export class AuthService {
             com_is_community_leader: data.user.is_community_leader,
             com_username: data.user.username,
             com_user_designation: data.user.designation,
+            com_is_expert: data.user.is_expert,
+            com_profile_completed: data.user.profile_completed,
             com_user_tags: data.user.tags.map((tag) => tag.name),
           });
         } else {

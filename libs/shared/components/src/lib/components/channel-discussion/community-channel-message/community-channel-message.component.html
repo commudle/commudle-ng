@@ -44,13 +44,17 @@
         </div>
       </div>
       <div *ngIf="canReply" class="replies">
-        <commudle-community-channel-message
+        <div
+          class="com-border-0 com-border-l-[0.5px] com-border-solid com-border-gray-300"
           *ngFor="let reply of message.user_messages"
-          [canReply]="false"
-          [message]="reply"
-          [cursor]="cursor"
-          [channelOrForum]="channelOrForum"
-        ></commudle-community-channel-message>
+        >
+          <commudle-community-channel-message
+            [canReply]="false"
+            [message]="reply"
+            [cursor]="cursor"
+            [channelOrForum]="channelOrForum"
+          ></commudle-community-channel-message>
+        </div>
         <commudle-editor
           (contentChange)="communityChannelHandlerService.sendReply(message.id, $event)"
           *ngIf="(authService.currentUser$ | async) && (showReply$ | async)"
@@ -62,7 +66,7 @@
   </div>
 </div>
 
-<div *ngIf="messagePinned">
+<div *ngIf="messagePinned" class="com-flex com-justify-between com-items-center">
   <div class="message-container pinned">
     <img [alt]="message.user.name" [src]="message.user.photo.i64" [title]="message.user.name" class="avatar" />
     <div class="message">
@@ -91,18 +95,41 @@
       ></commudle-editor>
     </div>
   </div>
+  <div
+    class="com-mr-4 com-cursor-pointer"
+    *ngIf="
+      authService.getCurrentUser()?.id === this.message.user.id ||
+      this.channelsRoles[this.channelOrForumId]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
+    "
+  >
+    <fa-icon
+      *ngIf="message.pinned"
+      class="com-text-primary-500"
+      [icon]="faThumbtack"
+      size="lg"
+      (click)="unpinMessage(message)"
+    ></fa-icon>
+  </div>
 </div>
 
-<ng-template #editMessageTemplate>
-  <div class="edit-message-form">
-    <commudle-editor
-      (inViewportAction)="markAsRead(message?.id, $event)"
-      (contentChange)="communityChannelHandlerService.edit(message.id, $event); editMessageTemplateRef.close()"
-      [content]="message.content"
-      [editable]="true"
-      [inViewportOptions]="{ threshold: [0] }"
-      inViewport
-      [status]="'primary'"
-    ></commudle-editor>
-  </div>
+<ng-template #editMessageTemplate let-ref="dialogRef">
+  <nb-card class="edit-message">
+    <nb-card-header>
+      <span>Edit your message</span>
+      <button ghost nbButton size="small" shape="round" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <commudle-editor
+        (inViewportAction)="markAsRead(message?.id, $event)"
+        (contentChange)="communityChannelHandlerService.edit(message.id, $event); editMessageTemplateRef.close()"
+        [content]="message.content"
+        [editable]="true"
+        [inViewportOptions]="{ threshold: [0] }"
+        inViewport
+        [status]="'primary'"
+      ></commudle-editor>
+    </nb-card-body>
+  </nb-card>
 </ng-template>

@@ -7,7 +7,9 @@ import { IUser } from 'apps/shared-models/user.model';
 import { SeoService } from 'apps/shared-services/seo.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
-import moment from 'moment';
+import { AuthService, CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
+import { EDbModels, ICommunityChannel } from '@commudle/shared-models';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-about',
@@ -22,12 +24,21 @@ export class AboutComponent implements OnInit {
   upcomingEvents: IEvent[] = [];
   isLoadingEvents = false;
   isLoading = false;
+  defaultChannel: ICommunityChannel;
+  currentUser: IUser;
+
+  icons = {
+    faUsers,
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userRolesUsersService: UserRolesUsersService,
     private seoService: SeoService,
     private eventsService: EventsService,
+    private communityChannelsService: CommunityChannelsService,
+    private communityChannelManagerService: CommunityChannelManagerService,
+    private authWatchService: AuthService,
   ) {}
 
   ngOnInit() {
@@ -37,7 +48,18 @@ export class AboutComponent implements OnInit {
         this.getEvents();
       }
       this.seoService.setTitle(this.community.name);
+    });
+    this.setCurrentUser();
+  }
+
+  setCurrentUser() {
+    this.authWatchService.currentUser$.subscribe((data) => {
+      this.currentUser = data;
+      this.getDefaultChannel();
       this.getOrganizers([EUserRoles.ORGANIZER, EUserRoles.EVENT_VOLUNTEER]);
+      if (data) {
+        this.communityChannelManagerService.setCurrentUser(data);
+      }
     });
   }
 
@@ -54,14 +76,18 @@ export class AboutComponent implements OnInit {
 
   getEvents() {
     this.isLoadingEvents = true;
-    this.eventsService.pGetCommunityEvents(this.community.id).subscribe((data) => {
-      this.events = data.events;
-      this.events.forEach((event) => {
-        if (moment(event.end_time) > moment() || event.end_time === null) {
-          this.upcomingEvents.push(event);
-        }
-      });
+    this.eventsService.pGetCommunityEvents('future', this.community.id).subscribe((data) => {
+      this.upcomingEvents = data.values;
       this.isLoadingEvents = false;
     });
+  }
+
+  getDefaultChannel() {
+    this.communityChannelsService
+      .getDefaultChannel(this.community.id, EDbModels.KOMMUNITY)
+      .subscribe((data: ICommunityChannel) => {
+        if (this.currentUser) this.communityChannelManagerService.getChannelRoles(data);
+        this.defaultChannel = data;
+      });
   }
 }

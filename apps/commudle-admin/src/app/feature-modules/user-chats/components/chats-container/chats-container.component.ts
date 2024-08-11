@@ -18,7 +18,7 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
   // Number of allowed chat windows
   numChatWindows: number;
   // Chats windows distance from right
-  chatsWindowsRight = 322;
+  chatsWindowsRight = 376;
 
   // All the persons we can chat with
   allPersonalChatUsers: IDiscussionFollower[] = [];

@@ -1,7 +1,4 @@
-
 :host {
-
-
   &.top.left {
     position: absolute;
     top: 6px;
@@ -13,7 +10,7 @@
     right: 0;
   }
 
-  >div {
+  > div {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -27,8 +24,8 @@
       background-color: #8080806b;
     }
   }
-
-
 }
 
-
+.active-now {
+  @apply com-m-0 md:com-pl-10 com-pl-0;
+}

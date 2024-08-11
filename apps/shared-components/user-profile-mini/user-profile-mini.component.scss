@@ -92,7 +92,7 @@
     }
 
     .designation {
-      margin: $space-4 0 0;
+      @apply com-mt-1 com-mx-0 com-mb-0;
       font-size: 0.8rem;
       color: grey;
 
@@ -104,6 +104,10 @@
         font-size: 11px;
         line-height: 12px;
       }
+    }
+
+    .active-now {
+      @apply com-text-[10px] com-font-normal com-text-gray-500 com-mt-1 com-mx-0 com-mb-0;
     }
   }
 }

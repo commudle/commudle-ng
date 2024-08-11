@@ -361,13 +361,15 @@ nb-option-list.search-autocomplete {
   margin: 16px 8px;
 }
 
-.nb-theme-dark nb-toggle.status-basic .toggle-switcher {
-  background-color: #f2f2f2;
-}
+.nb-theme-dark {
+  nb-toggle.status-basic .toggle-switcher {
+    background-color: #f2f2f2;
+  }
 
-.nb-theme-dark nb-card {
-  background-color: #1e1e1e;
-  margin: 16px 8px;
+  nb-card {
+    background-color: #1e1e1e;
+    margin: 16px 8px;
+  }
 }
 
 .ngx-datatable.material .datatable-header .datatable-header-cell,

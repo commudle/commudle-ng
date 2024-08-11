@@ -1,4 +1,4 @@
-<div *ngIf="pinnedMessages && pinnedMessages.length > 0" class="com-z-10">
+<div *ngIf="pinnedMessages && pinnedMessages.length > 0" class="pinned-messages">
   <div class="pinned-message">
     <div *ngFor="let message of pinnedMessages">
       <commudle-community-channel-message
@@ -95,9 +95,11 @@
     </a>
   </ng-template>
   <ng-template #joinButton>
-    <a (click)="joinChannel()" nbButton status="primary" fullWidth>
-      <nb-icon icon="log-in-outline"></nb-icon>
-      Join This Channel
-    </a>
+    <div class="com-mx-1">
+      <a (click)="joinChannel()" nbButton status="primary" fullWidth>
+        <nb-icon icon="log-in-outline"></nb-icon>
+        Join This Channel
+      </a>
+    </div>
   </ng-template>
 </div>

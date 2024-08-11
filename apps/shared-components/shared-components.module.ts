@@ -87,6 +87,9 @@ import { PaidFormListComponent } from './paid-form-list/paid-form-list.component
 import { PaymentLogEdfegComponent } from './payment-detail/payment-log-edfeg/payment-log-edfeg.component';
 import { PaymentDetailComponent } from 'apps/shared-components/payment-detail/payment-detail.component';
 import { BackButtonComponent } from './back-button/back-button.component';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
+import { UserDetailsCheckboxFormComponent } from './user-details-checkbox-form/user-details-checkbox-form.component';
+import { UserDetailsFormComponent } from './user-details-form/user-details-form.component';
 
 @NgModule({
   declarations: [
@@ -138,6 +141,8 @@ import { BackButtonComponent } from './back-button/back-button.component';
     PaidFormListComponent,
     PaymentDetailComponent,
     PaymentLogEdfegComponent,
+    UserDetailsCheckboxFormComponent,
+    UserDetailsFormComponent,
   ],
   imports: [
     CommonModule,
@@ -157,6 +162,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
     EditorModule,
     BadgeComponent,
     BackButtonComponent,
+    HelpSectionComponent,
 
     // Nebular
     NbButtonModule,
@@ -225,6 +231,8 @@ import { BackButtonComponent } from './back-button/back-button.component';
     PaidFormListComponent,
     PaymentLogEdfegComponent,
     PaymentDetailComponent,
+    UserDetailsCheckboxFormComponent,
+    UserDetailsFormComponent,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })

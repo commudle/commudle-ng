@@ -10,6 +10,7 @@ import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { Observable } from 'rxjs';
 import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { IUser } from 'apps/shared-models/user.model';
+import { GoogleTagManagerService } from '@commudle/shared-services';
 
 @Injectable({
   providedIn: 'root',
@@ -33,6 +34,7 @@ export class UserProfileManagerService {
     private authWatchService: LibAuthwatchService,
     private http: HttpClient,
     private apiRoutesService: ApiRoutesService,
+    private gtm: GoogleTagManagerService,
   ) {
     this.userProfileForm = this.fb.group({
       name: ['', Validators.required],
@@ -57,11 +59,13 @@ export class UserProfileManagerService {
     this.updateUsername.next(value);
   }
 
-  updateUserDetails(showToast: boolean) {
+  updateUserDetails(showToast: boolean, currentUser?: IUser) {
     const formData: any = new FormData();
     //removing extra new lines from the about_me input
     this.userProfileForm.patchValue({
-      about_me: this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim(),
+      about_me: this.userProfileForm.get('about_me').value
+        ? this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim()
+        : '',
     });
     const userFormData = this.userProfileForm.value;
     Object.keys(userFormData).forEach((key) =>
@@ -72,7 +76,12 @@ export class UserProfileManagerService {
       formData.append('user[profile_image]', this.uploadedProfilePictureFile);
     }
 
-    this.usersService.updateUserProfile(formData).subscribe(() => {
+    this.usersService.updateUserProfile(formData).subscribe((data) => {
+      if (currentUser.profile_completed === false && data.profile_completed === true) {
+        this.gtm.dataLayerPushEvent('profile-completed', {});
+      } else {
+        this.gtm.dataLayerPushEvent('profile-updated', {});
+      }
       this.authWatchService.updateSignedInUser();
       if (showToast) {
         this.toastLogService.successDialog(`Your Profile is now updated!`);

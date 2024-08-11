@@ -1,7 +1,14 @@
 .event-location-tracks {
+  @apply com-mx-4;
   .map-location {
-    p {
-      @apply com-mt-14px com-mb-6 com-mx-0;
+    .link-to-map {
+      @apply com-mt-10px com-mb-6 com-mx-0;
+      a {
+        @apply com-no-underline;
+      }
+    }
+    .address {
+      @apply com-mt-5 com-mb-0 com-mx-0;
     }
   }
 
@@ -21,44 +28,46 @@
       .track-name {
         @apply com-text-base com-font-semibold com-m-0 com-text-tYankees-Blue;
       }
+      ::ng-deep {
+        nb-icon {
+          @apply com-text-tblack;
+        }
+      }
     }
 
     nb-accordion-item-body {
       padding: 0;
-
-      ::ng-deep {
-        div {
-          @apply com-bg-white;
-        }
-      }
 
       nb-list {
         nb-list-item {
           @apply com-flex com-px-0 com-py-3 com-border-0 com-border-b com-border-Bright-Gray;
 
           .session-time {
-            @apply com-border-0 com-border-r com-border-solid com-border-Bright-Gray com-pr-6px com-w-[60px];
+            @apply com-items-center com-pr-1 md:com-pr-2 md:com-flex com-gap-2 md:com-w-[108px] com-pt-px;
+
+            fa-icon {
+              @apply com-text-xs;
+            }
 
             p {
               margin: 0;
               text-align: right;
             }
 
-            p:nth-of-type(1) {
-              @apply com-text-lg com-font-normal com-m-0;
+            .start-time {
+              @apply com-text-base md:com-text-sm;
             }
-
-            p:nth-of-type(2) {
-              @apply com-text-sm com-font-normal com-m-0;
+            .end-time {
+              @apply com-text-xs md:com-text-sm;
             }
           }
 
           .session-details {
-            @apply com-pl-3 com-w-[84%];
+            @apply com-pl-3 com-w-[78%] com-border-0 com-border-l-2 com-border-solid com-border-Bright-Gray;
 
             .session-title {
               p:nth-of-type(1) {
-                @apply com-text-base com-font-normal com-text-Yankees-Blue com-m-0 com-mb-1;
+                @apply com-text-base com-font-normal com-text-Yankees-Blue com-m-0;
               }
 
               app-badge {
@@ -69,66 +78,17 @@
 
             .session-speaker {
               @apply com-flex com-gap-3 com-flex-wrap;
+              div {
+                @apply com-m-0 com-mt-1;
+              }
             }
           }
         }
       }
     }
-
-    // @media all and (max-width: 767px) {
-    //   .track-name {
-    //     font-size: 1.1rem;
-    //   }
-    // }
-
-    // .session-time {
-    //   p {
-    //     margin: 0;
-    //     text-align: right;
-    //   }
-
-    //   p:nth-of-type(1) {
-    //     font-size: 1.2rem;
-    //   }
-
-    //   p:nth-of-type(2) {
-    //     margin-top: 0.2rem;
-    //     font-size: 0.9rem;
-    //   }
-
-    //   @media all and (max-width: 767px) {
-    //     p:nth-of-type(1) {
-    //       font-size: 1rem;
-    //     }
-
-    //     p:nth-of-type(2) {
-    //       font-size: 0.8rem;
-    //     }
-    //   }
-    // }
-
-    // .session-title {
-    //   min-width: max-content;
-
-    //   p:nth-of-type(1) {
-    //     font-size: 1.2rem;
-    //     font-weight: normal;
-    //     width: 500px;
-    //     margin: 0 0 0.3rem;
-    //   }
-
-    //   app-badge {
-    //     margin-right: 0.3rem;
-    //     margin-bottom: 0.3rem;
-    //   }
-    // }
-
-    // @media all and (max-width: 767px) {
-    //   .session-title {
-    //     p:nth-of-type(1) {
-    //       font-size: 1rem;
-    //     }
-    //   }
-    // }
   }
+}
+
+.tags {
+  @apply com-flex com-m-0 com-mt-2;
 }

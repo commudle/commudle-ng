@@ -24,6 +24,9 @@
           <div class="heading">Back to Admin Panel</div>
         </a>
         <div class="status-buttons">
+          <div class="category-heading com-flex com-items-center com-pb-1">
+            Hackathon Status<commudle-help-section [helpDictionaryName]="'hackathon-statuses'"></commudle-help-section>
+          </div>
           <section>
             <nb-button-group (valueChange)="updateStatus($event[0])" filled class="border">
               <button

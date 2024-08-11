@@ -35,8 +35,8 @@ export class CaseStudiesComponent implements OnInit, OnDestroy {
 
   setMeta(): void {
     this.seoService.setTags(
-      'Case Studies',
-      'Get to know how DevRels around the world have used Commudle to build scalable ecosystems and engagments to solve for their specific use cases.',
+      'Case Studies - Successful Developer Programs',
+      'Understand how Commudle has helped devrels and their developer programs become successful across different geographies and scale. Simple to use, high impact and super networking',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
   }

@@ -5,8 +5,33 @@
         <nb-card-header>
           <h1>Forms List</h1>
         </nb-card-header>
-        <nb-card-body> <commudle-paid-form-list></commudle-paid-form-list> </nb-card-body
+        <nb-card-body>
+          <button nbButton status="primary" (click)="openDialog(manuallyAddPayment)">Link payment manually</button>
+          <commudle-paid-form-list></commudle-paid-form-list> </nb-card-body
       ></nb-card>
     </div>
   </div>
 </div>
+
+<ng-template #manuallyAddPayment let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>
+      <span>Add Payment Details</span>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <div>
+        <label for="payment_id"
+          ><div>Payment Id from razorpay</div>
+          <br />
+          <input [(ngModel)]="rzpPaymentId" nbInput type="text" id="payment_id" placeholder="Razorpay Payment id" />
+        </label>
+      </div>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="primary" (click)="createPayment(); ref.close()">Submit</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

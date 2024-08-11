@@ -116,9 +116,13 @@ export class SessionPageComponent implements OnInit, OnDestroy {
         this.endTime = this.event.end_time;
         if (this.event.custom_agenda) {
           this.activatedRoute.queryParams.subscribe((params) => {
-            this.getTrackSlot(params.track_slot_id);
-            this.pollableId = params.track_slot_id;
-            this.pollableType = 'TrackSlot';
+            if (params.event_location_track_id) {
+              this.getEventEmbeddedVideoStream('EventLocationTrack', params.event_location_track_id);
+            } else if (params.track_slot_id) {
+              this.getTrackSlot(params.track_slot_id);
+              this.pollableId = params.track_slot_id;
+              this.pollableType = 'TrackSlot';
+            }
           });
         } else {
           this.getEventEmbeddedVideoStream();
@@ -175,8 +179,8 @@ export class SessionPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  getEventEmbeddedVideoStream() {
-    this.embeddedVideoStreamsService.pGet('Event', this.event.id).subscribe((data) => {
+  getEventEmbeddedVideoStream(streamable_type = 'Event', streamable_id = this.event.id) {
+    this.embeddedVideoStreamsService.pGet(streamable_type, streamable_id).subscribe((data) => {
       if (data) {
         this.embeddedVideoStream = data;
         this.markUserObjectVisit('EmbeddedVideoStream', this.embeddedVideoStream.id);

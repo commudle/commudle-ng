@@ -25,6 +25,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   @Input() textAlignment = 'before'; // Can be either before or after
 
   @Output() isBlocked: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() votesCount: EventEmitter<number> = new EventEmitter<number>();
 
   uuid = uuidv4();
 
@@ -79,6 +80,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
   getAllVotes() {
     this.votesService.pGetVotesCount(this.votableType, this.votableId).subscribe((data) => {
       this.totalVotes = data.total;
+      this.votesCount.emit(this.totalVotes);
       this.myVote = data.voted;
     });
   }
@@ -121,6 +123,7 @@ export class VotesDisplayComponent implements OnInit, OnDestroy {
               case this.voteChannel.ACTIONS.TOGGLE_VOTE: {
                 data.increment ? (this.totalVotes += 1) : (this.totalVotes -= 1);
                 this.myVote = data.increment && data.user_id === this.currentUser.id;
+                this.votesCount.emit(this.totalVotes);
                 break;
               }
               case this.voteChannel.ACTIONS.ERROR: {

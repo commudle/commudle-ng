@@ -1,5 +1,10 @@
 <nb-card>
   <nb-card-header *ngIf="userResponses && userResponses.length > 0">
+    <div class="header">
+      Applications & Projects<commudle-help-section
+        [helpDictionaryName]="'hackathon-applications-projects'"
+      ></commudle-help-section>
+    </div>
     <button
       nbButton
       status="primary"
@@ -19,9 +24,10 @@
   <nb-card-body>
     <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
-        <th width="500px">Name</th>
+        <th width="300px">Name</th>
+        <th>Round</th>
         <th width="200px">Updates</th>
-        <th width="200px">Note</th>
+        <th width="200px">Notes</th>
         <th>Application Status</th>
       </tr>
       <tr
@@ -38,7 +44,15 @@
             <div class="date">
               {{ moment(userResponse.team.created_at).format('DD MMM YYYY') }}
             </div>
+            <div *ngIf="userResponse.team.community_build" (click)="$event.stopPropagation()" class="project-link">
+              Link to project:
+              <a [routerLink]="['/builds', userResponse.team.community_build.slug]" target="_blank">
+                <fa-icon [icon]="faUpRightFromSquare"></fa-icon> {{ userResponse.team.community_build.name }}</a
+              >
+            </div>
           </div>
+        </td>
+        <td>
           <div *ngIf="userResponse.team.round" class="round-name">
             {{ userResponse.team.round?.name }}
           </div>
@@ -156,7 +170,7 @@
             fullWidth
             (click)="generateTeamRegistrationStatusNotification(selectedTeamDetails.id)"
           >
-            Send Acceptance Email
+            {{ selectedTeamDetails.acceptance_mail_sent ? 'resend Acceptance Email' : 'Send Acceptance Email' }}
           </button>
           <button
             nbButton
@@ -239,22 +253,23 @@
           <label>Notes </label>
           <div *ngIf="notes && notes.length > 0">
             <div *ngFor="let note of notes; let i = index" class="note-list">
-              <div class="border-box-text">{{ note.text }}</div>
-              <button (click)="destroyNote(note.id, i)" status="danger" nbButton size="tiny">
-                <fa-icon class="clickable" [icon]="faXmark"></fa-icon>
-                Remove
-              </button>
+              <div>
+                <span>{{ note.text }} &nbsp;</span>
+                <span class="delete-note clickable" (click)="destroyNote(note.id, i)">
+                  <fa-icon [icon]="faXmark"></fa-icon>
+                </span>
+              </div>
+              <small>
+                <span class="com-text-Auro-Metal-Saurus"
+                  >{{ moment(note.created_at).format('LT DD-MM-YYYY') }} by {{ note.user.name }}</span
+                >
+              </small>
             </div>
           </div>
           <div *ngFor="let note of notesForm.controls.note['controls']; let i = index">
             <div [formGroupName]="i" class="note">
               <textarea formControlName="value" fullWidth nbInput placeholder="Notes" required></textarea>
               <div class="action-button">
-                <button (click)="removeNote(i)" status="danger" nbButton size="tiny">
-                  <fa-icon class="clickable" [icon]="faXmark"></fa-icon>
-                  Remove
-                </button>
-                <br />
                 <button
                   size="tiny"
                   (click)="updateNotes(selectedTeamDetails.id)"
@@ -263,7 +278,12 @@
                   status="primary"
                   [disabled]="notesList.invalid || notesList.length === 0"
                 >
+                  <fa-icon class="clickable" [icon]="faCheck"></fa-icon>
                   Save
+                </button>
+                <button (click)="removeNote(i)" status="danger" nbButton size="tiny">
+                  <fa-icon class="clickable" [icon]="faXmark"></fa-icon>
+                  Remove
                 </button>
               </div>
             </div>
@@ -289,7 +309,7 @@
       <div *ngIf="selectedTeamDetails.entity_updates.length > 0">
         <label>Updates</label>
         <div *ngFor="let update of selectedTeamDetails.entity_updates">
-          <div class="border-box-text">{{ update.details }}</div>
+          <div class="border-box-text" [innerHTML]="update.details"></div>
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICommunity } from '@commudle/shared-models';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { SeoService } from '@commudle/shared-services';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 @Component({
   selector: 'commudle-newsletters',
   templateUrl: './newsletters.component.html',
@@ -18,6 +19,8 @@ export class NewslettersComponent implements OnInit {
   icons = {
     faArrowRight,
   };
+  staticAssets = staticAssets;
+
   constructor(
     private newsletterService: NewsletterService,
     private activatedRoute: ActivatedRoute,

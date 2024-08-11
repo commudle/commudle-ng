@@ -74,11 +74,13 @@ export class PublicHackathonDetailsComponent implements OnInit {
         this.isOrganizerCheck();
       }),
     ),
-      this.authWatchService.currentUser$.subscribe((currentUser) => {
-        if (currentUser) this.getHackathonCurrentRegistrationDetails();
-      }),
+      this.getHackathonResponseGroup();
+    this.authWatchService.currentUser$.subscribe((currentUser) => {
+      if (currentUser) {
+        this.getHackathonCurrentRegistrationDetails();
+      }
+    }),
       this.checkFragment();
-    this.getHackathonResponseGroup();
   }
 
   checkFragment() {
@@ -97,7 +99,7 @@ export class PublicHackathonDetailsComponent implements OnInit {
   }
 
   getHackathonResponseGroup() {
-    this.hrgService.showHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
+    this.hrgService.pShowHackathonResponseGroup(this.hackathon.id).subscribe((data) => {
       if (data) this.hrgId = data.id;
     });
   }

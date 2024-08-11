@@ -3,10 +3,11 @@
     <h6>
       <nb-icon icon="edit-2-outline"></nb-icon>
       Registrations
+      <commudle-help-section [helpDictionaryName]="'event-registrations'"></commudle-help-section>
     </h6>
   </nb-card-header>
   <nb-card-body>
-    <div *ngIf="event.editable" class="com-flex com-gap-4">
+    <!-- <div *ngIf="event.editable" class="com-flex com-gap-4">
       <p>One Click Registration</p>
       <nb-toggle
         (checkedChange)="updateRegistrationType($event)"
@@ -14,7 +15,11 @@
         status="primary"
       ></nb-toggle>
       <p>Registration Forms</p>
-    </div>
+    </div> -->
+    <commudle-alert
+      [info]="true"
+      message="We have made registrations much easier, checkout the new interface!"
+    ></commudle-alert>
     <div *ngIf="event.custom_registration && community.payments_enabled && showDiscountComponent">
       <commudle-discount-coupons
         [event]="event"

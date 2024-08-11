@@ -1,6 +1,6 @@
 .event-location-tracks {
   .add-track-button {
-    @apply com-text-sm com-mb-2;
+    @apply com-text-sm com-mb-4;
   }
 
   .track-container {
@@ -34,7 +34,7 @@
       ::ng-deep {
         div {
           .item-body {
-            @apply com-px-0 md:com-px-1;
+            @apply com-px-0 md:com-px-2 md:com-pt-4 com-pb-6;
           }
         }
       }
@@ -192,4 +192,19 @@
 
 nb-accordion-item {
   @apply com-bg-white;
+}
+
+.embedded-dialog {
+  @apply com-w-[30dvw] com-max-h-[90dvh];
+
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center com-py-2;
+    h2 {
+      @apply com-text-lg com-font-medium com-text-black;
+    }
+  }
+}
+
+.tags {
+  @apply com-flex com-flex-row com-items-center com-gap-3 com-ml-4 com-mt-2;
 }

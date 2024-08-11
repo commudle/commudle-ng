@@ -46,9 +46,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { createErrorHandler, TraceService } from '@sentry/angular-ivy';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibErrorHandlerModule } from 'apps/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
+import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { ApiParserResponseInterceptor } from 'apps/shared-interceptors/api-parser-response.interceptor';
 import { AuthTokenInterceptor } from 'apps/shared-interceptors/lib-authwatch-token.interceptor';
@@ -205,7 +207,8 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     InfiniteScrollModule,
     UserProfileComponent,
     UserprofileDetailsComponent,
-
+    SidebarComponent,
+    HelpSectionComponent,
     // external service modules
     LibErrorHandlerModule,
     AuthModule,

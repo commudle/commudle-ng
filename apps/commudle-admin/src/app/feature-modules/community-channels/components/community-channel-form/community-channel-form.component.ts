@@ -42,6 +42,7 @@ export class CommunityChannelFormComponent implements OnInit {
       is_private: [false, Validators.required],
       is_readonly: [false, Validators.required],
       display_type: [this.discussionType],
+      default: [false],
     });
   }
 
@@ -64,6 +65,7 @@ export class CommunityChannelFormComponent implements OnInit {
         group_name: this.existingChannel.group_name,
         is_private: this.existingChannel.is_private,
         is_readonly: this.existingChannel.is_readonly,
+        default: this.existingChannel.default,
       });
     }
   }
@@ -131,6 +133,7 @@ export class CommunityChannelFormComponent implements OnInit {
     this.communityChannelsService.updateChannelForum(this.existingChannel.id, formData).subscribe((data) => {
       this.existingChannel = data;
       this.cmService.findAndUpdateChannel(data);
+      this.cmService.updateChannel(data);
       this.toastLogService.successDialog('Updated', 3000);
     });
   }

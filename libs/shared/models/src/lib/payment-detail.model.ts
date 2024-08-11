@@ -15,6 +15,7 @@ export interface IPaymentDetail {
   seller_address: string;
   bank_ac_type: string;
   commudle_fee_percentage: number;
+  multi_person_ticket: boolean;
 }
 
 export enum EPaymentBanks {
