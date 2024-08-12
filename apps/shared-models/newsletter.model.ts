@@ -14,4 +14,5 @@ export interface INewsletter {
   scheduled_for: Date;
   stats: IEmailStatsOverview;
   grapes_js_editor: boolean;
+  type: string;
 }

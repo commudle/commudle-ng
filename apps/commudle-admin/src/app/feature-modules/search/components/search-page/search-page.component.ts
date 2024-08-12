@@ -30,6 +30,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   speakerResources: ISessions[] = [];
   upcomingEvents: IEvent[] = [];
   communityNewsletters: INewsletter[] = [];
+  commudleNewsletters: INewsletter[] = [];
 
   usersPage = 1;
   communitiesPage = 1;
@@ -41,6 +42,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   peakerResources;
   upcomingEventsPage = 1;
   communityNewslettersPage = 1;
+  commudleNewslettersPage = 1;
 
   usersTotal = 0;
   communitiesTotal = 0;
@@ -51,6 +53,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   speakerResourcesTotal = 0;
   upcomingEventsTotal = 0;
   communityNewslettersTotal = 0;
+  commudleNewslettersTotal = 0;
 
   searchLoader = true;
   canLoadMoreUser = false;
@@ -62,6 +65,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreUpcomingEvents = false;
   canLoadMoreSpeakerResources = false;
   canLoadMoreCommunityNewsletters = false;
+  canLoadMoreCommudleNewsletters = false;
 
   seoTitle = '';
   seoDescription = '';
@@ -110,6 +114,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.speakerResources = [];
     this.upcomingEvents = [];
     this.communityNewsletters = [];
+    this.commudleNewsletters = [];
     this.usersPage = 1;
     this.communitiesPage = 1;
     this.labsPage = 1;
@@ -119,6 +124,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.speakerResourcesPage = 1;
     this.upcomingEventsPage = 1;
     this.communityNewslettersPage = 1;
+    this.commudleNewslettersPage = 1;
     this.usersTotal = 0;
     this.communitiesTotal = 0;
     this.labsTotal = 0;
@@ -128,6 +134,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.speakerResourcesTotal = 0;
     this.upcomingEventsTotal = 0;
     this.communityNewslettersTotal = 0;
+    this.commudleNewslettersTotal = 0;
   }
 
   getUsers() {
@@ -250,7 +257,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.speakerResourcesPage, this.count, 'SpeakerResource')
       .subscribe((value: any) => {
         this.speakerResources = [...this.speakerResources, ...value.results];
-        console.log(this.speakerResources);
+        // console.log(this.speakerResources);
         if (this.speakerResources.length > 0 && !this.filters.includes('Tech Talks')) {
           this.filters.push('Tech Talks');
         }
@@ -292,7 +299,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.communityNewslettersPage, this.count, 'Newsletter')
       .subscribe((value: any) => {
         this.communityNewsletters = [...this.communityNewsletters, ...value.results];
-        console.log(this.communityNewsletters);
         if (this.communityNewsletters.length > 0 && !this.filters.includes('Community Newsletters')) {
           this.filters.push('Community Newsletters');
         }
@@ -304,6 +310,27 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         this.gtmService(this.query);
         this.searchLoader = false;
         this.canLoadMoreCommunityNewsletters = false;
+      });
+  }
+
+  getCommudleNewsletters() {
+    this.canLoadMoreCommudleNewsletters = true;
+    this.searchService
+      .getSearchResults(this.query, this.commudleNewslettersPage, this.count, 'MainNewsletter')
+      .subscribe((value: any) => {
+        this.commudleNewsletters = [...this.commudleNewsletters, ...value.results];
+        console.log(this.commudleNewsletters);
+        if (this.commudleNewsletters.length > 0 && !this.filters.includes('Commudle Newsletters')) {
+          this.filters.push('Commudle Newsletters');
+        }
+        if (this.commudleNewslettersPage === 1) {
+          this.commudleNewslettersTotal = value.total;
+          this.total += this.commudleNewslettersTotal;
+        }
+        this.commudleNewslettersPage++;
+        this.gtmService(this.query);
+        this.searchLoader = false;
+        this.canLoadMoreCommudleNewsletters = false;
       });
   }
 
@@ -349,6 +376,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.getContent();
       this.getSpeakerResources();
       this.getCommunityNewsletters();
+      this.getCommudleNewsletters();
       // this.getUpcomingEvents();
     } else {
       this.selectedFilters.forEach((filter) => {
@@ -376,6 +404,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
             break;
           case 'Community Newsletters':
             this.getCommunityNewsletters();
+            break;
+          case 'Commudle Newsletters':
+            this.getCommudleNewsletters();
             break;
           // case 'Upcoming Events':
           //   this.getUpcomingEvents();

@@ -1,0 +1,28 @@
+<nb-card>
+  <nb-card-body>
+    <div class="image">
+      <commudle-banner-image
+        [name]="newsletter.title"
+        [headerImagePath]="newsletter.banner_image ? newsletter.banner_image?.url : staticAssets.newsletter_empty_state"
+        [bottomLeftCurve]="false"
+        [bottomRightCurve]="false"
+      ></commudle-banner-image>
+    </div>
+    <div class="newsletter">
+      <div>
+        <div class="date">{{ newsletter.created_at | date : 'MMM dd, yyyy' }}</div>
+        <div class="content">{{ newsletter.title }}</div>
+      </div>
+      <div class="action">
+        <!-- <a
+          *ngIf="newsletter.type === 'Newsletter'"
+          [routerLink]="['/communities', community.slug, 'newsletters', newsletter.slug]"
+          >Read More <fa-icon [icon]="icons.faArrowRight" class="com-mr-2"></fa-icon
+        ></a> -->
+        <a *ngIf="newsletter.type === 'MainNewsletter'" [routerLink]="['/newsletters', newsletter.id]"
+          >Read More <fa-icon [icon]="icons.faArrowRight" class="com-mr-2"></fa-icon
+        ></a>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

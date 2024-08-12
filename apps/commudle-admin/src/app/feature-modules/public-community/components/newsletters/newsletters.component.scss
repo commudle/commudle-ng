@@ -8,29 +8,6 @@ nb-card {
 
     .newsletters {
       @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-8;
-      nb-card {
-        @apply com-m-0 com-h-[282px] hover:com-shadow-sm;
-        nb-card-body {
-          @apply com-p-0;
-          .image {
-            @apply com-h-36;
-          }
-          .newsletter {
-            @apply com-p-4 com-flex com-flex-col com-justify-between com-h-[calc(100%-9rem)];
-            .date {
-              @apply com-text-gray-500 com-text-xs;
-            }
-            .content {
-              @apply com-line-clamp-2 com-text-lg;
-            }
-            .action {
-              a {
-                @apply com-no-underline;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

@@ -114,26 +114,30 @@
                       <p class="query-results-heading">Content</p>
                     </div>
                   </a>
-                  <!-- <div
-                  *ngIf="
-                    communityNewsletters.length > 0 &&
-                    (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
-                  "
-                  [ngClass]="{ active: currentFragment === 'communities' }"
-                  class="items-heading"
-                >
-                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="community-newsletters">Community Newsletters</a></p>
-                </div> -->
-                  <!-- <div
-                  *ngIf="
-                    mainNewsletters.length > 0 &&
-                    (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
-                  "
-                  [ngClass]="{ active: currentFragment === 'communities' }"
-                  class="items-heading"
-                >
-                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="community-newsletters">Commudle Newsletters</a></p>
-                </div> -->
+                  <a [routerLink]="'.'" fragment="community-newsletters">
+                    <div
+                      *ngIf="
+                        communityNewsletters.length > 0 &&
+                        (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'community-newsletters' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Community Newsletters</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="commudle-newsletters">
+                    <div
+                      *ngIf="
+                        commudleNewsletters.length > 0 &&
+                        (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'commudle-newsletters' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Commudle Newsletters</p>
+                    </div>
+                  </a>
                   <a [routerLink]="'.'" fragment="labs">
                     <div
                       *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))"
@@ -378,9 +382,9 @@
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Community Newsletters</p>
-                    <div class="community-newsletters-card com-border-t-0">
+                    <div class="community-newsletters com-border-t-0">
                       <div *ngFor="let communityNewsletter of communityNewsletters" class="community-newsletters-card">
-                        <!-- <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card> -->
+                        <commudle-newsletter-card [newsletter]="communityNewsletter"></commudle-newsletter-card>
                       </div>
                     </div>
                     <div class="can-load-more-spinner" *ngIf="canLoadMoreCommunityNewsletters">
@@ -395,6 +399,38 @@
                         size="small"
                         status="info"
                         [disabled]="canLoadMoreCommunityNewsletters"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    commudleNewsletters.length > 0 &&
+                    (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
+                  "
+                  id="commudle-newsletters"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Commudle Newsletters</p>
+                    <div class="community-newsletters com-border-t-0">
+                      <div *ngFor="let commudleNewsletter of commudleNewsletters" class="community-newsletters-card">
+                        <commudle-newsletter-card [newsletter]="commudleNewsletter"></commudle-newsletter-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreCommudleNewsletters">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="commudleNewslettersTotal > commudleNewsletters.length"
+                        (click)="getCommudleNewsletters()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreCommudleNewsletters"
                       >
                         Load More
                       </button>
