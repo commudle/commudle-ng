@@ -29,9 +29,9 @@ import { EventCardComponent } from 'apps/commudle-admin/src/app/app-shared-compo
 import { EventContentCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-content-card/event-content-card.component';
 import { LinkyModule } from 'ngx-linky';
 import { SkeletonCardsComponent } from 'apps/commudle-admin/src/app/feature-modules/skeleton-screens/components/skeleton-cards/skeleton-cards.component';
-import { LocationHeaderComponent } from './components/location-header/location-header.component';
-import { EventHorizontalCardComponent } from '../../app-shared-components/event-horizontal-card/event-horizontal-card.component';
-import { TechSessionsCardComponent } from '../../app-shared-components/tech-sessions-card/tech-sessions-card.component';
+import { LocationHeaderComponent } from 'apps/commudle-admin/src/app/feature-modules/search/components/location-header/location-header.component';
+import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
+import { TechSessionsCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/tech-sessions-card/tech-sessions-card.component';
 
 @NgModule({
   declarations: [SearchBoxComponent, SearchPageComponent, SearchDetailsComponent, LocationHeaderComponent],
