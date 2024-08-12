@@ -66,6 +66,7 @@ export class PaymentLogEdfegComponent implements OnInit {
       }
     });
     this.searchForm.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
+      this.page = 1;
       this.fetchPaymentDetails();
     });
   }
