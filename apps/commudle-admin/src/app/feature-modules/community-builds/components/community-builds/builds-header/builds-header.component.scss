@@ -26,10 +26,10 @@
           }
 
           .content {
+            @apply md:com-w-[666px] com-w-full;
             ::ng-deep {
               p {
-                font-size: 24px;
-                color: initial;
+                @apply com-text-tWhite com-m-0 com-mb-2 com-w-full;
               }
             }
           }

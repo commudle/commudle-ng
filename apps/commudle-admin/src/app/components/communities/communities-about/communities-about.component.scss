@@ -15,7 +15,16 @@
           }
 
           .sub-heading {
-            @apply md:com-text-2xl com-text-xl com-font-medium com-m-0 com-mx-0 md:com-mb-[52px] com-mb-8 com-text-tWhite;
+            @apply md:com-text-2xl com-text-xl com-font-medium com-m-0 com-mx-0 md:com-mb-6 com-mb-4 com-text-tWhite;
+          }
+
+          .content {
+            @apply md:com-w-[666px] com-w-full;
+            ::ng-deep {
+              p {
+                @apply com-text-tWhite com-m-0 com-mb-2 com-w-full;
+              }
+            }
           }
         }
 
