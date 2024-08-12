@@ -77,22 +77,16 @@
         .labs-card,
         .builds-card,
         .social-resources-card,
-        .community-newsletters {
+        .community-newsletters,
+        .events-card {
           @apply com-grid md:com-grid-cols-2 com-grid-cols-1 com-gap-4 com-w-full;
 
           .lab-card,
           .build-card,
           .social-resource-card,
-          .community-newsletters-card {
-            @apply md:com-w-[312px] com-w-full;
-          }
-        }
-
-        .events-card {
-          @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-4 com-w-full;
-
+          .community-newsletters-card,
           .event-card {
-            @apply md:com-w-[202px] com-w-full;
+            @apply md:com-w-[312px] com-w-full;
           }
         }
 
@@ -127,7 +121,15 @@
 
       .advertisement {
         nb-card {
-          @apply com-m-0;
+          @apply com-w-[342px] com-h-[325px] com-m-0 com-border-2 com-border-dashed com-border-Azure;
+
+          nb-card-body {
+            @apply com-flex com-items-center com-justify-center;
+
+            h2 {
+              @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-m-0;
+            }
+          }
         }
       }
     }
