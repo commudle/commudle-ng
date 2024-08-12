@@ -41,11 +41,7 @@
             @apply com-p-0;
 
             .query-results-heading {
-              @apply com-py-2 com-m-0;
-
-              a {
-                @apply com-no-underline com-text-sm com-font-medium com-text-Yankees-Blue;
-              }
+              @apply com-py-2 com-m-0 com-text-sm com-font-medium com-text-Yankees-Blue;
             }
           }
         }
@@ -178,4 +174,8 @@
 
 .items-heading {
   @apply com-px-4 com-py-0;
+}
+
+a {
+  @apply com-no-underline;
 }

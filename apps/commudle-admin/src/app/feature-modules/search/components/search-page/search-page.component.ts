@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ICommunity, ICommunityBuild, IEvent, ILab, ISpeakerResource, IUser } from '@commudle/shared-models';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
@@ -74,6 +74,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private searchStatusService: SearchStatusService,
     private gtm: GoogleTagManagerService,
     private titlecasePipe: TitleCasePipe,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -307,6 +308,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   onFilterChange(filter: string) {
+    this.router.navigate([], { fragment: null });
     this.searchLoader = true;
     this.clearResults();
 
