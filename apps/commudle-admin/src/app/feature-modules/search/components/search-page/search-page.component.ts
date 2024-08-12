@@ -257,7 +257,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.speakerResourcesPage, this.count, 'SpeakerResource')
       .subscribe((value: any) => {
         this.speakerResources = [...this.speakerResources, ...value.results];
-        // console.log(this.speakerResources);
         if (this.speakerResources.length > 0 && !this.filters.includes('Tech Talks')) {
           this.filters.push('Tech Talks');
         }
@@ -278,7 +277,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.upcomingEventsPage, this.count, 'UpcomingEvents')
       .subscribe((value: any) => {
         this.upcomingEvents = [...this.upcomingEvents, ...value.results];
-        // console.log(this.upcomingEvents);
         if (this.upcomingEvents.length > 0 && !this.filters.includes('Upcoming Events')) {
           this.filters.push('Upcoming Events');
         }
@@ -319,7 +317,6 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       .getSearchResults(this.query, this.commudleNewslettersPage, this.count, 'MainNewsletter')
       .subscribe((value: any) => {
         this.commudleNewsletters = [...this.commudleNewsletters, ...value.results];
-        console.log(this.commudleNewsletters);
         if (this.commudleNewsletters.length > 0 && !this.filters.includes('Commudle Newsletters')) {
           this.filters.push('Commudle Newsletters');
         }

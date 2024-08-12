@@ -59,7 +59,7 @@ export class SearchBoxComponent implements OnInit {
         this.inputFormControl.setValue(this.query);
       }
 
-      if (!params.q) {
+      if (!params.query) {
         this.getNotifications();
       }
     });
@@ -136,9 +136,6 @@ export class SearchBoxComponent implements OnInit {
 
   onSubmit() {
     this.query = this.query ? this.query : this.inputFormControl.value;
-    // this.router.navigate(['/search'], {
-    //   queryParams: { q: this.query },
-    // });
     this.router.navigate(['/search', this.query]);
     this.showSearchBox = false;
   }
