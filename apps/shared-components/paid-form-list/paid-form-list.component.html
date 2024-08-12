@@ -1,9 +1,25 @@
+<br />
+<br />
+
+<form [formGroup]="searchForm">
+  <input formControlName="search" nbInput type="text" fullWidth placeholder="Search with Name, Event name" />
+</form>
+<br />
+
 <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
-<nb-card *ngFor="let edfeg of eventDataFormEntityGroup" class="edfeg">
-  <nb-card-body [routerLink]="[edfeg.id]">
-    <div>{{ edfeg.name }}::{{ edfeg.event.name }}::{{ edfeg.community.name }}</div>
-  </nb-card-body>
-</nb-card>
+
+<div *ngIf="!isLoading && eventDataFormEntityGroup?.length > 0; else noDetailFound">
+  <div *ngFor="let edfeg of eventDataFormEntityGroup">
+    <a [routerLink]="[edfeg.id]">
+      <nb-card class="edfeg">
+        <nb-card-body>
+          <div>{{ edfeg.name }}::{{ edfeg.event.name }}::{{ edfeg.community.name }}</div>
+        </nb-card-body>
+      </nb-card>
+    </a>
+  </div>
+</div>
+
 <app-pagination
   (goTo)="page = $event; getEdfegData()"
   (next)="page = $event; getEdfegData()"
@@ -13,3 +29,7 @@
   [current]="page"
   [total]="total"
 ></app-pagination>
+
+<ng-template #noDetailFound>
+  <div *ngIf="!isLoading">No detail found!</div>
+</ng-template>

@@ -1,3 +1,10 @@
+form {
+  @apply com-mx-3;
+}
 .edfeg {
   @apply hover:com-shadow-md com-cursor-pointer;
+}
+
+a {
+  @apply com-no-underline;
 }
