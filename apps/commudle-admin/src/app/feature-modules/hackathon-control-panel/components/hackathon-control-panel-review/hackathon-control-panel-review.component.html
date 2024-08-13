@@ -446,7 +446,7 @@
         nbButton
         status="primary"
         [disabled]="roundSelectionForEmail === 0"
-        (click)="OverallRoundSelectionUpdateEmail()"
+        (click)="OverallRoundSelectionUpdateEmail(); dialogRef.close()"
       >
         Send
       </button>
