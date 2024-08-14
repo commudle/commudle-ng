@@ -6,16 +6,13 @@ export interface IRazorpayAccount {
   bank_details: IBankDetails;
   product_id: string;
   commudle_fee_percentage: number;
+  activation_status: EActivationStatus;
 }
 
 export interface IBankDetails {
-  active_configuration: {
-    settlements: {
-      account_number: number;
-      beneficiary_name: string;
-      ifsc_code: string;
-    };
-  };
+  account_number: number;
+  beneficiary_name: string;
+  ifsc_code: string;
 }
 
 export interface IRzpAccountDetails {
@@ -23,6 +20,16 @@ export interface IRzpAccountDetails {
     email: string;
     status: string;
   };
+}
+
+export enum EActivationStatus {
+  REQUESTED = 'requested',
+  NEEDS_CLARIFICATION = 'needs_clarification',
+  UNDER_REVIEW = 'under_review',
+  ACTIVATED = 'activated',
+  SUSPENDED = 'suspended',
+  CREATED = 'created',
+  REJECTED = 'rejected',
 }
 
 export enum EBusinessType {
