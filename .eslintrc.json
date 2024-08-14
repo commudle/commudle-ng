@@ -1,14 +1,12 @@
 {
   "root": true,
   "ignorePatterns": ["**/*"],
-  // TODO: ideally we shouldn't extend from the Angular ESLint config since it's not Angular specific
-  // it can be removed once we have migrated the shared components/services/directives to separate libraries
-  "plugins": ["@nrwl/nx", "@angular-eslint"],
+  "plugins": ["@nx", "@angular-eslint"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
-        "@nrwl/nx/enforce-module-boundaries": [
+        "@nx/enforce-module-boundaries": [
           "warn",
           {
             "enforceBuildableLibDependency": true,
@@ -25,12 +23,12 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "extends": ["plugin:@nx/typescript"],
       "rules": {}
     },
     {
       "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
+      "extends": ["plugin:@nx/javascript"],
       "rules": {}
     },
     {

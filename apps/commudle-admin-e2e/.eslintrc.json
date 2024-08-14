@@ -7,11 +7,16 @@
       "rules": {}
     },
     {
-      "files": ["src/plugins/index.js"],
-      "rules": {
-        "@typescript-eslint/no-var-requires": "off",
-        "no-undef": "off"
-      }
+      "files": ["*.ts", "*.tsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.cy.{ts,js,tsx,jsx}", "src/**/*.{ts,js,tsx,jsx}"],
+      "rules": {}
     }
   ]
 }

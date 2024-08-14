@@ -3,12 +3,14 @@ import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider, YoutubeLoginProvider } from '@commudle/auth';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import {
   NbAccordionModule,
   NbActionsModule,
+  NbAutocompleteModule,
   NbBadgeModule,
   NbButtonModule,
   NbCardModule,
@@ -39,9 +41,9 @@ import {
   NbTooltipModule,
   NbUserModule,
   NbWindowModule,
-  NbAutocompleteModule,
 } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { createErrorHandler, TraceService } from '@sentry/angular-ivy';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
@@ -50,15 +52,19 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { ApiParserResponseInterceptor } from 'apps/shared-interceptors/api-parser-response.interceptor';
 import { AuthTokenInterceptor } from 'apps/shared-interceptors/lib-authwatch-token.interceptor';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 import { MiniUserProfileModule } from 'apps/shared-modules/mini-user-profile/mini-user-profile.module';
 import { PageAdsModule } from 'apps/shared-modules/page-ads/page-ads.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { IsBrowserService } from 'apps/shared-services/is-browser.service';
 import { PrismJsHighlightCodeService } from 'apps/shared-services/prismjs-highlight-code.service';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxStripeModule } from 'ngx-stripe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { CommunitiesCardComponent } from './app-shared-components/communities-card/communities-card.component';
+import { ListingPagesLayoutComponent } from './app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
 import { AppComponent } from './app.component';
 import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
@@ -67,6 +73,8 @@ import { CommunitiesFeaturedComponent } from './components/communities/communiti
 import { CommunitiesListComponent } from './components/communities/communities-list/communities-list.component';
 import { CommunitiesPostsComponent } from './components/communities/communities-posts/communities-posts.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
+import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
+import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
 import { FillDataFormComponent } from './components/fill-data-form/fill-data-form.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeBuildsCardComponent } from './components/home/components/home-builds/home-builds-card/home-builds-card.component';
@@ -96,13 +104,17 @@ import { SpeakerResourceFormComponent } from './components/speaker-resource-form
 import { StepperComponent } from './components/stepper/stepper.component';
 import { SwUpdateComponent } from './components/sw-update/sw-update.component';
 import { CommunityChannelsModule } from './feature-modules/community-channels/community-channels.module';
+import { UserprofileDetailsComponent } from './feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
 import { LabsModule } from './feature-modules/labs/labs.module';
+import { PublicHomeListEventsModule } from './feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { PublicHomeListSpeakersModule } from './feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
 import { MainNewslettersModule } from './feature-modules/main-newsletters/main-newsletters.module';
 import { NotificationsModule } from './feature-modules/notifications/notifications.module';
 import { PublicCommunityModule } from './feature-modules/public-community/public-community.module';
 import { RecommendationsModule } from './feature-modules/recommendations/recommendations.module';
 import { ReusableComponentsModule } from './feature-modules/reusable-components/reusable-components.module';
 import { SearchModule } from './feature-modules/search/search.module';
+import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
 import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skeleton-screens.module';
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
@@ -116,8 +128,7 @@ import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data
 import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
-import { UserprofileDetailsComponent } from './feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
-
+import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
 import * as Sentry from '@sentry/angular-ivy';
 import { Router } from '@angular/router';
 import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
@@ -250,15 +261,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
 
     // Other external npm modules
     Angular2SmartTableModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000',
-    }),
-    //standalone component
-    CommunitiesCardComponent,
     NgxStripeModule.forRoot(environment.stripe),
+
+    // standalone components
+    CommunitiesCardComponent,
   ],
   providers: [
     AppInitService,
@@ -304,18 +310,19 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
     },
     {
       provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler({
+      useValue: createErrorHandler({
         showDialog: false,
       }),
     },
     {
-      provide: Sentry.TraceService,
+      provide: TraceService,
       deps: [Router],
     },
+    // TODO: there are two providers with same provide key, check if that causes error?
     {
       provide: APP_INITIALIZER,
       useFactory: () => () => {},
-      deps: [Sentry.TraceService],
+      deps: [TraceService],
       multi: true,
     },
   ],
