@@ -38,16 +38,18 @@
               <nb-card *ngIf="total > 0">
                 <nb-card-header>On This Page</nb-card-header>
                 <nb-card-body>
-                  <!-- <div
-                  *ngIf="
-                    upcomingEvents.length > 0 &&
-                    (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
-                  "
-                  [ngClass]="{ active: currentFragment === 'communities' }"
-                  class="items-heading"
-                >
-                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="upcoming-events">Upcoming Events</a></p>
-                </div> -->
+                  <!-- <a [routerLink]="'.'" fragment="upcoming-events">
+                    <div
+                      *ngIf="
+                        upcomingEvents.length > 0 &&
+                        (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'upcoming-events' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Upcoming Events</p>
+                    </div>
+                  </a> -->
                   <a [routerLink]="'.'" fragment="communities">
                     <div
                       *ngIf="
@@ -320,7 +322,7 @@
                     <p class="query-results-heading">Tech Talks</p>
                     <div class="speaker-resources-card com-border-t-0">
                       <div *ngFor="let speakerResource of speakerResources" class="speaker-resource-card">
-                        <!-- <commudle-tech-sessions-card [session]="speakerResource"></commudle-tech-sessions-card> -->
+                        <commudle-tech-sessions-card [session]="speakerResource"></commudle-tech-sessions-card>
                       </div>
                     </div>
                     <div class="can-load-more-spinner" *ngIf="canLoadMoreSpeakerResources">

@@ -1,4 +1,4 @@
-import { IAttachedFile } from '@commudle/shared-models';
+import { IAttachedFile, ICommunity } from '@commudle/shared-models';
 import { IEmailStatsOverview } from 'apps/shared-models/email-stats-overview.model';
 
 export interface INewsletter {
@@ -15,4 +15,5 @@ export interface INewsletter {
   stats: IEmailStatsOverview;
   grapes_js_editor: boolean;
   type: string;
+  community: ICommunity;
 }
