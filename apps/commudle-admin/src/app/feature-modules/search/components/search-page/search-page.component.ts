@@ -30,7 +30,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   speakerResources: ISessions[] = [];
   upcomingEvents: IEvent[] = [];
   communityNewsletters: INewsletter[] = [];
-  commudleNewsletters: INewsletter[] = [];
+  mainNewsletters: INewsletter[] = [];
 
   usersPage = 1;
   communitiesPage = 1;
@@ -42,7 +42,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   peakerResources;
   upcomingEventsPage = 1;
   communityNewslettersPage = 1;
-  commudleNewslettersPage = 1;
+  mainNewslettersPage = 1;
 
   usersTotal = 0;
   communitiesTotal = 0;
@@ -53,7 +53,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   speakerResourcesTotal = 0;
   upcomingEventsTotal = 0;
   communityNewslettersTotal = 0;
-  commudleNewslettersTotal = 0;
+  mainNewslettersTotal = 0;
 
   searchLoader = true;
   canLoadMoreUser = false;
@@ -65,7 +65,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreUpcomingEvents = false;
   canLoadMoreSpeakerResources = false;
   canLoadMoreCommunityNewsletters = false;
-  canLoadMoreCommudleNewsletters = false;
+  canLoadMoreMainNewsletters = false;
 
   seoTitle = '';
   seoDescription = '';
@@ -114,7 +114,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.speakerResources = [];
     this.upcomingEvents = [];
     this.communityNewsletters = [];
-    this.commudleNewsletters = [];
+    this.mainNewsletters = [];
     this.usersPage = 1;
     this.communitiesPage = 1;
     this.labsPage = 1;
@@ -124,7 +124,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.speakerResourcesPage = 1;
     this.upcomingEventsPage = 1;
     this.communityNewslettersPage = 1;
-    this.commudleNewslettersPage = 1;
+    this.mainNewslettersPage = 1;
     this.usersTotal = 0;
     this.communitiesTotal = 0;
     this.labsTotal = 0;
@@ -134,7 +134,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.speakerResourcesTotal = 0;
     this.upcomingEventsTotal = 0;
     this.communityNewslettersTotal = 0;
-    this.commudleNewslettersTotal = 0;
+    this.mainNewslettersTotal = 0;
   }
 
   getUsers() {
@@ -311,23 +311,23 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  getCommudleNewsletters() {
-    this.canLoadMoreCommudleNewsletters = true;
+  getMainNewsletters() {
+    this.canLoadMoreMainNewsletters = true;
     this.searchService
-      .getSearchResults(this.query, this.commudleNewslettersPage, this.count, 'MainNewsletter')
+      .getSearchResults(this.query, this.mainNewslettersPage, this.count, 'MainNewsletter')
       .subscribe((value: any) => {
-        this.commudleNewsletters = [...this.commudleNewsletters, ...value.results];
-        if (this.commudleNewsletters.length > 0 && !this.filters.includes('Commudle Newsletters')) {
+        this.mainNewsletters = [...this.mainNewsletters, ...value.results];
+        if (this.mainNewsletters.length > 0 && !this.filters.includes('Commudle Newsletters')) {
           this.filters.push('Commudle Newsletters');
         }
-        if (this.commudleNewslettersPage === 1) {
-          this.commudleNewslettersTotal = value.total;
-          this.total += this.commudleNewslettersTotal;
+        if (this.mainNewslettersPage === 1) {
+          this.mainNewslettersTotal = value.total;
+          this.total += this.mainNewslettersTotal;
         }
-        this.commudleNewslettersPage++;
+        this.mainNewslettersPage++;
         this.gtmService(this.query);
         this.searchLoader = false;
-        this.canLoadMoreCommudleNewsletters = false;
+        this.canLoadMoreMainNewsletters = false;
       });
   }
 
@@ -373,7 +373,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.getContent();
       this.getSpeakerResources();
       this.getCommunityNewsletters();
-      this.getCommudleNewsletters();
+      this.getMainNewsletters();
       // this.getUpcomingEvents();
     } else {
       this.selectedFilters.forEach((filter) => {
@@ -403,7 +403,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
             this.getCommunityNewsletters();
             break;
           case 'Commudle Newsletters':
-            this.getCommudleNewsletters();
+            this.getMainNewsletters();
             break;
           // case 'Upcoming Events':
           //   this.getUpcomingEvents();

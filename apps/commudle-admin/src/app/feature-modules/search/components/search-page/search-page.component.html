@@ -131,7 +131,7 @@
                   <a [routerLink]="'.'" fragment="commudle-newsletters">
                     <div
                       *ngIf="
-                        commudleNewsletters.length > 0 &&
+                        mainNewsletters.length > 0 &&
                         (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
                       "
                       [ngClass]="{ active: currentFragment === 'commudle-newsletters' }"
@@ -409,7 +409,7 @@
                 </nb-list-item>
                 <nb-list-item
                   *ngIf="
-                    commudleNewsletters.length > 0 &&
+                    mainNewsletters.length > 0 &&
                     (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
                   "
                   id="commudle-newsletters"
@@ -417,22 +417,22 @@
                   <div class="results-container">
                     <p class="query-results-heading">Commudle Newsletters</p>
                     <div class="community-newsletters com-border-t-0">
-                      <div *ngFor="let commudleNewsletter of commudleNewsletters" class="community-newsletters-card">
+                      <div *ngFor="let commudleNewsletter of mainNewsletters" class="community-newsletters-card">
                         <commudle-newsletter-card [newsletter]="commudleNewsletter"></commudle-newsletter-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner" *ngIf="canLoadMoreCommudleNewsletters">
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreMainNewsletters">
                       <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
-                        *ngIf="commudleNewslettersTotal > commudleNewsletters.length"
-                        (click)="getCommudleNewsletters()"
+                        *ngIf="mainNewslettersTotal > mainNewsletters.length"
+                        (click)="getMainNewsletters()"
                         nbButton
                         outline
                         size="small"
                         status="info"
-                        [disabled]="canLoadMoreCommudleNewsletters"
+                        [disabled]="canLoadMoreMainNewsletters"
                       >
                         Load More
                       </button>
