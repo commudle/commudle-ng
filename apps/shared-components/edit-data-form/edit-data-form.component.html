@@ -23,9 +23,9 @@
   </nb-card>
   <form [formGroup]="editDataForm" class="edit-data-form">
     <div formGroupName="data_form">
-      <nb-card *ngIf="showNameDescriptionFiled">
+      <nb-card>
         <nb-card-body class="card-body">
-          <div role="group">
+          <div role="group" *ngIf="showNameField">
             <div>
               <label fullWidth>
                 Name
@@ -44,7 +44,7 @@
             </div>
           </div>
 
-          <div role="group">
+          <div role="group" *ngIf="showDescriptionField">
             <div class="description">
               <label fullWidth>
                 Description
