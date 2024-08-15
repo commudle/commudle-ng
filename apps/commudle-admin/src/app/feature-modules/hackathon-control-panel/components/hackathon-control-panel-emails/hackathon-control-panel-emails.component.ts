@@ -5,6 +5,7 @@ import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { HackathonWinnerAnnouncementEmailerComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-winner-announcement-emailer/hackathon-winner-announcement-emailer.component';
 import { HackathonStatusFilterGeneralEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-status-filter-general-emails/hackathon-status-filter-general-emails.component';
+import { HackathonOverallRoundSelectionUpdateEmailComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-overall-round-selection-update-email/hackathon-overall-round-selection-update-email.component';
 @Component({
   selector: 'commudle-hackathon-control-panel-emails',
   templateUrl: './hackathon-control-panel-emails.component.html',
@@ -48,6 +49,14 @@ export class HackathonControlPanelEmailsComponent implements OnInit {
       if (data) {
         this.dialogRef.close();
       }
+    });
+  }
+
+  openRoundSelectionUpdateEmailDialogBox() {
+    this.dialogRef = this.nbDialogService.open(HackathonOverallRoundSelectionUpdateEmailComponent, {
+      context: {
+        hackathonId: this.hackathonId,
+      },
     });
   }
 }

@@ -5,12 +5,7 @@
         [helpDictionaryName]="'hackathon-applications-projects'"
       ></commudle-help-section>
     </div>
-    <button
-      nbButton
-      status="primary"
-      (click)="openRoundSelectionUpdateEmailDialogBox(OverallRoundSelectionUpdateEmailDialogBox)"
-      class="com-w-max"
-    >
+    <button nbButton status="primary" (click)="openRoundSelectionUpdateEmailDialogBox()" class="com-w-max">
       Send round selection update email
     </button>
     &nbsp; &nbsp;
@@ -412,44 +407,5 @@
         </div>
       </div>
     </nb-card-body>
-  </nb-card>
-</ng-template>
-
-<ng-template #OverallRoundSelectionUpdateEmailDialogBox let-ref="dialogRef" let-data>
-  <nb-card class="round-selection-mailer">
-    <nb-card-header>
-      <span>Send round selection update email</span>
-      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
-        <fa-icon [icon]="faXmark"></fa-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body>
-      <commudle-alert
-        [info]="true"
-        message="This will send a pre-formatted email and a notification to all members of the community"
-      ></commudle-alert>
-      <div class="round-select">
-        <select [(ngModel)]="roundSelectionForEmail">
-          <option hidden [ngValue]="0">Select round*</option>
-          <option *ngFor="let hackathonRound of hackathonRounds" [ngValue]="hackathonRound.id">
-            {{ hackathonRound.name }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <label for="message">Message (optional)</label>
-        <editor [init]="tinyMCE" [(ngModel)]="message"> </editor>
-      </div>
-    </nb-card-body>
-    <nb-card-footer>
-      <button
-        nbButton
-        status="primary"
-        [disabled]="roundSelectionForEmail === 0"
-        (click)="OverallRoundSelectionUpdateEmail(); dialogRef.close()"
-      >
-        Send
-      </button>
-    </nb-card-footer>
   </nb-card>
 </ng-template>
