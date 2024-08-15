@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 import { CmsService } from 'apps/shared-services/cms.service';
 
@@ -8,12 +8,14 @@ import { CmsService } from 'apps/shared-services/cms.service';
   styleUrls: ['./location-header.component.scss'],
 })
 export class LocationHeaderComponent implements OnInit {
-  locationPageHeader: IListingPageHeader;
+  @Input() locationPageHeader: IListingPageHeader;
+  headerImagePath;
   richText: string;
 
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
+    this.headerImagePath = this.imageUrl(this.locationPageHeader.background_image).url();
     this.getHeaderText();
   }
 
@@ -22,9 +24,6 @@ export class LocationHeaderComponent implements OnInit {
   }
 
   getHeaderText() {
-    this.cmsService.getDataBySlug('builds').subscribe((data) => {
-      this.locationPageHeader = data;
-      this.richText = this.cmsService.getHtmlFromBlock(data);
-    });
+    this.richText = this.cmsService.getHtmlFromBlock(this.locationPageHeader);
   }
 }

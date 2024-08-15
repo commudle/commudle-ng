@@ -8,6 +8,8 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { TitleCasePipe } from '@angular/common';
 import { ISessions } from 'apps/shared-models/sessions.model';
 import { INewsletter } from 'apps/shared-models/newsletter.model';
+import { CmsService } from 'apps/shared-services/cms.service';
+import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model';
 @Component({
   selector: 'app-search-page',
   templateUrl: './search-page.component.html',
@@ -70,6 +72,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   seoTitle = '';
   seoDescription = '';
   currentFragment = '';
+  locationPageHeader: IListingPageHeader;
 
   constructor(
     private searchService: SearchService,
@@ -79,6 +82,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     private gtm: GoogleTagManagerService,
     private titlecasePipe: TitleCasePipe,
     private router: Router,
+    private cmsService: CmsService,
   ) {}
 
   ngOnInit(): void {
@@ -93,6 +97,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.results = [];
       this.total = 0;
       this.getAllData();
+      this.getHeaderData();
     });
     this.activatedRoute.fragment.subscribe((fragment) => {
       this.currentFragment = fragment ? fragment : '';
@@ -426,5 +431,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.seoDescription,
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+  }
+
+  getHeaderData(): void {
+    const update = this.query.toLowerCase();
+    this.cmsService.getDataBySlug(update).subscribe((value) => {
+      this.locationPageHeader = value;
+    });
   }
 }

@@ -1,5 +1,7 @@
 <div class="com-bg-white">
-  <!-- <div><commudle-location-header></commudle-location-header></div> -->
+  <div *ngIf="locationPageHeader">
+    <commudle-location-header [locationPageHeader]="locationPageHeader"></commudle-location-header>
+  </div>
   <div class="base-layout">
     <div class="search-input">
       <app-search-box
