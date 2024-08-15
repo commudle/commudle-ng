@@ -29,7 +29,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   socialResources: ISpeakerResource[] = [];
   speakerResources: ISessions[] = [];
   upcomingEvents: IEvent[] = [];
-  communityNewsletters: INewsletter[] = [];
+  newsletters: INewsletter[] = [];
   mainNewsletters: INewsletter[] = [];
 
   usersPage = 1;
@@ -41,7 +41,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   speakerResourcesPage = 1;
   peakerResources;
   upcomingEventsPage = 1;
-  communityNewslettersPage = 1;
+  newslettersPage = 1;
   mainNewslettersPage = 1;
 
   usersTotal = 0;
@@ -52,7 +52,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   socialResourcesTotal = 0;
   speakerResourcesTotal = 0;
   upcomingEventsTotal = 0;
-  communityNewslettersTotal = 0;
+  newslettersTotal = 0;
   mainNewslettersTotal = 0;
 
   searchLoader = true;
@@ -64,7 +64,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   canLoadMoreContent = false;
   canLoadMoreUpcomingEvents = false;
   canLoadMoreSpeakerResources = false;
-  canLoadMoreCommunityNewsletters = false;
+  canLoadMoreNewsletters = false;
   canLoadMoreMainNewsletters = false;
 
   seoTitle = '';
@@ -113,7 +113,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.socialResources = [];
     this.speakerResources = [];
     this.upcomingEvents = [];
-    this.communityNewsletters = [];
+    this.newsletters = [];
     this.mainNewsletters = [];
     this.usersPage = 1;
     this.communitiesPage = 1;
@@ -123,7 +123,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.socialResourcesPage = 1;
     this.speakerResourcesPage = 1;
     this.upcomingEventsPage = 1;
-    this.communityNewslettersPage = 1;
+    this.newslettersPage = 1;
     this.mainNewslettersPage = 1;
     this.usersTotal = 0;
     this.communitiesTotal = 0;
@@ -133,7 +133,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.socialResourcesTotal = 0;
     this.speakerResourcesTotal = 0;
     this.upcomingEventsTotal = 0;
-    this.communityNewslettersTotal = 0;
+    this.newslettersTotal = 0;
     this.mainNewslettersTotal = 0;
   }
 
@@ -291,23 +291,23 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  getCommunityNewsletters() {
-    this.canLoadMoreCommunityNewsletters = true;
+  getNewsletters() {
+    this.canLoadMoreNewsletters = true;
     this.searchService
-      .getSearchResults(this.query, this.communityNewslettersPage, this.count, 'Newsletter')
+      .getSearchResults(this.query, this.newslettersPage, this.count, 'Newsletter')
       .subscribe((value: any) => {
-        this.communityNewsletters = [...this.communityNewsletters, ...value.results];
-        if (this.communityNewsletters.length > 0 && !this.filters.includes('Community Newsletters')) {
+        this.newsletters = [...this.newsletters, ...value.results];
+        if (this.newsletters.length > 0 && !this.filters.includes('Community Newsletters')) {
           this.filters.push('Community Newsletters');
         }
-        if (this.communityNewslettersPage === 1) {
-          this.communityNewslettersTotal = value.total;
-          this.total += this.communityNewslettersTotal;
+        if (this.newslettersPage === 1) {
+          this.newslettersTotal = value.total;
+          this.total += this.newslettersTotal;
         }
-        this.communityNewslettersPage++;
+        this.newslettersPage++;
         this.gtmService(this.query);
         this.searchLoader = false;
-        this.canLoadMoreCommunityNewsletters = false;
+        this.canLoadMoreNewsletters = false;
       });
   }
 
@@ -372,7 +372,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       this.getEvents();
       this.getContent();
       this.getSpeakerResources();
-      this.getCommunityNewsletters();
+      this.getNewsletters();
       this.getMainNewsletters();
       // this.getUpcomingEvents();
     } else {
@@ -400,7 +400,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
             this.getSpeakerResources();
             break;
           case 'Community Newsletters':
-            this.getCommunityNewsletters();
+            this.getNewsletters();
             break;
           case 'Commudle Newsletters':
             this.getMainNewsletters();
