@@ -103,6 +103,13 @@
                           type="text"
                         />
                       </label>
+                      <div class="has-response-info" *ngIf="question.get('has_responses').value">
+                        <commudle-alert
+                          [info]="true"
+                          message=" This question cannot be edited because it already has responses, however you can disable it if
+                          needed."
+                        ></commudle-alert>
+                      </div>
                       <span
                         *ngIf="
                           question.get('title').touched &&
