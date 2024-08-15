@@ -420,7 +420,10 @@
                     <p class="query-results-heading">Commudle Newsletters</p>
                     <div class="community-newsletters com-border-t-0">
                       <div *ngFor="let mainNewsletter of mainNewsletters" class="community-newsletters-card">
-                        <commudle-newsletter-card [newsletter]="mainNewsletter"></commudle-newsletter-card>
+                        <commudle-newsletter-card
+                          [newsletter]="mainNewsletter"
+                          [parentType]="'MainNewsletter'"
+                        ></commudle-newsletter-card>
                       </div>
                     </div>
                     <div class="can-load-more-spinner" *ngIf="canLoadMoreMainNewsletters">

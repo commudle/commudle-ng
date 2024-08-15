@@ -14,12 +14,17 @@
         <div class="content">{{ newsletter.title }}</div>
       </div>
       <div class="action">
-        <!-- <a
-          *ngIf="newsletter.type === 'Newsletter'"
-          [routerLink]="['/communities', community.slug, 'newsletters', newsletter.slug]"
+        <a
+          *ngIf="parentType === 'Newsletter'"
+          [routerLink]="[
+            '/communities',
+            newsletter.community ? newsletter.community.slug : community.slug,
+            'newsletters',
+            newsletter.slug
+          ]"
           >Read More <fa-icon [icon]="icons.faArrowRight" class="com-mr-2"></fa-icon
-        ></a> -->
-        <a *ngIf="newsletter.type === 'MainNewsletter'" [routerLink]="['/newsletters', newsletter.id]"
+        ></a>
+        <a *ngIf="parentType === 'MainNewsletter'" [routerLink]="['/newsletters', newsletter.id]"
           >Read More <fa-icon [icon]="icons.faArrowRight" class="com-mr-2"></fa-icon
         ></a>
       </div>
