@@ -31,23 +31,11 @@ HTML Emmet's
 1. div.three-column-layout>div*3
  */
 .three-column-layout {
-  @include grid-layout(24);
+  @screen lg {
+    @include grid-layout(24);
 
-  & > *:nth-child(1) {
-    @apply com-col-span-6;
-  }
-
-  & > *:nth-child(2) {
-    @apply com-col-span-12;
-  }
-
-  & > *:nth-child(3) {
-    @apply com-col-span-6;
-  }
-
-  &.medium {
     & > *:nth-child(1) {
-      @apply com-col-span-5;
+      @apply com-col-span-6;
     }
 
     & > *:nth-child(2) {
@@ -55,7 +43,21 @@ HTML Emmet's
     }
 
     & > *:nth-child(3) {
-      @apply com-col-span-7;
+      @apply com-col-span-6;
+    }
+
+    &.medium {
+      & > *:nth-child(1) {
+        @apply com-col-span-5;
+      }
+
+      & > *:nth-child(2) {
+        @apply com-col-span-12;
+      }
+
+      & > *:nth-child(3) {
+        @apply com-col-span-7;
+      }
     }
   }
 }

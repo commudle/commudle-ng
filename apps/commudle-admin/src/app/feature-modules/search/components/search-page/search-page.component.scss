@@ -34,7 +34,7 @@
           @apply com-m-0;
 
           nb-card-header {
-            @apply com-text-sm com-font-semibold com-text-black;
+            @apply com-text-sm com-font-semibold com-text-black com-p-4;
           }
 
           nb-card-body {
@@ -51,7 +51,7 @@
       @apply com-p-0 md:com-px-0 com-px-4;
     }
     .results-count {
-      @apply com-m-0 com-text-base com-font-semibold com-text-gray-500;
+      @apply com-m-0 com-text-base com-font-semibold com-text-gray-500 md:com-mt-0 com-mt-6;
     }
 
     .option-name {
@@ -118,11 +118,11 @@
     }
 
     .right-column {
-      @apply com-p-0 md:com-pl-30px com-pl-0;
+      @apply com-p-0 md:com-pl-30px com-pl-0 com-pr-0;
 
       .advertisement {
         nb-card {
-          @apply com-w-[342px] com-h-[325px] com-m-0 com-border-2 com-border-dashed com-border-Azure;
+          @apply md:com-w-[342px] com-h-[325px] com-m-0 com-border-2 com-border-dashed com-border-Azure md:com-mx-0 com-mx-1;
 
           nb-card-body {
             @apply com-flex com-items-center com-justify-center;
