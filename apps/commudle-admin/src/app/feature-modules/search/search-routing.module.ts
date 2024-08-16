@@ -8,7 +8,7 @@ const routes = [
     component: SearchPageComponent,
   },
   {
-    path: ':query',
+    path: 'search/:query',
     component: SearchPageComponent,
   },
 ];

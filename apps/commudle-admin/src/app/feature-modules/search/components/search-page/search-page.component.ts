@@ -435,7 +435,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   getHeaderData(): void {
-    const update = this.query.toLowerCase();
+    const update = this.query?.toLowerCase();
     this.cmsService.getDataBySlug(update).subscribe((value) => {
       this.locationPageHeader = value;
     });
