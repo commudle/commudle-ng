@@ -177,6 +177,18 @@ export class EmailerComponent implements OnInit, OnDestroy {
         preformatted_email: true,
       },
       {
+        value: EemailTypes.ALL,
+        display: 'All Who Filled the Form',
+      },
+      {
+        value: EemailTypes.REGISTERED,
+        display: 'Status: Registered',
+      },
+      {
+        value: EemailTypes.WAITING,
+        display: 'Status: Waiting',
+      },
+      {
         value: EemailTypes.RSVP,
         display: 'RSVP (Pre-formatted email)',
         preformatted_email: true,
