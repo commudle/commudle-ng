@@ -69,7 +69,6 @@ export class ChatsContainerComponent implements OnInit, OnDestroy {
 
   checkNewMessage() {
     this.userChatNotificationsChannel.newMessagesCounter$.subscribe((value) => {
-      console.log(value, 'value container');
       if (value.length > 0) {
         value.forEach((chatUser) => {
           chatUser['minimized'] = true;
