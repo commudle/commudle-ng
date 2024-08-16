@@ -9,7 +9,7 @@
         <div class="header-text">
           <p class="sub-heading">{{ locationPageHeader.sub_heading }}</p>
           <h1 class="heading">{{ locationPageHeader.heading }}</h1>
-          <div [innerHTML]="richText" class="content"></div>
+          <div [innerHTML]="richText" class="content-rich-text"></div>
         </div>
         <ng-container *ngIf="locationPageHeader?.image_link">
           <a class="header-image" [href]="locationPageHeader.image_link">

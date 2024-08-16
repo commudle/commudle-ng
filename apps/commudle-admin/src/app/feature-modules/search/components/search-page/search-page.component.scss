@@ -28,7 +28,11 @@
       @apply com-pt-4;
 
       .left-column {
-        @apply md:com-pr-[30px] com-relative;
+        @apply md:com-pr-[30px] com-relative md:com-flex com-hidden;
+
+        .items-list {
+          @apply com-sticky com-top-[86px] com-w-full;
+        }
 
         nb-card {
           @apply com-m-0;
@@ -51,7 +55,7 @@
       @apply com-p-0 md:com-px-0 com-px-4;
     }
     .results-count {
-      @apply com-m-0 com-text-base com-font-semibold com-text-gray-500 md:com-mt-0 com-mt-6;
+      @apply com-m-0 com-text-base com-font-semibold com-text-gray-500;
     }
 
     .option-name {
@@ -121,6 +125,7 @@
       @apply com-p-0 md:com-pl-30px com-pl-0 com-pr-0;
 
       .advertisement {
+        @apply md:com-flex com-hidden;
         nb-card {
           @apply md:com-w-[342px] com-h-[325px] com-m-0 com-border-2 com-border-dashed com-border-Azure md:com-mx-0 com-mx-1;
 
@@ -153,7 +158,7 @@
   }
 
   .results-container {
-    @apply com-flex com-flex-col com-items-center;
+    @apply com-flex com-flex-col com-items-center com-w-full;
   }
 
   .view-all {
