@@ -435,7 +435,7 @@ export class HackathonService {
     });
   }
 
-  pGetUpcomingHackathon(when, limit?, after?): Observable<IPagination<IHackathon>> {
+  pGetHackathon(when, limit?, after?): Observable<IPagination<IHackathon>> {
     let params = new HttpParams().set('when', when);
     if (limit) {
       params = params.set('limit', limit);
@@ -444,7 +444,7 @@ export class HackathonService {
       params = params.set('after', after);
     }
     return this.http.get<IPagination<IHackathon>>(
-      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.UPCOMING_HACKATHONS),
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.HACKATHONS),
       {
         params,
       },

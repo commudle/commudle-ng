@@ -836,7 +836,7 @@ export const API_ROUTES = {
       INDEX_PROJECTS: 'api/v2/hackathons/public/index_projects', //GET
       INTERESTED_USERS: 'api/v2/hackathons/public/interested_users', //GET
       IS_MEMBER_OF_PARENT: 'api/v2/hackathons/public/is_member_of_parent', //GET
-      UPCOMING_HACKATHONS: 'api/v2/hackathons/public/all_hackathons', //GET
+      HACKATHONS: 'api/v2/hackathons/public/all_hackathons', //GET
     },
   },
 

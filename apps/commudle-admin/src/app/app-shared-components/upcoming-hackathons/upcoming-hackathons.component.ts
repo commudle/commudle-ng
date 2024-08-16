@@ -34,7 +34,7 @@ export class UpcomingHackathonsComponent implements OnInit {
 
   getUpcomingHackathons() {
     this.showSpinner = true;
-    this.hackathonService.pGetUpcomingHackathon('future', this.limit, this.pageInfo?.end_cursor).subscribe((data) => {
+    this.hackathonService.pGetHackathon('future', this.limit, this.pageInfo?.end_cursor).subscribe((data) => {
       if (data) {
         this.upcomingHackathons = this.upcomingHackathons.concat(
           data.page.reduce((acc, value) => [...acc, value.data], []),
