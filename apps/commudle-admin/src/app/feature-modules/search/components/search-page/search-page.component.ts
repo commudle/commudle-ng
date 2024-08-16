@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ICommunity, ICommunityBuild, IEvent, ILab, ISpeakerResource, IUser } from '@commudle/shared-models';
+import { EDbModels, ICommunity, ICommunityBuild, IEvent, ILab, ISpeakerResource, IUser } from '@commudle/shared-models';
 import { SearchStatusService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search-status.service';
 import { SearchService } from 'apps/commudle-admin/src/app/feature-modules/search/services/search.service';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
@@ -73,6 +73,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   seoDescription = '';
   currentFragment = '';
   locationPageHeader: IListingPageHeader;
+  EDbModels = EDbModels;
 
   constructor(
     private searchService: SearchService,

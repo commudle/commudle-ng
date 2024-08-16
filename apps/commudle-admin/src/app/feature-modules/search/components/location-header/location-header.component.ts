@@ -9,7 +9,7 @@ import { CmsService } from 'apps/shared-services/cms.service';
 })
 export class LocationHeaderComponent implements OnInit {
   @Input() locationPageHeader: IListingPageHeader;
-  headerImagePath;
+  headerImagePath: string;
   richText: string;
 
   constructor(private cmsService: CmsService) {}

@@ -77,7 +77,7 @@
         .labs-card,
         .builds-card,
         .social-resources-card,
-        .community-newsletters,
+        .newsletters,
         .events-card,
         .speaker-resources-card {
           @apply com-grid md:com-grid-cols-2 com-grid-cols-1 com-gap-4 com-w-full;
@@ -85,7 +85,7 @@
           .lab-card,
           .build-card,
           .social-resource-card,
-          .community-newsletters-card,
+          .newsletters-card,
           .event-card,
           .speaker-resource-card {
             @apply md:com-w-[312px] com-w-full;

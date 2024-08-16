@@ -386,8 +386,8 @@
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Community Newsletters</p>
-                    <div class="community-newsletters com-border-t-0">
-                      <div *ngFor="let newsletter of newsletters" class="community-newsletters-card">
+                    <div class="newsletters com-border-t-0">
+                      <div *ngFor="let newsletter of newsletters" class="newsletters-card">
                         <commudle-newsletter-card [newsletter]="newsletter"></commudle-newsletter-card>
                       </div>
                     </div>
@@ -418,11 +418,11 @@
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Commudle Newsletters</p>
-                    <div class="community-newsletters com-border-t-0">
-                      <div *ngFor="let mainNewsletter of mainNewsletters" class="community-newsletters-card">
+                    <div class="newsletters com-border-t-0">
+                      <div *ngFor="let mainNewsletter of mainNewsletters" class="newsletters-card">
                         <commudle-newsletter-card
                           [newsletter]="mainNewsletter"
-                          [parentType]="'MainNewsletter'"
+                          [parentType]="EDbModels.MAIN_NEWSLETTER"
                         ></commudle-newsletter-card>
                       </div>
                     </div>

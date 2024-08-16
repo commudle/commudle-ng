@@ -15,7 +15,7 @@
       </div>
       <div class="action">
         <a
-          *ngIf="parentType === 'Newsletter'"
+          *ngIf="parentType === EDbModels.NEWSLETTER"
           [routerLink]="[
             '/communities',
             newsletter.community ? newsletter.community.slug : community.slug,
@@ -24,7 +24,7 @@
           ]"
           >Read More <fa-icon [icon]="icons.faArrowRight" class="com-mr-2"></fa-icon
         ></a>
-        <a *ngIf="parentType === 'MainNewsletter'" [routerLink]="['/newsletters', newsletter.id]"
+        <a *ngIf="parentType === EDbModels.MAIN_NEWSLETTER" [routerLink]="['/newsletters', newsletter.id]"
           >Read More <fa-icon [icon]="icons.faArrowRight" class="com-mr-2"></fa-icon
         ></a>
       </div>
