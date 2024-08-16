@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '@commudle/shared-environments';
-import { ICommunity, IHackathon } from '@commudle/shared-models';
+import { EDbModels, ICommunity, IHackathon } from '@commudle/shared-models';
 import { SeoService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
@@ -21,6 +21,7 @@ export class UpcomingHackathonsComponent implements OnInit {
   environment = environment;
   schemaForHackathon = [];
   community: ICommunity;
+  EDbModels = EDbModels;
 
   constructor(
     private hackathonService: HackathonService,

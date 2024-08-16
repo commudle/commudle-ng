@@ -4,12 +4,12 @@
       [routerLink]="[
         '/communities',
         attendedEvent.kommunity_slug,
-        cardType === 'upcomingHackathons' ? 'hackathons' : 'events',
+        cardType === EDbModels.HACKATHON ? 'hackathons' : 'events',
         attendedEvent.slug
       ]"
       [title]="attendedEvent.name"
     >
-      <div *ngIf="cardType === 'attendedEventCard'" nbButton size="small" shape="semi-round" class="icon">
+      <div *ngIf="cardType === EDbModels.ATTENDED_EVENT" nbButton size="small" shape="semi-round" class="icon">
         <fa-icon
           [icon]="faCalendarCheck"
           [ngClass]="{
@@ -18,7 +18,7 @@
           }"
         ></fa-icon>
       </div>
-      <div *ngIf="cardType === 'upcomingEvents'" nbButton size="small" shape="semi-round" class="icon">
+      <div *ngIf="cardType === EDbModels.UPCOMING_EVENT" nbButton size="small" shape="semi-round" class="icon">
         <nb-icon
           icon="calendar"
           [ngClass]="{
@@ -27,16 +27,16 @@
           }"
         ></nb-icon>
       </div>
-      <div *ngIf="cardType === 'hackathons'" nbButton size="small" shape="semi-round" class="icon">
+      <div *ngIf="cardType === EDbModels.HACKATHON" nbButton size="small" shape="semi-round" class="icon">
         <img [src]="environment.base_url + '/icons/hackathon-icon-info.svg'" alt="Hackathon Icon" />
       </div>
 
       <div class="content">
         <h4 class="title">{{ attendedEvent.name }}</h4>
-        <p class="event-time" *ngIf="cardType === '!upcomingHackathons'">
+        <p class="event-time" *ngIf="cardType !== EDbModels.HACKATHON">
           {{ moment(attendedEvent.start_time).format('dddd, MMM Do, YYYY') }}
         </p>
-        <p class="event-time" *ngIf="cardType === 'upcomingHackathons'">
+        <p class="event-time" *ngIf="cardType === EDbModels.HACKATHON">
           {{ moment(attendedEvent.start_date).format('dddd, MMM Do, YYYY') }}
         </p>
         <div *ngIf="community" class="community-badge">

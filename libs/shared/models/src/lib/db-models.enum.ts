@@ -10,4 +10,6 @@ export enum EDbModels {
   RAZORPAY_LINKED_ACCOUNT = 'RazorpayLinkedAccount',
   STRIPE_CONNECT_ACCOUNT = 'StripeConnectAccount',
   USER = 'User',
+  UPCOMING_EVENT = 'UpcomingEvents',
+  ATTENDED_EVENT = 'AttendedEvents',
 }

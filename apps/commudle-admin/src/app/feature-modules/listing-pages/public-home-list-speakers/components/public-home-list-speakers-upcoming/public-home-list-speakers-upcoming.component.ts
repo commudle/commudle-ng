@@ -23,6 +23,7 @@ export class PublicHomeListSpeakersUpcomingComponent implements OnInit {
   total: number;
   limit = 5;
   page_info: IPageInfo;
+  EDbModels = EDbModels;
 
   constructor(
     private eventsService: EventsService,

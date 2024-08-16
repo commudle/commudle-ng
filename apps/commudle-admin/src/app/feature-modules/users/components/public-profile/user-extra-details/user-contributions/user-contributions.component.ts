@@ -9,6 +9,7 @@ import { IUserRolesUser } from 'apps/shared-models/user_roles_user.model';
 import { Subscription } from 'rxjs';
 import { faLightbulb, faCalendar, faUsers, faBookOpen } from '@fortawesome/free-solid-svg-icons';
 import { IEvent } from 'apps/shared-models/event.model';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'app-user-contributions',
@@ -34,6 +35,7 @@ export class UserContributionsComponent implements OnChanges, OnDestroy {
   faCalendar = faCalendar;
   faUsers = faUsers;
   faBookOpen = faBookOpen;
+  EDbModels = EDbModels;
 
   constructor(private appUsersService: AppUsersService, public userProfileMenuService: UserProfileMenuService) {}
 

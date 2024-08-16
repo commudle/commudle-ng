@@ -10,6 +10,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { environment } from '@commudle/shared-environments';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-event-mini-card',
@@ -28,12 +29,13 @@ import { environment } from '@commudle/shared-environments';
 })
 export class EventMiniCardComponent implements OnInit {
   @Input() attendedEvent: IEvent;
-  @Input() cardType: string;
+  @Input() cardType: EDbModels;
   @Input() iconSize: 'small' | 'medium' = 'small';
   community: ICommunity;
   faCalendarCheck = faCalendarCheck;
   environment = environment;
   moment = moment;
+  EDbModels = EDbModels;
 
   constructor(private communitiesService: CommunitiesService) {}
 
