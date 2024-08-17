@@ -4,7 +4,7 @@
       [routerLink]="[
         '/communities',
         attendedEvent.kommunity_slug,
-        cardType === 'upcomingHackathons' ? 'hackathons' : 'events',
+        cardType === 'hackathons' ? 'hackathons' : 'events',
         attendedEvent.slug
       ]"
       [title]="attendedEvent.name"
@@ -33,10 +33,10 @@
 
       <div class="content">
         <h4 class="title">{{ attendedEvent.name }}</h4>
-        <p class="event-time" *ngIf="cardType === '!upcomingHackathons'">
+        <p class="event-time" *ngIf="cardType !== 'hackathons'">
           {{ moment(attendedEvent.start_time).format('dddd, MMM Do, YYYY') }}
         </p>
-        <p class="event-time" *ngIf="cardType === 'upcomingHackathons'">
+        <p class="event-time" *ngIf="cardType === 'hackathons'">
           {{ moment(attendedEvent.start_date).format('dddd, MMM Do, YYYY') }}
         </p>
         <div *ngIf="community" class="community-badge">
