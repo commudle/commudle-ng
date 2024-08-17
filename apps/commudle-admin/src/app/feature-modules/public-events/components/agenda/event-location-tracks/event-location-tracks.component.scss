@@ -28,6 +28,11 @@
       .track-name {
         @apply com-text-base com-font-semibold com-m-0 com-text-tYankees-Blue;
       }
+      ::ng-deep {
+        nb-icon {
+          @apply com-text-tblack;
+        }
+      }
     }
 
     nb-accordion-item-body {
@@ -38,7 +43,7 @@
           @apply com-flex com-px-0 com-py-3 com-border-0 com-border-b com-border-Bright-Gray;
 
           .session-time {
-            @apply com-border-0 com-border-r-2 com-border-solid com-border-Bright-Gray com-items-center com-pr-1 md:com-pr-3 md:com-flex com-gap-2 md:com-w-28 com-pt-px;
+            @apply com-items-center com-pr-1 md:com-pr-2 md:com-flex com-gap-2 md:com-w-[108px] com-pt-px;
 
             fa-icon {
               @apply com-text-xs;
@@ -58,11 +63,11 @@
           }
 
           .session-details {
-            @apply com-pl-3 com-w-[84%];
+            @apply com-pl-3 com-w-[78%] com-border-0 com-border-l-2 com-border-solid com-border-Bright-Gray;
 
             .session-title {
               p:nth-of-type(1) {
-                @apply com-text-base com-font-normal com-text-Yankees-Blue com-m-0 com-mb-1;
+                @apply com-text-base com-font-normal com-text-Yankees-Blue com-m-0;
               }
 
               app-badge {
@@ -73,10 +78,17 @@
 
             .session-speaker {
               @apply com-flex com-gap-3 com-flex-wrap;
+              div {
+                @apply com-m-0 com-mt-1;
+              }
             }
           }
         }
       }
     }
   }
+}
+
+.tags {
+  @apply com-flex com-m-0 com-mt-2;
 }

@@ -29,7 +29,13 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
-  createEventDataFormEntityGroup(eventId, name, registrationTypeId, dataFormId): Observable<IEventDataFormEntityGroup> {
+  createEventDataFormEntityGroup(
+    eventId,
+    name,
+    registrationTypeId,
+    dataFormId,
+    userDetails,
+  ): Observable<IEventDataFormEntityGroup> {
     return this.http.post<IEventDataFormEntityGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.CREATE),
       {
@@ -37,6 +43,7 @@ export class EventDataFormEntityGroupsService {
         name: name,
         registration_type_id: registrationTypeId,
         data_form_id: dataFormId,
+        user_details: userDetails,
       },
     );
   }
@@ -87,6 +94,16 @@ export class EventDataFormEntityGroupsService {
     );
   }
 
+  mailPaymentCSV(eventDataFormEntityGroupId): Observable<boolean> {
+    const params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
+    return this.http.get<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.EMAIL_PAYMENT_DETAILS_CSV),
+      {
+        params,
+      },
+    );
+  }
+
   pGetPublicOpenDataForms(eventId): Observable<IEventDataFormEntityGroups> {
     const params = new HttpParams().set('event_id', eventId);
     return this.http.get<IEventDataFormEntityGroups>(
@@ -98,11 +115,12 @@ export class EventDataFormEntityGroupsService {
   updateEventDataFormEntityGroup(
     eventDataFormEntityGroupId,
     dataFormEntityGroup,
+    userDetails,
   ): Observable<IEventDataFormEntityGroup> {
     const params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
     return this.http.put<IEventDataFormEntityGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.UPDATE),
-      { event_data_form_entity_group: dataFormEntityGroup.value },
+      { event_data_form_entity_group: dataFormEntityGroup.value, user_details: userDetails },
       { params },
     );
   }
@@ -111,16 +129,23 @@ export class EventDataFormEntityGroupsService {
     communityId: number | string,
     page: number,
     count: number,
+    search = '',
   ): Observable<IEventDataFormEntityGroups> {
-    const params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    let params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.INDEX_BY_COMMUNITY),
       { params },
     );
   }
 
-  getList(page: number, count: number): Observable<IEventDataFormEntityGroups> {
-    const params = new HttpParams().set('page', page).set('count', count);
+  getList(page: number, count: number, search = ''): Observable<IEventDataFormEntityGroups> {
+    let params = new HttpParams().set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.LIST),
       { params },

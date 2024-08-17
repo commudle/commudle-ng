@@ -2,9 +2,11 @@
 import { DOCUMENT, Location } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { environment } from '@commudle/shared-environments';
 import { CookieService } from 'ngx-cookie-service';
-import { ActivatedRoute } from '@angular/router';
+
+declare const isBot: boolean;
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +34,7 @@ export class SeoService {
     }
     // TODO: don't remove above code since we need to no-index the existing bot pages
     // check if cookie is set (x-prerender: 1)
-    this.isBot = this.cookieService.get('x-prerender') === '1';
+    this.isBot = this.cookieService.get('x-prerender') === '1' || isBot;
   }
 
   setCanonical() {

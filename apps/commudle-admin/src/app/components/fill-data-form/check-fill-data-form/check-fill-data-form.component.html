@@ -21,3 +21,33 @@
     </nb-card-body>
   </nb-card>
 </ng-template>
+
+<ng-template #alreadyExistDfe let-data let-ref="dialogRef">
+  <nb-card class="already-exist-dfe">
+    <nb-card-header>
+      <div>
+        <fa-icon [icon]="faTriangleExclamation"></fa-icon>
+        <span> Friendly Alert </span>
+      </div>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p *ngIf="data.entry_pass">You already have an <strong>ENTRY PASS</strong> for this event.</p>
+      <p>Entry passes are <strong>UNIQUE per PERSON per EVENT.</strong></p>
+      <p>
+        You have also filled
+        <strong class="edfeg-name" *ngFor="let edfeg of data.event_data_form_entity_groups">{{ edfeg }}</strong> for for
+        this event.
+      </p>
+      <p>Filling multiple forms for this event will not generate multiple Entry Pass codes if you are selected.</p>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton status="info" shape="semi-round" (click)="redirectToEvent(); ref.close()">Skip Form</button>
+      <button nbButton status="basic" shape="semi-round" ghost outline (click)="ref.close()">
+        Continue Filling Form
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -29,6 +29,16 @@
               </nb-card-body>
             </nb-card>
 
+            <nb-card *ngIf="dataFormEntity.user_details" class="header">
+              <nb-card-body>
+                <commudle-user-details-form
+                  [userFormDetails]="dataFormEntity.user_details"
+                  [showActionButtons]="false"
+                  (submitUserDetailsEvent)="updateUserDetails($event)"
+                ></commudle-user-details-form>
+              </nb-card-body>
+            </nb-card>
+
             <nb-card *ngIf="showProfileForm">
               <nb-card-header> Let's Update Your Basic Profile! </nb-card-header>
               <nb-card-body>
@@ -40,11 +50,12 @@
 
             <div class="data-form-fill-body">
               <app-data-form-fill
-                (formSubmitted)="submitForm($event)"
+                (formSubmitted)="updateUserDetailsAndSubmitForm($event)"
                 [dataFormId]="dataFormEntity.data_form_id"
                 [existingResponses]="selectedFormResponse"
                 [eventId]="event ? event.id : ''"
                 [submitButtonText]="ticketPaidAlready ? 'Save' : 'Submit & Pay'"
+                [showSubmitButton]="ticketPaidAlready ? true : isMobileView ? false : true"
               >
               </app-data-form-fill>
               <p *ngIf="dataFormEntity.multi_response" class="text-info">
@@ -232,9 +243,9 @@
                             placeholder="Email Address"
                             fullWidth
                             nbInput
+                            [readonly]="i === 0"
                             type="email"
                           />
-                          <!-- [readonly]="i === 0" -->
 
                           <span
                             *ngIf="
@@ -295,19 +306,32 @@
                     </div>
                   </div>
                 </div>
-                <div class="com-mt-4">
+                <div class="com-mt-4" *ngIf="paymentDetails.multi_person_ticket">
                   <button (click)="addNewUser()" class="add-another-user">+ Add Another Recipient</button>
                 </div>
               </div>
             </nb-card-body>
           </nb-card>
-          <div class="com-my-2 com-px-2" *ngIf="!ticketPaidAlready">
+          <div class="com-my-2 com-px-2">
             <commudle-alert
               [info]="true"
-              message="For any technical support please reach out to paid_ticket_support@commudle.com"
+              message="For any technical support please reach out to payments_support@commudle.com"
             ></commudle-alert>
           </div>
-
+          <div class="com-my-2 com-px-2">
+            <commudle-alert [info]="true">
+              <div infoContent>
+                For any refund related queries please reach out to the event organizers, Commudle is not responsible for
+                any refund or disputes between the ticket purchasing party and the ticket seller.
+                <a
+                  *ngIf="community?.has_refund_policy"
+                  [routerLink]="['/communities', community.slug, 'p', refundPolicy?.slug]"
+                  target="_blank"
+                  >{{ refundPolicy?.title }}</a
+                >
+              </div></commudle-alert
+            >
+          </div>
           <div class="com-px-2" *ngIf="!ticketPaidAlready">
             <button
               nbButton
@@ -363,6 +387,7 @@
           <span #consentAnimation></span>
         </div>
         <p class="com-text-xl com-my-1">Purchase Successful!</p>
+        <p class="com-text-xl com-my-1">You will receive the entry pass on your email</p>
         <commudle-alert
           *ngIf="showEventTicketOrder.eto_users.length > 1"
           [info]="true"

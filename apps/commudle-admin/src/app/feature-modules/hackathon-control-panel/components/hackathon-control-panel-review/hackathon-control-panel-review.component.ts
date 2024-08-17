@@ -15,7 +15,7 @@ import {
   IRound,
 } from '@commudle/shared-models';
 import { EInvitationStatus, IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
-import { faXmark, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faPlus, faCheck, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
@@ -36,6 +36,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   faXmark = faXmark;
   faPlus = faPlus;
   faCheck = faCheck;
+  faUpRightFromSquare = faUpRightFromSquare;
   notesForm;
   notes: INote[];
   dialogRef: NbDialogRef<unknown>;
@@ -47,6 +48,40 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   communityId: string | number;
   EInvitationStatus = EInvitationStatus;
   selectedResponse;
+
+  tinyMCE = {
+    height: 200,
+    menubar: false,
+    convert_urls: false,
+    content_style:
+      "@import url('https://fonts.googleapis.com/css?family=Inter'); body {font-family: 'Inter'; font-size: 16px !important;}",
+    plugins: [
+      'advlist',
+      'autolink',
+      'lists',
+      'link',
+      'image',
+      'charmap',
+      'preview',
+      'anchor',
+      'searchreplace',
+      'visualblocks',
+      'code',
+      'fullscreen',
+      'insertdatetime',
+      'media',
+      'table',
+      'code',
+      'help',
+      'wordcount',
+    ],
+    toolbar:
+      'h2  h3  h4  h5 fontsize | undo redo | formatselect | bold italic backcolor forecolor | \
+        alignleft aligncenter alignright alignjustify | \
+        bullist numlist outdent indent | removeformat | help',
+    font_size_formats: '8px 10px 12px 14px 16px 18px 20px 22px 24px',
+    license_key: 'gpl',
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -175,6 +210,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
       if (data) {
         this.selectedTeamDetails.acceptance_mail_sent = true;
         this.toastrService.successDialog('Emails are being delivered!');
+        this.selectedTeamDetails.acceptance_mail_sent = true;
       }
     });
   }

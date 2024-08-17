@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 import { ICaseStudy } from 'apps/shared-models/case-study.model';
+import { SeoService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-case-study',
@@ -19,6 +20,7 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
     private cmsService: CmsService,
     private activatedRoute: ActivatedRoute,
     private footerService: FooterService,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,15 @@ export class CaseStudyComponent implements OnInit, OnDestroy {
       this.caseStudyPage.stats.forEach((stat) => {
         this.richTextStats.push(this.cmsService.getHtmlFromBlock(stat));
       });
+      this.setMeta();
     });
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      `${this.caseStudyPage.title} - Case Study`,
+      this.caseStudyPage.metaDescription,
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }

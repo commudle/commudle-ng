@@ -44,7 +44,7 @@ import * as moment from 'moment';
 })
 export class EventLocationTracksComponent implements OnInit, OnChanges {
   @Input() eventLocations: IEventLocation[] = [];
-  @Input() sessionDate: Date;
+  @Input() eventLocationDate: Date;
   @Input() event: IEvent;
   @Input() community: ICommunity;
   @Input() eventLocation: IEventLocation;
@@ -140,7 +140,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
     }
   }
 
-  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack, index?) {
+  showAddSlotForm(eventLocationTrack, startTime, eventLocTrack, eventLocationDate, index?) {
     this.trackSlotForm.reset();
     const dialogRef = this.dialogService.open(TrackSlotFormComponent, {
       context: {
@@ -151,6 +151,7 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
         minSlotDate: this.minSlotDate,
         event: this.event,
         community: this.community,
+        selectedLocationDate: eventLocationDate,
       },
     });
     dialogRef.componentRef.instance.createFormOutput.subscribe((data) => {
@@ -160,10 +161,12 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   addSlot(data, index) {
-    this.sortedTrackSlots[data.event_location_track_id].push(data);
-    this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
-      this.sortedTrackSlots[data.event_location_track_id],
-    );
+    if (moment(data.start_time).format('YYYY-MM-DD') === moment(this.eventLocationDate).format('YYYY-MM-DD')) {
+      this.sortedTrackSlots[data.event_location_track_id].push(data);
+      this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
+        this.sortedTrackSlots[data.event_location_track_id],
+      );
+    }
 
     this.trackSlotForm.reset();
     this.toastLogService.successDialog('Slot Added!');
@@ -188,31 +191,42 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
   }
 
   editSlot(data, trackSlotId, eltIndex, slotIndex) {
-    if (data.event_location_track_id != this.eventLocationTracks[eltIndex].id) {
+    const newDate = moment(data.start_time).format('YYYY-MM-DD');
+    const currentDate = moment(this.eventLocationDate).format('YYYY-MM-DD');
+
+    if (newDate === currentDate) {
+      if (data.event_location_track_id != this.eventLocationTracks[eltIndex].id) {
+        this.eventLocationTracks[eltIndex].track_slots.splice(slotIndex, 1);
+        this.sortedTrackSlots[this.eventLocationTracks[eltIndex].id] = this.sortedTrackSlots[
+          this.eventLocationTracks[eltIndex].id
+        ].filter((slot) => slot.id !== trackSlotId);
+
+        const newTrackIndex = this.eventLocationTracks.findIndex((track) => track.id === data.event_location_track_id);
+        if (newTrackIndex !== -1) {
+          this.eventLocationTracks[newTrackIndex].track_slots.push(data);
+        }
+        this.sortedTrackSlots[data.event_location_track_id].push(data);
+        this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
+          this.sortedTrackSlots[data.event_location_track_id],
+        );
+      } else {
+        const eventLocationTrack = this.eventLocationTracks.find((track) =>
+          track.track_slots.some((slot) => slot.id === trackSlotId),
+        );
+        if (eventLocationTrack) {
+          eventLocationTrack.track_slots = eventLocationTrack.track_slots.map((slot) => {
+            return slot.id === trackSlotId ? data : slot;
+          });
+          this.sortedTrackSlots[eventLocationTrack.id] = this.sortTrackSlots(eventLocationTrack.track_slots);
+        }
+      }
+    } else {
       this.eventLocationTracks[eltIndex].track_slots.splice(slotIndex, 1);
       this.sortedTrackSlots[this.eventLocationTracks[eltIndex].id] = this.sortedTrackSlots[
         this.eventLocationTracks[eltIndex].id
       ].filter((slot) => slot.id !== trackSlotId);
-      const newTrackIndex = this.eventLocationTracks.findIndex((track) => track.id === data.event_location_track_id);
-      if (newTrackIndex !== -1) {
-        this.eventLocationTracks[newTrackIndex].track_slots.push(data);
-      }
-      this.sortedTrackSlots[data.event_location_track_id].push(data);
-      this.sortedTrackSlots[data.event_location_track_id] = this.sortTrackSlots(
-        this.sortedTrackSlots[data.event_location_track_id],
-      );
-    } else {
-      const eventLocationTrack = this.eventLocationTracks.find((track) =>
-        track.track_slots.some((slot) => slot.id === trackSlotId),
-      );
-      if (eventLocationTrack) {
-        eventLocationTrack.track_slots = eventLocationTrack.track_slots.map((slot) => {
-          return slot.id === trackSlotId ? data : slot;
-        });
-        this.sortedTrackSlots[eventLocationTrack.id] = this.sortTrackSlots(eventLocationTrack.track_slots);
-        this.changeDetectorRef.markForCheck();
-      }
     }
+
     this.toastLogService.successDialog('Slot Updated!');
     this.trackSlotForm.reset();
     this.changeDetectorRef.detectChanges();
@@ -501,15 +515,17 @@ export class EventLocationTracksComponent implements OnInit, OnChanges {
 
   getLocationTracks() {
     this.isLoading = true;
-    this.trackSlotsService.getTrackSlots(this.eventLocation.location.id).subscribe((data: any) => {
-      this.eventLocationTracks = data;
-      this.isLoading = false;
-      const visibility = this.eventLocationTracks.length <= 2;
-      for (const event_location_track of this.eventLocationTracks) {
-        this.trackSlotVisibility[event_location_track.id] = visibility;
-        this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
-      }
-    });
+    this.trackSlotsService
+      .getTrackSlots(this.eventLocation.location.id, this.eventLocationDate)
+      .subscribe((data: any) => {
+        this.eventLocationTracks = data;
+        this.isLoading = false;
+        const visibility = this.eventLocationTracks.length <= 2;
+        for (const event_location_track of this.eventLocationTracks) {
+          this.trackSlotVisibility[event_location_track.id] = visibility;
+          this.sortedTrackSlots[event_location_track.id] = this.sortTrackSlots(event_location_track.track_slots);
+        }
+      });
   }
 
   openEmbeddedLink(eventLocationTrack, elti) {

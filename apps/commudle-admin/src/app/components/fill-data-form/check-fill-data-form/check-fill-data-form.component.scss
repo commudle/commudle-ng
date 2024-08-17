@@ -1,0 +1,27 @@
+.already-exist-dfe {
+  @apply com-w-[448px];
+  nb-card-footer,
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+  nb-card-header {
+    fa-icon,
+    span {
+      @apply com-text-base com-text-orange-400 com-mr-2;
+    }
+  }
+  nb-card-footer {
+    button {
+      @apply com-w-full;
+    }
+    @apply com-gap-5;
+  }
+  nb-card-body {
+    div {
+      @apply com-text-sm com-text-gray-500;
+    }
+    .edfeg-name:not(:last-child)::after {
+      content: ', ';
+    }
+  }
+}

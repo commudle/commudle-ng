@@ -12,9 +12,10 @@
 
   <app-loading-spinner *ngIf="isUpdating"></app-loading-spinner>
 
-  <table *ngIf="stripeAccounts.length > 0" class="com-mt-4">
+  <table class="com-mt-4">
     <tr>
       <th>Type</th>
+      <th width="120">Commudle Fee</th>
       <th>Active/Status</th>
       <th>Email</th>
       <th>Charges Enabled</th>
@@ -28,6 +29,7 @@
           <img [src]="staticAssets.stripe.url" alt="stripe" sizes="100" />
         </div>
       </td>
+      <td></td>
       <td>
         <p>{{ stripeAccount.active }}</p>
       </td>
@@ -97,21 +99,18 @@
           <img [src]="staticAssets.razorpay.url" alt="Razorpay" sizes="100" />
         </div>
       </td>
-      <td>{{ razorpayAccount.account_details.attributes.status | titlecase }}</td>
+      <td>{{ razorpayAccount.commudle_fee_percentage }}% + 18% GST</td>
+      <td>{{ razorpayAccount.activation_status | capitalizeAndRemoveUnderscore }}</td>
       <td>{{ razorpayAccount.account_details.attributes.email }}</td>
       <td>Not Applicable</td>
       <td>Not Applicable</td>
       <td>
-        <details>
-          <summary>{{ razorpayAccount.bank_details?.active_configuration?.settlements?.beneficiary_name }}</summary>
+        <details *ngIf="razorpayAccount.bank_details">
+          <summary>{{ razorpayAccount.bank_details.beneficiary_name }}</summary>
           <p>
-            <span
-              >****{{
-                razorpayAccount.bank_details?.active_configuration?.settlements?.account_number.toString().slice(-4)
-              }}</span
-            >
+            <span>{{ razorpayAccount.bank_details.account_number }}</span>
             <br />
-            <span>{{ razorpayAccount.bank_details?.active_configuration?.settlements?.ifsc_code }}</span>
+            <span>{{ razorpayAccount.bank_details.ifsc_code }}</span>
           </p>
         </details>
       </td>
@@ -219,7 +218,7 @@
             </label>
 
             <!-- Business Name* -->
-            <label>
+            <!-- <label>
               Business Name*
               <input
                 fieldSize="small"
@@ -238,13 +237,12 @@
               >
                 <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
               </span>
-            </label>
+            </label> -->
 
-            <commudle-alert
+            <!-- <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
-              [border]="false"
-            ></commudle-alert>
+            ></commudle-alert> -->
 
             <!-- Customer facing business name -->
             <label>
@@ -262,7 +260,6 @@
             <commudle-alert
               message="In case of individual or not yet registered business, please add account holder's name here"
               [info]="true"
-              [border]="false"
             ></commudle-alert>
             <!--  Contact Name -->
             <label>
@@ -652,10 +649,17 @@
                   </span>
                 </label>
 
-                <!-- GST -->
+                <!-- GST Number -->
                 <label>
-                  GST
-                  <input fieldSize="small" formControlName="gst" placeholder="GST" fullWidth nbInput type="string" />
+                  GST Number
+                  <input
+                    fieldSize="small"
+                    formControlName="gst"
+                    placeholder="GST Number"
+                    fullWidth
+                    nbInput
+                    type="string"
+                  />
                 </label>
                 <commudle-alert
                   message="In case of registered business, Commudle is not responsible for your GST payment to the government. It is solely your company's responsibility to pay GST and any other taxes to the government on time."
@@ -928,15 +932,8 @@
         </div>
 
         <div *ngIf="selectedCountry === 'India'">
-          <button
-            (click)="createRazorpayAccount()"
-            [disabled]="!razorpayAccountForm.valid || isLoading || !settlementDetailsForm.valid"
-            fullWidth
-            nbButton
-            size="small"
-            status="primary"
-            type="submit"
-          >
+          <!-- [disabled]="!razorpayAccountForm.valid || isLoading || !settlementDetailsForm.valid" -->
+          <button (click)="createRazorpayAccount()" fullWidth nbButton size="small" status="primary" type="submit">
             Proceed with Razorpay
           </button>
         </div>
