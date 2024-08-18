@@ -9,6 +9,7 @@
         <div class="header-text">
           <h1 class="heading">{{ communitiesPageHeader.heading }}</h1>
           <p class="sub-heading">{{ communitiesPageHeader.sub_heading }}</p>
+          <div [innerHTML]="richText" class="content"></div>
         </div>
         <ng-container *ngIf="communitiesPageHeader?.image_link">
           <a class="header-image" [href]="communitiesPageHeader.image_link">

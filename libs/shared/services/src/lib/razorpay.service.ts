@@ -2,6 +2,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  EActivationStatus,
   IPagination,
   IPaginationCount,
   IRazorpayAccount,
@@ -40,8 +41,14 @@ export class RazorpayService {
     );
   }
 
-  indexRazorpayAccounts(communityId): Observable<IPagination<IRazorpayAccount>> {
-    const params = new HttpParams().set('community_id', communityId);
+  indexRazorpayAccounts(
+    communityId: number | string,
+    activationStatus?: EActivationStatus,
+  ): Observable<IPagination<IRazorpayAccount>> {
+    let params = new HttpParams().set('community_id', communityId);
+    if (activationStatus) {
+      params = params.set('activation_status', activationStatus);
+    }
     return this.http.get<IPagination<IRazorpayAccount>>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.INDEX), {
       params,
     });

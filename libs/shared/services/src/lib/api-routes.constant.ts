@@ -271,6 +271,7 @@ export const API_ROUTES = {
     AUTOMATION: 'api/v2/data_form_entities/automation',
     FORM_STATUS: 'api/v2/data_form_entities/form_status',
     EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
+    CHECK_ALREADY_FILLED_ENTRY_PASS_FORM: 'api/v2/data_form_entities/check_already_filled_entry_pass_form',
   },
 
   // registration_statuses

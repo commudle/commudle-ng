@@ -56,23 +56,19 @@
                 </div>
               </div>
             </div>
-            <ng-template #noOtherUsers> No Other users Found </ng-template>
           </details>
+          <ng-template #noOtherUsers> No Other users Found </ng-template>
         </td>
-        <td *ngIf="rpd">
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}
-        </td>
-        <td *ngIf="rpd">
+        <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}</td>
+        <td>
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.discount_amount / 100 }}
         </td>
-        <td *ngIf="rpd">
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}
-        </td>
-        <td *ngIf="rpd">
+        <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}</td>
+        <td>
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$'
           }}{{ rpd?.order.orderable.application_fee_amount / 100 }}
         </td>
-        <td *ngIf="rpd">
+        <td>
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
         </td>
         <td *ngIf="rpd && rpd?.order.orderable.status === 'paid'">

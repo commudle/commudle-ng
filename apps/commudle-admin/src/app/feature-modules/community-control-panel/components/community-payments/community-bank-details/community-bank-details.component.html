@@ -100,21 +100,17 @@
         </div>
       </td>
       <td>{{ razorpayAccount.commudle_fee_percentage }}% + 18% GST</td>
-      <td>{{ razorpayAccount.account_details.attributes.status | titlecase }}</td>
+      <td>{{ razorpayAccount.activation_status | capitalizeAndRemoveUnderscore }}</td>
       <td>{{ razorpayAccount.account_details.attributes.email }}</td>
       <td>Not Applicable</td>
       <td>Not Applicable</td>
       <td>
-        <details>
-          <summary>{{ razorpayAccount.bank_details?.active_configuration?.settlements?.beneficiary_name }}</summary>
+        <details *ngIf="razorpayAccount.bank_details">
+          <summary>{{ razorpayAccount.bank_details.beneficiary_name }}</summary>
           <p>
-            <span
-              >****{{
-                razorpayAccount.bank_details?.active_configuration?.settlements?.account_number.toString().slice(-4)
-              }}</span
-            >
+            <span>{{ razorpayAccount.bank_details.account_number }}</span>
             <br />
-            <span>{{ razorpayAccount.bank_details?.active_configuration?.settlements?.ifsc_code }}</span>
+            <span>{{ razorpayAccount.bank_details.ifsc_code }}</span>
           </p>
         </details>
       </td>
