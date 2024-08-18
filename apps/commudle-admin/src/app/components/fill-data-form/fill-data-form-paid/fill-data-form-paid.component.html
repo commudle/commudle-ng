@@ -73,18 +73,18 @@
                     <fa-icon
                       [icon]="faIcon.faCircleCheck"
                       class="com-text-5xl com-text-Caribbean-Green com-mx-auto"
-                      *ngIf="showEventTicketOrder.status === 'paid'"
+                      *ngIf="showEventTicketOrder?.status === 'paid'"
                     ></fa-icon>
                     <fa-icon
                       [icon]="faIcon.faUndo"
                       class="com-text-5xl com-text-gray-500 com-mx-auto"
-                      *ngIf="showEventTicketOrder.status === 'full_refund'"
+                      *ngIf="showEventTicketOrder?.status === 'full_refund'"
                     ></fa-icon>
                   </div>
-                  <div class="com-text-xl com-font-semibold" *ngIf="showEventTicketOrder.status === 'paid'">
+                  <div class="com-text-xl com-font-semibold" *ngIf="showEventTicketOrder?.status === 'paid'">
                     Payment Successful!
                   </div>
-                  <div class="com-text-xl com-font-semibold" *ngIf="showEventTicketOrder.status === 'full_refund'">
+                  <div class="com-text-xl com-font-semibold" *ngIf="showEventTicketOrder?.status === 'full_refund'">
                     Cancelled (Refunded)
                   </div>
                 </div>
@@ -94,22 +94,22 @@
                 <div class="com-flex com-justify-between">
                   <span class="heading">Price </span>
                   <span class="value">
-                    <span class="heading com-mr-2">x{{ showEventTicketOrder.eto_users.length }}</span>
+                    <span class="heading com-mr-2">x{{ showEventTicketOrder?.eto_users.length }}</span>
                     <span>
                       {{ paymentDetails.currency === 'inr' ? '₹' : '$' }}
-                      {{ basePrice * showEventTicketOrder.eto_users.length }}
+                      {{ basePrice * showEventTicketOrder?.eto_users.length }}
                     </span>
                   </span>
                 </div>
               </div>
-              <div class="payment-deatils" *ngIf="showEventTicketOrder.discount_amount > 0">
+              <div class="payment-deatils" *ngIf="showEventTicketOrder?.discount_amount > 0">
                 <span class="heading">Discount Amount</span>
                 <span class="value">
                   {{ showEventTicketOrder.currency === 'inr' ? '₹' : '$' }}
                   {{ showEventTicketOrder.discount_amount / 100 }}
                 </span>
               </div>
-              <div class="payment-deatils" *ngIf="showEventTicketOrder.tax_amount > 0">
+              <div class="payment-deatils" *ngIf="showEventTicketOrder?.tax_amount > 0">
                 <span class="heading">{{ paymentDetails.tax_name }} ({{ paymentDetails.tax_percentage }}%)</span>
                 <span class="value">
                   {{ showEventTicketOrder.currency === 'inr' ? '₹' : '$' }}
@@ -119,8 +119,8 @@
               <div class="payment-deatils">
                 <span class="heading">Total</span>
                 <span class="value">
-                  {{ showEventTicketOrder.currency === 'inr' ? '₹' : '$' }}
-                  {{ showEventTicketOrder.total_amount / 100 }}
+                  {{ showEventTicketOrder?.currency === 'inr' ? '₹' : '$' }}
+                  {{ showEventTicketOrder?.total_amount / 100 }}
                 </span>
               </div>
 
@@ -389,7 +389,7 @@
         <p class="com-text-xl com-my-1">Purchase Successful!</p>
         <p class="com-text-xl com-my-1">You will receive the entry pass on your email</p>
         <commudle-alert
-          *ngIf="showEventTicketOrder.eto_users.length > 1"
+          *ngIf="showEventTicketOrder?.eto_users.length > 1"
           [info]="true"
           message="Your friends have been sent a confirmation email with link to the registration form, please ensure they complete it"
         ></commudle-alert>
