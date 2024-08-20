@@ -1,7 +1,12 @@
 <nb-card class="user-attended-event-card">
   <nb-card-body class="custom-scrollbar">
     <a
-      [routerLink]="['/communities', attendedEvent.kommunity_slug, 'events', attendedEvent.slug]"
+      [routerLink]="[
+        '/communities',
+        attendedEvent.kommunity_slug,
+        cardType === 'hackathons' ? 'hackathons' : 'events',
+        attendedEvent.slug
+      ]"
       [title]="attendedEvent.name"
     >
       <div *ngIf="cardType === 'attendedEventCard'" nbButton size="small" shape="semi-round" class="icon">
@@ -22,9 +27,18 @@
           }"
         ></nb-icon>
       </div>
+      <div *ngIf="cardType === 'hackathons'" nbButton size="small" shape="semi-round" class="icon">
+        <img [src]="environment.base_url + '/icons/hackathon-icon-info.svg'" alt="Hackathon Icon" />
+      </div>
+
       <div class="content">
         <h4 class="title">{{ attendedEvent.name }}</h4>
-        <p class="event-time">{{ moment(attendedEvent.start_time).format('dddd, MMM Do, YYYY') }}</p>
+        <p class="event-time" *ngIf="cardType !== 'hackathons'">
+          {{ moment(attendedEvent.start_time).format('dddd, MMM Do, YYYY') }}
+        </p>
+        <p class="event-time" *ngIf="cardType === 'hackathons'">
+          {{ moment(attendedEvent.start_date).format('dddd, MMM Do, YYYY') }}
+        </p>
         <div *ngIf="community" class="community-badge">
           <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
         </div>
