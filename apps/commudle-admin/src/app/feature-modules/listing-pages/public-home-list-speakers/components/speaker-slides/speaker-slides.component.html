@@ -1,0 +1,19 @@
+<div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+  <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
+</div>
+<div *ngIf="speakerSlides.length > 0">
+  <div
+    *appBreakpoints="'>lg'"
+    (scrolled)="getSpeakersSlidesList()"
+    [infiniteScrollDisabled]="speakerSlides.length >= total"
+    appInfiniteScroll
+    class="speakers"
+  >
+    <div *ngFor="let slides of speakerSlides" class="speakers-card">
+      <commudle-speaker-slides-card [item]="slides"></commudle-speaker-slides-card>
+    </div>
+  </div>
+  <div *ngIf="loading" class="loading-spinner">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+</div>

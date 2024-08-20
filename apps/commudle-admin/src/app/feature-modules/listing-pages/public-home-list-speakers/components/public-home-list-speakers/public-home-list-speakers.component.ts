@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbRouteTab } from '@commudle/theme';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({
@@ -8,6 +9,18 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 })
 export class PublicHomeListSpeakersComponent implements OnInit {
   isMobileView: boolean;
+
+  tabs: NbRouteTab[] = [
+    {
+      title: 'Speakers',
+      route: './',
+    },
+    {
+      title: 'Speaker Slides',
+      route: ['./speaker-slides'],
+    },
+  ];
+
   constructor(private footerService: FooterService) {}
 
   ngOnInit(): void {

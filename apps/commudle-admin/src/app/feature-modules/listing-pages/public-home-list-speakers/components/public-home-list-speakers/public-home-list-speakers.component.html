@@ -3,10 +3,14 @@
     <commudle-speakers-header></commudle-speakers-header>
   </div>
   <div one-column *ngIf="isMobileView">
-    <commudle-public-home-list-speakers-profile></commudle-public-home-list-speakers-profile>
+    <div class="router-tab">
+      <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+    </div>
   </div>
   <div main-column *ngIf="!isMobileView">
-    <commudle-public-home-list-speakers-profile></commudle-public-home-list-speakers-profile>
+    <div class="router-tab">
+      <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+    </div>
   </div>
   <div right-column>
     <div class="speakers-upcoming">
