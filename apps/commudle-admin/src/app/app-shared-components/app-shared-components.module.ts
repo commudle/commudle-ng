@@ -43,6 +43,8 @@ import { AdminHackathonComponent } from './admin-hackathon/admin-hackathon.compo
 import { WhatsNewComponent } from 'apps/commudle-admin/src/app/app-shared-components/whats-new/whats-new.component';
 import { HelpDictionaryIframeComponent } from './help-dictionary-iframe/help-dictionary-iframe.component';
 import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
+import { UpcomingHackathonsComponent } from './upcoming-hackathons/upcoming-hackathons.component';
+import { EventMiniCardComponent } from './event-mini-card/event-mini-card.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     PublicPageSignupNewsletterComponent,
     AdminHackathonComponent,
     HelpDictionaryIframeComponent,
+    UpcomingHackathonsComponent,
   ],
   exports: [
     EmailerComponent,
@@ -82,6 +85,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     CustomPageFormComponent,
     WhatsNewComponent,
     HelpDictionaryIframeComponent,
+    UpcomingHackathonsComponent,
   ],
   imports: [
     CommonModule,
@@ -118,6 +122,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     //FontAwesome
     FontAwesomeModule,
     SharedPipesModule,
+    EventMiniCardComponent,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })

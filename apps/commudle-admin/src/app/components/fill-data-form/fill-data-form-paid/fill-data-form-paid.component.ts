@@ -37,6 +37,8 @@ import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { UserDetailsFormComponent } from 'apps/shared-components/user-details-form/user-details-form.component';
 import { ResponsiveService } from 'apps/shared-services/responsive.service';
+import { CustomPageService } from 'apps/commudle-admin/src/app/services/custom-page.service';
+import { ICustomPage } from 'apps/shared-models/custom-page.model';
 
 declare const Razorpay: any;
 @Component({
@@ -114,6 +116,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   userProfileDetails: IUserStat;
   formAnswers = {};
   isMobileView = false;
+  refundPolicy: ICustomPage;
 
   @ViewChild(UserDetailsFormComponent) userDetailsFormComponent: UserDetailsFormComponent;
 
@@ -139,6 +142,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     private appUsersService: AppUsersService,
     private userProfileManagerService: UserProfileManagerService,
     private responsiveService: ResponsiveService,
+    private customPageService: CustomPageService,
   ) {}
 
   ngOnInit() {
@@ -383,7 +387,9 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     this.subscriptions.push(
       this.communitiesService.getCommunityDetails(communityId).subscribe((data) => {
         this.community = data;
-
+        if (this.community.has_refund_policy) {
+          this.getRefundPolicyPageData();
+        }
         if (!this.event.header_image_path) {
           this.seoService.setTag('og:image', this.community.logo_path);
         }
@@ -617,6 +623,12 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const orderDetails = {
       amount: Math.round((this.totalPrice + this.totalTaxAmount) * 100),
       currency: 'INR',
+      notes: {
+        event_name: this.event.name,
+        event_id: this.event.id,
+        user_email: this.currentUser.email,
+        edfeg_id: this.dataFormEntity.entity_id,
+      },
     };
     if (orderDetails.amount === 0) {
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
@@ -635,18 +647,26 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     const options = {
       key: environment.razorpay_key,
       order_id: order.rzp_order_id,
+      notes: {
+        event_name: this.event.name,
+        event_id: this.event.id,
+        user_email: this.currentUser.email,
+        edfeg_id: this.dataFormEntity.entity_id,
+      },
       handler: (response: any) => {
         {
-          this.razorpayService.createOrUpdatePayment(response, false, order?.razorpay_payment?.id).subscribe((data) => {
-            this.fetchPaidTicketingData();
-            this.checkEventTicketOrder(this.dataFormEntity.entity_id);
-            this.ticketPaidAlready = true;
-            this.toastLogService.successDialog('Your Payment Was Received Successfully');
-            this.isLoadingPayment = false;
-            this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
-              closeOnBackdropClick: false,
+          this.razorpayService
+            .createOrUpdatePayment(response, false, order?.razorpay_payment?.rzp_payment_id)
+            .subscribe((data) => {
+              this.fetchPaidTicketingData();
+              this.checkEventTicketOrder(this.dataFormEntity.entity_id);
+              this.ticketPaidAlready = true;
+              this.toastLogService.successDialog('Your Payment Was Received Successfully');
+              this.isLoadingPayment = false;
+              this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
+                closeOnBackdropClick: false,
+              });
             });
-          });
         }
       },
       prefill: {
@@ -655,6 +675,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         contact: this.currentUser.phone ? this.currentUser.phone : '',
       },
       modal: {
+        escape: false,
+        reload: false,
         ondismiss: () => {
           console.error('Checkout form closed by the user');
           this.isLoadingPayment = false;
@@ -668,7 +690,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
     rzp1.on('payment.failed', (response: any) => {
       {
         this.razorpayService
-          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.id)
+          .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.rzp_payment_id)
           .subscribe((data) => {
             this.isLoadingPayment = false;
             alert('Message from Razorpay:' + response.error.description);
@@ -700,8 +722,18 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
       facebook: event.facebook ? event.facebook : this.currentUser.facebook,
       youtube: event.youtube ? event.youtube : this.currentUser.youtube,
+      phone: event.phone ? event.phone : this.currentUser.phone,
     });
     this.userProfileManagerService.updateUserDetails(false, this.currentUser);
     this.submitForm();
+  }
+
+  getRefundPolicyPageData() {
+    this.customPageService.getRefundPolicyPage(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
+      if (data) {
+        this.community.has_refund_policy = true;
+        this.refundPolicy = data;
+      }
+    });
   }
 }

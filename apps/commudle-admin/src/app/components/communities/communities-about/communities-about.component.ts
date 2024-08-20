@@ -9,6 +9,8 @@ import { IListingPageHeader } from 'apps/shared-models/listing-page-header.model
 })
 export class CommunitiesAboutComponent implements OnInit {
   communitiesPageHeader: IListingPageHeader;
+  richText: string;
+
   constructor(private cmsService: CmsService) {}
 
   ngOnInit(): void {
@@ -22,6 +24,7 @@ export class CommunitiesAboutComponent implements OnInit {
   getHeaderText() {
     this.cmsService.getDataBySlug('communities').subscribe((data) => {
       this.communitiesPageHeader = data;
+      this.richText = this.cmsService.getHtmlFromBlock(data);
     });
   }
 }

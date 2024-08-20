@@ -3,28 +3,51 @@
     <fa-icon [icon]="faChevronLeft" class="com-mr-1"></fa-icon>
     Back to list
   </div>
-  <ng-container>
+  <div *ngIf="eventDataFormEntityGroup" class="edfeg-name">
+    <strong>{{ eventDataFormEntityGroup.name }}</strong>
+  </div>
+
+  <form [formGroup]="searchForm">
+    <input
+      formControlName="search"
+      nbInput
+      type="text"
+      fullWidth
+      placeholder="Search with Name, Email, Payment Id, Transfer Id"
+    />
+  </form>
+  <br />
+
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+
+  <ng-container *ngIf="!isLoading && razorpayPaymentDetails?.length > 0; else noDetailFound">
     <table>
       <tr>
         <th>Payment Id</th>
-        <th>Status</th>
+        <th width="120">Created At</th>
+        <th>Order Status on Commudle</th>
         <th>Paid by</th>
-        <th>Other Users Details</th>
+        <th>Group ticket users</th>
         <th>Total amount</th>
         <th>Discount amount</th>
         <th>Tax amount</th>
         <th>Application fee amount</th>
         <th>Payment gateway fee</th>
-        <th>Actions</th>
+        <th>Transfer Details</th>
       </tr>
       <tr *ngFor="let rpd of razorpayPaymentDetails">
         <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
-        <td *ngIf="rpd">{{ rpd?.order.status }}</td>
-        <td *ngIf="rpd">{{ rpd?.order.orderable.user.name }}</td>
+        <td *ngIf="rpd">{{ moment(rpd.created_at).format('DD MMM YYYY') }}</td>
+        <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
         <td *ngIf="rpd">
-          <details>
+          {{ rpd?.order.orderable.user.name }}
+          <br />
+          {{ rpd?.order.orderable.user.email }}
+        </td>
+        <td *ngIf="rpd">
+          <details *ngIf="rpd?.order.orderable.eto_users.length > 1">
             <summary>Other users details</summary>
-            <div *ngIf="rpd?.order.orderable.eto_users && rpd?.order.orderable.eto_users.length > 0; else noOtherUsers">
+            <div *ngIf="rpd?.order.orderable.eto_users">
               <div *ngFor="let user of rpd?.order.orderable.eto_users">
                 <div *ngIf="user.email !== rpd?.order.orderable.user.email">
                   {{ user.name }}
@@ -33,33 +56,32 @@
                 </div>
               </div>
             </div>
-            <ng-template #noOtherUsers> No Other users Found </ng-template>
           </details>
+          <ng-template #noOtherUsers> No Other users Found </ng-template>
         </td>
-        <td *ngIf="rpd">
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}
-        </td>
-        <td *ngIf="rpd">
+        <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}</td>
+        <td>
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.discount_amount / 100 }}
         </td>
-        <td *ngIf="rpd">
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}
-        </td>
-        <td *ngIf="rpd">
+        <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}</td>
+        <td>
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$'
           }}{{ rpd?.order.orderable.application_fee_amount / 100 }}
         </td>
-        <td *ngIf="rpd">
+        <td>
           {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
         </td>
-        <td *ngIf="rpd">
+        <td *ngIf="rpd && rpd?.order.orderable.status === 'paid'">
+          <small *ngIf="rpd">{{ rpd.transfer_id }}</small>
+          <br />
           <button
             *ngIf="!rpd?.transfer_id && isSystemAdmin"
             nbButton
             size="tiny"
             outline
             status="primary"
-            (click)="createPaymentTransfer(rpd?.id, rpd?.order.id)"
+            (click)="createPaymentTransfer(rpd?.rzp_payment_id)"
+            [nbSpinner]="transferCreating"
           >
             Create Transfer
           </button>
@@ -92,7 +114,7 @@
   </ng-container>
 
   <ng-template #noDetailFound>
-    <div>No record Found for razorpay</div>
+    <div *ngIf="!isLoading">No Payment record found!</div>
   </ng-template>
 </section>
 
@@ -103,7 +125,6 @@
       <div>{{ data.status }}</div>
       <div>
         {{ data.createdAt }}
-
         {{ moment.unix(data.created_at).format('dddd, MMM Do, YYYY') }}
       </div>
     </nb-card-body>

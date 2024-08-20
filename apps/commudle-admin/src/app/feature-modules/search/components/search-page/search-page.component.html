@@ -1,4 +1,7 @@
 <div class="com-bg-white">
+  <div *ngIf="locationPageHeader">
+    <commudle-location-header [locationPageHeader]="locationPageHeader"></commudle-location-header>
+  </div>
   <div class="base-layout">
     <div class="search-input">
       <app-search-box
@@ -31,7 +34,138 @@
         ></nb-tag>
       </nb-tag-list>
       <div class="container">
-        <div class="two-column-layout medium">
+        <div class="three-column-layout medium">
+          <div class="left-column">
+            <div class="items-list">
+              <nb-card *ngIf="total > 0">
+                <nb-card-header>On This Page</nb-card-header>
+                <nb-card-body>
+                  <!-- <a [routerLink]="'.'" fragment="upcoming-events">
+                    <div
+                      *ngIf="
+                        upcomingEvents.length > 0 &&
+                        (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'upcoming-events' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Upcoming Events</p>
+                    </div>
+                  </a> -->
+                  <a [routerLink]="'.'" fragment="communities">
+                    <div
+                      *ngIf="
+                        communities.length > 0 &&
+                        (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'communities' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Communities</p>
+                    </div>
+                  </a>
+                  <!-- <div
+                  *ngIf="
+                    organizations.length > 0 &&
+                    (selectedFilters.includes('Organizations') || selectedFilters.includes('All'))
+                  "
+                  [ngClass]="{ active: currentFragment === 'communities' }"
+                  class="items-heading"
+                >
+                  <p class="query-results-heading"><a [routerLink]="'.'" fragment="organizations">Organizations</a></p>
+                </div> -->
+                  <a [routerLink]="'.'" fragment="users">
+                    <div
+                      *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))"
+                      [ngClass]="{ active: currentFragment === 'users' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Users</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="builds">
+                    <div
+                      *ngIf="
+                        builds.length > 0 && (selectedFilters.includes('Builds') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'builds' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Builds</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="tech-talks">
+                    <div
+                      *ngIf="
+                        speakerResources.length > 0 &&
+                        (selectedFilters.includes('Tech Talks') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'tech-talks' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Tech Talks</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="content">
+                    <div
+                      *ngIf="
+                        socialResources.length > 0 &&
+                        (selectedFilters.includes('Content') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'content' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Content</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="community-newsletters">
+                    <div
+                      *ngIf="
+                        newsletters.length > 0 &&
+                        (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'community-newsletters' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Community Newsletters</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="commudle-newsletters">
+                    <div
+                      *ngIf="
+                        mainNewsletters.length > 0 &&
+                        (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'commudle-newsletters' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Commudle Newsletters</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="labs">
+                    <div
+                      *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))"
+                      [ngClass]="{ active: currentFragment === 'labs' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Labs</p>
+                    </div>
+                  </a>
+                  <a [routerLink]="'.'" fragment="events">
+                    <div
+                      *ngIf="
+                        events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))
+                      "
+                      [ngClass]="{ active: currentFragment === 'events' }"
+                      class="items-heading"
+                    >
+                      <p class="query-results-heading">Events</p>
+                    </div>
+                  </a>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
           <div class="main-column">
             <app-skeleton-cards
               *ngIf="
@@ -59,44 +193,54 @@
                 "
                 class="results-count"
               >
-                {{ total }} Results Found
+                {{ total }} Result{{ total > 1 ? 's' : '' }} Found
               </p>
               <nb-list>
-                <nb-list-item
-                  *ngIf="users.length > 0 && (selectedFilters.includes('User') || selectedFilters.includes('All'))"
+                <!-- <nb-list-item
+                  *ngIf="
+                    upcomingEvents.length > 0 &&
+                    (selectedFilters.includes('Upcoming Events') || selectedFilters.includes('All'))
+                  "
+                  id="upcoming-events"
                 >
-                  <p class="query-results-heading">User</p>
-                  <div *ngFor="let user of users" class="search-result com-border-t-0">
-                    <commudle-search-details [option]="user"></commudle-search-details>
+                  <div class="results-container">
+                    <p class="query-results-heading">Upcoming Events</p>
+                    <div class="upcoming-cards com-border-t-0">
+                      <div *ngFor="let event of upcomingEvents" class="upcoming-card">
+                        <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreUpcomingEvents">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="upcomingEventsTotal > upcomingEvents.length"
+                        (click)="getUpcomingEvents()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreUpcomingEvents"
+                      >
+                        Load More
+                      </button>
+                    </div>
                   </div>
-                  <div class="can-load-more-spinner">
-                    <app-loading-spinner *ngIf="canLoadMoreUser"></app-loading-spinner>
-                  </div>
-                  <div class="load-more">
-                    <button
-                      *ngIf="usersTotal > users.length"
-                      (click)="getUsers()"
-                      nbButton
-                      outline
-                      size="tiny"
-                      status="basic"
-                      [disabled]="canLoadMoreUser"
-                    >
-                      Load More
-                    </button>
-                  </div>
-                </nb-list-item>
+                </nb-list-item> -->
                 <nb-list-item
                   *ngIf="
-                    communities.length > 0 && (selectedFilters.includes('Community') || selectedFilters.includes('All'))
+                    communities.length > 0 &&
+                    (selectedFilters.includes('Communities') || selectedFilters.includes('All'))
                   "
+                  id="communities"
                 >
-                  <p class="query-results-heading">Community</p>
+                  <p class="query-results-heading">Communities</p>
                   <div *ngFor="let community of communities" class="search-result com-border-t-0">
                     <commudle-search-details [option]="community"></commudle-search-details>
                   </div>
-                  <div class="can-load-more-spinner">
-                    <app-loading-spinner *ngIf="canLoadMoreCommunity"></app-loading-spinner>
+                  <div class="can-load-more-spinner" *ngIf="canLoadMoreCommunity">
+                    <app-loading-spinner></app-loading-spinner>
                   </div>
                   <div class="load-more">
                     <button
@@ -104,47 +248,43 @@
                       (click)="getCommunity()"
                       nbButton
                       outline
-                      size="tiny"
-                      status="basic"
+                      size="small"
+                      status="info"
                       [disabled]="canLoadMoreCommunity"
+                    >
+                      Load More
+                    </button>
+                  </div>
+                  <!-- <hr class="divided-line" /> -->
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="users.length > 0 && (selectedFilters.includes('Users') || selectedFilters.includes('All'))"
+                  id="users"
+                >
+                  <p class="query-results-heading">Users</p>
+                  <div *ngFor="let user of users" class="search-result com-border-t-0">
+                    <commudle-search-details [option]="user"></commudle-search-details>
+                  </div>
+                  <div class="can-load-more-spinner" *ngIf="canLoadMoreUser">
+                    <app-loading-spinner></app-loading-spinner>
+                  </div>
+                  <div class="load-more">
+                    <button
+                      *ngIf="usersTotal > users.length"
+                      (click)="getUsers()"
+                      nbButton
+                      outline
+                      size="small"
+                      status="info"
+                      [disabled]="canLoadMoreUser"
                     >
                       Load More
                     </button>
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="labs.length > 0 && (selectedFilters.includes('Lab') || selectedFilters.includes('All'))"
-                >
-                  <div class="results-container">
-                    <p class="query-results-heading">Labs</p>
-                    <div class="labs-card com-border-t-0">
-                      <div *ngFor="let lab of labs" class="lab-card">
-                        <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
-                      </div>
-                    </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreLab"></app-loading-spinner>
-                    </div>
-                    <div class="load-more">
-                      <button
-                        *ngIf="labsTotal > labs.length"
-                        (click)="getLabs()"
-                        nbButton
-                        outline
-                        size="tiny"
-                        status="basic"
-                        [disabled]="canLoadMoreLab"
-                      >
-                        Load More
-                      </button>
-                    </div>
-                  </div>
-                </nb-list-item>
-                <nb-list-item
-                  *ngIf="
-                    builds.length > 0 &&
-                    (selectedFilters.includes('Community Build') || selectedFilters.includes('All'))
-                  "
+                  *ngIf="builds.length > 0 && (selectedFilters.includes('Builds') || selectedFilters.includes('All'))"
+                  id="builds"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Builds</p>
@@ -155,8 +295,8 @@
                         ></commudle-featured-projects-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreBuild"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreBuild">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
@@ -164,8 +304,8 @@
                         (click)="getBuilds()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreBuild"
                       >
                         Load More
@@ -174,27 +314,31 @@
                   </div>
                 </nb-list-item>
                 <nb-list-item
-                  *ngIf="events.length > 0 && (selectedFilters.includes('Event') || selectedFilters.includes('All'))"
+                  *ngIf="
+                    speakerResources.length > 0 &&
+                    (selectedFilters.includes('Tech Talks') || selectedFilters.includes('All'))
+                  "
+                  id="tech-talks"
                 >
                   <div class="results-container">
-                    <p class="query-results-heading">Events</p>
-                    <div class="events-card com-border-t-0">
-                      <div *ngFor="let event of events" class="event-card">
-                        <commudle-event-card [event]="event"></commudle-event-card>
+                    <p class="query-results-heading">Tech Talks</p>
+                    <div class="speaker-resources-card com-border-t-0">
+                      <div *ngFor="let speakerResource of speakerResources" class="speaker-resource-card">
+                        <commudle-tech-sessions-card [session]="speakerResource"></commudle-tech-sessions-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreEvent"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreSpeakerResources">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
-                        *ngIf="eventsTotal > events.length"
-                        (click)="getEvents()"
+                        *ngIf="speakerResourcesTotal > speakerResources.length"
+                        (click)="getSpeakerResources()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
-                        [disabled]="canLoadMoreEvent"
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreSpeakerResources"
                       >
                         Load More
                       </button>
@@ -206,6 +350,7 @@
                     socialResources.length > 0 &&
                     (selectedFilters.includes('Content') || selectedFilters.includes('All'))
                   "
+                  id="content"
                 >
                   <div class="results-container">
                     <p class="query-results-heading">Content</p>
@@ -214,8 +359,8 @@
                         <commudle-event-content-card [speakersContent]="socialResource"></commudle-event-content-card>
                       </div>
                     </div>
-                    <div class="can-load-more-spinner">
-                      <app-loading-spinner *ngIf="canLoadMoreContent"></app-loading-spinner>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreContent">
+                      <app-loading-spinner></app-loading-spinner>
                     </div>
                     <div class="load-more">
                       <button
@@ -223,9 +368,134 @@
                         (click)="getContent()"
                         nbButton
                         outline
-                        size="tiny"
-                        status="basic"
+                        size="small"
+                        status="info"
                         [disabled]="canLoadMoreContent"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    newsletters.length > 0 &&
+                    (selectedFilters.includes('Community Newsletters') || selectedFilters.includes('All'))
+                  "
+                  id="community-newsletters"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Community Newsletters</p>
+                    <div class="newsletters com-border-t-0">
+                      <div *ngFor="let newsletter of newsletters" class="newsletters-card">
+                        <commudle-newsletter-card [newsletter]="newsletter"></commudle-newsletter-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreNewsletters">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="newslettersTotal > newsletters.length"
+                        (click)="getNewsletters()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreNewsletters"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="
+                    mainNewsletters.length > 0 &&
+                    (selectedFilters.includes('Commudle Newsletters') || selectedFilters.includes('All'))
+                  "
+                  id="commudle-newsletters"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Commudle Newsletters</p>
+                    <div class="newsletters com-border-t-0">
+                      <div *ngFor="let mainNewsletter of mainNewsletters" class="newsletters-card">
+                        <commudle-newsletter-card
+                          [newsletter]="mainNewsletter"
+                          [parentType]="EDbModels.MAIN_NEWSLETTER"
+                        ></commudle-newsletter-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreMainNewsletters">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="mainNewslettersTotal > mainNewsletters.length"
+                        (click)="getMainNewsletters()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreMainNewsletters"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="labs.length > 0 && (selectedFilters.includes('Labs') || selectedFilters.includes('All'))"
+                  id="labs"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Labs</p>
+                    <div class="labs-card com-border-t-0">
+                      <div *ngFor="let lab of labs" class="lab-card">
+                        <commudle-labs-featured-card [lab]="lab"></commudle-labs-featured-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreLab">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="labsTotal > labs.length"
+                        (click)="getLabs()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreLab"
+                      >
+                        Load More
+                      </button>
+                    </div>
+                  </div>
+                </nb-list-item>
+                <nb-list-item
+                  *ngIf="events.length > 0 && (selectedFilters.includes('Events') || selectedFilters.includes('All'))"
+                  id="events"
+                >
+                  <div class="results-container">
+                    <p class="query-results-heading">Events</p>
+                    <div class="events-card com-border-t-0">
+                      <div *ngFor="let event of events" class="event-card">
+                        <commudle-event-card [event]="event"></commudle-event-card>
+                      </div>
+                    </div>
+                    <div class="can-load-more-spinner" *ngIf="canLoadMoreEvent">
+                      <app-loading-spinner></app-loading-spinner>
+                    </div>
+                    <div class="load-more">
+                      <button
+                        *ngIf="eventsTotal > events.length"
+                        (click)="getEvents()"
+                        nbButton
+                        outline
+                        size="small"
+                        status="info"
+                        [disabled]="canLoadMoreEvent"
                       >
                         Load More
                       </button>
@@ -235,18 +505,11 @@
               </nb-list>
             </div>
           </div>
-
           <div class="right-column">
-            <div class="speakers-upcoming">
-              <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
-            </div>
-            <div class="speakers">
-              <commudle-public-home-list-events-speakers
-                [parentType]="'communities'"
-              ></commudle-public-home-list-events-speakers>
-            </div>
-            <div class="tech-sessions">
-              <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+            <div class="advertisement">
+              <nb-card>
+                <nb-card-body><h2>Advertisement</h2></nb-card-body></nb-card
+              >
             </div>
           </div>
         </div>

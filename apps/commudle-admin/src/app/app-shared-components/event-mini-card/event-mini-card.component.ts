@@ -9,6 +9,7 @@ import * as moment from 'moment';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
+import { environment } from '@commudle/shared-environments';
 
 @Component({
   selector: 'commudle-event-mini-card',
@@ -28,10 +29,11 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 export class EventMiniCardComponent implements OnInit {
   @Input() attendedEvent: IEvent;
   @Input() cardType: string;
+  @Input() iconSize: 'small' | 'medium' = 'small';
   community: ICommunity;
   faCalendarCheck = faCalendarCheck;
+  environment = environment;
   moment = moment;
-  @Input() iconSize: 'small' | 'medium' = 'small';
 
   constructor(private communitiesService: CommunitiesService) {}
 

@@ -139,7 +139,7 @@ nb-card-body {
 }
 
 .round-selection-mailer {
-  @apply md:com-w-[30dvw];
+  @apply md:com-w-[40dvw] md:com-h-[90dvh] com-w-full;
   nb-card-header {
     @apply com-flex com-justify-between com-items-center;
   }

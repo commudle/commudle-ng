@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NbCardComponent, NbDialogService, NbToastrService } from '@commudle/theme';
+import { ToastrService } from '@commudle/shared-services';
+import { NbCardComponent, NbDialogService } from '@commudle/theme';
 import { BarcodeFormat } from '@zxing/library';
 import { EventEntryPassesService } from 'apps/commudle-admin/src/app/services/event-entry-passes.service';
 import { ICommunity } from 'apps/shared-models/community.model';
@@ -41,7 +42,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
     private eventEntryPassesService: EventEntryPassesService,
-    private nbToastrService: NbToastrService,
+    private nbToastrService: ToastrService,
     private nbDialogService: NbDialogService,
   ) {}
 
@@ -73,10 +74,11 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
 
         if (this.entryPass.attendance) {
           this.correctSound.nativeElement.play();
-          this.nbToastrService.success(
-            this.entryPass.is_first_time_attendance ? 'Attendance marked' : 'Attendance already marked',
-            'Success',
-          );
+          if (this.entryPass.is_first_time_attendance) {
+            this.nbToastrService.successDialog('Attendance marked');
+          } else {
+            this.nbToastrService.warningDialog('Attendance already marked');
+          }
         }
 
         this.isLoadingEntryPass = false;
@@ -84,7 +86,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
       },
       () => {
         this.incorrectSound.nativeElement.play();
-        this.nbToastrService.danger('Invalid Entry Code', 'Error');
+        this.nbToastrService.warningDialog('Invalid Entry Code');
         this.isScannerEnabled = true;
         this.isLoadingEntryPass = false;
       },
@@ -95,7 +97,7 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.eventEntryPassesService.toggleAttendance(this.entryPass.id).subscribe((value) => {
         if (value) {
-          this.nbToastrService.success('Attendance Unmarked', 'Success');
+          this.nbToastrService.successDialog('Attendance Unmarked');
         }
       }),
     );

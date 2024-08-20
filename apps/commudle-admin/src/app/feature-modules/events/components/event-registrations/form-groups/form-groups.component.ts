@@ -10,7 +10,7 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ICommunity, IEvent, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
+import { EActivationStatus, ICommunity, IEvent, IRazorpayAccount, IStripeAccount } from '@commudle/shared-models';
 import { PaymentSettingService, RazorpayService, StripeHandlerService } from '@commudle/shared-services';
 import { NbDialogService, NbWindowService } from '@commudle/theme';
 import { faCopy, faEnvelope, faTimesCircle, faUsers, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -131,7 +131,7 @@ export class FormGroupsComponent implements OnInit {
 
   //get razorpay account information
   getRazorpayAccountData() {
-    this.razorpayService.indexRazorpayAccounts(this.community.id).subscribe((data) => {
+    this.razorpayService.indexRazorpayAccounts(this.community.id, EActivationStatus.ACTIVATED).subscribe((data) => {
       this.razorpayAccounts = this.razorpayAccounts.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
     });
   }

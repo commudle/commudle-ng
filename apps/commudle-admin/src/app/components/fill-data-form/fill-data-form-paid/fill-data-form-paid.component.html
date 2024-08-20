@@ -243,9 +243,9 @@
                             placeholder="Email Address"
                             fullWidth
                             nbInput
+                            [readonly]="i === 0"
                             type="email"
                           />
-                          <!-- [readonly]="i === 0" -->
 
                           <span
                             *ngIf="
@@ -315,14 +315,22 @@
           <div class="com-my-2 com-px-2">
             <commudle-alert
               [info]="true"
-              message="For any technical support please reach out to paid_ticket_support@commudle.com"
+              message="For any technical support please reach out to payments_support@commudle.com"
             ></commudle-alert>
           </div>
           <div class="com-my-2 com-px-2">
-            <commudle-alert
-              [info]="true"
-              message="For any refund related queries please reach out to the event organizers, Commudle is not responsible for any refund or disputes between the ticket purchasing party and the ticket seller."
-            ></commudle-alert>
+            <commudle-alert [info]="true">
+              <div infoContent>
+                For any refund related queries please reach out to the event organizers, Commudle is not responsible for
+                any refund or disputes between the ticket purchasing party and the ticket seller.
+                <a
+                  *ngIf="community?.has_refund_policy"
+                  [routerLink]="['/communities', community.slug, 'p', refundPolicy?.slug]"
+                  target="_blank"
+                  >{{ refundPolicy?.title }}</a
+                >
+              </div></commudle-alert
+            >
           </div>
           <div class="com-px-2" *ngIf="!ticketPaidAlready">
             <button

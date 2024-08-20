@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IPageInfo } from '@commudle/shared-models';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
-import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Subscription } from 'rxjs';
 
 @Component({
   selector: 'commudle-paid-form-list',
@@ -18,11 +18,22 @@ export class PaidFormListComponent implements OnInit {
   page = 1;
   count = 10;
 
-  constructor(private edfergService: EventDataFormEntityGroupsService) {}
+  searchForm: FormGroup;
+
+  constructor(private edfergService: EventDataFormEntityGroupsService, private fb: FormBuilder) {
+    this.searchForm = this.fb.group({
+      search: [''],
+    });
+  }
 
   ngOnInit() {
     this.getEdfegData();
+    this.searchForm.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
+      this.page = 1;
+      this.getEdfegData();
+    });
   }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
@@ -38,19 +49,21 @@ export class PaidFormListComponent implements OnInit {
   getEdfegListByCommunity() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.edfergService.getIndexByCommunity(this.communityId, this.page, this.count).subscribe((data) => {
-        this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
-        this.total = data.total;
-        this.page = data.page;
-        this.count = data.count;
-        this.isLoading = false;
-      }),
+      this.edfergService
+        .getIndexByCommunity(this.communityId, this.page, this.count, this.searchForm.get('search').value)
+        .subscribe((data) => {
+          this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
+          this.total = data.total;
+          this.page = data.page;
+          this.count = data.count;
+          this.isLoading = false;
+        }),
     );
   }
   getEdfegList() {
     this.isLoading = true;
     this.subscriptions.push(
-      this.edfergService.getList(this.page, this.count).subscribe((data) => {
+      this.edfergService.getList(this.page, this.count, this.searchForm.get('search').value).subscribe((data) => {
         this.eventDataFormEntityGroup = data.event_data_form_entity_groups;
         this.total = data.total;
         this.page = data.page;

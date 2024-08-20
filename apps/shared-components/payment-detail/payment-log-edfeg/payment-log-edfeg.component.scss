@@ -1,9 +1,13 @@
 section {
+  @apply com-px-6 com-py-4;
   .back-button {
     @apply com-cursor-pointer com-w-max com-text-[#8f9bb3] com-mb-5;
   }
 
-  @apply com-px-6 com-py-4;
+  .edfeg-name {
+    @apply com-text-base com-mb-3;
+  }
+
   table {
     @apply com-w-full com-border-collapse;
   }
