@@ -510,6 +510,7 @@ export const API_ROUTES = {
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
     PUBLIC: {
       COMMUNITY_RESOURCES: 'api/v2/speaker_resources/public_community_sessions',
+      INDEX: 'api/v2/speaker_resources/public/index',
     },
   },
 

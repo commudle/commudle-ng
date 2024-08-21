@@ -1,0 +1,33 @@
+nb-card {
+  @apply com-m-0;
+  nb-card-body {
+    @apply com-p-3;
+
+    .slides-image {
+      @apply com-w-[274px] com-h-[156px];
+
+      .embedded-content {
+        @apply com-w-full com-h-full;
+        &::ng-deep iframe {
+          @apply com-w-full com-h-full;
+        }
+      }
+    }
+
+    .content {
+      @apply com-flex com-flex-col com-justify-between;
+
+      .headings {
+        @apply com-mb-8;
+      }
+
+      .title {
+        @apply com-text-sm com-font-medium com-text-black com-m-0 com-mb-10px com-h-10 com-line-clamp-2;
+      }
+
+      .event-name {
+        @apply com-text-xs com-font-medium com-text-gray-500 com-m-0 com-line-clamp-1;
+      }
+    }
+  }
+}

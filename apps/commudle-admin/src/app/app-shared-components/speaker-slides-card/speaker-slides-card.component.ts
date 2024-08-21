@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { EAttachmentType } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-speaker-slides-card',
@@ -7,7 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SpeakerSlidesCardComponent implements OnInit {
   @Input() item: any;
-  constructor() {}
 
-  ngOnInit(): void {}
+  iframe;
+  EAttachmentType = EAttachmentType;
+
+  constructor(private domSanitizer: DomSanitizer) {}
+
+  ngOnInit(): void {
+    if (this.item.embedded_content) {
+      this.iframe = this.domSanitizer.bypassSecurityTrustHtml(this.item.embedded_content);
+      console.log(this.iframe);
+    }
+    console.log(this.item);
+  }
 }

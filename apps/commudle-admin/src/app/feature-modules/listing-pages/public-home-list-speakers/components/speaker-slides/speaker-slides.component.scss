@@ -1,0 +1,11 @@
+.skeleton-vertical-cards {
+  @apply com-mt-8;
+}
+
+.speaker-slide-cards {
+  @apply com-grid com-grid-cols-3 com-gap-6 md:com-mt-8;
+}
+
+.speaker-slide-card {
+  @apply com-w-[276px] com-h-[296px];
+}

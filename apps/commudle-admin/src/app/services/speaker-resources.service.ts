@@ -6,6 +6,7 @@ import { API_ROUTES } from 'apps/shared-services/api-routes.constants';
 import { IRegistrationTypes } from 'apps/shared-models/registration_types.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { ISpeakerResources } from 'apps/shared-models/speaker_resources.model';
+import { IPagination, IPaginationCount } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -42,6 +43,12 @@ export class SpeakerResourcesService {
     return this.http.get<ISpeakerResources>(
       this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.PUBLIC.COMMUNITY_RESOURCES),
       { params },
+    );
+  }
+
+  pGetSpeakerResources(): Observable<IPaginationCount<ISpeakerResources>> {
+    return this.http.get<IPaginationCount<ISpeakerResources>>(
+      this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.PUBLIC.INDEX),
     );
   }
 }

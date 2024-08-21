@@ -9,8 +9,10 @@
     appInfiniteScroll
     class="speakers"
   >
-    <div *ngFor="let slides of speakerSlides" class="speakers-card">
-      <commudle-speaker-slides-card [item]="slides"></commudle-speaker-slides-card>
+    <div class="speaker-slide-cards">
+      <div *ngFor="let slides of speakerSlides" class="speaker-slide-card">
+        <commudle-speaker-slides-card [item]="slides"></commudle-speaker-slides-card>
+      </div>
     </div>
   </div>
   <div *ngIf="loading" class="loading-spinner">
