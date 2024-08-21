@@ -125,7 +125,7 @@
               </div>
 
               <div class="com-px-4 com-py-2 com-text-base com-italic">Recipients</div>
-              <div class="com-pb-2 com-px-4">
+              <div class="com-pb-2 com-px-4" *ngIf="showEventTicketOrder">
                 <div *ngFor="let user of showEventTicketOrder.eto_users">
                   <div class="com-flex com-justify-between com-gap-2 com-py-2">
                     <div>{{ user.name | titlecase }}</div>
