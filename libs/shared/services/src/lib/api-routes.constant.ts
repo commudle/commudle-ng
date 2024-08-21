@@ -857,6 +857,7 @@ export const API_ROUTES = {
     SHOW: 'api/v2/hackathon_response_group/show', //GET
     PUBLIC: {
       SHOW: 'api/v2/hackathon_response_group/public/show', //GET
+      FETCH_HACKATHON_RESPONSE_GROUP: 'api/v2/hackathon_response_group/public/fetch_hackathon_response_group', //GET
     },
   },
 

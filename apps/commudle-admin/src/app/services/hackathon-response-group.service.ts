@@ -79,4 +79,14 @@ export class HackathonResponseGroupService {
       },
     );
   }
+
+  pFetchHackathonResponseGroup(hackathonResponseGroupId: number): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+    return this.http.get<IHackathonResponseGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.PUBLIC.FETCH_HACKATHON_RESPONSE_GROUP),
+      {
+        params,
+      },
+    );
+  }
 }
