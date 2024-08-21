@@ -70,10 +70,20 @@ export class HackathonResponseGroupService {
 
   // PUBLIC API
 
-  pShowHackathonResponseGroup(hackathonResponseGroupId): Observable<IHackathonResponseGroup> {
-    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+  pShowHackathonResponseGroup(hackathonId: number): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_id', Number(hackathonId));
     return this.http.get<IHackathonResponseGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.PUBLIC.SHOW),
+      {
+        params,
+      },
+    );
+  }
+
+  pFetchHackathonResponseGroup(hackathonResponseGroupId: number): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+    return this.http.get<IHackathonResponseGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.PUBLIC.FETCH_HACKATHON_RESPONSE_GROUP),
       {
         params,
       },

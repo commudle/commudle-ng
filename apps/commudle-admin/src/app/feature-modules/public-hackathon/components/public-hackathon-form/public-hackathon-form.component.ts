@@ -70,7 +70,7 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(
       this.hrgService
-        .pShowHackathonResponseGroup(this.activatedRoute.snapshot.params['hackathon_response_group_id'])
+        .pFetchHackathonResponseGroup(this.activatedRoute.snapshot.params['hackathon_response_group_id'])
         .subscribe((data: IHackathonResponseGroup) => {
           this.hackathonResponseGroup = data;
           this.fetchPreExistingFormResponse();
