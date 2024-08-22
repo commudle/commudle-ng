@@ -7,5 +7,9 @@
 }
 
 .speaker-slide-card {
-  @apply com-w-[276px] com-h-[296px];
+  @apply com-w-[276px] com-h-[304px];
+}
+
+app-pagination {
+  @apply com-mt-9;
 }

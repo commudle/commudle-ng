@@ -1,21 +1,28 @@
 nb-card {
-  @apply com-m-0;
+  @apply com-m-0 com-h-full;
   nb-card-body {
-    @apply com-p-3;
+    @apply com-p-0;
 
     .slides-image {
-      @apply com-w-[274px] com-h-[156px];
+      @apply com-w-full com-h-[156px];
 
       .embedded-content {
-        @apply com-w-full com-h-full;
+        @apply com-w-full com-h-full com-break-all  com-overflow-scroll;
         &::ng-deep iframe {
           @apply com-w-full com-h-full;
+        }
+      }
+
+      .link {
+        @apply com-w-full com-h-full com-break-all com-overflow-scroll;
+        &::ng-deep iframe {
+          @apply com-w-full;
         }
       }
     }
 
     .content {
-      @apply com-flex com-flex-col com-justify-between;
+      @apply com-flex com-flex-col com-justify-between com-p-3;
 
       .headings {
         @apply com-mb-8;

@@ -2,13 +2,7 @@
   <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
 </div>
 <div *ngIf="speakerSlides.length > 0">
-  <div
-    *appBreakpoints="'>lg'"
-    (scrolled)="getSpeakersSlidesList()"
-    [infiniteScrollDisabled]="speakerSlides.length >= total"
-    appInfiniteScroll
-    class="speakers"
-  >
+  <div class="speakers">
     <div class="speaker-slide-cards">
       <div *ngFor="let slides of speakerSlides" class="speaker-slide-card">
         <commudle-speaker-slides-card [item]="slides"></commudle-speaker-slides-card>
@@ -18,4 +12,13 @@
   <div *ngIf="loading" class="loading-spinner">
     <app-loading-spinner></app-loading-spinner>
   </div>
+  <app-pagination
+    (goTo)="page = $event; getSpeakersSlidesList()"
+    (next)="page = $event; getSpeakersSlidesList()"
+    (previous)="page = $event; getSpeakersSlidesList()"
+    *ngIf="total > 0"
+    [count]="count"
+    [current]="page"
+    [total]="total"
+  ></app-pagination>
 </div>

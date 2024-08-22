@@ -46,9 +46,11 @@ export class SpeakerResourcesService {
     );
   }
 
-  pGetSpeakerResources(): Observable<IPaginationCount<ISpeakerResources>> {
+  pGetSpeakerResources(page: number, count: number): Observable<IPaginationCount<ISpeakerResources>> {
+    const params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<IPaginationCount<ISpeakerResources>>(
       this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.PUBLIC.INDEX),
+      { params },
     );
   }
 }
