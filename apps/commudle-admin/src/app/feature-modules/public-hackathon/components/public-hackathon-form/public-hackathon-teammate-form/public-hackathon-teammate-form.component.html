@@ -51,10 +51,9 @@
     </div>
   </ng-container>
 
-  <commudle-alert
-    [error]="hasTeammateOption && hackathon.min_number_of_teammates > teammatesArray.controls.length + 1"
-    errorMessage="Minimum 2 teammates are Required"
-  ></commudle-alert>
+  <commudle-alert [error]="hasTeammateOption && hackathon.min_number_of_teammates > teammatesArray.controls.length + 1">
+    <div errorContent>Minimum {{ hackathon.min_number_of_teammates }} teammates are Required, including you</div>
+  </commudle-alert>
 
   <button
     *ngIf="hasTeammateOption && hackathon.max_number_of_teammates - 1 > teammatesArray.controls.length"
