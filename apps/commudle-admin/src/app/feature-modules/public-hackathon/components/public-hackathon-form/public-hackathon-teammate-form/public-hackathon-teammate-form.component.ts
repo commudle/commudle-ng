@@ -105,7 +105,7 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   submitTeammateDetails() {
     const duplicateEmails = this.checkForDuplicateEmails(this.teammateForm.value.teammates);
     if (duplicateEmails) {
-      this.toastrService.warningDialog(`Duplicate emails found: ${duplicateEmails}`);
+      this.toastrService.warningDialog('All teammates’ emails should be unique');
     } else {
       this.submitTeammateDetailsEvent.emit(this.teammateForm.value);
     }
