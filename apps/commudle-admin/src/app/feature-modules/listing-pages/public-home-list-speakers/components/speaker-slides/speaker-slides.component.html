@@ -1,16 +1,16 @@
 <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
   <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
 </div>
-<div *ngIf="speakerSlides.length > 0">
+<div *ngIf="loading" class="loading-spinner">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<div *ngIf="speakerSlides.length > 0 && !loading">
   <div class="speakers">
     <div class="speaker-slide-cards">
       <div *ngFor="let slides of speakerSlides" class="speaker-slide-card">
         <commudle-speaker-slides-card [item]="slides"></commudle-speaker-slides-card>
       </div>
     </div>
-  </div>
-  <div *ngIf="loading" class="loading-spinner">
-    <app-loading-spinner></app-loading-spinner>
   </div>
   <app-pagination
     (goTo)="page = $event; getSpeakersSlidesList()"
