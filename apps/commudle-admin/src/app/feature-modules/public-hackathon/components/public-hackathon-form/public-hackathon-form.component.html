@@ -46,7 +46,7 @@
         </nb-card>
         <nb-card *ngIf="!isLoading">
           <nb-card-body>
-            <nb-stepper orientation="horizontal" [linear]="true" #stepper>
+            <nb-stepper orientation="horizontal" [linear]="true" #stepper disableStepNavigation>
               <nb-step label="Profile">
                 <commudle-user-details-form
                   [userFormDetails]="hackathonResponseGroup.user_details"
