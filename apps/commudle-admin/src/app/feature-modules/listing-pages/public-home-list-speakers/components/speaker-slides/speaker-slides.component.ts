@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ISpeakerResource } from '@commudle/shared-models';
 import { SpeakerResourcesService } from 'apps/commudle-admin/src/app/services/speaker-resources.service';
-// import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 
 @Component({
   selector: 'commudle-speaker-slides',
@@ -10,7 +9,7 @@ import { SpeakerResourcesService } from 'apps/commudle-admin/src/app/services/sp
   styleUrls: ['./speaker-slides.component.scss'],
 })
 export class SpeakerSlidesComponent implements OnInit {
-  speakerSlides = [];
+  speakerSlides: ISpeakerResource[] = [];
   skeletonLoaderCard = true;
   loading = false;
   count = 9;
@@ -37,7 +36,6 @@ export class SpeakerSlidesComponent implements OnInit {
       this.skeletonLoaderCard = false;
       this.loading = false;
       this.total = data.total;
-      // this.page = data.page;
       this.count = data.count;
       this.total = data.total;
       // this.router.navigate([], { queryParams: { page: this.page } });

@@ -46,9 +46,9 @@ export class SpeakerResourcesService {
     );
   }
 
-  pGetSpeakerResources(page: number, count: number): Observable<IPaginationCount<ISpeakerResources>> {
+  pGetSpeakerResources(page: number, count: number): Observable<IPaginationCount<ISpeakerResource>> {
     const params = new HttpParams().set('page', page).set('count', count);
-    return this.http.get<IPaginationCount<ISpeakerResources>>(
+    return this.http.get<IPaginationCount<ISpeakerResource>>(
       this.apiRoutesService.getRoute(API_ROUTES.SPEAKER_RESOURCES.PUBLIC.INDEX),
       { params },
     );

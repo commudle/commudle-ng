@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbRouteTab } from '@commudle/theme';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
@@ -7,19 +7,8 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
   templateUrl: './public-home-list-speakers.component.html',
   styleUrls: ['./public-home-list-speakers.component.scss'],
 })
-export class PublicHomeListSpeakersComponent implements OnInit {
+export class PublicHomeListSpeakersComponent implements OnInit, OnDestroy {
   isMobileView: boolean;
-
-  tabs: NbRouteTab[] = [
-    {
-      title: 'Speakers',
-      route: './',
-    },
-    {
-      title: 'Speaker Slides',
-      route: ['./speaker-slides'],
-    },
-  ];
 
   constructor(private footerService: FooterService) {}
 
