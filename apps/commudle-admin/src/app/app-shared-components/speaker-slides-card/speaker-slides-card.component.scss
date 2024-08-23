@@ -7,14 +7,14 @@ nb-card {
       @apply com-w-full com-h-[156px];
 
       .embedded-content {
-        @apply com-w-full com-h-full com-break-all  com-overflow-scroll;
+        @apply com-w-full com-break-all  com-overflow-y-scroll;
         &::ng-deep iframe {
           @apply com-w-full com-h-full;
         }
       }
 
       .link {
-        @apply com-w-full com-h-full com-break-all com-overflow-scroll;
+        @apply com-w-full com-h-full com-break-all com-overflow-y-scroll;
         &::ng-deep iframe {
           @apply com-w-full;
         }
@@ -37,4 +37,7 @@ nb-card {
       }
     }
   }
+}
+a {
+  @apply com-no-underline;
 }

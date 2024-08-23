@@ -3,11 +3,11 @@
 }
 
 .speaker-slide-cards {
-  @apply com-grid com-grid-cols-3 com-gap-6 md:com-mt-8;
+  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-6 md:com-mt-8;
 }
 
 .speaker-slide-card {
-  @apply com-w-[276px] com-h-[304px];
+  @apply md:com-w-[276px] com-w-full com-h-[304px];
 }
 
 app-pagination {
