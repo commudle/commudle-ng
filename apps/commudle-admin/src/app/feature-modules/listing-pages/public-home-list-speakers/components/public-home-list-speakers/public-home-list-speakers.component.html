@@ -3,9 +3,15 @@
     <commudle-speakers-header></commudle-speakers-header>
   </div>
   <div one-column *ngIf="isMobileView">
-    <div class="router-tab">
-      <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+    <div class="tab-links">
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./']" routerLinkActive="active">
+        <span class="title">Speakers</span>
+      </a>
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./speaker-slides']" routerLinkActive="active">
+        <span class="title">Speaker Slides</span>
+      </a>
     </div>
+    <router-outlet></router-outlet>
   </div>
   <div main-column *ngIf="!isMobileView">
     <div class="tab-links">

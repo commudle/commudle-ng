@@ -6,7 +6,7 @@
 }
 
 .tab-links {
-  @apply com-flex com-flex-row com-mt-5;
+  @apply com-flex com-flex-row com-mt-5 md:com-mx-0 com-mx-3 md:com-mb-0 com-mb-6 md:com-justify-start com-justify-center;
   a {
     @apply com-flex com-leading-4 com-h-fit com-m-0 com-py-3 com-px-4 com-cursor-pointer com-no-underline;
 

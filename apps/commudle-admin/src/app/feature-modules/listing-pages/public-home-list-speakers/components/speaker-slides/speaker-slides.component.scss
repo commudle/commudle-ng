@@ -13,3 +13,14 @@
 app-pagination {
   @apply com-mt-9;
 }
+
+.speaker-slides {
+  @apply md:com-mx-0 com-mx-3;
+}
+
+.speakers-upcoming,
+.tech-sessions,
+.speakers-content,
+.featured-communities {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
+}
