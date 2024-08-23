@@ -15,6 +15,7 @@ export class HackathonResponseGroupService {
     hackathonId,
     registrationTypeId,
     name,
+    filledByOnlyTeamLead,
     dataFormId?,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
@@ -23,6 +24,7 @@ export class HackathonResponseGroupService {
         user_details: userDetails,
         registration_type_id: registrationTypeId,
         name: name,
+        filled_by_only_team_lead: filledByOnlyTeamLead,
       },
     };
 
@@ -40,12 +42,14 @@ export class HackathonResponseGroupService {
   updateHackathonResponseGroup(
     userDetails,
     hackathonResponseGroupId,
+    filledByOnlyTeamLead,
     dataFormId?,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
     const requestBody = {
       hackathon_response_group: {
         user_details: userDetails,
+        filled_by_only_team_lead: filledByOnlyTeamLead,
       },
     };
 
