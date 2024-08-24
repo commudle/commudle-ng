@@ -17,4 +17,5 @@ export interface IEventDataFormEntityGroup {
   event: IEvent;
   community: ICommunity;
   user_details: any;
+  allow_cancellation: boolean;
 }
