@@ -230,6 +230,8 @@
   </div>
   <div class="action-buttons" *ngIf="showActionButtons">
     <button status="primary" nbButton disabled>Previous</button>
-    <button status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">Next</button>
+    <button status="primary" nbButton [disabled]="userForm.invalid" (click)="submitUserDetails()">
+      {{ submitButtonText }}
+    </button>
   </div>
 </form>

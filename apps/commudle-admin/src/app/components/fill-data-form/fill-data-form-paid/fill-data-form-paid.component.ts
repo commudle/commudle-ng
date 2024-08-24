@@ -634,6 +634,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
         closeOnBackdropClick: false,
       });
+      this.checkEventTicketOrder(this.dataFormEntity.entity_id);
       return;
     }
     this.razorpayService.createOrFindOrder(orderDetails, etoId).subscribe((data: IRazorpayOrder) => {

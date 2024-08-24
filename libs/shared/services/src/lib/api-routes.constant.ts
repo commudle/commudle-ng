@@ -208,6 +208,7 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/event_data_form_entity_groups',
     DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
+    TOGGLE_ALLOW_CANCELLATION: 'api/v2/event_data_form_entity_groups/toggle_allow_cancellation',
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
     TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
@@ -858,6 +859,7 @@ export const API_ROUTES = {
     SHOW: 'api/v2/hackathon_response_group/show', //GET
     PUBLIC: {
       SHOW: 'api/v2/hackathon_response_group/public/show', //GET
+      FETCH_HACKATHON_RESPONSE_GROUP: 'api/v2/hackathon_response_group/public/fetch_hackathon_response_group', //GET
     },
   },
 

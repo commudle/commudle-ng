@@ -4,7 +4,7 @@ import { IHackathon, EHackathonLocationType } from 'apps/shared-models/hackathon
 import { faGlobe, faAward } from '@fortawesome/free-solid-svg-icons';
 import { AuthService, countries_details } from '@commudle/shared-services';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonTeam, IUser } from '@commudle/shared-models';
+import { ICommunity, IHackathonTeam, IUser } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-public-hackathon-details-mini-card',
   templateUrl: './public-hackathon-details-mini-card.component.html',
@@ -12,6 +12,7 @@ import { IHackathonTeam, IUser } from '@commudle/shared-models';
 })
 export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
+  @Input() community: ICommunity;
   @Input() hrgId: number;
   userTeamDetails: IHackathonTeam[];
   currentUser: IUser;
