@@ -51,10 +51,20 @@
                 <commudle-user-details-form
                   [userFormDetails]="hackathonResponseGroup.user_details"
                   [hackathonUserResponse]="hackathonUserResponse"
+                  [submitButtonText]="
+                    hackathonResponseGroup.filled_by_only_team_lead && !hackathonUserResponse.current_user_is_team_lead
+                      ? 'Submit'
+                      : 'Next'
+                  "
                   (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
                 ></commudle-user-details-form>
               </nb-step>
-              <nb-step label="Team Details">
+              <nb-step
+                label="Team Details"
+                *ngIf="
+                  !hackathonResponseGroup.filled_by_only_team_lead || hackathonUserResponse.current_user_is_team_lead
+                "
+              >
                 <commudle-public-hackathon-teammate-form
                   [hackathonUserResponse]="hackathonUserResponse"
                   [hasTeammateOption]="hasTeammateOption"
@@ -64,7 +74,12 @@
                   (previousButtonEvent)="previousStepper()"
                 ></commudle-public-hackathon-teammate-form>
               </nb-step>
-              <nb-step label="Project Details">
+              <nb-step
+                label="Project Details"
+                *ngIf="
+                  !hackathonResponseGroup.filled_by_only_team_lead || hackathonUserResponse.current_user_is_team_lead
+                "
+              >
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading && hackathon">
                   <commudle-public-hackathon-project-details-form
@@ -75,7 +90,13 @@
                   ></commudle-public-hackathon-project-details-form>
                 </div>
               </nb-step>
-              <nb-step label="More details" *ngIf="hackathonResponseGroup.data_form_entity_id">
+              <nb-step
+                label="More details"
+                *ngIf="
+                  hackathonResponseGroup.data_form_entity_id &&
+                  (!hackathonResponseGroup.filled_by_only_team_lead || hackathonUserResponse.current_user_is_team_lead)
+                "
+              >
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading">
                   <commudle-public-hackathon-custom-questions-form

@@ -138,14 +138,32 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
   submitUserResponse(formData) {
     this.hurService.createHackathonResponseGroup(formData, this.hackathonResponseGroup.id).subscribe((data) => {
       this.hackathonUserResponse = data;
-      this.stepper.next();
+      if (
+        this.hackathonResponseGroup.filled_by_only_team_lead &&
+        !this.hackathonUserResponse.current_user_is_team_lead
+      ) {
+        this.toastrService.successDialog('Details has been saved');
+        this.hurService.updateHurStatusComplete(this.hackathonUserResponse.id).subscribe();
+        this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+      } else {
+        this.stepper.next();
+      }
     });
   }
 
   updateUserResponse(formData) {
     this.hurService.updateHackathonResponseGroup(formData, this.hackathonUserResponse.id).subscribe((data) => {
       this.hackathonUserResponse = data;
-      this.stepper.next();
+      if (
+        this.hackathonResponseGroup.filled_by_only_team_lead &&
+        !this.hackathonUserResponse.current_user_is_team_lead
+      ) {
+        this.toastrService.successDialog('Details has been saved');
+        this.hurService.updateHurStatusComplete(this.hackathonUserResponse.id).subscribe();
+        this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+      } else {
+        this.stepper.next();
+      }
     });
   }
 
