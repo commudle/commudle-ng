@@ -103,6 +103,11 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.activatedRoute.fragment.subscribe((fragment) => {
       this.currentFragment = fragment ? fragment : '';
     });
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      if (queryParams.q && queryParams.q.trim().length > 0) {
+        this.router.navigate(['/search', queryParams.q]);
+      }
+    });
   }
 
   ngOnDestroy(): void {
