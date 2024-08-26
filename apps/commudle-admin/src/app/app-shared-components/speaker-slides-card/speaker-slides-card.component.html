@@ -1,7 +1,7 @@
 <a [routerLink]="['/speaker-resources', item.id]">
   <nb-card>
     <nb-card-body>
-      <div class="slides-image">
+      <div *ngIf="item.embedded_content.length > 0" class="slides-image">
         <div
           *ngIf="item.attachment_type === EAttachmentType.EMBEDDED_LINK"
           [innerHTML]="iframe"
@@ -10,9 +10,12 @@
         <div *ngIf="item.attachment_type === EAttachmentType.PDF_FILE" class="embedded-content">
           <iframe [src]="item.presentation_file.url | safe : 'resourceUrl'" width="100%" height="500"></iframe>
         </div>
-        <div *ngIf="item.attachment_type === EAttachmentType.LINK" class="link">
-          <iframe [src]="item.embedded_content | safe : 'resourceUrl'" width="100%" height="500"></iframe>
+        <div *ngIf="item.attachment_type === EAttachmentType.LINK" class="image">
+          <img alt="Featured Projects" src="{{ staticAssets.community_lab_empty_state }}" title="item.title" />
         </div>
+      </div>
+      <div *ngIf="item.embedded_content.length === 0" class="image">
+        <img alt="Featured Projects" src="{{ staticAssets.community_lab_empty_state }}" title="item.title" />
       </div>
       <div class="content">
         <div class="headings">

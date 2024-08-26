@@ -4,20 +4,20 @@ nb-card {
     @apply com-p-0;
 
     .slides-image {
-      @apply com-w-full com-h-[156px];
+      @apply com-w-full com-h-[156px] com-rounded-[10px];
 
       .embedded-content {
-        @apply com-w-full com-break-all  com-overflow-y-scroll;
+        @apply com-w-full com-break-all  com-overflow-y-scroll com-rounded-[10px];
         &::ng-deep iframe {
           @apply com-w-full com-h-full;
         }
       }
+    }
 
-      .link {
-        @apply com-w-full com-h-full com-break-all com-overflow-y-scroll;
-        &::ng-deep iframe {
-          @apply com-w-full;
-        }
+    .image {
+      @apply com-w-full com-h-[156px] com-rounded-[10px];
+      img {
+        @apply com-w-full com-h-full;
       }
     }
 

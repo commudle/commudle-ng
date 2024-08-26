@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { EAttachmentType, ISpeakerResource } from '@commudle/shared-models';
+import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 
 @Component({
   selector: 'commudle-speaker-slides-card',
@@ -12,6 +13,7 @@ export class SpeakerSlidesCardComponent implements OnInit {
 
   iframe: SafeHtml;
   EAttachmentType = EAttachmentType;
+  staticAssets = staticAssets;
 
   constructor(private domSanitizer: DomSanitizer) {}
 
