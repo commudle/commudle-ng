@@ -13,23 +13,6 @@
         </div>
 
         <div class="details">
-          <div class="hur-form">
-            <div class="logo"></div>
-            <p>
-              <a
-                [routerLink]="[
-                  '/communities',
-                  hackathon?.community.slug,
-                  'hackathons',
-                  hackathon?.slug,
-                  'fill-form',
-                  hur?.hackathon_response_group_id
-                ]"
-              >
-                Click Here to Complete Your Registration
-              </a>
-            </p>
-          </div>
           <div *ngIf="hackathon" class="event">
             <p>
               <a [routerLink]="['/communities', hackathon.community.slug, 'hackathons', hackathon.slug]">
@@ -62,6 +45,23 @@
               <a [routerLink]="['/orgs', hackathon.community_group.slug]">{{ hackathon.community_group.name }}</a>
             </p>
           </div>
+        </div>
+
+        <div class="hur-form">
+          <button
+            nbButton
+            status="primary"
+            [routerLink]="[
+              '/communities',
+              hackathon?.community.slug,
+              'hackathons',
+              hackathon?.slug,
+              'fill-form',
+              hur?.hackathon_response_group_id
+            ]"
+          >
+            Click Here to Complete Your Registration
+          </button>
         </div>
       </nb-card-body>
     </nb-card>
