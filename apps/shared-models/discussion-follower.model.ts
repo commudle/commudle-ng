@@ -5,4 +5,9 @@ export interface IDiscussionFollower {
   user: IUser;
   discussion_id: number;
   unread_user_ids: number[];
+  last_message: {
+    content: string;
+    created_at: Date;
+  };
+  unread_messages_count: number;
 }

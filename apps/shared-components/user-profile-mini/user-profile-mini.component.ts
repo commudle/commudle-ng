@@ -13,6 +13,7 @@ export class UserProfileMiniComponent implements OnInit {
   @Input() disableAnchor: boolean = false;
   @Input() showLiveStatus: boolean;
   @Input() showOnlineText = false;
+  @Input() alignStart = false;
   isOnline: boolean;
 
   constructor() {}
