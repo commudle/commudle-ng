@@ -9,6 +9,13 @@
           <div>
             <div class="name">{{ judge.name }}</div>
             <div class="username">@{{ judge.username }}</div>
+            <app-badge
+              [text]="judge.judge_type"
+              [fontColor]="'com-text-tAuro-Metal-Saurus'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray-Light'"
+            ></app-badge>
           </div>
         </div>
         <div>
