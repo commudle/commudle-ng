@@ -372,6 +372,12 @@ export class HackathonService {
     });
   }
 
+  sendTeamDetailCsv(hackathonId): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.EMAIL_TEAM_DETAILS), {
+      hackathon_id: hackathonId,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
