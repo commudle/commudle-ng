@@ -10,9 +10,9 @@ nb-card {
   .judge-card {
     @apply com-cursor-pointer;
     nb-card {
-      @apply com-m-0 hover:com-shadow-md;
+      @apply com-m-0 hover:com-shadow-md com-h-[460px];
       nb-card-body {
-        @apply com-p-0;
+        @apply com-p-0 com-overflow-hidden;
 
         .user-card {
           @apply com-flex com-flex-col;
@@ -35,7 +35,13 @@ nb-card {
             }
 
             .user-designation {
-              @apply com-text-sm com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-4 com-line-clamp-2 com-h-10;
+              @apply com-text-sm com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-1 com-line-clamp-2;
+            }
+            .judge-type {
+              @apply com-mb-1;
+            }
+            .social-media {
+              @apply com-flex com-gap-3 com-items-center com-mb-1;
             }
           }
         }
