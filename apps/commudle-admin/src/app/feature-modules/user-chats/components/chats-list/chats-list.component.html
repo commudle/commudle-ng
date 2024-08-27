@@ -25,7 +25,7 @@
             <p class="date">{{ moment(chatUser.last_message.created_at).format('ll') }}</p>
           </div>
           <div class="latest-message-count">
-            <p class="last_message">{{ chatUser.last_message.content }}</p>
+            <commudle-editor [content]="chatUser.last_message.content" [editable]="false"></commudle-editor>
             <app-badge
               *ngIf="currentUser && chatUser.unread_messages_count > 0"
               [text]="chatUser.unread_messages_count"

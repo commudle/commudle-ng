@@ -15,6 +15,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { ChatsContainerComponent } from './components/chats-container/chats-container.component';
 import { ChatsListComponent } from './components/chats-list/chats-list.component';
 import { ChatsWindowComponent } from './components/chats-window/chats-window.component';
+import { EditorModule } from '@commudle/editor';
 
 @NgModule({
   declarations: [ChatsContainerComponent, ChatsListComponent, ChatsWindowComponent],
@@ -33,6 +34,7 @@ import { ChatsWindowComponent } from './components/chats-window/chats-window.com
     NbBadgeModule,
     NbContextMenuModule,
     NbMenuModule.forRoot(),
+    EditorModule,
   ],
 })
 export class UserChatsModule {}
