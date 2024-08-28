@@ -29,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmptyStateComponent } from './components/empty-state-component/empty-state-component.component';
 import { AppSharedComponentsModule } from '../../../app-shared-components/app-shared-components.module';
 import { SpeakerSlidesComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/components/speaker-slides/speaker-slides.component';
+import { SpeakerCfpComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/speaker-cfp/speaker-cfp.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SpeakerSlidesComponent } from 'apps/commudle-admin/src/app/feature-modu
     PublicHomeListSpeakersContentComponent,
     EmptyStateComponent,
     SpeakerSlidesComponent,
+    SpeakerCfpComponent,
   ],
   imports: [
     CommonModule,
