@@ -324,17 +324,22 @@
             *ngFor="let user of data.userResponse"
             class="user-response-tab"
             [ngClass]="{ active: selectedUserDetails.name === user.name }"
+            [ngClass]="{
+              'com-cursor-pointer': user.name,
+              'com-cursor-no-drop': !user.name
+            }"
           >
             <div (click)="displayUserData(user)" class="name" *ngIf="user.name">{{ user.name }}</div>
             <div
               class="name"
               *ngIf="!user.name"
               [ngClass]="{
-                'com-pointer-events-none com-text-gray-500 !com-cursor-not-allowed':
+                'com-pointer-events-none com-text-gray-500':
                   user.invite_status !== EInvitationStatus.APPLICATION_COMPLETE
               }"
             >
-              {{ user.user_email }} <small>(Form not filled)</small>
+              {{ user.user_email }} <br />
+              <small>{{ user.invite_status | capitalizeAndRemoveUnderscore }}</small>
             </div>
           </div>
         </div>
@@ -384,30 +389,32 @@
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
           </div>
 
-          <div *ngFor="let questionAndAnswer of selectedResponse; let i = index">
-            <div>
-              Question: <strong>{{ questionAndAnswer.question.title }}</strong>
+          <div *ngIf="selectedResponse?.length > 0">
+            <div *ngFor="let questionAndAnswer of selectedResponse; let i = index">
+              <div>
+                Question: <strong>{{ questionAndAnswer.question.title }}</strong>
+              </div>
+              <ng-container *ngIf="questionAndAnswer.question.question_type_id === 5">
+                <div>
+                  Answer:
+                  <div *ngFor="let answer of questionAndAnswer?.answer">{{ answer?.title }}</div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="questionAndAnswer.question.question_type_id === 4">
+                <div>
+                  Answer: <span>{{ questionAndAnswer.answer?.title }}</span>
+                </div>
+              </ng-container>
+              <ng-container
+                *ngIf="
+                  questionAndAnswer.question.question_type_id !== 5 && questionAndAnswer.question.question_type_id !== 4
+                "
+              >
+                <div>
+                  Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
+                </div>
+              </ng-container>
             </div>
-            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 5">
-              <div>
-                Answer:
-                <div *ngFor="let answer of questionAndAnswer.answer">{{ answer.title }}</div>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 4">
-              <div>
-                Answer: <span>{{ questionAndAnswer.answer?.title }}</span>
-              </div>
-            </ng-container>
-            <ng-container
-              *ngIf="
-                questionAndAnswer.question.question_type_id !== 5 && questionAndAnswer.question.question_type_id !== 4
-              "
-            >
-              <div>
-                Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
-              </div>
-            </ng-container>
           </div>
         </div>
       </div>
