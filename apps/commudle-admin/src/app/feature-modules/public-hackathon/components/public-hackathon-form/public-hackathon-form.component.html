@@ -52,18 +52,14 @@
                   [userFormDetails]="hackathonResponseGroup.user_details"
                   [hackathonUserResponse]="hackathonUserResponse"
                   [submitButtonText]="
-                    hackathonResponseGroup.filled_by_only_team_lead && !hackathonUserResponse.current_user_is_team_lead
-                      ? 'Submit'
-                      : 'Next'
+                    hackathonResponseGroup.filled_by_only_team_lead && !current_user_is_team_lead ? 'Submit' : 'Next'
                   "
                   (submitUserDetailsEvent)="UpdateOrSubmitResponse($event)"
                 ></commudle-user-details-form>
               </nb-step>
               <nb-step
                 label="Team Details"
-                *ngIf="
-                  !hackathonResponseGroup.filled_by_only_team_lead || hackathonUserResponse.current_user_is_team_lead
-                "
+                *ngIf="!hackathonResponseGroup.filled_by_only_team_lead || current_user_is_team_lead"
               >
                 <commudle-public-hackathon-teammate-form
                   [hackathonUserResponse]="hackathonUserResponse"
@@ -76,9 +72,7 @@
               </nb-step>
               <nb-step
                 label="Project Details"
-                *ngIf="
-                  !hackathonResponseGroup.filled_by_only_team_lead || hackathonUserResponse.current_user_is_team_lead
-                "
+                *ngIf="!hackathonResponseGroup.filled_by_only_team_lead || current_user_is_team_lead"
               >
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
                 <div *ngIf="!isLoading && hackathon">
@@ -94,7 +88,7 @@
                 label="More details"
                 *ngIf="
                   hackathonResponseGroup.data_form_entity_id &&
-                  (!hackathonResponseGroup.filled_by_only_team_lead || hackathonUserResponse.current_user_is_team_lead)
+                  (!hackathonResponseGroup.filled_by_only_team_lead || current_user_is_team_lead)
                 "
               >
                 <commudle-loading-spinner *ngIf="isLoading"></commudle-loading-spinner>
