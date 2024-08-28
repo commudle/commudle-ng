@@ -46,6 +46,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
 import { UpcomingHackathonsComponent } from './upcoming-hackathons/upcoming-hackathons.component';
 import { EventMiniCardComponent } from './event-mini-card/event-mini-card.component';
 import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides-card.component';
+import { CallForSpeakerCardComponent } from './call-for-speaker-card/call-for-speaker-card.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides
     HelpDictionaryIframeComponent,
     UpcomingHackathonsComponent,
     SpeakerSlidesCardComponent,
+    CallForSpeakerCardComponent,
   ],
   exports: [
     EmailerComponent,
@@ -89,6 +91,7 @@ import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides
     HelpDictionaryIframeComponent,
     UpcomingHackathonsComponent,
     SpeakerSlidesCardComponent,
+    CallForSpeakerCardComponent,
   ],
   imports: [
     CommonModule,

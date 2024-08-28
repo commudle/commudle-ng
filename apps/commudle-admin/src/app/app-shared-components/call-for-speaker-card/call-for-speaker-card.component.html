@@ -1,0 +1,53 @@
+<nb-card>
+  <nb-card-body>
+    <div class="cfp-card">
+      <a [routerLink]="[]" class="cfp-card-link">
+        <div *ngIf="item.event.header_image_path">
+          <div *appBreakpoints="'>lg'" class="cfp-card-image">
+            <commudle-banner-image
+              [headerImagePath]="item.event.header_image_path"
+              [name]="item.name"
+              [topRightCurve]="false"
+              [bottomRightCurve]="false"
+            ></commudle-banner-image>
+          </div>
+          <div *appBreakpoints="'<=lg'" class="cfp-card-image">
+            <commudle-banner-image
+              [headerImagePath]="item.event.header_image_path"
+              [name]="item.name"
+              [bottomRightCurve]="false"
+              [bottomLeftCurve]="false"
+            ></commudle-banner-image>
+          </div>
+        </div>
+        <div *ngIf="!item.event.header_image_path" class="no-image-header">
+          <!-- <img alt="Featured Projects" src="{{ staticAssets.emojis.stars }}" title="Featured Projects" /> -->
+        </div>
+        <div class="cfp-card-details">
+          <div>
+            <div>
+              <p class="event-time">{{ moment(item.created_at).format('dddd, MMM Do, YYYY') }}</p>
+              <div class="interested-members" *ngIf="item.event.interested_members_count > 0">
+                <app-badge
+                  [text]="item.event.interested_members_count"
+                  [fontColor]="'com-text-tAuro-Metal-Saurus'"
+                  [nbIcon]="'people-outline'"
+                  [fontSize]="'small'"
+                  [borderRadius]="'round'"
+                  [color]="'com-bg-Bright-Gray-Light'"
+                ></app-badge>
+              </div>
+            </div>
+            <p class="event-title">{{ item.name }}</p>
+          </div>
+          <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          </div>
+          <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
+            Register
+          </button>
+        </div>
+      </a>
+    </div>
+  </nb-card-body>
+</nb-card>

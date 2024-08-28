@@ -197,6 +197,7 @@ export const API_ROUTES = {
       TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
       SOCIAL_RESOURCES: 'api/v2/events/public/social_resources',
       INTERESTED_MEMBERS: 'api/v2/events/public/interested_users',
+      SPEAKER_EDFEG_LIST: 'api/v2/events/public/speaker_edfeg_list',
     },
   },
 
