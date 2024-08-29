@@ -1,7 +1,7 @@
 <a [routerLink]="['/speaker-resources', item.id]">
   <nb-card>
     <nb-card-body>
-      <div *ngIf="item.embedded_content.length > 0" class="slides-image">
+      <div *ngIf="item.embedded_content !== null" class="slides-image">
         <div
           *ngIf="item.attachment_type === EAttachmentType.EMBEDDED_LINK"
           [innerHTML]="iframe"
@@ -14,8 +14,8 @@
           <img alt="Featured Projects" src="{{ staticAssets.community_lab_empty_state }}" title="item.title" />
         </div>
       </div>
-      <div *ngIf="item.embedded_content.length === 0" class="image">
-        <img alt="Featured Projects" src="{{ staticAssets.community_lab_empty_state }}" title="item.title" />
+      <div *ngIf="item.embedded_content === null" class="image">
+        <img alt="{{ item.title }}" src="{{ staticAssets.speaker_slides_empty_state }}" title="{{ item.title }}" />
       </div>
       <div class="content">
         <div class="headings">

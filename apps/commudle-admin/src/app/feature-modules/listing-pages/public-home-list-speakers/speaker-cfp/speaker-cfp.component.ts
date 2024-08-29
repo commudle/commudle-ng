@@ -27,14 +27,14 @@ export class SpeakerCfpComponent implements OnInit {
 
   getSpeakersFormsList() {
     this.loading = true;
-    this.eventsService.pGetSpeakerEdfegList().subscribe((data) => {
+    this.eventsService.pGetSpeakerEdfegList(this.page, this.count).subscribe((data) => {
       console.log(data);
       this.speakerForms = data.values;
       this.skeletonLoaderCard = false;
       this.loading = false;
-      // this.total = data.total;
-      // this.count = data.count;
-      // this.total = data.total;
+      this.total = data.total;
+      this.count = data.count;
+      this.total = data.total;
       // this.router.navigate([], { queryParams: { page: this.page } });
       // });
     });

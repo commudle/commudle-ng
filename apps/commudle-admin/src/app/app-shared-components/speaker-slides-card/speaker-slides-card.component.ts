@@ -18,7 +18,11 @@ export class SpeakerSlidesCardComponent implements OnInit {
   constructor(private domSanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
-    if (this.item.attachment_type === EAttachmentType.EMBEDDED_LINK) {
+    if (
+      this.item.attachment_type === EAttachmentType.EMBEDDED_LINK &&
+      this.item.embedded_content &&
+      this.item.embedded_content.length > 0
+    ) {
       if (this.item.embedded_content.includes('<iframe')) {
         this.iframe = this.domSanitizer.bypassSecurityTrustHtml(this.item.embedded_content);
       } else {

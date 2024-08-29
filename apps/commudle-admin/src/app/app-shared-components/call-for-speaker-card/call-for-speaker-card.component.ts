@@ -23,7 +23,6 @@ export class CallForSpeakerCardComponent implements OnInit {
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    console.log(this.item);
     this.getCommunity();
   }
 

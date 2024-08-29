@@ -7,11 +7,11 @@
     }
 
     .no-image-header {
-      @apply md:com-w-[388px] md:com-h-[145px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center;
+      @apply md:com-w-[250px] md:com-h-[150px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center com-overflow-hidden com-rounded-lg;
     }
 
     .cfp-card-details {
-      @apply md:com-p-3 com-px-4 com-py-5 com-overflow-hidden;
+      @apply md:com-p-3 com-px-4 com-py-5 com-overflow-hidden com-h-full;
       flex: 1;
       .first-row {
         @apply com-flex com-flex-col;
@@ -33,10 +33,10 @@
       }
 
       .second-row {
-        @apply com-flex com-flex-row com-justify-between com-items-center;
+        @apply com-flex com-flex-row com-justify-between com-items-end;
 
         .interested-and-location {
-          @apply com-flex com-flex-row com-justify-between com-gap-6;
+          @apply com-flex com-flex-row com-justify-between com-gap-6 md:com-mr-5;
 
           .left-col,
           .right-col {

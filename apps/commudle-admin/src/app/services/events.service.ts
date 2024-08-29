@@ -285,9 +285,11 @@ export class EventsService {
     });
   }
 
-  pGetSpeakerEdfegList() {
+  pGetSpeakerEdfegList(page: number, count: number): Observable<IPaginationCount<IEventDataFormEntityGroup>> {
+    const params = new HttpParams().set('page', page).set('count', count);
     return this.http.get<IPaginationCount<IEventDataFormEntityGroup>>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKER_EDFEG_LIST),
+      { params },
     );
   }
 }
