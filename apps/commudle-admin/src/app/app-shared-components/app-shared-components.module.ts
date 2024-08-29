@@ -47,6 +47,7 @@ import { UpcomingHackathonsComponent } from './upcoming-hackathons/upcoming-hack
 import { EventMiniCardComponent } from './event-mini-card/event-mini-card.component';
 import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides-card.component';
 import { CallForSpeakerCardComponent } from './call-for-speaker-card/call-for-speaker-card.component';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { CallForSpeakerCardComponent } from './call-for-speaker-card/call-for-sp
     PublicCommunityModule,
     SharedComponentsModule,
     MiniUserProfileModule,
+    SharedDirectivesModule,
     //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICommunity } from '@commudle/shared-models';
+import { faLocationDot, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
@@ -16,6 +17,8 @@ export class CallForSpeakerCardComponent implements OnInit {
 
   staticAssets = staticAssets;
   moment = moment;
+  faUsers = faUsers;
+  faLocationDot = faLocationDot;
 
   constructor(private communitiesService: CommunitiesService) {}
 

@@ -11,11 +11,11 @@ app-pagination {
 }
 
 .cfp-cards {
-  @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-gap-6 md:com-mt-8;
+  @apply com-grid com-grid-cols-1 md:com-mt-8;
 }
 
 .cfp-card {
-  @apply md:com-w-[276px] com-w-full com-h-[304px];
+  @apply com-w-full com-h-[304px] com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-py-4;
 }
 
 .speakers-upcoming,
