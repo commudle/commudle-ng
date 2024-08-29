@@ -378,6 +378,12 @@ export class HackathonService {
     });
   }
 
+  sendTeamDetailCsv(hackathonId: number | string): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.REGISTRATION_DETAILS_CSV), {
+      hackathon_id: hackathonId,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
