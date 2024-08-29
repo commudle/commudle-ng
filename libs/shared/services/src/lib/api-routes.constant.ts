@@ -828,7 +828,7 @@ export const API_ROUTES = {
     OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
     WINNER_ANNOUNCEMENT_EMAIL: 'api/v2/hackathons/winner_announcement_email', //POST
     STATUS_FILTER_GENERAL_EMAIL: 'api/v2/hackathons/status_filter_general_email', //POST
-    EMAIL_TEAM_DETAILS: 'api/v2/hackathons/email_team_details', //POST
+    REGISTRATION_DETAILS_CSV: 'api/v2/hackathons/registration_details_csv', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET

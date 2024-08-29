@@ -52,12 +52,4 @@ export class HackathonControlPanelEmailsComponent implements OnInit {
       }
     });
   }
-
-  sendTeamDetailsCsv() {
-    this.hackathonService.sendTeamDetailCsv(this.hackathonId).subscribe((data) => {
-      if (data) {
-        this.toastrService.successDialog('Mail has been sent in your email');
-      }
-    });
-  }
 }

@@ -13,6 +13,11 @@
     >
       Send round selection update email
     </button>
+
+    &nbsp; &nbsp;
+    <button nbButton status="primary" (click)="sendTeamDetailsCsv()" class="com-w-max">
+      <fa-icon [icon]="faEnvelope"></fa-icon>&nbsp;CSV
+    </button>
     &nbsp; &nbsp;
     <a
       *ngIf="hackathon"

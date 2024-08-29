@@ -372,8 +372,8 @@ export class HackathonService {
     });
   }
 
-  sendTeamDetailCsv(hackathonId): Observable<boolean> {
-    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.EMAIL_TEAM_DETAILS), {
+  sendTeamDetailCsv(hackathonId: number | string): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.REGISTRATION_DETAILS_CSV), {
       hackathon_id: hackathonId,
     });
   }
