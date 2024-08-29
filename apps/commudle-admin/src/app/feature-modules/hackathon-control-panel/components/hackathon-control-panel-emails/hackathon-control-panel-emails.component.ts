@@ -5,8 +5,7 @@ import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { HackathonWinnerAnnouncementEmailerComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-winner-announcement-emailer/hackathon-winner-announcement-emailer.component';
 import { HackathonStatusFilterGeneralEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-status-filter-general-emails/hackathon-status-filter-general-emails.component';
-import { HackathonOverallRoundSelectionUpdateEmailComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-overall-round-selection-update-email/hackathon-overall-round-selection-update-email.component';
-import { ToastrService } from '@commudle/shared-services';
+import { HackathonRoundGeneralMailerComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-round-general-mailer/hackathon-round-general-mailer.component';
 @Component({
   selector: 'commudle-hackathon-control-panel-emails',
   templateUrl: './hackathon-control-panel-emails.component.html',
@@ -21,7 +20,6 @@ export class HackathonControlPanelEmailsComponent implements OnInit {
     private nbDialogService: NbDialogService,
     private hackathonService: HackathonService,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -46,19 +44,17 @@ export class HackathonControlPanelEmailsComponent implements OnInit {
     });
   }
 
+  openDialogBoxForRoundGeneralEmail(hackathonId) {
+    this.dialogRef = this.nbDialogService.open(HackathonRoundGeneralMailerComponent, {
+      context: { hackathonId },
+    });
+  }
+
   SendRegistrationsMailer() {
     this.hackathonService.inviteUserByEmail(this.hackathonId, this.message).subscribe((data) => {
       if (data) {
         this.dialogRef.close();
       }
-    });
-  }
-
-  openRoundSelectionUpdateEmailDialogBox() {
-    this.dialogRef = this.nbDialogService.open(HackathonOverallRoundSelectionUpdateEmailComponent, {
-      context: {
-        hackathonId: this.hackathonId,
-      },
     });
   }
 }

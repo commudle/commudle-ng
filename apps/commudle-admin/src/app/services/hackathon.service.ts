@@ -362,6 +362,14 @@ export class HackathonService {
     );
   }
 
+  roundGeneralEmail(formData): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.ROUND_GENERAL_MAILER), {
+      round_id: Number(formData.round_id),
+      subject: formData.subject,
+      message: formData.message,
+    });
+  }
+
   WinnerAnnouncementEmail(hackathonId, message): Observable<boolean> {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.WINNER_ANNOUNCEMENT_EMAIL), {
       hackathon_id: hackathonId,
