@@ -1,22 +1,22 @@
 <div [ngClass]="horizontalScroll ? 'scroll-container' : 'container'">
-  <a [routerLink]="['/communities', featuredCommunity.kommunity.slug]" target="_blank">
+  <a [routerLink]="['/communities', featuredCommunity.community.slug]" target="_blank">
     <div class="featured-community">
       <div>
-        <div *ngIf="featuredCommunity.kommunity.logo_image?.url" class="image">
+        <div *ngIf="featuredCommunity.community.logo_image?.url" class="image">
           <img
-            [alt]="featuredCommunity.kommunity.name"
-            [src]="featuredCommunity.kommunity.logo_image.url"
-            [title]="featuredCommunity.kommunity.name"
+            [alt]="featuredCommunity.community.name"
+            [src]="featuredCommunity.community.logo_image.url"
+            [title]="featuredCommunity.community.name"
             class="avatar"
           />
         </div>
-        <div *ngIf="!featuredCommunity.kommunity.logo_image?.url" class="no-image-header">
+        <div *ngIf="!featuredCommunity.community.logo_image?.url" class="no-image-header">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
       </div>
       <div class="featured-communities-details">
         <div class="details">
-          <p class="community-name">{{ featuredCommunity.kommunity.name }}</p>
+          <p class="community-name">{{ featuredCommunity.community.name }}</p>
           <p class="mini-description">
             {{ featuredCommunity.reason }}
           </p>
@@ -26,7 +26,7 @@
   </a>
   <div class="membership-toggle">
     <app-membership-toggle
-      [community]="featuredCommunity.kommunity"
+      [community]="featuredCommunity.community"
       [shapes]="'semi-round'"
       [size]="'small'"
       [status]="'info'"

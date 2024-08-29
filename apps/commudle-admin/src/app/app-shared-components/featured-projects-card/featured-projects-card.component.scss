@@ -2,7 +2,7 @@ nb-card {
   @apply com-m-0 com-w-full com-h-full;
 
   nb-card-body {
-    @apply com-p-4 com-overflow-hidden;
+    @apply com-p-0 com-m-3 com-overflow-hidden;
 
     a {
       @apply com-no-underline;
@@ -10,14 +10,14 @@ nb-card {
         @apply com-flex com-items-center com-justify-between;
         .details {
           .user-profile-card {
-            @apply com-mb-2;
+            @apply com-mb-3;
           }
           .title {
             @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-mb-1 com-line-clamp-1;
           }
 
           .time {
-            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-text-Auro-Metal-Saurus;
+            @apply com-text-xs com-font-normal com-m-0 com-text-Auro-Metal-Saurus;
           }
         }
 
@@ -27,7 +27,7 @@ nb-card {
       }
 
       .tags {
-        @apply md:com-mt-5 com-mt-4 com-h-[46px];
+        @apply com-mt-4 com-h-[60px];
       }
     }
   }

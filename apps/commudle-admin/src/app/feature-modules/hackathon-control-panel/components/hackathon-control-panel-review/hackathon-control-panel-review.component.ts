@@ -15,7 +15,7 @@ import {
   IRound,
 } from '@commudle/shared-models';
 import { EInvitationStatus, IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
-import { faXmark, faPlus, faCheck, faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { faXmark, faPlus, faCheck, faUpRightFromSquare, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
@@ -38,6 +38,7 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
   faCheck = faCheck;
   faUpRightFromSquare = faUpRightFromSquare;
+  faEnvelope = faEnvelope;
   notesForm;
   notes: INote[];
   dialogRef: NbDialogRef<unknown>;
@@ -234,6 +235,14 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
   destroyNote(noteId, index) {
     this.noteService.destroyNote(noteId).subscribe((data) => {
       if (data) this.notes.splice(index, 1);
+    });
+  }
+
+  sendTeamDetailsCsv() {
+    this.hackathonService.sendTeamDetailCsv(this.hackathon.id).subscribe((data) => {
+      if (data) {
+        this.toastrService.successDialog('CSV is being generated, it will be emailed to you shortly!');
+      }
     });
   }
 }

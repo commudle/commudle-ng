@@ -32,9 +32,7 @@
 }
 
 .details {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  @apply com-flex com-justify-evenly com-flex-wrap;
 
   .event {
     display: flex;
@@ -57,4 +55,8 @@
       }
     }
   }
+}
+
+.hur-form {
+  @apply com-flex com-items-center com-justify-center;
 }

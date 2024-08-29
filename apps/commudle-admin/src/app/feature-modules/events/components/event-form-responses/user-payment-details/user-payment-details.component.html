@@ -4,7 +4,7 @@
     <td>{{ detail.status | capitalizeAndRemoveUnderscore }}</td>
   </tr>
   <tr>
-    <td>Amount Paid</td>
+    <td>Amount</td>
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.total_amount / 100 }}</td>
   </tr>
 
@@ -16,6 +16,10 @@
   <tr *ngIf="detail.discount_amount > 0">
     <td>Discount Amount</td>
     <td>{{ detail.currency === 'inr' ? '₹' : '$' }} {{ detail.discount_amount / 100 }}</td>
+  </tr>
+  <tr *ngIf="detail.transfer_id">
+    <td>Transfer Id</td>
+    <td>{{ detail.transfer_id }}</td>
   </tr>
   <tr *ngFor="let eto of detail.eto_users">
     <td *ngIf="detail.user.email === eto.email" class="com-italic">Paid By</td>
@@ -39,11 +43,6 @@
       </div>
     </td>
   </tr>
-  <!-- <tr *ngIf="detail.status === 'paid' && paidUser && user.id === paidUser.user_id">
-    <td colspan="2">
-      <button class="com-mt-4" fullWidth nbButton (click)="checkRefund(detail.uuid)">Create Refund</button>
-    </td>
-  </tr> -->
 
   <tr>
     <td>

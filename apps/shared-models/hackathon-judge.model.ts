@@ -14,6 +14,7 @@ export interface IHackathonJudge {
   judge_user_id: number;
   profile_image?: IAttachedFile;
   invite_status: EInvitationStatus;
+  judge_type: EHackathonJudgeType;
 }
 
 export enum EInvitationStatus {
@@ -21,4 +22,10 @@ export enum EInvitationStatus {
   ACCEPTED = 'accepted',
   REMOVED = 'removed',
   REJECTED = 'rejected',
+}
+
+export enum EHackathonJudgeType {
+  JUDGE = 'judge',
+  SPEAKER = 'speaker',
+  MENTOR = 'mentor',
 }

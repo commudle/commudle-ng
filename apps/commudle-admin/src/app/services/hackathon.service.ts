@@ -8,7 +8,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_ROUTES } from '@commudle/shared-services';
 import { Observable } from 'rxjs';
-import { ICommunityBuild, IHackathonPrize, IHackathonTeam, IHackathonTrack } from '@commudle/shared-models';
+import {
+  ICommunityBuild,
+  IHackathonPrize,
+  IHackathonTeam,
+  IHackathonTrack,
+  IPagination,
+} from '@commudle/shared-models';
 
 interface publicHackathonsList {
   upcoming_hackathons: IHackathon[];
@@ -372,6 +378,12 @@ export class HackathonService {
     });
   }
 
+  sendTeamDetailCsv(hackathonId: number | string): Observable<boolean> {
+    return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.REGISTRATION_DETAILS_CSV), {
+      hackathon_id: hackathonId,
+    });
+  }
+
   // PUBLIC APIS
 
   pIndexHackathonTracks(hackathonId): Observable<IHackathonTrack[]> {
@@ -427,5 +439,21 @@ export class HackathonService {
     return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.IS_MEMBER_OF_PARENT), {
       params,
     });
+  }
+
+  pGetHackathon(when, limit?, after?): Observable<IPagination<IHackathon>> {
+    let params = new HttpParams().set('when', when);
+    if (limit) {
+      params = params.set('limit', limit);
+    }
+    if (after) {
+      params = params.set('after', after);
+    }
+    return this.http.get<IPagination<IHackathon>>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.HACKATHONS),
+      {
+        params,
+      },
+    );
   }
 }

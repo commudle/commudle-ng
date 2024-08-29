@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SeoService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
@@ -26,7 +26,6 @@ export class HackathonTeamConfirmationComponent implements OnInit {
     private hurService: HackathonUserResponsesService,
     private seoService: SeoService,
     private nbDialogService: NbDialogService,
-    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -37,8 +36,7 @@ export class HackathonTeamConfirmationComponent implements OnInit {
         this.hur = data.hackathon_user_response;
         if (this.hur.invite_status === EInvitationStatus.INVITED || Number(params.status) === 1) {
           this.onAcceptRoleButton();
-        }
-        if (Number(params.status) === 2) {
+        } else if (Number(params.status) === 2) {
           this.activateRole(this.token, EInvitationStatus.REJECTED);
         } else {
           this.onAcceptRoleButton();

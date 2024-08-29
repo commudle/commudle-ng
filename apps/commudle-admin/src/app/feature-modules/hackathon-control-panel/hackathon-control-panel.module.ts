@@ -17,6 +17,7 @@ import {
   NbInputModule,
   NbRouteTabsetModule,
   NbSpinnerModule,
+  NbRadioModule,
 } from '@commudle/theme';
 import { HackathonControlPanelContactDetailsFormComponent } from './components/hackathon-control-panel-contact-details-form/hackathon-control-panel-contact-details-form.component';
 import { HackathonControlPanelDatesFormComponent } from './components/hackathon-control-panel-dates-form/hackathon-control-panel-dates-form.component';
@@ -96,6 +97,7 @@ import { HackathonOverallRoundSelectionUpdateEmailComponent } from 'apps/commudl
     NbCheckboxModule,
     NbButtonGroupModule,
     NbSpinnerModule,
+    NbRadioModule,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
