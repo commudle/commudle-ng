@@ -5,7 +5,7 @@ import { EmailConfirmationsRoutingModule } from './email-confirmations-routing.m
 import { RsvpComponent } from './components/rsvp/rsvp.component';
 import { CollaborationCommunityComponent } from './components/collaboration-community/collaboration-community.component';
 import { UserRoleConfirmationComponent } from './components/user-role-confirmation/user-role-confirmation.component';
-import { NbIconModule, NbCardModule, NbSpinnerModule, NbToggleModule } from '@commudle/theme';
+import { NbIconModule, NbCardModule, NbSpinnerModule, NbToggleModule, NbButtonModule } from '@commudle/theme';
 import { EmailUnsubscribeComponent } from './components/email-unsubscribe/email-unsubscribe.component';
 import { FormsModule } from '@angular/forms';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
@@ -34,6 +34,7 @@ import { HackathonTeamConfirmationComponent } from './components/hackathon-team-
     NbCardModule,
     NbSpinnerModule,
     NbToggleModule,
+    NbButtonModule,
   ],
 })
 export class EmailConfirmationsModule {}

@@ -634,6 +634,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       this.dialogRef = this.dialogService.open(this.formConfirmationDialog, {
         closeOnBackdropClick: false,
       });
+      this.checkEventTicketOrder(this.dataFormEntity.entity_id);
       return;
     }
     this.razorpayService.createOrFindOrder(orderDetails, etoId).subscribe((data: IRazorpayOrder) => {
@@ -722,6 +723,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
       gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
       facebook: event.facebook ? event.facebook : this.currentUser.facebook,
       youtube: event.youtube ? event.youtube : this.currentUser.youtube,
+      phone: event.phone ? event.phone : this.currentUser.phone,
     });
     this.userProfileManagerService.updateUserDetails(false, this.currentUser);
     this.submitForm();

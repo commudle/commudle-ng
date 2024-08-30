@@ -7,6 +7,10 @@ const routes = [
     path: '',
     component: SearchPageComponent,
   },
+  {
+    path: 'search/:query',
+    component: SearchPageComponent,
+  },
 ];
 
 @NgModule({

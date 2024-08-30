@@ -178,6 +178,17 @@ export class FormGroupsComponent implements OnInit {
     });
   }
 
+  toggleCancellation(eventDataFormEntityGroupId, index) {
+    this.eventDataFormEntityGroupsService.toggleAllowCancellation(eventDataFormEntityGroupId).subscribe((data) => {
+      if (data) {
+        this.eventDataFormEntityGroups[index].allow_cancellation =
+          !this.eventDataFormEntityGroups[index].allow_cancellation;
+        this.toastLogService.successDialog('Updated');
+        this.changeDetectorRef.markForCheck();
+      }
+    });
+  }
+
   getAttachedDataFormName(dataFormId) {
     return this.communityDataForms.find((k) => k.id === dataFormId).name;
   }

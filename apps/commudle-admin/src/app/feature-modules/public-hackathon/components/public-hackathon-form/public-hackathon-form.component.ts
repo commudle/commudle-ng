@@ -55,6 +55,8 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
   userProfileDetails: IUserStat;
   dialogRef: NbDialogRef<any>;
 
+  current_user_is_team_lead = true;
+
   constructor(
     private hrgService: HackathonResponseGroupService,
     private activatedRoute: ActivatedRoute,
@@ -70,7 +72,7 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(
       this.hrgService
-        .pShowHackathonResponseGroup(this.activatedRoute.snapshot.params['hackathon_response_group_id'])
+        .pFetchHackathonResponseGroup(this.activatedRoute.snapshot.params['hackathon_response_group_id'])
         .subscribe((data: IHackathonResponseGroup) => {
           this.hackathonResponseGroup = data;
           this.fetchPreExistingFormResponse();
@@ -112,8 +114,9 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
     this.hurService
       .getExistingHackathonUserResponses(this.hackathonResponseGroup.id)
       .subscribe((data: IHackathonUserResponse[]) => {
-        if (data) {
+        if (data.length > 0) {
           this.hackathonUserResponse = data[0];
+          this.current_user_is_team_lead = this.hackathonUserResponse.current_user_is_team_lead;
           this.isLoading = false;
         } else {
           this.isLoading = false;
@@ -138,14 +141,26 @@ export class PublicHackathonFormComponent implements OnInit, OnDestroy {
   submitUserResponse(formData) {
     this.hurService.createHackathonResponseGroup(formData, this.hackathonResponseGroup.id).subscribe((data) => {
       this.hackathonUserResponse = data;
-      this.stepper.next();
+      if (this.hackathonResponseGroup.filled_by_only_team_lead && !this.current_user_is_team_lead) {
+        this.toastrService.successDialog('Details has been saved');
+        this.hurService.updateHurStatusComplete(this.hackathonUserResponse.id).subscribe();
+        this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+      } else {
+        this.stepper.next();
+      }
     });
   }
 
   updateUserResponse(formData) {
     this.hurService.updateHackathonResponseGroup(formData, this.hackathonUserResponse.id).subscribe((data) => {
       this.hackathonUserResponse = data;
-      this.stepper.next();
+      if (this.hackathonResponseGroup.filled_by_only_team_lead && !this.current_user_is_team_lead) {
+        this.toastrService.successDialog('Details has been saved');
+        this.hurService.updateHurStatusComplete(this.hackathonUserResponse.id).subscribe();
+        this.dialogRef = this.dialogService.open(this.formConfirmationDialog, { closeOnBackdropClick: false });
+      } else {
+        this.stepper.next();
+      }
     });
   }
 

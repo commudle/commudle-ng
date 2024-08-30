@@ -52,6 +52,7 @@ export class UserProfileManagerService {
       gitlab: [''],
       facebook: [''],
       youtube: [''],
+      phone: [''],
     });
   }
 

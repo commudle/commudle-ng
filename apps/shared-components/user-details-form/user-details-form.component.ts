@@ -15,6 +15,7 @@ export class UserDetailsFormComponent implements OnInit {
   @Input() userFormDetails;
   @Input() showActionButtons = true;
   @Input() hackathonUserResponse: IHackathonUserResponse;
+  @Input() submitButtonText = 'Next';
   @Output() submitUserDetailsEvent = new EventEmitter<any>();
 
   currentUser: ICurrentUser;

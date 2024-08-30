@@ -22,3 +22,14 @@
 nb-card-header {
   @apply com-flex com-items-center;
 }
+
+.email-select-type-form {
+  @apply com-flex com-gap-4 com-w-full;
+}
+
+.select {
+  @apply com-flex com-items-center com-gap-1 com-h-10 com-p-1 com-text-sm com-rounded-[4px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50  com-border com-border-solid com-border-[#E4E9F2]  com-w-[120px];
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-cursor-pointer com-border-0 com-w-full;
+  }
+}

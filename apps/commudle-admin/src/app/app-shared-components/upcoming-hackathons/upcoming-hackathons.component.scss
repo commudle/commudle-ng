@@ -1,0 +1,32 @@
+div {
+  @apply md:com-m-0 com-m-0 md:com-bg-Bright-Gray-opacity-30 com-border-none md:com-rounded-xl com-rounded-none com-p-0 md:com-px-3 md:com-pt-4;
+
+  .heading {
+    @apply com-m-0 md:com-mb-4 md:com-p-0 com-p-4 md:com-bg-transparent com-bg-Anti-Flash-White;
+
+    .title {
+      @apply com-m-0;
+      a {
+        @apply md:com-text-sm com-text-base com-font-semibold com-text-Dark-Jungle-Green com-mb-1 com-mt-0 com-mx-0 com-no-underline;
+      }
+    }
+    .sub-heading {
+      @apply md:com-text-xs com-text-sm com-font-normal com-text-gunmetal com-m-0;
+    }
+  }
+
+  .upcoming-hackathons {
+    @apply com-flex com-flex-nowrap md:com-flex-wrap com-overflow-x-auto md:com-m-0 com-gap-4 md:com-gap-0 com-mt-3 md:com-mt-0 com-ml-4 md:com-ml-0 com-p-0 md:com-block com-bg-transparent;
+    .upcoming-hackathons-card {
+      @apply md:com-mb-3 com-m-0 com-p-0 com-rounded-xl com-bg-transparent;
+    }
+  }
+
+  .load-more {
+    @apply com-text-center md:com-pb-2 com-mt-4 com-m-0 com-p-0 com-bg-transparent;
+
+    app-loading-spinner {
+      @apply com-mb-6;
+    }
+  }
+}

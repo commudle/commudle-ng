@@ -7,6 +7,7 @@ import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-g
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
+import { ToastrService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-public-hackathon-teammate-form',
@@ -33,6 +34,7 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
     private fb: FormBuilder,
     private hurService: HackathonUserResponsesService,
     private authWatchService: LibAuthwatchService,
+    private toastrService: ToastrService,
   ) {
     this.teammateForm = this.fb.group({
       name: ['', Validators.required],
@@ -101,10 +103,25 @@ export class PublicHackathonTeammateFormComponent implements OnInit, AfterViewIn
   }
 
   submitTeammateDetails() {
-    this.submitTeammateDetailsEvent.emit(this.teammateForm.value);
+    const duplicateEmails = this.checkForDuplicateEmails(this.teammateForm.value.teammates);
+    if (duplicateEmails) {
+      this.toastrService.warningDialog('All teammates’ emails should be unique');
+    } else {
+      this.submitTeammateDetailsEvent.emit(this.teammateForm.value);
+    }
   }
 
   previousButton() {
     this.previousButtonEvent.emit();
+  }
+
+  checkForDuplicateEmails(teammates: { email: string }[]) {
+    const emails = teammates.map((teammate) => teammate.email);
+    const duplicateEmails = emails.filter((email, index) => emails.indexOf(email) !== index);
+
+    if (duplicateEmails.length > 0) {
+      return duplicateEmails.join(', ');
+    }
+    return false;
   }
 }

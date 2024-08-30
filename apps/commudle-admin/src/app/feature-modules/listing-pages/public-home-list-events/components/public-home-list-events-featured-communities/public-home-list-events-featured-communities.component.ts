@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faUserGroup } from '@fortawesome/free-solid-svg-icons';
-import { FeaturedCommunitiesService } from 'apps/commudle-admin/src/app/services/featured-communities.service';
-import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model';
+import { FeaturedItemsService } from 'apps/commudle-admin/src/app/services/featured-items.service';
+import { IFeaturedItems } from 'apps/shared-models/featured-items.model';
 
 @Component({
   selector: 'commudle-public-home-list-events-featured-communities',
@@ -11,12 +11,12 @@ import { IFeaturedCommunity } from 'apps/shared-models/featured-community.model'
 export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit {
   @Input() showCardsHorizontal = false;
   @Input() showIconsOnHeading = false;
-  featuredCommunities: IFeaturedCommunity[] = [];
+  featuredCommunities: IFeaturedItems[] = [];
   showSpinner = false;
   isMobileView: boolean;
   faUserGroup = faUserGroup;
 
-  constructor(private featuredCommunitiesService: FeaturedCommunitiesService) {}
+  constructor(private featuredItemsService: FeaturedItemsService) {}
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 1024;
@@ -25,8 +25,10 @@ export class PublicHomeListEventsFeaturedCommunitiesComponent implements OnInit 
 
   getFeaturedCommunities(): void {
     this.showSpinner = true;
-    this.featuredCommunitiesService.getLatestFeaturedCommunities().subscribe((value) => {
-      this.featuredCommunities = value.featured_communities;
+    this.featuredItemsService.getFeaturedItems('Kommunity').subscribe((data) => {
+      this.featuredCommunities = this.featuredCommunities.concat(
+        data.page.reduce((acc, value) => [...acc, value.data], []),
+      );
       this.showSpinner = false;
     });
   }
