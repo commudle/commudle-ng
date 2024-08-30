@@ -89,8 +89,8 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^14.1.0",
-    "@angular-devkit/build-angular": "~14.2.0",
+    "@angular-builders/custom-webpack": "^18.0.0",
+    "@angular-devkit/build-angular": "~18.2.2",
     "@angular-devkit/core": "~14.2.0",
     "@angular-devkit/schematics": "~14.2.0",
     "@angular-eslint/eslint-plugin": "~14.0.4",
@@ -149,7 +149,7 @@
     "husky": "^8.0.2",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
-    "jest-preset-angular": "~12.2.2",
+    "jest-preset-angular": "~14.2.2",
     "lint-staged": "^13.0.4",
     "ng-packagr": "~14.2.0",
     "nx": "15.1.1",
