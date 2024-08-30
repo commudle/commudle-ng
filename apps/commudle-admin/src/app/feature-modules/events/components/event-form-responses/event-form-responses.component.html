@@ -100,7 +100,14 @@
         Payments Logs
       </a>
 
-      <button (click)="sendPaymentCsv()" nbButton outline size="small" status="info">
+      <button
+        *ngIf="eventDataFormEntityGroup?.is_paid"
+        (click)="sendPaymentCsv()"
+        nbButton
+        outline
+        size="small"
+        status="info"
+      >
         <nb-icon icon="email-outline"></nb-icon>
         Payment CSV
       </button>
