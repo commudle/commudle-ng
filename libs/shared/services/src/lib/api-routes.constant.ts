@@ -830,6 +830,7 @@ export const API_ROUTES = {
     WINNER_ANNOUNCEMENT_EMAIL: 'api/v2/hackathons/winner_announcement_email', //POST
     STATUS_FILTER_GENERAL_EMAIL: 'api/v2/hackathons/status_filter_general_email', //POST
     REGISTRATION_DETAILS_CSV: 'api/v2/hackathons/registration_details_csv', //POST
+    ROUND_GENERAL_MAILER: 'api/v2/hackathons/round_general_mailer', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET

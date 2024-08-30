@@ -19,6 +19,7 @@ import { faXmark, faPlus, faCheck, faUpRightFromSquare, faEnvelope } from '@fort
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { IHackathon, EHackathonStatus } from 'apps/shared-models/hackathon.model';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
+import { HackathonOverallRoundSelectionUpdateEmailComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-overall-round-selection-update-email/hackathon-overall-round-selection-update-email.component';
 
 @Component({
   selector: 'commudle-hackathon-control-panel-review',
@@ -162,9 +163,14 @@ export class HackathonControlPanelReviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  openRoundSelectionUpdateEmailDialogBox(dialog) {
-    this.dialogRef = this.nbDialogService.open(dialog);
+  openRoundSelectionUpdateEmailDialogBox() {
+    this.dialogRef = this.nbDialogService.open(HackathonOverallRoundSelectionUpdateEmailComponent, {
+      context: {
+        hackathonId: this.hackathon.id,
+      },
+    });
   }
+
   changeRoundOption(event, teamId, index) {
     this.hackathonService.changeTeamRound(teamId, event.target.value).subscribe((data) => {
       this.toastrService.successDialog('Details has been updated successfully');
