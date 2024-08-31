@@ -145,7 +145,7 @@
     "eslint-plugin-cypress": "^2.10.3",
     "express": "^4.18.1",
     "express-static-gzip": "^2.1.7",
-    "firebase-tools": "11.9.0",
+    "firebase-tools": "13.6.0",
     "husky": "^8.0.2",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
