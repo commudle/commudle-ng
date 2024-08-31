@@ -102,7 +102,7 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@commitlint/config-nx-scopes": "^17.2.0",
-    "@compodoc/compodoc": "^1.1.19",
+    "@compodoc/compodoc": "^1.1.25",
     "@nrwl/cli": "15.1.1",
     "@nrwl/cypress": "15.1.1",
     "@nrwl/eslint-plugin-nx": "15.1.1",
