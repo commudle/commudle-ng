@@ -11,47 +11,60 @@
     }
 
     .cfp-card-details {
-      @apply md:com-p-3 com-px-4 com-py-5 com-overflow-hidden com-h-full;
+      @apply md:com-p-3 com-px-4 com-py-2 com-overflow-hidden com-h-full;
       flex: 1;
       .first-row {
         @apply com-flex com-flex-col;
 
         .badge-and-time {
-          @apply com-flex com-flex-row com-justify-between com-items-center;
+          @apply com-flex com-flex-row com-justify-between com-items-center com-mr-2 com-mb-2;
 
           .event-time {
-            @apply com-text-xs com-font-medium md:com-mb-2 com-mb-4 com-mt-0 com-text-gray-500;
+            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-text-gray-500 com-flex;
+            text-wrap: nowrap;
           }
           .community-badge {
-            @apply com-m-0 md:com-my-0 com-mb-6;
+            @apply com-m-0;
           }
         }
 
         .event-title {
-          @apply md:com-text-sm com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-3 com-line-clamp-2 md:com-h-full com-h-10;
+          @apply md:com-text-sm com-text-xs com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-line-clamp-2 md:com-mb-4 com-mb-3;
         }
       }
 
       .second-row {
         @apply com-flex com-flex-row com-justify-between com-items-end;
 
+        .interested-members,
+        .location {
+          @apply com-flex com-flex-row com-justify-center com-text-gray-500 com-mb-1 com-flex-shrink-0;
+
+          fa-icon {
+            @apply com-h-3 com-w-3 com-mr-2 com-flex-shrink-0;
+          }
+          span {
+            @apply com-text-xs com-font-medium com-text-gray-500;
+          }
+        }
+
+        .location-mobile-view {
+          @apply com-flex com-flex-row com-justify-center com-text-gray-500 com-mb-1  com-flex-shrink-0;
+
+          fa-icon {
+            @apply com-h-3 com-w-3 com-mr-2 com-flex-shrink-0;
+          }
+          span {
+            @apply com-text-xs com-font-medium com-text-gray-500;
+          }
+        }
+
         .interested-and-location {
-          @apply com-flex com-flex-row com-justify-between com-gap-6 md:com-mr-5;
+          @apply com-flex com-flex-row com-justify-between md:com-gap-6 com-gap-3 md:com-mr-5;
 
           .left-col,
           .right-col {
             @apply com-flex com-flex-col com-items-start;
-
-            .interested-members,
-            .location {
-              @apply com-flex com-flex-row com-justify-center com-text-gray-500 com-mb-1;
-              fa-icon {
-                @apply com-h-3 com-w-3 com-mr-2 com-flex-shrink-0;
-              }
-              span {
-                @apply com-text-xs com-font-medium com-text-gray-500;
-              }
-            }
 
             .interested-members-count,
             .location-text {

@@ -28,7 +28,9 @@ export class CallForSpeakerCardComponent implements OnInit {
 
   getCommunity() {
     this.communitiesService.pGetCommunityDetails(this.item.event.kommunity_id).subscribe((data) => {
-      this.community = data;
+      if (data) {
+        this.community = data;
+      }
     });
   }
 }

@@ -7,7 +7,7 @@
 }
 
 .speaker-slide-card {
-  @apply md:com-w-[276px] com-w-full com-h-[304px];
+  @apply md:com-w-[276px] com-w-full md:com-h-[304px] com-h-[330px];
 }
 
 app-pagination {

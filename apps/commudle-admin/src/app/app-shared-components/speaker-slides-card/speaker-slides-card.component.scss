@@ -22,14 +22,14 @@ nb-card {
     }
 
     .content {
-      @apply com-flex com-flex-col com-justify-between com-p-3;
+      @apply com-flex com-flex-col com-justify-between md:com-p-3 com-p-4;
 
       .headings {
-        @apply com-mb-8;
+        @apply md:com-mb-8 com-mb-10;
       }
 
       .title {
-        @apply com-text-sm com-font-medium com-text-black com-m-0 com-mb-10px com-h-10 com-line-clamp-2;
+        @apply md:com-text-sm com-text-base com-font-medium com-text-black com-m-0 md:com-mb-10px com-mb-3 md:com-h-10 com-h-auto com-line-clamp-2;
       }
 
       .event-name {
