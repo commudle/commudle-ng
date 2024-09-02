@@ -7,6 +7,7 @@ import { IEvent } from 'apps/shared-models/event.model';
 import { CommunityEventsListActionsComponent } from './community-events-list-actions/community-events-list-actions.component';
 import { CommunityEventsListDateComponent } from './community-events-list-date/community-events-list-date.component';
 import { CommunityEventsListPublicPageComponent } from './community-events-list-public-page/community-events-list-public-page.component';
+import { Cell } from 'angular2-smart-table'; // Ensure this is imported
 
 @Component({
   selector: 'app-community-events-list',
@@ -32,6 +33,10 @@ export class CommunityEventsListComponent implements OnInit {
         isFilterable: false,
         type: 'custom',
         renderComponent: CommunityEventsListDateComponent,
+        componentInitFunction: (instance: CommunityEventsListDateComponent, cell: Cell) => {
+          const rowData: IEvent = cell.getRow().getData();
+          instance.rowData = rowData;
+        },
       },
       status: {
         title: 'Status',
@@ -43,6 +48,10 @@ export class CommunityEventsListComponent implements OnInit {
         type: 'custom',
         renderComponent: CommunityEventsListActionsComponent,
         isSortable: false,
+        componentInitFunction: (instance: CommunityEventsListActionsComponent, cell: Cell) => {
+          const rowData: IEvent = cell.getRow().getData();
+          instance.rowData = rowData;
+        },
       },
       public_page: {
         title: 'Public Page',
@@ -50,6 +59,10 @@ export class CommunityEventsListComponent implements OnInit {
         type: 'custom',
         renderComponent: CommunityEventsListPublicPageComponent,
         isSortable: false,
+        componentInitFunction: (instance: CommunityEventsListPublicPageComponent, cell: Cell) => {
+          const rowData: IEvent = cell.getRow().getData();
+          instance.rowData = rowData;
+        },
       },
     },
     rowClassFunction: () => 'clickable',

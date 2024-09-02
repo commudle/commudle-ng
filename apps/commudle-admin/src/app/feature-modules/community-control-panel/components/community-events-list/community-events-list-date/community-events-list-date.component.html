@@ -1,4 +1,4 @@
-<div *ngIf="rowData.start_time">
+<div *ngIf="rowData && rowData.start_time">
   <p>
     {{ moment.tz(rowData.start_time, rowData.timezone).format('Do MMM YYYY h:mm A') }} - ({{
       moment.tz(rowData.timezone).zoneAbbr()

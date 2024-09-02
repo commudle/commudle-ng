@@ -1,4 +1,4 @@
-<div class="com-flex com-gap-4">
+<div class="com-flex com-gap-4" *ngIf="rowData">
   <a [routerLink]="['event-dashboard', rowData.slug]" nbButton hero status="info" size="tiny"> Dashboard </a>
   <button *ngIf="rowData.start_time" (click)="openCloneEventWindow()" outline nbButton status="info" size="tiny">
     Clone
