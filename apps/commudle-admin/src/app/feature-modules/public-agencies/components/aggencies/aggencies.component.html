@@ -26,62 +26,80 @@
         </commudle-public-page-layout>
       </div>
     </div>
+  </div>
 
-    <div class="partners-and-vendors" id="partners-and-vendors">
-      <a [routerLink]="'.'" fragment="partners-and-vendors">
-        <div class="container-bg">
-          <div class="base-layout">
-            <h2 class="partners-and-vendors-heading">Preferred Partners & Vendors</h2>
-            <h3 class="partners-and-vendors-subheading">
-              Build communities with multiple types of engagements, your search for 'the right platform' ends here
-            </h3>
-            <div class="communities-list">
-              <div class="devrel">
-                <p class="subheading com-rounded-tl-2xl">DevRel Agencies</p>
+  <div class="partners-and-vendors" id="partners-and-vendors">
+    <a [routerLink]="'.'" fragment="partners-and-vendors">
+      <div class="container-bg">
+        <div class="base-layout">
+          <h2 class="partners-and-vendors-heading">Preferred Partners & Vendors</h2>
+          <h3 class="partners-and-vendors-subheading">
+            Build communities with multiple types of engagements, your search for 'the right platform' ends here
+          </h3>
+          <div class="communities-list">
+            <div class="devrel">
+              <p class="subheading md:com-rounded-tl-2xl md:com-rounded-tr-none com-rounded-t-2xl">DevRel Agencies</p>
+              <div class="devrel-list">
                 <a
                   *ngFor="let devrelAgency of devrelAgenciesCommunities"
-                  [routerLink]="['/search', devrelAgency.slug]"
+                  [routerLink]="['/search', devrelAgency.slug.current]"
                   class="devrel-agency"
                 >
                   <div class="communities-card">
-                    <div class="logo">
-                      <!-- <img [alt]="devrelAgency.name" [nbTooltip]="devrelAgency.name" [src]="devrelAgency.image" /> -->
+                    <div *ngIf="devrelAgency?.image" class="logo">
+                      <img
+                        [src]="imageUrl(devrelAgency.image)?.url() || ''"
+                        class="com-w-full"
+                        [nbTooltip]="devrelAgency.name"
+                      />
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ devrelAgency.name }}</p>
-                      <!-- <p class="description">{{ devrelAgency.description }}</p> -->
+                      <p class="description">{{ devrelAgency.description }}</p>
                     </div>
                   </div>
                 </a>
               </div>
-              <div class="event-management-container">
-                <p class="subheading">Event Management Agencies</p>
+            </div>
+            <div class="event-management-container">
+              <p class="subheading md:com-rounded-t-none com-rounded-t-2xl">Event Management Agencies</p>
+              <div class="devrel-list">
                 <a
                   *ngFor="let eventManagement of eventManagementCommunities"
-                  [routerLink]="['/search', eventManagement.slug]"
+                  [routerLink]="['/search', eventManagement.slug.current]"
                   class="event-management"
                 >
                   <div class="communities-card">
-                    <div class="logo">
-                      <!-- <img [alt]="eventManagementy.name" [nbTooltip]="eventManagement.name" [src]="eventManagement.image" /> -->
+                    <div *ngIf="eventManagement?.image" class="logo">
+                      <img
+                        [src]="imageUrl(eventManagement.image)?.url()"
+                        class="com-w-full"
+                        [nbTooltip]="eventManagement.name"
+                      />
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ eventManagement.name }}</p>
-                      <!-- <p class="description">{{ eventManagement.description }}</p> -->
+                      <p class="description">{{ eventManagement.description }}</p>
                     </div>
                   </div>
                 </a>
               </div>
-              <div class="vendors-container">
-                <p class="subheading com-rounded-tr-2xl">Schwag Vendors</p>
-                <a *ngFor="let vendors of vendorsCommunities" [routerLink]="['/search', vendors.slug]" class="vendors">
+            </div>
+            <div class="vendors-container">
+              <p class="subheading md:com-rounded-tl-none md:com-rounded-tr-2xl com-rounded-t-2xl">Schwag Vendors</p>
+              <div class="devrel-list">
+                <a
+                  *ngFor="let vendor of vendorsCommunities"
+                  [routerLink]="['/search', vendor.slug.current]"
+                  class="vendors"
+                >
                   <div class="communities-card">
-                    <div class="logo">
-                      <!-- <img [alt]="vendors.name" [nbTooltip]="vendors.name" [src]="vendors.image" /> -->
+                    <div *ngIf="vendor?.image" class="logo">
+                      <img [src]="imageUrl(vendor.image)?.url()" class="com-w-full" [nbTooltip]="vendor.name" />
                     </div>
                     <div class="communities-card-text">
-                      <p class="name">{{ vendors.name }}</p>
-                      <!-- <p class="description">{{ vendors.description }}</p> -->
+                      <p class="name">{{ vendor.name }}</p>
+                      <p class="description">{{ vendor.description }}</p>
                     </div>
                   </div>
                 </a>
@@ -89,9 +107,11 @@
             </div>
           </div>
         </div>
-      </a>
-    </div>
+      </div>
+    </a>
+  </div>
 
+  <div class="container commudle-agencies">
     <div class="base-layout">
       <div class="developer-profile" id="devrel">
         <commudle-public-page-layout>
@@ -210,6 +230,7 @@
       </div>
     </div>
   </div>
+
   <div id="stats">
     <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   </div>

@@ -59,6 +59,9 @@ export class AggenciesComponent implements OnInit {
     this.footerService.changeFooterStatus(true);
     this.setMeta();
     this.getTestimonials();
+    this.getDevrelAgenciesCommunities();
+    this.getEventManagementCommunities();
+    this.getVendorsCommunities();
   }
 
   ngOnDestroy() {
@@ -81,5 +84,37 @@ export class AggenciesComponent implements OnInit {
           this.testimonials = data;
         }
       });
+  }
+
+  getDevrelAgenciesCommunities() {
+    this.cmsService.getDataByTypeWithFilter('preferredPartners', 'category', 'devrel_agency', 10).subscribe((data) => {
+      if (data) {
+        this.devrelAgenciesCommunities = data;
+      }
+    });
+  }
+
+  getEventManagementCommunities() {
+    this.cmsService
+      .getDataByTypeWithFilter('preferredPartners', 'category', 'event_management_agency', 10)
+      .subscribe((data) => {
+        if (data) {
+          this.eventManagementCommunities = data;
+        }
+      });
+  }
+
+  getVendorsCommunities() {
+    this.cmsService.getDataByTypeWithFilter('preferredPartners', 'category', 'schwag_vendors', 10).subscribe((data) => {
+      if (data) {
+        this.vendorsCommunities = data;
+      }
+    });
+  }
+
+  imageUrl(source: any) {
+    if (source) {
+      return this.cmsService.getImageUrl(source);
+    }
   }
 }
