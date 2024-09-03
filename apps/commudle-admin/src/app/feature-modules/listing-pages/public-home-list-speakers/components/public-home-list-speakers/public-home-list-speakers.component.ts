@@ -1,5 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbRouteTab } from '@commudle/theme';
 import { FooterService } from 'apps/commudle-admin/src/app/services/footer.service';
 
 @Component({

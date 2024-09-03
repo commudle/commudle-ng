@@ -37,7 +37,6 @@ export class SpeakerSlidesComponent implements OnInit {
       this.loading = false;
       this.total = data.total;
       this.count = data.count;
-      this.total = data.total;
       // this.router.navigate([], { queryParams: { page: this.page } });
     });
   }
