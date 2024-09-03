@@ -23,6 +23,8 @@ export class EditDataFormComponent implements OnInit, OnChanges {
   @Input() showNameDescriptionFiled = true;
   @Input() centerLayout = true;
   @Input() showSubmitButton = true;
+  @Input() showDescriptionField = true;
+  @Input() showNameField = true;
   @Output() updateFormDataEvent: EventEmitter<any> = new EventEmitter<any>();
 
   faTrashAlt = faTrashAlt;

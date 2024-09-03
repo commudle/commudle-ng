@@ -106,6 +106,7 @@
                 [formName]="selectedRegistrationType.name + ' - ' + this.event.name"
                 [stickSubmitButtonBottom]="true"
                 [showNameDescriptionFiled]="false"
+                [showNameInputField]="false"
                 [minQuestionCount]="1"
                 [showSubmitButton]="false"
               >
@@ -115,6 +116,7 @@
               <commudle-edit-data-form
                 [dataFormId]="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
                 [showNameDescriptionFiled]="false"
+                [showNameField]="false"
                 [centerLayout]="false"
                 (updateFormDataEvent)="updateData($event)"
                 [showSubmitButton]="false"
