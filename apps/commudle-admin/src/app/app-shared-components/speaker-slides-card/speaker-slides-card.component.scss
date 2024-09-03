@@ -17,7 +17,7 @@ nb-card {
     .image {
       @apply com-w-full com-h-[156px] com-rounded-[10px];
       img {
-        @apply com-w-full com-h-full;
+        @apply md:com-w-full com-w-auto com-h-full;
       }
     }
 
@@ -26,6 +26,10 @@ nb-card {
 
       .headings {
         @apply md:com-mb-8 com-mb-10;
+      }
+
+      .user-profile-and-votes {
+        @apply com-flex com-flex-row com-justify-between;
       }
 
       .title {

@@ -1,6 +1,6 @@
-<a [routerLink]="['/speaker-resources', item.id]">
-  <nb-card>
-    <nb-card-body>
+<nb-card>
+  <nb-card-body>
+    <a [routerLink]="['/speaker-resources', item.id]">
       <div *ngIf="item.embedded_content !== null" class="slides-image">
         <div
           *ngIf="item.attachment_type === EAttachmentType.EMBEDDED_LINK && !showDefaultImage"
@@ -17,15 +17,26 @@
       <div *ngIf="item.embedded_content === null" class="image">
         <img alt="{{ item.title }}" src="{{ staticAssets.speaker_slides_empty_state }}" title="{{ item.title }}" />
       </div>
-      <div class="content">
+    </a>
+    <div class="content">
+      <a [routerLink]="['/speaker-resources', item.id]">
         <div class="headings">
           <h2 class="title">{{ item.title }}</h2>
           <h3 class="event-name">{{ item.event.name }}</h3>
         </div>
-        <div class="user-profile-small">
+      </a>
+      <div class="user-profile-and-votes">
+        <div class="user-profile-small" (click)="$event.stopPropagation()">
           <app-user-profile-card-small [user]="item.user"></app-user-profile-card-small>
         </div>
+        <div class="votes" (click)="$event.stopPropagation()">
+          <app-votes-display
+            [icon]="'heart-outline'"
+            [votableId]="item.id"
+            [votableType]="'SpeakerResource'"
+          ></app-votes-display>
+        </div>
       </div>
-    </nb-card-body>
-  </nb-card>
-</a>
+    </div>
+  </nb-card-body>
+</nb-card>
