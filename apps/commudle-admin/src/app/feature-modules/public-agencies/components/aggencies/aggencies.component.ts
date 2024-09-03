@@ -33,6 +33,9 @@ export class AggenciesComponent implements OnInit {
   ];
 
   testimonials: ITestimonial[];
+  devrelAgenciesCommunities: any[] = [];
+  eventManagementCommunities: any[] = [];
+  vendorsCommunities: any[] = [];
 
   questions = [
     'Can I create multiple organizations or business pages which have communities under them?',
