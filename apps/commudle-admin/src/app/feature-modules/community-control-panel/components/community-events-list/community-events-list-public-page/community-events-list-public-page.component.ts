@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IEvent } from 'apps/shared-models/event.model';
 
 @Component({
   selector: 'commudle-community-events-list-public-page',
