@@ -34,7 +34,8 @@
         <div class="base-layout">
           <h2 class="partners-and-vendors-heading">Preferred Partners & Vendors</h2>
           <h3 class="partners-and-vendors-subheading">
-            Build communities with multiple types of engagements, your search for 'the right platform' ends here
+            Connect with our preferred DevRel Agencies, Event Management Agencies and Vendors to help scale your DevRel
+            Programs!
           </h3>
           <div class="communities-list">
             <div class="devrel">
@@ -42,7 +43,7 @@
               <div class="devrel-list">
                 <a
                   *ngFor="let devrelAgency of devrelAgenciesCommunities"
-                  [routerLink]="['/search', devrelAgency.slug.current]"
+                  [href]="devrelAgency.link"
                   class="devrel-agency"
                 >
                   <div class="communities-card">
@@ -66,7 +67,7 @@
               <div class="devrel-list">
                 <a
                   *ngFor="let eventManagement of eventManagementCommunities"
-                  [routerLink]="['/search', eventManagement.slug.current]"
+                  [href]="eventManagement.link"
                   class="event-management"
                 >
                   <div class="communities-card">
@@ -88,11 +89,7 @@
             <div class="vendors-container">
               <p class="subheading md:com-rounded-tl-none md:com-rounded-tr-2xl com-rounded-t-2xl">Schwag Vendors</p>
               <div class="devrel-list">
-                <a
-                  *ngFor="let vendor of vendorsCommunities"
-                  [routerLink]="['/search', vendor.slug.current]"
-                  class="vendors"
-                >
+                <a *ngFor="let vendor of vendorsCommunities" [href]="vendor.link" target="_blank" class="vendors">
                   <div class="communities-card">
                     <div *ngIf="vendor?.image" class="logo">
                       <img [src]="imageUrl(vendor.image)?.url()" class="com-w-full" [nbTooltip]="vendor.name" />
@@ -106,6 +103,9 @@
               </div>
             </div>
           </div>
+          <a [routerLink]="['/fill-form', 2751]" class="connect-btn"
+            ><button nbButton status="primary" size="large">Connect With A Partner</button></a
+          >
         </div>
       </div>
     </a>
