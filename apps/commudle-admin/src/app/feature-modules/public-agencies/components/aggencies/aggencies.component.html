@@ -49,7 +49,7 @@
                   <div class="communities-card">
                     <div *ngIf="devrelAgency?.image" class="logo">
                       <img
-                        [src]="imageUrl(devrelAgency.image)?.url() || ''"
+                        [src]="imageUrl(devrelAgency.image)?.url()"
                         class="com-w-full"
                         [nbTooltip]="devrelAgency.name"
                       />
