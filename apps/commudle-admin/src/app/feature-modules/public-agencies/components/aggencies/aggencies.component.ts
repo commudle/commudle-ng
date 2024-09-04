@@ -4,6 +4,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { ITestimonial } from 'apps/shared-models/testimonial.model';
+import { IPreferredPartners } from 'apps/shared-models/preferred-partners.model';
 
 @Component({
   selector: 'commudle-aggencies',
@@ -33,9 +34,9 @@ export class AggenciesComponent implements OnInit {
   ];
 
   testimonials: ITestimonial[];
-  devrelAgenciesCommunities: any[] = [];
-  eventManagementCommunities: any[] = [];
-  vendorsCommunities: any[] = [];
+  devrelAgenciesCommunities: IPreferredPartners[];
+  eventManagementCommunities: IPreferredPartners[];
+  vendorsCommunities: IPreferredPartners[];
 
   questions = [
     'Can I create multiple organizations or business pages which have communities under them?',
