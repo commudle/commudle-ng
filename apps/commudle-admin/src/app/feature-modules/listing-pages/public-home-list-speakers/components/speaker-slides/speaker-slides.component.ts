@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ISpeakerResource } from '@commudle/shared-models';
+import { SeoService } from '@commudle/shared-services';
 import { SpeakerResourcesService } from 'apps/commudle-admin/src/app/services/speaker-resources.service';
 
 @Component({
@@ -20,6 +21,7 @@ export class SpeakerSlidesComponent implements OnInit {
     private speakerResourcesService: SpeakerResourcesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private seoService: SeoService,
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class SpeakerSlidesComponent implements OnInit {
       this.page = Number(this.activatedRoute.snapshot.queryParams.page);
     }
     this.getSpeakersSlidesList();
+    this.setMeta();
   }
 
   getSpeakersSlidesList() {
@@ -39,5 +42,13 @@ export class SpeakerSlidesComponent implements OnInit {
       this.count = data.count;
       // this.router.navigate([], { queryParams: { page: this.page } });
     });
+  }
+
+  setMeta(): void {
+    this.seoService.setTags(
+      'Tech Speaker Content - Slides, CodeLabs, Designs, Tutorials',
+      'Find all the talks of speakers from different events at one place on Commudle. It can be slides, tutorials, videos, designs, etc. Learn from the best folks in tech or prepare your next slides by getting inspired',
+      'https://commudle.com/assets/images/commudle-logo192.png',
+    );
   }
 }
