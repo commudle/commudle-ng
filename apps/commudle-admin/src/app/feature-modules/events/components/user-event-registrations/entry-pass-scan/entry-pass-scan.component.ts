@@ -73,10 +73,11 @@ export class EntryPassScanComponent implements OnInit, OnDestroy {
         this.entryPass = entryPass;
 
         if (this.entryPass.attendance) {
-          this.correctSound.nativeElement.play();
           if (this.entryPass.is_first_time_attendance) {
+            this.correctSound.nativeElement.play();
             this.nbToastrService.successDialog('Attendance marked');
           } else {
+            this.incorrectSound.nativeElement.play();
             this.nbToastrService.warningDialog('Attendance already marked');
           }
         }
