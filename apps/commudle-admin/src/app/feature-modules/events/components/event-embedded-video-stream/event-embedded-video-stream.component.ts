@@ -9,12 +9,11 @@ import {
   Output,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { IEmbeddedVideoStream, IEvent } from '@commudle/shared-models';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { ICommunity } from 'apps/shared-models/community.model';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { IEmbeddedVideoStream } from 'apps/shared-models/embedded_video_stream.model';
 import { EEmbeddedVideoStreamSources } from 'apps/shared-models/enums/embedded_video_stream_sources.enum';
-import { IEvent } from 'apps/shared-models/event.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 import { Subscription } from 'rxjs';

@@ -12,7 +12,7 @@ import { GoogleSigninButtonDirective } from './directives/google-signin-button.d
 export class AuthModule {
   constructor(@Optional() @SkipSelf() parentModule: AuthModule) {
     if (parentModule) {
-      throw new Error('SocialLoginModule is already loaded. Import it in the AppModule only');
+      throw new Error('AuthModule is already loaded. Import it in the AppModule only');
     }
   }
 
@@ -22,7 +22,7 @@ export class AuthModule {
       providers: [
         AuthService,
         {
-          provide: 'SocialAuthServiceConfig',
+          provide: 'AuthServiceConfig',
           useValue: config,
         },
       ],

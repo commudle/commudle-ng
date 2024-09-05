@@ -1,8 +1,9 @@
 import { Inject, Injectable, Injector, NgZone, Type } from '@angular/core';
-import { GoogleLoginProvider } from 'libs/auth/src/lib/providers/google-login-provider';
 import { AsyncSubject, isObservable, Observable, ReplaySubject } from 'rxjs';
 import { LoginProvider } from './entities/login-provider';
 import { SocialUser } from './entities/social-user';
+import { GoogleLoginProvider } from './providers/google-login-provider';
+import { YoutubeLoginProvider } from './providers/youtube-login-provider';
 
 /**
  * An interface to define the shape of the service configuration options.
@@ -10,7 +11,6 @@ import { SocialUser } from './entities/social-user';
 export interface AuthServiceConfig {
   autoLogin?: boolean;
   providers: { id: string; provider: LoginProvider | Type<LoginProvider> }[];
-  onError?: (error: any) => any;
 }
 
 @Injectable({
@@ -43,9 +43,9 @@ export class AuthService {
     private readonly _injector: Injector,
   ) {
     if (config instanceof Promise) {
-      config.then((config: AuthServiceConfig) => this.initialize(config));
+      config.then((config: AuthServiceConfig) => this.initialize_config(config));
     } else {
-      this.initialize(config);
+      this.initialize_config(config);
     }
   }
 
@@ -69,7 +69,7 @@ export class AuthService {
       throw AuthService.ERR_NOT_INITIALIZED;
     } else if (!providerObject) {
       throw AuthService.ERR_LOGIN_PROVIDER_NOT_FOUND;
-    } else if (!(providerObject instanceof GoogleLoginProvider)) {
+    } else if (!(providerObject instanceof GoogleLoginProvider || providerObject instanceof YoutubeLoginProvider)) {
       throw AuthService.ERR_NOT_SUPPORTED_FOR_ACCESS_TOKEN;
     }
 
@@ -107,11 +107,11 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       if (!this.initialized) {
         reject(AuthService.ERR_NOT_INITIALIZED);
-      } else if (providerId !== GoogleLoginProvider.PROVIDER_ID) {
+      } else if (providerId !== GoogleLoginProvider.PROVIDER_ID && providerId !== YoutubeLoginProvider.PROVIDER_ID) {
         reject(AuthService.ERR_NOT_SUPPORTED_FOR_REFRESH_TOKEN);
       } else {
         const providerObject = this.providers.get(providerId);
-        if (providerObject instanceof GoogleLoginProvider) {
+        if (providerObject instanceof GoogleLoginProvider || providerObject instanceof YoutubeLoginProvider) {
           providerObject.revokeAccessToken().then(resolve).catch(reject);
         } else {
           reject(AuthService.ERR_LOGIN_PROVIDER_NOT_FOUND);
@@ -156,7 +156,7 @@ export class AuthService {
    * @param revoke Optional parameter to specify whether a hard sign out is to be performed
    * @returns A `Promise` that resolves if the operation is successful, rejects otherwise
    */
-  signOut(revoke: boolean = false): Promise<void> {
+  signOut(revoke = false): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this.initialized) {
         reject(AuthService.ERR_NOT_INITIALIZED);
@@ -185,14 +185,58 @@ export class AuthService {
     });
   }
 
-  private initialize(config: AuthServiceConfig): void {
+  public initialize_one(provider_id: string): void {
+    const providerObject = this.providers.get(provider_id);
+    if (providerObject) {
+      providerObject
+        .initialize(this.autoLogin)
+        .then(() => {
+          if (this.autoLogin) {
+            const loginStatusPromises: any[] = [];
+            let loggedIn = false;
+
+            const promise = providerObject.getLoginStatus();
+            loginStatusPromises.push(promise);
+            promise
+              .then((user: SocialUser) => {
+                this.setUser(user, provider_id);
+                loggedIn = true;
+              })
+              .catch(console.debug);
+            Promise.all(loginStatusPromises).catch(() => {
+              if (!loggedIn) {
+                this._user = null;
+                this._authState.next(null);
+              }
+            });
+          }
+
+          if (isObservable(providerObject.changeUser)) {
+            providerObject.changeUser.subscribe((user) => {
+              this._ngZone.run(() => {
+                this.setUser(user, provider_id);
+              });
+            });
+          }
+        })
+        .catch(console.debug)
+        .finally(() => {
+          this.initialized = true;
+          this._initState.next(this.initialized);
+          this._initState.complete();
+        });
+    }
+  }
+
+  private initialize_config(config: AuthServiceConfig): void {
     this.autoLogin = config.autoLogin !== undefined ? config.autoLogin : false;
-    const { onError = console.error } = config;
 
     config.providers.forEach((item) => {
       this.providers.set(item.id, 'prototype' in item.provider ? this._injector.get(item.provider) : item.provider);
     });
+  }
 
+  private initialize_all(): void {
     Promise.all(Array.from(this.providers.values()).map((provider) => provider.initialize(this.autoLogin)))
       .then(() => {
         if (this.autoLogin) {
@@ -227,9 +271,7 @@ export class AuthService {
           }
         });
       })
-      .catch((error) => {
-        onError(error);
-      })
+      .catch(console.debug)
       .finally(() => {
         this.initialized = true;
         this._initState.next(this.initialized);

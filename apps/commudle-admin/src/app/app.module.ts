@@ -5,7 +5,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider } from '@commudle/auth';
+import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider, YoutubeLoginProvider } from '@commudle/auth';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import {
   NbAccordionModule,
@@ -65,6 +65,7 @@ import { AppSharedComponentsModule } from './app-shared-components/app-shared-co
 import { CommunitiesCardComponent } from './app-shared-components/communities-card/communities-card.component';
 import { ListingPagesLayoutComponent } from './app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
+import { CommunitiesCardComponent } from './app-shared-components/communities-card/communities-card.component';
 import { AppComponent } from './app.component';
 import { AboutOldComponent } from './components/about-old/about-old.component';
 import { AboutComponent } from './components/about/about.component';
@@ -89,6 +90,7 @@ import { HomeLabsComponent } from './components/home/components/home-labs/home-l
 import { HomePromotionsComponent } from './components/home/components/home-promotions/home-promotions.component';
 import { FeaturesComponent } from './components/home/features/features.component';
 import { HomeComponent } from './components/home/home.component';
+import { LoginConsentPopupComponent } from './components/login-consent-popup/login-consent-popup.component';
 import { LoginConsentPopupComponent } from './components/login-consent-popup/login-consent-popup.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -119,10 +121,19 @@ import { SkeletonScreensModule } from './feature-modules/skeleton-screens/skelet
 import { UserChatsModule } from './feature-modules/user-chats/user-chats.module';
 import { UsersModule } from './feature-modules/users/users.module';
 import { AppInitService } from './services/app-init.service';
-import * as Sentry from '@sentry/angular-ivy';
-import { SidebarComponent } from 'apps/shared-components/sidebar/sidebar.component';
-import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
+import { ListingPagesLayoutComponent } from 'apps/commudle-admin/src/app/app-shared-components/listing-pages-layout/listing-pages-layout.component';
+import { PublicHomeListSpeakersModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/public-home-list-speakers.module';
+import { PublicHomeListEventsModule } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-events/public-home-list-events.module';
+import { SkeletonVerticalCardsComponent } from './feature-modules/skeleton-screens/components/skeleton-vertical-cards/skeleton-vertical-cards.component';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
+import { FillDataFormPaidComponent } from './components/fill-data-form/fill-data-form-paid/fill-data-form-paid.component';
+import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
+import { NgxStripeModule } from 'ngx-stripe';
+import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
+import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
 
+import * as Sentry from '@sentry/angular-ivy';
+import { Router } from '@angular/router';
 export function initApp(appInitService: AppInitService): () => Promise<any> {
   return () => appInitService.initializeApp();
 }
@@ -289,6 +300,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.google_client_id),
+          },
+          {
+            id: YoutubeLoginProvider.PROVIDER_ID,
+            provider: new YoutubeLoginProvider(environment.google_client_id),
           },
         ],
       } as AuthServiceConfig,
