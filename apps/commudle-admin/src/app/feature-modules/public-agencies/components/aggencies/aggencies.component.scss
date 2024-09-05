@@ -152,3 +152,63 @@ a {
     @apply com-m-0 md:com-mt-[60px] com-mt-8;
   }
 }
+
+.partners-and-vendors {
+  @apply md:com-mx-auto com-my-0 com-p-0 md:com-pt-[102px] com-pt-10 md:com-w-auto com-w-full;
+
+  .container-bg {
+    @apply com-bg-blue-50 md:com-py-14 com-py-10;
+  }
+
+  .partners-and-vendors-heading {
+    @apply com-flex com-justify-center com-text-center com-text-4xl com-font-bold com-m-0 com-mb-4 md:com-px-0 com-mx-4;
+  }
+
+  .partners-and-vendors-subheading {
+    @apply com-flex com-justify-center com-text-center com-text-xl com-font-medium com-text-gray-500 com-m-0 md:com-mb-14 com-mb-10 md:com-px-0 com-mx-4;
+  }
+
+  .communities-list {
+    @apply com-grid md:com-grid-cols-3 com-grid-cols-1 com-bg-white com-rounded-2xl md:com-px-0 com-mx-4;
+
+    .subheading {
+      @apply com-text-center md:com-text-lg com-text-base com-py-4 md:com-mb-6 com-mb-0 com-text-slate-800 com-bg-slate-200 com-font-medium com-m-0;
+    }
+  }
+
+  a {
+    @apply com-no-underline;
+    .communities-card {
+      @apply com-flex com-flex-row com-w-full md:com-h-[120px] com-h-[100px] com-border com-border-l-2 com-border-solid com-border-Bright-Gray com-border-l-blue-600 com-rounded-r-[20px] com-rounded-l-none com-bg-white md:com-p-4 com-p-3 com-mb-5;
+      .logo {
+        @apply com-flex com-items-center md:com-w-[88px] md:com-h-[88px] com-w-[66px] com-h-[66px] com-object-cover com-m-0 md:com-mr-4 com-mr-3 com-flex-shrink-0 com-bg-tWhite com-rounded-md;
+
+        img {
+          @apply com-w-full com-h-auto com-rounded-lg;
+        }
+      }
+      .communities-card-text {
+        @apply com-flex com-flex-col com-text-start;
+        .name {
+          @apply com-m-0 com-mb-1 com-line-clamp-1 md:com-text-base com-text-xs com-font-semibold com-text-Yankees-Blue;
+        }
+        .description {
+          @apply com-m-0 com-line-clamp-3 md:com-text-sm com-text-10px com-font-normal com-text-gray-500;
+        }
+      }
+    }
+  }
+}
+
+.devrel-list {
+  @apply com-flex com-flex-col md:com-pr-6 com-pr-0;
+}
+
+.event-management-container,
+.vendors-container {
+  @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
+}
+
+.connect-btn {
+  @apply com-flex com-justify-center md:com-mt-10 com-mt-8;
+}

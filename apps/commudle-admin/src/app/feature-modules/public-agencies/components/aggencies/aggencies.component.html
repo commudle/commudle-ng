@@ -1,6 +1,6 @@
 <div class="agencies">
-  <div class="base-layout">
-    <div class="container commudle-agencies">
+  <div class="container commudle-agencies">
+    <div class="base-layout">
       <div class="developer-communities" id="developer-programs">
         <commudle-public-page-layout>
           <div content class="public-page-content">
@@ -25,7 +25,94 @@
           </div>
         </commudle-public-page-layout>
       </div>
+    </div>
+  </div>
 
+  <div class="partners-and-vendors" id="partners-and-vendors">
+    <a [routerLink]="'.'" fragment="partners-and-vendors">
+      <div class="container-bg">
+        <div class="base-layout">
+          <h2 class="partners-and-vendors-heading">Preferred Partners & Vendors</h2>
+          <h3 class="partners-and-vendors-subheading">
+            Connect with our preferred DevRel Agencies, Event Management Agencies and Vendors to help scale your DevRel
+            Programs!
+          </h3>
+          <div class="communities-list">
+            <div class="devrel">
+              <p class="subheading md:com-rounded-tl-2xl md:com-rounded-tr-none com-rounded-t-2xl">DevRel Agencies</p>
+              <div class="devrel-list">
+                <a
+                  *ngFor="let devrelAgency of devrelAgenciesCommunities"
+                  [href]="devrelAgency.link"
+                  class="devrel-agency"
+                >
+                  <div class="communities-card">
+                    <div *ngIf="devrelAgency?.image" class="logo">
+                      <img
+                        [src]="imageUrl(devrelAgency.image)?.url()"
+                        class="com-w-full"
+                        [nbTooltip]="devrelAgency.name"
+                      />
+                    </div>
+                    <div class="communities-card-text">
+                      <p class="name">{{ devrelAgency.name }}</p>
+                      <p class="description">{{ devrelAgency.description }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="event-management-container">
+              <p class="subheading md:com-rounded-t-none com-rounded-t-2xl">Event Management Agencies</p>
+              <div class="devrel-list">
+                <a
+                  *ngFor="let eventManagement of eventManagementCommunities"
+                  [href]="eventManagement.link"
+                  class="event-management"
+                >
+                  <div class="communities-card">
+                    <div *ngIf="eventManagement?.image" class="logo">
+                      <img
+                        [src]="imageUrl(eventManagement.image)?.url()"
+                        class="com-w-full"
+                        [nbTooltip]="eventManagement.name"
+                      />
+                    </div>
+                    <div class="communities-card-text">
+                      <p class="name">{{ eventManagement.name }}</p>
+                      <p class="description">{{ eventManagement.description }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="vendors-container">
+              <p class="subheading md:com-rounded-tl-none md:com-rounded-tr-2xl com-rounded-t-2xl">Schwag Vendors</p>
+              <div class="devrel-list">
+                <a *ngFor="let vendor of vendorsCommunities" [href]="vendor.link" target="_blank" class="vendors">
+                  <div class="communities-card">
+                    <div *ngIf="vendor?.image" class="logo">
+                      <img [src]="imageUrl(vendor.image)?.url()" class="com-w-full" [nbTooltip]="vendor.name" />
+                    </div>
+                    <div class="communities-card-text">
+                      <p class="name">{{ vendor.name }}</p>
+                      <p class="description">{{ vendor.description }}</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <a [routerLink]="['/fill-form', 2751]" class="connect-btn"
+            ><button nbButton status="primary" size="large">Connect With A Partner</button></a
+          >
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="container commudle-agencies">
+    <div class="base-layout">
       <div class="developer-profile" id="devrel">
         <commudle-public-page-layout>
           <div content class="public-page-content">
@@ -143,6 +230,7 @@
       </div>
     </div>
   </div>
+
   <div id="stats">
     <commudle-public-page-stats [stats]="stats"></commudle-public-page-stats>
   </div>

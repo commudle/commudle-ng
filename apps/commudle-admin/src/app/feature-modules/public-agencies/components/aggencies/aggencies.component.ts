@@ -4,6 +4,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { ITestimonial } from 'apps/shared-models/testimonial.model';
+import { IPreferredPartners } from 'apps/shared-models/preferred-partners.model';
 
 @Component({
   selector: 'commudle-aggencies',
@@ -33,6 +34,9 @@ export class AggenciesComponent implements OnInit {
   ];
 
   testimonials: ITestimonial[];
+  devrelAgenciesCommunities: IPreferredPartners[];
+  eventManagementCommunities: IPreferredPartners[];
+  vendorsCommunities: IPreferredPartners[];
 
   questions = [
     'Can I create multiple organizations or business pages which have communities under them?',
@@ -56,6 +60,9 @@ export class AggenciesComponent implements OnInit {
     this.footerService.changeFooterStatus(true);
     this.setMeta();
     this.getTestimonials();
+    this.getDevrelAgenciesCommunities();
+    this.getEventManagementCommunities();
+    this.getVendorsCommunities();
   }
 
   ngOnDestroy() {
@@ -78,5 +85,37 @@ export class AggenciesComponent implements OnInit {
           this.testimonials = data;
         }
       });
+  }
+
+  getDevrelAgenciesCommunities() {
+    this.cmsService.getDataByTypeWithFilter('preferredPartners', 'category', 'devrel_agency', 10).subscribe((data) => {
+      if (data) {
+        this.devrelAgenciesCommunities = data;
+      }
+    });
+  }
+
+  getEventManagementCommunities() {
+    this.cmsService
+      .getDataByTypeWithFilter('preferredPartners', 'category', 'event_management_agency', 10)
+      .subscribe((data) => {
+        if (data) {
+          this.eventManagementCommunities = data;
+        }
+      });
+  }
+
+  getVendorsCommunities() {
+    this.cmsService.getDataByTypeWithFilter('preferredPartners', 'category', 'schwag_vendors', 10).subscribe((data) => {
+      if (data) {
+        this.vendorsCommunities = data;
+      }
+    });
+  }
+
+  imageUrl(source: any) {
+    if (source) {
+      return this.cmsService.getImageUrl(source);
+    }
   }
 }
