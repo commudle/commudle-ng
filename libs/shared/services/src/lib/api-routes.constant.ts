@@ -197,6 +197,7 @@ export const API_ROUTES = {
       TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
       SOCIAL_RESOURCES: 'api/v2/events/public/social_resources',
       INTERESTED_MEMBERS: 'api/v2/events/public/interested_users',
+      SPEAKER_EDFEG_LIST: 'api/v2/events/public/speaker_edfeg_list',
     },
   },
 
@@ -511,6 +512,7 @@ export const API_ROUTES = {
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
     PUBLIC: {
       COMMUNITY_RESOURCES: 'api/v2/speaker_resources/public_community_sessions',
+      INDEX: 'api/v2/speaker_resources/public/index',
     },
   },
 

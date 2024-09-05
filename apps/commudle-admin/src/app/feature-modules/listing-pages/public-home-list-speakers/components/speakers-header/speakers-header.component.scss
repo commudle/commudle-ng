@@ -6,7 +6,7 @@
     .base-layout {
       @apply com-min-h-full;
       .content {
-        @apply com-flex com-items-center md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px] com-mb-4 md:com-mb-0;
+        @apply com-flex com-items-center md:com-rounded-lg com-rounded-none md:com-flex-row com-flex-col md:com-justify-between md:com-w-[1280px];
         .header-text {
           @apply com-flex com-flex-col md:com-p-0 com-px-4 md:com-pt-[38px] com-pt-10 com-py-6 md:com-w-[769px] md:com-min-h-[386px] com-w-full com-h-full;
 

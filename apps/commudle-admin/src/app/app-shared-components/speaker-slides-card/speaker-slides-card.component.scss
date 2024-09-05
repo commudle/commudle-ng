@@ -1,0 +1,47 @@
+nb-card {
+  @apply com-m-0 com-h-full;
+  nb-card-body {
+    @apply com-p-0;
+
+    .slides-image {
+      @apply com-w-full com-h-[156px] com-rounded-[10px];
+
+      .embedded-content {
+        @apply com-w-full com-break-all  com-overflow-y-scroll com-rounded-[10px];
+        &::ng-deep iframe {
+          @apply com-w-full com-h-full;
+        }
+      }
+    }
+
+    .image {
+      @apply com-w-full com-h-[156px] com-rounded-[10px];
+      img {
+        @apply md:com-w-full com-w-auto com-h-full;
+      }
+    }
+
+    .content {
+      @apply com-flex com-flex-col com-justify-between md:com-p-3 com-p-4;
+
+      .headings {
+        @apply md:com-mb-8 com-mb-10;
+      }
+
+      .user-profile-and-votes {
+        @apply com-flex com-flex-row com-justify-between;
+      }
+
+      .title {
+        @apply md:com-text-sm com-text-base com-font-medium com-text-black com-m-0 md:com-mb-10px com-mb-3 md:com-h-10 com-h-auto com-line-clamp-2;
+      }
+
+      .event-name {
+        @apply com-text-xs com-font-medium com-text-gray-500 com-m-0 com-line-clamp-1;
+      }
+    }
+  }
+}
+a {
+  @apply com-no-underline;
+}
