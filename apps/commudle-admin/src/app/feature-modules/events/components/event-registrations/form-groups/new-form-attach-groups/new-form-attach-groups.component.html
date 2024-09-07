@@ -96,6 +96,10 @@
                 </span>
               </label>
             </div>
+            <commudle-alert
+              [info]="eventDataFormEntityGroup?.summary_registration_counts?.all > 0"
+              message="This Form have response, So you can't change form"
+            ></commudle-alert>
             <div
               class="custom-questions"
               *ngIf="!eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
