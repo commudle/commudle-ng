@@ -75,7 +75,20 @@
       <nb-checkbox formControlName="is_readonly" status="basic">
         Readonly: Allow only admins to post in the group
       </nb-checkbox>
-      <nb-checkbox formControlName="default" status="basic"> Default </nb-checkbox>
+      <nb-checkbox
+        *ngIf="existingChannel"
+        formControlName="default"
+        status="basic"
+        [disabled]="existingChannel.is_private"
+      >
+        Default
+      </nb-checkbox>
+      <nb-checkbox *ngIf="!existingChannel" formControlName="default" status="basic"> Default </nb-checkbox>
+
+      <commudle-alert
+        [info]="existingChannel && existingChannel.is_private"
+        message="Private channels cannot be marked as default"
+      ></commudle-alert>
     </div>
 
     <div class="field" class="field" *ngIf="discussionType === EDiscussionType.CHANNEL">
