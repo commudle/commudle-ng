@@ -172,7 +172,7 @@ export const staticAssets = {
 
   //id: 157
   speaker_slides_empty_state:
-    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBKyt1QWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--1f0a5aa05bbb49f4303964bc7d53de14a755d728/Slide%20Card-Links-Desktop.svg',
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK2UyQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--abe73456217c0317dc67f743a094f4bdaeeae8d7/Light%20Mode-Links.svg',
 
   //id: 158
   call_for_speaker_empty_state:
