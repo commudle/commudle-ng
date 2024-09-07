@@ -1,7 +1,7 @@
 <nb-card>
   <nb-card-body>
     <a [routerLink]="['/speaker-resources', item.id]">
-      <div *ngIf="item.embedded_content !== null" class="slides-image">
+      <div class="slides-image">
         <div
           *ngIf="item.attachment_type === EAttachmentType.EMBEDDED_LINK && !showDefaultImage"
           [innerHTML]="iframe"
@@ -13,9 +13,6 @@
         <div *ngIf="item.attachment_type === EAttachmentType.LINK || showDefaultImage" class="image">
           <img alt="{{ item.title }}" src="{{ staticAssets.speaker_slides_empty_state }}" title="item.title" />
         </div>
-      </div>
-      <div *ngIf="item.embedded_content === null" class="image">
-        <img alt="{{ item.title }}" src="{{ staticAssets.speaker_slides_empty_state }}" title="{{ item.title }}" />
       </div>
     </a>
     <div class="content">
