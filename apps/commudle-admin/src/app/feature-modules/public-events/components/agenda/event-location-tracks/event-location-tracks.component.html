@@ -34,7 +34,7 @@
                   <p>{{ slot.session_title }}</p>
                   <div *ngIf="slot.track_slot_speakers" class="session-speaker">
                     <div *ngFor="let slot of slot.track_slot_speakers">
-                      <app-user-profile-card-small [user]="slot.user"></app-user-profile-card-small>
+                      <app-user-profile-card-medium [user]="slot.user"></app-user-profile-card-medium>
                     </div>
                   </div>
                   <div *ngIf="slot.tags_list" class="tags">
