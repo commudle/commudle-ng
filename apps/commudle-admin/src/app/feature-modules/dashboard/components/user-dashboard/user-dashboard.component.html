@@ -3,10 +3,44 @@
     <div class="container">
       <div class="three-column-layout medium">
         <div class="left-column">
-          <!-- <commudle-first-signin [currentUser]="currentUser"></commudle-first-signin> -->
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <nb-card class="user-profile-details">
+            <nb-card-body>
+              <commudle-userprofile-details
+                [userProfileDetails]="userProfileDetails"
+                [username]="currentUser.username"
+              ></commudle-userprofile-details>
+            </nb-card-body>
+          </nb-card>
+          <div class="your-communities">
+            <nb-card>
+              <nb-card-body>
+                <h2 class="your-communities-heading">Your Communities</h2>
+                <div *ngFor="let community of managedCommunities">
+                  <a [routerLink]="['/admin', 'communities', community.slug]" class="community">
+                    <div class="community-image-name">
+                      <div class="community-image">
+                        <img
+                          alt="{{ community.name }}"
+                          src="{{ community.logo_image_path?.i64 }}"
+                          title="{{ community.name }}"
+                        />
+                      </div>
+                      <p class="community-name">{{ community.name }}</p>
+                    </div>
+                    <p class="community-members-count">{{ community.members_count }}</p>
+                  </a>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
         </div>
         <div class="main-column">
-          <h1>Main</h1>
+          <div class="upcoming-events"></div>
+          <h2>Upcoming</h2>
+          <div *ngFor="let event of upcomingEvents" class="event-horizontal-card">
+            <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+          </div>
         </div>
         <div class="right-column">
           <div class="advertisement">
