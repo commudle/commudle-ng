@@ -150,6 +150,7 @@ export class FormGroupsComponent implements OnInit {
       this.paymentSettingService.indexPaymentSettings(edfeg.id).subscribe((data) => {
         if (!data) {
           this.toastLogService.warningDialog('Payment details do not exist, Please fill before changing visibility');
+          newStatus.target.value = edfeg.data_form_entity.visibility;
           return;
         } else {
           this.updateVisibility(newStatus, edfeg);
