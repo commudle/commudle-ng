@@ -1,8 +1,22 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'datatable-pager',
   template: `
+    <nb-select
+      placeholder="Jump to"
+      size="small"
+      shape="round"
+      status="basic"
+      class="jump-to"
+      (selectedChange)="jumpToPage()"
+      filled
+      [(ngModel)]="selectedPage"
+    >
+      <nb-option *ngFor="let pg of pages" [class.active]="pg.number === selectedPage" [value]="pg.number">{{
+        pg.number
+      }}</nb-option>
+    </nb-select>
     <ul class="pager">
       <li [class.disabled]="!canPrevious()">
         <a role="button" aria-label="go to first page" href="javascript:void(0)" (click)="selectPage(1)">&lt;&lt; </a>
@@ -83,6 +97,9 @@ export class DataTablePagerComponent {
   _page = 1;
   _size = 0;
   pages: any;
+  selectedPage: number;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   canPrevious(): boolean {
     return this.page > 1;
@@ -101,6 +118,7 @@ export class DataTablePagerComponent {
   }
 
   selectPage(page: number): void {
+    this.selectedPage = page;
     if (page > 0 && page <= this.totalPages && page !== this.page) {
       this.page = page;
 
@@ -140,5 +158,10 @@ export class DataTablePagerComponent {
     }
 
     return pages;
+  }
+
+  jumpToPage(): void {
+    this.selectPage(this.selectedPage);
+    this.cd.markForCheck();
   }
 }

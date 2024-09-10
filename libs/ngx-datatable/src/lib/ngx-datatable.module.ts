@@ -31,9 +31,11 @@ import { VisibilityDirective } from './directives/visibility.directive';
 import { ColumnChangesService } from './services/column-changes.service';
 import { DimensionsHelper } from './services/dimensions-helper.service';
 import { ScrollbarHelper } from './services/scrollbar-helper.service';
+import { FormsModule } from '@angular/forms';
+import { NbSelectModule } from '@commudle/theme';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, NbSelectModule],
   providers: [ScrollbarHelper, DimensionsHelper, ColumnChangesService],
   declarations: [
     DataTableFooterTemplateDirective,
@@ -85,9 +87,7 @@ export class NgxDatatableModule {
    * Configure global configuration via INgxDatatableConfig
    * @param configuration
    */
-  static forRoot(
-    configuration: INgxDatatableConfig
-  ): ModuleWithProviders<NgxDatatableModule> {
+  static forRoot(configuration: INgxDatatableConfig): ModuleWithProviders<NgxDatatableModule> {
     return {
       ngModule: NgxDatatableModule,
       providers: [{ provide: 'configuration', useValue: configuration }],
