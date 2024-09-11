@@ -1,7 +1,7 @@
 <div class="dashboard">
   <div class="base-layout">
     <div class="container">
-      <div class="three-column-layout medium">
+      <div class="three-column-layout">
         <div class="left-column">
           <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
           <nb-card class="user-profile-details">
@@ -36,10 +36,12 @@
           </div>
         </div>
         <div class="main-column">
-          <div class="upcoming-events"></div>
-          <h2>Upcoming</h2>
-          <div *ngFor="let event of upcomingEvents" class="event-horizontal-card">
-            <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+          <commudle-dashboard-updates></commudle-dashboard-updates>
+          <div class="upcoming-events">
+            <h2>Upcoming</h2>
+            <div *ngFor="let event of upcomingEvents" class="event-horizontal-card">
+              <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+            </div>
           </div>
         </div>
         <div class="right-column">

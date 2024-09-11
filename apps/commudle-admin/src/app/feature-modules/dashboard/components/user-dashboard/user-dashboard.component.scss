@@ -68,18 +68,20 @@ a {
   }
 }
 
-.upcoming-events {
-  h2 {
-    @apply com-m-0 com-mb-3 com-text-xl com-font-semibold com-text-Yankees-Blue;
+.main-column {
+  @apply com-pt-6;
+  .upcoming-events {
+    h2 {
+      @apply com-m-0 com-mb-3 com-text-xl com-font-semibold com-text-Yankees-Blue;
+    }
   }
 }
-
 .left-column {
   @apply md:com-pr-6;
 }
 
 .right-column {
-  @apply md:com-pl-6;
+  @apply md:com-pl-6 com-pt-6;
 }
 
 .event-horizontal-card {

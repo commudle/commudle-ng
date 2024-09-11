@@ -1,0 +1,42 @@
+<nb-card>
+  <nb-card-header> </nb-card-header>
+  <nb-card-body>
+    <div class="event-registrations">
+      <h2 class="event-registration-heading">Your Event Registrations</h2>
+      <h3 class="event-registration-subheading">Click on View pass to check out your entry pass</h3>
+      <table>
+        <tr>
+          <td>Name</td>
+          <td>Type</td>
+          <td>Your Status</td>
+          <td>Action</td>
+        </tr>
+        <tr>
+          <td class="com-flex com-flex-col">
+            <span class="event-title">Google Cloud Day 2024</span>
+            <span>26 July 2024</span>
+          </td>
+          <td>Attendee</td>
+          <td>Confirmed</td>
+          <td><button nbButton status="" shape="round" size="small">View Pass</button></td>
+        </tr>
+        <tr>
+          <td class="com-flex com-flex-col">
+            <span>Google Cloud Day 2024</span>
+            <span>26 July 2024</span>
+          </td>
+          <td>Attendee</td>
+          <td>Confirmed</td>
+          <td><button nbButton status="" shape="round" size="small">View Pass</button></td>
+        </tr>
+      </table>
+    </div>
+    <div class="qr-code">
+      <nb-card>
+        <nb-card-body>
+          <img [src]="'https://quickchart.io/qr?text=137228'" />
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </nb-card-body>
+</nb-card>

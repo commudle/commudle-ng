@@ -1,0 +1,31 @@
+nb-card {
+  @apply com-m-0;
+  nb-card-body {
+    @apply com-flex com-flex-row com-p-4;
+
+    .event-registration-heading {
+      @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-1;
+    }
+
+    .event-registration-subheading {
+      @apply com-text-xs com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-4;
+    }
+
+    table {
+      .event-title {
+        @apply com-line-clamp-1;
+      }
+    }
+
+    .qr-code {
+      @apply com-w-[152px] com-p-4;
+      nb-card {
+        @apply com-m-0;
+
+        nb-card-body {
+          @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50;
+        }
+      }
+    }
+  }
+}
