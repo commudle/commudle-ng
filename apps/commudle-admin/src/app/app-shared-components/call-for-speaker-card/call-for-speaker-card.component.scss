@@ -17,10 +17,10 @@
         @apply com-flex com-flex-col;
 
         .badge-and-time {
-          @apply com-flex com-flex-row com-justify-between com-items-center com-mr-2 com-mb-2;
+          @apply com-flex com-flex-row com-justify-between com-items-center com-mb-2;
 
           .event-time {
-            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-text-gray-500 com-flex;
+            @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-text-gray-500 com-flex com-mr-2;
             text-wrap: nowrap;
           }
           .community-badge {
