@@ -531,7 +531,7 @@
       <div *ngIf="fromRegistrationStatus === toRegistrationStatus && toRegistrationStatus !== undefined">
         <commudle-alert [error]="true" errorMessage="From and To value can't be same"></commudle-alert>
       </div>
-      <p *ngIf="selectedRegistrationStatus !== 0">
+      <p>
         This will change the status of all {{ selectedRegistrationStatus }} entries and
         <strong>cannot be undone</strong>.
       </p>
