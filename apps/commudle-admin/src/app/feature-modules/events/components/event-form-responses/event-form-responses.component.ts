@@ -379,11 +379,8 @@ export class EventFormResponsesComponent implements OnInit {
   changeFromRegistrationStatus(event) {
     this.selectedRegistrationStatus = 0;
     this.fromRegistrationStatus = event.target.value;
-    for (const response of this.rows) {
-      if (response.registration_status.name === this.fromRegistrationStatus) {
-        this.selectedRegistrationStatus++;
-      }
-    }
+    this.selectedRegistrationStatus =
+      this.eventDataFormEntityGroup.summary_registration_counts[this.fromRegistrationStatus] || 0;
   }
 
   changeToRegistrationStatus(event) {
