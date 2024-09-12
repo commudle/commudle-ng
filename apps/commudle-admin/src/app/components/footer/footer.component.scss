@@ -68,3 +68,11 @@ footer {
     }
   }
 }
+
+.nested-list {
+  @apply com-pl-6 com-list-disc;
+
+  li::marker {
+    @apply com-text-xs;
+  }
+}
