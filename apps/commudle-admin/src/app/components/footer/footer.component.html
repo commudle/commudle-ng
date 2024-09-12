@@ -57,7 +57,19 @@
                 <li>
                   <a [routerLink]="['/speakers']">Speakers</a>
                   <ul class="nested-list">
-                    <li><a [routerLink]="['/speakers/cfp']">Call for Speakers</a></li>
+                    <li>
+                      <a [routerLink]="['/speakers/cfp']">
+                        <app-badge
+                          text="'New'"
+                          [fontColor]="'com-text-tWhite'"
+                          [fontSize]="'small'"
+                          [borderRadius]="'round'"
+                          [color]="'com-bg-primary-500'"
+                          [position]="'top right'"
+                        ></app-badge>
+                        Call for Speakers
+                      </a>
+                    </li>
                   </ul>
                 </li>
                 <li><a [routerLink]="['/labs']">Labs</a></li>

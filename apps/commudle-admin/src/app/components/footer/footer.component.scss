@@ -75,4 +75,11 @@ footer {
   li::marker {
     @apply com-text-xs;
   }
+
+  a {
+    @apply com-relative;
+    app-badge {
+      @apply com-right-[-52px];
+    }
+  }
 }
