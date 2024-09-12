@@ -24,5 +24,5 @@ p {
 }
 
 .featured-community-card {
-  @apply com-w-full md:com-w-[298px];
+  @apply com-flex com-flex-shrink-0 com-w-[298px];
 }
