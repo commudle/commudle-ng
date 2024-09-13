@@ -47,6 +47,9 @@ nb-card-body {
 
 .response-dialog-box {
   @apply com-w-full com-max-h-full md:com-max-h-[90dvh] md:com-w-800px;
+  nb-card-body {
+    @apply com-overflow-x-hidden;
+  }
   .action-buttons {
     > div {
       @apply com-flex com-gap-3;
@@ -63,7 +66,7 @@ nb-card-body {
 
 .user-response-details {
   .user-response-tabs {
-    @apply com-flex com-mb-2;
+    @apply com-flex com-mb-2 com-flex-row com-items-center com-overflow-x-auto;
     .user-response-tab {
       @apply com-cursor-pointer com-px-4 com-py-2;
       .name {
