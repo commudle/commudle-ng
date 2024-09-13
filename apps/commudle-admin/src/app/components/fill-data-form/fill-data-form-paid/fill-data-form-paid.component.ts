@@ -259,6 +259,8 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
           if (this.currentUser.username === eto.user_id) {
             this.showEventTicketOrder = eto;
             if (eto.status === 'unpaid' && Object.keys(eto.discount_code).length !== 0) {
+              eto.discount_code.code = '';
+              eto.discount_code_expires_at = '';
               this.resetPromoCode();
             }
             if (eto.status === 'full_refund') {
