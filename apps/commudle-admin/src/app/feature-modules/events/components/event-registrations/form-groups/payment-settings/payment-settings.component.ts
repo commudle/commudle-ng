@@ -66,7 +66,7 @@ export class PaymentSettingsComponent implements OnInit {
           currency: ['inr', Validators.required],
           has_taxes: [false],
           tax_name: [''],
-          tax_percentage: [''],
+          tax_percentage: ['', Validators.pattern('^[0-9]+$')],
           seller_tax_details: [''],
           country: [''],
           seller_name: [''],
