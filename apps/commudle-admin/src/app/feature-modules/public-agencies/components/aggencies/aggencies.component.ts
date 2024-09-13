@@ -37,6 +37,9 @@ export class AggenciesComponent implements OnInit {
   devrelAgenciesCommunities: IPreferredPartners[];
   eventManagementCommunities: IPreferredPartners[];
   vendorsCommunities: IPreferredPartners[];
+  showFullDescriptionDevrelAgency: boolean[] = [];
+  showFullDescriptionEventManagement: boolean[] = [];
+  showFullDescriptionVendors: boolean[] = [];
 
   questions = [
     'Can I create multiple organizations or business pages which have communities under them?',
@@ -117,5 +120,17 @@ export class AggenciesComponent implements OnInit {
     if (source) {
       return this.cmsService.getImageUrl(source);
     }
+  }
+
+  toggleShowFullDescriptionDevrelAgency(index: number): void {
+    this.showFullDescriptionDevrelAgency[index] = !this.showFullDescriptionDevrelAgency[index];
+  }
+
+  toggleShowFullDescriptionEventManagement(index: number): void {
+    this.showFullDescriptionEventManagement[index] = !this.showFullDescriptionEventManagement[index];
+  }
+
+  toggleShowFullDescriptionVendors(index: number): void {
+    this.showFullDescriptionVendors[index] = !this.showFullDescriptionVendors[index];
   }
 }

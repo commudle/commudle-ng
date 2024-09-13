@@ -179,7 +179,7 @@ a {
   a {
     @apply com-no-underline;
     .communities-card {
-      @apply com-flex com-flex-row com-w-full md:com-h-[120px] com-h-[100px] com-border com-border-l-2 com-border-solid com-border-Bright-Gray com-border-l-blue-600 com-rounded-r-[20px] com-rounded-l-none com-bg-white md:com-p-4 com-p-3 com-mb-5;
+      @apply com-flex com-flex-row com-w-full com-border com-border-l-2 com-border-solid com-border-Bright-Gray com-border-l-blue-600 com-rounded-r-[20px] com-rounded-l-none com-bg-white md:com-p-4 com-p-3 com-mb-5;
       .logo {
         @apply com-flex com-items-center md:com-w-[88px] md:com-h-[88px] com-w-[66px] com-h-[66px] com-object-cover com-m-0 md:com-mr-4 com-mr-3 com-flex-shrink-0 com-bg-tWhite com-rounded-md;
 
@@ -193,7 +193,7 @@ a {
           @apply com-m-0 com-mb-1 com-line-clamp-1 md:com-text-base com-text-xs com-font-semibold com-text-Yankees-Blue;
         }
         .description {
-          @apply com-m-0 com-line-clamp-3 md:com-text-sm com-text-10px com-font-normal com-text-gray-500;
+          @apply com-m-0 md:com-text-sm com-text-10px com-font-normal com-text-gray-500;
         }
       }
     }
@@ -211,4 +211,8 @@ a {
 
 .connect-btn {
   @apply com-flex com-justify-center md:com-mt-10 com-mt-8;
+}
+
+.read {
+  @apply com-text-xs com-text-primary-500 com-m-0 com-mt-1;
 }

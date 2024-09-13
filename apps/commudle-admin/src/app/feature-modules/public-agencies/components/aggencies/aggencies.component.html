@@ -42,7 +42,7 @@
               <p class="subheading md:com-rounded-tl-2xl md:com-rounded-tr-none com-rounded-t-2xl">DevRel Agencies</p>
               <div class="devrel-list">
                 <a
-                  *ngFor="let devrelAgency of devrelAgenciesCommunities"
+                  *ngFor="let devrelAgency of devrelAgenciesCommunities; let i = index"
                   [href]="devrelAgency.link"
                   class="devrel-agency"
                 >
@@ -56,7 +56,20 @@
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ devrelAgency.name }}</p>
-                      <p class="description">{{ devrelAgency.description }}</p>
+                      <p class="description">
+                        {{
+                          showFullDescriptionDevrelAgency[i]
+                            ? devrelAgency.description
+                            : (devrelAgency.description | truncatetext : 100)
+                        }}
+                      </p>
+                      <p
+                        (click)="toggleShowFullDescriptionDevrelAgency(i)"
+                        *ngIf="devrelAgency.description.length > 100"
+                        class="clickable read"
+                      >
+                        {{ showFullDescriptionDevrelAgency[i] ? 'Read less' : 'Read more' }}
+                      </p>
                     </div>
                   </div>
                 </a>
@@ -66,7 +79,7 @@
               <p class="subheading md:com-rounded-t-none com-rounded-t-2xl">Event Management Agencies</p>
               <div class="devrel-list">
                 <a
-                  *ngFor="let eventManagement of eventManagementCommunities"
+                  *ngFor="let eventManagement of eventManagementCommunities; let i = index"
                   [href]="eventManagement.link"
                   class="event-management"
                 >
@@ -80,7 +93,20 @@
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ eventManagement.name }}</p>
-                      <p class="description">{{ eventManagement.description }}</p>
+                      <p class="description">
+                        {{
+                          showFullDescriptionEventManagement[i]
+                            ? eventManagement.description
+                            : (eventManagement.description | truncatetext : 100)
+                        }}
+                      </p>
+                      <p
+                        (click)="toggleShowFullDescriptionEventManagement(i)"
+                        *ngIf="eventManagement.description.length > 100"
+                        class="clickable read"
+                      >
+                        {{ showFullDescriptionEventManagement[i] ? 'Read less' : 'Read more' }}
+                      </p>
                     </div>
                   </div>
                 </a>
@@ -89,14 +115,30 @@
             <div class="vendors-container">
               <p class="subheading md:com-rounded-tl-none md:com-rounded-tr-2xl com-rounded-t-2xl">Schwag Vendors</p>
               <div class="devrel-list">
-                <a *ngFor="let vendor of vendorsCommunities" [href]="vendor.link" target="_blank" class="vendors">
+                <a
+                  *ngFor="let vendor of vendorsCommunities; let i = index"
+                  [href]="vendor.link"
+                  target="_blank"
+                  class="vendors"
+                >
                   <div class="communities-card">
                     <div *ngIf="vendor?.image" class="logo">
                       <img [src]="imageUrl(vendor.image)?.url()" class="com-w-full" [nbTooltip]="vendor.name" />
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ vendor.name }}</p>
-                      <p class="description">{{ vendor.description }}</p>
+                      <p class="description">
+                        {{
+                          showFullDescriptionVendors[i] ? vendor.description : (vendor.description | truncatetext : 100)
+                        }}
+                      </p>
+                      <p
+                        (click)="toggleShowFullDescriptionVendors(i)"
+                        *ngIf="vendor.description.length > 100"
+                        class="clickable read"
+                      >
+                        {{ showFullDescriptionVendors[i] ? 'Read less' : 'Read more' }}
+                      </p>
                     </div>
                   </div>
                 </a>
