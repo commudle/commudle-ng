@@ -1,9 +1,9 @@
 <div class="data-form-container">
   <form [formGroup]="createDataForm" class="create-data-form">
     <div formGroupName="data_form">
-      <nb-card *ngIf="showNameField && showNameDescriptionFiled">
+      <nb-card *ngIf="showNameField">
         <nb-card-body class="card-body">
-          <div role="group">
+          <div role="group" *ngIf="showNameInputField">
             <label fullWidth>
               Name
               <span class="required-question">*</span>
@@ -27,7 +27,7 @@
             </span>
           </div>
 
-          <div role="group">
+          <div role="group" *ngIf="showDescriptionField">
             <div class="description">
               <label fullWidth>
                 Description

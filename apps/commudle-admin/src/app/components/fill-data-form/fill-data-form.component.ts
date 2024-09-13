@@ -199,6 +199,7 @@ export class FillDataFormComponent implements OnInit, OnDestroy {
       gitlab: event.gitlab ? event.gitlab : this.currentUser.gitlab,
       facebook: event.facebook ? event.facebook : this.currentUser.facebook,
       youtube: event.youtube ? event.youtube : this.currentUser.youtube,
+      phone: event.phone ? event.phone : this.currentUser.phone,
     });
     this.userProfileManagerService.updateUserDetails(false, this.currentUser);
     this.submitForm();

@@ -210,6 +210,15 @@
                 >
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
                 </span>
+                <span
+                  *ngIf="
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').touched &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').invalid &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').errors.pattern
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Only integer values are allowed'"></commudle-alert>
+                </span>
               </label>
             </div>
 

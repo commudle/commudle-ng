@@ -1,13 +1,10 @@
 @import './apps/commudle-admin/src/assets/styles/variables';
 
 .user {
-  align-items: flex-start;
-  display: flex;
-  padding: 0.5rem;
-  position: relative;
+  @apply com-flex com-p-2 com-relative com-items-center;
 
-  &.small {
-    align-items: center;
+  &.align-start {
+    @apply com-items-start;
   }
 
   .online-status {

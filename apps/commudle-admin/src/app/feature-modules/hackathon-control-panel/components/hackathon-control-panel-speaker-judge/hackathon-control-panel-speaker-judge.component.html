@@ -1,23 +1,49 @@
 <nb-card>
   <nb-card-header
-    >Judges/Speakers<commudle-help-section [helpDictionaryName]="'hackathon-judges-speakers'"></commudle-help-section
+    >Judges, Speakers & Mentors<commudle-help-section
+      [helpDictionaryName]="'hackathon-judges-speakers'"
+    ></commudle-help-section
   ></nb-card-header>
   <nb-card-body>
     <form action="" [formGroup]="fetchSpeakerJudge">
-      <div>
-        <label for="email">Enter Email*</label>
-        <input type="email" id="email" nbInput fullWidth formControlName="email" placeholder="xyz@example.com" />
+      <div class="email-select-type-form">
+        <form action="" [formGroup]="speakerRegistrationForm">
+          <div>
+            <label>
+              Select Type*
+              <div class="select">
+                <select
+                  formControlName="judge_type"
+                  [ngClass]="{
+                    'com-text-[#8E9BB3]': speakerRegistrationForm.controls['judge_type'].value === ''
+                  }"
+                >
+                  <option value="" disabled>Select Type</option>
+                  <option *ngFor="let judgeType of EHackathonJudgeType | keyvalue" [value]="judgeType.value">
+                    {{ judgeType.value | titlecase }}
+                  </option>
+                </select>
+              </div>
+            </label>
+          </div>
+        </form>
+        <div class="com-w-3/4">
+          <div>
+            <label for="email">Enter Email*</label>
+            <input type="email" id="email" nbInput fullWidth formControlName="email" placeholder="xyz@example.com" />
+          </div>
+          <commudle-alert
+            [error]="fetchSpeakerJudge.controls['email'].hasError('email')"
+            errorMessage="Email was invalid"
+          ></commudle-alert>
+        </div>
       </div>
-      <commudle-alert
-        [error]="fetchSpeakerJudge.controls['email'].hasError('email')"
-        errorMessage="Email was invalid"
-      ></commudle-alert>
       <commudle-alert
         [error]="true"
         errorMessage="Use real email id's only, if the user is present on Commudle, the details of their profile will be fetched automatically"
       ></commudle-alert>
       <button
-        [disabled]="fetchSpeakerJudge.invalid"
+        [disabled]="fetchSpeakerJudge.invalid || speakerRegistrationForm.controls['judge_type'].value === ''"
         class="com-w-max com-mt-3"
         nbButton
         status="primary"
@@ -55,6 +81,26 @@
         ></commudle-alert>
       </div>
       <form [formGroup]="speakerRegistrationForm">
+        <!-- judge_type -->
+        <div>
+          <label>
+            Select Type*
+            <div class="select !com-w-full">
+              <select
+                formControlName="judge_type"
+                [ngClass]="{
+                  'com-text-[#8E9BB3]': speakerRegistrationForm.controls['judge_type'].value === ''
+                }"
+              >
+                <option value="" disabled>Select Type</option>
+                <option *ngFor="let judgeType of EHackathonJudgeType | keyvalue" [value]="judgeType.value">
+                  {{ judgeType.value | titlecase }}
+                </option>
+              </select>
+            </div>
+          </label>
+        </div>
+
         <!-- profile image -->
         <div>
           <div class="com-flex com-gap-4 com-items-start">

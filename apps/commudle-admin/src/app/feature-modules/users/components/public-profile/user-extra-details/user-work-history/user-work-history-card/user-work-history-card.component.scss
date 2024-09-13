@@ -10,6 +10,7 @@ p {
   @apply com-m-0;
 
   nb-card-body {
+    @apply com-p-4;
     .heading {
       @apply com-grid com-grid-cols-1 md:com-grid-cols-5 com-gap-2;
 

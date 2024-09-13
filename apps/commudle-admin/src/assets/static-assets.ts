@@ -169,4 +169,12 @@ export const staticAssets = {
   // id: 156
   newsletter_empty_state:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNFpUQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f68dde89134d2901fe34429c761a69c02cfcefe4/Newsletter%20Empty%20State.png',
+
+  //id: 157
+  speaker_slides_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBK2UyQWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--abe73456217c0317dc67f743a094f4bdaeeae8d7/Light%20Mode-Links.svg',
+
+  //id: 158
+  call_for_speaker_empty_state:
+    'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBL0N1QWc9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3d0e4b9c60c0f63c0272e41a6ea79608454cc379/CFP-Empty%20State.png',
 };

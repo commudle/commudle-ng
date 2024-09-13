@@ -68,9 +68,9 @@ nb-card-body {
   .user-response-tabs {
     @apply com-flex com-mb-2 com-flex-row com-items-center com-overflow-x-auto;
     .user-response-tab {
-      @apply com-cursor-pointer com-px-4 com-py-2;
+      @apply com-px-4 com-py-2;
       .name {
-        @apply com-font-bold com-text-sm;
+        @apply com-font-bold com-text-sm com-cursor-pointer;
       }
       &.active {
         @apply com-border-0 com-border-b-2 com-border-solid com-border-primary-500;

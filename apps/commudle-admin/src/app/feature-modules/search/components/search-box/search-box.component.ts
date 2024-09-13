@@ -53,16 +53,16 @@ export class SearchBoxComponent implements OnInit {
     this.showSearchBox = true;
     this.search();
     this.observeSearchStatus();
-    const params = this.activatedRoute.snapshot.queryParams;
-    if (Object.keys(params).length > 0) {
-      if (params.q) {
-        this.query = params.q;
+    this.activatedRoute.params.subscribe((params) => {
+      if (params.query) {
+        this.query = params.query;
         this.inputFormControl.setValue(this.query);
       }
-    }
-    if (!params.q) {
-      this.getNotifications();
-    }
+
+      if (!params.query) {
+        this.getNotifications();
+      }
+    });
   }
 
   search() {
@@ -136,9 +136,7 @@ export class SearchBoxComponent implements OnInit {
 
   onSubmit() {
     this.query = this.query ? this.query : this.inputFormControl.value;
-    this.router.navigate(['/search'], {
-      queryParams: { q: this.query },
-    });
+    this.router.navigate(['/search', this.query]);
     this.showSearchBox = false;
   }
 }

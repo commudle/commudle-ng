@@ -90,6 +90,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
 import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 import { UserDetailsCheckboxFormComponent } from './user-details-checkbox-form/user-details-checkbox-form.component';
 import { UserDetailsFormComponent } from './user-details-form/user-details-form.component';
+import { NewsletterCardComponent } from './newsletter-card/newsletter-card.component';
 
 @NgModule({
   declarations: [
@@ -143,6 +144,7 @@ import { UserDetailsFormComponent } from './user-details-form/user-details-form.
     PaymentLogEdfegComponent,
     UserDetailsCheckboxFormComponent,
     UserDetailsFormComponent,
+    NewsletterCardComponent,
   ],
   imports: [
     CommonModule,
@@ -233,6 +235,7 @@ import { UserDetailsFormComponent } from './user-details-form/user-details-form.
     PaymentDetailComponent,
     UserDetailsCheckboxFormComponent,
     UserDetailsFormComponent,
+    NewsletterCardComponent,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })

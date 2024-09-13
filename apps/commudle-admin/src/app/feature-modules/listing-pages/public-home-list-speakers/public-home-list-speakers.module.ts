@@ -28,6 +28,8 @@ import { SkeletonVerticalCardsComponent } from 'apps/commudle-admin/src/app/feat
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmptyStateComponent } from './components/empty-state-component/empty-state-component.component';
 import { AppSharedComponentsModule } from '../../../app-shared-components/app-shared-components.module';
+import { SpeakerSlidesComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/components/speaker-slides/speaker-slides.component';
+import { SpeakerCfpComponent } from 'apps/commudle-admin/src/app/feature-modules/listing-pages/public-home-list-speakers/speaker-cfp/speaker-cfp.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { AppSharedComponentsModule } from '../../../app-shared-components/app-sh
     PublicHomeListSpeakersProfileComponent,
     PublicHomeListSpeakersContentComponent,
     EmptyStateComponent,
+    SpeakerSlidesComponent,
+    SpeakerCfpComponent,
   ],
   imports: [
     CommonModule,
@@ -51,6 +55,7 @@ import { AppSharedComponentsModule } from '../../../app-shared-components/app-sh
     SharedDirectivesModule,
     FormsModule,
     ReactiveFormsModule,
+    AppSharedComponentsModule,
 
     //Standalone
     EventContentCardComponent,
@@ -63,7 +68,6 @@ import { AppSharedComponentsModule } from '../../../app-shared-components/app-sh
     NbIconModule,
     NbInputModule,
     NbFormFieldModule,
-    AppSharedComponentsModule,
   ],
   exports: [PublicHomeListSpeakersContentComponent, EmptyStateComponent, PublicHomeListSpeakersUpcomingComponent],
 })

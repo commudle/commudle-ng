@@ -4,6 +4,7 @@ import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/go
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDiscussionFollower } from 'apps/shared-models/discussion-follower.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-chats-list',
@@ -20,6 +21,7 @@ export class ChatsListComponent implements OnInit {
   showLiveStatus = false;
   showChat = false;
   unreadCount = 0;
+  moment = moment;
 
   constructor(
     private authWatchService: LibAuthwatchService,
