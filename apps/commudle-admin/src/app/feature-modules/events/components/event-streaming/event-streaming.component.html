@@ -1,24 +1,127 @@
-<div class="streaming">
+<div *ngIf="embeddedVideoStream?.id" class="streaming">
   <ng-container *ngIf="communityAuthToken; else loginButton">
-    <button (click)="logoutFromYoutube()" nbButton>Disconnect from YouTube</button>
+    <button
+      nbButton
+      (click)="openDialog(disconnectYoutubeDialog)"
+      [disabled]="embeddedVideoStream?.youtube_broadcast !== null"
+      type="button"
+    >
+      Disconnect from YouTube
+    </button>
 
-    <ng-container *ngIf="embeddedVideoStream.youtube_broadcast; else createStreamButton">
-      <button (click)="deleteStream()" [nbSpinner]="loaders.deleteStream" nbButton>Delete stream</button>
+    <ng-container *ngIf="embeddedVideoStream?.youtube_broadcast; else createStreamButton">
+      <button
+        nbButton
+        (click)="openDialog(deleteStreamDialog)"
+        [nbSpinner]="loaders.deleteStream"
+        [disabled]="loaders.deleteStream"
+        type="button"
+      >
+        Delete stream
+      </button>
       <a
         href="https://studio.youtube.com/video/{{ embeddedVideoStream.youtube_broadcast.broadcast_id }}/livestreaming"
         nbButton
         target="_blank"
+        type="button"
       >
         Go to studio
       </a>
     </ng-container>
 
     <ng-template #createStreamButton>
-      <button (click)="createStream()" [nbSpinner]="loaders.createStream" nbButton>Create new stream</button>
+      <button
+        nbButton
+        (click)="openDialog(liveStreamEnabledDialog)"
+        [nbSpinner]="loaders.createStream"
+        [disabled]="loaders.createStream"
+        type="button"
+      >
+        Create new stream
+      </button>
     </ng-template>
   </ng-container>
 
   <ng-template #loginButton>
-    <button (click)="loginToYoutube()" nbButton>Connect to YouTube</button>
+    <commudle-alert
+      [info]="true"
+      message="Make sure you connect the YouTube account which has permission to create live streams."
+    ></commudle-alert>
+    <button class="com-mt-4" (click)="loginToYoutube()" nbButton type="button">Connect to YouTube</button>
   </ng-template>
 </div>
+
+<ng-template #liveStreamEnabledDialog let-ref="dialogRef">
+  <nb-card class="com-max-w-2xl">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <p class="com-m-0">Enable live streaming on your YouTube account</p>
+      <button (click)="ref.close()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        Before you can create a stream, make sure you have enabled live streaming on your YouTube account. It can take
+        up to 24 hours for this feature to be enabled. Follow the steps below to enable live streaming on your YouTube
+        account.
+      </p>
+      <ol>
+        <li>
+          <a href="https://www.youtube.com/live_dashboard" target="_blank">Go to YouTube Studio</a>
+        </li>
+        <li>Follow YouTube's instructions to enable live streaming on your account</li>
+      </ol>
+      <img src="/assets/images/livestream_dashboard.webp" alt="YouTube Studio" class="com-mt-2 com-block com-w-full" />
+      <p>
+        Once you have enabled live streaming on your YouTube account, click the "Continue" button below to create a new
+        stream.
+      </p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="ref.close()" nbButton ghost status="warning">Cancel</button>
+      <button (click)="createStream(); ref.close()" nbButton status="success">Continue &rightarrow;</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #disconnectYoutubeDialog let-ref="dialogRef">
+  <nb-card class="com-max-w-md">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <p class="com-m-0">Disconnect from YouTube</p>
+      <button (click)="ref.close()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        Are you sure you want to <strong>disconnect</strong> from YouTube? This will remove the connection between your
+        YouTube account and Commudle.
+      </p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="ref.close()" nbButton ghost status="warning">No</button>
+      <button (click)="logoutFromYoutube(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #deleteStreamDialog let-ref="dialogRef">
+  <nb-card class="com-max-w-md">
+    <nb-card-header class="com-flex com-justify-between com-items-center">
+      <p class="com-m-0">Delete stream</p>
+      <button (click)="ref.close()" nbButton size="small">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <p>
+        Are you sure you want to <strong>delete</strong> the stream? This will remove the stream from YouTube and
+        Commudle.
+      </p>
+    </nb-card-body>
+    <nb-card-footer class="com-flex com-justify-between">
+      <button (click)="ref.close()" nbButton ghost status="warning">No</button>
+      <button (click)="deleteStream(); ref.close()" nbButton status="success">Yes</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

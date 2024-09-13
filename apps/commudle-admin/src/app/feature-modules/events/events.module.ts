@@ -180,6 +180,6 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     NbTagModule,
     NewEditorModule,
   ],
-  providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
+  providers: [AuthService, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
 })
 export class EventsModule {}

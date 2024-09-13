@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { AuthService, YoutubeLoginProvider } from '@commudle/auth';
 import { ICommunityAuthToken, IEmbeddedVideoStream, IEvent } from '@commudle/shared-models';
 import { ToastrService } from '@commudle/shared-services';
+import { NbDialogService } from '@commudle/theme';
 import { CommunityAuthTokensService } from 'apps/commudle-admin/src/app/services/community-auth-tokens.service';
 import { EmbeddedVideoStreamsService } from 'apps/commudle-admin/src/app/services/embedded-video-streams.service';
 import { Subscription } from 'rxjs';
@@ -11,7 +12,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './event-streaming.component.html',
   styleUrls: ['./event-streaming.component.scss'],
 })
-export class EventStreamingComponent implements OnInit {
+export class EventStreamingComponent implements AfterContentInit {
   @Input() embeddedVideoStream: IEmbeddedVideoStream;
   @Input() event: IEvent;
 
@@ -30,20 +31,20 @@ export class EventStreamingComponent implements OnInit {
     private communityAuthTokensService: CommunityAuthTokensService,
     private embeddedVideoStreamService: EmbeddedVideoStreamsService,
     private toastrService: ToastrService,
+    private nbDialogService: NbDialogService,
   ) {
     authService.initialize_one(YoutubeLoginProvider.PROVIDER_ID);
   }
 
-  ngOnInit(): void {
-    this.getToken();
+  ngAfterContentInit(): void {
+    if (this.embeddedVideoStream.id) this.getToken();
   }
 
   getToken() {
     this.subscriptions.push(
-      this.communityAuthTokensService.getToken(this.embeddedVideoStream.id, 'youtube').subscribe((res) => {
-        if (res) {
-          this.communityAuthToken = res;
-        }
+      this.communityAuthTokensService.getToken(this.embeddedVideoStream.id, 'youtube').subscribe({
+        next: (res) => (this.communityAuthToken = res),
+        error: () => (this.communityAuthToken = null),
       }),
     );
   }
@@ -64,7 +65,7 @@ export class EventStreamingComponent implements OnInit {
 
   loginToYoutube() {
     this.authService.getAccessToken(YoutubeLoginProvider.PROVIDER_ID).then((authorization_code) => {
-      this.createToken(authorization_code);
+      if (authorization_code) this.createToken(authorization_code);
     });
   }
 
@@ -83,12 +84,15 @@ export class EventStreamingComponent implements OnInit {
   createStream() {
     this.loaders.createStream = true;
     this.subscriptions.push(
-      this.embeddedVideoStreamService.createLivestream(this.event.id, 'Event').subscribe((res) => {
-        if (res) {
-          this.toastrService.successDialog('Stream created');
-          this.refreshEmbeddedVideoStream.emit();
-          this.loaders.createStream = false;
-        }
+      this.embeddedVideoStreamService.createLivestream(this.event.id, 'Event').subscribe({
+        next: (res) => {
+          if (res) {
+            this.toastrService.successDialog('Stream created');
+            this.refreshEmbeddedVideoStream.emit();
+            this.loaders.createStream = false;
+          }
+        },
+        error: () => (this.loaders.createStream = false),
       }),
     );
   }
@@ -104,5 +108,9 @@ export class EventStreamingComponent implements OnInit {
         }
       }),
     );
+  }
+
+  openDialog(templateRef: TemplateRef<any>) {
+    this.nbDialogService.open(templateRef);
   }
 }

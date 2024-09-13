@@ -10,7 +10,7 @@ export class EmailLoginProvider extends BaseLoginProvider {
 
   getLoginStatus(): Promise<SocialUser> {
     return new Promise((resolve, reject) => {
-      resolve({});
+      resolve(null);
     });
   }
 
@@ -22,7 +22,7 @@ export class EmailLoginProvider extends BaseLoginProvider {
 
   signIn({ email, password }: { email: string; password: string }): Promise<SocialUser> {
     return new Promise((resolve, reject) => {
-      resolve({});
+      resolve(null);
     });
   }
 

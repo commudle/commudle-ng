@@ -10,12 +10,19 @@ import { YoutubeLoginProvider } from './providers/youtube-login-provider';
  */
 export interface AuthServiceConfig {
   autoLogin?: boolean;
+  lang?: string;
   providers: { id: string; provider: LoginProvider | Type<LoginProvider> }[];
+  onError?: (error: any) => any;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+/**
+ * The service encapsulating the social login functionality. Exposes methods like
+ * `signIn`, `signOut`. Also, exposes an `authState` `Observable` that one can
+ * subscribe to get the current logged in user information.
+ *
+ * @dynamic
+ */
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private static readonly ERR_LOGIN_PROVIDER_NOT_FOUND = 'Login provider not found';
   private static readonly ERR_NOT_LOGGED_IN = 'Not logged in';
@@ -27,6 +34,7 @@ export class AuthService {
 
   private providers: Map<string, LoginProvider> = new Map();
   private autoLogin = false;
+  private lang = '';
 
   private _user: SocialUser | null = null;
   /* Consider making this an enum comprising LOADING, LOADED, FAILED etc. */
@@ -34,8 +42,8 @@ export class AuthService {
 
   /**
    * @param config A `AuthServiceConfig` object or a `Promise` that resolves to a `AuthServiceConfig` object
-   * @param _ngZone
-   * @param _injector
+   * @param _ngZone An instance of `NgZone` to bring the user back to the Angular zone
+   * @param _injector An instance of `Injector` to inject the `LoginProvider` instances
    */
   constructor(
     @Inject('AuthServiceConfig') config: AuthServiceConfig | Promise<AuthServiceConfig>,
@@ -164,10 +172,7 @@ export class AuthService {
         reject(AuthService.ERR_NOT_LOGGED_IN);
       } else {
         const providerId = this._user.provider;
-        let providerObject = null;
-        if (providerId != null) {
-          providerObject = this.providers.get(providerId);
-        }
+        const providerObject = this.providers.get(providerId);
         if (providerObject) {
           providerObject
             .signOut(revoke)
@@ -219,7 +224,7 @@ export class AuthService {
             });
           }
         })
-        .catch(console.debug)
+        .catch(console.error)
         .finally(() => {
           this.initialized = true;
           this._initState.next(this.initialized);
@@ -230,6 +235,8 @@ export class AuthService {
 
   private initialize_config(config: AuthServiceConfig): void {
     this.autoLogin = config.autoLogin !== undefined ? config.autoLogin : false;
+    this.lang = config.lang !== undefined ? config.lang : '';
+    // const { onError = console.error } = config;
 
     config.providers.forEach((item) => {
       this.providers.set(item.id, 'prototype' in item.provider ? this._injector.get(item.provider) : item.provider);
@@ -237,7 +244,7 @@ export class AuthService {
   }
 
   private initialize_all(): void {
-    Promise.all(Array.from(this.providers.values()).map((provider) => provider.initialize(this.autoLogin)))
+    Promise.all(Array.from(this.providers.values()).map((provider) => provider.initialize(this.autoLogin, this.lang)))
       .then(() => {
         if (this.autoLogin) {
           const loginStatusPromises: any[] = [];
@@ -271,7 +278,7 @@ export class AuthService {
           }
         });
       })
-      .catch(console.debug)
+      .catch(console.error)
       .finally(() => {
         this.initialized = true;
         this._initState.next(this.initialized);
