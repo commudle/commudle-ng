@@ -53,4 +53,12 @@ export class EventTicketOrderService {
     const params = new HttpParams().set('event_ticket_order_id', eventTicketOrderId).set('all', true);
     return this.http.post<any>(this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.CREATE_REFUND), params);
   }
+
+  resetDiscountCode(eventTicketOrderId: number): Observable<boolean> {
+    const params = new HttpParams().set('event_ticket_order_id', eventTicketOrderId);
+    return this.http.post<boolean>(
+      this.baseApiService.getRoute(API_ROUTES.EVENT_TICKET_ORDERS.RESET_DISCOUNT_CODE),
+      params,
+    );
+  }
 }

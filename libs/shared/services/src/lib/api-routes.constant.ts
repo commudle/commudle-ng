@@ -758,6 +758,7 @@ export const API_ROUTES = {
     CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
     CHECK_REFUND_AMOUNT: 'api/v2/event_ticket_orders/check_refund_amount',
     CREATE_REFUND: 'api/v2/event_ticket_orders/create_refund',
+    RESET_DISCOUNT_CODE: 'api/v2/event_ticket_orders/reset_discount_code',
   },
 
   CUSTOM_PAGES: {
