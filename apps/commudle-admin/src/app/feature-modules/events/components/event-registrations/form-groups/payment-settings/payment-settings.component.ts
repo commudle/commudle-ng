@@ -71,6 +71,7 @@ export class PaymentSettingsComponent implements OnInit {
           country: [''],
           seller_name: [''],
           seller_address: [''],
+          multi_person_ticket: [false],
         }),
       },
       {
@@ -158,7 +159,7 @@ export class PaymentSettingsComponent implements OnInit {
     );
     this.bankAccountNo = selectedAccountS
       ? selectedAccountS.details.external_accounts.data[0].last4
-      : selectedAccountR.bank_details.active_configuration.settlements.account_number.toString().slice(-4);
+      : selectedAccountR?.bank_details?.account_number;
     let bankAcType: string;
 
     if (ticketDetails.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {
@@ -178,6 +179,7 @@ export class PaymentSettingsComponent implements OnInit {
       country: ticketDetails.country,
       seller_name: ticketDetails.seller_name,
       seller_address: ticketDetails.seller_address,
+      multi_person_ticket: ticketDetails.multi_person_ticket,
     });
   }
 

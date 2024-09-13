@@ -36,10 +36,19 @@
               </div>
             </nb-card-body>
           </nb-card>
+          <nb-card *ngIf="dataFormEntity.user_details">
+            <nb-card-body>
+              <commudle-user-details-form
+                [userFormDetails]="dataFormEntity.user_details"
+                [showActionButtons]="false"
+                (submitUserDetailsEvent)="updateUserDetails($event)"
+              ></commudle-user-details-form>
+            </nb-card-body>
+          </nb-card>
 
           <div class="data-form-fill-body">
             <app-data-form-fill
-              (formSubmitted)="submitForm($event)"
+              (formSubmitted)="updateUserDetailsAndSubmitForm($event)"
               [dataFormId]="dataFormEntity.data_form_id"
               [existingResponses]="selectedFormResponse"
               [eventId]="event ? event.id : ''"

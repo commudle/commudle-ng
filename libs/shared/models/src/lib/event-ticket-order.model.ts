@@ -18,6 +18,7 @@ export interface IEventTicketOrder {
   payment_gateway_fee: number;
   user: IUser;
   bank_ac_type: string;
+  transfer_id: string;
 }
 
 export interface Payment {

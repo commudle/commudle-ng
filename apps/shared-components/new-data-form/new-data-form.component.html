@@ -230,7 +230,7 @@
         </div>
       </div>
 
-      <div [ngClass]="{ sticky: stickSubmitButtonBottom }" class="submit-button">
+      <div *ngIf="showSubmitButton" [ngClass]="{ sticky: stickSubmitButtonBottom }" class="submit-button">
         <button (click)="saveDataForm()" fullWidth nbButton size="medium" status="primary" type="submit">
           {{ submitButtonText() }}
         </button>

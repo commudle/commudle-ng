@@ -152,6 +152,16 @@
         </div>
       </form>
 
+      <div>
+        <div class="group-name">TO BE FILLED BY</div>
+        <div class="radio-group">
+          <nb-radio-group [(ngModel)]="filled_by_only_team_lead">
+            <nb-radio [value]="false">All team members</nb-radio>
+            <nb-radio [value]="true">Only Team Lead</nb-radio>
+          </nb-radio-group>
+        </div>
+      </div>
+
       <div class="custom-questions" *ngIf="!dataFormId">
         <app-new-data-form
           (newDataForm)="submit($event)"

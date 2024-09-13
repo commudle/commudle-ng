@@ -41,4 +41,14 @@ export class DataFormEntitiesService {
       params,
     });
   }
+
+  checkAlreadyFilledEntryPassForm(dataFormEntityId): Observable<any> {
+    const params = new HttpParams().set('data_form_entity_id', dataFormEntityId);
+    return this.http.get<any>(
+      this.apiRoutesService.getRoute(API_ROUTES.DATA_FORM_ENTITIES.CHECK_ALREADY_FILLED_ENTRY_PASS_FORM),
+      {
+        params,
+      },
+    );
+  }
 }

@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { EventLocationsService } from 'apps/commudle-admin/src/app/services/event-locations.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICommunity } from 'apps/shared-models/community.model';
-import { IEventLocation } from 'apps/shared-models/event-location.model';
+import { IEventDatesLocation, IEventLocation } from 'apps/shared-models/event-location.model';
 import { IEvent } from 'apps/shared-models/event.model';
 import { ITrackSlot } from 'apps/shared-models/track-slot.model';
 import { SeoService } from 'apps/shared-services/seo.service';
@@ -23,8 +23,7 @@ export class AgendaComponent implements OnInit {
   @Input() showShareButton = true;
 
   eventLocations: IEventLocation[] = [];
-  eventDatesLocation: any[];
-  // IEventDatesLocation[];
+  eventDatesLocation: IEventDatesLocation[];
   isLoading = true;
   selectedLocation;
   upcomingEvents: Array<ITrackSlot> = [];
@@ -105,15 +104,31 @@ export class AgendaComponent implements OnInit {
 
   getDatesEventLocations() {
     this.eventLocationsService.getEventDates(this.event.slug).subscribe((data: any) => {
-      this.eventDatesLocation = data;
-      this.selectLocation(data[0].event_locations[0]);
-      this.setSchema();
-      this.isLoading = false;
-      this.changeDetectorRef.markForCheck();
+      if (data) {
+        this.eventDatesLocation = data;
+        if (data.event_locations) {
+          this.selectLocation(data[0].event_locations[0]);
+        }
+        this.setSchema();
+        this.isLoading = false;
+        this.changeDetectorRef.markForCheck();
+      }
     });
   }
 
   selectLocation(eventLocation) {
     this.selectedLocation = eventLocation;
+  }
+
+  onTabChange(event: any) {
+    const tabIndex = this.eventDatesLocation.findIndex((d) => {
+      const formattedDate = moment(d.date).format('Do MMMM');
+      return formattedDate === event.tabTitle;
+    });
+    if (tabIndex !== -1) {
+      if (this.eventDatesLocation[tabIndex] && this.eventDatesLocation[tabIndex].event_locations.length > 0) {
+        this.selectLocation(this.eventDatesLocation[tabIndex].event_locations[0]);
+      }
+    }
   }
 }

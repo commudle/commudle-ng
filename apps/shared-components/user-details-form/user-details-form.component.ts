@@ -1,22 +1,21 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'commudle-public-hackathon-user-details-form',
-  templateUrl: './public-hackathon-user-details-form.component.html',
-  styleUrls: ['./public-hackathon-user-details-form.component.scss'],
+  selector: 'commudle-user-details-form',
+  templateUrl: './user-details-form.component.html',
+  styleUrls: ['./user-details-form.component.scss'],
 })
-export class PublicHackathonUserDetailsFormComponent implements OnInit {
-  @Input() hackathonResponseGroup: IHackathonResponseGroup;
+export class UserDetailsFormComponent implements OnInit {
+  @Input() userFormDetails;
+  @Input() showActionButtons = true;
   @Input() hackathonUserResponse: IHackathonUserResponse;
+  @Input() submitButtonText = 'Next';
   @Output() submitUserDetailsEvent = new EventEmitter<any>();
 
   currentUser: ICurrentUser;
@@ -35,8 +34,7 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
     this.authWatchService.currentUser$.subscribe((data) => {
       this.currentUser = data;
       this.uploadedProfilePicture = this.currentUser.avatar;
-      this.hackathonUserResponse;
-      this.userForm = this.createForm(this.hackathonResponseGroup.user_details);
+      this.userForm = this.createForm(this.userFormDetails);
     });
   }
 
@@ -50,10 +48,16 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
         if (key === 'work_experience_months') {
           userValues = userValues / 12;
         }
-        formGroupConfig[key] = [
-          this.hackathonUserResponse && this.hackathonUserResponse[key] ? this.hackathonUserResponse[key] : userValues,
-          Validators.required,
-        ];
+        if (this.hackathonUserResponse) {
+          formGroupConfig[key] = [
+            this.hackathonUserResponse && this.hackathonUserResponse[key]
+              ? this.hackathonUserResponse[key]
+              : userValues,
+            Validators.required,
+          ];
+        } else {
+          formGroupConfig[key] = [userValues, Validators.required];
+        }
       }
     });
 
@@ -61,6 +65,10 @@ export class PublicHackathonUserDetailsFormComponent implements OnInit {
   }
 
   submitUserDetails() {
+    if (this.userForm.invalid) {
+      this.userForm.markAllAsTouched();
+      return;
+    }
     this.submitUserDetailsEvent.emit(this.userForm.value);
   }
 

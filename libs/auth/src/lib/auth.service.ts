@@ -164,7 +164,7 @@ export class AuthService {
    * @param revoke Optional parameter to specify whether a hard sign out is to be performed
    * @returns A `Promise` that resolves if the operation is successful, rejects otherwise
    */
-  signOut(revoke: boolean = false): Promise<void> {
+  signOut(revoke = false): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this.initialized) {
         reject(AuthService.ERR_NOT_INITIALIZED);

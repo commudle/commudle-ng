@@ -216,11 +216,13 @@ export const API_ROUTES = {
     UPDATE: 'api/v2/event_data_form_entity_groups',
     DELETE: 'api/v2/event_data_form_entity_groups',
     UPDATE_RSVP: 'api/v2/event_data_form_entity_groups/update_rsvp',
+    TOGGLE_ALLOW_CANCELLATION: 'api/v2/event_data_form_entity_groups/toggle_allow_cancellation',
     EMAIL_CSV: 'api/v2/event_data_form_entity_groups/email_csv',
     CHANGE_BULK_REGISTRATION_STATUS: 'api/v2/event_data_form_entity_groups/change_bulk_registration_status',
     TOGGLE_IS_PAID: 'api/v2/event_data_form_entity_groups/toggle_is_paid',
     INDEX_BY_COMMUNITY: 'api/v2/event_data_form_entity_groups/index_by_community',
     LIST: 'api/v2/event_data_form_entity_groups/list',
+    EMAIL_PAYMENT_DETAILS_CSV: 'api/v2/event_data_form_entity_groups/email_payment_details_csv',
     PUBLIC_OPEN_DATA_FORMS: 'api/v2/event_data_form_entity_groups/public_open_data_forms',
   },
 
@@ -278,6 +280,7 @@ export const API_ROUTES = {
     AUTOMATION: 'api/v2/data_form_entities/automation',
     FORM_STATUS: 'api/v2/data_form_entities/form_status',
     EMAIL_CSV: 'api/v2/data_form_entities/email_csv',
+    CHECK_ALREADY_FILLED_ENTRY_PASS_FORM: 'api/v2/data_form_entities/check_already_filled_entry_pass_form',
   },
 
   // registration_statuses
@@ -844,6 +847,7 @@ export const API_ROUTES = {
       INDEX_PROJECTS: 'api/v2/hackathons/public/index_projects', //GET
       INTERESTED_USERS: 'api/v2/hackathons/public/interested_users', //GET
       IS_MEMBER_OF_PARENT: 'api/v2/hackathons/public/is_member_of_parent', //GET
+      HACKATHONS: 'api/v2/hackathons/public/all_hackathons', //GET
     },
   },
 
@@ -863,6 +867,7 @@ export const API_ROUTES = {
     SHOW: 'api/v2/hackathon_response_group/show', //GET
     PUBLIC: {
       SHOW: 'api/v2/hackathon_response_group/public/show', //GET
+      FETCH_HACKATHON_RESPONSE_GROUP: 'api/v2/hackathon_response_group/public/fetch_hackathon_response_group', //GET
     },
   },
 
@@ -930,5 +935,6 @@ export const API_ROUTES = {
     GET_ALL_PAYMENT_DETAILS: 'api/v2/razorpay/get_all_payment_details', //GET
     CREATE_TRANSFER: 'api/v2/razorpay/create_transfer', //GET
     GET_TRANSFER_DETAILS: 'api/v2/razorpay/get_transfer_details', //GET
+    CREATE_MISSING_RZP_PAYMENT: 'api/v2/razorpay/create_missing_rzp_payment', //GET
   },
 };

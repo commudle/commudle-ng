@@ -11,6 +11,8 @@ const prerenderUrl = process.env.PRERENDER_URL || 'https://prerender.commudle.co
 const distFolder = path.join(process.cwd(), 'commudle-admin');
 
 app.use(cookieParser());
+const blacklistedUserAgents = ['AhrefsBot', 'AhrefsSiteAudit'];
+prerender.crawlerUserAgents = prerender.crawlerUserAgents.filter((ua) => !blacklistedUserAgents.includes(ua));
 app.use(prerender.set('prerenderServiceUrl', prerenderUrl).set('forwardHeaders', true));
 
 app.get('*.*', expressStaticGzip(distFolder, { enableBrotli: true, serveStatic: { maxAge: '1y' } }));

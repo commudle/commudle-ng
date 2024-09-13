@@ -88,6 +88,22 @@
       >
         Change Bulk Status
       </button>
+      <a
+        *ngIf="eventDataFormEntityGroup?.is_paid"
+        [routerLink]="['/admin/communities', community.slug, 'payments', 'logs', eventDataFormEntityGroup?.id]"
+        target="_blank"
+        nbButton
+        outline
+        size="small"
+        status="primary"
+      >
+        Payments Logs
+      </a>
+
+      <button (click)="sendPaymentCsv()" nbButton outline size="small" status="info">
+        <nb-icon icon="email-outline"></nb-icon>
+        Payment CSV
+      </button>
     </div>
   </nb-card-body>
 </nb-card>

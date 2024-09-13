@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService, countries_details as countryDetails } from '@commudle/shared-services';
-import { IHackathonPrize, IHackathonTeam } from '@commudle/shared-models';
+import { ICommunity, IHackathonPrize, IHackathonTeam } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-public-hackathon-prizes',
@@ -20,6 +20,7 @@ export class PublicHackathonPrizesComponent implements OnInit {
   isLoading = true;
   userTeamDetails: IHackathonTeam[];
   hrgId: number;
+  community: ICommunity;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,6 +33,7 @@ export class PublicHackathonPrizesComponent implements OnInit {
     this.subscriptions.push(
       this.activatedRoute.parent.data.subscribe((data) => {
         this.hackathon = data.hackathon;
+        this.community = data.community;
         this.getPrizes();
         this.authService.currentUser$.subscribe((currentUser) => {
           if (currentUser) this.getHackathonCurrentRegistrationDetails();

@@ -1,0 +1,20 @@
+nb-card {
+  @apply com-m-0 com-w-full com-h-full hover:com-shadow-sm;
+  nb-card-body {
+    @apply com-p-0;
+    .newsletter {
+      @apply com-p-4 com-flex com-flex-col com-justify-between com-h-[calc(100%-9rem)];
+      .date {
+        @apply com-text-gray-500 com-text-xs;
+      }
+      .content {
+        @apply com-line-clamp-2 com-text-lg com-h-[56px] com-mb-1;
+      }
+      .action {
+        a {
+          @apply com-no-underline;
+        }
+      }
+    }
+  }
+}

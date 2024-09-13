@@ -52,6 +52,7 @@ export class UserProfileManagerService {
       gitlab: [''],
       facebook: [''],
       youtube: [''],
+      phone: [''],
     });
   }
 
@@ -63,7 +64,9 @@ export class UserProfileManagerService {
     const formData: any = new FormData();
     //removing extra new lines from the about_me input
     this.userProfileForm.patchValue({
-      about_me: this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim(),
+      about_me: this.userProfileForm.get('about_me').value
+        ? this.userProfileForm.get('about_me').value.replace(/[\n]+/g, '\n').trim()
+        : '',
     });
     const userFormData = this.userProfileForm.value;
     Object.keys(userFormData).forEach((key) =>

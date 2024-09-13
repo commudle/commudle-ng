@@ -21,10 +21,14 @@ export class DataFormFillComponent implements OnInit, OnChanges {
   @Input() dataFormId;
   @Input() eventId;
   @Input() submitButtonText: string = 'Submit';
+  @Input() showSubmitButton: boolean = true;
   dataForm: IDataForm;
   formCreated = false;
   enabledQuestions: IQuestion[] = [];
   isFormSubmitting = false;
+
+  footerText = 'View More';
+  showFullDescription = false;
 
   message =
     'Never enter any personal or sensitive information which can be misused (including but not limited to passwords) in on Commudle. If you find something inappropriately asked, please report it to more@commudle.com immediately.';
@@ -148,5 +152,14 @@ export class DataFormFillComponent implements OnInit, OnChanges {
         }
       });
     });
+  }
+
+  viewMore() {
+    this.showFullDescription = !this.showFullDescription;
+    if (!this.showFullDescription) {
+      this.footerText = `View More`;
+    } else {
+      this.footerText = `View Less`;
+    }
   }
 }

@@ -24,7 +24,8 @@
   <nb-card-body>
     <table *ngIf="userResponses && userResponses.length > 0; else noUserResponse">
       <tr>
-        <th width="500px">Name</th>
+        <th width="300px">Name</th>
+        <th>Round</th>
         <th width="200px">Updates</th>
         <th width="200px">Notes</th>
         <th>Application Status</th>
@@ -43,7 +44,15 @@
             <div class="date">
               {{ moment(userResponse.team.created_at).format('DD MMM YYYY') }}
             </div>
+            <div *ngIf="userResponse.team.community_build" (click)="$event.stopPropagation()" class="project-link">
+              Link to project:
+              <a [routerLink]="['/builds', userResponse.team.community_build.slug]" target="_blank">
+                <fa-icon [icon]="faUpRightFromSquare"></fa-icon> {{ userResponse.team.community_build.name }}</a
+              >
+            </div>
           </div>
+        </td>
+        <td>
           <div *ngIf="userResponse.team.round" class="round-name">
             {{ userResponse.team.round?.name }}
           </div>
@@ -410,7 +419,7 @@
   <nb-card class="round-selection-mailer">
     <nb-card-header>
       <span>Send round selection update email</span>
-      <button nbButton ghost (click)="ref.close()" shape="round">
+      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
         <fa-icon [icon]="faXmark"></fa-icon>
       </button>
     </nb-card-header>
@@ -429,7 +438,7 @@
       </div>
       <div>
         <label for="message">Message (optional)</label>
-        <textarea name="message" [(ngModel)]="message" placeholder="Message" nbInput fullWidth></textarea>
+        <editor [init]="tinyMCE" [(ngModel)]="message"> </editor>
       </div>
     </nb-card-body>
     <nb-card-footer>
@@ -437,7 +446,7 @@
         nbButton
         status="primary"
         [disabled]="roundSelectionForEmail === 0"
-        (click)="OverallRoundSelectionUpdateEmail()"
+        (click)="OverallRoundSelectionUpdateEmail(); dialogRef.close()"
       >
         Send
       </button>

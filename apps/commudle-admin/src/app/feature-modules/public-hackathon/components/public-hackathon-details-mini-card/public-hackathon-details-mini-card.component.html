@@ -61,8 +61,25 @@
       <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>
     </div>
     <br />
-    <div class="action" *ngIf="hrgId && userTeamDetails?.length === 0 && hackathonStatus !== 'Closed'">
-      <button nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">Apply Now</button>
+    <div *ngIf="hrgId && hackathonStatus !== 'Closed'">
+      <button
+        *ngIf="userTeamDetails?.length === 0"
+        nbButton
+        status="primary"
+        fullWidth
+        [routerLink]="['/communities', community?.slug, 'hackathons', hackathon?.slug, 'fill-form', hrgId]"
+      >
+        Apply Now
+      </button>
+      <button
+        *ngIf="!currentUser"
+        nbButton
+        status="primary"
+        fullWidth
+        [routerLink]="['/communities', community?.slug, 'hackathons', hackathon?.slug, 'fill-form', hrgId]"
+      >
+        Login To Apply
+      </button>
     </div>
   </div>
 </div>

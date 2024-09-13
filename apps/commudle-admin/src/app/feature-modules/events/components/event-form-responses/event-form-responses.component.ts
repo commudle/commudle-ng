@@ -439,4 +439,12 @@ export class EventFormResponsesComponent implements OnInit {
       this.getResponses();
     }
   }
+
+  sendPaymentCsv() {
+    this.eventDataFormEntityGroupsService.mailPaymentCSV(this.eventDataFormEntityGroupId).subscribe((data) => {
+      if (data) {
+        this.toastLogService.successDialog('Payment CSV will be delivered to your email!', 5000);
+      }
+    });
+  }
 }

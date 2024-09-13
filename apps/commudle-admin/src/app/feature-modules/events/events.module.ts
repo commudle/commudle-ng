@@ -74,6 +74,7 @@ import { VolunteersComponent } from './components/volunteers/volunteers.componen
 import { EventsRoutingModule } from './events-routing.module';
 import { DiscountCouponsComponent } from './components/event-registrations/discount-coupons/discount-coupons.component';
 import { PaymentSettingsComponent } from './components/event-registrations/form-groups/payment-settings/payment-settings.component';
+import { NewFormAttachGroupsComponent } from './components/event-registrations/form-groups/new-form-attach-groups/new-form-attach-groups.component';
 import { DiscountCouponFormComponent } from './components/event-registrations/discount-coupons/discount-coupon-form/discount-coupon-form.component';
 import { UserPaymentDetailsComponent } from './components/event-form-responses/user-payment-details/user-payment-details.component';
 import { UserTrackSlotsComponent } from './components/event-form-responses/user-track-slots/user-track-slots.component';
@@ -125,6 +126,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     EventFormResponsesGraphComponent,
     NextStepCardComponent,
     EventCheckedInListComponent,
+    NewFormAttachGroupsComponent,
   ],
   exports: [UserDetailsComponent, UserEngagementDataComponent],
   imports: [

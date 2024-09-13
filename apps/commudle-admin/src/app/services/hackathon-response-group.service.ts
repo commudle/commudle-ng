@@ -15,6 +15,7 @@ export class HackathonResponseGroupService {
     hackathonId,
     registrationTypeId,
     name,
+    filledByOnlyTeamLead,
     dataFormId?,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_id', hackathonId);
@@ -23,6 +24,7 @@ export class HackathonResponseGroupService {
         user_details: userDetails,
         registration_type_id: registrationTypeId,
         name: name,
+        filled_by_only_team_lead: filledByOnlyTeamLead,
       },
     };
 
@@ -40,12 +42,14 @@ export class HackathonResponseGroupService {
   updateHackathonResponseGroup(
     userDetails,
     hackathonResponseGroupId,
+    filledByOnlyTeamLead,
     dataFormId?,
   ): Observable<IHackathonResponseGroup> {
     const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
     const requestBody = {
       hackathon_response_group: {
         user_details: userDetails,
+        filled_by_only_team_lead: filledByOnlyTeamLead,
       },
     };
 
@@ -70,10 +74,20 @@ export class HackathonResponseGroupService {
 
   // PUBLIC API
 
-  pShowHackathonResponseGroup(hackathonResponseGroupId): Observable<IHackathonResponseGroup> {
-    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+  pShowHackathonResponseGroup(hackathonId: number): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_id', Number(hackathonId));
     return this.http.get<IHackathonResponseGroup>(
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.PUBLIC.SHOW),
+      {
+        params,
+      },
+    );
+  }
+
+  pFetchHackathonResponseGroup(hackathonResponseGroupId: number): Observable<IHackathonResponseGroup> {
+    const params = new HttpParams().set('hackathon_response_group_id', hackathonResponseGroupId);
+    return this.http.get<IHackathonResponseGroup>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_RESPONSE_GROUP.PUBLIC.FETCH_HACKATHON_RESPONSE_GROUP),
       {
         params,
       },

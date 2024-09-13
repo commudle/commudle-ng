@@ -15,6 +15,7 @@ export interface IHackathonResponseGroup {
   updated_at: string;
   data_form_id: number;
   data_form_entity_id: number;
+  filled_by_only_team_lead: boolean;
 }
 
 interface IUserDetails {
