@@ -36,7 +36,7 @@ export class HackathonControlPanelDatesFormComponent implements OnInit, OnDestro
       end_date: ['', Validators.required],
       application_start_date: ['', Validators.required],
       application_end_date: ['', Validators.required],
-      time_zone: ['', Validators.required],
+      timezone: ['', Validators.required],
     });
   }
 
@@ -55,9 +55,9 @@ export class HackathonControlPanelDatesFormComponent implements OnInit, OnDestro
     this.subscriptions.push(
       this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
         this.hackathon = data;
-        if (!this.hackathon.time_zone) {
+        if (!this.hackathon.timezone) {
           this.hackathonDatesForm.patchValue({
-            time_zone: momentTimezone.tz.guess(),
+            timezone: momentTimezone.tz.guess(),
           });
         } else {
           this.patchDatesValue(data);
@@ -69,7 +69,7 @@ export class HackathonControlPanelDatesFormComponent implements OnInit, OnDestro
   createOrUpdate() {
     const formData = new FormData();
     Object.keys(this.hackathonDatesForm.value).forEach((key) => {
-      key === 'time_zone'
+      key === 'timezone'
         ? formData.append('hackathon[' + key + ']', this.hackathonDatesForm.value[key])
         : formData.append('hackathon[' + key + ']', this.convertDateToLocal(this.hackathonDatesForm.value[key]));
     });
@@ -86,7 +86,7 @@ export class HackathonControlPanelDatesFormComponent implements OnInit, OnDestro
       end_date: this.datePipe.transform(hackathon.end_date, 'yyyy-MM-ddTHH:mm:ss'),
       application_start_date: this.datePipe.transform(hackathon.application_start_date, 'yyyy-MM-ddTHH:mm:ss'),
       application_end_date: this.datePipe.transform(hackathon.application_end_date, 'yyyy-MM-ddTHH:mm:ss'),
-      time_zone: hackathon.time_zone,
+      timezone: hackathon.timezone,
     });
   }
 
