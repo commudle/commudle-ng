@@ -46,13 +46,10 @@ bootstrap table theme
     color: #ededed;
     margin-top: -1px;
     .page-count {
-      line-height: 50px;
       height: 50px;
-      padding: 0 1.2rem;
     }
     .datatable-pager {
-      margin: 0 10px;
-      vertical-align: top;
+      @apply com-m-0 com-mr-2;
       ul {
         li {
           margin: 10px 0px;
