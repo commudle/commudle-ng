@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
+// import { generate } from 'lean-qr';
 
 @Component({
   selector: 'commudle-dashboard-updates',
@@ -6,7 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard-updates.component.scss'],
 })
 export class DashboardUpdatesComponent implements OnInit {
+  @ViewChild('qrCanvas', { static: true }) qrCanvas: ElementRef<HTMLCanvasElement>;
+  ERegistrationStatuses = ERegistrationStatuses;
+  showEntryPass: boolean[] = [];
+  updates = [];
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.generateQRCode();
+  }
+
+  generateQRCode() {
+    // const qrCode = generate('650496');
+    // qrCode.toCanvas(this.qrCanvas.nativeElement);
+  }
+
+  toggleEntryPass(index) {
+    this.showEntryPass[index] = !this.showEntryPass[index];
+  }
 }

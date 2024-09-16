@@ -3,6 +3,10 @@ nb-card {
   nb-card-body {
     @apply com-flex com-flex-row com-p-4;
 
+    .event-registrations {
+      @apply com-w-full;
+    }
+
     .event-registration-heading {
       @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-1;
     }
@@ -12,13 +16,39 @@ nb-card {
     }
 
     table {
+      @apply com-w-full;
       .event-title {
-        @apply com-line-clamp-1;
+        @apply com-line-clamp-1 com-text-sm com-font-medium com-text-Dark-Jungle-Green;
+      }
+
+      tr {
+        @apply com-mb-2;
+      }
+
+      .table-heading,
+      .date {
+        @apply com-text-xs com-font-normal com-text-gray-500;
+      }
+
+      .event-title-date {
+        @apply com-flex com-flex-col;
+      }
+
+      .table-type {
+        @apply com-text-xs com-font-medium com-text-gray-500;
+      }
+
+      .table-status {
+        @apply com-text-xs com-font-medium;
+      }
+
+      .confirmed {
+        @apply com-text-green-500;
       }
     }
 
     .qr-code {
-      @apply com-w-[152px] com-p-4;
+      @apply com-w-[152px] com-h-full com-pl-4 com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
       nb-card {
         @apply com-m-0;
 
@@ -28,4 +58,10 @@ nb-card {
       }
     }
   }
+}
+
+canvas {
+  image-rendering: pixelated;
+  width: 100%;
+  height: 100%;
 }

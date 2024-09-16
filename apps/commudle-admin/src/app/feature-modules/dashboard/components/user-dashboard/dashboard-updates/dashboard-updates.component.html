@@ -6,19 +6,21 @@
       <h3 class="event-registration-subheading">Click on View pass to check out your entry pass</h3>
       <table>
         <tr>
-          <td>Name</td>
-          <td>Type</td>
-          <td>Your Status</td>
-          <td>Action</td>
+          <td class="table-heading">Name</td>
+          <td class="table-heading">Type</td>
+          <td class="table-heading">Your Status</td>
+          <td class="table-heading">Action</td>
         </tr>
+        <!-- *ngFor="let update of updates; let i = index" -->
         <tr>
-          <td class="com-flex com-flex-col">
+          <td class="event-title-date">
             <span class="event-title">Google Cloud Day 2024</span>
-            <span>26 July 2024</span>
+            <span class="date">26 July 2024</span>
           </td>
-          <td>Attendee</td>
-          <td>Confirmed</td>
-          <td><button nbButton status="" shape="round" size="small">View Pass</button></td>
+          <td class="table-type">Attendee</td>
+          <td [ngClass]="{ confirmed: ERegistrationStatuses.CONFIRMED }" class="table-status">Confirmed</td>
+          <!-- (click)="toggleEntryPass(i)" -->
+          <td><button nbButton status="" shape="round" size="tiny">View Pass</button></td>
         </tr>
         <tr>
           <td class="com-flex com-flex-col">
@@ -27,14 +29,15 @@
           </td>
           <td>Attendee</td>
           <td>Confirmed</td>
-          <td><button nbButton status="" shape="round" size="small">View Pass</button></td>
+          <td><button nbButton status="" shape="round" size="tiny">View Pass</button></td>
         </tr>
       </table>
     </div>
     <div class="qr-code">
       <nb-card>
         <nb-card-body>
-          <img [src]="'https://quickchart.io/qr?text=137228'" />
+          <canvas #qrCanvas></canvas>
+          <!-- <img [src]="'https://quickchart.io/qr?text=137228'" /> -->
         </nb-card-body>
       </nb-card>
     </div>
