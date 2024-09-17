@@ -1,7 +1,7 @@
 nb-card {
   @apply com-m-0;
   nb-card-body {
-    @apply com-flex com-flex-row com-p-4;
+    @apply com-flex com-flex-row com-p-4 com-items-center;
 
     .event-registrations {
       @apply com-w-full;
