@@ -263,7 +263,7 @@
     overflow: auto;
 
     .datatable-footer-inner {
-      @apply com-flex com-items-start com-justify-between com-w-full  com-m-0 com-mt-2;
+      @apply com-flex com-items-center com-justify-between com-w-full  com-m-0 com-mt-2;
     }
 
     .selected-count {
@@ -280,15 +280,12 @@
     }
 
     .datatable-pager {
-      @apply com-flex;
+      @apply com-flex com-items-center;
       text-align: right;
 
       .pager,
       .pager li {
-        padding: 0;
-        margin: 0;
-        display: inline-block;
-        list-style: none;
+        @apply com-flex com-p-0 com-m-0 com-list-none;
       }
 
       .pager {
@@ -314,6 +311,14 @@
 
       a {
         @apply com-text-gray-600 #{!important};
+      }
+
+      .jump-to-label {
+        @apply com-mr-2;
+      }
+
+      .jump-to-select {
+        @apply md:com-w-12;
       }
     }
   }
