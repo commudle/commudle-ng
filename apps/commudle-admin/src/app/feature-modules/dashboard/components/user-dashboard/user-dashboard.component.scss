@@ -81,9 +81,17 @@ a {
 }
 
 .right-column {
-  @apply md:com-pl-6 com-pt-6;
+  @apply md:com-pl-6 com-pt-6 com-w-[300px];
 }
 
 .event-horizontal-card {
   @apply com-mb-4;
+}
+
+.two-column {
+  @apply com-flex com-flex-row;
+}
+
+.center-column {
+  @apply com-w-full com-pt-6;
 }
