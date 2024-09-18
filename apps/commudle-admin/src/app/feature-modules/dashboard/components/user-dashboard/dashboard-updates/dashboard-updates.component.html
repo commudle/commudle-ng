@@ -1,6 +1,8 @@
 <nb-card>
-  <nb-card-header> </nb-card-header>
-  <nb-card-body>
+  <nb-card-header
+    ><h2>Post a content<fa-icon [icon]="faChevronDown"></fa-icon></h2
+  ></nb-card-header>
+  <nb-card-body *ngIf="updates.length > 0">
     <div class="event-registrations">
       <h2 class="event-registration-heading">Your Event Registrations</h2>
       <h3 class="event-registration-subheading">Click on View pass to check out your entry pass</h3>

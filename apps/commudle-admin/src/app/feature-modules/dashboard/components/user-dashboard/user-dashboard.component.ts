@@ -22,6 +22,7 @@ export class UserDashboardComponent implements OnInit {
   total: number;
   limit = 4;
   upcomingEvents: IEvent[] = [];
+  upcomingEventsHackathons: IEvent[] = [];
 
   constructor(
     private authWatchService: LibAuthwatchService,

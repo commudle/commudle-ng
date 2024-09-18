@@ -8,6 +8,7 @@ import { UserProfileComponent } from 'apps/commudle-admin/src/app/app-shared-com
 import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature-modules/homepage/components/homepage-dashboard/userprofile-details/userprofile-details.component';
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { DashboardUpdatesComponent } from './components/user-dashboard/dashboard-updates/dashboard-updates.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -18,6 +19,9 @@ import { DashboardUpdatesComponent } from './components/user-dashboard/dashboard
     //Nebular
     NbCardModule,
     NbButtonModule,
+
+    //Fontawesome
+    FontAwesomeModule,
 
     //Standalone
     UserProfileComponent,

@@ -70,7 +70,8 @@ a {
 
 .main-column {
   @apply com-pt-6;
-  .upcoming-events {
+  .upcoming-events,
+  .recent-activity {
     h2 {
       @apply com-m-0 com-mb-3 com-text-xl com-font-semibold com-text-Yankees-Blue;
     }
@@ -94,4 +95,11 @@ a {
 
 .center-column {
   @apply com-w-full com-pt-6;
+}
+
+.no-upcoming-events {
+  @apply com-flex com-items-center com-justify-center com-pt-12;
+  h3 {
+    @apply com-text-xl com-font-medium com-text-tAuro-Metal-Saurus;
+  }
 }
