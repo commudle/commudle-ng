@@ -24,12 +24,13 @@
     <div class="cfp-card-details">
       <div class="first-row">
         <div class="badge-and-time">
-          <p class="event-time">{{ moment(item.created_at).format('dddd, MMM Do, YYYY').toUpperCase() }}</p>
+          <p class="event-time">{{ moment(item.event.start_time).format('dddd, MMM Do, YYYY').toUpperCase() }}</p>
           <div *ngIf="community" class="community-badge">
             <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
           </div>
         </div>
-        <p class="event-title">{{ item.name }}</p>
+        <p class="form-title">{{ item.name }}</p>
+        <p class="event-title">{{ item.event.name }}</p>
       </div>
       <div class="second-row">
         <div class="interested-and-location" *appBreakpoints="'>lg'">
