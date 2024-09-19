@@ -3,11 +3,7 @@ import { DatatableFooterDirective } from './footer.directive';
 @Component({
   selector: 'datatable-footer',
   template: `
-    <div
-      class="datatable-footer-inner"
-      [ngClass]="{ 'selected-count': selectedMessage }"
-      [style.height.px]="footerHeight"
-    >
+    <div class="datatable-footer-inner" [ngClass]="{ 'selected-count': selectedMessage }">
       <ng-template
         *ngIf="footerTemplate"
         [ngTemplateOutlet]="footerTemplate.template"

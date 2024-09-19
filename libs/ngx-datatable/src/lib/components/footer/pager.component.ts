@@ -1,10 +1,11 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'datatable-pager',
   template: `
-    <select [(ngModel)]="selectedPage" (change)="jumpToPage($event)">
-      <option *ngFor="let pg of pages" [value]="pg.number">{{ pg.number }}</option>
+    <label for="jumpTo" class="jump-to-label">Jump to</label>
+    <select name="jumpTo" id="jumpTo" [(ngModel)]="selectedPage" (change)="jumpToPage($event)" class="jump-to-select">
+      <option *ngFor="let pg of allPages" [value]="pg.number">{{ pg.number }}</option>
     </select>
     &nbsp;&nbsp;&nbsp;
     <ul class="pager">
@@ -40,7 +41,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DataTablePagerComponent {
+export class DataTablePagerComponent implements OnInit {
   @Input() pagerLeftArrowIcon: string;
   @Input() pagerRightArrowIcon: string;
   @Input() pagerPreviousIcon: string;
@@ -50,6 +51,7 @@ export class DataTablePagerComponent {
   set size(val: number) {
     this._size = val;
     this.pages = this.calcPages();
+    this.updateAllPages();
   }
 
   get size(): number {
@@ -60,6 +62,7 @@ export class DataTablePagerComponent {
   set count(val: number) {
     this._count = val;
     this.pages = this.calcPages();
+    this.updateAllPages();
   }
 
   get count(): number {
@@ -88,6 +91,11 @@ export class DataTablePagerComponent {
   _size = 0;
   pages: any;
   selectedPage = 0;
+  allPages: any[];
+
+  ngOnInit() {
+    this.updateAllPages();
+  }
 
   canPrevious(): boolean {
     return this.page > 1;
@@ -113,6 +121,8 @@ export class DataTablePagerComponent {
       this.changePage.emit({
         page,
       });
+    } else {
+      this.selectedPage = this.page;
     }
   }
 
@@ -151,5 +161,15 @@ export class DataTablePagerComponent {
   jumpToPage(event): void {
     this.selectedPage = Number(event.target.value);
     this.selectPage(this.selectedPage);
+  }
+
+  updateAllPages(): void {
+    this.allPages = [];
+    for (let num = 1; num <= this.totalPages; num++) {
+      this.allPages.push({
+        number: num,
+        text: <string>(<any>num),
+      });
+    }
   }
 }
