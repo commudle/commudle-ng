@@ -7,6 +7,7 @@ import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { Subscription } from 'rxjs';
+import { FeedService } from 'apps/shared-services/feed.service';
 
 @Component({
   selector: 'commudle-user-dashboard',
@@ -21,20 +22,19 @@ export class UserDashboardComponent implements OnInit {
   page_info: IPageInfo;
   total: number;
   limit = 4;
-  upcomingEvents: IEvent[] = [];
-  upcomingEventsHackathons: IEvent[] = [];
+  upcomingEventsHackathons: any[] = [];
 
   constructor(
     private authWatchService: LibAuthwatchService,
     private appUsersService: AppUsersService,
     private communitiesService: CommunitiesService,
-    private eventsService: EventsService,
+    private feedService: FeedService,
   ) {}
 
   ngOnInit(): void {
     this.getUserDetails();
     this.getCommunitiesData();
-    this.getUpcomingEvents();
+    this.getUpcomingEventsHackathons();
   }
 
   getUserDetails() {
@@ -56,12 +56,13 @@ export class UserDashboardComponent implements OnInit {
     );
   }
 
-  getUpcomingEvents() {
-    this.eventsService.getEventsList('future', this.limit, this.page_info?.end_cursor).subscribe((data) => {
+  getUpcomingEventsHackathons() {
+    this.feedService.getUpcomingEventsHackathons().subscribe((data) => {
       if (data) {
-        this.upcomingEvents = this.upcomingEvents.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-        this.total = data.total;
-        this.page_info = data.page_info;
+        this.upcomingEventsHackathons = data.events_hackathons;
+        console.log(this.upcomingEventsHackathons);
+        // this.total = data.total;
+        // this.page_info = data.page_info;
       }
     });
   }

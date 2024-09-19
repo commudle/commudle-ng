@@ -12,10 +12,18 @@ nb-card {
     }
   }
   nb-card-body {
-    @apply com-flex com-flex-row com-p-4 com-pt-0 com-items-center com-bg-gray-100;
+    @apply com-flex com-flex-col com-p-4 com-pt-0 com-items-center com-bg-gray-100 com-w-full;
+
+    .registrations {
+      @apply com-flex com-flex-row com-items-center com-w-full;
+    }
+
+    .container {
+      @apply com-w-full com-bg-white com-p-4 com-rounded-xl;
+    }
 
     .event-registrations {
-      @apply com-w-full com-bg-white com-p-4 com-rounded-xl;
+      @apply com-w-full;
     }
 
     .event-registration-heading {
@@ -65,6 +73,27 @@ nb-card {
 
         nb-card-body {
           @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50;
+        }
+      }
+    }
+
+    .channel-updates {
+      @apply com-flex com-flex-col;
+
+      .channel-update {
+        @apply com-flex com-flex-row;
+      }
+      .channel-name {
+        @apply com-flex com-items-center com-justify-center com-border-0 com-border-r com-border-solid com-border-Bright-Gray;
+        h2 {
+          @apply com-text-sm com-font-medium com-px-2 com-m-0;
+        }
+      }
+
+      .channel-new-messages {
+        @apply com-flex com-items-center com-justify-center;
+        h2 {
+          @apply com-text-sm com-font-semibold com-text-green-500 com-px-2 com-m-0;
         }
       }
     }

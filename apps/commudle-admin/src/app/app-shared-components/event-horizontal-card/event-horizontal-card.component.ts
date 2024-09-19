@@ -26,13 +26,16 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
   ],
 })
 export class EventHorizontalCardComponent implements OnInit {
-  @Input() event: IEvent;
+  @Input() event: any;
+  @Input() parentType = 'Event';
   community: ICommunity;
   moment = moment;
 
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
+    console.log(this.event, 'horizontal');
+    console.log(this.parentType);
     this.getCommunity();
   }
 

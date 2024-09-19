@@ -2,10 +2,10 @@
   <nb-card-body>
     <div class="upcoming-card">
       <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" class="upcoming-card-link">
-        <div *ngIf="event.header_image_path">
+        <div *ngIf="event.header_image_path || event.header_image">
           <div *appBreakpoints="'>lg'" class="upcoming-card-image">
             <commudle-banner-image
-              [headerImagePath]="event.header_image_path"
+              [headerImagePath]="event.header_image_path || event.header_image?.i350"
               [name]="event.name"
               [topRightCurve]="false"
               [bottomRightCurve]="false"
@@ -13,14 +13,14 @@
           </div>
           <div *appBreakpoints="'<=lg'" class="upcoming-card-image">
             <commudle-banner-image
-              [headerImagePath]="event.header_image_path"
+              [headerImagePath]="event.header_image_path || event.header_image?.i350"
               [name]="event.name"
               [bottomRightCurve]="false"
               [bottomLeftCurve]="false"
             ></commudle-banner-image>
           </div>
         </div>
-        <div *ngIf="!event.header_image_path" class="no-image-header">
+        <div *ngIf="!(event.header_image_path || event.header_image)" class="no-image-header">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
         <div class="upcoming-card-details-desktop">

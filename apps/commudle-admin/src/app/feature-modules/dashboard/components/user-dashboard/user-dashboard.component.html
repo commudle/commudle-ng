@@ -42,8 +42,11 @@
               <div class="upcoming-events">
                 <h2>Upcoming</h2>
                 <div *ngIf="upcomingEventsHackathons.length > 0">
-                  <div *ngFor="let event of upcomingEventsHackathons" class="event-horizontal-card">
-                    <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
+                  <div *ngFor="let upcomingEventHackathon of upcomingEventsHackathons" class="event-horizontal-card">
+                    <commudle-event-horizontal-card
+                      [event]="upcomingEventHackathon.data"
+                      [parentType]="upcomingEventHackathon.object_type"
+                    ></commudle-event-horizontal-card>
                   </div>
                 </div>
                 <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0">
@@ -52,11 +55,6 @@
               </div>
               <div class="recent-activity">
                 <h2>Recent Activity</h2>
-                <div *ngIf="upcomingEventsHackathons.length > 0">
-                  <div *ngFor="let event of upcomingEventsHackathons" class="event-horizontal-card">
-                    <commudle-event-horizontal-card [event]="event"></commudle-event-horizontal-card>
-                  </div>
-                </div>
                 <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0">
                   <h3>No Recent Activity</h3>
                 </div>

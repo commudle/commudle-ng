@@ -942,4 +942,8 @@ export const API_ROUTES = {
     GET_TRANSFER_DETAILS: 'api/v2/razorpay/get_transfer_details', //GET
     CREATE_MISSING_RZP_PAYMENT: 'api/v2/razorpay/create_missing_rzp_payment', //GET
   },
+
+  FEED: {
+    INDEX_UPCOMING_HACKATHONS_EVENTS: 'api/v2/feed/events_hackathons/upcoming',
+  },
 };
