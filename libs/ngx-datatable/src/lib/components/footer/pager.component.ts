@@ -3,8 +3,8 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit
 @Component({
   selector: 'datatable-pager',
   template: `
-    <label *appBreakpoints="'>lg'" for="jumpTo" class="jump-to-label">Jump to</label>
-    <select name="jumpTo" [(ngModel)]="selectedPage" (change)="jumpToPage($event)" class="jump-to-select">
+    <label for="jumpTo" class="jump-to-label">Jump to</label>
+    <select name="jumpTo" id="jumpTo" [(ngModel)]="selectedPage" (change)="jumpToPage($event)" class="jump-to-select">
       <option *ngFor="let pg of allPages" [value]="pg.number">{{ pg.number }}</option>
     </select>
     &nbsp;&nbsp;&nbsp;
@@ -121,6 +121,8 @@ export class DataTablePagerComponent implements OnInit {
       this.changePage.emit({
         page,
       });
+    } else {
+      this.selectedPage = this.page;
     }
   }
 

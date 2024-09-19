@@ -314,7 +314,7 @@
       }
 
       .jump-to-label {
-        @apply com-mr-2;
+        @apply com-mr-2 md:com-flex com-hidden;
       }
 
       .jump-to-select {
