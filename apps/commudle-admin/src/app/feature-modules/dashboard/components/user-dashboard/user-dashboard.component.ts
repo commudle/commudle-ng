@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICommunity, IEvent, IPageInfo } from '@commudle/shared-models';
+import { EDbModels, ICommunity, IEvent, IPageInfo } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
@@ -23,6 +23,8 @@ export class UserDashboardComponent implements OnInit {
   total: number;
   limit = 4;
   upcomingEventsHackathons: any[] = [];
+  EDbModels = EDbModels;
+  loading = true;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -57,9 +59,11 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getUpcomingEventsHackathons() {
+    this.loading = true;
     this.feedService.getUpcomingEventsHackathons().subscribe((data) => {
       if (data) {
-        this.upcomingEventsHackathons = data.events_hackathons;
+        this.upcomingEventsHackathons = data.values;
+        this.loading = false;
         console.log(this.upcomingEventsHackathons);
         // this.total = data.total;
         // this.page_info = data.page_info;

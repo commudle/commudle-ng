@@ -2,8 +2,8 @@
   <nb-card-header
     ><h2>Post a content<fa-icon [icon]="faChevronDown"></fa-icon></h2
   ></nb-card-header>
-  <!-- *ngIf="updates.length > 0" -->
-  <nb-card-body>
+  <!--  -->
+  <nb-card-body *ngIf="updates?.length > 0">
     <div class="container">
       <div class="registrations">
         <div class="event-registrations">
@@ -17,15 +17,26 @@
               <td class="table-heading">Action</td>
             </tr>
             <!-- *ngFor="let update of updates; let i = index" -->
-            <tr>
+            <tr class="registration-data">
               <td class="event-title-date">
                 <span class="event-title">Google Cloud Day 2024</span>
                 <span class="date">26 July 2024</span>
               </td>
               <td class="table-type">Attendee</td>
-              <td [ngClass]="{ confirmed: ERegistrationStatuses.CONFIRMED }" class="table-status">Confirmed</td>
+              <td
+                [ngClass]="{
+                  confirmed: ERegistrationStatuses.CONFIRMED,
+                  registered: ERegistrationStatuses.REGISTERED,
+                  waiting: ERegistrationStatuses.WAITING,
+                  shortlisted: ERegistrationStatuses.SHORTLISTED,
+                  cancelled: ERegistrationStatuses.CANCELLED
+                }"
+                class="table-status"
+              >
+                Confirmed
+              </td>
               <!-- (click)="toggleEntryPass(i)" -->
-              <td><button nbButton status="" shape="round" size="tiny">View Pass</button></td>
+              <td><button nbButton status="primary" shape="round" size="tiny">View Pass</button></td>
             </tr>
             <tr>
               <td class="com-flex com-flex-col">

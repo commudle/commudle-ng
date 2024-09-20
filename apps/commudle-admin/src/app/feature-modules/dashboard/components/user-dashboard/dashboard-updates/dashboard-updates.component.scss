@@ -62,7 +62,23 @@ nb-card {
       }
 
       .confirmed {
-        @apply com-text-green-500;
+        @apply com-text-green-600;
+      }
+
+      .registered {
+        @apply com-text-black;
+      }
+
+      .waiting {
+        @apply com-text-yellow-700;
+      }
+
+      .shortlisted {
+        @apply com-text-Azure;
+      }
+
+      .cancelled {
+        @apply com-text-red-500;
       }
     }
 

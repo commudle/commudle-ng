@@ -5,7 +5,7 @@
         <div class="left-column">
           <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
           <nb-card class="user-profile-details">
-            <nb-card-body>
+            <nb-card-body *ngIf="currentUser">
               <commudle-userprofile-details
                 [userProfileDetails]="userProfileDetails"
                 [username]="currentUser.username"
@@ -41,24 +41,34 @@
             <div class="center-column">
               <div class="upcoming-events">
                 <h2>Upcoming</h2>
-                <div *ngIf="upcomingEventsHackathons.length > 0">
-                  <div *ngFor="let upcomingEventHackathon of upcomingEventsHackathons" class="event-horizontal-card">
+                <div *ngIf="upcomingEventsHackathons.length > 0 && !loading">
+                  <div
+                    *ngFor="let upcomingEventHackathon of upcomingEventsHackathons"
+                    class="event-horizontal-card"
+                    [ngSwitch]="upcomingEventHackathon.object_type"
+                  >
                     <commudle-event-horizontal-card
+                      *ngSwitchCase="EDbModels.EVENT"
                       [event]="upcomingEventHackathon.data"
                       [parentType]="upcomingEventHackathon.object_type"
                     ></commudle-event-horizontal-card>
+                    <!-- <commudle-hackathon-horizontal-card
+                      *ngSwitchCase="EDbModels.HACKATHON"
+                      [event]="upcomingEventHackathon.data"
+                      [parentType]="upcomingEventHackathon.object_type"
+                    ></commudle-hackathon-horizontal-card> -->
                   </div>
                 </div>
-                <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0">
+                <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0 && !loading">
                   <h3>No Upcoming Events</h3>
                 </div>
               </div>
-              <div class="recent-activity">
+              <!-- <div class="recent-activity">
                 <h2>Recent Activity</h2>
                 <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0">
                   <h3>No Recent Activity</h3>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="right-column">
               <div class="advertisement">
