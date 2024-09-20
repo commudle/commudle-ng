@@ -1,64 +1,82 @@
-// nb-card {
-//   @apply com-m-0;
-//   nb-card-body {
-//     @apply com-p-0;
-//     .upcoming-card {
-//       .upcoming-card-link {
-//         @apply com-flex com-w-full com-no-underline md:com-flex-row com-flex-col;
+nb-card {
+  @apply com-m-0;
+  nb-card-body {
+    @apply com-p-0;
+    .upcoming-card {
+      .upcoming-card-link {
+        @apply com-flex com-w-full com-no-underline md:com-flex-row com-flex-col;
 
-//         .upcoming-card-image {
-//           @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[388px] md:com-h-[145px] com-w-full com-h-full;
-//         }
+        .upcoming-card-image {
+          @apply com-border-r-gray-200 com-flex com-justify-center com-items-center com-overflow-hidden md:com-w-[388px] md:com-h-[145px] com-w-full com-h-full;
+        }
 
-//         .no-image-header {
-//           @apply md:com-w-[388px] md:com-h-[145px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center;
+        .no-image-header {
+          @apply md:com-w-[388px] md:com-h-[145px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center;
 
-//           nb-icon {
-//             @apply com-text-5xl;
-//           }
-//         }
+          nb-icon {
+            @apply com-text-5xl;
+          }
+        }
 
-//         .upcoming-card-details-desktop {
-//           @apply md:com-p-3 md:com-pb-0 com-px-4 com-py-5 com-overflow-hidden;
-//           flex: 1;
-//           div {
-//             @apply com-flex com-flex-col;
+        .upcoming-card-details-desktop {
+          @apply md:com-p-3 com-px-4 com-py-5 com-overflow-hidden com-flex com-flex-col com-justify-between;
+          flex: 1;
+          div {
+            @apply com-flex com-flex-col;
 
-//             div {
-//               @apply com-flex com-flex-row com-justify-between com-items-center;
+            .title-interested-members {
+              @apply com-flex com-flex-row com-justify-between com-items-center;
 
-//               .interested-members {
-//                 button {
-//                   @apply com-py-1 com-px-2 com-w-max;
-//                   nb-icon {
-//                     @apply com-mr-2 com-text-Dark-Jungle-Green com-h-[16px] com-shrink-0;
-//                   }
+              .interested-members {
+                button {
+                  @apply com-py-1 com-px-2 com-w-max;
+                  nb-icon {
+                    @apply com-mr-2 com-text-Dark-Jungle-Green com-h-[16px] com-shrink-0;
+                  }
 
-//                   span {
-//                     @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus;
-//                   }
-//                 }
-//               }
+                  span {
+                    @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus;
+                  }
+                }
+              }
+              .title {
+                @apply md:com-text-xl com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-1 com-line-clamp-1;
+              }
+            }
 
-//               .event-time {
-//                 @apply com-text-xs com-font-medium md:com-mb-3 com-mb-4 com-mt-0 com-text-Auro-Metal-Saurus;
-//               }
-//             }
+            .time {
+              @apply com-text-xs com-font-medium com-m-0 com-text-Auro-Metal-Saurus;
+            }
+          }
 
-//             .event-title {
-//               @apply md:com-text-xl com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-3 com-line-clamp-1;
-//             }
-//           }
+          .badge-register-prize-buttons {
+            @apply com-flex com-flex-row com-justify-between com-items-center;
+          }
 
-//           .community-badge {
-//             @apply com-m-0 md:com-my-0 com-mb-6;
-//           }
+          .community-badge {
+            @apply com-m-0 md:com-my-0 com-mb-6;
+          }
 
-//           .register-button {
-//             @apply com-border com-m-0 com-bg-transparent com-py-5px com-flex md:com-ml-auto com-ml-0 com-px-6px;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+          .register-button {
+            @apply com-border com-m-0 com-bg-transparent com-py-5px com-flex md:com-ml-auto com-ml-0 com-px-6px;
+          }
+
+          .prize-money {
+            @apply com-flex com-flex-row com-items-center;
+            fa-icon {
+              @apply com-text-sm com-text-gray-400 com-mr-2;
+            }
+
+            span {
+              @apply com-text-xs com-font-semibold com-text-Yankees-Blue;
+            }
+          }
+
+          .prize-register-btn {
+            @apply com-flex com-flex-row com-items-center com-gap-3;
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature
 import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/event-horizontal-card/event-horizontal-card.component';
 import { DashboardUpdatesComponent } from './components/user-dashboard/dashboard-updates/dashboard-updates.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HackathonHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/hackathon-horizontal-card/hackathon-horizontal-card.component';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -27,6 +28,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     UserProfileComponent,
     UserprofileDetailsComponent,
     EventHorizontalCardComponent,
+    HackathonHorizontalCardComponent,
   ],
 })
 export class DashboardModule {}

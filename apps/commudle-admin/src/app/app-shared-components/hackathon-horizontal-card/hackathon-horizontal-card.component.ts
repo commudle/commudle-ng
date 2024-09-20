@@ -9,6 +9,7 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
+import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'commudle-hackathon-horizontal-card',
@@ -27,22 +28,23 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
   styleUrls: ['./hackathon-horizontal-card.component.scss'],
 })
 export class HackathonHorizontalCardComponent implements OnInit {
-  @Input() event: any;
+  @Input() hackathon: any;
   @Input() parentType = 'Event';
   community: ICommunity;
   moment = moment;
+  faSackDollar = faSackDollar;
 
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    console.log(this.event, 'horizontal');
+    console.log(this.hackathon, 'horizontal');
     console.log(this.parentType);
     this.getCommunity();
   }
 
   getCommunity() {
-    // this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
-    //   this.community = data;
-    // });
+    this.communitiesService.pGetCommunityDetails(this.hackathon.kommunity_slug).subscribe((data) => {
+      this.community = data;
+    });
   }
 }
