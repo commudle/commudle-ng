@@ -1,4 +1,4 @@
-<div class="event-dashboard-actions">
+<div class="event-dashboard-actions" *ngIf="rowData">
   <a [routerLink]="['event-dashboard', rowData.slug]" nbButton hero status="info" size="tiny"> Dashboard </a>
   <!-- <button *ngIf="rowData.start_time" (click)="openCloneEventWindow()" outline nbButton status="info" size="tiny">
     Clone

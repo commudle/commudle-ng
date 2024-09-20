@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { IColumnType, Settings } from 'angular2-smart-table';
+import { Settings } from 'angular2-smart-table';
 import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { IEvent } from 'apps/shared-models/event.model';
 import { CommunityEventsListActionsComponent } from './community-events-list-actions/community-events-list-actions.component';
 import { CommunityEventsListDateComponent } from './community-events-list-date/community-events-list-date.component';
 import { CommunityEventsListPublicPageComponent } from './community-events-list-public-page/community-events-list-public-page.component';
+import { Cell } from 'angular2-smart-table'; // Ensure this is imported
 
 @Component({
   selector: 'app-community-events-list',
@@ -29,33 +30,42 @@ export class CommunityEventsListComponent implements OnInit {
       },
       date: {
         title: 'Date',
-        filter: false,
-        type: IColumnType.Custom,
+        isFilterable: false,
+        type: 'custom',
         renderComponent: CommunityEventsListDateComponent,
+        componentInitFunction: (instance: CommunityEventsListDateComponent, cell: Cell) => {
+          const rowData: IEvent = cell.getRow().getData();
+          instance.rowData = rowData;
+        },
       },
       status: {
         title: 'Status',
-        filter: false,
+        isFilterable: false,
       },
       actions: {
         title: 'Actions',
-        filter: false,
-        type: IColumnType.Custom,
+        isFilterable: false,
+        type: 'custom',
         renderComponent: CommunityEventsListActionsComponent,
         isSortable: false,
+        componentInitFunction: (instance: CommunityEventsListActionsComponent, cell: Cell) => {
+          const rowData: IEvent = cell.getRow().getData();
+          instance.rowData = rowData;
+        },
       },
       public_page: {
         title: 'Public Page',
-        filter: false,
-        type: IColumnType.Custom,
+        isFilterable: false,
+        type: 'custom',
         renderComponent: CommunityEventsListPublicPageComponent,
         isSortable: false,
+        componentInitFunction: (instance: CommunityEventsListPublicPageComponent, cell: Cell) => {
+          const rowData: IEvent = cell.getRow().getData();
+          instance.rowData = rowData;
+        },
       },
     },
-
-    rowClassFunction: (row) => {
-      return 'clickable';
-    },
+    rowClassFunction: () => 'clickable',
   };
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private eventsService: EventsService) {}

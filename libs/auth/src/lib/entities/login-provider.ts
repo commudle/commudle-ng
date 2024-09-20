@@ -2,9 +2,9 @@ import { EventEmitter } from '@angular/core';
 import { SocialUser } from './social-user';
 
 export interface LoginProvider {
-  readonly changeUser?: EventEmitter<SocialUser | null>;
+  readonly changeUser?: EventEmitter<SocialUser>;
 
-  initialize(autoLogin?: boolean): Promise<void>;
+  initialize(autoLogin?: boolean, lang?: string): Promise<void>;
 
   getLoginStatus(): Promise<SocialUser>;
 

@@ -5,13 +5,13 @@ import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { AuthGuard } from 'apps/shared-services/lib-authwatch.guard';
 import { AboutComponent } from './components/about/about.component';
 import { CommunitiesComponent } from './components/communities/communities.component';
+import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SpeakerResourceFormComponent } from './components/speaker-resource-form/speaker-resource-form.component';
 import { MainNewsletterComponent } from './feature-modules/main-newsletters/components/main-newsletter/main-newsletter.component';
 import { RedirectToMyProfileGuard } from './feature-modules/users/guards/redirect-to-my-profile.guard';
 import { InitResolver } from './resolvers/init.resolver';
-import { CheckFillDataFormComponent } from './components/fill-data-form/check-fill-data-form/check-fill-data-form.component';
 
 const routes: Routes = [
   // TODO: discuss in future for order of paths
@@ -276,8 +276,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      // TODO: modify the below to use the new option
-      relativeLinkResolution: 'legacy',
       anchorScrolling: 'enabled',
       scrollPositionRestoration: 'enabled',
       scrollOffset: [0, 68],

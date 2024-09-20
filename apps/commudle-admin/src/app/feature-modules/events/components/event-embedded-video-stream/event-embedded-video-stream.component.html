@@ -93,6 +93,11 @@
         </label>
       </div>
       <div *ngIf="embeddedVideoStreamForm.get('source').value === EEmbeddedVideoStreamSources.COMMUDLE">
+        <commudle-event-streaming
+          (refreshEmbeddedVideoStream)="getEmbeddedVideoStream()"
+          [embeddedVideoStream]="evs"
+          [event]="event"
+        ></commudle-event-streaming>
         <label>
           Enter the streaming url (rtmp://a.rtmp.youtube.com/live2/&lt;stream_key&gt;)
           <input

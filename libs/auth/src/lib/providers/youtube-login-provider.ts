@@ -1,54 +1,38 @@
 /// <reference types="@types/google.accounts"/>
 
 import { EventEmitter } from '@angular/core';
-import { BehaviorSubject, filter, skip, take } from 'rxjs';
+import { BehaviorSubject, skip, take } from 'rxjs';
 import { BaseLoginProvider } from '../entities/base-login-provider';
 import { SocialUser } from '../entities/social-user';
 
-export interface GoogleInitOptions {
-  /**
-   * enables the One Tap mechanism, and makes auto-login possible
-   */
-  oneTapEnabled?: boolean;
+export interface YoutubeInitOptions {
   /**
    * list of permission scopes to grant in case we request an access token
    */
   scopes?: string | string[];
   /**
-   * This attribute sets the DOM ID of the container element. If it's not set, the One Tap prompt is displayed in the top-right corner of the window.
+   * UX mode to use for the sign-in flow.
    */
-  prompt_parent_id?: string;
-
-  /**
-   * Optional, defaults to 'select_account'.
-   * A space-delimited, case-sensitive list of prompts to present the
-   * user.
-   * Possible values are:
-   * empty string The user will be prompted only the first time your
-   *     app requests access. Cannot be specified with other values.
-   * 'none' Do not display any authentication or consent screens. Must
-   *     not be specified with other values.
-   * 'consent' Prompt the user for consent.
-   * 'select_account' Prompt the user to select an account.
-   */
-  prompt?: '' | 'none' | 'consent' | 'select_account';
+  ux_mode?: 'popup' | 'redirect';
 }
 
-const defaultInitOptions: GoogleInitOptions = {
-  oneTapEnabled: true,
+const defaultInitOptions: YoutubeInitOptions = {
+  scopes: ['https://www.googleapis.com/auth/youtube'],
+  ux_mode: 'popup',
 };
 
-export class GoogleLoginProvider extends BaseLoginProvider {
-  public static readonly PROVIDER_ID: string = 'GOOGLE';
+export class YoutubeLoginProvider extends BaseLoginProvider {
+  public static readonly PROVIDER_ID: string = 'YOUTUBE';
 
-  public readonly changeUser = new EventEmitter<SocialUser | null>();
+  public override readonly changeUser = new EventEmitter<SocialUser | null>();
 
   private readonly _socialUser = new BehaviorSubject<SocialUser | null>(null);
-  private readonly _accessToken = new BehaviorSubject<string | null>(null);
-  private readonly _receivedAccessToken = new EventEmitter<string>();
-  private _tokenClient: google.accounts.oauth2.TokenClient | undefined;
+  private readonly _code = new BehaviorSubject<string | null>(null);
+  private readonly _receivedCode = new EventEmitter<string | null>();
 
-  constructor(private clientId: string, private readonly initOptions?: GoogleInitOptions) {
+  private _codeClient: google.accounts.oauth2.CodeClient | undefined;
+
+  constructor(private clientId: string, private readonly initOptions?: YoutubeInitOptions) {
     super();
 
     this.initOptions = { ...defaultInitOptions, ...this.initOptions };
@@ -57,47 +41,34 @@ export class GoogleLoginProvider extends BaseLoginProvider {
     this._socialUser.pipe(skip(1)).subscribe(this.changeUser);
 
     // emit receivedAccessToken but skip initial value from behaviorSubject
-    this._accessToken.pipe(skip(1)).subscribe(this._receivedAccessToken);
+    this._code.pipe(skip(1)).subscribe(this._receivedCode);
   }
 
   initialize(autoLogin?: boolean, lang?: string): Promise<void> {
     return new Promise((resolve, reject) => {
       try {
-        this.loadScript(GoogleLoginProvider.PROVIDER_ID, this.getGoogleLoginScriptSrc(lang), () => {
+        this.loadScript(YoutubeLoginProvider.PROVIDER_ID, this.getGoogleLoginScriptSrc(lang), () => {
           google.accounts.id.initialize({
             client_id: this.clientId,
             auto_select: autoLogin,
             callback: ({ credential }) => this._socialUser.next(this.createSocialUser(credential)),
-            prompt_parent_id: this.initOptions?.prompt_parent_id,
-            itp_support: this.initOptions.oneTapEnabled,
-            use_fedcm_for_prompt: this.initOptions.oneTapEnabled,
+            ux_mode: this.initOptions?.ux_mode,
           });
 
-          if (this.initOptions.oneTapEnabled) {
-            this._socialUser
-              .pipe(filter((user) => user === null))
-              .subscribe(() => google.accounts.id.prompt(console.debug));
-          }
-
-          if (this.initOptions.scopes) {
+          if (this.initOptions?.scopes) {
             const scope =
               this.initOptions.scopes instanceof Array
                 ? this.initOptions.scopes.filter((s) => s).join(' ')
                 : this.initOptions.scopes;
 
-            this._tokenClient = google.accounts.oauth2.initTokenClient({
+            this._codeClient = google.accounts.oauth2.initCodeClient({
               client_id: this.clientId,
               scope,
-              prompt: this.initOptions.prompt,
-              callback: (tokenResponse) => {
-                if (tokenResponse.error) {
-                  this._accessToken.error({
-                    code: tokenResponse.error,
-                    description: tokenResponse.error_description,
-                    uri: tokenResponse.error_uri,
-                  });
+              callback: ({ error, error_description, error_uri, code }) => {
+                if (error) {
+                  this._code.error({ code: error, description: error_description, uri: error_uri });
                 } else {
-                  this._accessToken.next(tokenResponse.access_token);
+                  this._code.next(code);
                 }
               },
             });
@@ -116,7 +87,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
       if (this._socialUser.value) {
         resolve(this._socialUser.value);
       } else {
-        reject(`No user is currently logged in with ${GoogleLoginProvider.PROVIDER_ID}`);
+        reject(`No user is currently logged in with ${YoutubeLoginProvider.PROVIDER_ID}`);
       }
     });
   }
@@ -130,32 +101,30 @@ export class GoogleLoginProvider extends BaseLoginProvider {
     });
   }
 
-  getAccessToken(): Promise<string> {
+  getAccessToken(): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (!this._tokenClient) {
+      if (!this._codeClient) {
         if (this._socialUser.value) {
           reject('No token client was instantiated, you should specify some scopes.');
         } else {
           reject('You should be logged-in first.');
         }
       } else {
-        this._tokenClient.requestAccessToken({
-          hint: this._socialUser.value?.email,
-        });
-        this._receivedAccessToken.pipe(take(1)).subscribe(resolve);
+        this._codeClient.requestCode();
+        this._receivedCode.pipe(take(1)).subscribe(resolve);
       }
     });
   }
 
   revokeAccessToken(): Promise<void> {
     return new Promise((resolve, reject) => {
-      if (!this._tokenClient) {
-        reject('No token client was instantiated, you should specify some scopes.');
-      } else if (!this._accessToken.value) {
-        reject('No access token to revoke');
+      if (!this._codeClient) {
+        reject('No code client was instantiated, you should specify some scopes.');
+      } else if (!this._code.value) {
+        reject('No code to revoke');
       } else {
-        google.accounts.oauth2.revoke(this._accessToken.value, () => {
-          this._accessToken.next(null);
+        google.accounts.oauth2.revoke(this._code.value, () => {
+          this._code.next(null);
           resolve();
         });
       }
@@ -163,11 +132,7 @@ export class GoogleLoginProvider extends BaseLoginProvider {
   }
 
   signIn(): Promise<SocialUser> {
-    return Promise.reject(
-      'You should not call this method directly for Google, use "<google-signin-button>" wrapper ' +
-        'or generate the button yourself with "google.accounts.id.renderButton()" ' +
-        '(https://developers.google.com/identity/gsi/web/guides/display-button#javascript)',
-    );
+    return Promise.reject('You should not call this method directly for Youtube. Use getAccessToken() instead.');
   }
 
   async signOut(): Promise<void> {

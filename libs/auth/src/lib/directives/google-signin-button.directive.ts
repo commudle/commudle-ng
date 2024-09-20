@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 declare let google: any;
 
 @Directive({
-  selector: '[commudle-google-signin]',
+  selector: '[google-signin-button]',
 })
 export class GoogleSigninButtonDirective {
   @Input()
@@ -27,7 +27,7 @@ export class GoogleSigninButtonDirective {
   logo_alignment: 'left' | 'center' = 'left';
 
   @Input()
-  width = '';
+  width = 0;
 
   @Input()
   locale = '';
@@ -35,7 +35,7 @@ export class GoogleSigninButtonDirective {
   constructor(el: ElementRef, authService: AuthService) {
     authService.initState.pipe(take(1)).subscribe(() => {
       Promise.resolve(this.width).then((value) => {
-        if (value > '400' || (value < '200' && value != '')) {
+        if (value > 400 || (value < 200 && value != 0)) {
           Promise.reject(
             'Please note .. max-width 400 , min-width 200 ' +
               '(https://developers.google.com/identity/gsi/web/tools/configurator)',
