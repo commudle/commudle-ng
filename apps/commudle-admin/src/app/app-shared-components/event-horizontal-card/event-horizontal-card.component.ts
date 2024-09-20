@@ -40,8 +40,8 @@ export class EventHorizontalCardComponent implements OnInit {
   }
 
   getCommunity() {
-    // this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
-    //   this.community = data;
-    // });
+    this.communitiesService.pGetCommunityDetails(this.event.kommunity_id).subscribe((data) => {
+      this.community = data;
+    });
   }
 }

@@ -2,10 +2,10 @@
   <nb-card-body>
     <div class="upcoming-card">
       <a [routerLink]="['/communities', event.kommunity_slug, 'events', event.slug]" class="upcoming-card-link">
-        <div *ngIf="event.header_image_path || event.header_image">
+        <div *ngIf="event.header_image_path">
           <div *appBreakpoints="'>lg'" class="upcoming-card-image">
             <commudle-banner-image
-              [headerImagePath]="event.header_image_path || event.header_image?.i350"
+              [headerImagePath]="event.header_image_path"
               [name]="event.name"
               [topRightCurve]="false"
               [bottomRightCurve]="false"
@@ -13,20 +13,20 @@
           </div>
           <div *appBreakpoints="'<=lg'" class="upcoming-card-image">
             <commudle-banner-image
-              [headerImagePath]="event.header_image_path || event.header_image?.i350"
+              [headerImagePath]="event.header_image_path"
               [name]="event.name"
               [bottomRightCurve]="false"
               [bottomLeftCurve]="false"
             ></commudle-banner-image>
           </div>
         </div>
-        <div *ngIf="!(event.header_image_path || event.header_image)" class="no-image-header">
+        <div *ngIf="!event.header_image_path" class="no-image-header">
           <nb-icon icon="link" status="primary"></nb-icon>
         </div>
         <div class="upcoming-card-details-desktop">
           <div>
             <div>
-              <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
+              <p class="event-title">{{ event.name }}</p>
               <div class="interested-members" *ngIf="event.interested_members_count > 0">
                 <app-badge
                   [text]="event.interested_members_count"
@@ -38,14 +38,16 @@
                 ></app-badge>
               </div>
             </div>
-            <p class="event-title">{{ event.name }}</p>
+            <p class="event-time">{{ moment(event.start_time).format('dddd, MMM Do, YYYY') }}</p>
           </div>
-          <div *ngIf="community" class="community-badge">
-            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          <div class="badge-register">
+            <div *ngIf="community" class="community-badge">
+              <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+            </div>
+            <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
+              Register
+            </button>
           </div>
-          <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
-            Register
-          </button>
         </div>
       </a>
     </div>
