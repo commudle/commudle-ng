@@ -19,7 +19,7 @@ nb-card {
         }
 
         .upcoming-card-details-desktop {
-          @apply md:com-p-3 md:com-pb-0 com-px-4 com-py-5 com-overflow-hidden;
+          @apply md:com-p-3 com-px-4 com-py-5 com-overflow-hidden com-flex com-flex-col com-justify-between;
           flex: 1;
           div {
             @apply com-flex com-flex-col;
@@ -28,6 +28,7 @@ nb-card {
               @apply com-flex com-flex-row com-justify-between com-items-center;
 
               .interested-members {
+                @apply com-flex-shrink-0;
                 button {
                   @apply com-py-1 com-px-2 com-w-max;
                   nb-icon {
@@ -40,18 +41,22 @@ nb-card {
                 }
               }
 
-              .event-time {
-                @apply com-text-xs com-font-medium md:com-mb-3 com-mb-4 com-mt-0 com-text-Auro-Metal-Saurus;
+              .event-title {
+                @apply md:com-text-xl com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-1 com-line-clamp-1;
               }
             }
 
-            .event-title {
-              @apply md:com-text-xl com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-3 com-line-clamp-1;
+            .event-time {
+              @apply com-text-xs com-font-medium com-m-0 com-text-Auro-Metal-Saurus;
             }
           }
 
+          .badge-register {
+            @apply com-flex com-flex-row com-justify-between;
+          }
+
           .community-badge {
-            @apply com-m-0 md:com-my-0 com-mb-6;
+            @apply com-m-0;
           }
 
           .register-button {
