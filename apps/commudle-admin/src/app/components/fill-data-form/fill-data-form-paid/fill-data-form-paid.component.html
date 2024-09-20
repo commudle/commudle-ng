@@ -203,6 +203,10 @@
                   </button>
                 </div>
                 <span *ngIf="discountAmount > 0" class="code-success">Coupon code applied successfully!</span>
+                <br />
+                <span *ngIf="formattedTimeRemaining && discountAmount > 0"
+                  >Coupon expires in {{ formattedTimeRemaining }}
+                </span>
               </div>
               <div class="user-details">
                 <span class="com-text-lg com-font-semibold">YOU</span>

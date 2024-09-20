@@ -96,6 +96,10 @@
                 </span>
               </label>
             </div>
+            <commudle-alert
+              [info]="eventDataFormEntityGroup?.summary_registration_counts?.all > 0"
+              message="This attached form cannot be changed because it has responses. Please add a new form to the event to select a different form."
+            ></commudle-alert>
             <div
               class="custom-questions"
               *ngIf="!eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
@@ -106,6 +110,7 @@
                 [formName]="selectedRegistrationType.name + ' - ' + this.event.name"
                 [stickSubmitButtonBottom]="true"
                 [showNameDescriptionFiled]="false"
+                [showNameInputField]="false"
                 [minQuestionCount]="1"
                 [showSubmitButton]="false"
               >
@@ -115,6 +120,7 @@
               <commudle-edit-data-form
                 [dataFormId]="eventDataFormEntityGroupForm.controls.data_form_entity_group.get('data_form_id').value"
                 [showNameDescriptionFiled]="false"
+                [showNameField]="false"
                 [centerLayout]="false"
                 (updateFormDataEvent)="updateData($event)"
                 [showSubmitButton]="false"

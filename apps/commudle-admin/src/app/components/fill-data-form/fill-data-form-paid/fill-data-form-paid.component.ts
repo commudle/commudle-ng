@@ -258,6 +258,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         for (const eto of this.eventTicketOrders) {
           if (this.currentUser.username === eto.user_id) {
             this.showEventTicketOrder = eto;
+            if (eto.status === 'unpaid' && Object.keys(eto.discount_code).length !== 0) {
+              eto.discount_code.code = '';
+              eto.discount_code_expires_at = '';
+              this.resetPromoCode();
+            }
             if (eto.status === 'full_refund') {
               this.showEventTicketOrder = eto;
               this.ticketPaidAlready = true;
@@ -287,11 +292,6 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
   }
 
   etoPrefilledDetails(eto) {
-    if (eto?.discount_code.code) {
-      this.promoCode = eto.discount_code.code;
-      this.applyPromo();
-    }
-
     if (eto?.eto_users) {
       for (let i = 0; i < eto.eto_users.length; i++) {
         const user = eto.eto_users[i];
@@ -305,6 +305,11 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
           },
         });
       }
+    }
+
+    if (eto?.discount_code.code) {
+      this.promoCode = eto.discount_code.code;
+      this.applyPromo();
     }
 
     if (eto?.discount_code_expires_at) {
@@ -539,6 +544,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
           }
         },
         (error) => {
+          this.resetPromoCode();
           this.dialogService.open(this.paymentErrorDialog, {
             closeOnBackdropClick: false,
           });
@@ -680,6 +686,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         reload: false,
         ondismiss: () => {
           console.error('Checkout form closed by the user');
+          this.resetPromoCode();
           this.isLoadingPayment = false;
           this.dialogService.open(this.paymentErrorDialog, {
             closeOnBackdropClick: false,
@@ -693,6 +700,7 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.razorpayService
           .createOrUpdatePayment(response.error, true, order?.razorpay_payment?.rzp_payment_id)
           .subscribe((data) => {
+            this.resetPromoCode();
             this.isLoadingPayment = false;
             alert('Message from Razorpay:' + response.error.description);
           });
@@ -736,5 +744,16 @@ export class FillDataFormPaidComponent implements OnInit, OnDestroy, AfterViewIn
         this.refundPolicy = data;
       }
     });
+  }
+
+  resetPromoCode() {
+    if (this.showEventTicketOrder) {
+      this.eventTicketOrderService.resetDiscountCode(this.showEventTicketOrder.uuid).subscribe((data) => {
+        if (data) {
+          this.removePromoCode();
+          this.showTimer = false;
+        }
+      });
+    }
   }
 }

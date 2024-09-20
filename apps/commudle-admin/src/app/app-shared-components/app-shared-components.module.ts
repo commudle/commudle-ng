@@ -45,6 +45,9 @@ import { HelpDictionaryIframeComponent } from './help-dictionary-iframe/help-dic
 import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 import { UpcomingHackathonsComponent } from './upcoming-hackathons/upcoming-hackathons.component';
 import { EventMiniCardComponent } from './event-mini-card/event-mini-card.component';
+import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides-card.component';
+import { CallForSpeakerCardComponent } from './call-for-speaker-card/call-for-speaker-card.component';
+import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -65,6 +68,8 @@ import { EventMiniCardComponent } from './event-mini-card/event-mini-card.compon
     AdminHackathonComponent,
     HelpDictionaryIframeComponent,
     UpcomingHackathonsComponent,
+    SpeakerSlidesCardComponent,
+    CallForSpeakerCardComponent,
   ],
   exports: [
     EmailerComponent,
@@ -86,6 +91,8 @@ import { EventMiniCardComponent } from './event-mini-card/event-mini-card.compon
     WhatsNewComponent,
     HelpDictionaryIframeComponent,
     UpcomingHackathonsComponent,
+    SpeakerSlidesCardComponent,
+    CallForSpeakerCardComponent,
   ],
   imports: [
     CommonModule,
@@ -96,6 +103,7 @@ import { EventMiniCardComponent } from './event-mini-card/event-mini-card.compon
     PublicCommunityModule,
     SharedComponentsModule,
     MiniUserProfileModule,
+    SharedDirectivesModule,
     //Standalone
     TechSessionsCardComponent,
     EventHorizontalCardComponent,

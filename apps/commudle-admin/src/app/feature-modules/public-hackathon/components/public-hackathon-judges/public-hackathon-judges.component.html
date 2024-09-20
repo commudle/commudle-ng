@@ -15,6 +15,32 @@
                 <p class="user-name">{{ judge.name }}</p>
                 <p class="user-username">@{{ judge.username }}</p>
                 <p class="user-designation">{{ judge.designation }}</p>
+                <div class="judge-type">
+                  <app-badge
+                    [text]="judge.judge_type | titlecase"
+                    [fontColor]="'com-text-tAuro-Metal-Saurus'"
+                    [fontSize]="'small'"
+                    [borderRadius]="'round'"
+                    [color]="'com-bg-Bright-Gray-Light'"
+                  ></app-badge>
+                </div>
+                <div class="social-media" (click)="$event.stopPropagation()">
+                  <div class="website" *ngIf="judge.website">
+                    <a [href]="judge.website">
+                      <fa-icon [icon]="icons.faGlobe"></fa-icon>
+                    </a>
+                  </div>
+                  <div class="linkedin" *ngIf="judge.linkedin">
+                    <a [href]="judge.linkedin">
+                      <fa-icon [icon]="icons.faLinkedinIn"></fa-icon>
+                    </a>
+                  </div>
+                  <div class="twitter" *ngIf="judge.twitter">
+                    <a [href]="judge.twitter">
+                      <fa-icon [icon]="icons.faTwitter"></fa-icon>
+                    </a>
+                  </div>
+                </div>
                 <app-user-follow
                   (click)="$event.stopPropagation()"
                   [username]="judge.username"

@@ -20,10 +20,14 @@
       </div>
     </div>
     <div>
-      <div class="group-name">Winner</div>
+      <div class="group-name">General Mailer</div>
       <div class="group-values">
         <button nbButton status="primary" (click)="openDialogBoxForStatusFilterGeneralEmail(hackathonId)">
           Status filter general email
+        </button>
+        &nbsp; &nbsp;
+        <button nbButton status="primary" (click)="openDialogBoxForRoundGeneralEmail(hackathonId)">
+          Round general email
         </button>
       </div>
     </div>
@@ -54,10 +58,3 @@
     </nb-card-footer>
   </nb-card>
 </ng-template>
-<!-- 
-<ng-template #SendRegistrationsByMail>
-  <nb-card>
-    <nb-card-header> </nb-card-header>
-    <nb-card-body></nb-card-body>
-  </nb-card>
-</ng-template> -->

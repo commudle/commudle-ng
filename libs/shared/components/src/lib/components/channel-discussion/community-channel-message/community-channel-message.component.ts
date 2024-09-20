@@ -117,14 +117,14 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
         });
       }
       if (
-        this.authService.getCurrentUser().id === this.message.user.id ||
+        this.authService.getCurrentUser()?.id === this.message.user.id ||
         this.channelsRoles[this.channelOrForum.id]?.includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN)
       ) {
         this.contextMenuItems.push({
           title: 'Delete',
         });
       }
-      if (this.authService.getCurrentUser().id) {
+      if (this.authService.getCurrentUser()?.id) {
         this.contextMenuItems.push({
           title: 'Share This Message',
         });

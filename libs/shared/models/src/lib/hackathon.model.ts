@@ -17,7 +17,7 @@ export interface IHackathon {
   end_date: Date;
   application_start_date: Date;
   application_end_date: Date;
-  time_zone: string;
+  timezone: string;
   created_at: Date;
   location_id: number;
   location_name: string;

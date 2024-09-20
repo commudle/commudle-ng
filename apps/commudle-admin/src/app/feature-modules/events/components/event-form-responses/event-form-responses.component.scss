@@ -165,9 +165,12 @@ fa-icon {
   @apply md:com-w-500px;
 
   nb-card-header {
-    @apply com-flex com-flex-row com-items-center;
-    p {
-      @apply com-m-0 com-text-base com-text-black com-font-medium;
+    @apply com-flex com-items-center com-justify-between;
+    .title {
+      @apply com-flex;
+      p {
+        @apply com-m-0 com-text-base com-text-black com-font-medium;
+      }
     }
   }
 }

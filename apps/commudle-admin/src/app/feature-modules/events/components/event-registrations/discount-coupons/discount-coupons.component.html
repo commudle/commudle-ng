@@ -18,7 +18,9 @@
     </tr>
     <tr>
       <td class="content">{{ discountCode.code }}</td>
-      <td class="content" *ngIf="discountCode.expires_at">{{ discountCode.expires_at | date : 'dd-MM-yy hh:mm a' }}</td>
+      <td class="content" *ngIf="discountCode.expires_at">
+        {{ moment(discountCode.expires_at).local().format('DD-MM-YY HH:mm') }}
+      </td>
 
       <td>
         <div class="action-button" (click)="copyTextToClipboard(discountCode.code)">

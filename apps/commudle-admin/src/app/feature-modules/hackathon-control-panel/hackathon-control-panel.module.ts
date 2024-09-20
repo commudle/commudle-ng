@@ -44,6 +44,8 @@ import { HackathonWinnerAnnouncementEmailerComponent } from 'apps/commudle-admin
 import { HackathonStatusFilterGeneralEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-status-filter-general-emails/hackathon-status-filter-general-emails.component';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
+import { HackathonOverallRoundSelectionUpdateEmailComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-overall-round-selection-update-email/hackathon-overall-round-selection-update-email.component';
+import { HackathonRoundGeneralMailerComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-round-general-mailer/hackathon-round-general-mailer.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     HackathonControlPanelEmailsComponent,
     HackathonWinnerAnnouncementEmailerComponent,
     HackathonStatusFilterGeneralEmailsComponent,
+    HackathonOverallRoundSelectionUpdateEmailComponent,
+    HackathonRoundGeneralMailerComponent,
   ],
   imports: [
     CommonModule,

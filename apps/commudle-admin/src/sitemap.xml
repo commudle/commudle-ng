@@ -34,6 +34,9 @@
     <loc>https://json.commudle.com/sitemaps/sitemap_users_3.xml</loc>
   </sitemap>
   <sitemap>
+    <loc>https://json.commudle.com/sitemaps/sitemap_users_4.xml</loc>
+  </sitemap>
+  <sitemap>
     <loc>https://json.commudle.com/sitemaps/sitemap_custom_pages.xml</loc>
   </sitemap>
   <sitemap>

@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { ISessions } from 'apps/shared-models/sessions.model';
 import { ISpeakerResource } from 'apps/shared-models/speaker_resource.model';
 import { IPaginationCount } from '@commudle/shared-models';
+import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -282,5 +283,13 @@ export class EventsService {
     return this.http.get<IUsers>(this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.INTERESTED_MEMBERS), {
       params,
     });
+  }
+
+  pGetSpeakerEdfegList(page: number, count: number): Observable<IPaginationCount<IEventDataFormEntityGroup>> {
+    const params = new HttpParams().set('page', page).set('count', count);
+    return this.http.get<IPaginationCount<IEventDataFormEntityGroup>>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENTS.PUBLIC.SPEAKER_EDFEG_LIST),
+      { params },
+    );
   }
 }

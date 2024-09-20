@@ -5,13 +5,13 @@
         [helpDictionaryName]="'hackathon-applications-projects'"
       ></commudle-help-section>
     </div>
-    <button
-      nbButton
-      status="primary"
-      (click)="openRoundSelectionUpdateEmailDialogBox(OverallRoundSelectionUpdateEmailDialogBox)"
-      class="com-w-max"
-    >
+    <button nbButton status="primary" (click)="openRoundSelectionUpdateEmailDialogBox()" class="com-w-max">
       Send round selection update email
+    </button>
+
+    &nbsp; &nbsp;
+    <button nbButton status="primary" (click)="sendTeamDetailsCsv()" class="com-w-max">
+      <fa-icon [icon]="faEnvelope"></fa-icon>&nbsp;CSV
     </button>
     &nbsp; &nbsp;
     <a
@@ -319,22 +319,27 @@
       </div>
 
       <div class="user-response-details">
-        <div class="user-response-tabs">
+        <div class="user-response-tabs custom-scrollbar">
           <div
             *ngFor="let user of data.userResponse"
             class="user-response-tab"
             [ngClass]="{ active: selectedUserDetails.name === user.name }"
+            [ngClass]="{
+              'com-cursor-pointer': user.name,
+              'com-cursor-no-drop': !user.name
+            }"
           >
             <div (click)="displayUserData(user)" class="name" *ngIf="user.name">{{ user.name }}</div>
             <div
               class="name"
               *ngIf="!user.name"
               [ngClass]="{
-                'com-pointer-events-none com-text-gray-500 !com-cursor-not-allowed':
+                'com-pointer-events-none com-text-gray-500':
                   user.invite_status !== EInvitationStatus.APPLICATION_COMPLETE
               }"
             >
-              {{ user.user_email }} <small>(Form not filled)</small>
+              {{ user.user_email }} <br />
+              <small>{{ user.invite_status | capitalizeAndRemoveUnderscore }}</small>
             </div>
           </div>
         </div>
@@ -384,72 +389,35 @@
             <input type="text" nbInput fullWidth readonly [value]="selectedUserDetails.phone" />
           </div>
 
-          <div *ngFor="let questionAndAnswer of selectedResponse; let i = index">
-            <div>
-              Question: <strong>{{ questionAndAnswer.question.title }}</strong>
+          <div *ngIf="selectedResponse?.length > 0">
+            <div *ngFor="let questionAndAnswer of selectedResponse; let i = index">
+              <div>
+                Question: <strong>{{ questionAndAnswer.question.title }}</strong>
+              </div>
+              <ng-container *ngIf="questionAndAnswer.question.question_type_id === 5">
+                <div>
+                  Answer:
+                  <div *ngFor="let answer of questionAndAnswer?.answer">{{ answer?.title }}</div>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="questionAndAnswer.question.question_type_id === 4">
+                <div>
+                  Answer: <span>{{ questionAndAnswer.answer?.title }}</span>
+                </div>
+              </ng-container>
+              <ng-container
+                *ngIf="
+                  questionAndAnswer.question.question_type_id !== 5 && questionAndAnswer.question.question_type_id !== 4
+                "
+              >
+                <div>
+                  Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
+                </div>
+              </ng-container>
             </div>
-            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 5">
-              <div>
-                Answer:
-                <div *ngFor="let answer of questionAndAnswer.answer">{{ answer.title }}</div>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="questionAndAnswer.question.question_type_id === 4">
-              <div>
-                Answer: <span>{{ questionAndAnswer.answer?.title }}</span>
-              </div>
-            </ng-container>
-            <ng-container
-              *ngIf="
-                questionAndAnswer.question.question_type_id !== 5 && questionAndAnswer.question.question_type_id !== 4
-              "
-            >
-              <div>
-                Answer: <span>{{ questionAndAnswer.answer?.response_text }}</span>
-              </div>
-            </ng-container>
           </div>
         </div>
       </div>
     </nb-card-body>
-  </nb-card>
-</ng-template>
-
-<ng-template #OverallRoundSelectionUpdateEmailDialogBox let-ref="dialogRef" let-data>
-  <nb-card class="round-selection-mailer">
-    <nb-card-header>
-      <span>Send round selection update email</span>
-      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
-        <fa-icon [icon]="faXmark"></fa-icon>
-      </button>
-    </nb-card-header>
-    <nb-card-body>
-      <commudle-alert
-        [info]="true"
-        message="This will send a pre-formatted email and a notification to all members of the community"
-      ></commudle-alert>
-      <div class="round-select">
-        <select [(ngModel)]="roundSelectionForEmail">
-          <option hidden [ngValue]="0">Select round*</option>
-          <option *ngFor="let hackathonRound of hackathonRounds" [ngValue]="hackathonRound.id">
-            {{ hackathonRound.name }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <label for="message">Message (optional)</label>
-        <editor [init]="tinyMCE" [(ngModel)]="message"> </editor>
-      </div>
-    </nb-card-body>
-    <nb-card-footer>
-      <button
-        nbButton
-        status="primary"
-        [disabled]="roundSelectionForEmail === 0"
-        (click)="OverallRoundSelectionUpdateEmail(); dialogRef.close()"
-      >
-        Send
-      </button>
-    </nb-card-footer>
   </nb-card>
 </ng-template>

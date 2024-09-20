@@ -3,10 +3,32 @@
     <commudle-speakers-header></commudle-speakers-header>
   </div>
   <div one-column *ngIf="isMobileView">
-    <commudle-public-home-list-speakers-profile></commudle-public-home-list-speakers-profile>
+    <div class="tab-links">
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./']" routerLinkActive="active">
+        <span class="title">Speakers</span>
+      </a>
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./speaker-slides']" routerLinkActive="active">
+        <span class="title">Speaker Slides</span>
+      </a>
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./cfp']" routerLinkActive="active">
+        <span class="title">Call For Speaker</span>
+      </a>
+    </div>
+    <router-outlet></router-outlet>
   </div>
   <div main-column *ngIf="!isMobileView">
-    <commudle-public-home-list-speakers-profile></commudle-public-home-list-speakers-profile>
+    <div class="tab-links">
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./']" routerLinkActive="active">
+        <span class="title">Speakers</span>
+      </a>
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./speaker-slides']" routerLinkActive="active">
+        <span class="title">Speaker Slides</span>
+      </a>
+      <a [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['./cfp']" routerLinkActive="active">
+        <span class="title">Call For Speaker</span>
+      </a>
+    </div>
+    <router-outlet></router-outlet>
   </div>
   <div right-column>
     <div class="speakers-upcoming">

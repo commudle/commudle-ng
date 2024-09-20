@@ -205,6 +205,7 @@ export const API_ROUTES = {
       TECH_SESSIONS: 'api/v2/events/public/tech_sessions',
       SOCIAL_RESOURCES: 'api/v2/events/public/social_resources',
       INTERESTED_MEMBERS: 'api/v2/events/public/interested_users',
+      SPEAKER_EDFEG_LIST: 'api/v2/events/public/speaker_edfeg_list',
     },
   },
 
@@ -519,6 +520,7 @@ export const API_ROUTES = {
     CREATE_OR_UPDATE_BY_TOKEN: 'api/v2/speaker_resources/create_or_update_by_token',
     PUBLIC: {
       COMMUNITY_RESOURCES: 'api/v2/speaker_resources/public_community_sessions',
+      INDEX: 'api/v2/speaker_resources/public/index',
     },
   },
 
@@ -764,6 +766,7 @@ export const API_ROUTES = {
     CHECK_PAYMENT: 'api/v2/event_ticket_orders/check_payment',
     CHECK_REFUND_AMOUNT: 'api/v2/event_ticket_orders/check_refund_amount',
     CREATE_REFUND: 'api/v2/event_ticket_orders/create_refund',
+    RESET_DISCOUNT_CODE: 'api/v2/event_ticket_orders/reset_discount_code',
   },
 
   CUSTOM_PAGES: {
@@ -837,6 +840,8 @@ export const API_ROUTES = {
     OVERALL_ROUND_SELECTION_UPDATE_EMAIL: 'api/v2/hackathons/overall_round_selection_update_email', //POST
     WINNER_ANNOUNCEMENT_EMAIL: 'api/v2/hackathons/winner_announcement_email', //POST
     STATUS_FILTER_GENERAL_EMAIL: 'api/v2/hackathons/status_filter_general_email', //POST
+    REGISTRATION_DETAILS_CSV: 'api/v2/hackathons/registration_details_csv', //POST
+    ROUND_GENERAL_MAILER: 'api/v2/hackathons/round_general_mailer', //POST
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
