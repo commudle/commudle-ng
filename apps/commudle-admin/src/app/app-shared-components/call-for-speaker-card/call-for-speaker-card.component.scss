@@ -7,11 +7,11 @@
     }
 
     .no-image-header {
-      @apply md:com-w-[250px] md:com-h-[150px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center com-overflow-hidden com-rounded-lg;
+      @apply md:com-w-[250px] md:com-h-[126px] com-w-full com-h-[145px] com-flex com-items-center com-justify-center com-overflow-hidden com-rounded-lg;
     }
 
     .cfp-card-details {
-      @apply md:com-p-3 com-px-4 com-py-2 com-overflow-hidden com-h-full;
+      @apply md:com-px-3 md:com-pt-0 com-px-4 com-py-2 com-overflow-hidden com-h-full;
       flex: 1;
       .first-row {
         @apply com-flex com-flex-col;
@@ -28,8 +28,12 @@
           }
         }
 
+        .form-title {
+          @apply md:com-text-sm com-text-xs com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-line-clamp-2 md:com-mb-2 com-mb-3;
+        }
+
         .event-title {
-          @apply md:com-text-sm com-text-xs com-font-semibold com-text-Dark-Jungle-Green com-m-0 com-line-clamp-2 md:com-mb-4 com-mb-3;
+          @apply com-text-xs md:com-font-medium com-font-normal com-m-0 com-text-gray-500 com-flex md:com-mb-4 com-mb-3;
         }
       }
 
