@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EDbModels, ICommunity } from '@commudle/shared-models';
-import { NbDialogService } from '@commudle/theme';
+import { NbDialogRef, NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
@@ -44,6 +44,7 @@ export class CommunityForumComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   @Output() updateSelectedForum = new EventEmitter<number>();
+  dialogRef: NbDialogRef<any>;
 
   constructor(
     private communityChannelManagerService: CommunityChannelManagerService,
@@ -117,50 +118,14 @@ export class CommunityForumComponent implements OnInit {
     });
   }
 
-  openDeleteDialogBox(channelId) {
-    const dialogRef = this.dialogService.open(DeleteChannelComponent, {
-      closeOnBackdropClick: true,
-      hasBackdrop: true,
-      hasScroll: true,
-      context: {
-        channelId: channelId,
-        currentUrl: 'communities/' + this.parent.slug + '/forums',
-        // discussionType: this.discussionType.CHANNEL,
-      },
-    });
-    dialogRef.componentRef.instance.updateForm.subscribe(() => {
-      dialogRef.close();
+  openDialogBox(template, forum) {
+    this.dialogRef = this.dialogService.open(template, {
+      context: forum,
     });
   }
 
-  openInviteDialogBox(forum) {
-    const dialogRef = this.dialogService.open(InviteFormComponent, {
-      closeOnBackdropClick: true,
-      hasBackdrop: true,
-      hasScroll: true,
-      context: {
-        forum: forum,
-        // invite: true,
-      },
-    });
-    dialogRef.componentRef.instance.updateForm.subscribe(() => {
-      dialogRef.close();
-    });
-  }
-
-  openEditDialogBox(forum) {
-    const dialogRef = this.dialogService.open(EditChannelComponent, {
-      closeOnBackdropClick: true,
-      hasBackdrop: true,
-      hasScroll: true,
-      context: {
-        forum: forum,
-        discussionType: this.discussionType.FORUM,
-      },
-    });
-    dialogRef.componentRef.instance.updateForm.subscribe(() => {
-      dialogRef.close();
-    });
+  closeDialogBox() {
+    this.dialogRef.close();
   }
 
   pin() {

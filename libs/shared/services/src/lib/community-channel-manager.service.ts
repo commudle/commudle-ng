@@ -150,8 +150,10 @@ export class CommunityChannelManagerService {
   }
 
   updateChannel(channel: ICommunityChannel) {
-    if (this.selectedChannel.value.id === channel.id) {
-      this.selectedChannel.next(channel);
+    if (channel.display_type === this.discussionType.CHANNEL) {
+      if (this.selectedChannel.value.id === channel.id) {
+        this.selectedChannel.next(channel);
+      }
     }
   }
 

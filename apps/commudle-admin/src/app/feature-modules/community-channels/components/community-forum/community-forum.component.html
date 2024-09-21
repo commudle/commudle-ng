@@ -37,13 +37,13 @@
             (channelsRoles[forum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN) || isCommunityOrganizer)
           "
         >
-          <div class="edit pointer" (click)="openEditDialogBox(forum)">
+          <div class="edit pointer" (click)="openDialogBox(editForum, forum)">
             <fa-icon [icon]="faPen"></fa-icon>
           </div>
-          <div class="delete pointer" (click)="openDeleteDialogBox(forum.id)">
+          <div class="delete pointer" (click)="openDialogBox(deleteForum, forum)">
             <fa-icon [icon]="faTrash"></fa-icon>
           </div>
-          <div class="invite pointer" (click)="openInviteDialogBox(forum)">
+          <div class="invite pointer" (click)="openDialogBox(inviteInForm, forum)">
             <fa-icon [icon]="faUserPlus"></fa-icon>
           </div>
           <!-- <div class="pin pointer" (click)="pin()">
@@ -55,3 +55,53 @@
     </tr>
   </table>
 </section>
+
+<ng-template #editForum let-data let-ref="dialogRef">
+  <nb-card class="setting-dialog-box">
+    <nb-card-header>
+      <h4>Edit Forum > {{ data.name }}</h4>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <commudle-edit-channel
+        [discussionType]="discussionType.FORUM"
+        [forum]="data"
+        (updateForm)="closeDialogBox()"
+      ></commudle-edit-channel>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #deleteForum let-data let-ref="dialogRef">
+  <nb-card class="setting-dialog-box">
+    <nb-card-header>
+      <h4>Delete Forum > {{ data.name }}</h4>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <app-delete-channel
+        [channelId]="data.id"
+        [currentUrl]="'communities/' + parent.slug + '/forums'"
+        (updateForm)="closeDialogBox()"
+      ></app-delete-channel>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+
+<ng-template #inviteInForm let-data let-ref="dialogRef">
+  <nb-card class="setting-dialog-box">
+    <nb-card-header>
+      <h4>Invite > {{ data.name }}</h4>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <app-invite-form [forum]="data" (updateForm)="closeDialogBox()"></app-invite-form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>
