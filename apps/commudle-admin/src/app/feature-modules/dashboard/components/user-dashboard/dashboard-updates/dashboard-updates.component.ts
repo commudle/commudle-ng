@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 // import { generate } from 'lean-qr';
 
@@ -13,12 +13,17 @@ export class DashboardUpdatesComponent implements OnInit {
   ERegistrationStatuses = ERegistrationStatuses;
   showEntryPass: boolean[] = [];
   updates = [];
-  faChevronDown = faChevronDown;
+  faPlus = faPlus;
+  activeTab: any;
 
   constructor() {}
 
   ngOnInit(): void {
     this.generateQRCode();
+  }
+
+  setActiveTab(tab: 'channel' | 'registrations'): void {
+    this.activeTab = tab;
   }
 
   generateQRCode() {

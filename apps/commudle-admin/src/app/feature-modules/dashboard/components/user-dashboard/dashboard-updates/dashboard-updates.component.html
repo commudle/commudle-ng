@@ -1,14 +1,36 @@
 <nb-card>
   <nb-card-header
-    ><h2>Post a content<fa-icon [icon]="faChevronDown"></fa-icon></h2
+    ><h2>Post a content<fa-icon [icon]="faPlus"></fa-icon></h2
   ></nb-card-header>
-  <!--  -->
-  <nb-card-body *ngIf="updates?.length > 0">
-    <div class="container">
-      <div class="registrations">
+  <!-- *ngIf="updates?.length > 0" -->
+  <nb-card-body class="main-body">
+    <div class="tabs">
+      <button
+        nbButton
+        status="basic"
+        [class.active]="activeTab === 'channel'"
+        size="small"
+        shape="round"
+        (click)="setActiveTab('channel')"
+      >
+        Channel Updates
+      </button>
+      <button
+        nbButton
+        status="basic"
+        size="small"
+        shape="round"
+        [class.active]="activeTab === 'registrations'"
+        (click)="setActiveTab('registrations')"
+      >
+        Registrations
+      </button>
+    </div>
+    <!-- class="container" -->
+    <nb-card *ngIf="activeTab === 'registrations'" class="registrations">
+      <nb-card-body>
         <div class="event-registrations">
-          <h2 class="event-registration-heading">Your Event Registrations</h2>
-          <h3 class="event-registration-subheading">Click on View pass to check out your entry pass</h3>
+          <h2 class="event-registration-heading">Your Registrations</h2>
           <table>
             <tr>
               <td class="table-heading">Name</td>
@@ -57,17 +79,17 @@
             </nb-card-body>
           </nb-card>
         </div>
-      </div>
-      <div class="channel-updates">
-        <div class="channel-update">
-          <div class="channel-name">
-            <fa-icon></fa-icon>
-            <h2>GDG New Delhi Designers</h2>
-          </div>
-          <div class="channel-new-messages">
-            <fa-icon></fa-icon>
-            <h2>18+ messages</h2>
-          </div>
+      </nb-card-body>
+    </nb-card>
+    <div class="channel-updates">
+      <div class="channel-update">
+        <div class="channel-name">
+          <fa-icon></fa-icon>
+          <h2>GDG New Delhi Designers</h2>
+        </div>
+        <div class="channel-new-messages">
+          <fa-icon></fa-icon>
+          <h2>18+ messages</h2>
         </div>
       </div>
     </div>
