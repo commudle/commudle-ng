@@ -56,7 +56,7 @@ a {
 .advertisement {
   @apply md:com-flex com-hidden;
   nb-card {
-    @apply md:com-w-[342px] com-h-[325px] com-m-0 com-border-2 com-border-dashed com-border-Azure md:com-mx-0 com-mx-1;
+    @apply md:com-w-full com-h-[276px] com-m-0 com-border-2 com-border-dashed com-border-Azure md:com-mx-0 com-mx-1;
 
     nb-card-body {
       @apply com-flex com-items-center com-justify-center;
@@ -94,7 +94,7 @@ a {
 }
 
 .center-column {
-  @apply com-w-full com-pt-6;
+  @apply com-w-full com-pt-6 md:com-w-[678px];
 }
 
 .no-upcoming-events {

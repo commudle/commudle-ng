@@ -13,6 +13,15 @@
               [topRightCurve]="false"
               [bottomRightCurve]="false"
             ></commudle-banner-image>
+            <app-badge
+              class="hackathon-badge"
+              [text]="'Hackathon'"
+              [fontColor]="'com-text-tChocolate-Traditional'"
+              [fontSize]="'xx-small'"
+              [nbIcon]="'people-outline'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Seashell'"
+            ></app-badge>
           </div>
           <div *appBreakpoints="'<=lg'" class="upcoming-card-image">
             <commudle-banner-image
@@ -21,6 +30,15 @@
               [bottomRightCurve]="false"
               [bottomLeftCurve]="false"
             ></commudle-banner-image>
+            <app-badge
+              class="hackathon-badge"
+              [text]="'Hackathon'"
+              [fontColor]="'com-text-tChocolate-Traditional'"
+              [fontSize]="'xx-small'"
+              [nbIcon]="'people-outline'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Seashell'"
+            ></app-badge>
           </div>
         </div>
         <div *ngIf="!hackathon.banner_image" class="no-image-header">
