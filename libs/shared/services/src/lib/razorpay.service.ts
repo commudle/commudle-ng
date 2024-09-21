@@ -65,7 +65,7 @@ export class RazorpayService {
     );
   }
 
-  createOrUpdatePayment(response, hasError: boolean = false, paymentId?: string): Observable<any> {
+  createOrUpdatePayment(response, hasError = false, paymentId?: string): Observable<any> {
     let params = new HttpParams();
     let requestBody: { has_error?: boolean; payment_error?: any; payment_details?: any } = {}; // Define the type of requestBody
 
@@ -100,14 +100,11 @@ export class RazorpayService {
     );
   }
 
-  createPaymentTransfer(razorpayPaymentId: number): Observable<IPaginationCount<IRazorpayPayment>> {
+  createPaymentTransfer(razorpayPaymentId: number): Observable<IRazorpayPayment> {
     const params = new HttpParams().set('razorpay_payment_id', razorpayPaymentId);
-    return this.http.get<IPaginationCount<IRazorpayPayment>>(
-      this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_TRANSFER),
-      {
-        params,
-      },
-    );
+    return this.http.get<IRazorpayPayment>(this.baseApiService.getRoute(API_ROUTES.RAZORPAY.CREATE_TRANSFER), {
+      params,
+    });
   }
 
   getTransferDetails(transferId: string): Observable<any> {

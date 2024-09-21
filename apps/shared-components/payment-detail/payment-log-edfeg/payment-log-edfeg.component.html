@@ -35,7 +35,7 @@
         <th>Payment gateway fee</th>
         <th>Transfer Details</th>
       </tr>
-      <tr *ngFor="let rpd of razorpayPaymentDetails">
+      <tr *ngFor="let rpd of razorpayPaymentDetails; let i = index">
         <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
         <td *ngIf="rpd">{{ moment(rpd.created_at).format('DD MMM YYYY') }}</td>
         <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
@@ -80,7 +80,7 @@
             size="tiny"
             outline
             status="primary"
-            (click)="createPaymentTransfer(rpd?.rzp_payment_id)"
+            (click)="createPaymentTransfer(rpd?.rzp_payment_id, i)"
             [nbSpinner]="transferCreating"
           >
             Create Transfer
