@@ -37,8 +37,6 @@ export class HackathonHorizontalCardComponent implements OnInit {
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    console.log(this.hackathon, 'horizontal');
-    console.log(this.parentType);
     this.getCommunity();
   }
 

@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header
-    ><h2>Post a content<fa-icon [icon]="faPlus"></fa-icon></h2
+    ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2
   ></nb-card-header>
   <!-- *ngIf="updates?.length > 0" -->
   <nb-card-body class="main-body">
@@ -38,39 +38,33 @@
               <td class="table-heading">Your Status</td>
               <td class="table-heading">Action</td>
             </tr>
-            <!-- *ngFor="let update of updates; let i = index" -->
-            <tr class="registration-data">
+            <tr *ngFor="let registration of myRegistrations; let i = index" class="registration-data">
               <td class="event-title-date">
-                <span class="event-title">Google Cloud Day 2024</span>
-                <span class="date">26 July 2024</span>
+                <span class="event-title">{{ registration.event.name }}</span>
+                <span class="date">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
               </td>
-              <td class="table-type">Attendee</td>
+              <td class="table-type">{{ registration.registration_for }}</td>
               <td
                 [ngClass]="{
-                  confirmed: ERegistrationStatuses.CONFIRMED,
-                  registered: ERegistrationStatuses.REGISTERED,
-                  waiting: ERegistrationStatuses.WAITING,
-                  shortlisted: ERegistrationStatuses.SHORTLISTED,
-                  cancelled: ERegistrationStatuses.CANCELLED
+                  confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
+                  registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
+                  waiting: ERegistrationStatuses.WAITING === registration.registration_status,
+                  shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
+                  cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
                 }"
                 class="table-status"
               >
-                Confirmed
+                {{ registration.registration_status }}
               </td>
-              <!-- (click)="toggleEntryPass(i)" -->
-              <td><button nbButton status="primary" shape="round" size="tiny">View Pass</button></td>
-            </tr>
-            <tr>
-              <td class="com-flex com-flex-col">
-                <span>Google Cloud Day 2024</span>
-                <span>26 July 2024</span>
+              <td>
+                <button nbButton status="primary" shape="round" size="tiny" (click)="toggleEntryPass(i)">
+                  View Pass
+                </button>
               </td>
-              <td>Attendee</td>
-              <td>Confirmed</td>
-              <td><button nbButton status="" shape="round" size="tiny">View Pass</button></td>
             </tr>
           </table>
         </div>
+        <!-- *ngIf="showEntryPass[i]"  -->
         <div class="qr-code">
           <nb-card>
             <nb-card-body>
@@ -81,17 +75,25 @@
         </div>
       </nb-card-body>
     </nb-card>
-    <div class="channel-updates">
-      <div class="channel-update">
-        <div class="channel-name">
-          <fa-icon></fa-icon>
-          <h2>GDG New Delhi Designers</h2>
+    <nb-card class="channel-updates" *ngIf="activeTab === 'channel'">
+      <nb-card-body>
+        <div class="badge-and-messages">
+          <!-- *ngIf="community" -->
+          <div class="community-badge">
+            <!-- <app-community-badge [community]="community" [size]="'small'"></app-community-badge> -->
+          </div>
+          <div class="channel-update">
+            <div class="channel-name">
+              <fa-icon></fa-icon>
+              <h2>GDG New Delhi Designers</h2>
+            </div>
+            <div class="channel-new-messages">
+              <fa-icon [icon]="faComments"></fa-icon>
+              <h2>18+ messages</h2>
+            </div>
+          </div>
         </div>
-        <div class="channel-new-messages">
-          <fa-icon></fa-icon>
-          <h2>18+ messages</h2>
-        </div>
-      </div>
-    </div>
+      </nb-card-body>
+    </nb-card>
   </nb-card-body>
 </nb-card>

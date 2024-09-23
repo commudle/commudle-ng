@@ -64,7 +64,7 @@ export class UserDashboardComponent implements OnInit {
       if (data) {
         this.upcomingEventsHackathons = data.values;
         this.loading = false;
-        console.log(this.upcomingEventsHackathons);
+        // console.log(this.upcomingEventsHackathons);
         // this.total = data.total;
         // this.page_info = data.page_info;
       }

@@ -10,12 +10,14 @@ import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-sh
 import { DashboardUpdatesComponent } from './components/user-dashboard/dashboard-updates/dashboard-updates.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/hackathon-horizontal-card/hackathon-horizontal-card.component';
+import { SharedComponentsModule } from '@commudle/shared-components';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    SharedComponentsModule,
 
     //Nebular
     NbCardModule,

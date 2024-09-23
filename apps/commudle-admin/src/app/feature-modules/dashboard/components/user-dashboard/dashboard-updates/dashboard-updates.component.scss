@@ -1,6 +1,10 @@
 nb-card {
   @apply com-m-0 com-bg-gray-100;
 
+  .plus-icon {
+    @apply com-text-xs;
+  }
+
   nb-card-header {
     @apply com-p-4 com-flex com-items-center com-justify-center com-text-center;
 
@@ -16,6 +20,10 @@ nb-card {
 
     .tabs {
       @apply com-flex com-flex-row com-gap-3 com-py-4 com-pt-1;
+
+      button {
+        @apply com-text-gray-800 com-bg-gray-300;
+      }
     }
 
     .active {
@@ -25,7 +33,7 @@ nb-card {
     .registrations {
       @apply com-bg-white;
       nb-card-body {
-        @apply com-flex com-flex-row com-items-center com-w-full com-p-4;
+        @apply com-flex com-flex-row com-items-center com-w-full md:com-p-4 com-p-3;
       }
     }
 
@@ -101,10 +109,22 @@ nb-card {
     }
 
     .channel-updates {
-      @apply com-flex com-flex-col;
+      @apply com-flex com-flex-col com-bg-white;
+
+      nb-card-body {
+        @apply md:com-p-4 com-p-3;
+      }
+
+      .badge-and-messages {
+        @apply com-flex com-flex-col;
+      }
+
+      .community-badge {
+        @apply com-mb-4;
+      }
 
       .channel-update {
-        @apply com-flex com-flex-row;
+        @apply com-flex com-flex-row com-mb-2;
       }
       .channel-name {
         @apply com-flex com-items-center com-justify-center com-border-0 com-border-r com-border-solid com-border-Bright-Gray;
@@ -114,7 +134,12 @@ nb-card {
       }
 
       .channel-new-messages {
-        @apply com-flex com-items-center com-justify-center;
+        @apply com-flex com-items-center com-justify-center com-pl-2;
+
+        fa-icon {
+          @apply com-text-green-500 com-text-sm;
+        }
+
         h2 {
           @apply com-text-sm com-font-semibold com-text-green-500 com-px-2 com-m-0;
         }

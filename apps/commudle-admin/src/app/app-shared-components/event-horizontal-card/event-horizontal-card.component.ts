@@ -34,8 +34,6 @@ export class EventHorizontalCardComponent implements OnInit {
   constructor(private communitiesService: CommunitiesService) {}
 
   ngOnInit(): void {
-    console.log(this.event, 'horizontal');
-    console.log(this.parentType);
     this.getCommunity();
   }
 

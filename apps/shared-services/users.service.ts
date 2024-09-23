@@ -7,22 +7,20 @@ import { tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsersService {
   public signedInUser: ICurrentUser;
   private currentUser = new BehaviorSubject<ICurrentUser>(null);
   public currentUser$: Observable<ICurrentUser> = this.currentUser.asObservable();
 
-  constructor(
-    private http: HttpClient,
-    private apiRoutesService: ApiRoutesService,
-
-  ) { }
+  constructor(private http: HttpClient, private apiRoutesService: ApiRoutesService) {}
 
   getCurrentUser(): Observable<ICurrentUser> {
-    return this.http.get<ICurrentUser>(
-      this.apiRoutesService.getRoute(API_ROUTES.CURRENT_USER),
-      {});
+    return this.http.get<ICurrentUser>(this.apiRoutesService.getRoute(API_ROUTES.CURRENT_USER), {});
+  }
+
+  getMyRegistrations(): Observable<any> {
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_REGISTRATIONS), {});
   }
 }

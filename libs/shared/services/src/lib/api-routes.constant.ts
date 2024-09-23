@@ -512,6 +512,7 @@ export const API_ROUTES = {
     EVENTS_ATTENDED: 'api/v2/users/events_attended',
     PROFILE_STATS: 'api/v2/users/profile_stats',
     GET_USER_BY_EMAIL: 'api/v2/users/get_user_by_email',
+    MY_REGISTRATIONS: 'api/v2/users/my_registrations',
   },
 
   SPEAKER_RESOURCES: {

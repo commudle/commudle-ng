@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faComments, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
+import { UsersService } from 'apps/shared-services/users.service';
+import moment from 'moment';
 // import { generate } from 'lean-qr';
 
 @Component({
@@ -11,15 +13,20 @@ import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_sta
 export class DashboardUpdatesComponent implements OnInit {
   @ViewChild('qrCanvas', { static: true }) qrCanvas: ElementRef<HTMLCanvasElement>;
   ERegistrationStatuses = ERegistrationStatuses;
-  showEntryPass: boolean[] = [];
+  showEntryPass: boolean[] = [false];
   updates = [];
   faPlus = faPlus;
-  activeTab: any;
+  activeTab = 'registrations';
+  community: any;
+  faComments = faComments;
+  myRegistrations: any[] = [];
+  moment = moment;
 
-  constructor() {}
+  constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
     this.generateQRCode();
+    this.getMyRegistrations();
   }
 
   setActiveTab(tab: 'channel' | 'registrations'): void {
@@ -33,5 +40,12 @@ export class DashboardUpdatesComponent implements OnInit {
 
   toggleEntryPass(index) {
     this.showEntryPass[index] = !this.showEntryPass[index];
+  }
+
+  getMyRegistrations() {
+    this.usersService.getMyRegistrations().subscribe((data) => {
+      this.myRegistrations = data.values;
+      console.log(data);
+    });
   }
 }
