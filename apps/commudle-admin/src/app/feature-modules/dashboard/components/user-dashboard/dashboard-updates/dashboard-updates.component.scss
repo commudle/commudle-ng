@@ -6,7 +6,7 @@ nb-card {
   }
 
   nb-card-header {
-    @apply com-p-4 com-flex com-items-center com-justify-center com-text-center;
+    @apply md:com-p-4 com-p-3 com-flex com-items-center com-justify-center com-text-center;
 
     h2 {
       @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
