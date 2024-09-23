@@ -25,7 +25,7 @@ export class DashboardUpdatesComponent implements OnInit {
   constructor(private usersService: UsersService) {}
 
   ngOnInit(): void {
-    this.generateQRCode();
+    // this.generateQRCode();
     this.getMyRegistrations();
   }
 
@@ -33,13 +33,16 @@ export class DashboardUpdatesComponent implements OnInit {
     this.activeTab = tab;
   }
 
-  generateQRCode() {
-    // const qrCode = generate('650496');
+  generateQRCode(uniqueCode) {
+    // const qrCode = generate(uniqueCode);
     // qrCode.toCanvas(this.qrCanvas.nativeElement);
   }
 
-  toggleEntryPass(index) {
+  toggleEntryPass(index, uniqueCode) {
     this.showEntryPass[index] = !this.showEntryPass[index];
+    if (this.showEntryPass[index]) {
+      this.generateQRCode(uniqueCode);
+    }
   }
 
   getMyRegistrations() {

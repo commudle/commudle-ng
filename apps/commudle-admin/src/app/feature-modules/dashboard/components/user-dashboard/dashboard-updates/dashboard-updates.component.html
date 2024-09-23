@@ -57,22 +57,40 @@
                 {{ registration.registration_status }}
               </td>
               <td>
-                <button nbButton status="primary" shape="round" size="tiny" (click)="toggleEntryPass(i)">
+                <button
+                  *ngIf="registration.entry_pass"
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                >
                   View Pass
                 </button>
               </td>
             </tr>
           </table>
         </div>
-        <!-- *ngIf="showEntryPass[i]"  -->
+        <div *ngFor="let registration of myRegistrations; let i = index">
+          <div *ngIf="showEntryPass[i]" class="qr-code">
+            <nb-card>
+              <nb-card-body>
+                <canvas #qrCanvas></canvas>
+                <p>{{ registration.event.name }}</p>
+                <!-- <img [src]="'https://quickchart.io/qr?text=' + registration.entry_pass.unique_code" /> -->
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <!-- *ngIf="showEntryPass[i]" 
         <div class="qr-code">
           <nb-card>
             <nb-card-body>
               <canvas #qrCanvas></canvas>
-              <!-- <img [src]="'https://quickchart.io/qr?text=137228'" /> -->
+              <img [src]="'https://quickchart.io/qr?text=137228'" />
             </nb-card-body>
           </nb-card>
-        </div>
+        </div> -->
       </nb-card-body>
     </nb-card>
     <nb-card class="channel-updates" *ngIf="activeTab === 'channel'">
