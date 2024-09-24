@@ -1,4 +1,3 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
@@ -16,6 +15,7 @@ import { ChannelSettingsComponent } from 'apps/commudle-admin/src/app/feature-mo
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { EDbModels } from '@commudle/shared-models';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
 }
@@ -42,6 +42,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   discussionType = EDiscussionType;
   newCommunityChannelPopup;
+  faCircleCheck = faCircleCheck;
 
   @Output() updateSelectedChannel = new EventEmitter<ICommunityChannel>();
 
