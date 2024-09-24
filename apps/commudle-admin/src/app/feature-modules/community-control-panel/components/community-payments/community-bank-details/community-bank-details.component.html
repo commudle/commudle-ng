@@ -933,7 +933,15 @@
 
         <div *ngIf="selectedCountry === 'India'">
           <!-- [disabled]="!razorpayAccountForm.valid || isLoading || !settlementDetailsForm.valid" -->
-          <button (click)="createRazorpayAccount()" fullWidth nbButton size="small" status="primary" type="submit">
+          <button
+            (click)="createRazorpayAccount()"
+            fullWidth
+            nbButton
+            size="small"
+            status="primary"
+            type="submit"
+            [disabled]="isLoading"
+          >
             Proceed with Razorpay
           </button>
         </div>

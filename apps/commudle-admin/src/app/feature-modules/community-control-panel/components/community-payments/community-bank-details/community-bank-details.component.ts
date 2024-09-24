@@ -246,7 +246,6 @@ export class CommunityBankDetailsComponent implements OnInit, OnDestroy {
           }
         },
         (error) => {
-          this.toastrService.warningDialog(error);
           this.isLoading = false;
         },
       );
