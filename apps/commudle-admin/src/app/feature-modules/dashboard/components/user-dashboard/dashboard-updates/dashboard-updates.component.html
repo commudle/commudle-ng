@@ -31,7 +31,47 @@
       <nb-card-body>
         <div class="event-registrations">
           <h2 class="event-registration-heading">Your Registrations</h2>
-          <table>
+
+          <div class="registration-grid">
+            <div class="registration-header">
+              <div class="table-heading">Name</div>
+              <div class="table-heading">Type</div>
+              <div class="table-heading">Your Status</div>
+              <div class="table-heading">Action</div>
+            </div>
+            <div *ngFor="let registration of myRegistrations; let i = index" class="registration-row">
+              <!-- <div class="registration"> -->
+              <div class="event-title-date">
+                <span class="event-title">{{ registration.event.name }}</span>
+                <span class="date">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
+              </div>
+              <div class="table-type">{{ registration.registration_for }}</div>
+              <div
+                [ngClass]="{
+                  confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
+                  registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
+                  waiting: ERegistrationStatuses.WAITING === registration.registration_status,
+                  shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
+                  cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
+                }"
+                class="table-status"
+              >
+                {{ registration.registration_status }}
+              </div>
+              <div>
+                <button
+                  *ngIf="registration.entry_pass"
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                >
+                  View Pass
+                </button>
+              </div>
+              <!-- </div> -->
+              <!-- <table>
             <tr>
               <td class="table-heading">Name</td>
               <td class="table-heading">Type</td>
@@ -69,17 +109,19 @@
                 </button>
               </td>
             </tr>
-          </table>
-        </div>
-        <div *ngFor="let registration of myRegistrations; let i = index">
-          <div *ngIf="showEntryPass[i]" class="qr-code">
-            <nb-card>
-              <nb-card-body>
-                <canvas #qrCanvas></canvas>
-                <p>{{ registration.event.name }}</p>
-                <!-- <img [src]="'https://quickchart.io/qr?text=' + registration.entry_pass.unique_code" /> -->
-              </nb-card-body>
-            </nb-card>
+          </table> -->
+            </div>
+          </div>
+          <div *ngFor="let registration of myRegistrations; let i = index">
+            <div *ngIf="showEntryPass[i]" class="qr-code">
+              <nb-card>
+                <nb-card-body>
+                  <canvas #qrCanvas></canvas>
+                  <p>{{ registration.event.name }}</p>
+                  <!-- <img [src]="'https://quickchart.io/qr?text=' + registration.entry_pass.unique_code" /> -->
+                </nb-card-body>
+              </nb-card>
+            </div>
           </div>
         </div>
         <!-- *ngIf="showEntryPass[i]" 
