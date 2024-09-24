@@ -1,5 +1,5 @@
 section {
-  @apply com-px-6 com-py-4;
+  @apply com-px-6 com-py-4 com-overflow-hidden;
   .back-button {
     @apply com-cursor-pointer com-w-max com-text-[#8f9bb3] com-mb-5;
   }
@@ -7,9 +7,11 @@ section {
   .edfeg-name {
     @apply com-text-base com-mb-3;
   }
-
+  .table-container {
+    @apply com-overflow-y-auto;
+  }
   table {
-    @apply com-w-full com-border-collapse;
+    @apply com-w-max com-border-collapse;
   }
 
   td,
@@ -19,5 +21,9 @@ section {
 
   th {
     @apply com-bg-Bright-Gray;
+  }
+
+  tr {
+    @apply hover:com-bg-gray-50;
   }
 }
