@@ -82,7 +82,7 @@ a {
 }
 
 .right-column {
-  @apply md:com-pl-6 com-pt-6 com-w-[300px];
+  @apply md:com-pl-6 com-pt-6 md:com-w-[300px] com-w-full;
 }
 
 .event-horizontal-card {
@@ -90,11 +90,11 @@ a {
 }
 
 .two-column {
-  @apply com-flex com-flex-row;
+  @apply com-flex md:com-flex-row com-flex-col;
 }
 
 .center-column {
-  @apply com-w-full com-pt-6 md:com-w-[678px];
+  @apply com-w-full com-pt-6 md:com-w-[678px] md:com-px-0 com-px-3;
 }
 
 .no-upcoming-events {

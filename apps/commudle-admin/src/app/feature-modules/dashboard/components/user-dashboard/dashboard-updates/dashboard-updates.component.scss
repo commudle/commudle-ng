@@ -6,7 +6,7 @@ nb-card {
   }
 
   nb-card-header {
-    @apply md:com-p-4 com-p-3 com-flex com-items-center com-justify-center com-text-center;
+    @apply md:com-p-4 com-px-0 com-py-4 com-flex com-items-center com-justify-center com-text-center;
 
     h2 {
       @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
@@ -16,10 +16,10 @@ nb-card {
     }
   }
   .main-body {
-    @apply com-flex com-flex-col com-p-4 com-pt-0 com-bg-gray-100 com-w-full;
+    @apply com-flex com-flex-col md:com-p-4 com-p-0 md:com-pt-0 com-pb-4 com-bg-gray-100 com-w-full;
 
     .tabs {
-      @apply com-flex com-flex-row com-gap-3 com-py-4 com-pt-1;
+      @apply com-flex com-flex-row com-gap-3 com-py-4 com-pt-1 md:com-px-0 com-px-3;
 
       button {
         @apply com-text-gray-800 com-bg-gray-300;
