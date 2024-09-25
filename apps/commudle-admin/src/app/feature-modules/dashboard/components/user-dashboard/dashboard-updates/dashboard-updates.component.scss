@@ -169,7 +169,7 @@ nb-card {
 
     .publish-build {
       button {
-        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-yellow-700 com-bg-yellow-50;
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-yellow-700 com-bg-yellow-50 com-h-10;
 
         span {
           @apply com-text-sm com-font-medium com-text-yellow-700;
@@ -181,12 +181,40 @@ nb-card {
       }
     }
 
+    .upload-content {
+      button {
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-Azure com-bg-blue-50 com-h-10;
+
+        span {
+          @apply com-text-sm com-font-medium com-text-Azure;
+        }
+
+        fa-icon {
+          @apply com-text-Azure;
+        }
+      }
+    }
+
+    .publish-lab {
+      button {
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-Azure com-bg-blue-50 com-h-10;
+
+        span {
+          @apply com-text-sm com-font-medium com-text-Azure;
+        }
+
+        fa-icon {
+          @apply com-text-Azure;
+        }
+      }
+    }
+
     a {
       @apply com-no-underline;
     }
 
     fa-icon {
-      @apply com-text-xl com-mr-1;
+      @apply com-text-base com-mr-1;
     }
   }
 }

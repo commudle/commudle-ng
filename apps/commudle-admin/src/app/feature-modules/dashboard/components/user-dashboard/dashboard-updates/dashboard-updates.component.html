@@ -8,14 +8,19 @@
     <nb-card *ngIf="isPostContentOpen" class="post-content">
       <nb-card-body>
         <div class="content-list">
-          <a class="publish-build"
+          <a [routerLink]="['/builds/create']" class="publish-build"
             ><button nbButton>
               <fa-icon class="icon" [icon]="faLightbulb"></fa-icon><span>Publish Project</span>
             </button></a
           >
+          <a [routerLink]="['/labs/create']" class="publish-lab"
+            ><button nbButton><fa-icon [icon]="faFlask"></fa-icon><span>Publish A Lab</span></button></a
+          >
+
+          <a [routerLink]="['']" class="upload-content"
+            ><button nbButton><fa-icon [icon]="faFileText"></fa-icon><span>Upload an External Content</span></button></a
+          >
           <a><button nbButton>2</button></a>
-          <a><button nbButton>3</button></a>
-          <a><button nbButton>4</button></a>
         </div>
       </nb-card-body>
     </nb-card>
