@@ -21,84 +21,90 @@
   <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
 
   <ng-container *ngIf="!isLoading && razorpayPaymentDetails?.length > 0; else noDetailFound">
-    <table>
-      <tr>
-        <th>Payment Id</th>
-        <th width="120">Created At</th>
-        <th>Order Status on Commudle</th>
-        <th>Paid by</th>
-        <th>Group ticket users</th>
-        <th>Total amount</th>
-        <th>Discount amount</th>
-        <th>Tax amount</th>
-        <th>Application fee amount</th>
-        <th>Payment gateway fee</th>
-        <th>Transfer Details</th>
-      </tr>
-      <tr *ngFor="let rpd of razorpayPaymentDetails">
-        <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
-        <td *ngIf="rpd">{{ moment(rpd.created_at).format('DD MMM YYYY') }}</td>
-        <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
-        <td *ngIf="rpd">
-          {{ rpd?.order.orderable.user.name }}
-          <br />
-          {{ rpd?.order.orderable.user.email }}
-        </td>
-        <td *ngIf="rpd">
-          <details *ngIf="rpd?.order.orderable.eto_users.length > 1">
-            <summary>Other users details</summary>
-            <div *ngIf="rpd?.order.orderable.eto_users">
-              <div *ngFor="let user of rpd?.order.orderable.eto_users">
-                <div *ngIf="user.email !== rpd?.order.orderable.user.email">
-                  {{ user.name }}
-                  <br />
-                  {{ user.email }}
+    <div class="table-container">
+      <table>
+        <tr>
+          <th style="width: 180px">Payment Id</th>
+          <th style="width: 138px">Created At</th>
+          <th style="width: 114px">Order Status on Commudle</th>
+          <th style="width: 200px">Paid by</th>
+          <th style="width: 114px">Group ticket users</th>
+          <th style="width: 90px">Total amount</th>
+          <th style="width: 90px">Discount amount</th>
+          <th style="width: 90px">Tax amount</th>
+          <th style="width: 90px">Application fee amount</th>
+          <th style="width: 90px">Payment gateway fee</th>
+          <th style="width: 150px">Transfer Details</th>
+        </tr>
+        <tr *ngFor="let rpd of razorpayPaymentDetails; let i = index">
+          <td *ngIf="rpd">{{ rpd?.rzp_payment_id }}</td>
+          <td *ngIf="rpd">{{ moment(rpd.created_at).format('DD MMM YYYY hh:MM A') }}</td>
+          <td *ngIf="rpd">{{ rpd?.order.orderable.status }}</td>
+          <td *ngIf="rpd">
+            {{ rpd?.order.orderable.user.name }}
+            <br />
+            {{ rpd?.order.orderable.user.email }}
+          </td>
+          <td *ngIf="rpd">
+            <details *ngIf="rpd?.order.orderable.eto_users.length > 1">
+              <summary>Other users details</summary>
+              <div *ngIf="rpd?.order.orderable.eto_users">
+                <div *ngFor="let user of rpd?.order.orderable.eto_users">
+                  <div *ngIf="user.email !== rpd?.order.orderable.user.email">
+                    {{ user.name }}
+                    <br />
+                    {{ user.email }}
+                    <br />
+                  </div>
                 </div>
               </div>
-            </div>
-          </details>
-          <ng-template #noOtherUsers> No Other users Found </ng-template>
-        </td>
-        <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}</td>
-        <td>
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.discount_amount / 100 }}
-        </td>
-        <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}</td>
-        <td>
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$'
-          }}{{ rpd?.order.orderable.application_fee_amount / 100 }}
-        </td>
-        <td>
-          {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
-        </td>
-        <td *ngIf="rpd && rpd?.order.orderable.status === 'paid'">
-          <small *ngIf="rpd">{{ rpd.transfer_id }}</small>
-          <br />
-          <button
-            *ngIf="!rpd?.transfer_id && isSystemAdmin"
-            nbButton
-            size="tiny"
-            outline
-            status="primary"
-            (click)="createPaymentTransfer(rpd?.rzp_payment_id)"
-            [nbSpinner]="transferCreating"
-          >
-            Create Transfer
-          </button>
-          <button
-            *ngIf="rpd?.transfer_id"
-            nbButton
-            size="tiny"
-            outline
-            status="primary"
-            (click)="viewTransferDetails(rpd?.transfer_id, transferDetails)"
-          >
-            View Transfer Details
-          </button>
-        </td>
-        <td *ngIf="rpd === null" colspan="3">No record Found for razorpay</td>
-      </tr>
-    </table>
+            </details>
+            <ng-template #noOtherUsers> No Other users Found </ng-template>
+          </td>
+          <td>
+            {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.total_amount / 100 }}
+          </td>
+          <td>
+            {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.discount_amount / 100 }}
+          </td>
+          <td>{{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$' }}{{ rpd?.order.orderable.tax_amount / 100 }}</td>
+          <td>
+            {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$'
+            }}{{ rpd?.order.orderable.application_fee_amount / 100 }}
+          </td>
+          <td>
+            {{ rpd?.order.orderable.currency === 'inr' ? '₹' : '$'
+            }}{{ rpd?.order.orderable.payment_gateway_fee / 100 }}
+          </td>
+          <td *ngIf="rpd && rpd?.order.orderable.status === 'paid'">
+            <small *ngIf="rpd">{{ rpd.transfer_id }}</small>
+            <br />
+            <button
+              *ngIf="!rpd?.transfer_id && isSystemAdmin"
+              nbButton
+              size="tiny"
+              outline
+              status="primary"
+              (click)="createPaymentTransfer(rpd?.rzp_payment_id, i)"
+              [nbSpinner]="transferCreating"
+            >
+              Create Transfer
+            </button>
+            <button
+              *ngIf="rpd?.transfer_id"
+              nbButton
+              size="tiny"
+              outline
+              status="primary"
+              (click)="viewTransferDetails(rpd?.transfer_id, transferDetails)"
+            >
+              View Transfer Details
+            </button>
+          </td>
+          <td *ngIf="rpd === null" colspan="3">No record Found for razorpay</td>
+        </tr>
+      </table>
+    </div>
 
     <br />
 

@@ -90,11 +90,12 @@ export class PaymentLogEdfegComponent implements OnInit {
     });
   }
 
-  createPaymentTransfer(rzpPaymentId) {
+  createPaymentTransfer(rzpPaymentId, index: number) {
     this.transferCreating = true;
     this.razorpayService.createPaymentTransfer(rzpPaymentId).subscribe(
       (data) => {
         if (data) {
+          this.razorpayPaymentDetails[index] = data;
           this.toastrService.successDialog('Transfer created successfully');
         }
         this.transferCreating = false;
