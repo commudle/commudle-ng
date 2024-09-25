@@ -1,9 +1,24 @@
 <nb-card>
-  <nb-card-header
-    ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2
-  ></nb-card-header>
+  <nb-card-header (click)="togglePostContentDropdown()"
+    ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
+    <!-- -->
+  </nb-card-header>
   <!-- *ngIf="updates?.length > 0" -->
   <nb-card-body class="main-body">
+    <nb-card *ngIf="isPostContentOpen" class="post-content">
+      <nb-card-body>
+        <div class="content-list">
+          <a class="publish-build"
+            ><button nbButton>
+              <fa-icon class="icon" [icon]="faLightbulb"></fa-icon><span>Publish Project</span>
+            </button></a
+          >
+          <a><button nbButton>2</button></a>
+          <a><button nbButton>3</button></a>
+          <a><button nbButton>4</button></a>
+        </div>
+      </nb-card-body>
+    </nb-card>
     <div class="tabs">
       <button
         nbButton
@@ -29,9 +44,8 @@
     <!-- class="container" -->
     <nb-card *ngIf="activeTab === 'registrations'" class="registrations">
       <nb-card-body>
+        <h2 class="event-registration-heading">Your Registrations</h2>
         <div class="event-registrations">
-          <h2 class="event-registration-heading">Your Registrations</h2>
-
           <div class="registration-grid">
             <div class="registration-header">
               <div class="table-heading">Name</div>
@@ -42,10 +56,14 @@
             <div *ngFor="let registration of myRegistrations; let i = index" class="registration-row">
               <!-- <div class="registration"> -->
               <div class="event-title-date">
-                <span class="event-title">{{ registration.event.name }}</span>
-                <span class="date">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
+                <span class="event-title">
+                  <fa-icon *ngIf="registration.registration_for === 'hackathon'" [icon]="faTrophy"></fa-icon
+                  >{{ registration.event.name }}</span
+                >
+                <span class="date-desktop">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
               </div>
               <div class="table-type">{{ registration.registration_for }}</div>
+              <span class="date-mobile">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
               <div
                 [ngClass]="{
                   confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
@@ -56,7 +74,12 @@
                 }"
                 class="table-status"
               >
-                {{ registration.registration_status }}
+                {{
+                  registration.registration_for === 'hackathon' ? registration.status : registration.registration_status
+                }}
+                <span *ngIf="registration.registration_for === 'hackathon'" class="individual-status"
+                  >Application Incomplete</span
+                >
               </div>
               <div>
                 <button
@@ -70,7 +93,7 @@
                   View Pass
                 </button>
               </div>
-              <!-- </div> -->
+              <!-- </div>  -->
               <!-- <table>
             <tr>
               <td class="table-heading">Name</td>
@@ -111,6 +134,10 @@
             </tr>
           </table> -->
             </div>
+            <a class="view-all" nbButton routerLink="registrations" shape="semi-round" status="info" size="tiny">
+              View all
+              <nb-icon icon="arrow-forward"></nb-icon>
+            </a>
           </div>
           <div *ngFor="let registration of myRegistrations; let i = index">
             <div *ngIf="showEntryPass[i]" class="qr-code">

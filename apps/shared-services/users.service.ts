@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from './api-routes.service';
 import { API_ROUTES } from './api-routes.constants';
-import { tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -20,7 +19,11 @@ export class UsersService {
     return this.http.get<ICurrentUser>(this.apiRoutesService.getRoute(API_ROUTES.CURRENT_USER), {});
   }
 
-  getMyRegistrations(): Observable<any> {
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_REGISTRATIONS), {});
+  getMyRegistrations(count?): Observable<any> {
+    let params = new HttpParams();
+    if (count) {
+      params = params.set('count', count);
+    }
+    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_REGISTRATIONS), { params });
   }
 }

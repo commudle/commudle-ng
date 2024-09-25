@@ -1,5 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { faComments, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { faComments, faPlus, faLightbulb, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import { UsersService } from 'apps/shared-services/users.service';
 import moment from 'moment';
@@ -12,15 +12,23 @@ import moment from 'moment';
 })
 export class DashboardUpdatesComponent implements OnInit {
   @ViewChild('qrCanvas', { static: true }) qrCanvas: ElementRef<HTMLCanvasElement>;
+  @ViewChild('postContentBox') postContentBox: TemplateRef<any>;
+
   ERegistrationStatuses = ERegistrationStatuses;
   showEntryPass: boolean[] = [false];
   updates = [];
   faPlus = faPlus;
+  faTrophy = faTrophy;
   activeTab = 'registrations';
   community: any;
   faComments = faComments;
   myRegistrations: any[] = [];
   moment = moment;
+  isPostContentOpen = false;
+  faLightbulb = faLightbulb;
+  page = 1;
+  count = 5;
+  total: number;
 
   constructor(private usersService: UsersService) {}
 
@@ -46,9 +54,17 @@ export class DashboardUpdatesComponent implements OnInit {
   }
 
   getMyRegistrations() {
-    this.usersService.getMyRegistrations().subscribe((data) => {
+    this.usersService.getMyRegistrations(this.count).subscribe((data) => {
       this.myRegistrations = data.values;
+      this.total = data.total;
+      this.page = data.page;
+      this.count = data.count;
       console.log(data);
     });
+  }
+
+  togglePostContentDropdown() {
+    this.isPostContentOpen = !this.isPostContentOpen;
+    console.log('called', this.isPostContentOpen);
   }
 }

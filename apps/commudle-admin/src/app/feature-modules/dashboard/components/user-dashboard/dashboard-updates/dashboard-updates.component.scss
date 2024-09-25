@@ -6,7 +6,7 @@ nb-card {
   }
 
   nb-card-header {
-    @apply md:com-p-4 com-px-0 com-py-4 com-flex com-items-center com-justify-center com-text-center;
+    @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center;
 
     h2 {
       @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
@@ -15,11 +15,12 @@ nb-card {
       }
     }
   }
+
   .main-body {
-    @apply com-flex com-flex-col md:com-p-4 com-p-0 md:com-pt-0 com-pb-4 com-bg-gray-100 com-w-full;
+    @apply com-flex com-flex-col md:com-p-4 com-p-0 md:com-pt-0 com-bg-gray-100 com-w-full;
 
     .tabs {
-      @apply com-flex com-flex-row com-gap-3 com-py-4 com-pt-1 md:com-px-0 com-px-3;
+      @apply com-flex com-flex-row com-gap-3 com-py-4 md:com-px-0 com-px-3;
 
       button {
         @apply com-text-gray-800 com-bg-gray-300;
@@ -33,7 +34,7 @@ nb-card {
     .registrations {
       @apply com-bg-white;
       nb-card-body {
-        @apply com-flex com-flex-row com-items-center com-w-full md:com-p-4 com-p-3;
+        @apply com-flex com-flex-col md:com-items-start com-items-center com-w-full md:com-p-4 com-p-3;
       }
     }
 
@@ -42,24 +43,35 @@ nb-card {
     }
 
     .event-registrations {
-      @apply com-w-full com-flex com-flex-col;
+      @apply com-w-full com-flex com-flex-row;
     }
 
     .event-registration-heading {
-      @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-1;
+      @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-1 com-px-2;
     }
 
     .event-title {
-      @apply com-line-clamp-1 com-text-sm com-font-medium com-text-Dark-Jungle-Green;
+      @apply com-line-clamp-1 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start;
+
+      fa-icon {
+        @apply com-mr-1 com-text-primary-500 com-text-xs  com-mt-1;
+      }
     }
 
     // tr {
     //   @apply com-mb-2;
     // }
 
-    .table-heading,
-    .date {
+    .table-heading {
       @apply com-text-xs com-font-normal com-text-gray-500;
+    }
+
+    .date-desktop {
+      @apply md:com-flex com-hidden com-text-xs com-font-normal com-text-gray-500;
+    }
+
+    .date-mobile {
+      @apply com-flex md:com-hidden com-text-xs com-font-normal com-text-gray-500;
     }
 
     .event-title-date {
@@ -67,11 +79,11 @@ nb-card {
     }
 
     .table-type {
-      @apply com-text-xs com-font-medium com-text-gray-500;
+      @apply com-text-xs com-font-medium com-text-gray-500 md:com-justify-self-start com-justify-self-end;
     }
 
     .table-status {
-      @apply com-text-xs com-font-medium;
+      @apply com-text-xs com-font-medium md:com-justify-self-start com-justify-self-end  com-flex com-flex-col;
     }
 
     .confirmed {
@@ -145,6 +157,40 @@ nb-card {
   }
 }
 
+.post-content {
+  @apply com-bg-white com-m-0 com-p-4;
+
+  nb-card-body {
+    @apply com-p-0;
+  }
+
+  .content-list {
+    @apply com-grid com-grid-cols-2 com-gap-4;
+
+    .publish-build {
+      button {
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-yellow-700 com-bg-yellow-50;
+
+        span {
+          @apply com-text-sm com-font-medium com-text-yellow-700;
+        }
+
+        fa-icon {
+          @apply com-text-yellow-700;
+        }
+      }
+    }
+
+    a {
+      @apply com-no-underline;
+    }
+
+    fa-icon {
+      @apply com-text-xl com-mr-1;
+    }
+  }
+}
+
 canvas {
   image-rendering: pixelated;
   width: 100%;
@@ -159,18 +205,22 @@ canvas {
 }
 
 .registration-header {
-  @apply com-grid com-grid-cols-4 com-gap-3;
+  @apply md:com-grid com-grid-cols-4 com-gap-3 com-hidden com-px-2;
   // display: contents;
   // font-weight: bold;
 }
 
 .registration-row {
-  @apply com-grid com-grid-cols-4 com-gap-3 com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg;
+  @apply com-grid md:com-grid-cols-4 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg;
   // display: contents;
 }
 
 .registration {
   @apply com-flex com-flex-row;
+}
+
+.view-all {
+  @apply com-w-fit com-mt-2;
 }
 
 // .event-title-date {
