@@ -2,7 +2,6 @@
   <nb-card-header (click)="togglePostContentDropdown()"
     ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
   </nb-card-header>
-  <!-- *ngIf="updates?.length > 0" -->
   <nb-card-body class="main-body">
     <nb-card *ngIf="isPostContentOpen" class="post-content">
       <nb-card-body>
@@ -168,13 +167,12 @@
     <nb-card class="channel-updates" *ngIf="activeTab === 'channel'">
       <nb-card-body>
         <div class="badge-and-messages">
-          <!-- *ngIf="community" -->
-          <div class="community-badge">
-            <!-- <app-community-badge [community]="community" [size]="'small'"></app-community-badge> -->
-          </div>
+          <!-- <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          </div> -->
           <div class="channel-update">
             <div class="channel-name">
-              <fa-icon></fa-icon>
+              <fa-icon [icon]="faBullhorn"></fa-icon>
               <h2>GDG New Delhi Designers</h2>
             </div>
             <div class="channel-new-messages">

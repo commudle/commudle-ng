@@ -1,5 +1,14 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { faComments, faPlus, faLightbulb, faTrophy, faFileText, faFlask } from '@fortawesome/free-solid-svg-icons';
+import { ICommunity } from '@commudle/shared-models';
+import {
+  faComments,
+  faPlus,
+  faLightbulb,
+  faTrophy,
+  faFileText,
+  faFlask,
+  faBullhorn,
+} from '@fortawesome/free-solid-svg-icons';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import { UsersService } from 'apps/shared-services/users.service';
 import moment from 'moment';
@@ -21,8 +30,9 @@ export class DashboardUpdatesComponent implements OnInit {
   faTrophy = faTrophy;
   faFileText = faFileText;
   faFlask = faFlask;
+  faBullhorn = faBullhorn;
   activeTab = 'registrations';
-  community: any;
+  community: ICommunity;
   faComments = faComments;
   myRegistrations: any[] = [];
   moment = moment;
