@@ -197,14 +197,14 @@ nb-card {
 
     .publish-lab {
       button {
-        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-Azure com-bg-blue-50 com-h-10;
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-Catalina-Blue com-bg-Alice-Blue-Dark com-h-10;
 
         span {
-          @apply com-text-sm com-font-medium com-text-Azure;
+          @apply com-text-sm com-font-medium com-text-Catalina-Blue;
         }
 
         fa-icon {
-          @apply com-text-Azure;
+          @apply com-text-Catalina-Blue;
         }
       }
     }

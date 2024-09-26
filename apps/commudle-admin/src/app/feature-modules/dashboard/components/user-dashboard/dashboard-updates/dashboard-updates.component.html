@@ -1,7 +1,6 @@
 <nb-card>
   <nb-card-header (click)="togglePostContentDropdown()"
     ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
-    <!-- -->
   </nb-card-header>
   <!-- *ngIf="updates?.length > 0" -->
   <nb-card-body class="main-body">
@@ -10,7 +9,7 @@
         <div class="content-list">
           <a [routerLink]="['/builds/create']" class="publish-build"
             ><button nbButton>
-              <fa-icon class="icon" [icon]="faLightbulb"></fa-icon><span>Publish Project</span>
+              <fa-icon class="icon" [icon]="faLightbulb"></fa-icon><span>Publish A Project</span>
             </button></a
           >
           <a [routerLink]="['/labs/create']" class="publish-lab"
@@ -20,7 +19,7 @@
           <a [routerLink]="['']" class="upload-content"
             ><button nbButton><fa-icon [icon]="faFileText"></fa-icon><span>Upload an External Content</span></button></a
           >
-          <a><button nbButton>2</button></a>
+          <a></a>
         </div>
       </nb-card-body>
     </nb-card>
