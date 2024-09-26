@@ -1,9 +1,17 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { faMagnifyingGlass, faUser, faHashtag, faMessage, faBars } from '@fortawesome/free-solid-svg-icons';
-import { EDbModels, EDiscussionType, ICommunity, IUser, IGroupedChannels, EUserRoles } from '@commudle/shared-models';
+import {
+  EDbModels,
+  EDiscussionType,
+  ICommunity,
+  IUser,
+  IGroupedChannels,
+  EUserRoles,
+  IHackathon,
+} from '@commudle/shared-models';
 import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { CommunityChannelManagerService, SeoService, AuthService } from '@commudle/shared-services';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
@@ -17,7 +25,7 @@ import { SidebarService } from 'apps/shared-components/sidebar/service/sidebar.s
 })
 export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   @Input() showCommunityList = false;
-  @Input() parent: ICommunity | ICommunityGroup;
+  @Input() parent: ICommunity | ICommunityGroup | IHackathon;
   @Input() parentType: EDbModels;
 
   communityForums: IGroupedChannels;
@@ -76,6 +84,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.setMeta();
     this.getCurrentUser();
     this.sidebarService.setSidebarVisibility(this.sidebarEventName, true);
+    this.setParent();
 
     switch (this.parentType) {
       case EDbModels.KOMMUNITY:
@@ -84,10 +93,12 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
       case EDbModels.COMMUNITY_GROUP:
         this.checkCommunityGroupOrganizer();
         break;
+      case EDbModels.HACKATHON:
+        this.checkHackathonAdminRoles();
+        break;
       default:
         break;
     }
-    this.setParent();
 
     if (this.discussionTypeForum && this.selectedChannelOrFormId) {
       this.checkSelectedForum();
@@ -144,6 +155,11 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
         }
       }),
     );
+  }
+
+  // TODO: handle case
+  checkHackathonAdminRoles() {
+    // Handle hackathon roles for channels
   }
 
   checkCommunityGroupOrganizer() {
