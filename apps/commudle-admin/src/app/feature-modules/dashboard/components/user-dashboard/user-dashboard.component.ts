@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EDbModels, ICommunity, IEvent, IPageInfo } from '@commudle/shared-models';
+import { EDbModels, ICommunity, IPageInfo } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
-import { EventsService } from 'apps/commudle-admin/src/app/services/events.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
@@ -64,9 +63,6 @@ export class UserDashboardComponent implements OnInit {
       if (data) {
         this.upcomingEventsHackathons = data.values;
         this.loading = false;
-        // console.log(this.upcomingEventsHackathons);
-        // this.total = data.total;
-        // this.page_info = data.page_info;
       }
     });
   }
