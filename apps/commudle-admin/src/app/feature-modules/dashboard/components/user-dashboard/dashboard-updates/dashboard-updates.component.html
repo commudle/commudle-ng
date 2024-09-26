@@ -43,7 +43,6 @@
         Registrations
       </button>
     </div>
-    <!-- class="container" -->
     <nb-card *ngIf="activeTab === 'registrations'" class="registrations">
       <nb-card-body>
         <h2 class="event-registration-heading">Your Registrations</h2>
@@ -56,7 +55,6 @@
               <div class="table-heading">Action</div>
             </div>
             <div *ngFor="let registration of myRegistrations; let i = index" class="registration-row">
-              <!-- <div class="registration"> -->
               <div class="event-title-date">
                 <span class="event-title">
                   <fa-icon *ngIf="registration.registration_for === 'hackathon'" [icon]="faTrophy"></fa-icon
@@ -95,46 +93,6 @@
                   View Pass
                 </button>
               </div>
-              <!-- </div>  -->
-              <!-- <table>
-            <tr>
-              <td class="table-heading">Name</td>
-              <td class="table-heading">Type</td>
-              <td class="table-heading">Your Status</td>
-              <td class="table-heading">Action</td>
-            </tr>
-            <tr *ngFor="let registration of myRegistrations; let i = index" class="registration-data">
-              <td class="event-title-date">
-                <span class="event-title">{{ registration.event.name }}</span>
-                <span class="date">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
-              </td>
-              <td class="table-type">{{ registration.registration_for }}</td>
-              <td
-                [ngClass]="{
-                  confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
-                  registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
-                  waiting: ERegistrationStatuses.WAITING === registration.registration_status,
-                  shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
-                  cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
-                }"
-                class="table-status"
-              >
-                {{ registration.registration_status }}
-              </td>
-              <td>
-                <button
-                  *ngIf="registration.entry_pass"
-                  nbButton
-                  status="primary"
-                  shape="round"
-                  size="tiny"
-                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
-                >
-                  View Pass
-                </button>
-              </td>
-            </tr>
-          </table> -->
             </div>
             <a class="view-all" nbButton routerLink="registrations" shape="semi-round" status="info" size="tiny">
               View all
@@ -147,21 +105,11 @@
                 <nb-card-body>
                   <canvas #qrCanvas></canvas>
                   <p>{{ registration.event.name }}</p>
-                  <!-- <img [src]="'https://quickchart.io/qr?text=' + registration.entry_pass.unique_code" /> -->
                 </nb-card-body>
               </nb-card>
             </div>
           </div>
         </div>
-        <!-- *ngIf="showEntryPass[i]" 
-        <div class="qr-code">
-          <nb-card>
-            <nb-card-body>
-              <canvas #qrCanvas></canvas>
-              <img [src]="'https://quickchart.io/qr?text=137228'" />
-            </nb-card-body>
-          </nb-card>
-        </div> -->
       </nb-card-body>
     </nb-card>
     <nb-card class="channel-updates" *ngIf="activeTab === 'channel'">

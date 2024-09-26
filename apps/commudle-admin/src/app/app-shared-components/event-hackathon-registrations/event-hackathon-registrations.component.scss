@@ -36,10 +36,6 @@
   @apply com-text-gray-500 com-text-10px com-font-medium;
 }
 
-// tr {
-//   @apply com-mb-2;
-// }
-
 .table-heading {
   @apply com-text-xs com-font-normal com-text-gray-500;
 }
@@ -98,20 +94,14 @@
 
 .registration-grid {
   @apply com-grid com-gap-2 com-w-full;
-  // display: grid;
-  // grid-template-columns: repeat(4, 1fr);
-  // gap: 10px;
 }
 
 .registration-header {
   @apply md:com-grid com-grid-cols-5 com-gap-3 com-hidden com-px-2 com-mr-2;
-  // display: contents;
-  // font-weight: bold;
 }
 
 .registration-row {
   @apply com-grid md:com-grid-cols-5 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg com-mr-2;
-  // display: contents;
 }
 
 .registration {

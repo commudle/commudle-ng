@@ -66,10 +66,10 @@
               <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
             </div>
             <div class="prize-register-btn">
-              <div *ngIf="hackathon.total_prize_amount.INR > 0" class="prize-money">
+              <div *ngIf="totalPrizes.length > 0" class="prize-money">
                 <fa-icon [icon]="faSackDollar"></fa-icon>
-                <span>{{ prizeCurrencySymbol.symbol }}</span>
-                <span>{{ hackathon.total_prize_amount.INR }}</span>
+                <span>{{ totalPrizes[0].currency.symbol }}</span>
+                <span>{{ totalPrizes[0].amount }}</span>
               </div>
               <button nbButton status="info" shape="rectangle" size="medium" outline class="register-button">
                 Register

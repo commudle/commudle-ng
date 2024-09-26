@@ -11,6 +11,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 import { countries_details } from '@commudle/shared-services';
+import { EDbModels, IHackathon } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-hackathon-horizontal-card',
@@ -29,19 +30,21 @@ import { countries_details } from '@commudle/shared-services';
   styleUrls: ['./hackathon-horizontal-card.component.scss'],
 })
 export class HackathonHorizontalCardComponent implements OnInit {
-  @Input() hackathon: any;
-  @Input() parentType = 'Event';
-  prizeCurrencySymbol: any;
+  @Input() hackathon: IHackathon;
+  @Input() parentType = EDbModels.HACKATHON;
   community: ICommunity;
   moment = moment;
   faSackDollar = faSackDollar;
   countryDetails = countries_details;
+  totalPrizes: { currency: any; amount: number }[];
 
   constructor(private communitiesService: CommunitiesService) {}
 
-  ngOnInit(): void {
-    const currencyCode = Object.keys(this.hackathon.total_prize_amount)[0];
-    this.prizeCurrencySymbol = this.countryDetails.find((detail) => detail.currency === currencyCode);
+  ngOnInit() {
+    this.totalPrizes = Object.keys(this.hackathon.total_prize_amount).map((currency) => ({
+      currency: this.countryDetails.find((detail) => detail.currency === currency),
+      amount: this.hackathon.total_prize_amount[currency],
+    }));
   }
 
   getCommunity() {

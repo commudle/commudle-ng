@@ -25,13 +25,12 @@ export class DashboardUpdatesComponent implements OnInit {
 
   ERegistrationStatuses = ERegistrationStatuses;
   showEntryPass: boolean[] = [false];
-  updates = [];
   faPlus = faPlus;
   faTrophy = faTrophy;
   faFileText = faFileText;
   faFlask = faFlask;
   faBullhorn = faBullhorn;
-  activeTab = 'registrations';
+  activeTab: 'registrations' | 'channel' = 'registrations';
   community: ICommunity;
   faComments = faComments;
   myRegistrations: any[] = [];

@@ -58,10 +58,6 @@ nb-card {
       }
     }
 
-    // tr {
-    //   @apply com-mb-2;
-    // }
-
     .table-heading {
       @apply com-text-xs com-font-normal com-text-gray-500;
     }
@@ -227,20 +223,14 @@ canvas {
 
 .registration-grid {
   @apply com-grid com-gap-2;
-  // display: grid;
-  // grid-template-columns: repeat(4, 1fr);
-  // gap: 10px;
 }
 
 .registration-header {
   @apply md:com-grid com-grid-cols-4 com-gap-3 com-hidden com-px-2;
-  // display: contents;
-  // font-weight: bold;
 }
 
 .registration-row {
   @apply com-grid md:com-grid-cols-4 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg;
-  // display: contents;
 }
 
 .registration {
@@ -250,17 +240,3 @@ canvas {
 .view-all {
   @apply com-w-fit com-mt-2;
 }
-
-// .event-title-date {
-//   display: flex;
-//   flex-direction: column;
-// }
-
-// .table-heading,
-// .table-type,
-// .table-status,
-// .event-title-date,
-// button {
-//   padding: 10px;
-//   border: 1px solid #ccc;
-// }
