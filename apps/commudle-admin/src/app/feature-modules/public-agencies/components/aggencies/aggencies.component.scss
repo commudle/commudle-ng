@@ -214,5 +214,5 @@ a {
 }
 
 .action-btn {
-  @apply com-flex com-flex-row com-justify-center md:com-mt-10 com-mt-8 com-gap-4;
+  @apply com-flex md:com-flex-row com-flex-col com-justify-center md:com-mt-10 com-mt-8 com-gap-4;
 }
