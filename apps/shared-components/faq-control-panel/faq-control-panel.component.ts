@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EDbModels, IFaq } from '@commudle/shared-models';
-import { FaqService, ToastrService } from '@commudle/shared-services';
+import { FaqService, ToastrService, SeoService } from '@commudle/shared-services';
 import { Subscription } from 'rxjs';
 import { faPlus, faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { NbDialogService } from '@commudle/theme';
@@ -29,6 +29,7 @@ export class FaqControlPanelComponent implements OnInit {
     private nbDialogService: NbDialogService,
     private fb: FormBuilder,
     private toastrService: ToastrService,
+    private seoService: SeoService,
   ) {
     this.faqForm = this.fb.group({
       question: ['', Validators.required],
@@ -44,6 +45,7 @@ export class FaqControlPanelComponent implements OnInit {
     this.subscriptions.push(
       this.faqService.indexFaqs(this.parentId, this.parentType).subscribe((data: IFaq[]) => {
         this.faqs = data;
+        this.setSchema();
       }),
     );
   }
@@ -80,5 +82,24 @@ export class FaqControlPanelComponent implements OnInit {
     this.faqService.updateFaq(this.faqForm.value, faqId, this.parentType, this.parentId).subscribe((data) => {
       if (data) this.faqs[index] = data;
     });
+  }
+
+  setSchema() {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: this.faqs.map((faq: { question: string; answer: string }) => {
+        return {
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        };
+      }),
+    };
+
+    this.seoService.setSchema(faqSchema);
   }
 }

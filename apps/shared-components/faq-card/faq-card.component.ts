@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IFaq } from '@commudle/shared-models';
-import { SeoService } from '@commudle/shared-services';
 import { faAdd, faMinus, faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -18,13 +17,9 @@ export class FaqCardComponent implements OnInit {
 
   showAnswer = false;
 
-  constructor(private seoService: SeoService) {}
+  constructor() {}
 
-  ngOnInit() {
-    if (!this.isAdmin) {
-      this.setSchema();
-    }
-  }
+  ngOnInit() {}
 
   toggleShowAnswers() {
     this.showAnswer = !this.showAnswer;
@@ -34,20 +29,5 @@ export class FaqCardComponent implements OnInit {
   }
   editFaq(faq) {
     this.editFaqEvent.emit(faq);
-  }
-
-  setSchema() {
-    this.seoService.setSchema({
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: {
-        '@type': 'Question',
-        name: this.faq.question,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: this.faq.answer,
-        },
-      },
-    });
   }
 }
