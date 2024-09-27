@@ -47,7 +47,7 @@ nb-card {
     }
 
     .event-registration-heading {
-      @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-1 com-px-2;
+      @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-3 com-px-2;
     }
 
     .event-title {
@@ -80,6 +80,10 @@ nb-card {
 
     .table-status {
       @apply com-text-xs com-font-medium md:com-justify-self-start com-justify-self-end  com-flex com-flex-col;
+    }
+
+    .individual-status {
+      @apply com-text-gray-500 com-text-10px com-font-medium;
     }
 
     .confirmed {

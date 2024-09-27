@@ -22,6 +22,7 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   count = 10;
   total = 0;
   EDbModels = EDbModels;
+  loading = true;
 
   constructor(private usersService: AppUsersService) {}
 
@@ -35,14 +36,21 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   }
 
   getMyRegistrations() {
+    this.loading = true;
     this.usersService.getMyRegistrations(this.count, this.page).subscribe((data) => {
       this.registrations = data.values;
       this.page = +data.page;
       this.total = data.total;
+      this.loading = false;
     });
   }
 
   toggleEntryPass(index, uniqueCode) {
+    // for (let i = 0; i < this.registrations.length; i++) {
+    //   if (i !== index) {
+    //     this.showEntryPass[i] = false;
+    //   }
+    // }
     this.showEntryPass[index] = !this.showEntryPass[index];
     if (this.showEntryPass[index]) {
       this.generateQRCode(uniqueCode);

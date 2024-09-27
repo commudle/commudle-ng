@@ -77,23 +77,26 @@
               <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
                 moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
               }}</span>
-              <!-- [ngClass]="{
-                confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
-                registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
-                waiting: ERegistrationStatuses.WAITING === registration.registration_status,
-                shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
-                cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
-              }" -->
-              <!-- <div class="table-status">
-            {{
-              registration.registration_for === EDbModels.HACKATHON
-                ? registration.status.name
-                : registration.registration_status
-            }}
-            <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status"
-              >Application Incomplete</span
-            >
-          </div> -->
+              <div
+                [ngClass]="{
+                  confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status.name,
+                  registered: ERegistrationStatuses.REGISTERED === registration.registration_status.name,
+                  waiting: ERegistrationStatuses.WAITING === registration.registration_status.name,
+                  shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status.name,
+                  cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status.name
+                }"
+                class="table-status"
+              >
+                <span *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+                  registration.hackathon_team.registration_status
+                }}</span>
+                <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
+                  registration.registration_status
+                }}</span>
+                <span *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                  registration.registration_status
+                }}</span>
+              </div>
               <div>
                 <button
                   *ngIf="registration.entry_pass"

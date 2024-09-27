@@ -1,5 +1,5 @@
 .registrations {
-  @apply com-bg-white;
+  @apply com-bg-white com-m-0;
   nb-card-body {
     @apply com-flex com-flex-col com-items-center com-w-full md:com-p-4 com-p-3;
   }
@@ -10,18 +10,18 @@
 }
 
 .event-registrations {
-  @apply com-w-full com-flex com-flex-row;
+  @apply com-w-full com-flex md:com-flex-row com-flex-col;
 }
 
 .event-registration-heading {
-  @apply com-text-xl com-font-semibold com-text-black com-m-0 com-mb-1 com-px-2;
+  @apply com-text-xl com-font-semibold com-text-black com-m-0 com-mb-2 md:com-mb-4 com-px-2;
 }
 
 .event-title {
   @apply com-line-clamp-1 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start;
 
   fa-icon {
-    @apply com-mr-1 com-text-primary-500 com-text-xs  com-mt-1;
+    @apply com-mr-1 com-text-primary-500 com-text-xs;
   }
 }
 
@@ -42,8 +42,7 @@
 }
 
 .event-title-date {
-  @apply com-flex com-flex-col;
-  @apply md:com-col-span-2;
+  @apply com-flex com-flex-col md:com-col-span-2;
 }
 
 .table-type {
@@ -75,7 +74,7 @@
 }
 
 .qr-code {
-  @apply com-w-[250px] com-h-full com-pl-4 com-border-0 com-border-l com-border-solid com-border-Bright-Gray com-bg-white;
+  @apply com-w-[250px] com-h-full md:com-pl-4 com-pl-0 com-border-0 com-border-l com-border-solid com-border-Bright-Gray com-bg-white;
   nb-card {
     @apply com-m-0;
 
@@ -106,5 +105,21 @@
 }
 
 .pagination {
-  @apply com-mt-5 com-flex com-items-center;
+  @apply com-mt-5 com-w-full;
+}
+
+app-loading-spinner {
+  @apply com-flex com-justify-center com-my-8;
+}
+
+.action-btn-desktop {
+  @apply md:com-flex com-hidden;
+}
+
+.action-btn-mobile {
+  @apply com-flex md:com-hidden com-flex-col com-gap-2;
+
+  button {
+    @apply com-w-full;
+  }
 }
