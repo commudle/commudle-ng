@@ -12,6 +12,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import moment from 'moment';
+import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
+import { ICurrentUser } from 'apps/shared-models/current_user.model';
 // import { generate } from 'lean-qr';
 
 @Component({
@@ -40,10 +42,14 @@ export class DashboardUpdatesComponent implements OnInit {
   page = 1;
   count = 5;
   total: number;
+  currentUser: ICurrentUser;
 
-  constructor(private usersService: AppUsersService) {}
+  constructor(private usersService: AppUsersService, private authWatchService: LibAuthwatchService) {}
 
   ngOnInit(): void {
+    this.authWatchService.currentUser$.subscribe((data) => {
+      this.currentUser = data;
+    });
     // this.generateQRCode();
     this.getMyRegistrations();
   }

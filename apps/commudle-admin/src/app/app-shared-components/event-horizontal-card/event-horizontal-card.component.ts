@@ -9,7 +9,6 @@ import { SharedComponentsModule } from 'apps/shared-components/shared-components
 import { ICommunity } from 'apps/shared-models/community.model';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
-import { EDbModels } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-event-horizontal-card',
   standalone: true,
@@ -30,7 +29,6 @@ export class EventHorizontalCardComponent implements OnInit {
   @Input() event: IEvent;
   community: ICommunity;
   moment = moment;
-  EDbModels = EDbModels;
 
   constructor(private communitiesService: CommunitiesService) {}
 
