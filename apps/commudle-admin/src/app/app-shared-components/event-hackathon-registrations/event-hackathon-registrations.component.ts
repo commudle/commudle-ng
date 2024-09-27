@@ -4,6 +4,7 @@ import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entit
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import moment from 'moment';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
+import { EDbModels } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-event-hackathon-registrations',
@@ -17,7 +18,10 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   ERegistrationStatuses = ERegistrationStatuses;
   showEntryPass: boolean[] = [false];
   faTrophy = faTrophy;
-  count = 5;
+  page = 1;
+  count = 10;
+  total = 0;
+  EDbModels = EDbModels;
 
   constructor(private usersService: AppUsersService) {}
 
@@ -31,8 +35,10 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   }
 
   getMyRegistrations() {
-    this.usersService.getMyRegistrations(this.count).subscribe((data) => {
+    this.usersService.getMyRegistrations(this.count, this.page).subscribe((data) => {
       this.registrations = data.values;
+      this.page = +data.page;
+      this.total = data.total;
     });
   }
 

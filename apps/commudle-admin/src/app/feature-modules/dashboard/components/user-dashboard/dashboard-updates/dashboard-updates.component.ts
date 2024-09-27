@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ICommunity } from '@commudle/shared-models';
+import { EDbModels, ICommunity } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import {
   faComments,
@@ -14,6 +14,7 @@ import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_sta
 import moment from 'moment';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
+import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 // import { generate } from 'lean-qr';
 
 @Component({
@@ -35,7 +36,7 @@ export class DashboardUpdatesComponent implements OnInit {
   activeTab: 'registrations' | 'channel' = 'registrations';
   community: ICommunity;
   faComments = faComments;
-  myRegistrations: any[] = [];
+  myRegistrations: IDataFormEntityResponseGroup[] = [];
   moment = moment;
   isPostContentOpen = false;
   faLightbulb = faLightbulb;
@@ -43,6 +44,7 @@ export class DashboardUpdatesComponent implements OnInit {
   count = 5;
   total: number;
   currentUser: ICurrentUser;
+  EDbModels = EDbModels;
 
   constructor(private usersService: AppUsersService, private authWatchService: LibAuthwatchService) {}
 

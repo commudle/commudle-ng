@@ -56,31 +56,44 @@
             </div>
             <div *ngFor="let registration of myRegistrations; let i = index" class="registration-row">
               <div class="event-title-date">
-                <span class="event-title">
-                  <fa-icon *ngIf="registration.registration_for === 'hackathon'" [icon]="faTrophy"></fa-icon
-                  >{{ registration.event.name }}</span
+                <span class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
+                  {{ registration.event.name }}</span
                 >
-                <span class="date-desktop">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
+                <span class="event-title">
+                  <fa-icon *ngIf="registration.registration_for === EDbModels.HACKATHON" [icon]="faTrophy"></fa-icon>
+                  {{ registration.hackathon?.name }}</span
+                >
+                <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                  moment(registration.event.start_time).format('Do MMMM, YYYY')
+                }}</span>
+                <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+                  moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
+                }}</span>
               </div>
               <div class="table-type">{{ registration.registration_for }}</div>
-              <span class="date-mobile">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
-              <div
-                [ngClass]="{
-                  confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
-                  registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
-                  waiting: ERegistrationStatuses.WAITING === registration.registration_status,
-                  shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
-                  cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
-                }"
-                class="table-status"
-              >
-                {{
-                  registration.registration_for === 'hackathon' ? registration.status : registration.registration_status
-                }}
-                <span *ngIf="registration.registration_for === 'hackathon'" class="individual-status"
-                  >Application Incomplete</span
-                >
-              </div>
+              <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                moment(registration.event.start_time).format('Do MMMM, YYYY')
+              }}</span>
+              <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+                moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
+              }}</span>
+              <!-- [ngClass]="{
+                confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
+                registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
+                waiting: ERegistrationStatuses.WAITING === registration.registration_status,
+                shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
+                cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
+              }" -->
+              <!-- <div class="table-status">
+            {{
+              registration.registration_for === EDbModels.HACKATHON
+                ? registration.status.name
+                : registration.registration_status
+            }}
+            <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status"
+              >Application Incomplete</span
+            >
+          </div> -->
               <div>
                 <button
                   *ngIf="registration.entry_pass"

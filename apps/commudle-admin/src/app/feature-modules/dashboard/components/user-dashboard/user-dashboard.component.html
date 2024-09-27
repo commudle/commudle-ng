@@ -51,10 +51,10 @@
                       *ngSwitchCase="EDbModels.EVENT"
                       [event]="upcomingEventHackathon.data"
                     ></commudle-event-horizontal-card>
-                    <!-- <commudle-hackathon-horizontal-card
+                    <commudle-hackathon-horizontal-card
                       *ngSwitchCase="EDbModels.HACKATHON"
                       [hackathon]="upcomingEventHackathon.data"
-                    ></commudle-hackathon-horizontal-card> -->
+                    ></commudle-hackathon-horizontal-card>
                   </div>
                 </div>
                 <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0 && !loading">

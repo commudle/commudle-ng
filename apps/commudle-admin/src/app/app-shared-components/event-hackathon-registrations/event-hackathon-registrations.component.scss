@@ -1,14 +1,7 @@
 .registrations {
-  @apply com-bg-white com-m-0;
-  nb-card-body {
-    @apply com-flex com-flex-col md:com-items-start com-items-center com-w-full md:com-p-4 com-p-3;
-  }
-}
-
-.registrations {
   @apply com-bg-white;
   nb-card-body {
-    @apply com-flex com-flex-col md:com-items-start com-items-center com-w-full md:com-p-4 com-p-3;
+    @apply com-flex com-flex-col com-items-center com-w-full md:com-p-4 com-p-3;
   }
 }
 
@@ -110,4 +103,8 @@
 
 .back-btn {
   @apply com-m-4;
+}
+
+.pagination {
+  @apply com-mt-5 com-flex com-items-center;
 }

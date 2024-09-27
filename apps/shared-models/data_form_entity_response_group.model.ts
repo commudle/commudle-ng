@@ -3,7 +3,7 @@ import { IRegistrationStatus } from './registration_status.model';
 import { IUser } from './user.model';
 import { IDataFormEntityResponseValue } from './data_form_entity_response_value.model';
 import { ITrackSlot } from 'apps/shared-models/track-slot.model';
-import { EDbModels, IEvent } from '@commudle/shared-models';
+import { EDbModels, IEvent, IHackathon } from '@commudle/shared-models';
 
 export interface IDataFormEntityResponseGroup {
   id: number;
@@ -15,4 +15,5 @@ export interface IDataFormEntityResponseGroup {
   track_slots: ITrackSlot[];
   registration_for?: EDbModels;
   event?: IEvent;
+  hackathon?: IHackathon;
 }

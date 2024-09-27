@@ -193,10 +193,13 @@ export class AppUsersService {
     return this.http.get<IUser>(this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_USER_BY_EMAIL), { params });
   }
 
-  getMyRegistrations(count?): Observable<IPaginationCount<IDataFormEntityResponseGroup>> {
+  getMyRegistrations(count?, page?): Observable<IPaginationCount<IDataFormEntityResponseGroup>> {
     let params = new HttpParams();
     if (count) {
       params = params.set('count', count);
+    }
+    if (page) {
+      params = params.set('page', page);
     }
     return this.http.get<IPaginationCount<IDataFormEntityResponseGroup>>(
       this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_REGISTRATIONS),
