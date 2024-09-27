@@ -1,8 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IPaginationCount } from '@commudle/shared-models';
 import { IAttachedFile } from 'apps/shared-models/attached-file.model';
 import { IBadges } from 'apps/shared-models/badges.model';
 import { ICommunityBuilds } from 'apps/shared-models/community-builds.model';
+import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 import { IEventStatus } from 'apps/shared-models/event_status.model';
 import { IEvents } from 'apps/shared-models/events.model';
 import { ILabs } from 'apps/shared-models/labs.model';
@@ -189,5 +191,16 @@ export class AppUsersService {
   getProfileByEmail(userEmail): Observable<IUser> {
     const params = new HttpParams().set('user_email', userEmail);
     return this.http.get<IUser>(this.apiRoutesService.getRoute(API_ROUTES.USERS.GET_USER_BY_EMAIL), { params });
+  }
+
+  getMyRegistrations(count?): Observable<IPaginationCount<IDataFormEntityResponseGroup>> {
+    let params = new HttpParams();
+    if (count) {
+      params = params.set('count', count);
+    }
+    return this.http.get<IPaginationCount<IDataFormEntityResponseGroup>>(
+      this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_REGISTRATIONS),
+      { params },
+    );
   }
 }

@@ -216,9 +216,8 @@ nb-card {
 }
 
 canvas {
+  @apply com-w-full com-h-full;
   image-rendering: pixelated;
-  width: 100%;
-  height: 100%;
 }
 
 .registration-grid {

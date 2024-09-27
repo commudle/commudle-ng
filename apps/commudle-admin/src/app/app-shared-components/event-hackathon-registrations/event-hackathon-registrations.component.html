@@ -1,7 +1,6 @@
-<a [routerLink]="['/dashboard']" class="back-btn" ghost nbButton size="small">
-  <nb-icon icon="arrow-ios-back-outline"></nb-icon>
-  Back to dashboard
-</a>
+<div class="back-btn">
+  <commudle-back-button text="Back to dashboard" router="/dashboard"></commudle-back-button>
+</div>
 <nb-card class="registrations">
   <nb-card-body>
     <h2 class="event-registration-heading">Your Registrations</h2>
@@ -15,22 +14,22 @@
           <div class="table-heading">Action</div>
         </div>
         <div *ngFor="let registration of registrations; let i = index" class="registration-row">
-          <div class="event-title-date">
+          <!-- <div class="event-title-date">
             <span class="event-title">
-              <fa-icon *ngIf="registration.registration_for === 'hackathon'" [icon]="faTrophy"></fa-icon
-              >{{ registration.event.name }}</span
+              <fa-icon *ngIf="registration.registration_for === 'hackathon'" [icon]="faTrophy"></fa-icon>
+              {{ registration.event.name }}</span
             >
             <span class="date-desktop">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
-          </div>
+          </div> -->
           <div class="table-type">{{ registration.registration_for }}</div>
           <span class="date-mobile">{{ moment(registration.event.start_time).format('Do MMMM, YYYY') }}</span>
-          <div
+          <!-- <div
             [ngClass]="{
-              confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status,
-              registered: ERegistrationStatuses.REGISTERED === registration.registration_status,
-              waiting: ERegistrationStatuses.WAITING === registration.registration_status,
-              shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status,
-              cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status
+              confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status.name,
+              registered: ERegistrationStatuses.REGISTERED === registration.registration_status.name,
+              waiting: ERegistrationStatuses.WAITING === registration.registration_status.name,
+              shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status.name,
+              cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status.name
             }"
             class="table-status"
           >
@@ -38,7 +37,7 @@
             <span *ngIf="registration.registration_for === 'hackathon'" class="individual-status"
               >Application Incomplete</span
             >
-          </div>
+          </div> -->
           <div>
             <button
               *ngIf="registration.entry_pass"

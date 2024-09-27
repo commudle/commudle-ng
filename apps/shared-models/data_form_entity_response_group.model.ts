@@ -13,6 +13,6 @@ export interface IDataFormEntityResponseGroup {
   entry_pass: IEventEntryPass;
   data_form_entity_response_values: IDataFormEntityResponseValue[];
   track_slots: ITrackSlot[];
-  registration_for: EDbModels;
-  event: IEvent;
+  registration_for?: EDbModels;
+  event?: IEvent;
 }

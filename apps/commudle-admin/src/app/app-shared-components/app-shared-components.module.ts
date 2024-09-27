@@ -49,6 +49,7 @@ import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides
 import { CallForSpeakerCardComponent } from './call-for-speaker-card/call-for-speaker-card.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { EventHackathonRegistrationsComponent } from './event-hackathon-registrations/event-hackathon-registrations.component';
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { EventHackathonRegistrationsComponent } from './event-hackathon-registra
     FeaturedExpertsCardComponent,
     WhatsNewComponent,
     HelpSectionComponent,
+    BackButtonComponent,
 
     // Nebular
     NbRadioModule,

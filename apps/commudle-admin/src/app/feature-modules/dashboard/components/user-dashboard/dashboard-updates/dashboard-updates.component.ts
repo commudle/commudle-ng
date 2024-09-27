@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ICommunity } from '@commudle/shared-models';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import {
   faComments,
   faPlus,
@@ -10,7 +11,6 @@ import {
   faBullhorn,
 } from '@fortawesome/free-solid-svg-icons';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
-import { UsersService } from 'apps/shared-services/users.service';
 import moment from 'moment';
 // import { generate } from 'lean-qr';
 
@@ -41,7 +41,7 @@ export class DashboardUpdatesComponent implements OnInit {
   count = 5;
   total: number;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: AppUsersService) {}
 
   ngOnInit(): void {
     // this.generateQRCode();
@@ -76,6 +76,5 @@ export class DashboardUpdatesComponent implements OnInit {
 
   togglePostContentDropdown() {
     this.isPostContentOpen = !this.isPostContentOpen;
-    console.log('called', this.isPostContentOpen);
   }
 }

@@ -18,12 +18,4 @@ export class UsersService {
   getCurrentUser(): Observable<ICurrentUser> {
     return this.http.get<ICurrentUser>(this.apiRoutesService.getRoute(API_ROUTES.CURRENT_USER), {});
   }
-
-  getMyRegistrations(count?): Observable<any> {
-    let params = new HttpParams();
-    if (count) {
-      params = params.set('count', count);
-    }
-    return this.http.get<any>(this.apiRoutesService.getRoute(API_ROUTES.USERS.MY_REGISTRATIONS), { params });
-  }
 }

@@ -2,7 +2,7 @@
   <nb-card-body>
     <div class="upcoming-card">
       <a
-        [routerLink]="['/communities', hackathon.kommunity_slug, 'hackathons', hackathon.slug]"
+        [routerLink]="['/communities', hackathon.community.slug, 'hackathons', hackathon.slug]"
         class="upcoming-card-link"
       >
         <div *ngIf="hackathon.banner_image">
@@ -59,7 +59,7 @@
                 ></app-badge>
               </div>
             </div>
-            <p class="time">{{ moment(hackathon.start_time).format('dddd, MMM Do, YYYY') }}</p>
+            <p class="time">{{ moment(hackathon.start_date).format('dddd, MMM Do, YYYY') }}</p>
           </div>
           <div class="badge-register-prize-buttons">
             <div *ngIf="community" class="community-badge">

@@ -2,7 +2,7 @@
   @apply com-bg-white com-py-6;
 }
 
-.your-communities {
+.user-managed-communities {
   @apply com-m-0 com-mt-6;
   nb-card {
     @apply com-m-0;
@@ -12,7 +12,7 @@
     }
   }
 
-  .your-communities-heading {
+  .user-managed-communities-heading {
     @apply com-m-0 com-mb-1 com-text-sm com-font-medium com-text-black;
   }
 

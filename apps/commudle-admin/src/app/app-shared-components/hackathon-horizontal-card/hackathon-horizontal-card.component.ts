@@ -11,7 +11,7 @@ import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communi
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 import { countries_details } from '@commudle/shared-services';
-import { EDbModels, IHackathon } from '@commudle/shared-models';
+import { IHackathon } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-hackathon-horizontal-card',
@@ -31,7 +31,6 @@ import { EDbModels, IHackathon } from '@commudle/shared-models';
 })
 export class HackathonHorizontalCardComponent implements OnInit {
   @Input() hackathon: IHackathon;
-  @Input() parentType = EDbModels.HACKATHON;
   community: ICommunity;
   moment = moment;
   faSackDollar = faSackDollar;
@@ -48,7 +47,7 @@ export class HackathonHorizontalCardComponent implements OnInit {
   }
 
   getCommunity() {
-    this.communitiesService.pGetCommunityDetails(this.hackathon.kommunity_slug).subscribe((data) => {
+    this.communitiesService.pGetCommunityDetails(this.hackathon.community.id).subscribe((data) => {
       this.community = data;
     });
   }

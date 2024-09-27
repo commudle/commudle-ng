@@ -12,10 +12,10 @@
               ></commudle-userprofile-details>
             </nb-card-body>
           </nb-card>
-          <div class="your-communities">
+          <div class="user-managed-communities">
             <nb-card>
               <nb-card-body>
-                <h2 class="your-communities-heading">Your Communities</h2>
+                <h2 class="user-managed-communities-heading">Your Communities</h2>
                 <div *ngFor="let community of managedCommunities">
                   <a [routerLink]="['/admin', 'communities', community.slug]" class="community">
                     <div class="community-image-name">
@@ -50,13 +50,11 @@
                     <commudle-event-horizontal-card
                       *ngSwitchCase="EDbModels.EVENT"
                       [event]="upcomingEventHackathon.data"
-                      [parentType]="upcomingEventHackathon.object_type"
                     ></commudle-event-horizontal-card>
-                    <commudle-hackathon-horizontal-card
+                    <!-- <commudle-hackathon-horizontal-card
                       *ngSwitchCase="EDbModels.HACKATHON"
                       [hackathon]="upcomingEventHackathon.data"
-                      [parentType]="upcomingEventHackathon.object_type"
-                    ></commudle-hackathon-horizontal-card>
+                    ></commudle-hackathon-horizontal-card> -->
                   </div>
                 </div>
                 <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0 && !loading">

@@ -7,6 +7,7 @@ import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service'
 import { IUserStat } from 'libs/shared/models/src/lib/user-stats.model';
 import { Subscription } from 'rxjs';
 import { FeedService } from 'apps/shared-services/feed.service';
+import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 
 @Component({
   selector: 'commudle-user-dashboard',
@@ -19,8 +20,6 @@ export class UserDashboardComponent implements OnInit {
   managedCommunities: ICommunity[] = [];
   subscriptions: Subscription[] = [];
   page_info: IPageInfo;
-  total: number;
-  limit = 4;
   upcomingEventsHackathons: any[] = [];
   EDbModels = EDbModels;
   loading = true;
@@ -62,6 +61,7 @@ export class UserDashboardComponent implements OnInit {
     this.feedService.getUpcomingEventsHackathons().subscribe((data) => {
       if (data) {
         this.upcomingEventsHackathons = data.values;
+        console.log(this.upcomingEventsHackathons);
         this.loading = false;
       }
     });

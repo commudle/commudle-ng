@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
-import { UsersService } from 'apps/shared-services/users.service';
 import moment from 'moment';
+import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 
 @Component({
   selector: 'commudle-event-hackathon-registrations',
@@ -11,14 +11,15 @@ import moment from 'moment';
   styleUrls: ['./event-hackathon-registrations.component.scss'],
 })
 export class EventHackathonRegistrationsComponent implements OnInit {
-  registrations;
-  // : IDataFormEntityResponseGroup[] = []
+  registrations: IDataFormEntityResponseGroup[] = [];
+
   moment = moment;
   ERegistrationStatuses = ERegistrationStatuses;
   showEntryPass: boolean[] = [false];
   faTrophy = faTrophy;
+  count = 5;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: AppUsersService) {}
 
   ngOnInit(): void {
     this.getMyRegistrations();
@@ -30,7 +31,7 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   }
 
   getMyRegistrations() {
-    this.usersService.getMyRegistrations().subscribe((data) => {
+    this.usersService.getMyRegistrations(this.count).subscribe((data) => {
       this.registrations = data.values;
     });
   }

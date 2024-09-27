@@ -27,8 +27,7 @@ import { EDbModels } from '@commudle/shared-models';
   ],
 })
 export class EventHorizontalCardComponent implements OnInit {
-  @Input() event: any;
-  @Input() parentType = EDbModels.EVENT;
+  @Input() event: IEvent;
   community: ICommunity;
   moment = moment;
   EDbModels = EDbModels;
