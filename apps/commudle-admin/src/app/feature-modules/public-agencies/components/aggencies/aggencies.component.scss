@@ -209,10 +209,10 @@ a {
   @apply com-border-0 com-border-l com-border-solid com-border-Bright-Gray;
 }
 
-.connect-btn {
-  @apply com-flex com-justify-center md:com-mt-10 com-mt-8;
-}
-
 .read {
   @apply com-text-xs com-text-primary-500 com-m-0 com-mt-1;
+}
+
+.action-btn {
+  @apply com-flex md:com-flex-row com-flex-col com-justify-center md:com-mt-10 com-mt-8 com-gap-4;
 }
