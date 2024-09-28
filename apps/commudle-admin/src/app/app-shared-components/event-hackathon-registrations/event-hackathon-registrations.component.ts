@@ -46,11 +46,11 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   }
 
   toggleEntryPass(index, uniqueCode) {
-    // for (let i = 0; i < this.registrations.length; i++) {
-    //   if (i !== index) {
-    //     this.showEntryPass[i] = false;
-    //   }
-    // }
+    for (let i = 0; i < this.registrations.length; i++) {
+      if (i !== index) {
+        this.showEntryPass[i] = false;
+      }
+    }
     this.showEntryPass[index] = !this.showEntryPass[index];
     if (this.showEntryPass[index]) {
       this.generateQRCode(uniqueCode);

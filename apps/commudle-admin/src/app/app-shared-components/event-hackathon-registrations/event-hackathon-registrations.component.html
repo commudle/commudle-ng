@@ -58,7 +58,19 @@
                 registration.registration_status
               }}</span>
             </div>
-            <div class="action-btn-desktop">
+            <div>
+              <button
+                *ngIf="registration.entry_pass"
+                nbButton
+                status="primary"
+                shape="round"
+                size="tiny"
+                (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+              >
+                View Pass
+              </button>
+            </div>
+            <!-- <div class="action-btn-desktop">
               <button
                 *ngIf="
                   registration.registration_for === EDbModels.HACKATHON &&
@@ -84,9 +96,17 @@
                   View Pass
                 </button>
               </ng-template>
-            </div>
+            </div> -->
           </div>
-          <div class="action-btn-mobile">
+          <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
+            <nb-card>
+              <nb-card-body>
+                <canvas #qrCanvas></canvas>
+                <p>{{ registration.event.name }}</p>
+              </nb-card-body>
+            </nb-card>
+          </div>
+          <!-- <div class="action-btn-mobile">
             <button
               *ngIf="
                 registration.registration_for === EDbModels.HACKATHON &&
@@ -112,7 +132,6 @@
                 View Pass
               </button>
             </ng-template>
-            <h1>{{ showEntryPass[i] }}</h1>
             <div *ngIf="showEntryPass[i]" class="qr-code action-btn-mobile">
               <nb-card>
                 <nb-card-body>
@@ -121,7 +140,7 @@
                 </nb-card-body>
               </nb-card>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div *ngFor="let registration of registrations; let i = index" class="action-btn-desktop">

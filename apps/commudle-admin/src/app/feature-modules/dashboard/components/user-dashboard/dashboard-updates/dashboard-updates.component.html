@@ -60,8 +60,8 @@
                   <span class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
                     {{ registration.event.name }}</span
                   >
-                  <span class="event-title">
-                    <fa-icon *ngIf="registration.registration_for === EDbModels.HACKATHON" [icon]="faTrophy"></fa-icon>
+                  <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="event-title">
+                    <fa-icon [icon]="faTrophy"></fa-icon>
                     {{ registration.hackathon?.name }}</span
                   >
                   <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.EVENT">{{
