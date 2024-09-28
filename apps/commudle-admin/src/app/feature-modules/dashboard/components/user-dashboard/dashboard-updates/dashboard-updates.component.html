@@ -1,8 +1,6 @@
 <nb-card>
   <nb-card-header (click)="togglePostContentDropdown()"
     ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
-  </nb-card-header>
-  <nb-card-body class="main-body">
     <nb-card *ngIf="isPostContentOpen" class="post-content">
       <nb-card-body>
         <div class="content-list">
@@ -21,6 +19,8 @@
         </div>
       </nb-card-body>
     </nb-card>
+  </nb-card-header>
+  <nb-card-body class="main-body">
     <div class="tabs">
       <button
         nbButton

@@ -6,7 +6,7 @@ nb-card {
   }
 
   nb-card-header {
-    @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center;
+    @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10;
 
     h2 {
       @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
@@ -158,14 +158,14 @@ nb-card {
 }
 
 .post-content {
-  @apply com-bg-white com-m-0 com-p-4;
+  @apply com-bg-white com-m-0 com-p-4 com-w-full;
 
   nb-card-body {
     @apply com-p-0;
   }
 
   .content-list {
-    @apply com-grid com-grid-cols-2 com-gap-4;
+    @apply com-grid md:com-grid-cols-2 com-grid-cols-1 com-gap-4;
 
     .publish-build {
       button {
