@@ -43,7 +43,7 @@ nb-card {
     }
 
     .event-registrations {
-      @apply com-w-full com-flex com-flex-row;
+      @apply com-w-full com-flex md:com-flex-row com-flex-col;
     }
 
     .event-registration-heading {
@@ -107,9 +107,9 @@ nb-card {
     }
 
     .qr-code {
-      @apply com-w-[152px] com-h-full com-pl-4 com-border-0 com-border-l com-border-solid com-border-Bright-Gray com-bg-white;
+      @apply md:com-w-[152px] com-w-full com-h-[156px] md:com-pl-4 com-pl-0 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray com-bg-white md:com-pt-0 com-pt-2;
       nb-card {
-        @apply com-m-0;
+        @apply com-m-0 com-w-full com-h-full;
 
         nb-card-body {
           @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50;
@@ -242,4 +242,12 @@ canvas {
 
 .view-all {
   @apply com-w-fit com-mt-2;
+}
+
+.desktop-qr {
+  @apply md:com-flex com-hidden;
+}
+
+.mobile-qr {
+  @apply com-flex md:com-hidden;
 }
