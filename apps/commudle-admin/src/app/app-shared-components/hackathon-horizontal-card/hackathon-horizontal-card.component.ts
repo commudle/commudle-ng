@@ -5,7 +5,6 @@ import { NbButtonModule, NbCardModule, NbIconModule } from '@commudle/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import * as moment from 'moment';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
-import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
 import { faSackDollar } from '@fortawesome/free-solid-svg-icons';
 import { countries_details } from '@commudle/shared-services';
@@ -35,7 +34,7 @@ export class HackathonHorizontalCardComponent implements OnInit {
   countryDetails = countries_details;
   totalPrizes: { currency: any; amount: number }[];
 
-  constructor(private communitiesService: CommunitiesService) {}
+  constructor() {}
 
   ngOnInit() {
     this.totalPrizes = Object.keys(this.hackathon.total_prize_amount).map((currency) => ({

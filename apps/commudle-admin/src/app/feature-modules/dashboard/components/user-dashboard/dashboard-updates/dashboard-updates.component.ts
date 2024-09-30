@@ -83,7 +83,6 @@ export class DashboardUpdatesComponent implements OnInit {
       this.total = data.total;
       this.page = data.page;
       this.count = data.count;
-      console.log(data);
     });
   }
 
