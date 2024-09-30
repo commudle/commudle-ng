@@ -17,13 +17,13 @@
         <div *ngFor="let registration of registrations; let i = index">
           <div class="registration-row">
             <div class="event-title-date">
-              <span class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
-                {{ registration.event.name }}</span
-              >
-              <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="event-title">
+              <p class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
+                <span class="name">{{ registration.event.name }}</span>
+              </p>
+              <p *ngIf="registration.registration_for === EDbModels.HACKATHON" class="event-title">
                 <fa-icon [icon]="faTrophy"></fa-icon>
-                {{ registration.hackathon?.name }}</span
-              >
+                <span class="name">{{ registration.hackathon?.name }}</span>
+              </p>
               <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.EVENT">{{
                 moment(registration.event.start_time).format('Do MMMM, YYYY')
               }}</span>
@@ -52,10 +52,10 @@
                 registration.hackathon_team?.registration_status
               }}</span>
               <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
-                registration.registration_status
+                registration.registration_status.name
               }}</span>
               <span *ngIf="registration.registration_for === EDbModels.EVENT">{{
-                registration.registration_status
+                registration.registration_status.name
               }}</span>
             </div>
             <div class="action-btn-desktop">
@@ -83,20 +83,6 @@
               >
                 Fill Now
               </button>
-              <!-- <button
-                *ngIf="
-                  registration.entry_pass &&
-                  registration.registration_for === EDbModels.HACKATHON &&
-                  registration.registration_status.name !== 'application_incomplete'
-                "
-                nbButton
-                status="primary"
-                shape="round"
-                size="tiny"
-                (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
-              >
-                View Pass
-              </button> -->
             </div>
           </div>
           <div class="action-btn-mobile">
@@ -124,20 +110,6 @@
             >
               Fill Now
             </button>
-            <!-- <button
-              *ngIf="
-                registration.entry_pass &&
-                registration.registration_for === EDbModels.HACKATHON &&
-                registration.registration_status.name !== 'application_incomplete'
-              "
-              nbButton
-              status="primary"
-              shape="round"
-              size="tiny"
-              (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
-            >
-              View Pass
-            </button> -->
           </div>
           <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
             <nb-card>

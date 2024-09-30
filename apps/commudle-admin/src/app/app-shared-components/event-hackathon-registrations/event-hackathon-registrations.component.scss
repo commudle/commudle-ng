@@ -10,7 +10,7 @@
 }
 
 .event-registrations {
-  @apply com-w-full com-flex md:com-flex-row com-flex-col;
+  @apply com-w-full com-flex md:com-flex-row com-flex-col com-items-center;
 }
 
 .event-registration-heading {
@@ -18,10 +18,14 @@
 }
 
 .event-title {
-  @apply com-line-clamp-1 com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start;
+  @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start com-m-0;
 
   fa-icon {
     @apply com-mr-1 com-text-primary-500 com-text-xs;
+  }
+
+  .name {
+    @apply com-line-clamp-1;
   }
 }
 
@@ -74,7 +78,7 @@
 }
 
 .qr-code {
-  @apply md:com-w-[152px] com-w-full com-h-[156px] md:com-pl-4 com-pl-0 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray com-bg-white md:com-pt-0 com-pt-2;
+  @apply md:com-w-[152px] com-w-full com-h-[156px] md:com-pl-4 com-pl-0 com-bg-white md:com-pt-0 com-pt-2;
   nb-card {
     @apply com-m-0 com-w-full com-h-full;
 
@@ -85,7 +89,7 @@
 }
 
 .registration-grid {
-  @apply com-grid com-gap-2 com-w-full;
+  @apply com-grid com-gap-2 com-w-full com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray;
 }
 
 .registration-header {
