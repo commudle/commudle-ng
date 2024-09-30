@@ -43,10 +43,4 @@ export class HackathonHorizontalCardComponent implements OnInit {
       amount: this.hackathon.total_prize_amount[currency],
     }));
   }
-
-  getCommunity() {
-    this.communitiesService.pGetCommunityDetails(this.hackathon.community.slug).subscribe((data) => {
-      this.community = data;
-    });
-  }
 }

@@ -10,7 +10,7 @@ import { EventHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-sh
 import { DashboardUpdatesComponent } from './components/user-dashboard/dashboard-updates/dashboard-updates.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/hackathon-horizontal-card/hackathon-horizontal-card.component';
-import { SharedComponentsModule } from '@commudle/shared-components';
+import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 
 @NgModule({
@@ -20,15 +20,12 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     DashboardRoutingModule,
     SharedComponentsModule,
     AppSharedComponentsModule,
-
     //Nebular
     NbCardModule,
     NbButtonModule,
     NbIconModule,
-
     //Fontawesome
     FontAwesomeModule,
-
     //Standalone
     UserProfileComponent,
     UserprofileDetailsComponent,

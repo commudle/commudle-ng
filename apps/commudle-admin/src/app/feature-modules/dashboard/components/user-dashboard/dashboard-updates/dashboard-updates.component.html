@@ -98,9 +98,9 @@
                     registration.registration_status
                   }}</span>
                 </div>
-                <div>
+                <div class="action-btn-desktop">
                   <button
-                    *ngIf="registration.entry_pass"
+                    *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
                     nbButton
                     status="primary"
                     shape="round"
@@ -109,7 +109,85 @@
                   >
                     View Pass
                   </button>
+                  <button
+                    *ngIf="
+                      registration.entry_pass &&
+                      registration.registration_for === EDbModels.HACKATHON &&
+                      registration.registration_status.name === 'application_incomplete'
+                    "
+                    nbButton
+                    status="primary"
+                    shape="round"
+                    size="tiny"
+                    [routerLink]="[
+                      '/communities',
+                      registration.hackathon.slug,
+                      '/hackathons',
+                      registration.hackathon.name
+                    ]"
+                  >
+                    Fill Now
+                  </button>
+                  <!-- <button
+                    *ngIf="
+                      registration.entry_pass &&
+                      registration.registration_for === EDbModels.HACKATHON &&
+                      registration.registration_status.name !== 'application_incomplete'
+                    "
+                    nbButton
+                    status="primary"
+                    shape="round"
+                    size="tiny"
+                    (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                  >
+                    View Pass
+                  </button> -->
                 </div>
+              </div>
+              <div class="action-btn-mobile">
+                <button
+                  *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                >
+                  View Pass
+                </button>
+                <button
+                  *ngIf="
+                    registration.entry_pass &&
+                    registration.registration_for === EDbModels.HACKATHON &&
+                    registration.registration_status.name === 'application_incomplete'
+                  "
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  [routerLink]="[
+                    '/communities',
+                    registration.hackathon.slug,
+                    '/hackathons',
+                    registration.hackathon.name
+                  ]"
+                >
+                  Fill Now
+                </button>
+                <!-- <button
+                  *ngIf="
+                    registration.entry_pass &&
+                    registration.registration_for === EDbModels.HACKATHON &&
+                    registration.registration_status.name !== 'application_incomplete'
+                  "
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                >
+                  View Pass
+                </button> -->
               </div>
               <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
                 <nb-card>
@@ -141,9 +219,9 @@
     <nb-card class="channel-updates" *ngIf="activeTab === 'channel'">
       <nb-card-body>
         <div class="badge-and-messages">
-          <!-- <div *ngIf="community" class="community-badge">
+          <div *ngIf="community" class="community-badge">
             <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
-          </div> -->
+          </div>
           <div class="channel-update">
             <div class="channel-name">
               <fa-icon [icon]="faBullhorn"></fa-icon>
