@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faPlusSquare } from '@fortawesome/free-solid-svg-icons';
-import { Settings } from 'angular2-smart-table';
+import { Cell, Settings } from 'angular2-smart-table';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { IDataForm } from 'apps/shared-models/data_form.model';
 import { CommunityFormsListActionsComponent } from './community-forms-list-actions/community-forms-list-actions.component';
@@ -30,6 +30,10 @@ export class CommunityFormsListComponent implements OnInit {
         title: 'Mini Stats',
         type: 'custom',
         renderComponent: CommunityFormsListStatsComponent,
+        componentInitFunction: (instance: CommunityFormsListStatsComponent, cell: Cell) => {
+          const dataForms: IDataForm = cell.getRow().getData();
+          instance.rowData = dataForms;
+        },
         isFilterable: false,
         isSortable: false,
       },
@@ -37,6 +41,10 @@ export class CommunityFormsListComponent implements OnInit {
         title: 'Actions',
         type: 'custom',
         renderComponent: CommunityFormsListActionsComponent,
+        componentInitFunction: (instance: CommunityFormsListActionsComponent, cell: Cell) => {
+          const dataForms: IDataForm = cell.getRow().getData();
+          instance.rowData = dataForms;
+        },
         isFilterable: false,
         isSortable: false,
       },
