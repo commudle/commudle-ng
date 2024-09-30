@@ -48,8 +48,8 @@
               }"
               class="table-status"
             >
-              <span *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
-                registration.hackathon_team.registration_status
+              <span *ngIf="registration?.registration_for === EDbModels.HACKATHON && registration.hackathon_team">{{
+                registration.hackathon_team?.registration_status
               }}</span>
               <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
                 registration.registration_status
@@ -58,9 +58,9 @@
                 registration.registration_status
               }}</span>
             </div>
-            <div>
+            <div class="action-btn-desktop">
               <button
-                *ngIf="registration.entry_pass"
+                *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
                 nbButton
                 status="primary"
                 shape="round"
@@ -69,13 +69,11 @@
               >
                 View Pass
               </button>
-            </div>
-            <!-- <div class="action-btn-desktop">
               <button
                 *ngIf="
+                  registration.entry_pass &&
                   registration.registration_for === EDbModels.HACKATHON &&
-                    registration.registration_status.name === 'application_incomplete';
-                  else showEntryPass
+                  registration.registration_status.name === 'application_incomplete'
                 "
                 nbButton
                 status="primary"
@@ -85,33 +83,38 @@
               >
                 Fill Now
               </button>
-              <ng-template #showEntryPass>
-                <button
-                  nbButton
-                  status="primary"
-                  shape="round"
-                  size="tiny"
-                  (click)="toggleEntryPass(i, registration.entry_pass?.unique_code)"
-                >
-                  View Pass
-                </button>
-              </ng-template>
-            </div> -->
+              <!-- <button
+                *ngIf="
+                  registration.entry_pass &&
+                  registration.registration_for === EDbModels.HACKATHON &&
+                  registration.registration_status.name !== 'application_incomplete'
+                "
+                nbButton
+                status="primary"
+                shape="round"
+                size="tiny"
+                (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+              >
+                View Pass
+              </button> -->
+            </div>
           </div>
-          <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
-            <nb-card>
-              <nb-card-body>
-                <canvas #qrCanvas></canvas>
-                <p>{{ registration.event.name }}</p>
-              </nb-card-body>
-            </nb-card>
-          </div>
-          <!-- <div class="action-btn-mobile">
+          <div class="action-btn-mobile">
+            <button
+              *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+              nbButton
+              status="primary"
+              shape="round"
+              size="tiny"
+              (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+            >
+              View Pass
+            </button>
             <button
               *ngIf="
+                registration.entry_pass &&
                 registration.registration_for === EDbModels.HACKATHON &&
-                  registration.registration_status.name === 'application_incomplete';
-                else showEntryPass
+                registration.registration_status.name === 'application_incomplete'
               "
               nbButton
               status="primary"
@@ -121,29 +124,32 @@
             >
               Fill Now
             </button>
-            <ng-template #showEntryPass>
-              <button
-                nbButton
-                status="primary"
-                shape="round"
-                size="tiny"
-                (click)="toggleEntryPass(i, registration.entry_pass?.unique_code)"
-              >
-                View Pass
-              </button>
-            </ng-template>
-            <div *ngIf="showEntryPass[i]" class="qr-code action-btn-mobile">
-              <nb-card>
-                <nb-card-body>
-                  <canvas #qrCanvas></canvas>
-                  <p>{{ registration.event?.name }}</p>
-                </nb-card-body>
-              </nb-card>
-            </div>
-          </div> -->
+            <!-- <button
+              *ngIf="
+                registration.entry_pass &&
+                registration.registration_for === EDbModels.HACKATHON &&
+                registration.registration_status.name !== 'application_incomplete'
+              "
+              nbButton
+              status="primary"
+              shape="round"
+              size="tiny"
+              (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+            >
+              View Pass
+            </button> -->
+          </div>
+          <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
+            <nb-card>
+              <nb-card-body>
+                <canvas #qrCanvas></canvas>
+                <p>{{ registration.event.name }}</p>
+              </nb-card-body>
+            </nb-card>
+          </div>
         </div>
       </div>
-      <div *ngFor="let registration of registrations; let i = index" class="action-btn-desktop">
+      <div *ngFor="let registration of registrations; let i = index" class="desktop-qr">
         <div *ngIf="showEntryPass[i]" class="qr-code">
           <nb-card>
             <nb-card-body>

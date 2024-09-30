@@ -4,5 +4,6 @@ import { IHackathon } from './hackathon.model';
 
 export interface IUpcomingEventHackathon {
   object_type: EDbModels;
-  data: IEvent | IHackathon;
+  //TODO IEvent | IHackathon;
+  data: any;
 }

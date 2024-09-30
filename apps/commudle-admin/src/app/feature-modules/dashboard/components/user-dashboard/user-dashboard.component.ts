@@ -21,9 +21,7 @@ export class UserDashboardComponent implements OnInit {
   page_info: IPageInfo;
   EDbModels = EDbModels;
   loading = true;
-
-  //TODO IUpcomingEventHackathon
-  upcomingEventsHackathons: any[] = [];
+  upcomingEventsHackathons: IUpcomingEventHackathon[] = [];
 
   constructor(
     private authWatchService: LibAuthwatchService,

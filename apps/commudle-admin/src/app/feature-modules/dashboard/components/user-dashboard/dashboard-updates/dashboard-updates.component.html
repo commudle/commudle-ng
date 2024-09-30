@@ -88,8 +88,8 @@
                   }"
                   class="table-status"
                 >
-                  <span *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
-                    registration.hackathon_team.registration_status
+                  <span *ngIf="registration?.registration_for === EDbModels.HACKATHON">{{
+                    registration.hackathon_team?.registration_status
                   }}</span>
                   <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
                     registration.registration_status

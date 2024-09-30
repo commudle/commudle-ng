@@ -112,22 +112,16 @@ app-loading-spinner {
   @apply com-flex com-justify-center com-my-8;
 }
 
-.desktop-qr {
+.desktop-qr,
+.action-btn-desktop {
   @apply md:com-flex com-hidden;
 }
 
-.mobile-qr {
+.mobile-qr,
+.action-btn-mobile {
   @apply com-flex md:com-hidden;
+
+  button {
+    @apply com-w-full;
+  }
 }
-
-// .action-btn-desktop {
-//   @apply md:com-flex com-hidden;
-// }
-
-// .action-btn-mobile {
-//   @apply com-flex md:com-hidden com-flex-col com-gap-2;
-
-//   button {
-//     @apply com-w-full;
-//   }
-// }
