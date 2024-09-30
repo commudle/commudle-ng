@@ -2,7 +2,7 @@
   <nb-card-body>
     <div class="upcoming-card">
       <a
-        [routerLink]="['/communities', hackathon.kommunity_slug, 'hackathons', hackathon.slug]"
+        [routerLink]="['/communities', hackathon.community.slug, 'hackathons', hackathon.slug]"
         class="upcoming-card-link"
       >
         <div *ngIf="hackathon.banner_image">

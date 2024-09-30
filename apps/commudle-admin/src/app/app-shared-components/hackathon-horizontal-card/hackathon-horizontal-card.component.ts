@@ -28,8 +28,7 @@ import { IHackathon, ICommunity } from '@commudle/shared-models';
   styleUrls: ['./hackathon-horizontal-card.component.scss'],
 })
 export class HackathonHorizontalCardComponent implements OnInit {
-  //TODO IHackathon
-  @Input() hackathon: any;
+  @Input() hackathon: IHackathon;
   community: ICommunity;
   moment = moment;
   faSackDollar = faSackDollar;
@@ -46,7 +45,7 @@ export class HackathonHorizontalCardComponent implements OnInit {
   }
 
   getCommunity() {
-    this.communitiesService.pGetCommunityDetails(this.hackathon.kommunity_slug).subscribe((data) => {
+    this.communitiesService.pGetCommunityDetails(this.hackathon.community.slug).subscribe((data) => {
       this.community = data;
     });
   }
