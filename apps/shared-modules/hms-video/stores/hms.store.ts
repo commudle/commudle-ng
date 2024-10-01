@@ -1,5 +1,4 @@
-import { HMSLogLevel } from '@100mslive/hms-video';
-import { HMSReactiveStore } from '@100mslive/hms-video-store';
+import { HMSLogLevel, HMSReactiveStore } from '@100mslive/hms-video-store';
 
 const hms: HMSReactiveStore = new HMSReactiveStore();
 
