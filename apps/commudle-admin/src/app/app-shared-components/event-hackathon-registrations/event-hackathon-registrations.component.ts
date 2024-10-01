@@ -4,7 +4,7 @@ import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entit
 import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_statuses.enum';
 import moment from 'moment';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
-import { EDbModels } from '@commudle/shared-models';
+import { EDbModels, EHackathonRegistrationStatus } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-event-hackathon-registrations',
@@ -16,6 +16,7 @@ export class EventHackathonRegistrationsComponent implements OnInit {
 
   moment = moment;
   ERegistrationStatuses = ERegistrationStatuses;
+  EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   showEntryPass: boolean[] = [false];
   faTrophy = faTrophy;
   page = 1;
