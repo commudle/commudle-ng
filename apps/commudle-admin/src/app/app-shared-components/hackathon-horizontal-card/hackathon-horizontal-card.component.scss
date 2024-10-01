@@ -24,11 +24,10 @@ nb-card {
           div {
             @apply com-flex com-flex-col;
 
-            div {
+            .title-interested-members {
               @apply com-flex com-flex-row com-justify-between com-items-center;
 
               .interested-members {
-                @apply com-flex-shrink-0;
                 button {
                   @apply com-py-1 com-px-2 com-w-max;
                   nb-icon {
@@ -40,28 +39,46 @@ nb-card {
                   }
                 }
               }
-
-              .event-title {
+              .title {
                 @apply md:com-text-xl com-text-lg com-font-semibold com-text-Dark-Jungle-Green com-mt-0 com-mb-1 com-line-clamp-1 com-mr-3;
               }
             }
 
-            .event-time {
+            .time {
               @apply com-text-xs com-font-medium com-m-0 com-text-Auro-Metal-Saurus;
             }
           }
 
-          .badge-register {
-            @apply com-flex com-flex-row com-justify-between;
+          .badge-register-prize-buttons {
+            @apply com-flex com-flex-row com-justify-between com-items-center;
           }
 
           .community-badge {
-            @apply com-m-0;
+            @apply com-m-0 md:com-my-0 com-mb-6;
           }
 
           .register-button {
             @apply com-border com-m-0 com-bg-transparent com-py-5px com-flex md:com-ml-auto com-ml-0 com-px-6px;
           }
+
+          .prize-money {
+            @apply com-flex com-flex-row com-items-center;
+            fa-icon {
+              @apply com-text-sm com-text-gray-400 com-mr-1;
+            }
+
+            span {
+              @apply com-text-xs com-font-semibold com-text-Yankees-Blue;
+            }
+          }
+
+          .prize-register-btn {
+            @apply com-flex com-flex-row com-items-center com-gap-3 com-ml-auto;
+          }
+        }
+
+        .hackathon-badge {
+          @apply com-absolute com-top-4 com-border com-left-6px com-border-solid com-border-tChocolate-Traditional com-rounded-3xl;
         }
       }
     }

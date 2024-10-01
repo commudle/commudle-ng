@@ -1,0 +1,147 @@
+<div class="back-btn">
+  <commudle-back-button text="Back to dashboard" router="/dashboard"></commudle-back-button>
+</div>
+<nb-card class="registrations">
+  <nb-card-body>
+    <h2 class="event-registration-heading">Your Registrations</h2>
+    <div class="event-registrations">
+      <div class="registration-grid">
+        <div class="registration-header">
+          <div class="table-heading">Name</div>
+          <div class="table-heading"></div>
+          <div class="table-heading">Type</div>
+          <div class="table-heading">Your Status</div>
+          <div class="table-heading">Action</div>
+        </div>
+        <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+        <div *ngFor="let registration of registrations; let i = index">
+          <div class="registration-row">
+            <div class="event-title-date">
+              <p class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
+                <span class="name">{{ registration.event.name }}</span>
+              </p>
+              <p *ngIf="registration.registration_for === EDbModels.HACKATHON" class="event-title">
+                <fa-icon [icon]="faTrophy"></fa-icon>
+                <span class="name">{{ registration.hackathon?.name }}</span>
+              </p>
+              <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                moment(registration.event.start_time).format('Do MMMM, YYYY')
+              }}</span>
+              <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+                moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
+              }}</span>
+            </div>
+            <div class="table-type">{{ registration.registration_for }}</div>
+            <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.EVENT">{{
+              moment(registration.event.start_time).format('Do MMMM, YYYY')
+            }}</span>
+            <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+              moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
+            }}</span>
+            <div
+              [ngClass]="{
+                confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status.name,
+                registered: ERegistrationStatuses.REGISTERED === registration.registration_status.name,
+                waiting: ERegistrationStatuses.WAITING === registration.registration_status.name,
+                shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status.name,
+                cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status.name
+              }"
+              class="table-status"
+            >
+              <span *ngIf="registration?.registration_for === EDbModels.HACKATHON && registration.hackathon_team">{{
+                registration.hackathon_team?.registration_status
+              }}</span>
+              <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
+                registration.registration_status.name
+              }}</span>
+              <span *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                registration.registration_status.name
+              }}</span>
+            </div>
+            <div class="action-btn-desktop">
+              <button
+                *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                nbButton
+                status="primary"
+                shape="round"
+                size="tiny"
+                (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+              >
+                View Pass
+              </button>
+              <button
+                *ngIf="
+                  registration.entry_pass &&
+                  registration.registration_for === EDbModels.HACKATHON &&
+                  registration.registration_status.name === 'application_incomplete'
+                "
+                nbButton
+                status="primary"
+                shape="round"
+                size="tiny"
+                [routerLink]="['/communities', registration.hackathon.slug, '/hackathons', registration.hackathon.name]"
+              >
+                Fill Now
+              </button>
+            </div>
+          </div>
+          <div class="action-btn-mobile">
+            <button
+              *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+              nbButton
+              status="primary"
+              shape="round"
+              size="tiny"
+              (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+            >
+              View Pass
+            </button>
+            <button
+              *ngIf="
+                registration.entry_pass &&
+                registration.registration_for === EDbModels.HACKATHON &&
+                registration.registration_status.name === 'application_incomplete'
+              "
+              nbButton
+              status="primary"
+              shape="round"
+              size="tiny"
+              [routerLink]="['/communities', registration.hackathon.slug, '/hackathons', registration.hackathon.name]"
+            >
+              Fill Now
+            </button>
+          </div>
+          <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
+            <nb-card>
+              <nb-card-body>
+                <canvas #qrCanvas></canvas>
+                <p>{{ registration.event.name }}</p>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+      </div>
+      <div *ngFor="let registration of registrations; let i = index" class="desktop-qr">
+        <div *ngIf="showEntryPass[i]" class="qr-code">
+          <nb-card>
+            <nb-card-body>
+              <canvas #qrCanvas></canvas>
+              <p>{{ registration.event?.name }}</p>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <app-pagination
+        (goTo)="page = $event; getMyRegistrations()"
+        (next)="page = $event; getMyRegistrations()"
+        (previous)="page = $event; getMyRegistrations()"
+        *ngIf="total > 0"
+        [count]="count"
+        [current]="page"
+        [total]="total"
+      ></app-pagination>
+    </div>
+  </nb-card-body>
+</nb-card>

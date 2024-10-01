@@ -512,6 +512,7 @@ export const API_ROUTES = {
     EVENTS_ATTENDED: 'api/v2/users/events_attended',
     PROFILE_STATS: 'api/v2/users/profile_stats',
     GET_USER_BY_EMAIL: 'api/v2/users/get_user_by_email',
+    MY_REGISTRATIONS: 'api/v2/users/my_registrations',
   },
 
   SPEAKER_RESOURCES: {
@@ -941,5 +942,9 @@ export const API_ROUTES = {
     CREATE_TRANSFER: 'api/v2/razorpay/create_transfer', //GET
     GET_TRANSFER_DETAILS: 'api/v2/razorpay/get_transfer_details', //GET
     CREATE_MISSING_RZP_PAYMENT: 'api/v2/razorpay/create_missing_rzp_payment', //GET
+  },
+
+  FEED: {
+    INDEX_UPCOMING_HACKATHONS_EVENTS: 'api/v2/feed/events_hackathons/upcoming',
   },
 };

@@ -1,0 +1,259 @@
+nb-card {
+  @apply com-m-0 com-bg-gray-100;
+
+  .plus-icon {
+    @apply com-text-xs;
+  }
+
+  nb-card-header {
+    @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10;
+
+    h2 {
+      @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
+      fa-icon {
+        @apply com-ml-2;
+      }
+    }
+  }
+
+  .main-body {
+    @apply com-flex com-flex-col md:com-p-4 com-p-0 md:com-pt-0 com-bg-gray-100 com-w-full;
+
+    .tabs {
+      @apply com-flex com-flex-row com-gap-3 com-py-4 md:com-px-0 com-px-3;
+
+      button {
+        @apply com-text-gray-800 com-bg-gray-300;
+      }
+    }
+
+    .active {
+      @apply com-border com-border-solid com-border-gray-800;
+    }
+
+    .registrations {
+      @apply com-bg-white;
+      nb-card-body {
+        @apply com-flex com-flex-col md:com-items-start com-items-center com-w-full md:com-p-4 com-p-3;
+      }
+    }
+
+    .container {
+      @apply com-w-full  com-rounded-xl;
+    }
+
+    .event-registrations {
+      @apply com-w-full com-flex md:com-flex-row com-flex-col com-items-center;
+    }
+
+    .event-registration-heading {
+      @apply com-text-sm com-font-semibold com-text-black com-m-0 com-mb-3 com-px-2;
+    }
+
+    .event-title {
+      @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start com-m-0;
+
+      fa-icon {
+        @apply com-mr-1 com-text-primary-500 com-text-xs  com-mt-1;
+      }
+
+      .name {
+        @apply com-line-clamp-1;
+      }
+    }
+
+    .table-heading {
+      @apply com-text-xs com-font-normal com-text-gray-500;
+    }
+
+    .date-desktop {
+      @apply md:com-flex com-hidden com-text-xs com-font-normal com-text-gray-500;
+    }
+
+    .date-mobile {
+      @apply com-flex md:com-hidden com-text-xs com-font-normal com-text-gray-500;
+    }
+
+    .event-title-date {
+      @apply com-flex com-flex-col;
+    }
+
+    .table-type {
+      @apply com-text-xs com-font-medium com-text-gray-500 md:com-justify-self-start com-justify-self-end;
+    }
+
+    .table-status {
+      @apply com-text-xs com-font-medium md:com-justify-self-start com-justify-self-end  com-flex com-flex-col;
+    }
+
+    .individual-status {
+      @apply com-text-gray-500 com-text-10px com-font-medium;
+    }
+
+    .confirmed {
+      @apply com-text-green-600;
+    }
+
+    .registered {
+      @apply com-text-black;
+    }
+
+    .waiting {
+      @apply com-text-yellow-700;
+    }
+
+    .shortlisted {
+      @apply com-text-Azure;
+    }
+
+    .cancelled {
+      @apply com-text-red-500;
+    }
+
+    .qr-code {
+      @apply md:com-w-[152px] com-w-full com-h-[156px] md:com-pl-4 com-pl-0 com-border-0 com-bg-white md:com-pt-0 com-pt-2;
+      nb-card {
+        @apply com-m-0 com-w-full com-h-full;
+
+        nb-card-body {
+          @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50;
+        }
+      }
+    }
+
+    .channel-updates {
+      @apply com-flex com-flex-col com-bg-white;
+
+      nb-card-body {
+        @apply md:com-p-4 com-p-3;
+      }
+
+      .badge-and-messages {
+        @apply com-flex com-flex-col;
+      }
+
+      .community-badge {
+        @apply com-mb-4;
+      }
+
+      .channel-update {
+        @apply com-flex com-flex-row com-mb-2;
+      }
+      .channel-name {
+        @apply com-flex com-items-center com-justify-center com-border-0 com-border-r com-border-solid com-border-Bright-Gray;
+        h2 {
+          @apply com-text-sm com-font-medium com-px-2 com-m-0;
+        }
+      }
+
+      .channel-new-messages {
+        @apply com-flex com-items-center com-justify-center com-pl-2;
+
+        fa-icon {
+          @apply com-text-green-500 com-text-sm;
+        }
+
+        h2 {
+          @apply com-text-sm com-font-semibold com-text-green-500 com-px-2 com-m-0;
+        }
+      }
+    }
+  }
+}
+
+.post-content {
+  @apply com-bg-white com-m-0 com-p-4 com-w-full;
+
+  nb-card-body {
+    @apply com-p-0;
+  }
+
+  .content-list {
+    @apply com-grid md:com-grid-cols-2 com-grid-cols-1 com-gap-4;
+
+    .publish-build {
+      button {
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-yellow-700 com-bg-yellow-50 com-h-10;
+
+        span {
+          @apply com-text-sm com-font-medium com-text-yellow-700;
+        }
+
+        fa-icon {
+          @apply com-text-yellow-700;
+        }
+      }
+    }
+
+    .upload-content {
+      button {
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-Azure com-bg-blue-50 com-h-10;
+
+        span {
+          @apply com-text-sm com-font-medium com-text-Azure;
+        }
+
+        fa-icon {
+          @apply com-text-Azure;
+        }
+      }
+    }
+
+    .publish-lab {
+      button {
+        @apply com-flex com-w-full com-p-3 com-justify-start com-rounded-lg com-border com-border-solid com-border-Catalina-Blue com-bg-Alice-Blue-Dark com-h-10;
+
+        span {
+          @apply com-text-sm com-font-medium com-text-Catalina-Blue;
+        }
+
+        fa-icon {
+          @apply com-text-Catalina-Blue;
+        }
+      }
+    }
+
+    a {
+      @apply com-no-underline;
+    }
+
+    fa-icon {
+      @apply com-text-base com-mr-1;
+    }
+  }
+}
+
+canvas {
+  @apply com-w-full com-h-full;
+  image-rendering: pixelated;
+}
+
+.registration-grid {
+  @apply com-grid com-gap-2 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray;
+}
+
+.registration-header {
+  @apply md:com-grid com-grid-cols-4 com-gap-3 com-hidden com-px-2;
+}
+
+.registration-row {
+  @apply com-grid md:com-grid-cols-4 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg;
+}
+
+.registration {
+  @apply com-flex com-flex-row;
+}
+
+.view-all {
+  @apply com-w-fit com-mt-2;
+}
+
+.desktop-qr,
+.action-btn-desktop {
+  @apply md:com-flex com-hidden;
+}
+
+.mobile-qr,
+.action-btn-mobile {
+  @apply com-flex md:com-hidden;
+}
