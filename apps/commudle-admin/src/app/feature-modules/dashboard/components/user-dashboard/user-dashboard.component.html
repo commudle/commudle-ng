@@ -41,6 +41,7 @@
             <div class="center-column">
               <div class="upcoming-events">
                 <h2>Upcoming</h2>
+                <app-loading-spinner *ngIf="loading"></app-loading-spinner>
                 <div *ngIf="upcomingEventsHackathons.length > 0 && !loading">
                   <div
                     *ngFor="let upcomingEventHackathon of upcomingEventsHackathons"
@@ -60,6 +61,17 @@
                 <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0 && !loading">
                   <h3>No Upcoming Events</h3>
                 </div>
+              </div>
+              <div class="pagination">
+                <app-pagination
+                  (goTo)="page = $event; getUpcomingEventsHackathons()"
+                  (next)="page = $event; getUpcomingEventsHackathons()"
+                  (previous)="page = $event; getUpcomingEventsHackathons()"
+                  *ngIf="total > 0"
+                  [count]="count"
+                  [current]="page"
+                  [total]="total"
+                ></app-pagination>
               </div>
               <!-- <div class="recent-activity">
                 <h2>Recent Activity</h2>

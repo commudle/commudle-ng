@@ -22,6 +22,9 @@ export class UserDashboardComponent implements OnInit {
   EDbModels = EDbModels;
   loading = true;
   upcomingEventsHackathons: IUpcomingEventHackathon[] = [];
+  page = 1;
+  count = 5;
+  total = 0;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -57,9 +60,11 @@ export class UserDashboardComponent implements OnInit {
 
   getUpcomingEventsHackathons() {
     this.loading = true;
-    this.feedService.getUpcomingEventsHackathons().subscribe((data) => {
+    this.feedService.getUpcomingEventsHackathons(this.count, this.page).subscribe((data) => {
       if (data) {
         this.upcomingEventsHackathons = data.values;
+        this.page = +data.page;
+        this.total = data.total;
         this.loading = false;
       }
     });
