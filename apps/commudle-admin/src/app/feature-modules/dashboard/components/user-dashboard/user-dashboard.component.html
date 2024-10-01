@@ -62,12 +62,11 @@
                   <h3>No Upcoming Events</h3>
                 </div>
               </div>
-              <div class="pagination">
+              <div *ngIf="total > 0" class="pagination">
                 <app-pagination
                   (goTo)="page = $event; getUpcomingEventsHackathons()"
                   (next)="page = $event; getUpcomingEventsHackathons()"
                   (previous)="page = $event; getUpcomingEventsHackathons()"
-                  *ngIf="total > 0"
                   [count]="count"
                   [current]="page"
                   [total]="total"

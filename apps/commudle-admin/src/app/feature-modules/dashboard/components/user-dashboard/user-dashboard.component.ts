@@ -63,7 +63,7 @@ export class UserDashboardComponent implements OnInit {
     this.feedService.getUpcomingEventsHackathons(this.count, this.page).subscribe((data) => {
       if (data) {
         this.upcomingEventsHackathons = data.values;
-        this.page = +data.page;
+        this.page = data.page;
         this.total = data.total;
         this.loading = false;
       }
