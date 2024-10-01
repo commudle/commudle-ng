@@ -10,6 +10,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 })
 export class BuildCardComponent {
   @Input() communityBuild: ICommunityBuild;
+  @Input() showHackathonPrizes: boolean = false;
   staticAssets = staticAssets;
   moment = moment;
 

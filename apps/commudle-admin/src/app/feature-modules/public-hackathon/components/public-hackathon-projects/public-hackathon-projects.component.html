@@ -5,7 +5,7 @@
       <div *ngIf="communityBuilds.length === 0">No Project to show</div>
       <nb-card *ngFor="let build of communityBuilds" class="project-card">
         <nb-card-body>
-          <commudle-build-card [communityBuild]="build"></commudle-build-card>
+          <commudle-build-card [communityBuild]="build" [showHackathonPrizes]="true"></commudle-build-card>
         </nb-card-body>
       </nb-card>
     </ng-template>
