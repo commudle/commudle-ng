@@ -6,7 +6,7 @@ nb-card {
   }
 
   nb-card-header {
-    @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10;
+    @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10 com-border-0  com-cursor-pointer;
 
     h2 {
       @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
@@ -17,7 +17,7 @@ nb-card {
   }
 
   .main-body {
-    @apply com-flex com-flex-col md:com-p-4 com-p-0 md:com-pt-0 com-bg-gray-100 com-w-full;
+    @apply com-flex com-flex-col md:com-p-4 com-p-0 md:com-pt-0 com-w-full;
 
     .tabs {
       @apply com-flex com-flex-row com-gap-3 com-py-4 md:com-px-0 com-px-3;
@@ -237,7 +237,7 @@ canvas {
 }
 
 .registration-row {
-  @apply com-grid md:com-grid-cols-4 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg;
+  @apply com-grid md:com-grid-cols-4 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg com-items-center com-mr-2;
 }
 
 .registration {
