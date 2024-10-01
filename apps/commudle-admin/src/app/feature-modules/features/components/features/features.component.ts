@@ -18,6 +18,8 @@ export class FeaturesComponent implements OnInit, OnDestroy {
   @Input() categoryName = 'all';
   @Input() showHeading = true;
   @Input() showSubHeading = true;
+  @Input() setMetadata = true;
+
   features: IFeature[];
   isLoading = true;
   selectedFeature: IFeature;
@@ -60,7 +62,9 @@ export class FeaturesComponent implements OnInit, OnDestroy {
       this.isDarkMode = isDarkMode;
     });
     this.getIndex();
-    this.setMeta();
+    if (this.setMetadata) {
+      this.setMeta();
+    }
   }
 
   ngOnDestroy() {

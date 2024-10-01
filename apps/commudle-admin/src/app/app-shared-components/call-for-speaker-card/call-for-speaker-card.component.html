@@ -1,0 +1,76 @@
+<div class="cfp-card">
+  <a [routerLink]="['/communities', item.event.kommunity_slug, 'events', item.event.slug]" class="cfp-card-link">
+    <div *ngIf="item.event.header_image_path">
+      <div *appBreakpoints="'>lg'" class="cfp-card-image">
+        <commudle-banner-image
+          [headerImagePath]="item.event.header_image_path"
+          [name]="item.name"
+          [aspectRatio]="'2/1'"
+        ></commudle-banner-image>
+      </div>
+      <div *appBreakpoints="'<=lg'" class="cfp-card-image">
+        <commudle-banner-image
+          [headerImagePath]="item.event.header_image_path"
+          [name]="item.name"
+          [bottomRightCurve]="false"
+          [bottomLeftCurve]="false"
+          [aspectRatio]="'2/1'"
+        ></commudle-banner-image>
+      </div>
+    </div>
+    <div *ngIf="!item.event.header_image_path" class="no-image-header">
+      <img alt="{{ item.name }}" src="{{ staticAssets.call_for_speaker_empty_state }}" title="{{ item.name }}" />
+    </div>
+    <div class="cfp-card-details">
+      <div class="first-row">
+        <div class="badge-and-time">
+          <p class="event-time">{{ moment(item.event.start_time).format('dddd, MMM Do, YYYY').toUpperCase() }}</p>
+          <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          </div>
+        </div>
+        <p class="form-title">{{ item.name }}</p>
+        <p class="event-title">{{ item.event.name }}</p>
+      </div>
+      <div class="second-row">
+        <div class="interested-and-location" *appBreakpoints="'>lg'">
+          <div *ngIf="item.event.interested_members_count > 0" class="left-col">
+            <div class="interested-members"><fa-icon [icon]="faUsers"></fa-icon><span>Interested</span></div>
+            <span class="interested-members-count">{{ item.event.interested_members_count }}</span>
+          </div>
+          <div *ngIf="item.event.event_locations[0]" class="right-col">
+            <div class="location"><fa-icon [icon]="faLocationDot"></fa-icon><span>Location</span></div>
+            <span *ngIf="item.event.event_locations[0]" class="location-text">{{
+              item.event.event_locations[0].name | truncatetext : 50
+            }}</span>
+          </div>
+        </div>
+        <div class="interested-and-location" *appBreakpoints="'<=lg'">
+          <div class="interested-members" *ngIf="item.event.interested_members_count > 0">
+            <app-badge
+              [text]="item.event.interested_members_count"
+              [fontColor]="'com-text-tAuro-Metal-Saurus'"
+              [nbIcon]="'people-outline'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray-Light'"
+            ></app-badge>
+          </div>
+          <div class="location-mobile-view" *ngIf="item.event.event_locations[0]">
+            <app-badge
+              [text]="item.event.event_locations[0].name | truncatetext : 20"
+              [fontColor]="'com-text-tAuro-Metal-Saurus'"
+              [nbIcon]="'pin-outline'"
+              [fontSize]="'small'"
+              [borderRadius]="'round'"
+              [color]="'com-bg-Bright-Gray-Light'"
+            ></app-badge>
+          </div>
+        </div>
+        <button nbButton status="primary" size="small" shape="semi-round">
+          {{ item.already_filled ? 'Applied' : 'Apply Now' }}
+        </button>
+      </div>
+    </div>
+  </a>
+</div>

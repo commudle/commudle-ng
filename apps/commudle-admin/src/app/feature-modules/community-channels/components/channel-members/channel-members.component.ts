@@ -129,7 +129,7 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   //make admin
   addAdmin(index: number, userRolesUserId: number) {
     const username = this.channelMembers[index].user.name;
-    const alertMessage = `Are you sure you want to remove ${username} as admin of ${this.channelOrForum.name}?`;
+    const alertMessage = `Are you sure you want to Add ${username} as admin of ${this.channelOrForum.name}?`;
     if (window.confirm(alertMessage)) {
       this.communityChannelsService.memberToggleAdmin(userRolesUserId).subscribe((data) => {
         this.channelMembers.splice(index, 1);
@@ -140,8 +140,8 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
 
   // remove from admin
   removeAdmin(index: number, userRolesUserId: number) {
-    const username = this.channelMembers[index].user.name;
-    const alertMessage = `Are you sure you want to add ${username} as admin of ${this.channelOrForum.name}?`;
+    const username = this.admins[index].user.name;
+    const alertMessage = `Are you sure you want to Remove ${username} as admin of ${this.channelOrForum.name}?`;
     if (window.confirm(alertMessage)) {
       this.communityChannelsService.memberToggleAdmin(userRolesUserId).subscribe((data) => {
         this.admins.splice(index, 1);
@@ -151,7 +151,6 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   leaveChannel(index) {
-    // TODO CHANNEL ask for a confirmation in a dialog
     if (window.confirm(`Are you sure you want to exit ${this.channelOrForum.name}?`)) {
       this.communityChannelsService.memberExitChannel(this.channelOrForum.id).subscribe((data) => {
         this.allUsers.splice(index, 1);
@@ -162,15 +161,30 @@ export class ChannelMembersComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   removeFromChannel(index) {
-    // TODO CHANNEL ask for a confirmation in a dialog
-    if (
-      window.confirm(
-        `Are you sure you want to remove ${this.channelMembers[index].user.name} from ${this.channelOrForum.name}?`,
-      )
-    ) {
-      this.communityChannelsService.removeMemberFromChannelForum(this.channelMembers[index].id).subscribe((data) => {
-        this.channelMembers.splice(index, 1);
-        this.toastrService.successDialog('Removed');
+    let userName = '';
+    let isAdmin = false;
+    let userRolesUserId = 0;
+
+    if (this.channelMembers[index]) {
+      userName = this.channelMembers[index].user.name;
+      userRolesUserId = this.channelMembers[index].id;
+    }
+    if (this.admins[index]) {
+      userName = this.admins[index].user.name;
+      userRolesUserId = this.admins[index].id;
+      isAdmin = true;
+    }
+    if (window.confirm(`Are you sure you want to remove ${userName} from ${this.channelOrForum.name}?`)) {
+      this.communityChannelsService.removeMemberFromChannelForum(userRolesUserId).subscribe((data) => {
+        if (data) {
+          if (isAdmin) {
+            this.admins.splice(index, 1);
+          } else {
+            this.channelMembers.splice(index, 1);
+          }
+          this.toastrService.successDialog('Removed');
+          this.totalMembers = -1;
+        }
       });
     }
   }

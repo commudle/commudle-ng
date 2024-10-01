@@ -1,7 +1,7 @@
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '@commudle/auth';
+import { AuthService, GoogleLoginProvider } from '@commudle/auth';
 import { NbToastrService } from '@commudle/theme';
 import { GoogleTagManagerService } from 'apps/commudle-admin/src/app/services/google-tag-manager.service';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (this.libAuthWatchService.getAuthCookie() === null) {
       this.authService = this.injector.get(AuthService);
+      this.authService.initialize_one(GoogleLoginProvider.PROVIDER_ID);
 
       this.subscriptions.push(
         this.authService.authState.subscribe((user) => {

@@ -22,6 +22,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   dataFormId: number;
   hackathonResponseGroupDetails: IHackathonResponseGroup;
   communityId: string | number;
+  filled_by_only_team_lead = true;
   constructor(
     private fb: FormBuilder,
     private hrgService: HackathonResponseGroupService,
@@ -71,6 +72,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
       if (data) {
         this.hackathonResponseGroupDetails = data;
         this.dataFormId = data.data_form_id;
+        this.filled_by_only_team_lead = data.filled_by_only_team_lead;
         this.userDetailsForm.patchValue({
           name: data.user_details.name,
           designation: data.user_details.designation,
@@ -124,6 +126,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         this.hackathon.id,
         this.registrationTypeId,
         `${this.hackathon.name} - Registration`,
+        this.filled_by_only_team_lead,
         data ? data.id : '',
       )
       .subscribe((data) => {
@@ -136,6 +139,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
       .updateHackathonResponseGroup(
         JSON.stringify(this.userDetailsForm.value),
         this.hackathonResponseGroupDetails.id,
+        this.filled_by_only_team_lead,
         data ? data.id : '',
       )
       .subscribe((data) => {

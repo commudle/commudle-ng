@@ -67,11 +67,17 @@
         nbButton
         status="primary"
         fullWidth
-        [routerLink]="['fill-form', hrgId]"
+        [routerLink]="['/communities', community?.slug, 'hackathons', hackathon?.slug, 'fill-form', hrgId]"
       >
         Apply Now
       </button>
-      <button *ngIf="!currentUser" nbButton status="primary" fullWidth [routerLink]="['fill-form', hrgId]">
+      <button
+        *ngIf="!currentUser"
+        nbButton
+        status="primary"
+        fullWidth
+        [routerLink]="['/communities', community?.slug, 'hackathons', hackathon?.slug, 'fill-form', hrgId]"
+      >
         Login To Apply
       </button>
     </div>

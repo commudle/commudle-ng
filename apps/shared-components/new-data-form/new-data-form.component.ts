@@ -18,6 +18,8 @@ enum EFormPurposes {
   styleUrls: ['./new-data-form.component.scss'],
 })
 export class NewDataFormComponent implements OnInit {
+  @Input() showDescriptionField = true;
+  @Input() showNameInputField = true;
   EFormPurposes = EFormPurposes;
 
   dataForm: IDataForm;

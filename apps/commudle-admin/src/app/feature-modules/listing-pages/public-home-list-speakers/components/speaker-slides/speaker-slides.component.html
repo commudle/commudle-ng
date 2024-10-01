@@ -1,0 +1,42 @@
+<div class="speaker-slides">
+  <div *ngIf="skeletonLoaderCard" class="skeleton-vertical-cards">
+    <commudle-skeleton-vertical-cards [cards]="9"></commudle-skeleton-vertical-cards>
+  </div>
+  <div *ngIf="loading && !skeletonLoaderCard" class="loading-spinner">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div *ngIf="speakerSlides.length > 0 && !loading">
+    <div class="speakers">
+      <div class="speaker-slide-cards">
+        <div *ngFor="let slides of speakerSlides" class="speaker-slide-card">
+          <commudle-speaker-slides-card [item]="slides"></commudle-speaker-slides-card>
+        </div>
+      </div>
+    </div>
+    <app-pagination
+      (goTo)="page = $event; getSpeakersSlidesList()"
+      (next)="page = $event; getSpeakersSlidesList()"
+      (previous)="page = $event; getSpeakersSlidesList()"
+      *ngIf="total > 0"
+      [count]="count"
+      [current]="page"
+      [total]="total"
+    ></app-pagination>
+  </div>
+</div>
+<div *appBreakpoints="'<=lg'">
+  <div class="speakers-upcoming">
+    <commudle-public-home-list-speakers-upcoming></commudle-public-home-list-speakers-upcoming>
+  </div>
+  <div class="featured-communities">
+    <commudle-public-home-list-events-featured-communities></commudle-public-home-list-events-featured-communities>
+  </div>
+  <div class="tech-sessions">
+    <commudle-public-home-list-events-tech-sessions></commudle-public-home-list-events-tech-sessions>
+  </div>
+  <div class="speakers-content">
+    <commudle-public-home-list-speakers-content
+      [parentType]="'communities'"
+    ></commudle-public-home-list-speakers-content>
+  </div>
+</div>

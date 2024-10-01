@@ -36,6 +36,7 @@ export interface IEvent {
   event_locations?: object;
   status?: string;
   collaboration_communities: ICommunity[];
+  start_date?: Date;
 }
 
 export interface IEventSearch extends IEvent {

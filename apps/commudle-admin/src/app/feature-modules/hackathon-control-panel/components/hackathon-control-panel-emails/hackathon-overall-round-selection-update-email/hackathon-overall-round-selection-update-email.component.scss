@@ -1,0 +1,13 @@
+.round-selection-mailer {
+  @apply md:com-w-[40dvw] com-max-h-[90dvh] com-w-full;
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+
+  .round-select {
+    @apply com-my-4;
+    select {
+      @apply com-border com-border-solid com-border-[#e4e9f2] com-px-2 com-py-2  com-rounded com-cursor-pointer com-w-full;
+    }
+  }
+}

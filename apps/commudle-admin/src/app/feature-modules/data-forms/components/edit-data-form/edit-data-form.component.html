@@ -112,7 +112,13 @@
                       >
                         <commudle-alert [errorMessage]="'Required Field'" [error]="true"></commudle-alert>
                       </span>
-
+                      <div class="has-response-info" *ngIf="question.get('has_responses').value">
+                        <commudle-alert
+                          [info]="true"
+                          message=" This question cannot be edited because it already has responses, however you can disable it if
+                          needed."
+                        ></commudle-alert>
+                      </div>
                       <button
                         (click)="toggleDescriptionField(i)"
                         class="add-description-button"

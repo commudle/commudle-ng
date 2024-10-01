@@ -67,6 +67,9 @@
                         icon="eye"
                       ></nb-icon>
                     </span>
+                    <span *ngIf="channel.default" class="icon com-text-primary-500">
+                      <fa-icon title="Default Channel" alt="Default Channel" [icon]="faCircleCheck"></fa-icon>
+                    </span>
                     {{ channel.name }}
                   </a>
                 </p>

@@ -263,9 +263,7 @@
     overflow: auto;
 
     .datatable-footer-inner {
-      display: flex;
-      align-items: center;
-      width: 100%;
+      @apply com-flex com-items-center com-justify-between com-w-full  com-m-0 com-mt-2;
     }
 
     .selected-count {
@@ -278,20 +276,16 @@
     }
 
     .page-count {
-      @apply com-text-gray-600;
-      flex: 1 1 20%;
+      @apply com-text-gray-600 md:com-mx-4 com-mx-2 com-mt-1;
     }
 
     .datatable-pager {
-      flex: 1 1 80%;
+      @apply com-flex com-items-center;
       text-align: right;
 
       .pager,
       .pager li {
-        padding: 0;
-        margin: 0;
-        display: inline-block;
-        list-style: none;
+        @apply com-flex com-p-0 com-m-0 com-list-none;
       }
 
       .pager {
@@ -317,6 +311,14 @@
 
       a {
         @apply com-text-gray-600 #{!important};
+      }
+
+      .jump-to-label {
+        @apply com-mr-2 md:com-flex com-hidden;
+      }
+
+      .jump-to-select {
+        @apply md:com-w-12;
       }
     }
   }

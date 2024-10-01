@@ -1,0 +1,45 @@
+<nb-card class="round-selection-mailer">
+  <nb-card-header>
+    <span>Send round general email</span>
+    <button nbButton ghost shape="round" (click)="closePopup()">
+      <fa-icon [icon]="faXmark"></fa-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="roundGeneralMailerForm">
+      <div class="round">
+        <label for="round_id">
+          Select Round*
+          <select
+            formControlName="round_id"
+            [ngClass]="{
+              'com-text-[#8E9BB3]': roundGeneralMailerForm.get('round_id').value === ''
+            }"
+          >
+            <option disabled value="">Select round*</option>
+            <option *ngFor="let hackathonRound of hackathonRounds" [value]="hackathonRound.id">
+              {{ hackathonRound.name }}
+            </option>
+          </select>
+        </label>
+      </div>
+      <br />
+      <div class="subject">
+        <label for="subject">
+          Subject*
+          <input formControlName="subject" type="text" nbInput placeholder="Subject" fullWidth />
+        </label>
+      </div>
+      <br />
+      <div class="message">
+        <label for="message">Message*</label>
+        <editor [init]="tinyMCE" formControlName="message"></editor>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton status="primary" [disabled]="roundGeneralMailerForm.invalid" (click)="roundGeneralMailer()">
+      Send
+    </button>
+  </nb-card-footer>
+</nb-card>

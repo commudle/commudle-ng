@@ -7,6 +7,7 @@ import { NbDialogRef } from '@commudle/theme';
 import { EventDataFormEntityGroupsService } from 'apps/commudle-admin/src/app/services/event-data-form-entity-groups.service';
 import { IEventDataFormEntityGroup } from 'apps/shared-models/event_data_form_enity_group.model';
 import { Subscription } from 'rxjs';
+import moment from 'moment';
 
 @Component({
   selector: 'commudle-discount-coupon-form',
@@ -37,7 +38,7 @@ export class DiscountCouponFormComponent implements OnInit {
         discount_code: this.fb.group<unknown>({
           code: ['', Validators.required],
           discount_type: ['', Validators.required],
-          discount_value: ['', Validators.required],
+          discount_value: ['', [Validators.required, Validators.min(1)]],
           is_limited: [false, Validators.required],
           max_limit: [0],
           expires_at: [''],
@@ -50,6 +51,15 @@ export class DiscountCouponFormComponent implements OnInit {
             fb.get('discount_code').get('is_limited').value === true && !fb.get('discount_code').get('max_limit').value
               ? { max_limit: true }
               : null,
+          (fb) => {
+            const discountGroup = fb.get('discount_code');
+            const discountType = discountGroup.get('discount_type').value;
+            const discountValue = discountGroup.get('discount_value').value;
+
+            if (discountType === 'percent' && discountValue > 100) {
+              discountGroup.get('discount_value').setErrors({ discount_value_exceeds: true });
+            }
+          },
         ],
       },
     );
@@ -111,6 +121,13 @@ export class DiscountCouponFormComponent implements OnInit {
       const discountValue = this.discountCouponForm.controls.discount_code.get('discount_value').value * 100;
       this.discountCouponForm.get('discount_code').patchValue({
         discount_value: discountValue,
+      });
+    }
+    if (this.discountCouponForm.controls.discount_code.get('expires_at').value) {
+      const expireDate = this.discountCouponForm.controls.discount_code.get('expires_at').value;
+
+      this.discountCouponForm.controls.discount_code.patchValue({
+        expires_at: moment(expireDate).local(),
       });
     }
     const formData: any = new FormData();

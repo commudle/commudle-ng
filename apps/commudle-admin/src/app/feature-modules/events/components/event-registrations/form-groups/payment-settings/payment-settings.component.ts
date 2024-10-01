@@ -66,7 +66,7 @@ export class PaymentSettingsComponent implements OnInit {
           currency: ['inr', Validators.required],
           has_taxes: [false],
           tax_name: [''],
-          tax_percentage: [''],
+          tax_percentage: ['', Validators.pattern('^[0-9]+$')],
           seller_tax_details: [''],
           country: [''],
           seller_name: [''],
@@ -159,7 +159,7 @@ export class PaymentSettingsComponent implements OnInit {
     );
     this.bankAccountNo = selectedAccountS
       ? selectedAccountS.details.external_accounts.data[0].last4
-      : selectedAccountR.bank_details.active_configuration.settlements.account_number.toString().slice(-4);
+      : selectedAccountR?.bank_details?.account_number;
     let bankAcType: string;
 
     if (ticketDetails.bank_ac_type === EDbModels.RAZORPAY_LINKED_ACCOUNT) {

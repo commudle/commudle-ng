@@ -3,11 +3,7 @@ import { DatatableFooterDirective } from './footer.directive';
 @Component({
   selector: 'datatable-footer',
   template: `
-    <div
-      class="datatable-footer-inner"
-      [ngClass]="{ 'selected-count': selectedMessage }"
-      [style.height.px]="footerHeight"
-    >
+    <div class="datatable-footer-inner" [ngClass]="{ 'selected-count': selectedMessage }">
       <ng-template
         *ngIf="footerTemplate"
         [ngTemplateOutlet]="footerTemplate.template"
@@ -34,15 +30,15 @@ import { DatatableFooterDirective } from './footer.directive';
         [size]="pageSize"
         [count]="rowCount"
         [hidden]="!isVisible"
-        (change)="page.emit($event)"
+        (changePage)="page.emit($event)"
       >
       </datatable-pager>
     </div>
   `,
   host: {
-    class: 'datatable-footer'
+    class: 'datatable-footer',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataTableFooterComponent {
   @Input() footerHeight: number;
@@ -56,7 +52,7 @@ export class DataTableFooterComponent {
   @Input() totalMessage: string;
   @Input() footerTemplate: DatatableFooterDirective;
 
-  @Input() selectedCount: number = 0;
+  @Input() selectedCount = 0;
   @Input() selectedMessage: string | boolean;
 
   @Output() page: EventEmitter<any> = new EventEmitter();

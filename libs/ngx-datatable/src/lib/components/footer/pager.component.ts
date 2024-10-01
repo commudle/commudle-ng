@@ -1,8 +1,13 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'datatable-pager',
   template: `
+    <label for="jumpTo" class="jump-to-label">Jump to</label>
+    <select name="jumpTo" id="jumpTo" [(ngModel)]="selectedPage" (change)="jumpToPage($event)" class="jump-to-select">
+      <option *ngFor="let pg of allPages" [value]="pg.number">{{ pg.number }}</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;
     <ul class="pager">
       <li [class.disabled]="!canPrevious()">
         <a role="button" aria-label="go to first page" href="javascript:void(0)" (click)="selectPage(1)">&lt;&lt; </a>
@@ -36,7 +41,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DataTablePagerComponent {
+export class DataTablePagerComponent implements OnInit {
   @Input() pagerLeftArrowIcon: string;
   @Input() pagerRightArrowIcon: string;
   @Input() pagerPreviousIcon: string;
@@ -46,6 +51,7 @@ export class DataTablePagerComponent {
   set size(val: number) {
     this._size = val;
     this.pages = this.calcPages();
+    this.updateAllPages();
   }
 
   get size(): number {
@@ -56,6 +62,7 @@ export class DataTablePagerComponent {
   set count(val: number) {
     this._count = val;
     this.pages = this.calcPages();
+    this.updateAllPages();
   }
 
   get count(): number {
@@ -77,12 +84,18 @@ export class DataTablePagerComponent {
     return Math.max(count || 0, 1);
   }
 
-  @Output() change: EventEmitter<any> = new EventEmitter();
+  @Output() changePage: EventEmitter<any> = new EventEmitter();
 
   _count = 0;
   _page = 1;
   _size = 0;
   pages: any;
+  selectedPage = 0;
+  allPages: any[];
+
+  ngOnInit() {
+    this.updateAllPages();
+  }
 
   canPrevious(): boolean {
     return this.page > 1;
@@ -101,12 +114,15 @@ export class DataTablePagerComponent {
   }
 
   selectPage(page: number): void {
+    this.selectedPage = page;
     if (page > 0 && page <= this.totalPages && page !== this.page) {
       this.page = page;
 
-      this.change.emit({
+      this.changePage.emit({
         page,
       });
+    } else {
+      this.selectedPage = this.page;
     }
   }
 
@@ -140,5 +156,20 @@ export class DataTablePagerComponent {
     }
 
     return pages;
+  }
+
+  jumpToPage(event): void {
+    this.selectedPage = Number(event.target.value);
+    this.selectPage(this.selectedPage);
+  }
+
+  updateAllPages(): void {
+    this.allPages = [];
+    for (let num = 1; num <= this.totalPages; num++) {
+      this.allPages.push({
+        number: num,
+        text: <string>(<any>num),
+      });
+    }
   }
 }

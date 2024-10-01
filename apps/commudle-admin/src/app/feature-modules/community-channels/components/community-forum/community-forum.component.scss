@@ -57,3 +57,13 @@ table {
 .pointer {
   @apply com-cursor-pointer;
 }
+
+.setting-dialog-box {
+  nb-card-footer,
+  nb-card-header {
+    @apply com-flex com-justify-between com-items-center;
+  }
+  nb-card-body {
+    @apply com-p-0;
+  }
+}

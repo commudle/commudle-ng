@@ -937,7 +937,7 @@
         <div class="pricing-logo-cloud">
           <p class="subheading">Communities already on Commudle</p>
           <div class="communities">
-            <a *ngFor="let logo of logoCloud" [routerLink]="['/search']" [queryParams]="{ q: logo.slug }">
+            <a *ngFor="let logo of logoCloud" [routerLink]="['/search', logo.slug]">
               <div class="communities-card">
                 <div class="logo">
                   <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />

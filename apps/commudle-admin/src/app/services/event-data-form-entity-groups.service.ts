@@ -61,6 +61,15 @@ export class EventDataFormEntityGroupsService {
     });
   }
 
+  toggleAllowCancellation(eventDataFormEntityGroupId): Observable<boolean> {
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.TOGGLE_ALLOW_CANCELLATION),
+      {
+        event_data_form_entity_group_id: eventDataFormEntityGroupId,
+      },
+    );
+  }
+
   mailCSV(eventDataFormEntityGroupId): Observable<boolean> {
     const params = new HttpParams().set('event_data_form_entity_group_id', eventDataFormEntityGroupId);
     return this.http.get<boolean>(this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.EMAIL_CSV), {
@@ -129,16 +138,23 @@ export class EventDataFormEntityGroupsService {
     communityId: number | string,
     page: number,
     count: number,
+    search = '',
   ): Observable<IEventDataFormEntityGroups> {
-    const params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    let params = new HttpParams().set('community_id', communityId).set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.INDEX_BY_COMMUNITY),
       { params },
     );
   }
 
-  getList(page: number, count: number): Observable<IEventDataFormEntityGroups> {
-    const params = new HttpParams().set('page', page).set('count', count);
+  getList(page: number, count: number, search = ''): Observable<IEventDataFormEntityGroups> {
+    let params = new HttpParams().set('page', page).set('count', count);
+    if (search) {
+      params = params.set('q', search);
+    }
     return this.http.get<IEventDataFormEntityGroups>(
       this.apiRoutesService.getRoute(API_ROUTES.EVENT_DATA_FORM_ENTITY_GROUPS.LIST),
       { params },

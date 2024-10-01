@@ -1,0 +1,26 @@
+.speaker-forms {
+  @apply com-mx-0;
+}
+
+.skeleton-vertical-cards {
+  @apply com-mt-8;
+}
+
+app-pagination {
+  @apply com-mt-9;
+}
+
+.cfp-cards {
+  @apply com-grid com-grid-cols-1 md:com-mt-8;
+}
+
+.cfp-card {
+  @apply com-w-full com-h-full com-border-0 com-border-b com-border-solid com-border-Bright-Gray md:com-py-4 com-py-2;
+}
+
+.speakers-upcoming,
+.tech-sessions,
+.speakers-content,
+.featured-communities {
+  @apply com-m-0 md:com-mt-4 com-mt-10;
+}

@@ -44,16 +44,19 @@
           <!-- Discount value* -->
           <label>
             Discount value*
-            <input
-              formControlName="discount_value"
-              fullWidth
-              nbInput
-              type="number"
-              placeholder=" Discount value"
-              min="0"
-            />
+            <input formControlName="discount_value" fullWidth nbInput type="number" placeholder=" Discount value" />
           </label>
         </div>
+        <commudle-alert
+          [error]="discountCouponForm.controls.discount_code.get('discount_value').hasError('min')"
+          errorMessage="Value can't be less than 1"
+        >
+        </commudle-alert>
+        <commudle-alert
+          [error]="discountCouponForm.controls.discount_code.get('discount_value').hasError('discount_value_exceeds')"
+          errorMessage="Value can't be greater than 100"
+        >
+        </commudle-alert>
         <!-- Is Limited* -->
         <label class="com-col-span-1 com-flex com-items-center com-gap-2">
           <input formControlName="is_limited" type="checkbox" />

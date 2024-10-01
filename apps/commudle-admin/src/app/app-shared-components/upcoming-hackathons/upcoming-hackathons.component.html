@@ -1,0 +1,34 @@
+<div *ngIf="upcomingHackathons.length > 0" id="upcoming-hackathons">
+  <div class="heading">
+    <h3 class="title"><a [routerLink]="'.'" fragment="upcoming-hackathons">Upcoming Hackathons</a></h3>
+    <h4 class="sub-heading">Check out amazing hackathons lined up</h4>
+  </div>
+  <app-skeleton-cards
+    *ngIf="showSpinner"
+    [cards]="4"
+    [ImageShapeSquare]="true"
+    [ImageShapeCircle]="false"
+  ></app-skeleton-cards>
+  <div class="upcoming-hackathons custom-scrollbar">
+    <div class="upcoming-hackathons-card" *ngFor="let upcomingHackathon of upcomingHackathons">
+      <commudle-event-mini-card
+        [attendedEvent]="upcomingHackathon"
+        [iconSize]="'medium'"
+        [cardType]="'hackathons'"
+      ></commudle-event-mini-card>
+    </div>
+  </div>
+  <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+  <div *ngIf="pageInfo?.has_next_page" class="load-more">
+    <button
+      (click)="getUpcomingHackathons(); showSpinner = true"
+      nbButton
+      outline
+      size="tiny"
+      status="info"
+      [disabled]="showSpinner"
+    >
+      Load More
+    </button>
+  </div>
+</div>

@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IUser } from '@commudle/shared-models';
 import { NbDialogService } from '@commudle/theme';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
+import { EHackathonJudgeType, IHackathonJudge } from 'apps/shared-models/hackathon-judge.model';
 import { faFileImage, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -26,12 +25,13 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
   hackathonSlug = '';
   @ViewChild('judgeForm', { static: true }) judgeFormDialog: TemplateRef<any>;
   profileExist = false;
+
+  EHackathonJudgeType = EHackathonJudgeType;
   constructor(
     private fb: FormBuilder,
     private hackathonService: HackathonService,
     private dialogService: NbDialogService,
     private appUsersService: AppUsersService,
-    private http: HttpClient,
     private activatedRoute: ActivatedRoute,
   ) {
     this.fetchSpeakerJudge = this.fb.group({
@@ -49,6 +49,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       linkedin: ['', this.urlValidator],
       website: ['', this.urlValidator],
       user_id: [''],
+      judge_type: ['', Validators.required],
     });
   }
 
@@ -78,6 +79,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       .check_duplicate_judge(this.fetchSpeakerJudge.get('email').value, this.hackathonSlug)
       .subscribe((data) => {
         this.appUsersService.getProfileByEmail(data).subscribe((data: IUser) => {
+          const judgeType = this.speakerRegistrationForm.controls['judge_type'].value;
           if (data) {
             this.speakerRegistrationForm.reset();
             this.profileExist = true;
@@ -96,10 +98,12 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
               website: data.personal_website ? data.personal_website : '',
               username: data.username,
               user_id: data.id,
+              judge_type: judgeType,
             });
           } else {
             this.speakerRegistrationForm.patchValue({
               email: this.fetchSpeakerJudge.get('email').value,
+              judge_type: judgeType,
             });
           }
           this.dialogService.open(this.judgeFormDialog);
@@ -119,6 +123,7 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       website: judge.website ? judge.website : '',
       username: judge.username,
       company: judge.company,
+      judge_type: judge.judge_type,
     });
     this.imageUrl = judge.profile_image?.url;
 
@@ -147,6 +152,9 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
       if (data) {
         this.judges.unshift(data);
       }
+      this.speakerRegistrationForm.patchValue({
+        judge_type: '',
+      });
     });
   }
 
@@ -183,6 +191,9 @@ export class HackathonControlPanelSpeakerJudgeComponent implements OnInit {
 
     this.hackathonService.updateJudge(formData, JudgeId).subscribe((data: IHackathonJudge) => {
       this.judges[index] = data;
+      this.speakerRegistrationForm.patchValue({
+        judge_type: '',
+      });
     });
   }
 

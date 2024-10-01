@@ -27,7 +27,7 @@
       </tr>
       <tr>
         <td>Account</td>
-        <td>***{{ bankAccountNo }}</td>
+        <td>{{ bankAccountNo }}</td>
       </tr>
       <tr>
         <td *ngIf="paymentData.has_taxes">Tax Name</td>
@@ -127,9 +127,8 @@
                   (****{{ rt.details.external_accounts.data[0].last4 }}) - (Stripe)
                 </option>
                 <option *ngFor="let ra of razorpayAccounts" [value]="ra.uuid">
-                  {{ ra.bank_details?.active_configuration.settlements.beneficiary_name }}
-                  (****{{ ra.bank_details?.active_configuration.settlements.account_number.toString().slice(-4) }}) -
-                  (Razorpay)
+                  {{ ra.bank_details?.beneficiary_name }}
+                  ({{ ra.bank_details?.account_number }}) - (Razorpay)
                 </option>
                 <option value="connect-bank-account">+ Connect Bank Account</option>
               </select>
@@ -210,6 +209,15 @@
                   "
                 >
                   <commudle-alert [error]="true" [errorMessage]="'Required Field'"></commudle-alert>
+                </span>
+                <span
+                  *ngIf="
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').touched &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').invalid &&
+                    paidTicketingForm.controls.paid_ticket_setting.get('tax_percentage').errors.pattern
+                  "
+                >
+                  <commudle-alert [error]="true" [errorMessage]="'Only integer values are allowed'"></commudle-alert>
                 </span>
               </label>
             </div>

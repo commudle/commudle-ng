@@ -54,11 +54,17 @@ export class NewFormAttachGroupsComponent implements OnInit {
   openDialogBox(registrationTypes?, edfeg?, communityDataForms?) {
     this.eventDataFormEntityGroup = null;
     this.resetForm();
+    this.eventDataFormEntityGroupForm.controls['data_form_entity_group'].get('data_form_id').enable();
     if (registrationTypes) {
       this.registrationTypes = registrationTypes;
     }
     if (edfeg) {
       this.eventDataFormEntityGroup = edfeg;
+      if (this.eventDataFormEntityGroup?.summary_registration_counts?.all > 0) {
+        this.eventDataFormEntityGroupForm.controls['data_form_entity_group'].get('data_form_id').disable();
+      } else {
+        this.eventDataFormEntityGroupForm.controls['data_form_entity_group'].get('data_form_id').enable();
+      }
       this.selectedRegistrationType = edfeg.registration_type;
       this.eventDataFormEntityGroupForm.get('data_form_entity_group').patchValue({
         name: edfeg.data_form_entity.name,

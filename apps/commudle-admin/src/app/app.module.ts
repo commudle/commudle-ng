@@ -5,7 +5,7 @@ import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider } from '@commudle/auth';
+import { AuthModule, AuthService, AuthServiceConfig, GoogleLoginProvider, YoutubeLoginProvider } from '@commudle/auth';
 import { NbEvaIconsModule } from '@commudle/eva-icons';
 import {
   NbAccordionModule,
@@ -46,6 +46,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { createErrorHandler, TraceService } from '@sentry/angular-ivy';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { Angular2SmartTableModule } from 'angular2-smart-table';
+import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-components/help-section/help-section.component';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { LibErrorHandlerModule } from 'apps/lib-error-handler/src/public-api';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
@@ -64,7 +65,6 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { AppRoutingModule } from './app-routing.module';
 import { AppSharedComponentsModule } from './app-shared-components/app-shared-components.module';
 import { CommunitiesCardComponent } from './app-shared-components/communities-card/communities-card.component';
-import { HelpSectionComponent } from './app-shared-components/help-section/help-section.component';
 import { ListingPagesLayoutComponent } from './app-shared-components/listing-pages-layout/listing-pages-layout.component';
 import { UserProfileComponent } from './app-shared-components/user-profile/user-profile.component';
 import { AppComponent } from './app.component';
@@ -288,6 +288,10 @@ export function initApp(appInitService: AppInitService): () => Promise<any> {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(environment.google_client_id),
+          },
+          {
+            id: YoutubeLoginProvider.PROVIDER_ID,
+            provider: new YoutubeLoginProvider(environment.google_client_id),
           },
         ],
       } as AuthServiceConfig,
