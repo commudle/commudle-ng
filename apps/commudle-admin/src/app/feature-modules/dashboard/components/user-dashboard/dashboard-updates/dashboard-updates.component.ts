@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { EDbModels, ICommunity } from '@commudle/shared-models';
+import { EDbModels, EHackathonRegistrationStatus, ICommunity } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import {
   faComments,
@@ -27,6 +27,7 @@ export class DashboardUpdatesComponent implements OnInit {
   @ViewChild('postContentBox') postContentBox: TemplateRef<any>;
 
   ERegistrationStatuses = ERegistrationStatuses;
+  EHackathonRegistrationStatus = EHackathonRegistrationStatus;
   showEntryPass: boolean[] = [false];
   faPlus = faPlus;
   faTrophy = faTrophy;

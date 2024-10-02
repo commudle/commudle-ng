@@ -97,7 +97,7 @@
 }
 
 .registration-row {
-  @apply com-grid md:com-grid-cols-5 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg com-mr-2;
+  @apply com-grid md:com-grid-cols-5 com-grid-cols-2 md:com-gap-3 com-gap-x-6px com-gap-y-6px com-py-1 com-px-2 hover:com-bg-gray-100 com-rounded-lg com-mr-2 com-items-center;
 }
 
 .registration {

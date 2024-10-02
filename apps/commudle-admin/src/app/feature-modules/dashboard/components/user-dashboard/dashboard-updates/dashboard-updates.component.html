@@ -22,7 +22,7 @@
   </nb-card-header>
   <nb-card-body class="main-body">
     <div class="tabs">
-      <button
+      <!-- <button
         nbButton
         status="basic"
         [class.active]="activeTab === 'channel'"
@@ -31,7 +31,7 @@
         (click)="setActiveTab('channel')"
       >
         Channel Updates
-      </button>
+      </button> -->
       <button
         nbButton
         status="basic"
@@ -111,7 +111,6 @@
                   </button>
                   <button
                     *ngIf="
-                      registration.entry_pass &&
                       registration.registration_for === EDbModels.HACKATHON &&
                       registration.registration_status.name === 'application_incomplete'
                     "
@@ -128,6 +127,25 @@
                   >
                     Fill Now
                   </button>
+                  <button
+                    *ngIf="
+                      registration.registration_for === EDbModels.HACKATHON &&
+                      registration.hackathon_team?.registration_status === EHackathonRegistrationStatus.ACCEPTED
+                    "
+                    nbButton
+                    status="primary"
+                    shape="round"
+                    size="tiny"
+                    [routerLink]="[
+                      '/communities',
+                      registration.hackathon.slug,
+                      '/hackathons',
+                      registration.hackathon.name,
+                      'user-dashboard'
+                    ]"
+                  >
+                    Go to Dashboard
+                  </button>
                 </div>
               </div>
               <div class="action-btn-mobile">
@@ -143,7 +161,6 @@
                 </button>
                 <button
                   *ngIf="
-                    registration.entry_pass &&
                     registration.registration_for === EDbModels.HACKATHON &&
                     registration.registration_status.name === 'application_incomplete'
                   "
@@ -159,6 +176,25 @@
                   ]"
                 >
                   Fill Now
+                </button>
+                <button
+                  *ngIf="
+                    registration.registration_for === EDbModels.HACKATHON &&
+                    registration.hackathon_team?.registration_status === EHackathonRegistrationStatus.ACCEPTED
+                  "
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  [routerLink]="[
+                    '/communities',
+                    registration.hackathon.slug,
+                    '/hackathons',
+                    registration.hackathon.name,
+                    'user-dashboard'
+                  ]"
+                >
+                  Go to Dashboard
                 </button>
               </div>
               <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">

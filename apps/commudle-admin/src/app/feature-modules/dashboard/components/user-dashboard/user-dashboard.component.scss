@@ -46,7 +46,7 @@ a {
 }
 
 .user-profile-details {
-  @apply com-m-0;
+  @apply com-m-0 com-rounded-t-none;
 
   nb-card-body {
     @apply com-p-0;
@@ -69,7 +69,6 @@ a {
 }
 
 .main-column {
-  @apply com-pt-6;
   .upcoming-events,
   .recent-activity {
     h2 {
@@ -82,7 +81,7 @@ a {
 }
 
 .right-column {
-  @apply md:com-pl-6 com-pt-6 md:com-w-[300px] com-w-full;
+  @apply md:com-pl-6 com-pt-6 md:com-w-[300px] com-w-full com-flex-shrink-0;
 }
 
 .event-horizontal-card {
@@ -94,7 +93,7 @@ a {
 }
 
 .center-column {
-  @apply com-w-full com-pt-6 md:com-w-[678px] md:com-px-0 com-px-3;
+  @apply com-w-full com-pt-6 md:com-px-0 com-px-3;
 }
 
 .no-upcoming-events {
@@ -102,4 +101,8 @@ a {
   h3 {
     @apply com-text-xl com-font-medium com-text-tAuro-Metal-Saurus;
   }
+}
+
+.pagination {
+  @apply com-mt-5 com-w-full;
 }
