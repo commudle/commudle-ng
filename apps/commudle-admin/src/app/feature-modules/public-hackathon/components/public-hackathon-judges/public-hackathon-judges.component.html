@@ -1,57 +1,62 @@
 <nb-card>
-  <nb-card-body class="judges-cards">
+  <nb-card-body>
     <div class="loading" *ngIf="isLoading; else judgeCards">
       <commudle-loading-spinner></commudle-loading-spinner>
     </div>
     <ng-template #judgeCards>
-      <div *ngFor="let judge of hackathonJudges" class="judge-card">
-        <nb-card [routerLink]="['/users', judge.username]">
-          <nb-card-body>
-            <div class="user-card">
-              <div class="user-image">
-                <img src="{{ judge.profile_image.url }}" alt="{{ judge.name }}" />
-              </div>
-              <div class="details">
-                <p class="user-name">{{ judge.name }}</p>
-                <p class="user-username">@{{ judge.username }}</p>
-                <p class="user-designation">{{ judge.designation }}</p>
-                <div class="judge-type">
-                  <app-badge
-                    [text]="judge.judge_type | titlecase"
-                    [fontColor]="'com-text-tAuro-Metal-Saurus'"
-                    [fontSize]="'small'"
-                    [borderRadius]="'round'"
-                    [color]="'com-bg-Bright-Gray-Light'"
-                  ></app-badge>
+      <div class="judges-cards">
+        <div *ngFor="let judge of hackathonJudges" class="judge-card">
+          <nb-card [routerLink]="['/users', judge?.username]" [class.disabled]="!judge.username">
+            <nb-card-body>
+              <div class="user-card">
+                <div class="user-image">
+                  <img src="{{ judge.profile_image.url }}" alt="{{ judge.name }}" />
                 </div>
-                <div class="social-media" (click)="$event.stopPropagation()">
-                  <div class="website" *ngIf="judge.website">
-                    <a [href]="judge.website">
-                      <fa-icon [icon]="icons.faGlobe"></fa-icon>
-                    </a>
+                <div class="details">
+                  <div class="com-flex com-flex-col com-justify-between">
+                    <p class="user-name">{{ judge.name }}</p>
+                    <p class="user-username">@{{ judge?.username }}</p>
+                    <p class="user-designation">{{ judge.designation }}</p>
+                    <div class="judge-type">
+                      <app-badge
+                        [text]="judge.judge_type | titlecase"
+                        [fontColor]="'com-text-tAuro-Metal-Saurus'"
+                        [fontSize]="'small'"
+                        [borderRadius]="'round'"
+                        [color]="'com-bg-Bright-Gray-Light'"
+                      ></app-badge>
+                    </div>
+                    <div class="social-media" (click)="$event.stopPropagation()">
+                      <div class="website" *ngIf="judge.website">
+                        <a [href]="judge.website">
+                          <fa-icon [icon]="icons.faGlobe"></fa-icon>
+                        </a>
+                      </div>
+                      <div class="linkedin" *ngIf="judge.linkedin">
+                        <a [href]="judge.linkedin">
+                          <fa-icon [icon]="icons.faLinkedinIn"></fa-icon>
+                        </a>
+                      </div>
+                      <div class="twitter" *ngIf="judge.twitter">
+                        <a [href]="judge.twitter">
+                          <fa-icon [icon]="icons.faTwitter"></fa-icon>
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="linkedin" *ngIf="judge.linkedin">
-                    <a [href]="judge.linkedin">
-                      <fa-icon [icon]="icons.faLinkedinIn"></fa-icon>
-                    </a>
-                  </div>
-                  <div class="twitter" *ngIf="judge.twitter">
-                    <a [href]="judge.twitter">
-                      <fa-icon [icon]="icons.faTwitter"></fa-icon>
-                    </a>
-                  </div>
+                  <app-user-follow
+                    *ngIf="judge.username"
+                    (click)="$event.stopPropagation()"
+                    [username]="judge?.username"
+                    [isMobileWidthFull]="true"
+                    [name]="judge.name"
+                    [userId]="judge?.judge_user_id"
+                  ></app-user-follow>
                 </div>
-                <app-user-follow
-                  (click)="$event.stopPropagation()"
-                  [username]="judge.username"
-                  [isMobileWidthFull]="true"
-                  [name]="judge.name"
-                  [userId]="judge.judge_user_id"
-                ></app-user-follow>
               </div>
-            </div>
-          </nb-card-body>
-        </nb-card>
+            </nb-card-body>
+          </nb-card>
+        </div>
       </div>
     </ng-template>
   </nb-card-body>

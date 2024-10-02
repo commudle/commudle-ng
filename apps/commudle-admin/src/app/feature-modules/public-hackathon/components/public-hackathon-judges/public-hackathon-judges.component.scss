@@ -1,7 +1,7 @@
 nb-card {
   @apply com-mx-0;
   .loading {
-    @apply com-min-h-[50vh];
+    @apply com-min-h-[50vh] com-w-full com-mx-auto;
   }
 }
 
@@ -10,12 +10,12 @@ nb-card {
   .judge-card {
     @apply com-cursor-pointer;
     nb-card {
-      @apply com-m-0 hover:com-shadow-md com-h-[460px];
+      @apply com-m-0 hover:com-shadow-md com-h-[480px];
       nb-card-body {
         @apply com-p-0 com-overflow-hidden;
 
         .user-card {
-          @apply com-flex com-flex-col;
+          @apply com-flex com-flex-col com-h-full;
 
           .user-image {
             @apply com-h-[274px];
@@ -52,4 +52,8 @@ nb-card {
 
 a {
   @apply com-no-underline;
+}
+
+.disabled {
+  @apply com-pointer-events-none;
 }
