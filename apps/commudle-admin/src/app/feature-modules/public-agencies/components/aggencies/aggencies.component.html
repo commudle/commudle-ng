@@ -56,12 +56,8 @@
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ devrelAgency.name }}</p>
-                      <p class="description">
-                        {{
-                          showFullDescriptionDevrelAgency[i]
-                            ? devrelAgency.description
-                            : (devrelAgency.description | truncatetext : 100)
-                        }}
+                      <p class="description" [ngClass]="{ 'com-line-clamp-3': !showFullDescriptionDevrelAgency[i] }">
+                        {{ devrelAgency.description }}
                       </p>
                       <p
                         (click)="toggleShowFullDescriptionDevrelAgency(i)"
@@ -93,12 +89,8 @@
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ eventManagement.name }}</p>
-                      <p class="description">
-                        {{
-                          showFullDescriptionEventManagement[i]
-                            ? eventManagement.description
-                            : (eventManagement.description | truncatetext : 100)
-                        }}
+                      <p class="description" [ngClass]="{ 'com-line-clamp-3': !showFullDescriptionEventManagement[i] }">
+                        {{ eventManagement.description }}
                       </p>
                       <p
                         (click)="toggleShowFullDescriptionEventManagement(i)"
@@ -127,10 +119,8 @@
                     </div>
                     <div class="communities-card-text">
                       <p class="name">{{ vendor.name }}</p>
-                      <p class="description">
-                        {{
-                          showFullDescriptionVendors[i] ? vendor.description : (vendor.description | truncatetext : 100)
-                        }}
+                      <p class="description" [ngClass]="{ 'com-line-clamp-3': !showFullDescriptionVendors[i] }">
+                        {{ vendor.description }}
                       </p>
                       <p
                         (click)="toggleShowFullDescriptionVendors(i)"
@@ -145,9 +135,14 @@
               </div>
             </div>
           </div>
-          <a [routerLink]="['/fill-form', 2751]" class="connect-btn"
-            ><button nbButton status="primary" size="large">Connect With A Partner</button></a
-          >
+          <div class="action-btn">
+            <a [routerLink]="['/fill-form', 2751]" class="connect-btn"
+              ><button nbButton status="primary" size="large">Connect With A Partner</button></a
+            >
+            <a [routerLink]="['/fill-form', 2835]" class="connect-btn"
+              ><button nbButton status="primary" size="large">Become A Partner</button></a
+            >
+          </div>
         </div>
       </div>
     </a>

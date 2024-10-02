@@ -1,0 +1,247 @@
+<nb-card>
+  <nb-card-header (click)="togglePostContentDropdown()"
+    ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
+    <nb-card *ngIf="isPostContentOpen" class="post-content">
+      <nb-card-body>
+        <div class="content-list">
+          <a [routerLink]="['/builds/create']" class="publish-build"
+            ><button nbButton>
+              <fa-icon class="icon" [icon]="faLightbulb"></fa-icon><span>Publish A Project</span>
+            </button></a
+          >
+          <a [routerLink]="['/labs/create']" class="publish-lab"
+            ><button nbButton><fa-icon [icon]="faFlask"></fa-icon><span>Publish A Lab</span></button></a
+          >
+
+          <a [routerLink]="['/users', currentUser.username]" [fragment]="'content'" class="upload-content"
+            ><button nbButton><fa-icon [icon]="faFileText"></fa-icon><span>Upload an External Content</span></button></a
+          >
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-header>
+  <nb-card-body class="main-body">
+    <div class="tabs">
+      <!-- <button
+        nbButton
+        status="basic"
+        [class.active]="activeTab === 'channel'"
+        size="small"
+        shape="round"
+        (click)="setActiveTab('channel')"
+      >
+        Channel Updates
+      </button> -->
+      <button
+        nbButton
+        status="basic"
+        size="small"
+        shape="round"
+        [class.active]="activeTab === 'registrations'"
+        (click)="setActiveTab('registrations')"
+      >
+        Registrations
+      </button>
+    </div>
+    <nb-card *ngIf="activeTab === 'registrations'" class="registrations">
+      <nb-card-body>
+        <h2 class="event-registration-heading">Your Registrations</h2>
+        <div class="event-registrations">
+          <div class="registration-grid">
+            <div class="registration-header">
+              <div class="table-heading">Name</div>
+              <div class="table-heading">Type</div>
+              <div class="table-heading">Your Status</div>
+              <div class="table-heading">Action</div>
+            </div>
+            <div *ngFor="let registration of myRegistrations; let i = index">
+              <div class="registration-row">
+                <div class="event-title-date">
+                  <p class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
+                    <span class="name">{{ registration.event.name }}</span>
+                  </p>
+                  <p *ngIf="registration.registration_for === EDbModels.HACKATHON" class="event-title">
+                    <fa-icon [icon]="faTrophy"></fa-icon>
+                    <span class="name">{{ registration.hackathon?.name }}</span>
+                  </p>
+                  <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                    moment(registration.event.start_time).format('Do MMMM, YYYY')
+                  }}</span>
+                  <span class="date-desktop" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+                    moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
+                  }}</span>
+                </div>
+                <div class="table-type">{{ registration.registration_for }}</div>
+                <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                  moment(registration.event.start_time).format('Do MMMM, YYYY')
+                }}</span>
+                <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.HACKATHON">{{
+                  moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
+                }}</span>
+                <div
+                  [ngClass]="{
+                    confirmed: ERegistrationStatuses.CONFIRMED === registration.registration_status.name,
+                    registered: ERegistrationStatuses.REGISTERED === registration.registration_status.name,
+                    waiting: ERegistrationStatuses.WAITING === registration.registration_status.name,
+                    shortlisted: ERegistrationStatuses.SHORTLISTED === registration.registration_status.name,
+                    cancelled: ERegistrationStatuses.CANCELLED === registration.registration_status.name
+                  }"
+                  class="table-status"
+                >
+                  <span *ngIf="registration?.registration_for === EDbModels.HACKATHON">{{
+                    registration.hackathon_team?.registration_status
+                  }}</span>
+                  <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
+                    registration.registration_status.name
+                  }}</span>
+                  <span *ngIf="registration.registration_for === EDbModels.EVENT">{{
+                    registration.registration_status.name
+                  }}</span>
+                </div>
+                <div class="action-btn-desktop">
+                  <button
+                    *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                    nbButton
+                    status="primary"
+                    shape="round"
+                    size="tiny"
+                    (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                  >
+                    View Pass
+                  </button>
+                  <button
+                    *ngIf="
+                      registration.registration_for === EDbModels.HACKATHON &&
+                      registration.registration_status.name === 'application_incomplete'
+                    "
+                    nbButton
+                    status="primary"
+                    shape="round"
+                    size="tiny"
+                    [routerLink]="[
+                      '/communities',
+                      registration.hackathon.slug,
+                      '/hackathons',
+                      registration.hackathon.name
+                    ]"
+                  >
+                    Fill Now
+                  </button>
+                  <button
+                    *ngIf="
+                      registration.registration_for === EDbModels.HACKATHON &&
+                      registration.hackathon_team?.registration_status === EHackathonRegistrationStatus.ACCEPTED
+                    "
+                    nbButton
+                    status="primary"
+                    shape="round"
+                    size="tiny"
+                    [routerLink]="[
+                      '/communities',
+                      registration.hackathon.slug,
+                      '/hackathons',
+                      registration.hackathon.name,
+                      'user-dashboard'
+                    ]"
+                  >
+                    Go to Dashboard
+                  </button>
+                </div>
+              </div>
+              <div class="action-btn-mobile">
+                <button
+                  *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                >
+                  View Pass
+                </button>
+                <button
+                  *ngIf="
+                    registration.registration_for === EDbModels.HACKATHON &&
+                    registration.registration_status.name === 'application_incomplete'
+                  "
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  [routerLink]="[
+                    '/communities',
+                    registration.hackathon.slug,
+                    '/hackathons',
+                    registration.hackathon.name
+                  ]"
+                >
+                  Fill Now
+                </button>
+                <button
+                  *ngIf="
+                    registration.registration_for === EDbModels.HACKATHON &&
+                    registration.hackathon_team?.registration_status === EHackathonRegistrationStatus.ACCEPTED
+                  "
+                  nbButton
+                  status="primary"
+                  shape="round"
+                  size="tiny"
+                  [routerLink]="[
+                    '/communities',
+                    registration.hackathon.slug,
+                    '/hackathons',
+                    registration.hackathon.name,
+                    'user-dashboard'
+                  ]"
+                >
+                  Go to Dashboard
+                </button>
+              </div>
+              <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
+                <nb-card>
+                  <nb-card-body>
+                    <canvas #qrCanvas></canvas>
+                    <p>{{ registration.event.name }}</p>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+            <a class="view-all" nbButton routerLink="registrations" shape="semi-round" status="info" size="tiny">
+              View all
+              <nb-icon icon="arrow-forward"></nb-icon>
+            </a>
+          </div>
+          <div *ngFor="let registration of myRegistrations; let i = index" class="desktop-qr">
+            <div *ngIf="showEntryPass[i]" class="qr-code">
+              <nb-card>
+                <nb-card-body>
+                  <canvas #qrCanvas></canvas>
+                  <p>{{ registration.event.name }}</p>
+                </nb-card-body>
+              </nb-card>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+    <nb-card class="channel-updates" *ngIf="activeTab === 'channel'">
+      <nb-card-body>
+        <div class="badge-and-messages">
+          <div *ngIf="community" class="community-badge">
+            <app-community-badge [community]="community" [size]="'small'"></app-community-badge>
+          </div>
+          <div class="channel-update">
+            <div class="channel-name">
+              <fa-icon [icon]="faBullhorn"></fa-icon>
+              <h2>GDG New Delhi Designers</h2>
+            </div>
+            <div class="channel-new-messages">
+              <fa-icon [icon]="faComments"></fa-icon>
+              <h2>18+ messages</h2>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </nb-card-body>
+</nb-card>

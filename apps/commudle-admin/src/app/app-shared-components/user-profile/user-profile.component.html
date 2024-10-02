@@ -1,6 +1,6 @@
-<div class="user">
+<div *ngIf="currentUser" class="user">
   <div class="user-image">
-    <img [src]="currentUser.photo.i96" [alt]="currentUser.name" [title]="currentUser.name" />
+    <img [src]="currentUser.photo?.i96" [alt]="currentUser.name" [title]="currentUser.name" />
   </div>
   <div class="user-details">
     <p class="user-name">{{ currentUser.name }}</p>

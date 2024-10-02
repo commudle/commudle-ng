@@ -48,6 +48,8 @@ import { EventMiniCardComponent } from './event-mini-card/event-mini-card.compon
 import { SpeakerSlidesCardComponent } from './speaker-slides-card/speaker-slides-card.component';
 import { CallForSpeakerCardComponent } from './call-for-speaker-card/call-for-speaker-card.component';
 import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives.module';
+import { EventHackathonRegistrationsComponent } from './event-hackathon-registrations/event-hackathon-registrations.component';
+import { BackButtonComponent } from 'apps/shared-components/back-button/back-button.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     UpcomingHackathonsComponent,
     SpeakerSlidesCardComponent,
     CallForSpeakerCardComponent,
+    EventHackathonRegistrationsComponent,
   ],
   exports: [
     EmailerComponent,
@@ -93,6 +96,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     UpcomingHackathonsComponent,
     SpeakerSlidesCardComponent,
     CallForSpeakerCardComponent,
+    EventHackathonRegistrationsComponent,
   ],
   imports: [
     CommonModule,
@@ -114,6 +118,7 @@ import { SharedDirectivesModule } from 'apps/shared-directives/shared-directives
     FeaturedExpertsCardComponent,
     WhatsNewComponent,
     HelpSectionComponent,
+    BackButtonComponent,
 
     // Nebular
     NbRadioModule,
