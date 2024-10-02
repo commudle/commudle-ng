@@ -61,12 +61,16 @@
               </div>
               <div class="action-btn-desktop">
                 <button
-                  *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                  *ngIf="
+                    registration.entry_pass &&
+                    registration.registration_for === EDbModels.EVENT &&
+                    registration.registration_status.name === ERegistrationStatuses.CONFIRMED
+                  "
                   nbButton
                   status="primary"
                   shape="round"
                   size="tiny"
-                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code, 'qr-code-desktop')"
                 >
                   View Pass
                 </button>
@@ -99,9 +103,9 @@
                   size="tiny"
                   [routerLink]="[
                     '/communities',
+                    registration.hackathon.community.slug,
+                    'hackathons',
                     registration.hackathon.slug,
-                    '/hackathons',
-                    registration.hackathon.name,
                     'user-dashboard'
                   ]"
                 >
@@ -111,12 +115,16 @@
             </div>
             <div class="action-btn-mobile">
               <button
-                *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                *ngIf="
+                  registration.entry_pass &&
+                  registration.registration_for === EDbModels.EVENT &&
+                  registration.registration_status.name === ERegistrationStatuses.CONFIRMED
+                "
                 nbButton
                 status="primary"
                 shape="round"
                 size="tiny"
-                (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                (click)="toggleEntryPass(i, registration.entry_pass.unique_code, 'qr-code-mobile')"
               >
                 View Pass
               </button>
@@ -144,9 +152,9 @@
                 size="tiny"
                 [routerLink]="[
                   '/communities',
+                  registration.hackathon.community.slug,
+                  'hackathons',
                   registration.hackathon.slug,
-                  '/hackathons',
-                  registration.hackathon.name,
                   'user-dashboard'
                 ]"
               >
@@ -156,8 +164,8 @@
             <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
               <nb-card>
                 <nb-card-body>
-                  <canvas #qrCanvas></canvas>
-                  <p>{{ registration.event.name }}</p>
+                  <canvas id="qr-code-mobile"></canvas>
+                  <p class="qr-code-display">{{ registration.entry_pass.unique_code }}</p>
                 </nb-card-body>
               </nb-card>
             </div>
@@ -168,8 +176,8 @@
         <div *ngIf="showEntryPass[i]" class="qr-code">
           <nb-card>
             <nb-card-body>
-              <canvas #qrCanvas></canvas>
-              <p>{{ registration.event?.name }}</p>
+              <canvas id="qr-code-desktop"></canvas>
+              <p class="qr-code-display">{{ registration.entry_pass.unique_code }}</p>
             </nb-card-body>
           </nb-card>
         </div>

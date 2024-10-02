@@ -78,7 +78,7 @@
 }
 
 .qr-code {
-  @apply md:com-w-[152px] com-w-full com-h-[156px] md:com-pl-4 com-pl-0 com-bg-white md:com-pt-0 com-pt-2;
+  @apply md:com-w-[152px] com-w-full md:com-h-[152px] com-h-[180px] md:com-pl-4 com-pl-0 com-bg-white md:com-pt-0 com-pt-2 com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
   nb-card {
     @apply com-m-0 com-w-full com-h-full;
 
@@ -89,7 +89,7 @@
 }
 
 .registration-grid {
-  @apply com-grid com-gap-2 com-w-full com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray;
+  @apply com-grid com-gap-2 com-w-full;
 }
 
 .registration-header {
@@ -128,4 +128,14 @@ app-loading-spinner {
   button {
     @apply com-w-full;
   }
+}
+
+#qr-code-desktop,
+#qr-code-mobile {
+  @apply md:com-w-full com-w-auto com-h-full;
+  image-rendering: pixelated;
+}
+
+.qr-code-display {
+  @apply com-m-0 com-text-xs com-font-medium;
 }

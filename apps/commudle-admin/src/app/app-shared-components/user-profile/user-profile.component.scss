@@ -2,7 +2,7 @@
   @apply com-flex com-flex-col com-items-center com-bg-Bright-Gray-opacity-30 com-rounded-t-[8px] com-text-center;
 
   .user-image {
-    @apply com-w-[120px] com-h-[120px] com-mt-6 com-mb-4;
+    @apply com-w-[80px] com-h-[80px] com-mt-6 com-mb-4;
     img {
       @apply com-w-full com-h-full com-rounded-full com-bg-tWhite;
     }
@@ -11,15 +11,15 @@
   .user-details {
     @apply com-flex com-flex-col com-items-center;
     .user-name {
-      @apply com-text-xl com-font-medium com-text-black com-m-0 com-mb-1;
+      @apply com-text-lg com-font-medium com-text-black com-m-0 com-mb-1;
     }
 
     .user-username {
-      @apply com-text-sm com-font-normal com-text-Quartz com-m-0 com-mb-1;
+      @apply com-text-xs com-font-normal com-text-Quartz com-m-0 com-mb-1;
     }
 
     .user-designation {
-      @apply com-text-sm com-font-normal com-text-Dark-Jungle-Green com-m-0 com-mb-4;
+      @apply com-text-xs com-font-medium com-text-Dark-Jungle-Green com-m-0 com-mb-4;
     }
 
     .count {

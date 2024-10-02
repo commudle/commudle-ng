@@ -23,7 +23,7 @@
       @apply com-flex com-flex-row com-items-center;
 
       .community-image {
-        @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-6 com-mr-2 com-overflow-hidden com-w-6 com-flex;
+        @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-5 com-mr-2 com-overflow-hidden com-w-5 com-flex;
 
         img {
           @apply com-bg-tWhite com-h-auto com-w-full com-object-contain com-object-center;
@@ -31,12 +31,12 @@
       }
 
       .community-name {
-        @apply com-m-0 com-p-0 com-text-sm com-font-normal com-text-Quartz;
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-Quartz;
       }
     }
 
     .community-members-count {
-      @apply com-m-0 com-p-0 com-text-sm com-font-semibold com-text-Quartz;
+      @apply com-m-0 com-p-0 com-text-xs com-font-semibold com-text-Quartz;
     }
   }
 }
