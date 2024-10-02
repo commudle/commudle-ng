@@ -1,9 +1,7 @@
-nb-card {
-  nb-card-footer {
-    @apply com-flex com-justify-between com-items-center;
-  }
+.mail-popup {
+  nb-card-footer,
   nb-card-header {
-    @apply com-flex com-items-center;
+    @apply com-flex com-justify-between com-items-center;
   }
 }
 .group-name {
@@ -12,4 +10,8 @@ nb-card {
 
 .mail-popup {
   @apply md:com-w-[50dvw] md:com-max-h-[90dvh];
+}
+
+nb-card-header {
+  @apply com-flex com-items-center;
 }
