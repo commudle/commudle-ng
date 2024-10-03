@@ -5,8 +5,8 @@
     </div>
     <ng-template #judgeCards>
       <div class="judges-cards">
-        <div *ngFor="let judge of hackathonJudges" class="judge-card">
-          <nb-card [routerLink]="['/users', judge?.username]" [class.disabled]="!judge.username">
+        <div *ngFor="let judge of hackathonJudges" class="judge-card" [class.disabled]="!judge.username">
+          <nb-card [routerLink]="['/users', judge?.username]">
             <nb-card-body>
               <div class="user-card">
                 <div class="user-image">
@@ -15,7 +15,7 @@
                 <div class="details">
                   <div class="com-flex com-flex-col com-justify-between">
                     <p class="user-name">{{ judge.name }}</p>
-                    <p class="user-username">@{{ judge?.username }}</p>
+                    <p *ngIf="judge.username" class="user-username">@{{ judge.username }}</p>
                     <p class="user-designation">{{ judge.designation }}</p>
                     <div class="judge-type">
                       <app-badge

@@ -6,7 +6,7 @@ nb-card {
 }
 
 .judges-cards {
-  @apply com-grid com-grid-cols-4 com-gap-4 com-mb-4;
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-4 com-gap-4 com-mb-4;
   .judge-card {
     @apply com-cursor-pointer;
     nb-card {
@@ -20,12 +20,12 @@ nb-card {
           .user-image {
             @apply com-h-[274px];
             img {
-              @apply com-w-full com-h-full com-rounded-t-[10px];
+              @apply com-w-full com-object-fill com-h-[inherit] com-rounded-t-[10px];
             }
           }
 
           .details {
-            @apply com-px-4 com-pb-4 com-pt-3;
+            @apply com-px-4 com-pb-4 com-pt-3 com-flex com-h-full com-flex-col com-justify-between;
             .user-name {
               @apply com-text-base com-font-medium com-text-black com-m-0 com-mb-1;
             }
