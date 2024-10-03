@@ -69,6 +69,7 @@
     "eva-icons": "^1.1.3",
     "grapesjs": "^0.21.8",
     "grapesjs-preset-newsletter": "^1.0.2",
+    "lean-qr": "^2.3.4",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "lottie-web": "^5.12.2",

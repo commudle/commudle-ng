@@ -15,7 +15,7 @@ import moment from 'moment';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
-// import { generate } from 'lean-qr';
+import { generate } from 'lean-qr';
 
 @Component({
   selector: 'commudle-dashboard-updates',
@@ -60,9 +60,9 @@ export class DashboardUpdatesComponent implements OnInit {
   }
 
   generateQRCode(uniqueCode, canvasId) {
-    // const qr = document.getElementById(canvasId) as HTMLCanvasElement;
-    // const qrCode = generate(uniqueCode);
-    // qrCode.toCanvas(qr);
+    const qr = document.getElementById(canvasId) as HTMLCanvasElement;
+    const qrCode = generate(uniqueCode);
+    qrCode.toCanvas(qr);
   }
 
   toggleEntryPass(index, uniqueCode, canvasId) {

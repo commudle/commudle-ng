@@ -5,7 +5,7 @@ import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_sta
 import moment from 'moment';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { EDbModels, EHackathonRegistrationStatus } from '@commudle/shared-models';
-// import { generate } from 'lean-qr';
+import { generate } from 'lean-qr';
 
 @Component({
   selector: 'commudle-event-hackathon-registrations',
@@ -33,9 +33,9 @@ export class EventHackathonRegistrationsComponent implements OnInit {
   }
 
   generateQRCode(uniqueCode, canvasId) {
-    // const qr = document.getElementById(canvasId) as HTMLCanvasElement;
-    // const qrCode = generate(uniqueCode);
-    // qrCode.toCanvas(qr);
+    const qr = document.getElementById(canvasId) as HTMLCanvasElement;
+    const qrCode = generate(uniqueCode);
+    qrCode.toCanvas(qr);
   }
 
   getMyRegistrations() {
