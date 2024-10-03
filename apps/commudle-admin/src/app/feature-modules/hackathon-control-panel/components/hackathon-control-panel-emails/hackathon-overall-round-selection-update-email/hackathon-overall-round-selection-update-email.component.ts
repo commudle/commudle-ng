@@ -75,20 +75,23 @@ export class HackathonOverallRoundSelectionUpdateEmailComponent implements OnIni
       this.isLoading = true;
       this.hackathonService
         .OverallRoundSelectionUpdateEmail(this.hackathonId, this.roundSelection, this.message)
-        .subscribe((data) => {
-          if (data) {
-            this.toastrService.successDialog('Emails are being delivered!');
+        .subscribe(
+          (data) => {
+            if (data) {
+              this.toastrService.successDialog('Email sent successfully, Will be delivered soon!');
+            }
             this.closePopup();
-          }
-          this.isLoading = false;
-        }),
-        () => {
-          this.isLoading = false;
-        };
+          },
+          () => {
+            this.closePopup();
+          },
+        );
     }
   }
 
   closePopup() {
+    this.message = '';
+    this.isLoading = false;
     this.dialogRef.close();
   }
 }

@@ -50,11 +50,19 @@
       <br />
       <div>
         <label for="message">Message (optional)</label>
-        <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
+        <editor [init]="tinyMCE" [(ngModel)]="message"></editor>
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button nbButton status="primary" (click)="SendRegistrationsMailer()">Send</button>
+      <button
+        nbButton
+        status="primary"
+        (click)="SendRegistrationsMailer()"
+        [nbSpinner]="isLoading"
+        [disabled]="isLoading || message"
+      >
+        Send
+      </button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

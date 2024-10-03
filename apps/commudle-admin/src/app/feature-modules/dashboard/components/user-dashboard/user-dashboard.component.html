@@ -1,0 +1,94 @@
+<div class="dashboard">
+  <div class="base-layout">
+    <div class="container">
+      <div class="two-column-layout">
+        <div class="left-column">
+          <commudle-user-profile [currentUser]="currentUser"></commudle-user-profile>
+          <nb-card class="user-profile-details">
+            <nb-card-body *ngIf="currentUser">
+              <commudle-userprofile-details
+                [userProfileDetails]="userProfileDetails"
+                [username]="currentUser.username"
+              ></commudle-userprofile-details>
+            </nb-card-body>
+          </nb-card>
+          <div class="user-managed-communities">
+            <nb-card>
+              <nb-card-body>
+                <h2 class="user-managed-communities-heading">Your Communities</h2>
+                <div *ngFor="let community of managedCommunities">
+                  <a [routerLink]="['/admin', 'communities', community.slug]" class="community">
+                    <div class="community-image-name">
+                      <div class="community-image">
+                        <img
+                          alt="{{ community.name }}"
+                          src="{{ community.logo_image_path?.i64 }}"
+                          title="{{ community.name }}"
+                        />
+                      </div>
+                      <p class="community-name">{{ community.name }}</p>
+                    </div>
+                    <p class="community-members-count">{{ community.members_count }}</p>
+                  </a>
+                </div>
+              </nb-card-body>
+            </nb-card>
+          </div>
+        </div>
+        <div class="main-column">
+          <commudle-dashboard-updates></commudle-dashboard-updates>
+          <div class="two-column">
+            <div class="center-column">
+              <div class="upcoming-events">
+                <h2>Upcoming</h2>
+                <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+                <div *ngIf="upcomingEventsHackathons.length > 0 && !loading">
+                  <div
+                    *ngFor="let upcomingEventHackathon of upcomingEventsHackathons"
+                    class="event-horizontal-card"
+                    [ngSwitch]="upcomingEventHackathon.object_type"
+                  >
+                    <commudle-event-horizontal-card
+                      *ngSwitchCase="EDbModels.EVENT"
+                      [event]="upcomingEventHackathon.data"
+                    ></commudle-event-horizontal-card>
+                    <commudle-hackathon-horizontal-card
+                      *ngSwitchCase="EDbModels.HACKATHON"
+                      [hackathon]="upcomingEventHackathon.data"
+                    ></commudle-hackathon-horizontal-card>
+                  </div>
+                </div>
+                <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0 && !loading">
+                  <h3>No Upcoming Events</h3>
+                </div>
+              </div>
+              <div *ngIf="total > 0" class="pagination">
+                <app-pagination
+                  (goTo)="page = $event; getUpcomingEventsHackathons()"
+                  (next)="page = $event; getUpcomingEventsHackathons()"
+                  (previous)="page = $event; getUpcomingEventsHackathons()"
+                  [count]="count"
+                  [current]="page"
+                  [total]="total"
+                ></app-pagination>
+              </div>
+              <!-- <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0">
+                  <h3>No Recent Activity</h3>
+                </div>
+              </div> -->
+            </div>
+            <div class="right-column">
+              <div class="advertisement">
+                <nb-card>
+                  <nb-card-body><h2>Advertisement</h2></nb-card-body></nb-card
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

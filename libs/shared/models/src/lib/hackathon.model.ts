@@ -36,6 +36,7 @@ export interface IHackathon {
   community: ICommunity;
   community_group: ICommunityGroup;
   total_prize_amount: object;
+  interested_members_count?: number;
 }
 
 export enum EParticipateTypes {

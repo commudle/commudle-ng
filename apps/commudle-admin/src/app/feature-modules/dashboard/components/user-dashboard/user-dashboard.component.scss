@@ -1,0 +1,108 @@
+.dashboard {
+  @apply com-bg-white com-py-6;
+}
+
+.user-managed-communities {
+  @apply com-m-0 com-mt-6;
+  nb-card {
+    @apply com-m-0;
+
+    nb-card-body {
+      @apply com-px-3 com-py-4;
+    }
+  }
+
+  .user-managed-communities-heading {
+    @apply com-m-0 com-mb-1 com-text-sm com-font-medium com-text-black;
+  }
+
+  .community {
+    @apply com-flex com-flex-row com-justify-between com-mt-3;
+
+    .community-image-name {
+      @apply com-flex com-flex-row com-items-center;
+
+      .community-image {
+        @apply com-border com-border-solid com-border-Bright-Gray com-rounded-full com-h-5 com-mr-2 com-overflow-hidden com-w-5 com-flex;
+
+        img {
+          @apply com-bg-tWhite com-h-auto com-w-full com-object-contain com-object-center;
+        }
+      }
+
+      .community-name {
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-Quartz;
+      }
+    }
+
+    .community-members-count {
+      @apply com-m-0 com-p-0 com-text-xs com-font-semibold com-text-Quartz;
+    }
+  }
+}
+
+a {
+  @apply com-no-underline;
+}
+
+.user-profile-details {
+  @apply com-m-0 com-rounded-t-none;
+
+  nb-card-body {
+    @apply com-p-0;
+  }
+}
+
+.advertisement {
+  @apply md:com-flex com-hidden;
+  nb-card {
+    @apply md:com-w-full com-h-[276px] com-m-0 com-border-2 com-border-dashed com-border-Azure md:com-mx-0 com-mx-1;
+
+    nb-card-body {
+      @apply com-flex com-items-center com-justify-center;
+
+      h2 {
+        @apply com-text-base com-font-semibold com-text-Dark-Jungle-Green com-m-0;
+      }
+    }
+  }
+}
+
+.main-column {
+  .upcoming-events,
+  .recent-activity {
+    h2 {
+      @apply com-m-0 com-mb-3 com-text-xl com-font-semibold com-text-Yankees-Blue;
+    }
+  }
+}
+.left-column {
+  @apply md:com-pr-6;
+}
+
+.right-column {
+  @apply md:com-pl-6 com-pt-6 md:com-w-[300px] com-w-full com-flex-shrink-0;
+}
+
+.event-horizontal-card {
+  @apply com-mb-4;
+}
+
+.two-column {
+  @apply com-flex md:com-flex-row com-flex-col;
+}
+
+.center-column {
+  @apply com-w-full com-pt-6 md:com-px-0 com-px-3;
+}
+
+.no-upcoming-events {
+  @apply com-flex com-items-center com-justify-center com-pt-12;
+  h3 {
+    @apply com-text-xl com-font-medium com-text-tAuro-Metal-Saurus;
+  }
+}
+
+.pagination {
+  @apply com-mt-5 com-w-full;
+}

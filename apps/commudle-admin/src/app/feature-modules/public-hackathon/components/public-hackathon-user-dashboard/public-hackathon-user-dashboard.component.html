@@ -19,6 +19,7 @@
   <div class="right-column">
     <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
       <commudle-public-hackathon-registration
+        [hackathon]="hackathon"
         [hrgId]="hrgId"
         [userTeamDetails]="userTeamDetails[0]"
       ></commudle-public-hackathon-registration>
@@ -29,6 +30,7 @@
 <ng-template #submitProject>
   <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
     <commudle-public-hackathon-registration
+      [hackathon]="hackathon"
       [hrgId]="hrgId"
       [userTeamDetails]="userTeamDetails[0]"
     ></commudle-public-hackathon-registration>

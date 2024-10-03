@@ -1,5 +1,5 @@
 <nb-card *ngIf="hrgId && userTeamDetails" class="project-details-card">
-  <nb-card-header>
+  <nb-card-header *ngIf="canEditForm">
     <div class="heading"></div>
     <div>
       Registration Status: Profile Submitted for Review
@@ -8,7 +8,7 @@
   </nb-card-header>
   <nb-card-body>
     <div class="round-details">Next: Round 1 confirmation</div>
-    <div *ngIf="userTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED">
+    <div *ngIf="userTeamDetails.registration_status === EHackathonRegistrationStatus.ACCEPTED && canSubmitProject">
       <a
         *ngIf="!userTeamDetails.community_build"
         [routerLink]="['/builds', 'create']"

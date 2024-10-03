@@ -24,6 +24,10 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
+    path: 'dashboard',
+    loadChildren: () => import('./feature-modules/dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
+  {
     path: 'notifications',
     loadChildren: () =>
       import('./feature-modules/notifications/notifications.module').then((m) => m.NotificationsModule),
