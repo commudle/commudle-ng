@@ -72,12 +72,34 @@
                   [total]="total"
                 ></app-pagination>
               </div>
-              <!-- <div class="recent-activity">
+              <div class="recent-activity">
                 <h2>Recent Activity</h2>
-                <div class="no-upcoming-events" *ngIf="upcomingEventsHackathons.length === 0">
+                <app-loading-spinner *ngIf="loadingActivity"></app-loading-spinner>
+                <div *ngIf="activityFeed.length > 0 && !loadingActivity">
+                  <div *ngFor="let feed of activityFeed">
+                    <ng-container [ngSwitch]="feed.actionable_type">
+                      <ng-container *ngSwitchCase="EDbModels.VOTE">
+                        <h1>Vote</h1>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="EDbModels.COMMUNITY_BUILD">
+                        <h1>Build</h1>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="EDbModels.EVENT">
+                        <h1>Event</h1>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="EDbModels.HACKATHON">
+                        <h1>Hackathon</h1>
+                      </ng-container>
+                      <ng-container *ngSwitchCase="EDbModels.LAB">
+                        <h1>Lab</h1>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+                <div class="no-upcoming-events" *ngIf="activityFeed.length === 0 && !loadingActivity">
                   <h3>No Recent Activity</h3>
                 </div>
-              </div> -->
+              </div>
             </div>
             <div class="right-column">
               <div class="advertisement">

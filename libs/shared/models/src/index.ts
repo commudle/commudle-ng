@@ -38,3 +38,4 @@ export * from './lib/hackathon.model';
 export * from './lib/community-group.model';
 export * from './lib/help-dictionary.model';
 export * from './lib/upcoming-event-hackathon.model';
+export * from './lib/activity-feed.model';

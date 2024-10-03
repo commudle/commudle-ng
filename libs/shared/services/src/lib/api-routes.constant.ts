@@ -946,5 +946,6 @@ export const API_ROUTES = {
 
   FEED: {
     INDEX_UPCOMING_HACKATHONS_EVENTS: 'api/v2/feed/events_hackathons/upcoming',
+    ACTIVITY_FEED: 'api/v2/activity_feed',
   },
 };
