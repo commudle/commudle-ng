@@ -9,7 +9,7 @@ nb-card {
     @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10 com-border-0  com-cursor-pointer;
 
     h2 {
-      @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
+      @apply com-text-sm com-font-medium com-text-Yankees-Blue  com-rounded-t-lg com-w-full com-bg-white com-p-2;
       fa-icon {
         @apply com-ml-2;
       }
@@ -162,7 +162,7 @@ nb-card {
 }
 
 .post-content {
-  @apply com-bg-white com-m-0 com-p-4 com-w-full;
+  @apply com-bg-white com-m-0 com-p-4 com-w-full com-rounded-t-none;
 
   nb-card-body {
     @apply com-p-0;

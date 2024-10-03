@@ -1,6 +1,8 @@
 <nb-card>
   <nb-card-header (click)="togglePostContentDropdown()"
-    ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
+    ><h2 [ngClass]="{ 'com-rounded-b-none': isPostContentOpen, 'com-rounded-b-lg': !isPostContentOpen }">
+      Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon>
+    </h2>
     <nb-card *ngIf="isPostContentOpen" class="post-content">
       <nb-card-body>
         <div class="content-list">
