@@ -9,7 +9,7 @@ nb-card {
     @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10 com-border-0  com-cursor-pointer;
 
     h2 {
-      @apply com-text-sm com-font-medium com-text-Yankees-Blue com-w-full com-bg-white com-rounded-lg com-p-2;
+      @apply com-text-sm com-font-medium com-text-Yankees-Blue  com-rounded-t-lg com-w-full com-bg-white com-p-2;
       fa-icon {
         @apply com-ml-2;
       }
@@ -111,12 +111,12 @@ nb-card {
     }
 
     .qr-code {
-      @apply md:com-w-[152px] com-w-full com-h-[156px] md:com-pl-4 com-pl-0 com-border-0 com-bg-white md:com-pt-0 com-pt-2;
+      @apply md:com-w-[152px] com-w-full md:com-h-[152px] com-h-[180px] md:com-pl-4 com-pl-0 com-bg-white md:com-pt-0 com-pt-2  com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
       nb-card {
         @apply com-m-0 com-w-full com-h-full;
 
         nb-card-body {
-          @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50;
+          @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50 com-flex com-items-center;
         }
       }
     }
@@ -162,7 +162,7 @@ nb-card {
 }
 
 .post-content {
-  @apply com-bg-white com-m-0 com-p-4 com-w-full;
+  @apply com-bg-white com-m-0 com-p-4 com-w-full com-rounded-t-none;
 
   nb-card-body {
     @apply com-p-0;
@@ -229,7 +229,7 @@ canvas {
 }
 
 .registration-grid {
-  @apply com-grid com-gap-2 com-border-0 md:com-border-r com-border-r-0 com-border-solid com-border-Bright-Gray;
+  @apply com-grid com-gap-2;
 }
 
 .registration-header {
@@ -256,4 +256,18 @@ canvas {
 .mobile-qr,
 .action-btn-mobile {
   @apply com-flex md:com-hidden;
+
+  button {
+    @apply com-w-full;
+  }
+}
+
+#qr-code-desktop,
+#qr-code-mobile {
+  @apply md:com-w-full com-w-auto com-h-full;
+  image-rendering: pixelated;
+}
+
+.qr-code-display {
+  @apply com-m-0 com-text-xs com-font-medium;
 }

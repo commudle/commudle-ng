@@ -1,6 +1,8 @@
 <nb-card>
   <nb-card-header (click)="togglePostContentDropdown()"
-    ><h2>Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon></h2>
+    ><h2 [ngClass]="{ 'com-rounded-b-none': isPostContentOpen, 'com-rounded-b-lg': !isPostContentOpen }">
+      Post a content<fa-icon class="plus-icon" [icon]="faPlus"></fa-icon>
+    </h2>
     <nb-card *ngIf="isPostContentOpen" class="post-content">
       <nb-card-body>
         <div class="content-list">
@@ -89,23 +91,27 @@
                   class="table-status"
                 >
                   <span *ngIf="registration?.registration_for === EDbModels.HACKATHON">{{
-                    registration.hackathon_team?.registration_status
+                    registration.hackathon_team?.registration_status | capitalizeAndRemoveUnderscore
                   }}</span>
                   <span *ngIf="registration.registration_for === EDbModels.HACKATHON" class="individual-status">{{
-                    registration.registration_status.name
+                    registration.registration_status.name | capitalizeAndRemoveUnderscore
                   }}</span>
                   <span *ngIf="registration.registration_for === EDbModels.EVENT">{{
-                    registration.registration_status.name
+                    registration.registration_status.name | capitalizeAndRemoveUnderscore
                   }}</span>
                 </div>
                 <div class="action-btn-desktop">
                   <button
-                    *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                    *ngIf="
+                      registration.entry_pass &&
+                      registration.registration_for === EDbModels.EVENT &&
+                      registration.registration_status.name === ERegistrationStatuses.CONFIRMED
+                    "
                     nbButton
                     status="primary"
                     shape="round"
                     size="tiny"
-                    (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                    (click)="toggleEntryPass(i, registration.entry_pass.unique_code, 'qr-code-desktop')"
                   >
                     View Pass
                   </button>
@@ -138,9 +144,9 @@
                     size="tiny"
                     [routerLink]="[
                       '/communities',
+                      registration.hackathon.community.slug,
+                      'hackathons',
                       registration.hackathon.slug,
-                      '/hackathons',
-                      registration.hackathon.name,
                       'user-dashboard'
                     ]"
                   >
@@ -150,12 +156,16 @@
               </div>
               <div class="action-btn-mobile">
                 <button
-                  *ngIf="registration.entry_pass && registration.registration_for === EDbModels.EVENT"
+                  *ngIf="
+                    registration.entry_pass &&
+                    registration.registration_for === EDbModels.EVENT &&
+                    registration.registration_status.name === ERegistrationStatuses.CONFIRMED
+                  "
                   nbButton
                   status="primary"
                   shape="round"
                   size="tiny"
-                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code)"
+                  (click)="toggleEntryPass(i, registration.entry_pass.unique_code, 'qr-code-mobile')"
                 >
                   View Pass
                 </button>
@@ -188,9 +198,9 @@
                   size="tiny"
                   [routerLink]="[
                     '/communities',
+                    registration.hackathon.community.slug,
+                    'hackathons',
                     registration.hackathon.slug,
-                    '/hackathons',
-                    registration.hackathon.name,
                     'user-dashboard'
                   ]"
                 >
@@ -200,8 +210,8 @@
               <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
                 <nb-card>
                   <nb-card-body>
-                    <canvas #qrCanvas></canvas>
-                    <p>{{ registration.event.name }}</p>
+                    <canvas id="qr-code-mobile"></canvas>
+                    <p class="qr-code-display">{{ registration.entry_pass.unique_code }}</p>
                   </nb-card-body>
                 </nb-card>
               </div>
@@ -215,8 +225,8 @@
             <div *ngIf="showEntryPass[i]" class="qr-code">
               <nb-card>
                 <nb-card-body>
-                  <canvas #qrCanvas></canvas>
-                  <p>{{ registration.event.name }}</p>
+                  <canvas id="qr-code-desktop"></canvas>
+                  <p class="qr-code-display">{{ registration.entry_pass.unique_code }}</p>
                 </nb-card-body>
               </nb-card>
             </div>

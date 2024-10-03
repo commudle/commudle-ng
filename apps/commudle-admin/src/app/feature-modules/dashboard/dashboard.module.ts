@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/hackathon-horizontal-card/hackathon-horizontal-card.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -31,6 +32,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     UserprofileDetailsComponent,
     EventHorizontalCardComponent,
     HackathonHorizontalCardComponent,
+    SharedPipesModule,
   ],
 })
 export class DashboardModule {}

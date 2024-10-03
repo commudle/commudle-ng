@@ -11,15 +11,15 @@ a {
       @apply com-flex com-flex-row md:com-items-center com-items-start;
 
       .icon {
-        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-5 com-h-5 com-m-0 com-mr-2 com-p-6px;
       }
 
       p {
-        @apply com-m-0 com-p-0 com-text-sm com-font-medium com-text-black;
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-black;
       }
     }
     .profile-visited-count {
-      @apply com-m-0 com-ml-4 com-p-0 com-text-base com-font-semibold com-text-black;
+      @apply com-m-0 com-ml-4 com-p-0 com-text-xs com-font-semibold com-text-black;
     }
   }
   .talks-given {
@@ -29,7 +29,7 @@ a {
       @apply com-flex com-flex-row com-items-center;
 
       .icon {
-        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-5 com-h-5 com-m-0 com-mr-2 com-p-6px;
 
         fa-icon {
           @apply com-w-[16px];
@@ -37,11 +37,11 @@ a {
       }
 
       p {
-        @apply com-m-0 com-p-0 com-text-sm com-font-medium com-text-black;
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-black;
       }
     }
     .talks-given-count {
-      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
+      @apply com-m-0 com-p-0 com-text-xs com-font-semibold com-text-black;
     }
   }
   .attended-events {
@@ -51,7 +51,7 @@ a {
       @apply com-flex com-flex-row com-items-center;
 
       .icon {
-        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-5 com-h-5 com-m-0 com-mr-2 com-p-6px;
 
         fa-icon {
           @apply com-w-[16px];
@@ -59,16 +59,16 @@ a {
       }
 
       p {
-        @apply com-m-0 com-p-0 com-text-sm com-font-medium com-text-black;
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-black;
       }
     }
     .attended-events-count {
-      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-black;
+      @apply com-m-0 com-p-0 com-text-xs com-font-semibold com-text-black;
     }
   }
 
   .complete-profile {
-    @apply com-text-base com-font-normal com-text-black com-m-0 com-py-4 com-px-0 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
+    @apply com-text-sm com-font-medium com-text-black com-m-0 com-pt-4 com-pb-3 com-px-0 com-border-0 com-border-t com-border-solid com-border-Bright-Gray;
   }
 
   .labs-published,
@@ -87,11 +87,11 @@ a {
       @apply com-flex com-flex-row com-items-center;
 
       .icon {
-        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-6 com-h-6 com-m-0 com-mr-2 com-p-6px;
+        @apply com-flex com-items-center com-justify-center com-text-tYankees-Blue com-bg-zinc-100 com-rounded-[4px] com-w-5 com-h-5 com-m-0 com-mr-2 com-p-6px;
       }
 
       p {
-        @apply com-m-0 com-p-0 com-text-sm com-font-normal com-text-Quartz;
+        @apply com-m-0 com-p-0 com-text-xs com-font-normal com-text-Quartz;
       }
     }
     .labs-published-count,
@@ -100,7 +100,7 @@ a {
     .content-published-count,
     .attended-events-count,
     .social-links-count {
-      @apply com-m-0 com-p-0 com-text-base com-font-semibold com-text-Quartz;
+      @apply com-m-0 com-p-0 com-text-xs com-font-semibold com-text-Quartz;
     }
   }
 
