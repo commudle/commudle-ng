@@ -16,6 +16,11 @@
       </div>
       <div class="community-build-card-details">
         <div class="community-build-card-title-time">
+          <div *ngIf="showHackathonPrizes" class="hackathon-prizes">
+            <div *ngFor="let hw of communityBuild.hackathon_team.hackathon_winners" class="hackathon-prize">
+              <span [nbTooltip]="hw.hackathon_prize.name">🏆</span>
+            </div>
+          </div>
           <h5 class="title">{{ communityBuild.name }}</h5>
           <p class="time">{{ moment(communityBuild.created_at).format('MMM Do, YYYY') }}</p>
         </div>
