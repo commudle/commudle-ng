@@ -97,4 +97,6 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
       if (data) this.rounds.splice(index, 1);
     });
   }
+
+  createChannel(round, index) {}
 }

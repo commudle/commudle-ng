@@ -11,6 +11,7 @@ export class HackathonControlPanelRoundCardComponent implements OnInit {
   @Input() round: IRound;
   @Output() destroyRoundEvent: EventEmitter<IRound> = new EventEmitter();
   @Output() editRoundEvent: EventEmitter<IRound> = new EventEmitter();
+  @Output() createChannelForRound: EventEmitter<IRound> = new EventEmitter();
   moment = moment;
   constructor() {}
 
@@ -22,5 +23,9 @@ export class HackathonControlPanelRoundCardComponent implements OnInit {
 
   destroyRound(round) {
     this.destroyRoundEvent.emit(round);
+  }
+
+  createChannel() {
+    this.createChannelForRound.emit(this.round);
   }
 }
