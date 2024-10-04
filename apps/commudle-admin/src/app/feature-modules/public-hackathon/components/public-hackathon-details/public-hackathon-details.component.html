@@ -38,7 +38,9 @@
               <nb-card-body>
                 <div class="hackathon-prize">
                   <div class="prize-name">{{ prize.name }}</div>
-                  <div class="prize-amount">PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}</div>
+                  <div class="prize-amount" *ngIf="prize.prize_amount">
+                    PRIZE: {{ prize.currency_symbol }}{{ prize.prize_amount }}
+                  </div>
                 </div>
                 <div [innerHTML]="prize.description"></div>
               </nb-card-body>
