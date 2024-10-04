@@ -13,6 +13,8 @@ import { HackathonHorizontalCardComponent } from 'apps/commudle-admin/src/app/ap
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
+import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -21,12 +23,17 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
     DashboardRoutingModule,
     SharedComponentsModule,
     AppSharedComponentsModule,
+    CommunityBuildsModule,
+    LabsModule,
+
     //Nebular
     NbCardModule,
     NbButtonModule,
     NbIconModule,
+
     //Fontawesome
     FontAwesomeModule,
+
     //Standalone
     UserProfileComponent,
     UserprofileDetailsComponent,

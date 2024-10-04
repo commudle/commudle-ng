@@ -71,6 +71,7 @@ a {
 .main-column {
   .upcoming-events,
   .recent-activity {
+    @apply com-mt-6 com-mb-3;
     h2 {
       @apply com-m-0 com-mb-3 com-text-xl com-font-semibold com-text-Yankees-Blue;
     }
@@ -105,4 +106,32 @@ a {
 
 .pagination {
   @apply com-mt-5 com-w-full;
+}
+
+.activity-cards {
+  @apply com-m-0;
+
+  nb-card-header {
+    @apply com-p-3 com-flex com-flex-row com-bg-gray-50;
+  }
+}
+
+.activity-feed {
+  @apply com-flex com-flex-col com-gap-4;
+
+  h2 {
+    @apply com-m-0 com-flex com-flex-row com-items-center;
+  }
+
+  .performer-name {
+    @apply com-text-xs com-font-semibold com-text-gray-600 com-mr-1;
+  }
+
+  .action-text {
+    @apply com-text-xs com-font-normal com-text-Auro-Metal-Saurus;
+  }
+
+  img {
+    @apply com-w-4 com-h-4 com-mr-2 com-rounded-full;
+  }
 }

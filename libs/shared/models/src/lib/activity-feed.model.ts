@@ -1,6 +1,11 @@
+import { EDbModels } from './db-models.enum';
+
 export interface IActivityFeed {
   token: string;
-  performer_type: any;
+  performer_type: EDbModels;
   action_text: string;
-  actionable_type: any;
+  //TODO IEvent | IHackathon | ICommunityBuild | ILab
+  actionable_type: EDbModels;
+  actionable: any;
+  performer: any;
 }
