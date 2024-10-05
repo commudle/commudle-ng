@@ -1,10 +1,10 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, Input, OnInit } from '@angular/core';
 import { IHackathon, EHackathonLocationType } from 'apps/shared-models/hackathon.model';
 import { faGlobe, faAward } from '@fortawesome/free-solid-svg-icons';
 import { AuthService, countries_details } from '@commudle/shared-services';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { ICommunity, IHackathonTeam, IUser } from '@commudle/shared-models';
+import { EHackathonStatus, ICommunity, IHackathonTeam, IUser } from '@commudle/shared-models';
 @Component({
   selector: 'commudle-public-hackathon-details-mini-card',
   templateUrl: './public-hackathon-details-mini-card.component.html',
@@ -25,6 +25,7 @@ export class PublicHackathonDetailsMiniCardComponent implements OnInit {
   };
 
   EHackathonLocationType = EHackathonLocationType;
+  EHackathonStatus = EHackathonStatus;
   totalPrizesByCurrency: { currency: any; amount: number }[];
   countryDetails = countries_details;
   users: IUser[];
