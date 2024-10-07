@@ -135,17 +135,20 @@
 <ng-template #createChannelDialogBox let-ref="dialogRef" let-data>
   <nb-card>
     <nb-card-header class="actions">
-      <span>Create Channel for {{ data.round.name }}</span>
+      <span
+        >Create Channel for <strong>{{ data.round.name }}</strong></span
+      >
       <button nbButton ghost (click)="ref.close()" shape="round">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
     <nb-card-body>
-      <p>
-        This will create a channel for <strong>{{ data.round.name }}</strong
-        >!
-      </p>
-      <p>When team will selected for new round it, Team members will automatically added to channel</p>
+      <p>Are you sure you want to create a channel for {{ data.round.name }}?</p>
+      <span>This will:</span>
+      <ol>
+        <li>Create a channel and add all the selected teams and their members in the channel automatically.</li>
+        <li>Add or remove any selected teams into this round to this channel when their round is changed.</li>
+      </ol>
     </nb-card-body>
     <nb-card-footer class="actions">
       <button nbButton status="primary" (click)="createChannel(data.round, data.index); ref.close()">
