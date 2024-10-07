@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EDbModels, ICommunity } from '@commudle/shared-models';
 import { SeoService } from '@commudle/shared-services';
@@ -12,14 +12,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './public-community-hackathons.component.html',
   styleUrls: ['./public-community-hackathons.component.scss'],
 })
-export class PublicCommunityHackathonsComponent implements OnInit {
+export class PublicCommunityHackathonsComponent implements OnInit, OnDestroy {
   EDbModels = EDbModels;
   subscriptions: Subscription[] = [];
   community: ICommunity;
   upcomingHackathons: IHackathon[];
   pastHackathons: IHackathon[];
   moment = moment;
-  seoDescription = '';
+  seoDescription: string;
   constructor(
     private hackathonService: HackathonService,
     private activatedRoute: ActivatedRoute,
@@ -35,12 +35,31 @@ export class PublicCommunityHackathonsComponent implements OnInit {
     );
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
   fetchHackathonIndex() {
-    this.hackathonService.pIndexHackathons(this.community.id, EDbModels.KOMMUNITY).subscribe((data) => {
-      this.upcomingHackathons = data.upcoming_hackathons;
-      this.pastHackathons = data.past_hackathons;
-      this.setSeoService();
-    });
+    this.getUpcomingHackathons();
+    this.getPastHackathons();
+  }
+
+  getUpcomingHackathons() {
+    this.subscriptions.push(
+      this.hackathonService.pIndexHackathons(this.community.id, EDbModels.KOMMUNITY, 'future').subscribe((data) => {
+        this.upcomingHackathons = data.values;
+        this.setSeoService();
+      }),
+    );
+  }
+
+  getPastHackathons() {
+    this.subscriptions.push(
+      this.hackathonService.pIndexHackathons(this.community.id, EDbModels.KOMMUNITY, 'past').subscribe((data) => {
+        this.pastHackathons = data.values;
+        this.setSeoService();
+      }),
+    );
   }
 
   setSeoService() {
