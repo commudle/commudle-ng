@@ -16,7 +16,7 @@
       </div>
       <div class="prize-action-button">
         <div class="prize">
-          <div *ngIf="totalPrizesByCurrency.length > 0 && totalPrizesByCurrency[0].amount > 0">
+          <div *ngIf="totalPrizesByCurrency?.length > 0 && totalPrizesByCurrency[0].amount > 0">
             <div>Prize Money</div>
             <div *ngFor="let item of totalPrizesByCurrency.slice(0, 1)" class="prize-amount">
               {{ item.currency.symbol }}{{ item.amount }}

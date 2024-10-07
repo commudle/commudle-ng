@@ -132,6 +132,6 @@ a {
   }
 
   img {
-    @apply com-w-4 com-h-4 com-mr-2 com-rounded-full;
+    @apply com-w-4 com-h-4 com-mr-2 com-rounded-full com-object-contain;
   }
 }

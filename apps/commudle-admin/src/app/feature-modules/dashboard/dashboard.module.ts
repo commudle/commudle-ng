@@ -15,6 +15,7 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
 import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -25,6 +26,7 @@ import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/lab
     AppSharedComponentsModule,
     CommunityBuildsModule,
     LabsModule,
+    InfiniteScrollModule,
 
     //Nebular
     NbCardModule,

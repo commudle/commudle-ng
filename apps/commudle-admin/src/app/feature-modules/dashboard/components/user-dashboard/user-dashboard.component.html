@@ -76,6 +76,11 @@
                 <h2>Recent Activity</h2>
                 <app-loading-spinner *ngIf="loadingActivity"></app-loading-spinner>
                 <div *ngIf="activityFeed.length > 0 && !loadingActivity" class="activity-feed">
+                  <!-- <div
+                    (scrolled)="getActivityFeed()"
+                    [infiniteScrollDisabled]="activityFeed.length >= total"
+                    appInfiniteScroll
+                  > -->
                   <div *ngFor="let feed of activityFeed">
                     <ng-container [ngSwitch]="feed.actionable_type">
                       <nb-card class="activity-cards">
@@ -94,8 +99,8 @@
                         </nb-card-header>
                         <nb-card-body>
                           <!-- <ng-container *ngSwitchCase="EDbModels.VOTE">
-                        <h1>Vote</h1>
-                      </ng-container> -->
+                            <h1>Vote</h1>
+                          </ng-container> -->
                           <ng-container *ngSwitchCase="EDbModels.COMMUNITY_BUILD">
                             <app-community-build-card [communityBuild]="feed.actionable"></app-community-build-card>
                           </ng-container>
@@ -103,7 +108,9 @@
                             <commudle-event-horizontal-card [event]="feed.actionable"></commudle-event-horizontal-card>
                           </ng-container>
                           <ng-container *ngSwitchCase="EDbModels.HACKATHON">
-                            <h1>Hackathon</h1>
+                            <commudle-hackathon-medium-card
+                              [hackathon]="feed.actionable"
+                            ></commudle-hackathon-medium-card>
                           </ng-container>
                           <ng-container *ngSwitchCase="EDbModels.LAB">
                             <app-labs-card [lab]="feed.actionable"></app-labs-card>
@@ -112,6 +119,8 @@
                       </nb-card>
                     </ng-container>
                   </div>
+                  <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+                  <!-- </div> -->
                 </div>
                 <div class="no-upcoming-events" *ngIf="activityFeed.length === 0 && !loadingActivity">
                   <h3>No Recent Activity</h3>
@@ -131,3 +140,19 @@
     </div>
   </div>
 </div>
+<!-- <div *appBreakpoints="'<=lg'">
+                <div *ngFor="let communityBuild of communityBuilds" class="builds-card">
+                  <app-community-build-card [communityBuild]="communityBuild"></app-community-build-card>
+                </div>
+                <app-loading-spinner *ngIf="loading" class="com-mt-4"></app-loading-spinner>
+                <button
+                  (click)="getCommunityBuilds()"
+                  *ngIf="page_info?.has_next_page"
+                  fullWidth
+                  ghost
+                  nbButton
+                  class="view-more-button"
+                >
+                  View More
+                </button>
+              </div> -->
