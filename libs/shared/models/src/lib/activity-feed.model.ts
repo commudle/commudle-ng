@@ -4,8 +4,9 @@ export interface IActivityFeed {
   token: string;
   performer_type: EDbModels;
   action_text: string;
-  //TODO IEvent | IHackathon | ICommunityBuild | ILab
   actionable_type: EDbModels;
+  //TODO IEvent | IHackathon | ICommunityBuild | ILab
   actionable: any;
+  //TODO IUser | ICommunity
   performer: any;
 }

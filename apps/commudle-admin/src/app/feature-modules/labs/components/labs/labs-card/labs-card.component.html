@@ -19,7 +19,7 @@
           <div class="labs-card-title">
             <h4 class="title">{{ lab.name }}</h4>
             <p class="steps">
-              <span>{{ lab.lab_steps?.length }}</span
+              <span>{{ lab.lab_steps?.length || lab.lab_steps_count }}</span
               >&nbsp;<span>STEP{{ lab.lab_steps?.length > 1 ? 'S' : '' }}</span>
             </p>
           </div>
@@ -38,7 +38,7 @@
     </a>
 
     <div class="labs-card-content-suffix">
-      <!-- <app-user-profile-card-medium [user]="lab.user"></app-user-profile-card-medium> -->
+      <app-user-profile-card-medium [user]="lab.user"></app-user-profile-card-medium>
       <div class="labs-card-stats">
         <!-- <div class="labs-card-views">
             <nb-icon icon="eye-outline"></nb-icon>

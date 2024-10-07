@@ -26,6 +26,8 @@ export class UserDashboardComponent implements OnInit {
   page = 1;
   count = 5;
   total = 0;
+  activityTotal = 0;
+  activityPage = 1;
   loadingActivity = true;
 
   constructor(
@@ -75,12 +77,12 @@ export class UserDashboardComponent implements OnInit {
 
   getActivityFeed() {
     this.loadingActivity = true;
-    this.feedService.getActivityFeed(this.count, this.page).subscribe((data) => {
+    this.feedService.getActivityFeed(this.count, this.activityPage).subscribe((data) => {
       if (data) {
         this.activityFeed = data.values;
-        console.log(this.activityFeed);
-        this.page = data.page;
-        this.total = data.total;
+        // this.activityFeed = [...this.activityFeed, ...data.values];
+        this.activityPage = data.page;
+        this.activityTotal = data.total;
       }
       this.loadingActivity = false;
     });
