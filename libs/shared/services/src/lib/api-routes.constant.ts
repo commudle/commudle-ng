@@ -904,6 +904,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/round', //GET
     DELETE: 'api/v2/round', //DELETE
     UPDATE: 'api/v2/round', //PUT
+    CREATE_CHANNEL_FOR_ROUND: 'api/v2/round/create_channel_for_round', //POST
     PUBLIC: {
       INDEX: 'api/v2/round/public',
     },

@@ -22,6 +22,11 @@ export class RoundService {
     );
   }
 
+  createChannelForRound(roundId): Observable<IRound> {
+    const params = new HttpParams().set('round_id', roundId);
+    return this.http.post<IRound>(this.baseApiService.getRoute(API_ROUTES.ROUND.CREATE_CHANNEL_FOR_ROUND), params);
+  }
+
   updateRound(formData, roundId): Observable<IRound> {
     const params = new HttpParams().set('round_id', roundId);
     return this.http.put<IRound>(

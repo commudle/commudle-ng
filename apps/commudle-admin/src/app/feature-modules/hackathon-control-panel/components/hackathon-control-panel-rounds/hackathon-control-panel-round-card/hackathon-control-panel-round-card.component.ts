@@ -9,6 +9,8 @@ import * as moment from 'moment';
 })
 export class HackathonControlPanelRoundCardComponent implements OnInit {
   @Input() round: IRound;
+  @Input() communitySlug: string;
+  @Input() hackathonSlug: string;
   @Output() destroyRoundEvent: EventEmitter<IRound> = new EventEmitter();
   @Output() editRoundEvent: EventEmitter<IRound> = new EventEmitter();
   @Output() createChannelForRound: EventEmitter<IRound> = new EventEmitter();

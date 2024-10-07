@@ -8,4 +8,5 @@ export interface IRound {
   parent_id: number;
   user_id: number;
   order: number;
+  channel_id: number;
 }
