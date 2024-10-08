@@ -8,10 +8,10 @@ p {
 
 .pricing-container {
   .pricing-header {
-    @apply com-relative com-mx-auto md:com-pt-[132px] com-pt-[60px] md:com-px-4 com-px-3 com-text-center;
+    @apply com-relative com-mx-auto md:com-pt-[100px] com-pt-[60px] md:com-px-4 com-px-3 com-text-center;
 
     .heading {
-      @apply com-my-0 md:com-text-[60px] com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
+      @apply com-my-0 md:com-text-[52px] com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
 
       //TODO: Convert style css to tailwindCss
       span {
@@ -24,7 +24,7 @@ p {
     }
 
     .subheading {
-      @apply com-mt-4 com-mb-0 md:com-text-[22px] com-text-base com-text-gray-500 com-font-normal;
+      @apply com-mt-4 md:com-mb-[60px] com-mb-12 md:com-text-xl com-text-base com-text-gray-500 com-font-normal;
     }
   }
 
@@ -35,42 +35,45 @@ p {
       @apply com-mx-auto lg:com-w-full com-w-auto com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
     }
     .cards {
-      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-pt-20 com-pt-10 md:com-gap-x-9 md:com-gap-y-0 com-gap-x-0 com-gap-y-6;
+      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-pt-10 com-pt-10 md:com-gap-x-6 md:com-gap-y-0 com-gap-x-0 com-gap-y-6;
       .enterprise-card,
-      .students-card {
-        @apply md:com-w-[622px] com-w-auto com-border com-border-solid com-rounded-[20px] com-border-Bright-Gray com-bg-white com-m-0 md:com-mx-0 com-mx-3;
-        .title {
-          @apply md:com-p-8 com-px-4 com-pt-6 com-pb-4 com-text-center;
-          .heading {
-            @apply md:com-text-4xl com-text-2xl com-font-bold md:com-mb-6 com-mb-4 com-text-gray-900;
-          }
-          .sub-heading {
-            @apply md:com-text-xl com-text-base com-font-normal md:com-mb-8 com-mb-6 com-text-Yankees-Blue;
+      .startup-card,
+      .devrel-card {
+        @apply md:com-w-[410px] com-w-auto com-rounded-[20px] com-bg-white com-m-0 md:com-mx-0 com-mx-3 com-shadow-md md:com-p-6 com-p-4;
+      }
+
+      .title {
+        @apply com-p-0 md:com-pb-4 com-pb-4 com-text-center com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+        .heading {
+          @apply com-text-2xl com-font-semibold com-mb-3 com-text-Yankees-Blue;
+        }
+        .sub-heading {
+          @apply com-text-sm com-font-normal com-mb-6 com-text-gray-500;
+        }
+
+        .subscription {
+          .monthly-yearly {
+            @apply com-m-0 com-text-sm com-font-normal com-text-gray-500;
           }
         }
-        .card-image {
-          @apply md:com-h-[486px] md:com-w-[620px] com-h-[276px]  com-w-full com-overflow-hidden;
-          img {
-            @apply com-h-auto com-w-full com-object-cover;
-          }
+      }
+
+      .features {
+        @apply md:com-mt-4 com-mt-2 com-mb-3;
+
+        .features-heading {
+          @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mb-4;
         }
-        .features {
-          @apply md:com-mt-4 com-mt-2 md:com-mx-8 com-mx-4 md:com-mb-6 com-mb-4;
 
-          .features-heading {
-            @apply md:com-text-2xl com-text-base com-font-bold com-text-black md:com-mb-8 com-mb-4;
-          }
-
-          ul {
-            @apply com-m-0 com-p-0;
-            li {
-              @apply com-list-none com-mb-6 com-text-gray-500;
-              nb-icon {
-                @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-Azure com-mr-3;
-              }
-              span {
-                @apply md:com-text-lg com-text-sm com-font-semibold;
-              }
+        ul {
+          @apply com-m-0 com-p-0;
+          li {
+            @apply com-list-none com-pb-3 com-text-gray-500;
+            nb-icon {
+              @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-Azure com-mr-3;
+            }
+            span {
+              @apply com-text-sm com-font-medium;
             }
           }
         }
@@ -225,4 +228,25 @@ p {
 
 .faq {
   @apply com-m-0 com-mb-[138px] md:com-mt-32 com-mt-0 com-mx-3 md:com-mx-0;
+}
+
+.toggle-btn {
+  @apply com-flex com-justify-center com-p-1 com-bg-white com-w-fit com-rounded-[30px];
+
+  .monthly,
+  .anually {
+    @apply com-text-Yankees-Blue com-text-base com-font-semibold com-rounded-[30px] com-py-2 com-px-3;
+  }
+
+  .active {
+    @apply com-bg-primary-500 com-text-white;
+  }
+}
+
+.subscription-cards {
+  @apply com-flex com-flex-col com-justify-center com-items-center;
+}
+
+.active-border {
+  @apply com-border-3 com-border-solid com-border-primary-500;
 }

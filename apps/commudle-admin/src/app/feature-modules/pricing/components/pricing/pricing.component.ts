@@ -5,6 +5,7 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
+import { CmsService } from 'apps/shared-services/cms.service';
 
 @Component({
   selector: 'app-pricing',
@@ -15,6 +16,11 @@ export class PricingComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
   isMobileView = false;
   isDarkMode = false;
+  enterprise: any;
+  startup: any;
+  devrel: any;
+  isMonthly = true;
+  isAnually = false;
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
@@ -81,6 +87,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     private gtm: GoogleTagManagerService,
     private footerService: FooterService,
     private darkModeService: DarkModeService,
+    private cmsService: CmsService,
   ) {}
 
   ngOnInit(): void {
@@ -94,6 +101,9 @@ export class PricingComponent implements OnInit, OnDestroy {
       'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+    this.getEnterpriseData();
+    this.getStartupData();
+    this.getDevrelData();
   }
 
   ngOnDestroy(): void {
@@ -122,5 +132,28 @@ export class PricingComponent implements OnInit, OnDestroy {
         return "url('" + staticAssets.pricing_community_logo_desktop + "')";
       }
     }
+  }
+
+  getEnterpriseData(): void {
+    this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
+      this.enterprise = value;
+    });
+  }
+
+  getStartupData(): void {
+    this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
+      this.startup = value;
+    });
+  }
+
+  getDevrelData(): void {
+    this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
+      this.devrel = value;
+    });
+  }
+
+  toggleSubscription(value) {
+    this.isMonthly = value === 'monthly' ? true : false;
+    this.isAnually = value === 'anually' ? true : false;
   }
 }

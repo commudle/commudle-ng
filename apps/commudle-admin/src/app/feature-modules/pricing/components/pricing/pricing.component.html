@@ -12,68 +12,67 @@
       </div>
       <div>
         <div class="base-layout com-min-h-full">
-          <div class="cards">
-            <div class="enterprise-card">
-              <div class="title">
-                <p class="heading">Commudle for Businesses</p>
-                <p class="sub-heading">
-                  With Commudle, you can bring your DevRel Team, Community Leaders and Members, all at one place with
-                  seamless engagements and deep insights.
-                </p>
-                <a [routerLink]="['/fill-form', 2562]" (click)="gtmDatalayerPush('startup')">
-                  <button nbButton fullWidth status="info">Get Started</button></a
-                >
+          <div class="subscription-cards">
+            <div class="toggle-btn">
+              <div class="monthly" [ngClass]="{ active: isMonthly }" (click)="toggleSubscription('monthly')">
+                Monthly
               </div>
-              <div class="card-image">
-                <img src="{{ staticAssets.pricing_enterprise }}" />
-              </div>
-              <div class="features">
-                <p class="features-heading">For Businesses Focused on Techies</p>
-                <ul>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Organization dashboard</span>
-                  </li>
-
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community and events dashboard</span>
-                  </li>
-
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community & Event Analytics</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Access to Commudle Newsletter & On-platform campaigns</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Customized profile badges & highlights</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Exclusive conference collaboration invites</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Dedicated support for best use of Commudle</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">On platform promotional campaigns</span>
-                  </li>
-                </ul>
+              <div class="anually" [ngClass]="{ active: isAnually }" (click)="toggleSubscription('anually')">
+                Annual
               </div>
             </div>
-            <div class="students-card">
-              <div class="title">
-                <p class="heading">Commudle for Students</p>
-                <p class="sub-heading">
-                  Get a dedicated community space for all your members, their content, profiles & multiple engagement
-                  options to share knowledge and build recognition.
-                </p>
+            <div class="cards">
+              <div class="enterprise-card active-border">
+                <div class="title">
+                  <p class="heading">{{ this.enterprise.name }}</p>
+                  <p class="sub-heading">
+                    With Commudle, you can bring your DevRel Team, Community Leaders and Members, all at one place with
+                    seamless engagements and deep insights.
+                  </p>
+                  <div class="subscription">
+                    <div class="price"></div>
+                    <p class="monthly-yearly"></p>
+                  </div>
+                </div>
+                <div class="features">
+                  <p class="features-heading">For Businesses Focused on Techies</p>
+                  <ul>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Organization dashboard</span>
+                    </li>
+
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community and events dashboard</span>
+                    </li>
+
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community & Event Analytics</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Access to Commudle Newsletter & On-platform campaigns</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Customized profile badges & highlights</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Exclusive conference collaboration invites</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Dedicated support for best use of Commudle</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">On platform promotional campaigns</span>
+                    </li>
+                  </ul>
+                </div>
                 <a
                   [routerLink]="['/student-non-profit-community-support']"
                   (click)="gtmDatalayerPush('non_profit')"
@@ -81,47 +80,121 @@
                   ><button nbButton outline fullWidth status="info">Apply Now</button></a
                 >
               </div>
-              <div class="card-image">
-                <img src="{{ staticAssets.pricing_students }}" />
+              <div class="startup-card">
+                <div class="title">
+                  <p class="heading">Commudle for Students</p>
+                  <p class="sub-heading">
+                    Get a dedicated community space for all your members, their content, profiles & multiple engagement
+                    options to share knowledge and build recognition.
+                  </p>
+                  <div class="subscription">
+                    <div class="price"></div>
+                    <p class="monthly-yearly"></p>
+                  </div>
+                </div>
+                <div class="features">
+                  <p class="features-heading">For The Tech Community Leaders</p>
+                  <ul>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community and events dashboard</span>
+                    </li>
+
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Member management</span>
+                    </li>
+
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community & Event Analytics</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community newsletters</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Online & Offline events with smart shortlisting</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Channels and forums</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Generative member growth</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Networking with experts and community leaders</span>
+                    </li>
+                  </ul>
+                </div>
+                <a
+                  [routerLink]="['/student-non-profit-community-support']"
+                  (click)="gtmDatalayerPush('non_profit')"
+                  class="buy-btn"
+                  ><button nbButton outline fullWidth status="info">Apply Now</button></a
+                >
               </div>
-              <div class="features">
-                <p class="features-heading">For The Tech Community Leaders</p>
-                <ul>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community and events dashboard</span>
-                  </li>
+              <div class="devrel-card">
+                <div class="title">
+                  <p class="heading">Commudle for Students</p>
+                  <p class="sub-heading">
+                    Get a dedicated community space for all your members, their content, profiles & multiple engagement
+                    options to share knowledge and build recognition.
+                  </p>
+                  <div class="subscription">
+                    <div class="price"></div>
+                    <p class="monthly-yearly"></p>
+                  </div>
+                </div>
+                <div class="features">
+                  <p class="features-heading">For The Tech Community Leaders</p>
+                  <ul>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community and events dashboard</span>
+                    </li>
 
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Member management</span>
-                  </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Member management</span>
+                    </li>
 
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community & Event Analytics</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community newsletters</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Online & Offline events with smart shortlisting</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Channels and forums</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Generative member growth</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Networking with experts and community leaders</span>
-                  </li>
-                </ul>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community & Event Analytics</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Community newsletters</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Online & Offline events with smart shortlisting</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Channels and forums</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Generative member growth</span>
+                    </li>
+                    <li>
+                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                      <span class="feature">Networking with experts and community leaders</span>
+                    </li>
+                  </ul>
+                </div>
+                <a
+                  [routerLink]="['/student-non-profit-community-support']"
+                  (click)="gtmDatalayerPush('non_profit')"
+                  class="buy-btn"
+                  ><button nbButton outline fullWidth status="info">Apply Now</button></a
+                >
               </div>
             </div>
           </div>
