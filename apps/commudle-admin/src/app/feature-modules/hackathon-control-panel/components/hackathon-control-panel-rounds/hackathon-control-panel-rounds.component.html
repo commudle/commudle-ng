@@ -119,14 +119,13 @@
 <ng-template #conformDeleteDialogBox let-ref="dialogRef" let-data>
   <nb-card>
     <nb-card-header class="actions">
-      <span>Confirm delete Round</span>
+      <span>Are you sure?</span>
       <button nbButton ghost (click)="ref.close()">
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
     <nb-card-body>
-      <p>Are you sure, you want to delete Round?</p>
-      <p>If you delete this round then channel associate with this round also be deleted!</p>
+      <p>If you delete this round, all the associated channels will also be deleted.</p>
     </nb-card-body>
     <nb-card-footer class="actions">
       <button nbButton status="primary" (click)="destroyRound(data.roundId, data.index); ref.close()">Delete</button>
@@ -146,7 +145,8 @@
       </button>
     </nb-card-header>
     <nb-card-body>
-      <p>Are you sure you want to create a channel for {{ data.round.name }}?</p>
+      <span>Are you sure you want to create a channel for {{ data.round.name }}?</span>
+      <br />
       <span>This will:</span>
       <ol>
         <li>Create a channel and add all the selected teams and their members in the channel automatically.</li>
@@ -157,7 +157,7 @@
       <button nbButton status="primary" (click)="createChannel(data.round, data.index); ref.close()">
         Create Channel
       </button>
-      <button nbButton status="danger" ghost (click)="ref.close()">Close</button>
+      <button nbButton status="danger" ghost (click)="ref.close()">Cancel</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>

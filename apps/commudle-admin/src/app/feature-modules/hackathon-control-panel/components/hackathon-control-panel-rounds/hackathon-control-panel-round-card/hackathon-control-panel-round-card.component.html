@@ -9,13 +9,16 @@
   <nb-card-footer>
     <button nbButton ghost status="primary" (click)="editRound(round)">Edit</button>
     <button nbButton ghost status="danger" (click)="destroyRound(round.id)">Delete</button>
-    <button nbButton ghost status="info" (click)="createChannel()" *ngIf="!round.channel_id">Create Channel</button>
+    <button nbButton ghost status="info" (click)="createChannel()" *ngIf="!round.channel_id">
+      <fa-icon [icon]="icons.faHashtag"></fa-icon>
+      &nbsp; Create Channel
+    </button>
     <a
       *ngIf="round.channel_id"
       [routerLink]="['/communities', communitySlug, 'hackathons', hackathonSlug, 'channels', round.channel_id]"
       target="_blank"
     >
-      <button nbButton ghost status="info">Go To Channel</button>
+      <button nbButton ghost status="info"><fa-icon [icon]="icons.faHashtag"></fa-icon>&nbsp; Go To Channel</button>
     </a>
   </nb-card-footer>
 </nb-card>
