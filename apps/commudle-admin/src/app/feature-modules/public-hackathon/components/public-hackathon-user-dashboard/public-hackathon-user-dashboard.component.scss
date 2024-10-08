@@ -20,3 +20,25 @@ nb-card {
     }
   }
 }
+
+.channels-list-cards {
+  @apply com-flex com-flex-wrap com-gap-4 com-p-5;
+  a {
+    @apply com-no-underline;
+    .channel-list-card {
+      @apply com-border com-rounded-lg com-p-4 com-h-32 com-w-72 com-border-gray-200 com-border-solid hover:com-shadow-Card;
+      p {
+        @apply com-p-0 com-m-0;
+      }
+      .name {
+        @apply com-text-base com-font-semibold com-line-clamp-1;
+      }
+      .member-count {
+        @apply com-text-sm;
+      }
+      .descriptions {
+        @apply com-mt-4 com-text-sm com-text-Quartz com-line-clamp-2;
+      }
+    }
+  }
+}

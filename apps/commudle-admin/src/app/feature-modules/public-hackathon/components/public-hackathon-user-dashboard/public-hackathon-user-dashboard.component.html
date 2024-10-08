@@ -27,6 +27,23 @@
   </div>
 </div>
 
+<div class="user-channels-list">
+  <nb-card>
+    <nb-card-body class="channels-list-cards">
+      <div *ngFor="let channel of channels">
+        <a [routerLink]="['../channels', channel.id]">
+          <div class="channel-list-card">
+            <div>
+              <p class="name">{{ channel.name }}</p>
+              <p class="members-count">{{ channel.member_count }} members</p>
+              <p class="descriptions">{{ channel.description }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
 <ng-template #submitProject>
   <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
     <commudle-public-hackathon-registration

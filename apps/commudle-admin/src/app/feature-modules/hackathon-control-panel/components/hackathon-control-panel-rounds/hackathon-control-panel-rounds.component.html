@@ -124,7 +124,10 @@
         <fa-icon [icon]="icons.faXmark"></fa-icon>
       </button>
     </nb-card-header>
-    <nb-card-body>Are you sure, you want to delete Round?</nb-card-body>
+    <nb-card-body>
+      <p>Are you sure, you want to delete Round?</p>
+      <p>If you delete this round then channel associate with this round also be deleted!</p>
+    </nb-card-body>
     <nb-card-footer class="actions">
       <button nbButton status="primary" (click)="destroyRound(data.roundId, data.index); ref.close()">Delete</button>
       <button nbButton status="danger" (click)="ref.close()" outline>Cancel</button>
