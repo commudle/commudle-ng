@@ -3,7 +3,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from '@commudle/shared-services';
 import { NbDialogRef } from '@commudle/theme';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
-import { EInvitationStatus } from 'apps/shared-models/hackathon-user-response.model';
+import { EInvitationStatus } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-hackathon-status-filter-general-emails',

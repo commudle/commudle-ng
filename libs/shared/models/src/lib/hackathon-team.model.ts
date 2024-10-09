@@ -5,6 +5,7 @@ import { IEntityUpdate } from './entity-update.model';
 import { IHackathonWinner } from './hackathon-winner.model';
 import { ICommunity } from './community.model';
 import { IHackathon } from './hackathon.model';
+import { IHackathonUserResponse } from './hackathon-user-response.model';
 
 export interface IHackathonTeam {
   id: number;
@@ -22,6 +23,8 @@ export interface IHackathonTeam {
   prize_selected: boolean; //use for display only not related to API requests
   hackathon: IHackathon;
   community: ICommunity;
+  hackathon_user_responses: IHackathonUserResponse[];
+  user_id: number;
 }
 
 export enum EHackathonRegistrationStatus {

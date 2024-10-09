@@ -888,6 +888,7 @@ export const API_ROUTES = {
     UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
     COMPLETE_HUR_STATUS: 'api/v2/hackathon_user_response/complete_hur_status', //PUT
     GET_DATA_FORM_RESPONSES: 'api/v2/hackathon_user_response/get_data_form_responses', //GET
+    REMOVE_TEAM_MEMBER: 'api/v2/hackathon_user_response/remove_team_member', //PUT
   },
 
   ENTITY_UPDATES: {

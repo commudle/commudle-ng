@@ -32,6 +32,7 @@ import { UserprofileDetailsComponent } from 'apps/commudle-admin/src/app/feature
 import { PublicHackathonUserDashboardComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-user-dashboard/public-hackathon-user-dashboard.component';
 import { PublicHackathonRegistrationComponent } from 'apps/commudle-admin/src/app/feature-modules/public-hackathon/components/public-hackathon-registration/public-hackathon-registration.component';
 import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-modules/community-channels/community-channels.module';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -46,15 +47,14 @@ import { CommunityChannelsModule } from 'apps/commudle-admin/src/app/feature-mod
     NbStepperModule,
     NbIconModule,
     FontAwesomeModule,
-
     SharedComponentsModule,
     NewSharedComponentsModule,
     MiniUserProfileModule,
     CommunityChannelsModule,
-
     //standalone
     UserProfileComponent,
     UserprofileDetailsComponent,
+    SharedPipesModule,
   ],
   declarations: [
     PublicHackathonHomepageComponent,

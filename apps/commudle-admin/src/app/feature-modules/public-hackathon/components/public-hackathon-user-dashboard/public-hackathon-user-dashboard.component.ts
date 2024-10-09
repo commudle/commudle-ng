@@ -1,10 +1,18 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { EDbModels, EDiscussionType, ICommunityChannel, IHackathonTeam } from '@commudle/shared-models';
-import { AuthService, CommunityChannelsService } from '@commudle/shared-services';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  EDbModels,
+  EDiscussionType,
+  ICommunityChannel,
+  IHackathonTeam,
+  IHackathonUserResponse,
+} from '@commudle/shared-models';
+import { AuthService, CommunityChannelsService, ToastrService } from '@commudle/shared-services';
+import { NbDialogService } from '@commudle/theme';
+import { faArrowRight, faUserMinus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
+import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
@@ -16,6 +24,8 @@ import { Subscription } from 'rxjs';
 export class PublicHackathonUserDashboardComponent implements OnInit {
   icons = {
     faArrowRight,
+    faUserMinus,
+    faXmark,
   };
   hackathon: IHackathon;
   subscriptions: Subscription[] = [];
@@ -31,6 +41,9 @@ export class PublicHackathonUserDashboardComponent implements OnInit {
     private hrgService: HackathonResponseGroupService,
     private authService: AuthService,
     private channelService: CommunityChannelsService,
+    private nbDialogService: NbDialogService,
+    private hackathonUserResponseService: HackathonUserResponsesService,
+    private toasterService: ToastrService,
   ) {}
 
   ngOnInit() {
@@ -65,5 +78,31 @@ export class PublicHackathonUserDashboardComponent implements OnInit {
       .subscribe((data) => {
         this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
       });
+  }
+
+  openDialogBox(
+    dialog: TemplateRef<any>,
+    hur: IHackathonUserResponse,
+    team: IHackathonTeam,
+    index: number,
+    teamIndex: number,
+  ) {
+    this.nbDialogService.open(dialog, {
+      context: {
+        hur: hur,
+        team: team,
+        index: index,
+        team_index: teamIndex,
+      },
+    });
+  }
+
+  removeMember(hur: IHackathonUserResponse, team: IHackathonTeam, index: number, teamIndex: number) {
+    this.hackathonUserResponseService.removeTeamMember(team.id, hur.id).subscribe((data) => {
+      if (data) {
+        this.toasterService.successDialog('Team member removed from your team');
+        this.userTeamDetails[teamIndex].hackathon_user_responses.splice(index, 1);
+      }
+    });
   }
 }
