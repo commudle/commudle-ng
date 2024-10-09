@@ -42,18 +42,39 @@ p {
         @apply md:com-w-[410px] com-w-auto com-rounded-[20px] com-bg-white com-m-0 md:com-mx-0 com-mx-3 com-shadow-md md:com-p-6 com-p-4;
       }
 
-      .title {
-        @apply com-p-0 md:com-pb-4 com-pb-4 com-text-center com-border-0 com-border-b com-border-solid com-border-Bright-Gray;
+      .title-cards {
+        @apply com-p-0 md:com-pb-4 com-pb-4 com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-flex com-flex-col com-items-start;
         .heading {
           @apply com-text-2xl com-font-semibold com-mb-3 com-text-Yankees-Blue;
         }
         .sub-heading {
-          @apply com-text-sm com-font-normal com-mb-6 com-text-gray-500;
+          @apply com-text-sm com-font-normal com-pb-6 com-text-gray-500 com-line-clamp-3;
         }
 
         .subscription {
+          @apply com-flex com-flex-col com-items-start com-flex-shrink-0;
+
+          .price {
+            @apply com-flex com-flex-row com-items-center;
+
+            .current-price {
+              @apply com-text-[40px] com-font-bold com-text-Yankees-Blue com-m-0 com-mr-2;
+            }
+
+            .discount {
+              @apply com-flex com-flex-col;
+
+              .discount-percentage {
+                @apply com-text-sm com-font-semibold com-text-primary-500;
+              }
+
+              .discount-price {
+                @apply com-text-sm com-font-semibold com-text-gray-500 com-line-through;
+              }
+            }
+          }
           .monthly-yearly {
-            @apply com-m-0 com-text-sm com-font-normal com-text-gray-500;
+            @apply com-m-0 com-mt-2 com-text-sm com-font-normal com-text-gray-500;
           }
         }
       }

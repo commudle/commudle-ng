@@ -135,7 +135,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   }
 
   getEnterpriseData(): void {
-    this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
+    this.cmsService.getDataBySlug('pp-commudle-for-enterprises').subscribe((value) => {
       this.enterprise = value;
     });
   }
@@ -147,7 +147,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   }
 
   getDevrelData(): void {
-    this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
+    this.cmsService.getDataBySlug('pp-commudle-for-enterprises').subscribe((value) => {
       this.devrel = value;
     });
   }

@@ -22,16 +22,54 @@
               </div>
             </div>
             <div class="cards">
-              <div class="enterprise-card active-border">
-                <div class="title">
+              <div *ngIf="this.enterprise" class="enterprise-card active-border">
+                <div class="title-cards">
                   <p class="heading">{{ this.enterprise.name }}</p>
                   <p class="sub-heading">
-                    With Commudle, you can bring your DevRel Team, Community Leaders and Members, all at one place with
-                    seamless engagements and deep insights.
+                    {{ this.enterprise.description }}
                   </p>
-                  <div class="subscription">
-                    <div class="price"></div>
-                    <p class="monthly-yearly"></p>
+                  <div *ngIf="isMonthly || isAnually" class="subscription">
+                    <div *ngIf="this.enterprise.priceDetails" class="price">
+                      <ng-container *ngIf="isMonthly">
+                        <p class="current-price">
+                          {{
+                            this.enterprise.priceDetails[1]?.price_after_discount
+                              ? this.enterprise.priceDetails[1].price_after_discount
+                              : this.enterprise.priceDetails[1].price
+                          }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="isAnually">
+                        <p class="current-price">
+                          {{
+                            this.enterprise.priceDetails[0]?.price_after_discount
+                              ? this.enterprise.priceDetails[0].price_after_discount
+                              : this.enterprise.priceDetails[0].price
+                          }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="this.enterprise.priceDetails[1]?.price_after_discount && isMonthly">
+                        <div class="discount">
+                          <p class="discount-percentage">
+                            {{ this.enterprise.priceDetails[1].discount_percentage }}
+                          </p>
+                          <p class="discount-price">
+                            {{ this.enterprise.priceDetails[1].price }}
+                          </p>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="this.enterprise.priceDetails[0]?.price_after_discount && isAnually">
+                        <div class="discount">
+                          <p class="discount-percentage">
+                            {{ this.enterprise.priceDetails[0].discount_percentage }}
+                          </p>
+                          <p class="discount-price">
+                            {{ this.enterprise.priceDetails[0].price }}
+                          </p>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <p class="monthly-yearly">{{ isMonthly ? 'Per Community/Month' : 'Per Community/Annual' }}</p>
                   </div>
                 </div>
                 <div class="features">
