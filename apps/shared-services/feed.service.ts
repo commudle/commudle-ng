@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiRoutesService } from './api-routes.service';
 import { API_ROUTES } from './api-routes.constants';
-import { IPaginationCount, IUpcomingEventHackathon, IActivityFeed } from '@commudle/shared-models';
+import { IPaginationCount, IUpcomingEventHackathon, IActivityFeed, IPagination } from '@commudle/shared-models';
 
 @Injectable({
   providedIn: 'root',
@@ -19,19 +19,16 @@ export class FeedService {
     );
   }
 
-  getActivityFeed(count?, page?): Observable<IPaginationCount<IActivityFeed>> {
-    const params = new HttpParams();
-    if (count) {
-      params.set('count', count);
+  getActivityFeed(limit?, after?): Observable<IPagination<IActivityFeed>> {
+    let params = new HttpParams();
+    if (limit) {
+      params = params.set('limit', limit);
     }
-    if (page) {
-      params.set('page', page);
+    if (after) {
+      params = params.set('after', after);
     }
-    return this.http.get<IPaginationCount<IActivityFeed>>(
-      this.apiRoutesService.getRoute(API_ROUTES.FEED.ACTIVITY_FEED),
-      {
-        params,
-      },
-    );
+    return this.http.get<IPagination<IActivityFeed>>(this.apiRoutesService.getRoute(API_ROUTES.FEED.ACTIVITY_FEED), {
+      params,
+    });
   }
 }

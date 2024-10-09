@@ -26,9 +26,11 @@ export class UserDashboardComponent implements OnInit {
   page = 1;
   count = 5;
   total = 0;
-  activityTotal = 0;
-  activityPage = 1;
-  loadingActivity = true;
+  pageInfo: IPageInfo;
+  loadActivity = true;
+  limit = 5;
+  activityTotal: number;
+  loadingActivity = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -76,15 +78,18 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getActivityFeed() {
+    if (this.loadingActivity) {
+      return;
+    }
     this.loadingActivity = true;
-    this.feedService.getActivityFeed(this.count, this.activityPage).subscribe((data) => {
+    this.feedService.getActivityFeed(this.limit, this.pageInfo?.end_cursor).subscribe((data) => {
       if (data) {
-        this.activityFeed = data.values;
-        // this.activityFeed = [...this.activityFeed, ...data.values];
-        this.activityPage = data.page;
+        this.activityFeed = this.activityFeed.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
         this.activityTotal = data.total;
+        this.pageInfo = data.page_info;
       }
       this.loadingActivity = false;
+      this.loadActivity = false;
     });
   }
 }
