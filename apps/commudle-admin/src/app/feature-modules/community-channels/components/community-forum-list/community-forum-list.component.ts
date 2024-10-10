@@ -1,4 +1,4 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { CommunityChannelNotificationsChannel } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/websockets/community-channel-notifications.channel';
@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NbDialogService } from '@commudle/theme';
 import { NewCommunityChannelComponent } from 'apps/commudle-admin/src/app/feature-modules/community-channels/components/new-community-channel/new-community-channel.component';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
-import { EDbModels, ICommunityGroup } from '@commudle/shared-models';
+import { EDbModels, ICommunityGroup, IHackathon } from '@commudle/shared-models';
 
 interface EGroupedCommunityChannels {
   [groupName: string]: ICommunityChannel[];
@@ -40,7 +40,7 @@ export class CommunityForumListComponent implements OnInit, OnDestroy {
   discussionType = EDiscussionType;
 
   subscriptions: Subscription[] = [];
-  parent: ICommunity | ICommunityGroup;
+  parent: ICommunity | ICommunityGroup | IHackathon;
   parentType: EDbModels;
 
   @Output() updateSelectedForum = new EventEmitter<ICommunityChannel>();

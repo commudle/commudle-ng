@@ -4,9 +4,9 @@ import { SeoService } from '@commudle/shared-services';
 import { NbDialogService } from '@commudle/theme';
 import { UserConsentsComponent } from 'apps/commudle-admin/src/app/app-shared-components/user-consents/user-consents.component';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
-import { IHackathonUserResponse, EInvitationStatus } from 'apps/shared-models/hackathon-user-response.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { ConsentTypesEnum } from 'apps/shared-models/enums/consent-types.enum';
+import { EInvitationStatus, IHackathonUserResponse } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-hackathon-team-confirmation',

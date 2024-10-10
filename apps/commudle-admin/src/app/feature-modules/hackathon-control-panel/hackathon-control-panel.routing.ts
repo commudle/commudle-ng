@@ -1,4 +1,4 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Routes, RouterModule } from '@angular/router';
 import { HackathonControlPanelDashboardComponent } from './components/hackathon-control-panel-dashboard/hackathon-control-panel-dashboard.component';
 import { HackathonControlPanelBasicFormComponent } from './components/hackathon-control-panel-basic-form/hackathon-control-panel-basic-form.component';
@@ -17,6 +17,7 @@ import { QuestionTypesResolver } from 'apps/shared-resolvers/question-types.reso
 import { HackathonControlPanelReviewComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-review/hackathon-control-panel-review.component';
 import { HackathonControlPanelRoundsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-rounds/hackathon-control-panel-rounds.component';
 import { HackathonControlPanelEmailsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-emails/hackathon-control-panel-emails.component';
+import { HackathonControlPanelChannelsComponent } from 'apps/commudle-admin/src/app/feature-modules/hackathon-control-panel/components/hackathon-control-panel-channels/hackathon-control-panel-channels.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,34 @@ const routes: Routes = [
           {
             path: 'emails',
             component: HackathonControlPanelEmailsComponent,
+          },
+          {
+            path: 'channels',
+            component: HackathonControlPanelChannelsComponent,
+          },
+          // {
+          //   path: 'channels',
+          //   component: CommunityChannelsListComponent,
+          // },
+          {
+            path: 'channels/:community_channel_id',
+            component: HackathonControlPanelChannelsComponent,
+          },
+          // {
+          //   path: 'channels/join/:token',
+          //   component: CommunityChannelsListComponent,
+          // },
+          // {
+          //   path: 'channels/email-join/:email_token',
+          //   component: CommunityChannelsListComponent,
+          // },
+          {
+            path: 'forums',
+            component: HackathonControlPanelChannelsComponent,
+          },
+          {
+            path: 'forums/:community_channel_id',
+            component: HackathonControlPanelChannelsComponent,
           },
         ],
       },

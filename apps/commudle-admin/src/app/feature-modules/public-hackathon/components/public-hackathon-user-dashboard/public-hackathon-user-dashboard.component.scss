@@ -20,3 +20,45 @@ nb-card {
     }
   }
 }
+
+.channels-list-cards {
+  @apply com-grid com-grid-cols-1 md:com-grid-cols-3 com-gap-4 com-p-5;
+  a {
+    @apply com-no-underline;
+    .channel-list-card {
+      @apply com-border com-rounded-lg com-p-4 com-h-32 com-border-gray-200 com-border-solid hover:com-shadow-Card;
+      p {
+        @apply com-p-0 com-m-0;
+      }
+      .name {
+        @apply com-text-base com-font-semibold com-line-clamp-1;
+      }
+      .member-count {
+        @apply com-text-sm;
+      }
+      .descriptions {
+        @apply com-mt-4 com-text-sm com-text-Quartz com-line-clamp-2;
+      }
+    }
+  }
+}
+
+.team-details-container {
+  .team-detail {
+    @apply com-flex com-items-center com-justify-between;
+    .details {
+      @apply com-flex com-flex-col;
+    }
+  }
+  .team-detail:not(:last-child) {
+    @apply com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-mb-2 com-pb-2;
+  }
+}
+
+.remove-teammate-dialogbox {
+  @apply md:com-max-w-[30dvw];
+  nb-card-header,
+  nb-card-footer {
+    @apply com-flex com-justify-between com-items-center;
+  }
+}

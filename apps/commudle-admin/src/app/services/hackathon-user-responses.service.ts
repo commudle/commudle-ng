@@ -3,7 +3,7 @@ import { API_ROUTES } from '@commudle/shared-services';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
-import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
+import { IHackathonUserResponse } from '@commudle/shared-models';
 @Injectable({
   providedIn: 'root',
 })
@@ -92,6 +92,16 @@ export class HackathonUserResponsesService {
       this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.COMPLETE_HUR_STATUS),
       {
         hackathon_user_response_id: hackathonUserResponseId,
+      },
+    );
+  }
+
+  removeTeamMember(hackathonTeamId, hackathonUserResponseId): Observable<boolean> {
+    return this.http.put<boolean>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHON_USER_RESPONSE.REMOVE_TEAM_MEMBER),
+      {
+        hackathon_user_response_id: hackathonUserResponseId,
+        hackathon_team_id: hackathonTeamId,
       },
     );
   }
