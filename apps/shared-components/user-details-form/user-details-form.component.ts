@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { IHackathonUserResponse } from '@commudle/shared-models';
 import { faFileImage } from '@fortawesome/free-solid-svg-icons';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
-import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
 

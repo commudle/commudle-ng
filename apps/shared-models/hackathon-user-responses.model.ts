@@ -1,5 +1,4 @@
-import { IHackathonTeam } from '@commudle/shared-models';
-import { IHackathonUserResponse } from './hackathon-user-response.model';
+import { IHackathonTeam, IHackathonUserResponse } from '@commudle/shared-models';
 
 export interface IHackathonUserResponses {
   team: IHackathonTeam;
