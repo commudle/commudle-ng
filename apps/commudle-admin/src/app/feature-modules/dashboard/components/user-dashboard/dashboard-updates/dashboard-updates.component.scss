@@ -229,7 +229,7 @@ canvas {
 }
 
 .registration-grid {
-  @apply com-grid com-gap-2;
+  @apply com-grid com-gap-2 com-w-full;
 }
 
 .registration-header {

@@ -14,6 +14,7 @@ import {
   IHackathonTeam,
   IHackathonTrack,
   IPagination,
+  IPaginationCount,
 } from '@commudle/shared-models';
 
 interface publicHackathonsList {
@@ -65,7 +66,7 @@ export class HackathonService {
     return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX), { params });
   }
 
-  pIndexHackathons(parentId, parentType: string): Observable<publicHackathonsList> {
+  pIndexHackathons(parentId, parentType: string, when?: string): Observable<IPaginationCount<IHackathon>> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -77,9 +78,15 @@ export class HackathonService {
         break;
       }
     }
-    return this.http.get<publicHackathonsList>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), {
-      params,
-    });
+    if (when) {
+      params = params.set('when', when);
+    }
+    return this.http.get<IPaginationCount<IHackathon>>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX),
+      {
+        params,
+      },
+    );
   }
 
   showHackathon(hackathonId): Observable<IHackathon> {

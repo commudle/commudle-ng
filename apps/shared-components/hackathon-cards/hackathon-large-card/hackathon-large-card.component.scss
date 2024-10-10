@@ -1,7 +1,7 @@
 a {
   @apply com-no-underline com-text-inherit;
   .hackathon-card {
-    @apply hover:com-shadow-md com-min-h-[430px];
+    @apply hover:com-shadow-md com-min-h-[430px] com-m-0;
     nb-card-header {
       @apply com-p-0;
       img {
@@ -24,7 +24,7 @@ a {
         @apply com-flex com-gap-3 com-items-center;
         .date,
         .location-type {
-          @apply com-bg-[#F1F5F9] com-px-3 com-py-1 com-text-lg com-font-medium com-rounded;
+          @apply com-bg-[#F1F5F9] com-px-3 com-py-1 com-text-lg com-font-medium com-rounded com-text-gray-800;
         }
       }
       .prize-action-button {
