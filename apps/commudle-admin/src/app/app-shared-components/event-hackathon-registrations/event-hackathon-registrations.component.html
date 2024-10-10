@@ -21,10 +21,28 @@
                 <div *ngFor="let registration of registrations; let i = index">
                   <div class="registration-row">
                     <div class="event-title-date">
-                      <p class="event-title" *ngIf="registration.registration_for === EDbModels.EVENT">
+                      <p
+                        class="event-title"
+                        *ngIf="registration.registration_for === EDbModels.EVENT"
+                        [routerLink]="[
+                          '/communities',
+                          registration.event.kommunity.slug,
+                          'events',
+                          registration.event.slug
+                        ]"
+                      >
                         <span class="name">{{ registration.event.name }}</span>
                       </p>
-                      <p *ngIf="registration.registration_for === EDbModels.HACKATHON" class="event-title">
+                      <p
+                        *ngIf="registration.registration_for === EDbModels.HACKATHON"
+                        class="event-title"
+                        [routerLink]="[
+                          '/communities',
+                          registration.hackathon.community.slug,
+                          'hackathons',
+                          registration.hackathon.slug
+                        ]"
+                      >
                         <fa-icon [icon]="faTrophy"></fa-icon>
                         <span class="name">{{ registration.hackathon?.name }}</span>
                       </p>
@@ -35,7 +53,14 @@
                         moment(registration.hackathon.start_date).format('Do MMMM, YYYY')
                       }}</span>
                     </div>
-                    <div class="table-type">{{ registration.registration_for }}</div>
+                    <div class="table-type-form-type">
+                      <p class="table-type">{{ registration.registration_for }}</p>
+                      <p *ngIf="registration.registration_for === EDbModels.EVENT" class="form-type">
+                        {{ registration.event_data_form_entity_group?.name }}&nbsp;({{
+                          registration.event_data_form_entity_group?.registration_type?.name
+                        }})
+                      </p>
+                    </div>
                     <span class="date-mobile" *ngIf="registration.registration_for === EDbModels.EVENT">{{
                       moment(registration.event.start_time).format('Do MMMM, YYYY')
                     }}</span>
@@ -170,7 +195,18 @@
                       Go to Dashboard
                     </button>
                   </div>
-                  <div *ngIf="showEntryPass[i]" class="qr-code mobile-qr">
+                  <div
+                    *ngIf="showEntryPass[i]"
+                    (click)="
+                      openQrCode(
+                        qrCodePopup,
+                        registration.event.name,
+                        registration.event_data_form_entity_group?.name,
+                        registration.entry_pass.unique_code
+                      )
+                    "
+                    class="qr-code mobile-qr"
+                  >
                     <nb-card>
                       <nb-card-body>
                         <canvas id="qr-code-mobile"></canvas>
@@ -182,7 +218,18 @@
               </div>
             </div>
             <ng-container *ngFor="let registration of registrations; let i = index">
-              <div *ngIf="showEntryPass[i]" class="qr-code desktop-qr">
+              <div
+                *ngIf="showEntryPass[i]"
+                (click)="
+                  openQrCode(
+                    qrCodePopup,
+                    registration.event.name,
+                    registration.event_data_form_entity_group?.name,
+                    registration.entry_pass.unique_code
+                  )
+                "
+                class="qr-code desktop-qr"
+              >
                 <nb-card>
                   <nb-card-body>
                     <canvas id="qr-code-desktop"></canvas>
@@ -208,3 +255,22 @@
     </div>
   </div>
 </div>
+
+<ng-template #qrCodePopup let-data let-ref="dialogRef">
+  <nb-card class="template">
+    <nb-card-header>
+      <p>{{ data.eventName }}&nbsp; ({{ data.formName }})</p>
+      <button ghost nbButton size="small" (click)="ref.close()">
+        <nb-icon icon="close"></nb-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      <nb-card class="qr-code-template">
+        <nb-card-body>
+          <canvas id="template-qr"></canvas>
+          <p class="qr-unique-code-template">{{ data.entryPassCode }}</p>
+        </nb-card-body>
+      </nb-card>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

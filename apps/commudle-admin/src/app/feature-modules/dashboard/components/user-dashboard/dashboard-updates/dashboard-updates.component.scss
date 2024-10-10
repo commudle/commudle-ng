@@ -5,7 +5,7 @@ nb-card {
     @apply com-text-xs;
   }
 
-  nb-card-header {
+  .header {
     @apply md:com-p-4 com-px-0 com-pt-4 md:com-pb-0 com-flex com-flex-col com-items-center com-justify-center com-text-center com-sticky com-top-[50px] com-z-10 com-border-0  com-cursor-pointer;
 
     h2 {
@@ -33,7 +33,7 @@ nb-card {
 
     .registrations {
       @apply com-bg-white;
-      nb-card-body {
+      .registrations-container {
         @apply com-flex com-flex-col md:com-items-start com-items-center com-w-full md:com-p-4 com-p-3;
       }
     }
@@ -51,7 +51,7 @@ nb-card {
     }
 
     .event-title {
-      @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start com-m-0;
+      @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start com-m-0 com-cursor-pointer;
 
       fa-icon {
         @apply com-mr-1 com-text-primary-500 com-text-xs  com-mt-1;
@@ -78,8 +78,16 @@ nb-card {
       @apply com-flex com-flex-col;
     }
 
+    .table-type-form-type {
+      @apply com-flex com-flex-col  md:com-justify-self-start com-justify-self-end;
+
+      .form-type {
+        @apply com-text-gray-500 com-text-10px com-font-medium com-m-0;
+      }
+    }
+
     .table-type {
-      @apply com-text-xs com-font-medium com-text-gray-500 md:com-justify-self-start com-justify-self-end;
+      @apply com-text-xs com-font-medium com-text-gray-500 com-m-0 md:com-text-start com-text-end;
     }
 
     .table-status {
@@ -108,17 +116,6 @@ nb-card {
 
     .cancelled {
       @apply com-text-red-500;
-    }
-
-    .qr-code {
-      @apply md:com-w-[152px] com-w-full md:com-h-[152px] com-h-[180px] md:com-pl-4 com-pl-0 com-bg-white md:com-pt-0 com-pt-2  com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray;
-      nb-card {
-        @apply com-m-0 com-w-full com-h-full;
-
-        nb-card-body {
-          @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50 com-flex com-items-center;
-        }
-      }
     }
 
     .channel-updates {
@@ -269,5 +266,45 @@ canvas {
 }
 
 .qr-code-display {
-  @apply com-m-0 com-text-xs com-font-medium;
+  @apply com-m-0 com-text-xs com-font-medium com-text-tblack;
+}
+
+.qr-code {
+  @apply md:com-w-[152px] com-w-full md:com-h-[152px] com-h-[180px] md:com-pl-4 com-pl-0 com-bg-white md:com-pt-0 com-pt-2  com-border-0 md:com-border-l com-border-l-0 com-border-solid com-border-Bright-Gray com-cursor-pointer;
+  nb-card {
+    @apply com-m-0 com-w-full com-h-full;
+
+    nb-card-body {
+      @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-tWhite com-flex com-flex-col com-items-center com-p-4;
+    }
+  }
+}
+
+.template {
+  @apply com-h-[60dvh] md:com-w-[40dvw] com-w-[90dvw];
+  nb-card-header {
+    @apply com-flex com-flex-row com-justify-between com-items-center;
+    p {
+      @apply com-text-2xl com-font-semibold com-m-0;
+    }
+
+    nb-icon {
+      @apply com-h-4 com-w-4;
+    }
+  }
+
+  .qr-code-template {
+    @apply com-m-0 com-w-full com-h-full;
+
+    nb-card-body {
+      @apply com-rounded-lg com-bg-tWhite com-flex com-flex-col com-items-center com-p-0;
+    }
+    .qr-unique-code-template {
+      @apply com-text-2xl com-font-medium com-my-2 com-text-tblack;
+    }
+    #template-qr {
+      @apply com-w-auto com-h-full;
+      image-rendering: pixelated;
+    }
+  }
 }
