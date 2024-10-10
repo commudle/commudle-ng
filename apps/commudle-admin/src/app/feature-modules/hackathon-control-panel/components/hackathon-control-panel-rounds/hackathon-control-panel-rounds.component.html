@@ -66,7 +66,7 @@
         <!-- order -->
         <div>
           <label for="order">Round Order*</label>
-          <input id="name" type="number" nbInput fullWidth formControlName="order" placeholder="1" />
+          <input id="name" type="number" nbInput fullWidth formControlName="order" placeholder="1" min="1" />
           <commudle-alert
             *ngIf="
               roundForm.controls['order'].invalid &&
@@ -75,6 +75,12 @@
             "
             [error]="true"
             errorMessage="Order is required"
+          ></commudle-alert>
+          <!-- Min value error -->
+          <commudle-alert
+            *ngIf="roundForm.controls['order'].touched && roundForm.controls['order'].hasError('min')"
+            [error]="true"
+            errorMessage="Order can't be negative or zero"
           ></commudle-alert>
         </div>
 
@@ -107,7 +113,7 @@
         nbButton
         status="primary"
         (click)="data.round ? updateRound(data.round, data.index) : createRound(); ref.close()"
-        [disabled]="roundForm.invalid"
+        [disabled]="!roundForm.valid"
       >
         Save
       </button>

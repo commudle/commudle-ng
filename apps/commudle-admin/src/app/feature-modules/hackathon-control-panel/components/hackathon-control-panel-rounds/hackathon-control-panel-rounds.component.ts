@@ -34,7 +34,7 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
-      order: ['', Validators.required],
+      order: ['', [Validators.required, Validators.min(1)]],
     });
   }
 
@@ -60,6 +60,8 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
         date: this.datePipe.transform(round.date, 'yyyy-MM-dd'),
         order: round.order,
       });
+    } else {
+      this.roundForm.reset();
     }
 
     this.nbDialogService.open(dialog, {
