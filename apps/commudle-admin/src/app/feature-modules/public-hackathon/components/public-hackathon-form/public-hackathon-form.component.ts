@@ -1,13 +1,12 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ICommunity } from '@commudle/shared-models';
+import { ICommunity, IHackathonUserResponse } from '@commudle/shared-models';
 import { NbDialogRef, NbDialogService, NbStepperComponent } from '@commudle/theme';
 import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/services/hackathon-response-group.service';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
-import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { IHackathon, EParticipateTypes } from 'apps/shared-models/hackathon.model';
 import { Subscription } from 'rxjs';
 import { faLinkedinIn, faTwitter, faFacebookF, faGithub } from '@fortawesome/free-brands-svg-icons';
