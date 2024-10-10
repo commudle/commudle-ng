@@ -126,9 +126,9 @@
                     size="tiny"
                     [routerLink]="[
                       '/communities',
-                      registration.hackathon.slug,
-                      '/hackathons',
-                      registration.hackathon.name
+                      registration.hackathon.community.slug,
+                      'hackathons',
+                      registration.hackathon.slug
                     ]"
                   >
                     Fill Now
@@ -180,9 +180,9 @@
                   size="tiny"
                   [routerLink]="[
                     '/communities',
-                    registration.hackathon.slug,
-                    '/hackathons',
-                    registration.hackathon.name
+                    registration.hackathon.community.slug,
+                    'hackathons',
+                    registration.hackathon.slug
                   ]"
                 >
                   Fill Now
@@ -221,8 +221,8 @@
               <nb-icon icon="arrow-forward"></nb-icon>
             </a>
           </div>
-          <div *ngFor="let registration of myRegistrations; let i = index" class="desktop-qr">
-            <div *ngIf="showEntryPass[i]" class="qr-code">
+          <ng-container *ngFor="let registration of myRegistrations; let i = index">
+            <div *ngIf="showEntryPass[i]" class="qr-code desktop-qr">
               <nb-card>
                 <nb-card-body>
                   <canvas id="qr-code-desktop"></canvas>
@@ -230,7 +230,7 @@
                 </nb-card-body>
               </nb-card>
             </div>
-          </div>
+          </ng-container>
         </div>
       </nb-card-body>
     </nb-card>

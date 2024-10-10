@@ -1,7 +1,7 @@
 a {
   @apply com-no-underline com-text-inherit;
   .hackathon-card {
-    @apply hover:com-shadow-md com-min-h-[430px];
+    @apply hover:com-shadow-md com-min-h-[430px] com-m-0;
     nb-card-header {
       @apply com-p-0;
       img {

@@ -60,7 +60,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     ExploreExpertsComponent,
     BuildsComponent,
   ],
-  exports: [BuildsTopBuildersComponent, ExploreExpertsComponent],
+  exports: [BuildsTopBuildersComponent, ExploreExpertsComponent, CommunityBuildCardComponent],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
   imports: [
     CommonModule,
