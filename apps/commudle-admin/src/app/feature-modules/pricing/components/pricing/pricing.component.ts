@@ -147,7 +147,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   }
 
   getDevrelData(): void {
-    this.cmsService.getDataBySlug('pp-commudle-for-enterprises').subscribe((value) => {
+    this.cmsService.getDataBySlug('pp-commudle-for-devrel-agencies').subscribe((value) => {
       this.devrel = value;
     });
   }

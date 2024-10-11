@@ -39,13 +39,13 @@ p {
       .enterprise-card,
       .startup-card,
       .devrel-card {
-        @apply md:com-w-[410px] com-w-auto com-rounded-[20px] com-bg-white com-m-0 md:com-mx-0 com-mx-3 com-shadow-md md:com-p-6 com-p-4;
+        @apply md:com-w-[410px] com-w-auto com-rounded-[20px] com-bg-white com-m-0 md:com-mx-0 com-mx-3 com-shadow-md md:com-p-6 com-p-4 com-border com-border-solid com-border-Bright-Gray;
       }
 
       .title-cards {
         @apply com-p-0 md:com-pb-4 com-pb-4 com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-flex com-flex-col com-items-start;
         .heading {
-          @apply com-text-2xl com-font-semibold com-mb-3 com-text-Yankees-Blue;
+          @apply com-text-2xl com-font-semibold com-mb-3 com-text-Yankees-Blue com-tracking-[-1px];
         }
         .sub-heading {
           @apply com-text-sm com-font-normal com-pb-6 com-text-gray-500 com-line-clamp-3;
@@ -89,12 +89,12 @@ p {
         ul {
           @apply com-m-0 com-p-0;
           li {
-            @apply com-list-none com-pb-3 com-text-gray-500;
+            @apply com-list-none com-pb-3;
             nb-icon {
-              @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-Azure com-mr-3;
+              @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-primary-500 com-mr-3;
             }
             span {
-              @apply com-text-sm com-font-medium;
+              @apply com-text-sm com-font-medium  com-text-gray-700;
             }
           }
         }
@@ -102,7 +102,7 @@ p {
     }
 
     .pricing-quotes {
-      @apply com-bg-white-opacity-40 com-overflow-hidden md:com-pt-8 com-py-4 com-px-8 com-m-0 md:com-pb-20 com-mt-8 md:com-mt-20 md:com-p-0;
+      @apply com-bg-white-opacity-40 com-overflow-hidden md:com-py-10 com-py-4 com-px-8 com-m-0 com-mt-8 md:com-mt-[124px];
 
       .quote {
         @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal com-text-Yankees-Blue;
@@ -130,20 +130,6 @@ p {
 
       .subtitle {
         @apply com-mt-2 com-text-base com-text-gray-500 com-font-medium;
-      }
-
-      .buy-btn {
-        text-decoration: none;
-        @apply com-mt-10 com-w-full com-inline-block com-py-2 com-px-8 com-rounded-md com-shadow-sm com-text-center com-text-base com-font-medium;
-        @apply sm:com-w-auto lg:com-w-full;
-
-        &.light {
-          @apply com-bg-white com-text-Azure hover:com-bg-blue-50 com-border com-border-solid com-border-Bright-Gray com-shadow com-mb-1;
-        }
-
-        &.dark {
-          @apply com-bg-Azure com-text-tWhite hover:com-bg-blue-500 com-mb-1;
-        }
       }
     }
 
@@ -252,7 +238,7 @@ p {
 }
 
 .toggle-btn {
-  @apply com-flex com-justify-center com-p-1 com-bg-white com-w-fit com-rounded-[30px];
+  @apply com-flex com-justify-center com-p-1 com-bg-white com-w-fit com-rounded-[30px] com-cursor-pointer;
 
   .monthly,
   .anually {
@@ -269,5 +255,9 @@ p {
 }
 
 .active-border {
-  @apply com-border-3 com-border-solid com-border-primary-500;
+  @apply com-border-3 com-border-solid com-border-primary-500 #{!important};
+}
+
+.devrel-btn {
+  @apply com-bg-black com-text-white #{!important};
 }

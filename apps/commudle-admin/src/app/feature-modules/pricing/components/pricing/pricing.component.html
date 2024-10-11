@@ -22,49 +22,49 @@
               </div>
             </div>
             <div class="cards">
-              <div *ngIf="this.enterprise" class="enterprise-card active-border">
+              <div *ngIf="enterprise" class="enterprise-card active-border">
                 <div class="title-cards">
-                  <p class="heading">{{ this.enterprise.name }}</p>
+                  <p class="heading">{{ enterprise.name }}</p>
                   <p class="sub-heading">
-                    {{ this.enterprise.description }}
+                    {{ enterprise.description }}
                   </p>
                   <div *ngIf="isMonthly || isAnually" class="subscription">
-                    <div *ngIf="this.enterprise.priceDetails" class="price">
+                    <div *ngIf="enterprise.priceDetails" class="price">
                       <ng-container *ngIf="isMonthly">
                         <p class="current-price">
                           {{
-                            this.enterprise.priceDetails[1]?.price_after_discount
-                              ? this.enterprise.priceDetails[1].price_after_discount
-                              : this.enterprise.priceDetails[1].price
+                            enterprise.priceDetails[1]?.price_after_discount
+                              ? enterprise.priceDetails[1].price_after_discount
+                              : enterprise.priceDetails[1].price
                           }}
                         </p>
                       </ng-container>
                       <ng-container *ngIf="isAnually">
                         <p class="current-price">
                           {{
-                            this.enterprise.priceDetails[0]?.price_after_discount
-                              ? this.enterprise.priceDetails[0].price_after_discount
-                              : this.enterprise.priceDetails[0].price
+                            enterprise.priceDetails[0]?.price_after_discount
+                              ? enterprise.priceDetails[0].price_after_discount
+                              : enterprise.priceDetails[0].price
                           }}
                         </p>
                       </ng-container>
-                      <ng-container *ngIf="this.enterprise.priceDetails[1]?.price_after_discount && isMonthly">
+                      <ng-container *ngIf="enterprise.priceDetails[1]?.price_after_discount && isMonthly">
                         <div class="discount">
                           <p class="discount-percentage">
-                            {{ this.enterprise.priceDetails[1].discount_percentage }}
+                            {{ enterprise.priceDetails[1].discount_percentage }}
                           </p>
                           <p class="discount-price">
-                            {{ this.enterprise.priceDetails[1].price }}
+                            {{ enterprise.priceDetails[1].price }}
                           </p>
                         </div>
                       </ng-container>
-                      <ng-container *ngIf="this.enterprise.priceDetails[0]?.price_after_discount && isAnually">
+                      <ng-container *ngIf="enterprise.priceDetails[0]?.price_after_discount && isAnually">
                         <div class="discount">
                           <p class="discount-percentage">
-                            {{ this.enterprise.priceDetails[0].discount_percentage }}
+                            {{ enterprise.priceDetails[0].discount_percentage }}
                           </p>
                           <p class="discount-price">
-                            {{ this.enterprise.priceDetails[0].price }}
+                            {{ enterprise.priceDetails[0].price }}
                           </p>
                         </div>
                       </ng-container>
@@ -73,165 +73,150 @@
                   </div>
                 </div>
                 <div class="features">
-                  <p class="features-heading">For Businesses Focused on Techies</p>
+                  <p class="features-heading">Key Features</p>
                   <ul>
-                    <li>
+                    <li *ngFor="let feature of enterprise.key_features">
                       <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Organization dashboard</span>
-                    </li>
-
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community and events dashboard</span>
-                    </li>
-
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community & Event Analytics</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Access to Commudle Newsletter & On-platform campaigns</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Customized profile badges & highlights</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Exclusive conference collaboration invites</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Dedicated support for best use of Commudle</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">On platform promotional campaigns</span>
+                      <span class="feature">{{ feature }}</span>
                     </li>
                   </ul>
                 </div>
                 <a
-                  [routerLink]="['/student-non-profit-community-support']"
+                  [href]="isMonthly ? enterprise.priceDetails[1].url : enterprise.priceDetails[0].url"
                   (click)="gtmDatalayerPush('non_profit')"
-                  class="buy-btn"
-                  ><button nbButton outline fullWidth status="info">Apply Now</button></a
+                  ><button nbButton fullWidth status="primary" shape="semi-round">
+                    {{ enterprise.button_text }}
+                  </button></a
                 >
               </div>
-              <div class="startup-card">
-                <div class="title">
-                  <p class="heading">Commudle for Students</p>
+              <div *ngIf="startup" class="startup-card">
+                <div class="title-cards">
+                  <p class="heading">{{ startup.name }}</p>
                   <p class="sub-heading">
-                    Get a dedicated community space for all your members, their content, profiles & multiple engagement
-                    options to share knowledge and build recognition.
+                    {{ startup.description }}
                   </p>
-                  <div class="subscription">
-                    <div class="price"></div>
-                    <p class="monthly-yearly"></p>
+                  <div *ngIf="isMonthly || isAnually" class="subscription">
+                    <div *ngIf="startup.priceDetails" class="price">
+                      <ng-container *ngIf="isMonthly">
+                        <p class="current-price">
+                          {{
+                            startup.priceDetails[1]?.price_after_discount
+                              ? startup.priceDetails[1].price_after_discount
+                              : startup.priceDetails[1].price
+                          }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="isAnually">
+                        <p class="current-price">
+                          {{
+                            startup.priceDetails[0]?.price_after_discount
+                              ? startup.priceDetails[0].price_after_discount
+                              : startup.priceDetails[0].price
+                          }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="startup.priceDetails[1]?.price_after_discount && isMonthly">
+                        <div class="discount">
+                          <p class="discount-percentage">
+                            {{ startup.priceDetails[1].discount_percentage }}
+                          </p>
+                          <p class="discount-price">
+                            {{ startup.priceDetails[1].price }}
+                          </p>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="startup.priceDetails[0]?.price_after_discount && isAnually">
+                        <div class="discount">
+                          <p class="discount-percentage">
+                            {{ startup.priceDetails[0].discount_percentage }}
+                          </p>
+                          <p class="discount-price">
+                            {{ startup.priceDetails[0].price }}
+                          </p>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <p class="monthly-yearly">{{ isMonthly ? 'Per Community/Month' : 'Per Community/Annual' }}</p>
                   </div>
                 </div>
                 <div class="features">
-                  <p class="features-heading">For The Tech Community Leaders</p>
+                  <p class="features-heading">Key Features</p>
                   <ul>
-                    <li>
+                    <li *ngFor="let feature of startup.key_features">
                       <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community and events dashboard</span>
-                    </li>
-
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Member management</span>
-                    </li>
-
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community & Event Analytics</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community newsletters</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Online & Offline events with smart shortlisting</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Channels and forums</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Generative member growth</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Networking with experts and community leaders</span>
+                      <span class="feature">{{ feature }}</span>
                     </li>
                   </ul>
                 </div>
                 <a
-                  [routerLink]="['/student-non-profit-community-support']"
+                  [href]="isMonthly ? startup.priceDetails[1].url : startup.priceDetails[0].url"
                   (click)="gtmDatalayerPush('non_profit')"
-                  class="buy-btn"
-                  ><button nbButton outline fullWidth status="info">Apply Now</button></a
+                  ><button nbButton fullWidth status="primary" shape="semi-round">{{ startup.button_text }}</button></a
                 >
               </div>
-              <div class="devrel-card">
-                <div class="title">
-                  <p class="heading">Commudle for Students</p>
+              <div *ngIf="devrel" class="devrel-card">
+                <div class="title-cards">
+                  <p class="heading">{{ devrel.name }}</p>
                   <p class="sub-heading">
-                    Get a dedicated community space for all your members, their content, profiles & multiple engagement
-                    options to share knowledge and build recognition.
+                    {{ devrel.description }}
                   </p>
-                  <div class="subscription">
-                    <div class="price"></div>
-                    <p class="monthly-yearly"></p>
+                  <div *ngIf="isMonthly || isAnually" class="subscription">
+                    <div *ngIf="devrel.priceDetails" class="price">
+                      <ng-container *ngIf="isMonthly">
+                        <p class="current-price">
+                          {{
+                            devrel.priceDetails[1]?.price_after_discount
+                              ? devrel.priceDetails[1].price_after_discount
+                              : devrel.priceDetails[1].price
+                          }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="isAnually">
+                        <p class="current-price">
+                          {{
+                            devrel.priceDetails[0]?.price_after_discount
+                              ? devrel.priceDetails[0].price_after_discount
+                              : devrel.priceDetails[0].price
+                          }}
+                        </p>
+                      </ng-container>
+                      <ng-container *ngIf="devrel.priceDetails[1]?.price_after_discount && isMonthly">
+                        <div class="discount">
+                          <p class="discount-percentage">
+                            {{ devrel.priceDetails[1].discount_percentage }}
+                          </p>
+                          <p class="discount-price">
+                            {{ devrel.priceDetails[1].price }}
+                          </p>
+                        </div>
+                      </ng-container>
+                      <ng-container *ngIf="devrel.priceDetails[0]?.price_after_discount && isAnually">
+                        <div class="discount">
+                          <p class="discount-percentage">
+                            {{ devrel.priceDetails[0].discount_percentage }}
+                          </p>
+                          <p class="discount-price">
+                            {{ devrel.priceDetails[0].price }}
+                          </p>
+                        </div>
+                      </ng-container>
+                    </div>
+                    <p class="monthly-yearly">{{ isMonthly ? 'Per Community/Month' : 'Per Community/Annual' }}</p>
                   </div>
                 </div>
                 <div class="features">
-                  <p class="features-heading">For The Tech Community Leaders</p>
+                  <p class="features-heading">Key Features</p>
                   <ul>
-                    <li>
+                    <li *ngFor="let feature of devrel.key_features">
                       <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community and events dashboard</span>
-                    </li>
-
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Member management</span>
-                    </li>
-
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community & Event Analytics</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Community newsletters</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Online & Offline events with smart shortlisting</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Channels and forums</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Generative member growth</span>
-                    </li>
-                    <li>
-                      <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                      <span class="feature">Networking with experts and community leaders</span>
+                      <span class="feature">{{ feature }}</span>
                     </li>
                   </ul>
                 </div>
                 <a
-                  [routerLink]="['/student-non-profit-community-support']"
+                  [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
                   (click)="gtmDatalayerPush('non_profit')"
-                  class="buy-btn"
-                  ><button nbButton outline fullWidth status="info">Apply Now</button></a
+                  ><button nbButton fullWidth shape="semi-round" class="devrel-btn">{{ devrel.button_text }}</button></a
                 >
               </div>
             </div>
@@ -254,7 +239,7 @@
       <div class="base-layout com-min-h-full">
         <div class="pricing-features">
           <div
-            class="md:com-mt-[150px] com-max-w-7xl com-min-w-[60rem] md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3 com-p-0"
+            class="md:com-mt-20 com-max-w-7xl com-min-w-[60rem] md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3 com-p-0"
           >
             <p class="pricing-features-heading">Features to Grow Your Communities</p>
             <div class="pricing-feature-headings sticky"></div>
