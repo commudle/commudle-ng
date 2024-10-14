@@ -13,6 +13,7 @@ import { PricingComponent } from './components/pricing/pricing.component';
 import { PricingRoutingModule } from './pricing-routing.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
 import { SharedComponentsModule } from '@commudle/shared-components';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [PricingComponent, CommudleFeaturesComponent],
@@ -20,6 +21,8 @@ import { SharedComponentsModule } from '@commudle/shared-components';
     CommonModule,
     PricingRoutingModule,
     AppSharedComponentsModule,
+    FontAwesomeModule,
+
     // Nebular
     NbCardModule,
     NbListModule,
