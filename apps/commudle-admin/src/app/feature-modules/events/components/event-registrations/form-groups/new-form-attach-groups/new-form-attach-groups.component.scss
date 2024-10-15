@@ -42,3 +42,6 @@
     }
   }
 }
+.disabled {
+  @apply com-pointer-events-none com-cursor-not-allowed com-text-[#A6A6A6] hover:com-bg-[#F6F9FC] #{!important};
+}
