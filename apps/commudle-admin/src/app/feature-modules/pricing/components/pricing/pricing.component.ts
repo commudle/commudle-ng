@@ -7,7 +7,7 @@ import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.
 import { Subscription } from 'rxjs';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
-
+import { IPricingFeatures } from 'apps/shared-models/pricing-features.model';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -23,6 +23,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   isMonthly = true;
   isAnually = false;
   faCircleCheck = faCircleCheck;
+  pricingFeatures: IPricingFeatures[] = [];
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
@@ -106,6 +107,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.getEnterpriseData();
     this.getStartupData();
     this.getDevrelData();
+    this.getPricingFeatures();
   }
 
   ngOnDestroy(): void {
@@ -151,6 +153,14 @@ export class PricingComponent implements OnInit, OnDestroy {
   getDevrelData(): void {
     this.cmsService.getDataBySlug('pp-commudle-for-devrel-agencies').subscribe((value) => {
       this.devrel = value;
+    });
+  }
+
+  getPricingFeatures() {
+    const fields = 'name, order, features';
+    this.cmsService.getDataByTypeFieldOrder('pricingPlanFeatures', fields).subscribe((value) => {
+      this.pricingFeatures = value;
+      console.log(this.pricingFeatures);
     });
   }
 

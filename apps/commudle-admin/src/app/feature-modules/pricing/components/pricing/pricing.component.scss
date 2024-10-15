@@ -35,20 +35,20 @@ p {
       @apply com-mx-auto lg:com-w-full com-w-auto com-z-0 com-bg-cover com-bg-center com-h-full com-bg-no-repeat;
     }
     .cards {
-      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-pt-10 com-pt-10 md:com-gap-x-6 md:com-gap-y-0 com-gap-x-0 com-gap-y-6;
+      @apply com-flex md:com-flex-row com-flex-col com-w-full com-m-0 md:com-pt-10 com-pt-10 md:com-gap-x-6 md:com-gap-y-0 com-gap-x-0 com-gap-y-4;
       .enterprise-card,
       .startup-card,
       .devrel-card {
-        @apply md:com-w-[410px] com-w-auto com-rounded-[20px] com-bg-white com-m-0 md:com-mx-0 com-mx-3 com-shadow-md md:com-p-6 com-p-4 com-border com-border-solid com-border-Bright-Gray;
+        @apply md:com-w-[410px] com-w-auto com-rounded-[20px] com-bg-white com-m-0 md:com-mx-0 com-mx-3 com-shadow-md md:com-p-6 com-px-4 com-pb-4 com-pt-6 com-border com-border-solid com-border-Bright-Gray;
       }
 
       .title-cards {
-        @apply com-p-0 md:com-pb-4 com-pb-4 com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-flex com-flex-col com-items-start;
+        @apply com-p-0 md:com-pb-4 com-pb-3 com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-flex com-flex-col com-items-start;
         .heading {
-          @apply com-text-2xl com-font-semibold com-mb-3 com-text-Yankees-Blue com-tracking-[-1px];
+          @apply md:com-text-2xl com-text-xl com-font-semibold md:com-mb-3 com-mb-2 com-text-Yankees-Blue com-tracking-[-1px];
         }
         .sub-heading {
-          @apply com-text-sm com-font-normal com-pb-6 com-text-gray-500 com-line-clamp-3;
+          @apply com-text-sm md:com-font-normal com-font-medium md:com-pb-6 com-pb-4 com-text-gray-500 com-line-clamp-3;
         }
 
         .subscription {
@@ -58,43 +58,43 @@ p {
             @apply com-flex com-flex-row com-items-center;
 
             .current-price {
-              @apply com-text-[40px] com-font-bold com-text-Yankees-Blue com-m-0 com-mr-2;
+              @apply md:com-text-[40px] com-text-[28px] com-font-bold com-text-Yankees-Blue com-m-0 com-mr-2;
             }
 
             .discount {
               @apply com-flex com-flex-col;
 
               .discount-percentage {
-                @apply com-text-sm com-font-semibold com-text-primary-500;
+                @apply md:com-text-sm com-text-xs com-font-semibold com-text-primary-500;
               }
 
               .discount-price {
-                @apply com-text-sm com-font-semibold com-text-gray-500 com-line-through;
+                @apply md:com-text-sm com-text-xs com-font-semibold com-text-gray-500 com-line-through;
               }
             }
           }
           .monthly-yearly {
-            @apply com-m-0 com-mt-2 com-text-sm com-font-normal com-text-gray-500;
+            @apply com-m-0 com-mt-2 md:com-text-sm com-text-xs md:com-font-normal com-font-medium com-text-gray-500;
           }
         }
       }
 
       .features {
-        @apply md:com-mt-4 com-mt-2 com-mb-3;
+        @apply md:com-mt-4 com-mt-3 md:com-mb-3 com-mb-4;
 
         .features-heading {
-          @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mb-4;
+          @apply md:com-text-base com-text-sm com-font-semibold com-text-Yankees-Blue com-mb-4;
         }
 
         ul {
           @apply com-m-0 com-p-0;
           li {
-            @apply com-list-none com-pb-3;
+            @apply com-list-none md:com-pb-3 com-pb-2;
             nb-icon {
-              @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-primary-500 com-mr-3;
+              @apply md:com-h-6 md:com-w-6 com-h-5 com-w-5 com-text-primary-500 md:com-mr-3 com-mr-2;
             }
             span {
-              @apply com-text-sm com-font-medium  com-text-gray-700;
+              @apply md:com-text-sm com-text-sm com-font-medium com-text-gray-700;
             }
           }
         }
@@ -102,7 +102,7 @@ p {
     }
 
     .pricing-quotes {
-      @apply com-bg-white-opacity-40 com-overflow-hidden md:com-py-10 com-py-4 com-px-8 com-m-0 com-mt-8 md:com-mt-[124px];
+      @apply com-bg-white-opacity-40 com-overflow-hidden md:com-py-10 com-py-4 com-px-8 com-m-0 com-mt-[64px] md:com-mt-[124px] md:com-mb-0 com-mb-6;
 
       .quote {
         @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-[28px] com-text-base md:com-leading-10 md:com-font-medium com-font-normal com-text-Yankees-Blue;
@@ -111,10 +111,14 @@ p {
   }
 
   .pricing-features {
-    @apply com-flex com-flex-col com-justify-center md:com-mt-20 md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3 com-p-0;
+    @apply com-flex com-flex-col com-justify-center md:com-mt-20 com-mt-10 md:com-mx-auto md:com-px-8 md:com-m-0 com-mx-3 com-p-0;
 
     .pricing-features-heading {
-      @apply com-text-4xl com-font-bold com-text-Yankees-Blue md:com-mb-20;
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue md:com-mb-4 com-text-center;
+    }
+
+    .pricing-features-subheading {
+      @apply md:com-text-xl com-text-sm com-font-normal com-text-gray-500 md:com-mb-20 com-mb-8 com-text-center;
     }
 
     .subscription-container {
@@ -122,15 +126,15 @@ p {
     }
 
     .subscription-header {
-      @apply com-flex com-flex-col;
+      @apply com-flex com-flex-col com-w-max com-justify-self-center com-text-center;
       .heading {
         @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mb-3;
       }
 
       .header-price {
-        @apply com-flex com-flex-row com-mb-3;
+        @apply com-flex com-flex-row com-mb-3 com-justify-center;
         .earlier-price {
-          @apply com-text-lg com-font-normal com-text-gray-500 com-line-through;
+          @apply com-text-lg com-font-normal com-text-gray-500 com-line-through com-mr-2;
         }
 
         .discounted-price {
@@ -150,11 +154,15 @@ p {
         @apply com-grid com-grid-cols-4 com-border-0 com-border-b com-border-Bright-Gray com-border-solid;
 
         .feature-name {
-          @apply com-text-sm com-font-medium com-text-gray-500  com-py-4 com-pl-6;
+          @apply com-text-sm com-font-medium com-text-gray-500 md:com-py-4 com-py-2 md:com-pl-6 com-pl-0 com-pr-2;
         }
 
         .check-mark {
-          @apply com-flex com-justify-center com-text-xl com-text-Azure com-py-4 com-pl-6;
+          @apply com-flex com-justify-center com-items-center com-text-xl com-text-Azure md:com-py-4 md:com-pl-6 com-py-2 com-px-6px;
+        }
+
+        .check-mark-devrel {
+          @apply com-flex com-justify-center com-items-center com-text-xl com-text-black md:com-py-4 md:com-pl-6 com-py-2 com-px-6px;
         }
 
         .enterprise-highlight {
@@ -162,7 +170,7 @@ p {
         }
 
         .description {
-          @apply com-flex com-justify-center com-text-sm com-font-medium com-text-Yankees-Blue com-py-4 com-pl-6;
+          @apply com-flex com-justify-center com-text-sm com-font-medium com-text-Yankees-Blue md:com-py-4 md:com-pl-6 com-py-2 com-px-6px;
         }
       }
     }
