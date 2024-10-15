@@ -69,7 +69,7 @@
 }
 
 .edit-message {
-  @apply com-h-36 com-min-w-[300px] com-w-max;
+  @apply md:com-w-[90dvw] com-w-full com-max-h-[40dvh] com-h-max;
   nb-card-header {
     @apply com-flex com-items-center com-justify-between;
   }

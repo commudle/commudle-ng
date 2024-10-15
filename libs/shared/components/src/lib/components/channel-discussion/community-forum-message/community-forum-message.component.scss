@@ -71,3 +71,6 @@
 commudle-editor {
   @apply com-bg-transparent;
 }
+.edit-message-form {
+  @apply md:com-w-[90dvw] com-w-full com-max-h-[40dvh] com-h-max;
+}
