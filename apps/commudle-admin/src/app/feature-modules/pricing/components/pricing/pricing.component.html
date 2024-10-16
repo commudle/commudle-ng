@@ -241,7 +241,7 @@
         <div class="pricing-features">
           <p class="pricing-features-heading">Discover the Plan That's Right for You</p>
           <p class="pricing-features-subheading">Here are all the amazing features included in our plans</p>
-          <div class="subscription-container">
+          <div *appBreakpoints="'>lg'" class="subscription-container">
             <div></div>
             <div class="subscription-header">
               <p class="heading">Enterprises</p>
@@ -360,7 +360,13 @@
           </div>
           <div>
             <div *ngFor="let pricingFeature of pricingFeatures" class="header-section">
-              <p class="title">{{ pricingFeature.name }}</p>
+              <div *appBreakpoints="'<=lg'" class="sub-features">
+                <p class="title">{{ pricingFeature.name }}</p>
+                <p class="enterprise-title">Enterprise</p>
+                <p class="startup-title">Startup</p>
+                <p class="devrel-title">DevRel</p>
+              </div>
+              <p *appBreakpoints="'>lg'" class="title">{{ pricingFeature.name }}</p>
               <div *ngFor="let subFeature of pricingFeature.features" class="sub-features">
                 <div class="feature-name">{{ subFeature.name }}</div>
                 <ng-container *ngIf="subFeature.enterprise" class="enterprise-highlight">
@@ -426,7 +432,7 @@
               Get a dedicated community space for all your members, their content, profiles & multiple engagement
               options to share knowledge and build recognition options to share knowledge and build recognition.
             </p>
-            <p class="features-heading-students">For The Tech Community Leaders</p>
+            <p class="features-heading-students">Key Features</p>
             <ul class="student-features-list">
               <li>
                 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
@@ -464,7 +470,9 @@
               </li>
             </ul>
             <a [routerLink]="['/student-non-profit-community-support']" (click)="gtmDatalayerPush('non_profit')"
-              ><button nbButton fullWidth shape="semi-round" class="devrel-btn com-mt-7">Apply Now</button></a
+              ><button nbButton fullWidth shape="semi-round" class="devrel-btn md:com-mt-7 com-mt-6">
+                Apply Now
+              </button></a
             >
           </div>
           <div class="student-startup-iamge">

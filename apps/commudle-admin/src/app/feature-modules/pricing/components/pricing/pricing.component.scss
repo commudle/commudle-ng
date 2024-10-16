@@ -102,7 +102,7 @@ p {
     }
 
     .pricing-quotes {
-      @apply com-bg-white-opacity-40 com-overflow-hidden md:com-py-10 com-py-4 com-px-8 com-m-0 com-mt-[64px] md:com-mt-[124px] md:com-mb-0 com-mb-6;
+      @apply com-bg-white-opacity-40 com-overflow-hidden md:com-py-10 com-py-4 com-px-8 com-m-0 com-mt-10 md:com-mt-[124px] md:com-mb-0 com-mb-6;
 
       .quote {
         @apply com-max-w-[1150px] com-mx-auto com-text-center md:com-text-2xl com-text-base md:com-font-medium com-font-normal com-text-Yankees-Blue com-tracking-[-0.36px] com-italic;
@@ -111,14 +111,14 @@ p {
   }
 
   .pricing-features {
-    @apply com-flex com-flex-col com-justify-center md:com-mt-20 com-mt-10 md:com-mx-auto md:com-px-[130px] md:com-m-0 com-mx-3 com-p-0;
+    @apply com-flex com-flex-col com-justify-center md:com-pt-20 com-pt-10 md:com-mx-auto md:com-px-[130px] md:com-m-0 com-px-3 md:com-bg-transparent com-bg-white;
 
     .pricing-features-heading {
-      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue md:com-mb-4 com-text-center;
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue com-mb-4 com-text-center;
     }
 
     .pricing-features-subheading {
-      @apply md:com-text-xl com-text-sm com-font-normal com-text-gray-500 md:com-mb-20 com-mb-8 com-text-center;
+      @apply md:com-text-xl com-text-sm com-font-normal com-text-gray-500 md:com-mb-[60px] com-mb-0 com-text-center;
     }
 
     .subscription-container {
@@ -147,11 +147,17 @@ p {
       @apply com-flex com-flex-col com-mt-0;
 
       .title {
-        @apply com-text-black com-text-base com-font-semibold com-pt-7 com-px-10px com-pb-2;
+        @apply com-text-black com-text-base com-font-semibold md:com-pt-7 com-pt-8 com-px-0 com-pb-2;
+      }
+
+      .enterprise-title,
+      .startup-title,
+      .devrel-title {
+        @apply com-flex com-justify-center com-text-sm com-font-normal com-text-gray-500 md:com-pt-7 com-pt-8 com-px-0 com-pb-2;
       }
 
       .sub-features {
-        @apply com-grid md:com-grid-cols-[1.2fr_1fr_1fr_1fr] com-grid-cols-[2.2fr_1fr_1fr_1fr] com-border-0 com-border-b com-border-Bright-Gray com-border-solid;
+        @apply com-grid md:com-grid-cols-[1.2fr_1fr_1fr_1fr] com-grid-cols-[2.2fr_1fr_1fr_1fr] com-border-0 com-border-b com-border-Bright-Gray com-border-solid com-items-center;
 
         .feature-name {
           @apply com-text-sm com-font-medium com-text-gray-500 md:com-py-4 com-py-2 md:com-pl-6 com-pl-0 com-pr-2;
@@ -166,7 +172,7 @@ p {
         }
 
         .enterprise-highlight {
-          @apply com-bg-blue-50;
+          @apply com-bg-blue-50 com-h-full;
         }
 
         .description {
@@ -177,12 +183,12 @@ p {
   }
 
   .avenues {
-    @apply md:com-mt-[120px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-10 com-mb-10 com-text-center;
+    @apply md:com-mt-[120px] com-mt-20 com-m-0 md:com-px-8 com-px-4 com-py-0 md:com-mb-10 com-mb-20 com-text-center;
     .heading {
-      @apply md:com-text-4xl com-text-2xl md:com-font-bold com-font-semibold com-text-gray-900;
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-gray-900;
     }
     .sub-heading {
-      @apply md:com-mt-8 com-mt-4 com-m-0 md:com-text-xl com-text-base com-font-normal com-text-gray-500;
+      @apply md:com-mt-8 com-mt-4 com-m-0 md:com-text-xl com-text-sm com-font-normal com-text-gray-500;
     }
   }
 }
@@ -263,50 +269,50 @@ p {
 }
 
 .student-section {
-  @apply com-flex com-mt-20 com-flex-row com-rounded-[32px] com-shadow-md com-border com-border-solid com-border-Bright-Gray;
+  @apply com-flex com-mt-20 md:com-flex-row com-flex-col-reverse com-rounded-[32px] com-shadow-md com-border com-border-solid com-border-Bright-Gray md:com-mx-0 com-mx-4;
 
   .student-section-details {
-    @apply com-flex com-flex-col com-py-8 com-pl-8 com-pr-10 com-w-[616px] com-flex-shrink-0;
+    @apply com-flex com-flex-col md:com-py-8 com-p-4 md:com-pl-8 md:com-pr-10 md:com-w-[616px] com-w-full com-flex-shrink-0;
 
     .heading {
-      @apply com-text-2xl com-font-semibold com-text-Yankees-Blue com-mb-3;
+      @apply md:com-text-2xl com-text-xl com-font-semibold com-text-Yankees-Blue md:com-mb-3 com-mb-2;
     }
 
     .sub-heading {
-      @apply com-text-sm com-font-normal com-text-gray-500 com-mb-8;
+      @apply md:com-text-sm com-text-xs com-font-normal com-text-gray-500 md:com-mb-8 com-mb-4;
     }
 
     .features-heading-students {
-      @apply com-text-base com-font-semibold com-text-Yankees-Blue com-mb-4;
+      @apply md:com-text-base com-text-sm com-font-semibold com-text-Yankees-Blue com-mb-4;
     }
 
     .student-features-list {
-      @apply com-m-0 com-grid com-grid-cols-2 com-px-0;
+      @apply com-m-0 com-grid md:com-grid-cols-2 com-grid-cols-1 com-px-0;
     }
 
     li {
-      @apply com-mb-[14px] com-list-none;
+      @apply md:com-mb-[14px] com-mb-2 com-list-none;
 
       nb-icon {
-        @apply com-h-6 com-w-6 com-mr-3 com-text-primary-500;
+        @apply com-h-6 com-w-6 md:com-mr-3 com-mr-2 com-text-primary-500;
       }
 
       .feature {
-        @apply com-text-sm com-font-medium com-text-gray-700;
+        @apply md:com-text-sm com-text-xs com-font-medium com-text-gray-700;
       }
     }
   }
 }
 
 .student-startup-iamge {
-  @apply com-w-[664px] com-h-[468px];
+  @apply md:com-w-[664px] md:com-h-[468px] com-w-full com-h-full;
   img {
-    @apply com-w-full com-h-full com-rounded-r-[32px];
+    @apply com-w-full com-h-full md:com-rounded-r-[32px] com-rounded-r-none com-rounded-t-[32px] md:com-rounded-t-none;
   }
 }
 
 .action-title {
-  @apply com-flex com-justify-self-start com-text-black com-text-base com-font-semibold com-pl-6;
+  @apply com-flex com-justify-self-start com-text-black com-text-base com-font-semibold md:com-pl-6 com-pl-0;
 }
 
 .action-sub-features {
