@@ -84,7 +84,7 @@
                 <a
                   [href]="isMonthly ? enterprise.priceDetails[1].url : enterprise.priceDetails[0].url"
                   (click)="gtmDatalayerPush('non_profit')"
-                  ><button nbButton fullWidth status="primary" shape="semi-round">
+                  ><button nbButton fullWidth shape="semi-round" class="enterprise-btn">
                     {{ enterprise.button_text }}
                   </button></a
                 >
@@ -151,7 +151,9 @@
                 <a
                   [href]="isMonthly ? startup.priceDetails[1].url : startup.priceDetails[0].url"
                   (click)="gtmDatalayerPush('non_profit')"
-                  ><button nbButton fullWidth status="primary" shape="semi-round">{{ startup.button_text }}</button></a
+                  ><button nbButton fullWidth shape="semi-round" class="enterprise-btn">
+                    {{ startup.button_text }}
+                  </button></a
                 >
               </div>
               <div *ngIf="devrel" class="devrel-card">
@@ -201,7 +203,7 @@
                         </div>
                       </ng-container>
                     </div>
-                    <p class="monthly-yearly">{{ isMonthly ? 'Per Community/Month' : 'Per Community/Annual' }}</p>
+                    <p class="monthly-yearly">Contact us for best pricing</p>
                   </div>
                 </div>
                 <div class="features">
@@ -243,18 +245,117 @@
             <div></div>
             <div class="subscription-header">
               <p class="heading">Enterprises</p>
-              <p class="header-price"><span class="earlier-price">23</span><span class="discounted-price">12</span></p>
-              <button nbButton status="primary" size="tiny" shape="round">Start Today</button>
+              <div *ngIf="enterprise" class="header-price">
+                <span *ngIf="enterprise?.priceDetails">
+                  <ng-container *ngIf="isMonthly">
+                    <p class="discounted-price">
+                      {{
+                        enterprise.priceDetails[1]?.price_after_discount
+                          ? enterprise.priceDetails[1].price_after_discount + '/m'
+                          : enterprise.priceDetails[1].price + '/m'
+                      }}
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="isAnually">
+                    <p class="discounted-price">
+                      {{
+                        enterprise.priceDetails[0]?.price_after_discount
+                          ? enterprise.priceDetails[0].price_after_discount + '/a'
+                          : enterprise.priceDetails[0].price + '/a'
+                      }}
+                    </p>
+                  </ng-container>
+                </span>
+                <span
+                  ><ng-container *ngIf="enterprise.priceDetails[1]?.price_after_discount && isMonthly">
+                    <p class="earlier-price">{{ enterprise.priceDetails[1].price }}</p> </ng-container
+                  ><ng-container *ngIf="enterprise.priceDetails[0]?.price_after_discount && isAnually">
+                    <p class="earlier-price">
+                      {{ enterprise.priceDetails[0].price }}
+                    </p>
+                  </ng-container>
+                </span>
+              </div>
+              <a
+                [href]="isMonthly ? enterprise.priceDetails[1].url : enterprise.priceDetails[0].url"
+                (click)="gtmDatalayerPush('non_profit')"
+                ><button nbButton status="primary" size="tiny" shape="round">
+                  {{ enterprise.button_text }}
+                </button></a
+              >
             </div>
             <div class="subscription-header">
-              <p class="heading">Startup</p>
-              <p class="header-price"><span class="earlier-price">23</span><span class="discounted-price">12</span></p>
-              <button nbButton status="primary" size="tiny" shape="round">Start Today</button>
+              <p class="heading">Startups</p>
+              <div *ngIf="startup" class="header-price">
+                <span *ngIf="startup?.priceDetails">
+                  <ng-container *ngIf="isMonthly">
+                    <p class="discounted-price">
+                      {{
+                        startup.priceDetails[1]?.price_after_discount
+                          ? startup.priceDetails[1].price_after_discount + '/m'
+                          : startup.priceDetails[1].price + '/m'
+                      }}
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="isAnually">
+                    <p class="discounted-price">
+                      {{
+                        startup.priceDetails[0]?.price_after_discount
+                          ? startup.priceDetails[0].price_after_discount + '/a'
+                          : startup.priceDetails[0].price + '/a'
+                      }}
+                    </p>
+                  </ng-container>
+                </span>
+                <span
+                  ><ng-container *ngIf="startup.priceDetails[1]?.price_after_discount && isMonthly">
+                    <p class="earlier-price">{{ startup.priceDetails[1].price }}</p> </ng-container
+                  ><ng-container *ngIf="startup.priceDetails[0]?.price_after_discount && isAnually">
+                    <p class="earlier-price">
+                      {{ startup.priceDetails[0].price }}
+                    </p>
+                  </ng-container>
+                </span>
+              </div>
+              <a
+                [href]="isMonthly ? startup.priceDetails[1].url : startup.priceDetails[0].url"
+                (click)="gtmDatalayerPush('non_profit')"
+                ><button nbButton status="primary" size="tiny" shape="round">
+                  {{ startup.button_text }}
+                </button></a
+              >
             </div>
             <div class="subscription-header">
-              <p class="heading">Devrel Aggencies</p>
-              <p class="header-price"><span class="earlier-price">23</span><span class="discounted-price">12</span></p>
-              <button class="devrel-btn" nbButton size="tiny" shape="round">Contact Us</button>
+              <p class="heading">DevrRel Aggencies</p>
+              <div *ngIf="devrel" class="header-price">
+                <span *ngIf="devrel?.priceDetails">
+                  <ng-container *ngIf="isMonthly">
+                    <p class="discounted-price">
+                      {{
+                        devrel.priceDetails[1]?.price_after_discount
+                          ? devrel.priceDetails[1].price_after_discount
+                          : devrel.priceDetails[1].price
+                      }}
+                    </p>
+                  </ng-container>
+                  <ng-container *ngIf="isAnually">
+                    <p class="discounted-price">
+                      {{
+                        devrel.priceDetails[0]?.price_after_discount
+                          ? devrel.priceDetails[0].price_after_discount
+                          : devrel.priceDetails[0].price
+                      }}
+                    </p>
+                  </ng-container>
+                </span>
+              </div>
+              <a
+                [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
+                (click)="gtmDatalayerPush('non_profit')"
+                ><button nbButton size="tiny" shape="round" class="devrel-btn">
+                  {{ devrel.button_text }}
+                </button></a
+              >
             </div>
           </div>
           <div>
@@ -262,7 +363,6 @@
               <p class="title">{{ pricingFeature.name }}</p>
               <div *ngFor="let subFeature of pricingFeature.features" class="sub-features">
                 <div class="feature-name">{{ subFeature.name }}</div>
-                <!-- <div> -->
                 <ng-container *ngIf="subFeature.enterprise" class="enterprise-highlight">
                   <fa-icon class="check-mark enterprise-highlight" [icon]="faCircleCheck"></fa-icon>
                 </ng-container>
@@ -272,8 +372,6 @@
                 >
                   Unlimited
                 </ng-container>
-                <!-- </div> -->
-                <!-- <div> -->
                 <ng-container *ngIf="subFeature.startup">
                   <fa-icon class="check-mark" [icon]="faCircleCheck"></fa-icon>
                 </ng-container>
@@ -295,6 +393,29 @@
                 <!-- <div class="description">{{ subFeature.startup }}</div>
                 <div class="check-mark-devrel">{{ subFeature.agency }}<fa-icon [icon]="faCircleCheck"></fa-icon></div> -->
               </div>
+            </div>
+            <div class="action-sub-features">
+              <p class="action-title">Choose a Plan</p>
+              <a
+                [href]="isMonthly ? enterprise.priceDetails[1].url : enterprise.priceDetails[0].url"
+                (click)="gtmDatalayerPush('non_profit')"
+                ><button nbButton status="primary" size="tiny" shape="round">
+                  {{ enterprise.button_text }}
+                </button></a
+              >
+              <a
+                [href]="isMonthly ? startup.priceDetails[1].url : startup.priceDetails[0].url"
+                (click)="gtmDatalayerPush('non_profit')"
+                ><button nbButton status="primary" size="tiny" shape="round">
+                  {{ startup.button_text }}
+                </button></a
+              ><a
+                [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
+                (click)="gtmDatalayerPush('non_profit')"
+                ><button nbButton size="tiny" shape="round" class="devrel-btn">
+                  {{ devrel.button_text }}
+                </button></a
+              >
             </div>
           </div>
         </div>
@@ -342,11 +463,8 @@
                 <span class="feature">Networking with experts</span>
               </li>
             </ul>
-            <a
-              [routerLink]="['/student-non-profit-community-support']"
-              (click)="gtmDatalayerPush('non_profit')"
-              class="devrel-btn com-mt-7"
-              ><button nbButton fullWidth shape="semi-round" class="devrel-btn">Apply Now</button></a
+            <a [routerLink]="['/student-non-profit-community-support']" (click)="gtmDatalayerPush('non_profit')"
+              ><button nbButton fullWidth shape="semi-round" class="devrel-btn com-mt-7">Apply Now</button></a
             >
           </div>
           <div class="student-startup-iamge">
@@ -360,32 +478,33 @@
             emailers through community organizers
           </p>
         </div>
-      </div>
-      <!-- Logo cloud -->
-      <div class="background-container-community" [ngStyle]="{ 'background-image': getCommunityLogoCardsUrl() }">
-        <div class="base-layout">
-          <div class="pricing-logo-cloud">
-            <p class="subheading">Communities already on Commudle</p>
-            <div class="communities">
-              <a *ngFor="let logo of logoCloud" [routerLink]="['/search', logo.slug]">
-                <div class="communities-card">
-                  <div class="logo">
-                    <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
+
+        <!-- Logo cloud -->
+        <div class="background-container-community" [ngStyle]="{ 'background-image': getCommunityLogoCardsUrl() }">
+          <div class="base-layout">
+            <div class="pricing-logo-cloud">
+              <p class="subheading">Communities already on Commudle</p>
+              <div class="communities">
+                <a *ngFor="let logo of logoCloud" [routerLink]="['/search', logo.slug]">
+                  <div class="communities-card">
+                    <div class="logo">
+                      <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
+                    </div>
+                    <div class="communities-card-text">
+                      <p class="name">{{ logo.name }}</p>
+                      <p class="description">{{ logo.description }}</p>
+                    </div>
                   </div>
-                  <div class="communities-card-text">
-                    <p class="name">{{ logo.name }}</p>
-                    <p class="description">{{ logo.description }}</p>
-                  </div>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- FAQs -->
-        <div class="base-layout">
-          <div class="faq">
-            <commudle-faq [answers]="answers"></commudle-faq>
+          <!-- FAQs -->
+          <div class="base-layout">
+            <div class="faq">
+              <commudle-faq [answers]="answers"></commudle-faq>
+            </div>
           </div>
         </div>
       </div>
