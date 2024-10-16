@@ -220,4 +220,9 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
     const doc = parser.parseFromString(content, 'text/html');
     return doc.body.textContent || '';
   }
+
+  editMessage(message, event) {
+    this.communityChannelHandlerService.edit(message, event);
+    this.message.content = event;
+  }
 }

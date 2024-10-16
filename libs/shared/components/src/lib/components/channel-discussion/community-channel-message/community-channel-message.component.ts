@@ -1,5 +1,5 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { SeoService } from '@commudle/shared-services';
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
 import { EUserRoles, ICommunityChannel, IUserMessage } from '@commudle/shared-models';
@@ -279,5 +279,10 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
     return doc.body.textContent || '';
+  }
+
+  editMessage(message, event) {
+    this.communityChannelHandlerService.edit(message, event);
+    this.message.content = event;
   }
 }

@@ -99,7 +99,7 @@
   <div class="edit-message-form">
     <commudle-editor
       (inViewportAction)="markAsRead(message?.id, $event)"
-      (contentChange)="communityChannelHandlerService.edit(message.id, $event); editMessageTemplateRef.close()"
+      (contentChange)="editMessage(message, $event); editMessageTemplateRef.close()"
       [content]="message.content"
       [editable]="true"
       [inViewportOptions]="{ threshold: [0] }"
