@@ -15,8 +15,15 @@
     </button>
     <a
       *ngIf="round.channel_id"
-      [routerLink]="['/communities', communitySlug, 'hackathons', hackathonSlug, 'channels', round.channel_id]"
-      target="_blank"
+      [routerLink]="[
+        '/admin',
+        'communities',
+        communitySlug,
+        'hackathon-dashboard',
+        hackathonSlug,
+        'channels',
+        round.channel_id
+      ]"
     >
       <button nbButton ghost status="info"><fa-icon [icon]="icons.faHashtag"></fa-icon>&nbsp; Go To Channel</button>
     </a>
