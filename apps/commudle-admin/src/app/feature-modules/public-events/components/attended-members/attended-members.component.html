@@ -27,7 +27,7 @@
         <div class="main-column">
           <div class="filters">
             <select class="filter" (change)="updateFilter()" [(ngModel)]="value">
-              <option value="">Looking for work / Hiring</option>
+              <option value="">All</option>
               <option value="employee" [selected]="value === 'employee'">Looking for work</option>
               <option value="employer" [selected]="value === 'employer'">Hiring</option>
             </select>
