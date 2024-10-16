@@ -6,7 +6,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
 import { CmsService } from 'apps/shared-services/cms.service';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { IPricingFeatures } from 'apps/shared-models/pricing-features.model';
 @Component({
   selector: 'app-pricing',
@@ -24,6 +24,8 @@ export class PricingComponent implements OnInit, OnDestroy {
   isAnually = false;
   faCircleCheck = faCircleCheck;
   pricingFeatures: IPricingFeatures[] = [];
+  showAllFeatures = true;
+  faArrowDown = faArrowDown;
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
@@ -108,6 +110,9 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.getStartupData();
     this.getDevrelData();
     this.getPricingFeatures();
+    if (this.isMobileView) {
+      this.showAllFeatures = false;
+    }
   }
 
   ngOnDestroy(): void {
@@ -160,12 +165,15 @@ export class PricingComponent implements OnInit, OnDestroy {
     const fields = 'name, order, features';
     this.cmsService.getDataByTypeFieldOrder('pricingPlanFeatures', fields).subscribe((value) => {
       this.pricingFeatures = value;
-      console.log(this.pricingFeatures);
     });
   }
 
   toggleSubscription(value) {
     this.isMonthly = value === 'monthly' ? true : false;
     this.isAnually = value === 'anually' ? true : false;
+  }
+
+  toggleShowAllFeatures() {
+    this.showAllFeatures = !this.showAllFeatures;
   }
 }

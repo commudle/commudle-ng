@@ -358,7 +358,7 @@
               >
             </div>
           </div>
-          <div>
+          <div [ngClass]="{ 'hide-all-features': !showAllFeatures }">
             <div *ngFor="let pricingFeature of pricingFeatures" class="header-section">
               <div *appBreakpoints="'<=lg'" class="sub-features">
                 <p class="title">{{ pricingFeature.name }}</p>
@@ -423,6 +423,9 @@
                 </button></a
               >
             </div>
+          </div>
+          <div *ngIf="!showAllFeatures" (click)="toggleShowAllFeatures()" class="show-all-features-btn">
+            <p><span>Compare All Features</span><fa-icon [icon]="faArrowDown"></fa-icon></p>
           </div>
         </div>
         <div class="student-section">
