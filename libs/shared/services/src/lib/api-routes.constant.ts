@@ -843,6 +843,7 @@ export const API_ROUTES = {
     STATUS_FILTER_GENERAL_EMAIL: 'api/v2/hackathons/status_filter_general_email', //POST
     REGISTRATION_DETAILS_CSV: 'api/v2/hackathons/registration_details_csv', //POST
     ROUND_GENERAL_MAILER: 'api/v2/hackathons/round_general_mailer', //POST
+    USERS_CHANNELS: 'api/v2/hackathons/users_channels', //GET
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
