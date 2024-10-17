@@ -6,7 +6,7 @@ import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
 import { CmsService } from 'apps/shared-services/cms.service';
-import { faArrowDown, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { IPricingFeatures } from 'apps/shared-models/pricing-features.model';
 @Component({
   selector: 'app-pricing',
@@ -26,6 +26,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   pricingFeatures: IPricingFeatures[] = [];
   showAllFeatures = true;
   faArrowDown = faArrowDown;
+  faCircleXmark = faCircleXmark;
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {

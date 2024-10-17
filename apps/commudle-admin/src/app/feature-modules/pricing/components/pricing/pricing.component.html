@@ -369,35 +369,39 @@
               <p *appBreakpoints="'>lg'" class="title">{{ pricingFeature.name }}</p>
               <div *ngFor="let subFeature of pricingFeature.features" class="sub-features">
                 <div class="feature-name">{{ subFeature.name }}</div>
-                <ng-container *ngIf="subFeature.enterprise" class="enterprise-highlight">
-                  <fa-icon class="check-mark enterprise-highlight" [icon]="faCircleCheck"></fa-icon>
-                </ng-container>
-                <ng-container
-                  class="description enterprise-highlight"
-                  *ngIf="!subFeature.enterprise && subFeature.enterprise === 'unlimited'"
-                >
-                  Unlimited
-                </ng-container>
-                <ng-container *ngIf="subFeature.startup">
-                  <fa-icon class="check-mark" [icon]="faCircleCheck"></fa-icon>
-                </ng-container>
-                <ng-container class="description" *ngIf="!subFeature.startup && subFeature.startup === 'unlimited'">
-                  Unlimited
-                </ng-container>
-                <!-- </div> -->
-                <!-- <div> -->
-                <ng-container *ngIf="subFeature.agency">
-                  <fa-icon class="check-mark-devrel" [icon]="faCircleCheck"></fa-icon>
-                </ng-container>
-                <ng-container class="description" *ngIf="!subFeature.agency && subFeature.agency === 'unlimited'">
-                  Unlimited
-                </ng-container>
-                <!-- </div> -->
-                <!-- <div class="check-mark enterprise-highlight">
-                  {{ subFeature.enterprise }}<fa-icon [icon]="faCircleCheck"></fa-icon>
-                </div> -->
-                <!-- <div class="description">{{ subFeature.startup }}</div>
-                <div class="check-mark-devrel">{{ subFeature.agency }}<fa-icon [icon]="faCircleCheck"></fa-icon></div> -->
+                <p class="enterprise-highlight">
+                  <ng-container *ngIf="subFeature.custom_text_for_enterprise">
+                    <p class="description">{{ subFeature.custom_text_for_enterprise }}</p>
+                  </ng-container>
+                  <ng-container *ngIf="!subFeature.custom_text_for_enterprise && subFeature.enterprise">
+                    <fa-icon class="check-mark" [icon]="faCircleCheck"></fa-icon>
+                  </ng-container>
+                  <ng-container *ngIf="!subFeature.custom_text_for_enterprise && !subFeature.enterprise">
+                    <fa-icon class="cross-mark" [icon]="faCircleXmark"></fa-icon>
+                  </ng-container>
+                </p>
+                <p>
+                  <ng-container *ngIf="subFeature.custom_text_for_startup">
+                    <p class="description">{{ subFeature.custom_text_for_startup }}</p>
+                  </ng-container>
+                  <ng-container *ngIf="!subFeature.custom_text_for_startup && subFeature.startup">
+                    <fa-icon class="check-mark" [icon]="faCircleCheck"></fa-icon>
+                  </ng-container>
+                  <ng-container *ngIf="!subFeature.custom_text_for_startup && !subFeature.startup">
+                    <fa-icon class="cross-mark" [icon]="faCircleXmark"></fa-icon>
+                  </ng-container>
+                </p>
+                <p>
+                  <ng-container *ngIf="subFeature.custom_text_for_agency">
+                    <p class="description">{{ subFeature.custom_text_for_agency }}</p>
+                  </ng-container>
+                  <ng-container *ngIf="!subFeature.custom_text_for_agency && subFeature.agency">
+                    <fa-icon class="check-mark-devrel" [icon]="faCircleCheck"></fa-icon>
+                  </ng-container>
+                  <ng-container *ngIf="!subFeature.custom_text_for_agency && !subFeature.agency">
+                    <fa-icon class="cross-mark" [icon]="faCircleXmark"></fa-icon>
+                  </ng-container>
+                </p>
               </div>
             </div>
             <div *ngIf="enterprise && startup && devrel" class="action-sub-features">
