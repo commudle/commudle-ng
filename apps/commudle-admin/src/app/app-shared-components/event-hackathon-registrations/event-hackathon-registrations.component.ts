@@ -5,6 +5,7 @@ import { ERegistrationStatuses } from 'apps/shared-models/enums/registration_sta
 import moment from 'moment';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { EDbModels, EHackathonRegistrationStatus } from '@commudle/shared-models';
+import { generate } from 'lean-qr';
 
 @Component({
   selector: 'commudle-event-hackathon-registrations',
@@ -31,9 +32,10 @@ export class EventHackathonRegistrationsComponent implements OnInit {
     this.getMyRegistrations();
   }
 
-  generateQRCode(uniqueCode) {
-    // const qrCode = generate(uniqueCode);
-    // qrCode.toCanvas(this.qrCanvas.nativeElement);
+  generateQRCode(uniqueCode, canvasId) {
+    const qr = document.getElementById(canvasId) as HTMLCanvasElement;
+    const qrCode = generate(uniqueCode);
+    qrCode.toCanvas(qr);
   }
 
   getMyRegistrations() {
@@ -46,7 +48,7 @@ export class EventHackathonRegistrationsComponent implements OnInit {
     });
   }
 
-  toggleEntryPass(index, uniqueCode) {
+  toggleEntryPass(index, uniqueCode, canvasId) {
     for (let i = 0; i < this.registrations.length; i++) {
       if (i !== index) {
         this.showEntryPass[i] = false;
@@ -54,7 +56,9 @@ export class EventHackathonRegistrationsComponent implements OnInit {
     }
     this.showEntryPass[index] = !this.showEntryPass[index];
     if (this.showEntryPass[index]) {
-      this.generateQRCode(uniqueCode);
+      setTimeout(() => {
+        this.generateQRCode(uniqueCode, canvasId);
+      }, 0);
     }
   }
 }

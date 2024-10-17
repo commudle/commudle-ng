@@ -1,6 +1,6 @@
-<div class="two-column-layout medium" *ngIf="userTeamDetails && userTeamDetails[0].community_build; else submitProject">
-  <div class="main-column com-mb-20">
-    <nb-card class="project-details">
+<div class="two-column-layout medium">
+  <div class="main-column com-mr-2">
+    <nb-card class="project-details" *ngIf="userTeamDetails && userTeamDetails[0].community_build">
       <nb-card-header>PROJECT DETAILS</nb-card-header>
       <nb-card-body>
         <div class="project-name">{{ userTeamDetails[0].community_build.name }}</div>
@@ -15,22 +15,84 @@
         ></a>
       </nb-card-footer>
     </nb-card>
-  </div>
-  <div class="right-column">
     <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
       <commudle-public-hackathon-registration
+        [hackathon]="hackathon"
         [hrgId]="hrgId"
         [userTeamDetails]="userTeamDetails[0]"
       ></commudle-public-hackathon-registration>
     </div>
+    <div class="user-channels-list">
+      <nb-card>
+        <nb-card-body class="channels-list-cards">
+          <div *ngFor="let channel of channels">
+            <a [routerLink]="['../channels', channel.id]">
+              <div class="channel-list-card">
+                <div>
+                  <p class="name">{{ channel.name }}</p>
+                  <p class="members-count">{{ channel.member_count }} members</p>
+                  <p class="descriptions">{{ channel.description }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="right-column">
+    <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
+      <nb-card *ngFor="let team of userTeamDetails; let team_index = index" class="team-details-container">
+        <nb-card-header>
+          <h5>{{ team.name }}</h5>
+        </nb-card-header>
+        <nb-card-body>
+          <div *ngFor="let hur of team.hackathon_user_responses; let i = index" class="team-detail">
+            <div class="details">
+              <span>{{ hur.name }}</span>
+              <span>{{ hur.user_email }}</span>
+              <span>{{ hur.invite_status | capitalizeAndRemoveUnderscore }}</span>
+            </div>
+            <div>
+              <button
+                nbButton
+                ghost
+                status="danger"
+                (click)="openDialogBox(removeTeamMember, hur, team, i, team_index)"
+                *ngIf="team.user_id !== hur.user_id"
+              >
+                <fa-icon [icon]="icons.faUserMinus"></fa-icon>
+              </button>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
 </div>
 
-<ng-template #submitProject>
-  <div *ngIf="hrgId && userTeamDetails && userTeamDetails.length > 0">
-    <commudle-public-hackathon-registration
-      [hrgId]="hrgId"
-      [userTeamDetails]="userTeamDetails[0]"
-    ></commudle-public-hackathon-registration>
-  </div>
+<ng-template #removeTeamMember let-data let-ref="dialogRef">
+  <nb-card class="remove-teammate-dialogbox">
+    <nb-card-header>
+      <span> Are you Sure you want to remove {{ data.hur.name }}?</span>
+      <button ghost nbButton size="small" (click)="ref.close()" shape="round">
+        <fa-icon [icon]="icons.faXmark"></fa-icon>
+      </button>
+    </nb-card-header>
+    <nb-card-body>
+      If you remove {{ data.hur.name }}({{ data.hur.user_email }}) from the team, they will also lose access to all the
+      channels of this hackathon.
+    </nb-card-body>
+    <nb-card-footer>
+      <button
+        nbButton
+        status="danger"
+        (click)="removeMember(data.hur, data.team, data.index, data.team_index); ref.close()"
+      >
+        remove
+      </button>
+      <button nbButton status="primary" ghost (click)="ref.close()">cancel</button>
+    </nb-card-footer>
+  </nb-card>
 </ng-template>

@@ -1,13 +1,14 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HackathonUserResponsesService } from 'apps/commudle-admin/src/app/services/hackathon-user-responses.service';
-import { IHackathonUserResponse } from 'apps/shared-models/hackathon-user-response.model';
 import { faUserLargeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { ToastrService } from '@commudle/shared-services';
+import { IHackathonUserResponse } from '@commudle/shared-models';
 
 @Component({
   selector: 'commudle-public-hackathon-teammate-form',

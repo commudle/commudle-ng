@@ -12,6 +12,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HackathonHorizontalCardComponent } from 'apps/commudle-admin/src/app/app-shared-components/hackathon-horizontal-card/hackathon-horizontal-card.component';
 import { SharedComponentsModule } from 'apps/shared-components/shared-components.module';
 import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-shared-components/app-shared-components.module';
+import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
+import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
+import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
+import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -20,17 +24,24 @@ import { AppSharedComponentsModule } from 'apps/commudle-admin/src/app/app-share
     DashboardRoutingModule,
     SharedComponentsModule,
     AppSharedComponentsModule,
+    CommunityBuildsModule,
+    LabsModule,
+    InfiniteScrollModule,
+
     //Nebular
     NbCardModule,
     NbButtonModule,
     NbIconModule,
+
     //Fontawesome
     FontAwesomeModule,
+
     //Standalone
     UserProfileComponent,
     UserprofileDetailsComponent,
     EventHorizontalCardComponent,
     HackathonHorizontalCardComponent,
+    SharedPipesModule,
   ],
 })
 export class DashboardModule {}

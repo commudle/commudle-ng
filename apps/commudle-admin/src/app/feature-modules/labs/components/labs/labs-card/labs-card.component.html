@@ -19,11 +19,11 @@
           <div class="labs-card-title">
             <h4 class="title">{{ lab.name }}</h4>
             <p class="steps">
-              <span>{{ lab.lab_steps.length }}</span
-              >&nbsp;<span>STEP{{ lab.lab_steps.length > 1 ? 'S' : '' }}</span>
+              <span>{{ lab.lab_steps?.length || lab.lab_steps_count }}</span
+              >&nbsp;<span>STEP{{ lab.lab_steps?.length > 1 ? 'S' : '' }}</span>
             </p>
           </div>
-          <div *ngIf="lab.tags.length > 0" class="tags">
+          <div *ngIf="lab.tags?.length > 0" class="tags">
             <app-tag
               [tags]="lab.tags"
               [backgroundColor]="'com-bg-Azure-opacity-10'"

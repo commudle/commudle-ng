@@ -44,7 +44,14 @@
         </select>
       </section>
 
-      <button type="button" nbButton ghost status="danger" (click)="removeTeammate(i)">
+      <button
+        *ngIf="hackathonUserResponse.current_user_is_team_lead"
+        type="button"
+        nbButton
+        ghost
+        status="danger"
+        (click)="removeTeammate(i)"
+      >
         <fa-icon [icon]="icons.faUserLargeSlash"></fa-icon>
         <span>Remove Teammate</span>
       </button>

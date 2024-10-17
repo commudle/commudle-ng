@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { ApiRoutesService } from 'apps/shared-services/api-routes.service';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
 import { IHackathonSponsor } from 'apps/shared-models/hackathon-sponsor';
@@ -10,10 +11,12 @@ import { API_ROUTES } from '@commudle/shared-services';
 import { Observable } from 'rxjs';
 import {
   ICommunityBuild,
+  ICommunityChannel,
   IHackathonPrize,
   IHackathonTeam,
   IHackathonTrack,
   IPagination,
+  IPaginationCount,
 } from '@commudle/shared-models';
 
 interface publicHackathonsList {
@@ -65,7 +68,7 @@ export class HackathonService {
     return this.http.get<IHackathon[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.INDEX), { params });
   }
 
-  pIndexHackathons(parentId, parentType: string): Observable<publicHackathonsList> {
+  pIndexHackathons(parentId, parentType: string, when?: string): Observable<IPaginationCount<IHackathon>> {
     let params = new HttpParams();
     switch (parentType) {
       case 'Kommunity': {
@@ -77,9 +80,15 @@ export class HackathonService {
         break;
       }
     }
-    return this.http.get<publicHackathonsList>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX), {
-      params,
-    });
+    if (when) {
+      params = params.set('when', when);
+    }
+    return this.http.get<IPaginationCount<IHackathon>>(
+      this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.PUBLIC.INDEX),
+      {
+        params,
+      },
+    );
   }
 
   showHackathon(hackathonId): Observable<IHackathon> {
@@ -389,6 +398,13 @@ export class HackathonService {
   sendTeamDetailCsv(hackathonId: number | string): Observable<boolean> {
     return this.http.post<boolean>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.REGISTRATION_DETAILS_CSV), {
       hackathon_id: hackathonId,
+    });
+  }
+
+  getHackathonUserChannels(hackathonId): Observable<ICommunityChannel[]> {
+    const params = new HttpParams().set('hackathon_id', hackathonId);
+    return this.http.get<ICommunityChannel[]>(this.apiRoutesService.getRoute(API_ROUTES.HACKATHONS.USERS_CHANNELS), {
+      params,
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ICommunityGroup, EDbModels } from '@commudle/shared-models';
 import { Subscription } from 'rxjs';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './org-channels.component.html',
   styleUrls: ['./org-channels.component.scss'],
 })
-export class OrgChannelsComponent implements OnInit {
+export class OrgChannelsComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   communityGroup: ICommunityGroup;
   EDbModels = EDbModels;
@@ -20,5 +20,9 @@ export class OrgChannelsComponent implements OnInit {
         this.communityGroup = data.community_group;
       }),
     );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

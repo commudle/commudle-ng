@@ -1,1 +1,8 @@
-<p>public-hackathon-channels works!</p>
+<nb-card *ngIf="hackathon">
+  <nb-card-body>
+    <commudle-channel-forum-dashboard
+      [parent]="hackathon"
+      [parentType]="EDbModels.HACKATHON"
+    ></commudle-channel-forum-dashboard>
+  </nb-card-body>
+</nb-card>

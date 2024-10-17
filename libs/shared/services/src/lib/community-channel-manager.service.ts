@@ -7,6 +7,7 @@ import {
   ICommunity,
   ICommunityChannel,
   ICommunityGroup,
+  IHackathon,
   IUser,
   IUserMessage,
 } from '@commudle/shared-models';
@@ -28,7 +29,7 @@ export class CommunityChannelManagerService {
   forums: ICommunityChannel[] = [];
 
   // set parent for channel or forum
-  private parent: BehaviorSubject<ICommunity | ICommunityGroup> = new BehaviorSubject(null);
+  private parent: BehaviorSubject<ICommunity | ICommunityGroup | IHackathon> = new BehaviorSubject(null);
   public parent$ = this.parent.asObservable();
 
   // set parent type for channel or forum
@@ -100,7 +101,7 @@ export class CommunityChannelManagerService {
     this.currentUser = user;
   }
 
-  setParent(parent: ICommunity | ICommunityGroup, parentType: EDbModels): void {
+  setParent(parent: ICommunity | ICommunityGroup | IHackathon, parentType: EDbModels): void {
     this.parent.next(parent);
     this.parentType.next(parentType);
   }

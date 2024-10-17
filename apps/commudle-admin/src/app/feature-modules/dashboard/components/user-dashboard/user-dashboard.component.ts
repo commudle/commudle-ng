@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EDbModels, ICommunity, IPageInfo, IUpcomingEventHackathon } from '@commudle/shared-models';
+import { EDbModels, IActivityFeed, ICommunity, IPageInfo, IUpcomingEventHackathon } from '@commudle/shared-models';
 import { AppUsersService } from 'apps/commudle-admin/src/app/services/app-users.service';
 import { CommunitiesService } from 'apps/commudle-admin/src/app/services/communities.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
@@ -22,9 +22,15 @@ export class UserDashboardComponent implements OnInit {
   EDbModels = EDbModels;
   loading = true;
   upcomingEventsHackathons: IUpcomingEventHackathon[] = [];
+  activityFeed: IActivityFeed[] = [];
   page = 1;
   count = 5;
   total = 0;
+  pageInfo: IPageInfo;
+  loadActivity = true;
+  limit = 5;
+  activityTotal: number;
+  loadingActivity = false;
 
   constructor(
     private authWatchService: LibAuthwatchService,
@@ -37,6 +43,7 @@ export class UserDashboardComponent implements OnInit {
     this.getUserDetails();
     this.getCommunitiesData();
     this.getUpcomingEventsHackathons();
+    this.getActivityFeed();
   }
 
   getUserDetails() {
@@ -67,6 +74,22 @@ export class UserDashboardComponent implements OnInit {
         this.total = data.total;
         this.loading = false;
       }
+    });
+  }
+
+  getActivityFeed() {
+    if (this.loadingActivity) {
+      return;
+    }
+    this.loadingActivity = true;
+    this.feedService.getActivityFeed(this.limit, this.pageInfo?.end_cursor).subscribe((data) => {
+      if (data) {
+        this.activityFeed = this.activityFeed.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
+        this.activityTotal = data.total;
+        this.pageInfo = data.page_info;
+      }
+      this.loadingActivity = false;
+      this.loadActivity = false;
     });
   }
 }

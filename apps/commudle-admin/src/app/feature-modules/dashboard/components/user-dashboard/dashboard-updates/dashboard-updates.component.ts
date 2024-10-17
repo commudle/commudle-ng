@@ -15,7 +15,7 @@ import moment from 'moment';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
-// import { generate } from 'lean-qr';
+import { generate } from 'lean-qr';
 
 @Component({
   selector: 'commudle-dashboard-updates',
@@ -23,7 +23,6 @@ import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entit
   styleUrls: ['./dashboard-updates.component.scss'],
 })
 export class DashboardUpdatesComponent implements OnInit {
-  @ViewChild('qrCanvas', { static: true }) qrCanvas: ElementRef<HTMLCanvasElement>;
   @ViewChild('postContentBox') postContentBox: TemplateRef<any>;
 
   ERegistrationStatuses = ERegistrationStatuses;
@@ -53,7 +52,6 @@ export class DashboardUpdatesComponent implements OnInit {
     this.authWatchService.currentUser$.subscribe((data) => {
       this.currentUser = data;
     });
-    // this.generateQRCode();
     this.getMyRegistrations();
   }
 
@@ -61,12 +59,13 @@ export class DashboardUpdatesComponent implements OnInit {
     this.activeTab = tab;
   }
 
-  generateQRCode(uniqueCode) {
-    // const qrCode = generate(uniqueCode);
-    // qrCode.toCanvas(this.qrCanvas.nativeElement);
+  generateQRCode(uniqueCode, canvasId) {
+    const qr = document.getElementById(canvasId) as HTMLCanvasElement;
+    const qrCode = generate(uniqueCode);
+    qrCode.toCanvas(qr);
   }
 
-  toggleEntryPass(index, uniqueCode) {
+  toggleEntryPass(index, uniqueCode, canvasId) {
     for (let i = 0; i < this.myRegistrations.length; i++) {
       if (i !== index) {
         this.showEntryPass[i] = false;
@@ -74,7 +73,9 @@ export class DashboardUpdatesComponent implements OnInit {
     }
     this.showEntryPass[index] = !this.showEntryPass[index];
     if (this.showEntryPass[index]) {
-      this.generateQRCode(uniqueCode);
+      setTimeout(() => {
+        this.generateQRCode(uniqueCode, canvasId);
+      }, 0);
     }
   }
 

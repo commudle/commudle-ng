@@ -10,7 +10,7 @@
     <br />
     <div>
       <label for="message">Message (optional)</label>
-      <textarea name="message" [(ngModel)]="message" placeholder="Message (optional)" nbInput fullWidth></textarea>
+      <editor [init]="tinyMCE" [(ngModel)]="message"></editor>
     </div>
   </nb-card-body>
   <nb-card-footer>
@@ -19,7 +19,7 @@
       status="primary"
       (click)="SendWinnerAnnouncementMailer()"
       [nbSpinner]="isLoading"
-      [disabled]="isLoading"
+      [disabled]="isLoading || message"
     >
       Send
     </button>

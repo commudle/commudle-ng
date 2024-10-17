@@ -21,6 +21,7 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
     faXmark,
   };
   hackathonSlug = '';
+  communitySlug: string;
   constructor(
     private roundService: RoundService,
     private activatedRoute: ActivatedRoute,
@@ -33,13 +34,14 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       date: ['', Validators.required],
-      order: ['', Validators.required],
+      order: ['', [Validators.required, Validators.min(1)]],
     });
   }
 
   ngOnInit() {
     this.activatedRoute.parent.paramMap.subscribe((params) => {
       this.hackathonSlug = params.get('hackathon_id');
+      this.communitySlug = params.get('community_id');
       this.indexRounds(params.get('hackathon_id'));
     });
   }
@@ -58,6 +60,8 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
         date: this.datePipe.transform(round.date, 'yyyy-MM-dd'),
         order: round.order,
       });
+    } else {
+      this.roundForm.reset();
     }
 
     this.nbDialogService.open(dialog, {
@@ -95,6 +99,15 @@ export class HackathonControlPanelRoundsComponent implements OnInit {
   destroyRound(roundId, index) {
     this.roundService.destroyRound(roundId).subscribe((data) => {
       if (data) this.rounds.splice(index, 1);
+    });
+  }
+
+  createChannel(round: IRound, index: number) {
+    this.roundService.createChannelForRound(round.id).subscribe((data) => {
+      if (data) {
+        this.toastrService.successDialog('Channel Created');
+        this.rounds[index] = data;
+      }
     });
   }
 }

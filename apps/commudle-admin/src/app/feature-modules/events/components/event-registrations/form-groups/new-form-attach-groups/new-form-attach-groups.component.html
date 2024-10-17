@@ -78,7 +78,10 @@
               <div class="question-heading">Additional Form Questions.</div>
               <label>
                 <div class="select">
-                  <select formControlName="data_form_id">
+                  <select
+                    formControlName="data_form_id"
+                    [ngClass]="{ disabled: eventDataFormEntityGroup?.summary_registration_counts?.all > 0 }"
+                  >
                     <option value=""><strong>+</strong> CREATE NEW FORM</option>
                     <option *ngFor="let df of communityDataForms" [value]="df.id">
                       {{ df.name | titlecase }}

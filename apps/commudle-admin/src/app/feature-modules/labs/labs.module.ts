@@ -106,5 +106,7 @@ import { HelpSectionComponent } from 'apps/commudle-admin/src/app/app-shared-com
     SkeletonCardsComponent,
   ],
   providers: [{ provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
+
+  exports: [LabsCardComponent],
 })
 export class LabsModule {}

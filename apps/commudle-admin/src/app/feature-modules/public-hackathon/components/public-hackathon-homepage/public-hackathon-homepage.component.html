@@ -100,6 +100,12 @@
               <p class="name">Judges</p>
             </a>
           </div>
+          <div>
+            <a [routerLink]="['channels']" routerLinkActive="active">
+              <fa-icon [icon]="icons.faHashtag"></fa-icon>
+              <p class="name">Channels</p>
+            </a>
+          </div>
           <div *ngIf="hackathon.prizes_count > 0">
             <a [routerLink]="['prizes']" routerLinkActive="active">
               <fa-icon [icon]="icons.faAward"></fa-icon>
@@ -112,13 +118,6 @@
               <p class="name">Projects</p>
             </a>
           </div>
-          <!-- TODO Done to be later -->
-          <!-- <div>
-            <a [routerLink]="['channels']" routerLinkActive="active">
-              <fa-icon [icon]="icons.faHashtag"></fa-icon>
-              <p class="name">channels</p>
-            </a>
-          </div> -->
           <div
             *ngIf="
               userTeamDetails &&

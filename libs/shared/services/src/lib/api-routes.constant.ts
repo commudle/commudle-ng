@@ -843,6 +843,7 @@ export const API_ROUTES = {
     STATUS_FILTER_GENERAL_EMAIL: 'api/v2/hackathons/status_filter_general_email', //POST
     REGISTRATION_DETAILS_CSV: 'api/v2/hackathons/registration_details_csv', //POST
     ROUND_GENERAL_MAILER: 'api/v2/hackathons/round_general_mailer', //POST
+    USERS_CHANNELS: 'api/v2/hackathons/users_channels', //GET
     PUBLIC: {
       SHOW: 'api/v2/hackathons/public/show', //GET
       INDEX: 'api/v2/hackathons/public/index', //GET
@@ -888,6 +889,7 @@ export const API_ROUTES = {
     UPDATE_INVITATION_TOKEN_HUR: 'api/v2/hackathon_user_response/update_invitation_token_hur', //PUT
     COMPLETE_HUR_STATUS: 'api/v2/hackathon_user_response/complete_hur_status', //PUT
     GET_DATA_FORM_RESPONSES: 'api/v2/hackathon_user_response/get_data_form_responses', //GET
+    REMOVE_TEAM_MEMBER: 'api/v2/hackathon_user_response/remove_team_member', //PUT
   },
 
   ENTITY_UPDATES: {
@@ -904,6 +906,7 @@ export const API_ROUTES = {
     INDEX: 'api/v2/round', //GET
     DELETE: 'api/v2/round', //DELETE
     UPDATE: 'api/v2/round', //PUT
+    CREATE_CHANNEL_FOR_ROUND: 'api/v2/round/create_channel_for_round', //POST
     PUBLIC: {
       INDEX: 'api/v2/round/public',
     },
@@ -946,5 +949,6 @@ export const API_ROUTES = {
 
   FEED: {
     INDEX_UPCOMING_HACKATHONS_EVENTS: 'api/v2/feed/events_hackathons/upcoming',
+    ACTIVITY_FEED: 'api/v2/activity_feed',
   },
 };

@@ -61,7 +61,7 @@
       <commudle-interested-members [users]="users" [totalCount]="totalUsers"></commudle-interested-members>
     </div>
     <br />
-    <div *ngIf="hrgId && hackathonStatus !== 'Closed'">
+    <div *ngIf="hrgId && hackathonStatus === 'Outgoing' && hackathon.status === EHackathonStatus.OPEN">
       <button
         *ngIf="userTeamDetails?.length === 0"
         nbButton
