@@ -428,9 +428,16 @@
               >
             </div>
           </div>
-          <div *ngIf="!showAllFeatures" (click)="toggleShowAllFeatures()" class="show-all-features-btn">
+          <button
+            nbButton
+            status="primary"
+            shape="semi-round"
+            *ngIf="!showAllFeatures"
+            (click)="toggleShowAllFeatures()"
+            class="show-all-features-btn"
+          >
             <p><span>Compare All Features</span><fa-icon [icon]="faArrowDown"></fa-icon></p>
-          </div>
+          </button>
         </div>
         <div class="student-section">
           <div class="student-section-details">

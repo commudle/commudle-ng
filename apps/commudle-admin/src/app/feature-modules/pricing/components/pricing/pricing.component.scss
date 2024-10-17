@@ -322,3 +322,19 @@ p {
 .action-sub-features {
   @apply com-grid md:com-grid-cols-[1.2fr_1fr_1fr_1fr] com-grid-cols-[2.2fr_1fr_1fr_1fr] com-justify-items-center com-pt-8;
 }
+
+.hide-all-features {
+  @apply com-h-[1000px] com-overflow-hidden;
+}
+
+.show-all-features-btn {
+  @apply com-flex com-justify-center com-items-end com-w-full com-text-base com-font-semibold com-my-12;
+
+  p {
+    @apply com-flex com-justify-center com-items-center com-text-white com-font-semibold;
+  }
+
+  fa-icon {
+    @apply com-ml-2 com-h-4 com-w-4;
+  }
+}
