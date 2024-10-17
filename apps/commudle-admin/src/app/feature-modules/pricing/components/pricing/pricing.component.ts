@@ -164,7 +164,8 @@ export class PricingComponent implements OnInit, OnDestroy {
 
   getPricingFeatures() {
     const fields = 'name, order, features';
-    this.cmsService.getDataByTypeFieldOrder('pricingPlanFeatures', fields).subscribe((value) => {
+    const order = 'order asc';
+    this.cmsService.getDataByTypeFieldOrder('pricingPlanFeatures', fields, order).subscribe((value) => {
       this.pricingFeatures = value;
     });
   }

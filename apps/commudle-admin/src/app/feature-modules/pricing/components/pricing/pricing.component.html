@@ -83,7 +83,7 @@
                 </div>
                 <a
                   [href]="isMonthly ? enterprise.priceDetails[1].url : enterprise.priceDetails[0].url"
-                  (click)="gtmDatalayerPush('non_profit')"
+                  (click)="gtmDatalayerPush('pricing_plan_enterprise')"
                   ><button nbButton fullWidth shape="semi-round" class="enterprise-btn">
                     {{ enterprise.button_text }}
                   </button></a
@@ -150,7 +150,7 @@
                 </div>
                 <a
                   [href]="isMonthly ? startup.priceDetails[1].url : startup.priceDetails[0].url"
-                  (click)="gtmDatalayerPush('non_profit')"
+                  (click)="gtmDatalayerPush('pricing_plan_startup')"
                   ><button nbButton fullWidth shape="semi-round" class="enterprise-btn">
                     {{ startup.button_text }}
                   </button></a
@@ -217,7 +217,7 @@
                 </div>
                 <a
                   [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
-                  (click)="gtmDatalayerPush('non_profit')"
+                  (click)="gtmDatalayerPush('pricing_plan_devrel_agency')"
                   ><button nbButton fullWidth shape="semi-round" class="devrel-btn">{{ devrel.button_text }}</button></a
                 >
               </div>
@@ -278,7 +278,7 @@
               </div>
               <a
                 [href]="isMonthly ? enterprise?.priceDetails[1].url : enterprise?.priceDetails[0].url"
-                (click)="gtmDatalayerPush('non_profit')"
+                (click)="gtmDatalayerPush('pricing_plan_enterprise')"
                 ><button nbButton status="primary" size="tiny" shape="round">
                   {{ enterprise?.button_text }}
                 </button></a
@@ -319,7 +319,7 @@
               </div>
               <a
                 [href]="isMonthly ? startup?.priceDetails[1].url : startup?.priceDetails[0].url"
-                (click)="gtmDatalayerPush('non_profit')"
+                (click)="gtmDatalayerPush('pricing_plan_startup')"
                 ><button nbButton status="primary" size="tiny" shape="round">
                   {{ startup?.button_text }}
                 </button></a
@@ -351,7 +351,7 @@
               </div>
               <a
                 [href]="isMonthly ? devrel?.priceDetails[1].url : devrel?.priceDetails[0].url"
-                (click)="gtmDatalayerPush('non_profit')"
+                (click)="gtmDatalayerPush('pricing_plan_devrel_agency')"
                 ><button nbButton size="tiny" shape="round" class="devrel-btn">
                   {{ devrel?.button_text }}
                 </button></a
@@ -408,20 +408,20 @@
               <p class="action-title">Choose a Plan</p>
               <a
                 [href]="isMonthly ? enterprise.priceDetails[1].url : enterprise.priceDetails[0].url"
-                (click)="gtmDatalayerPush('non_profit')"
+                (click)="gtmDatalayerPush('pricing_plan_enterprise')"
                 ><button nbButton status="primary" size="tiny" shape="round">
                   {{ enterprise.button_text }}
                 </button></a
               >
               <a
                 [href]="isMonthly ? startup.priceDetails[1].url : startup.priceDetails[0].url"
-                (click)="gtmDatalayerPush('non_profit')"
+                (click)="gtmDatalayerPush('pricing_plan_startup')"
                 ><button nbButton status="primary" size="tiny" shape="round">
                   {{ startup.button_text }}
                 </button></a
               ><a
                 [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
-                (click)="gtmDatalayerPush('non_profit')"
+                (click)="gtmDatalayerPush('pricing_plan_devrel_agency')"
                 ><button nbButton size="tiny" shape="round" class="devrel-btn">
                   {{ devrel.button_text }}
                 </button></a
@@ -476,7 +476,9 @@
                 <span class="feature">Networking with experts</span>
               </li>
             </ul>
-            <a [routerLink]="['/student-non-profit-community-support']" (click)="gtmDatalayerPush('non_profit')"
+            <a
+              [routerLink]="['/student-non-profit-community-support']"
+              (click)="gtmDatalayerPush('pricing_plan_non_profit')"
               ><button nbButton fullWidth shape="semi-round" class="devrel-btn md:com-mt-7 com-mt-6">
                 Apply Now
               </button></a
