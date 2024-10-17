@@ -55,7 +55,7 @@ p {
           @apply com-flex com-flex-col com-items-start com-flex-shrink-0;
 
           .price {
-            @apply com-flex com-flex-row com-items-center;
+            @apply com-flex com-flex-row com-items-center com-min-h-10;
 
             .current-price {
               @apply md:com-text-[40px] com-text-[28px] com-font-bold com-text-Yankees-Blue com-m-0 com-mr-2;
