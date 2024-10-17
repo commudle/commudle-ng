@@ -33,7 +33,7 @@ export class PublicHackathonUserDashboardComponent implements OnInit {
   hrgId: number;
   EDbModels: EDbModels;
   EDiscussionType = EDiscussionType;
-  channels: ICommunityChannel[] = [];
+  channels: ICommunityChannel[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -73,11 +73,9 @@ export class PublicHackathonUserDashboardComponent implements OnInit {
   }
 
   getChannels() {
-    this.channelService
-      .indexChannelForum(this.hackathon.id, EDbModels.HACKATHON, EDiscussionType.CHANNEL)
-      .subscribe((data) => {
-        this.channels = this.channels.concat(data.page.reduce((acc, value) => [...acc, value.data], []));
-      });
+    this.hackathonService.getHackathonUserChannels(this.hackathon.id).subscribe((channels) => {
+      this.channels = channels;
+    });
   }
 
   openDialogBox(
