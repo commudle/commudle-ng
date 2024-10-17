@@ -130,6 +130,10 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <commudle-alert
+        [info]="true"
+        message="Account verification and activation takes 1 to 2 working days. If you are looking for instant activation, please write an email to payments_support@commudle.com"
+      ></commudle-alert>
       <div>
         <!-- Country Field -->
         <form [formGroup]="countryForm" *ngIf="!isLoading">
