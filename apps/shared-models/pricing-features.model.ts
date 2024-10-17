@@ -16,7 +16,14 @@ export interface IPricingFeature {
 export interface IPricing {
   name: string;
   description: string;
-  priceDetails: any;
-  key_features: any;
+  priceDetails: IPricingPlan[];
+  key_features: string[];
   button_text: string;
+}
+
+export interface IPricingPlan {
+  price_after_discount?: string;
+  price: string;
+  discount_percentage?: string;
+  url: string;
 }

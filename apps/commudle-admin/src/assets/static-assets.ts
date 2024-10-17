@@ -64,6 +64,10 @@ export const staticAssets = {
   pricing_students:
     'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNlBVQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--239f0b40cbdaf2e55f8e5da07a7f767262f4770d/Commudle%20for%20Students.png',
 
+  //Not using this anymore
+  // pricing_enterprise:
+  // 'https://json.commudle.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBNlRVQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--93d3ffeb355bd0a57e15c1c0eb2b0fea62e436f4/Commudle%20for%20Enterprise.png',
+
   pricing_usecase_cards_desktop:
     'https://json.commudle.com/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBMnBnQVE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--19af23aeba1556ddef013ced2d20db12ab1b2c4e/Usecase%20Cards%20Desktop.svg',
 
