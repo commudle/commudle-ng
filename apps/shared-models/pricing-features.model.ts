@@ -12,3 +12,11 @@ export interface IPricingFeature {
   custom_text_for_enterprise: string;
   custom_text_for_startup: string;
 }
+
+export interface IPricing {
+  name: string;
+  description: string;
+  priceDetails: any;
+  key_features: any;
+  button_text: string;
+}

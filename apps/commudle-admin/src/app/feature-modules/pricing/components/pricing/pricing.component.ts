@@ -7,7 +7,7 @@ import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.
 import { Subscription } from 'rxjs';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { faArrowDown, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-import { IPricingFeatures } from 'apps/shared-models/pricing-features.model';
+import { IPricing, IPricingFeatures } from 'apps/shared-models/pricing-features.model';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -17,9 +17,9 @@ export class PricingComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
   isMobileView = false;
   isDarkMode = false;
-  enterprise: any;
-  startup: any;
-  devrel: any;
+  enterprise: IPricing;
+  startup: IPricing;
+  devrel: IPricing;
   isMonthly = true;
   isAnually = false;
   faCircleCheck = faCircleCheck;
