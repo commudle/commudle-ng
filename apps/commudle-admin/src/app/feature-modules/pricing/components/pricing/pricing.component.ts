@@ -5,7 +5,10 @@ import { FooterService } from 'apps/commudle-admin/src/app/services/footer.servi
 import { staticAssets } from 'apps/commudle-admin/src/assets/static-assets';
 import { DarkModeService } from 'apps/commudle-admin/src/app/services/dark-mode.service';
 import { Subscription } from 'rxjs';
-
+import { CmsService } from 'apps/shared-services/cms.service';
+import { faArrowDown, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { IPricing, IPricingFeatures } from 'apps/shared-models/pricing-features.model';
+import { ECmsType } from 'apps/shared-models/enums/cms.enum';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -15,6 +18,17 @@ export class PricingComponent implements OnInit, OnDestroy {
   staticAssets = staticAssets;
   isMobileView = false;
   isDarkMode = false;
+  enterprise: IPricing;
+  startup: IPricing;
+  devrel: IPricing;
+  isMonthly = true;
+  isAnually = false;
+  faCircleCheck = faCircleCheck;
+  pricingFeatures: IPricingFeatures[] = [];
+  showAllFeatures = true;
+  faArrowDown = faArrowDown;
+  faCircleXmark = faCircleXmark;
+  ECmsType = ECmsType;
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
@@ -81,6 +95,7 @@ export class PricingComponent implements OnInit, OnDestroy {
     private gtm: GoogleTagManagerService,
     private footerService: FooterService,
     private darkModeService: DarkModeService,
+    private cmsService: CmsService,
   ) {}
 
   ngOnInit(): void {
@@ -94,6 +109,13 @@ export class PricingComponent implements OnInit, OnDestroy {
       'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
+    this.getEnterpriseData();
+    this.getStartupData();
+    this.getDevrelData();
+    this.getPricingFeatures();
+    if (this.isMobileView) {
+      this.showAllFeatures = false;
+    }
   }
 
   ngOnDestroy(): void {
@@ -122,5 +144,40 @@ export class PricingComponent implements OnInit, OnDestroy {
         return "url('" + staticAssets.pricing_community_logo_desktop + "')";
       }
     }
+  }
+
+  getEnterpriseData(): void {
+    this.cmsService.getDataBySlug('pp-commudle-for-enterprises').subscribe((value) => {
+      this.enterprise = value;
+    });
+  }
+
+  getStartupData(): void {
+    this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
+      this.startup = value;
+    });
+  }
+
+  getDevrelData(): void {
+    this.cmsService.getDataBySlug('pp-commudle-for-devrel-agencies').subscribe((value) => {
+      this.devrel = value;
+    });
+  }
+
+  getPricingFeatures() {
+    const fields = 'name, order, features';
+    const order = 'order asc';
+    this.cmsService.getDataByTypeFieldOrder(ECmsType.PRICING_PLAN_FEATURES, fields, order).subscribe((value) => {
+      this.pricingFeatures = value;
+    });
+  }
+
+  toggleSubscription(value) {
+    this.isMonthly = value === 'monthly' ? true : false;
+    this.isAnually = value === 'anually' ? true : false;
+  }
+
+  toggleShowAllFeatures() {
+    this.showAllFeatures = !this.showAllFeatures;
   }
 }
