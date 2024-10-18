@@ -95,10 +95,18 @@
                                       : feed.performer.logo_image?.i64
                                   "
                                 />
-                                <span class="performer-name">{{ feed.performer.name }}</span
-                                ><span class="action-text"
-                                  >{{ feed.action_text }} &nbsp;{{ feed.actionable.object_type }}</span
-                                >
+                                <span class="performer-name">{{ feed.performer.name }}</span>
+                                <span class="action-text"
+                                  >{{ feed.action_text }}
+                                  <span
+                                    class="action-text"
+                                    *ngIf="feed.actionable.object_type === EDbModels.COMMUNITY_BUILD"
+                                    >a build</span
+                                  >
+                                  <span class="action-text" *ngIf="feed.actionable.object_type === EDbModels.LAB"
+                                    >a lab</span
+                                  >
+                                </span>
                               </h2>
                             </nb-card-header>
                             <nb-card-body>
@@ -198,6 +206,29 @@
                             </nb-card-header>
                             <nb-card-body>
                               <app-labs-card [lab]="feed.actionable"></app-labs-card>
+                            </nb-card-body>
+                          </nb-card>
+                        </ng-container>
+
+                        <ng-container *ngSwitchCase="EDbModels.SOCIAL_RESOURCE">
+                          <nb-card class="activity-cards">
+                            <nb-card-header
+                              ><h2>
+                                <img
+                                  [src]="
+                                    feed.performer_type === EDbModels.USER
+                                      ? feed.performer.photo?.i32
+                                      : feed.performer.logo_image?.i64
+                                  "
+                                />
+                                <span class="performer-name">{{ feed.performer.name }}</span
+                                ><span class="action-text">{{ feed.action_text }}</span>
+                              </h2>
+                            </nb-card-header>
+                            <nb-card-body>
+                              <commudle-event-content-card
+                                [speakersContent]="feed.actionable"
+                              ></commudle-event-content-card>
                             </nb-card-body>
                           </nb-card>
                         </ng-container>

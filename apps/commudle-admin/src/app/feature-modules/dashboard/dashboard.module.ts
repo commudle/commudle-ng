@@ -16,6 +16,7 @@ import { SharedPipesModule } from 'apps/shared-pipes/pipes.module';
 import { CommunityBuildsModule } from 'apps/commudle-admin/src/app/feature-modules/community-builds/community-builds.module';
 import { LabsModule } from 'apps/commudle-admin/src/app/feature-modules/labs/labs.module';
 import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infinite-scroll.module';
+import { EventContentCardComponent } from '../../app-shared-components/event-content-card/event-content-card.component';
 
 @NgModule({
   declarations: [UserDashboardComponent, DashboardUpdatesComponent],
@@ -27,21 +28,19 @@ import { InfiniteScrollModule } from 'apps/shared-modules/infinite-scroll/infini
     CommunityBuildsModule,
     LabsModule,
     InfiniteScrollModule,
-
     //Nebular
     NbCardModule,
     NbButtonModule,
     NbIconModule,
-
     //Fontawesome
     FontAwesomeModule,
-
     //Standalone
     UserProfileComponent,
     UserprofileDetailsComponent,
     EventHorizontalCardComponent,
     HackathonHorizontalCardComponent,
     SharedPipesModule,
+    EventContentCardComponent,
   ],
 })
 export class DashboardModule {}

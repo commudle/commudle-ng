@@ -18,7 +18,7 @@
 }
 
 .event-title {
-  @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start com-m-0;
+  @apply com-text-sm com-font-medium com-text-Dark-Jungle-Green com-flex com-items-start com-m-0 com-cursor-pointer;
 
   fa-icon {
     @apply com-mr-1 com-text-primary-500 com-text-xs;
@@ -50,7 +50,15 @@
 }
 
 .table-type {
-  @apply com-text-xs com-font-medium com-text-gray-500 md:com-justify-self-start com-justify-self-end;
+  @apply com-text-xs com-font-medium com-text-gray-500 com-m-0 md:com-text-start com-text-end;
+}
+
+.table-type-form-type {
+  @apply com-flex com-flex-col  md:com-justify-self-start com-justify-self-end;
+
+  .form-type {
+    @apply com-text-gray-500 com-text-10px com-font-medium com-m-0;
+  }
 }
 
 .table-status {
@@ -83,7 +91,7 @@
     @apply com-m-0 com-w-full com-h-full;
 
     nb-card-body {
-      @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-gray-50;
+      @apply com-rounded-lg com-border com-border-solid com-border-Bright-Gray com-bg-tWhite;
     }
   }
 }
@@ -137,5 +145,34 @@ app-loading-spinner {
 }
 
 .qr-code-display {
-  @apply com-m-0 com-text-xs com-font-medium;
+  @apply com-m-0 com-text-xs com-font-medium com-text-tblack;
+}
+
+.template {
+  @apply com-h-[60dvh] md:com-w-[40dvw] com-w-[90dvw];
+  nb-card-header {
+    @apply com-flex com-flex-row com-justify-between com-items-center;
+    p {
+      @apply com-text-2xl com-font-semibold com-m-0;
+    }
+
+    nb-icon {
+      @apply com-h-4 com-w-4;
+    }
+  }
+
+  .qr-code-template {
+    @apply com-m-0 com-w-full com-h-full;
+
+    nb-card-body {
+      @apply com-rounded-lg com-bg-tWhite com-flex com-flex-col com-items-center com-p-0;
+    }
+    .qr-unique-code-template {
+      @apply com-text-2xl com-font-medium com-my-2 com-text-tblack;
+    }
+    #template-qr {
+      @apply com-w-auto com-h-full;
+      image-rendering: pixelated;
+    }
+  }
 }
