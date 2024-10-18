@@ -53,6 +53,7 @@ export class UserProfileManagerService {
       facebook: [''],
       youtube: [''],
       phone: [''],
+      instagram: [''],
     });
   }
 

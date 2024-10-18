@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { faDribbble, faGitlab, faMediumM, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faDribbble, faGitlab, faMediumM, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { UserProfileMenuService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-menu.service';
 import { IUser } from 'apps/shared-models/user.model';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ export class UserBasicSocialComponent implements OnChanges {
   faDribbble = faDribbble;
   faGitlab = faGitlab;
   faExclamationCircle = faExclamationCircle;
+  faInstagram = faInstagram;
 
   constructor(public userProfileMenuService: UserProfileMenuService) {}
 
@@ -36,6 +37,7 @@ export class UserBasicSocialComponent implements OnChanges {
         'behance',
         'gitlab',
         'facebook',
+        'instagram',
       ];
 
       this.userProfileMenuService.addMenuItem(

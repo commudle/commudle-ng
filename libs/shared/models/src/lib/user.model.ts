@@ -55,6 +55,7 @@ export interface IUser {
   published_labs_count?: number;
   total_labs_votes?: number;
   created_at: Date;
+  instagram: string;
 }
 
 export interface IUserSearch extends IUser {

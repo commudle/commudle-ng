@@ -45,6 +45,9 @@
       <a *ngIf="isValid(user.facebook)" href="{{ user.facebook | completeurl : 'facebook' }}" target="_blank">
         <nb-icon icon="facebook" status="primary"></nb-icon>
       </a>
+      <a *ngIf="isValid(user.instagram)" href="{{ user.instagram | completeurl : 'instagram' }}" target="_blank">
+        <fa-icon [icon]="faInstagram"></fa-icon>
+      </a>
     </div>
   </nb-card-body>
 </nb-card>
