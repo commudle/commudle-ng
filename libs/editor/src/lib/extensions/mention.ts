@@ -158,7 +158,7 @@ const Mention = (injector: Injector): Node => {
   });
 };
 
-export function CustomMention(injector: Injector) {
+export function CustomMention(injector: Injector, params: Record<string, any>) {
   const mentionService = injector.get(MentionsService);
 
   return Mention(injector).configure({
@@ -168,7 +168,7 @@ export function CustomMention(injector: Injector) {
     suggestion: {
       items: ({ query }) => {
         return mentionService
-          .getMentions(query)
+          .getMentions(query, params.parent_type, params.parent_id)
           .pipe(map((res) => res.results))
           .toPromise();
       },
