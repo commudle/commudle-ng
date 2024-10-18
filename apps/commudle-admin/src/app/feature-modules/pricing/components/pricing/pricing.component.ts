@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { CmsService } from 'apps/shared-services/cms.service';
 import { faArrowDown, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { IPricing, IPricingFeatures } from 'apps/shared-models/pricing-features.model';
+import { ECmsType } from 'apps/shared-models/enums/cms.enum';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -27,6 +28,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   showAllFeatures = true;
   faArrowDown = faArrowDown;
   faCircleXmark = faCircleXmark;
+  ECmsType = ECmsType;
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
@@ -165,7 +167,7 @@ export class PricingComponent implements OnInit, OnDestroy {
   getPricingFeatures() {
     const fields = 'name, order, features';
     const order = 'order asc';
-    this.cmsService.getDataByTypeFieldOrder('pricingPlanFeatures', fields, order).subscribe((value) => {
+    this.cmsService.getDataByTypeFieldOrder(ECmsType.PRICING_PLAN_FEATURES, fields, order).subscribe((value) => {
       this.pricingFeatures = value;
     });
   }
