@@ -13,4 +13,5 @@ export enum EDbModels {
   MAIN_NEWSLETTER = 'MainNewsletter',
   NEWSLETTER = 'Newsletter',
   VOTE = 'Vote',
+  SOCIAL_RESOURCE = 'SocialResource',
 }
