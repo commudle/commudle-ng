@@ -1,4 +1,4 @@
-export enum ICmsType {
+export enum ECmsType {
   HOMEPAGE_ACTIONS = 'homepageActions',
   TESTIMONIALS = 'testimonials',
   PUBLIC_TESTIMONIALS = 'publicTestimonials',
@@ -11,4 +11,5 @@ export enum ICmsType {
   FEATURED_PAGE = 'featuredPage',
   TERMS_AND_CONDITIONS = 'termsAndConditions',
   ABOUT_PAGE = 'aboutPage',
+  PRICING_PLAN_FEATURES = 'pricingPlanFeatures',
 }
