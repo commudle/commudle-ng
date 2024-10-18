@@ -5,7 +5,7 @@
 .registration-types {
   @apply com-grid lg:com-grid-cols-4 md:com-grid-cols-3 com-grid-cols-2 com-gap-4;
   .registration-type {
-    @apply com-border com-border-solid com-border-Bright-Gray com-rounded-2xl com-w-full com-h-20 com-text-center hover:com-border-primary-500 hover:com-bg-sky-50 hover:com-cursor-pointer;
+    @apply com-border com-border-solid com-border-Bright-Gray com-rounded-2xl com-w-full com-h-86px com-text-center hover:com-border-primary-500 hover:com-bg-sky-50 hover:com-cursor-pointer;
     &.active {
       @apply com-border-primary-500 com-bg-sky-50;
       span {
@@ -13,7 +13,7 @@
       }
     }
     span {
-      @apply com-flex com-justify-center com-items-center com-h-full com-text-xl com-font-semibold;
+      @apply com-flex com-justify-center com-items-center com-h-full com-text-xl com-font-semibold com-flex-wrap;
     }
   }
   .registration-type:hover {

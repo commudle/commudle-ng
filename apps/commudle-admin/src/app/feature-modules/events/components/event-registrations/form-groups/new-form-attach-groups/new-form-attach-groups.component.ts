@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ICommunity, IEvent } from '@commudle/shared-models';
@@ -11,6 +12,7 @@ import { UserDetailsCheckboxFormComponent } from 'apps/shared-components/user-de
 import { EditDataFormComponent } from 'apps/shared-components/edit-data-form/edit-data-form.component';
 import { DataFormsService } from 'apps/commudle-admin/src/app/services/data_forms.service';
 import { NewDataFormComponent } from 'apps/shared-components/new-data-form/new-data-form.component';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-new-form-attach-groups',
   templateUrl: './new-form-attach-groups.component.html',
@@ -32,6 +34,9 @@ export class NewFormAttachGroupsComponent implements OnInit {
   selectedRegistrationType: IRegistrationType;
   eventDataFormEntityGroupForm: FormGroup;
   userDetailsFormValues: object;
+  icons = {
+    faPlus,
+  };
 
   constructor(
     private nbDialogBox: NbDialogService,
