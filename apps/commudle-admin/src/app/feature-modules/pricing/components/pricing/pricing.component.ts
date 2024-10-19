@@ -149,18 +149,21 @@ export class PricingComponent implements OnInit, OnDestroy {
   getEnterpriseData(): void {
     this.cmsService.getDataBySlug('pp-commudle-for-enterprises').subscribe((value) => {
       this.enterprise = value;
+      this.setSchema(this.enterprise);
     });
   }
 
   getStartupData(): void {
     this.cmsService.getDataBySlug('pp-commudle-for-startups').subscribe((value) => {
       this.startup = value;
+      this.setSchema(this.startup);
     });
   }
 
   getDevrelData(): void {
     this.cmsService.getDataBySlug('pp-commudle-for-devrel-agencies').subscribe((value) => {
       this.devrel = value;
+      this.setSchema(this.devrel);
     });
   }
 
@@ -179,5 +182,23 @@ export class PricingComponent implements OnInit, OnDestroy {
 
   toggleShowAllFeatures() {
     this.showAllFeatures = !this.showAllFeatures;
+  }
+
+  setSchema(planType) {
+    this.seoService.setSchema({
+      '@context': 'https://schema.org',
+      '@type': 'Product',
+      name: planType.name,
+      image: 'https://www.commudle.com/assets/images/commudle-logo-full.png',
+      description: planType.description,
+      brand: 'Commudle',
+      offers: {
+        '@type': 'Offer',
+        price: this.isMonthly
+          ? this.enterprise.priceDetails[1]?.price_after_discount || this.enterprise.priceDetails[1]?.price
+          : this.enterprise.priceDetails[0]?.price_after_discount || this.enterprise.priceDetails[0]?.price,
+        priceCurrency: 'USD',
+      },
+    });
   }
 }
