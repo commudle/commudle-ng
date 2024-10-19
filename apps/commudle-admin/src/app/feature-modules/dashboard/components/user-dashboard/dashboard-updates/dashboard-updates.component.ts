@@ -15,6 +15,7 @@ import moment from 'moment';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { IDataFormEntityResponseGroup } from 'apps/shared-models/data_form_entity_response_group.model';
+import { NbDialogService } from '@commudle/theme';
 import { generate } from 'lean-qr';
 
 @Component({
@@ -46,7 +47,11 @@ export class DashboardUpdatesComponent implements OnInit {
   currentUser: ICurrentUser;
   EDbModels = EDbModels;
 
-  constructor(private usersService: AppUsersService, private authWatchService: LibAuthwatchService) {}
+  constructor(
+    private usersService: AppUsersService,
+    private authWatchService: LibAuthwatchService,
+    private dialogService: NbDialogService,
+  ) {}
 
   ngOnInit(): void {
     this.authWatchService.currentUser$.subscribe((data) => {
@@ -90,5 +95,12 @@ export class DashboardUpdatesComponent implements OnInit {
 
   togglePostContentDropdown() {
     this.isPostContentOpen = !this.isPostContentOpen;
+  }
+
+  openQrCode(dialog: TemplateRef<any>, eventName, formName, entryPassCode) {
+    this.dialogService.open(dialog, { context: { eventName, formName, entryPassCode } });
+    setTimeout(() => {
+      this.generateQRCode(entryPassCode, 'template-qr');
+    }, 0);
   }
 }
