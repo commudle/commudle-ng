@@ -105,8 +105,8 @@ export class PricingComponent implements OnInit, OnDestroy {
       this.isDarkMode = isDarkMode;
     });
     this.seoService.setTags(
-      'Pricing: Students, DevRels, Startups',
-      'Host all your developer community activities from events, member profiles, 1:1 communications, forums, channels and more, all at one place on Commudle',
+      'Pricing - Community Subscriptions on Commudle',
+      'Choose a pricing plan which is right for your developer community program. Plans include events, hackathons, newsletters, channels, forums etc. We also have a preferred partner network.',
       'https://commudle.com/assets/images/commudle-logo192.png',
     );
     this.getEnterpriseData();

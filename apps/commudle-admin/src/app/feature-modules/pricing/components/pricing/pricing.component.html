@@ -3,11 +3,8 @@
     <div class="background-container" [ngStyle]="{ 'background-image': getUseCaseCardsUrl() }">
       <div class="base-layout com-min-h-full">
         <div class="pricing-header">
-          <h1 class="heading">Empowering <span>DevRel </span> and Communities</h1>
-          <h2 class="subheading">
-            Commudle is an all in one platform to build and scale your developer community ecosystem. Increase your
-            team's efficiency by 10x and boost your community engagements to build thriving developer communities.
-          </h2>
+          <h1 class="heading">Select a plan for your <span>Community </span></h1>
+          <h2 class="subheading">Increase your DevRel’s efficiency by 10x and your engagements by 100x.</h2>
         </div>
       </div>
       <div>
@@ -222,7 +219,9 @@
                 <a
                   [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
                   (click)="gtmDatalayerPush('pricing_plan_devrel_agency')"
-                  ><button nbButton fullWidth shape="semi-round" class="devrel-btn">{{ devrel.button_text }}</button></a
+                  ><button nbButton fullWidth shape="semi-round" class="enterprise-btn">
+                    {{ devrel.button_text }}
+                  </button></a
                 >
               </div>
             </div>
@@ -247,9 +246,9 @@
           <p class="pricing-features-subheading">Here are all the amazing features included in our plans</p>
           <div *appBreakpoints="'>lg'" class="subscription-container">
             <div></div>
-            <div class="subscription-header">
-              <p class="heading">Enterprises</p>
-              <div *ngIf="enterprise" class="header-price">
+            <div *ngIf="enterprise" class="subscription-header">
+              <p class="heading">{{ enterprise.name }}</p>
+              <div class="header-price">
                 <span *ngIf="enterprise?.priceDetails">
                   <ng-container *ngIf="isMonthly">
                     <p class="discounted-price">
@@ -288,9 +287,9 @@
                 </button></a
               >
             </div>
-            <div class="subscription-header">
-              <p class="heading">Startups</p>
-              <div *ngIf="startup" class="header-price">
+            <div *ngIf="startup" class="subscription-header">
+              <p class="heading">{{ startup.name }}</p>
+              <div class="header-price">
                 <span *ngIf="startup?.priceDetails">
                   <ng-container *ngIf="isMonthly">
                     <p class="discounted-price">
@@ -329,9 +328,9 @@
                 </button></a
               >
             </div>
-            <div class="subscription-header">
-              <p class="heading">DevrRel Aggencies</p>
-              <div *ngIf="devrel" class="header-price">
+            <div *ngIf="devrel" class="subscription-header">
+              <p class="heading">{{ devrel.name }}</p>
+              <div class="header-price">
                 <span *ngIf="devrel?.priceDetails">
                   <ng-container *ngIf="isMonthly">
                     <p class="discounted-price">
@@ -356,7 +355,7 @@
               <a
                 [href]="isMonthly ? devrel?.priceDetails[1].url : devrel?.priceDetails[0].url"
                 (click)="gtmDatalayerPush('pricing_plan_devrel_agency')"
-                ><button nbButton size="tiny" shape="round" class="devrel-btn">
+                ><button nbButton size="tiny" shape="round" status="primary">
                   {{ devrel?.button_text }}
                 </button></a
               >
@@ -366,9 +365,9 @@
             <div *ngFor="let pricingFeature of pricingFeatures" class="header-section">
               <div *appBreakpoints="'<=lg'" class="sub-features">
                 <p class="title">{{ pricingFeature.name }}</p>
-                <p class="enterprise-title">Enterprise</p>
-                <p class="startup-title">Startup</p>
-                <p class="devrel-title">DevRel</p>
+                <p class="enterprise-title">{{ enterprise.name }}</p>
+                <p class="startup-title">{{ startup.name }}</p>
+                <p class="devrel-title">{{ devrel.name }}</p>
               </div>
               <p *appBreakpoints="'>lg'" class="title">{{ pricingFeature.name }}</p>
               <div *ngFor="let subFeature of pricingFeature.features" class="sub-features">
@@ -400,7 +399,7 @@
                     <p class="description">{{ subFeature.custom_text_for_agency }}</p>
                   </ng-container>
                   <ng-container *ngIf="!subFeature.custom_text_for_agency && subFeature.agency">
-                    <fa-icon class="check-mark-devrel" [icon]="faCircleCheck"></fa-icon>
+                    <fa-icon class="check-mark" [icon]="faCircleCheck"></fa-icon>
                   </ng-container>
                   <ng-container *ngIf="!subFeature.custom_text_for_agency && !subFeature.agency">
                     <fa-icon class="cross-mark" [icon]="faCircleXmark"></fa-icon>
@@ -426,7 +425,7 @@
               ><a
                 [href]="isMonthly ? devrel.priceDetails[1].url : devrel.priceDetails[0].url"
                 (click)="gtmDatalayerPush('pricing_plan_devrel_agency')"
-                ><button nbButton size="tiny" shape="round" class="devrel-btn">
+                ><button nbButton size="tiny" shape="round" status="primary">
                   {{ devrel.button_text }}
                 </button></a
               >
@@ -447,10 +446,10 @@
           <div class="student-section-details">
             <p class="heading">Commudle for Students</p>
             <p class="sub-heading">
-              Get a dedicated community space for all your members, their content, profiles & multiple engagement
-              options to share knowledge and build recognition options to share knowledge and build recognition.
+              Commudle for Students Get a dedicated community space for all your members, their content, profiles &
+              multiple engagement options to share knowledge and build recognition.
             </p>
-            <p class="features-heading-students">Key Features</p>
+            <p class="features-heading-students">For The Tech Community Leaders</p>
             <ul class="student-features-list">
               <li>
                 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
@@ -472,7 +471,7 @@
               </li>
               <li>
                 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                <span class="feature">Online & Offline events</span>
+                <span class="feature">Generative member growth</span>
               </li>
               <li>
                 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
@@ -480,17 +479,17 @@
               </li>
               <li>
                 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                <span class="feature">Generative member growth</span>
+                <span class="feature">Online & Offline events with smart shortlisting</span>
               </li>
               <li>
                 <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                <span class="feature">Networking with experts</span>
+                <span class="feature">Networking with experts and community leaders</span>
               </li>
             </ul>
             <a
               [routerLink]="['/student-non-profit-community-support']"
               (click)="gtmDatalayerPush('pricing_plan_non_profit')"
-              ><button nbButton fullWidth shape="semi-round" size="large" class="devrel-btn md:com-mt-7 com-mt-6">
+              ><button nbButton fullWidth shape="semi-round" size="large" status="primary" class="md:com-mt-7 com-mt-6">
                 Apply Now
               </button></a
             >

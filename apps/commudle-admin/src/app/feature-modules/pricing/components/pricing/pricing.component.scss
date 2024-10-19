@@ -153,7 +153,7 @@ p {
       .enterprise-title,
       .startup-title,
       .devrel-title {
-        @apply com-flex com-justify-center com-text-sm com-font-normal com-text-gray-500 md:com-pt-7 com-pt-8 com-px-0 com-pb-2;
+        @apply com-flex com-justify-center com-text-sm com-font-normal com-text-gray-500 md:com-pt-7 com-pt-8 com-px-0 com-pb-2 com-text-center;
       }
 
       .sub-features {
@@ -169,10 +169,6 @@ p {
 
         .cross-mark {
           @apply com-flex com-justify-center com-items-center com-text-xl com-text-gray-400 md:com-py-4 com-py-2 md:com-px-0 com-px-6px;
-        }
-
-        .check-mark-devrel {
-          @apply com-flex com-justify-center com-items-center com-text-xl com-text-black md:com-py-4 com-py-2 md:com-px-0 com-px-6px;
         }
 
         .enterprise-highlight {
@@ -262,10 +258,6 @@ p {
 
 .active-border {
   @apply com-border-3 com-border-solid com-border-primary-500 #{!important};
-}
-
-.devrel-btn {
-  @apply com-bg-black com-text-white #{!important};
 }
 
 .enterprise-btn {
