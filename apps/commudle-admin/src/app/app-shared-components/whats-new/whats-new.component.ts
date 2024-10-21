@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbButtonModule, NbCardModule, NbDialogService } from '@commudle/theme';
 import { faBullhorn, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +7,7 @@ import { SeoService } from 'apps/shared-services/seo.service';
 import { WhatsNewService } from 'apps/shared-services/whats-new.service';
 import { WhatsNewCardComponent } from './whats-new-card/whats-new-card.component';
 import { IWhatsNew } from 'apps/shared-models/whats-new.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'commudle-whats-new',
@@ -15,7 +16,9 @@ import { IWhatsNew } from 'apps/shared-models/whats-new.model';
   styleUrls: ['./whats-new.component.scss'],
   imports: [CommonModule, NbCardModule, FontAwesomeModule, WhatsNewCardComponent, NbButtonModule],
 })
-export class WhatsNewComponent implements OnInit {
+export class WhatsNewComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>(); // This Subject will emit when the component is destroyed.
+
   showPopup = false;
   showDialogPopup = false;
   cookieCreationTime;
@@ -24,6 +27,7 @@ export class WhatsNewComponent implements OnInit {
   faBullhorn = faBullhorn;
   faXmark = faXmark;
   cookieName = 'com_last_whats_new_seen';
+  showWhatsNewPopup: boolean;
 
   constructor(
     private whatsNewService: WhatsNewService,
@@ -32,6 +36,9 @@ export class WhatsNewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.whatsNewService.showWhatsNewPopup$.pipe(takeUntil(this.destroy$)).subscribe((value) => {
+      this.showWhatsNewPopup = value;
+    });
     if (!this.seoService.isBot) {
       setTimeout(() => {
         this.newUpdates = [];
@@ -52,6 +59,12 @@ export class WhatsNewComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    // Emit a value to destroy$ when the component is destroyed.
+    this.destroy$.next();
+    this.destroy$.complete(); // Complete the subject to prevent memory leaks.
+  }
+
   setCookie() {
     this.whatsNewService.setCookieCreationTime(this.cookieName);
   }
@@ -62,5 +75,7 @@ export class WhatsNewComponent implements OnInit {
 
   closePopup() {
     this.showPopup = false;
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
