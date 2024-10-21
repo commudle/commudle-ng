@@ -6,7 +6,7 @@
       class="registration-type"
       (click)="selectedRegistrationType = rt; openDialogBox()"
     >
-      <span> {{ rt.name | titlecase }}</span>
+      <div><fa-icon [icon]="icons.faPlus"></fa-icon> {{ rt.name | titlecase }} Form</div>
     </div>
   </div>
 </div>
@@ -26,7 +26,7 @@
           class="registration-type"
           [ngClass]="{ active: selectedRegistrationType.id === rt.id }"
         >
-          <span> {{ rt.name | titlecase }}</span>
+          <div><fa-icon [icon]="icons.faPlus"></fa-icon> {{ rt.name | titlecase }} Form</div>
         </div>
       </div>
 

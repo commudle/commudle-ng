@@ -1,9 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { faBehance, faDribbble, faFacebook, faGitlab, faMediumM, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import {
-  UserProfileManagerService
-} from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
+  faBehance,
+  faDribbble,
+  faFacebook,
+  faGitlab,
+  faMediumM,
+  faYoutube,
+  faInstagram,
+} from '@fortawesome/free-brands-svg-icons';
+import { UserProfileManagerService } from 'apps/commudle-admin/src/app/feature-modules/users/services/user-profile-manager.service';
 import { ICurrentUser } from 'apps/shared-models/current_user.model';
 import { LibAuthwatchService } from 'apps/shared-services/lib-authwatch.service';
 
@@ -25,6 +31,7 @@ export class SocialLinksComponent implements OnInit {
   faBehance = faBehance;
   faGitlab = faGitlab;
   faFacebook = faFacebook;
+  faInstagram = faInstagram;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +49,7 @@ export class SocialLinksComponent implements OnInit {
       gitlab: [''],
       facebook: [''],
       youtube: [''],
+      instagram: [''],
     });
   }
 
