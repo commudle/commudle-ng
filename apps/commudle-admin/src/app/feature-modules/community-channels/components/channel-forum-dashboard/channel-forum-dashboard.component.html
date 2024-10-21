@@ -42,6 +42,7 @@
               [groupedChannels]="channels"
               (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
               [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
+              [redirectUrl]="shareMessageUrl"
             ></app-community-channel-list>
           </div>
 
@@ -73,7 +74,10 @@
 
     <!-- //Channel message Component -->
     <div *ngIf="channelMessage && !forumMessage">
-      <app-community-channel [selectedChannelId]="selectedChannelOrFormId"></app-community-channel>
+      <app-community-channel
+        [selectedChannelId]="selectedChannelOrFormId"
+        [shareMessageUrl]="shareMessageUrl"
+      ></app-community-channel>
     </div>
     <div *ngIf="token">
       <app-join-by-token></app-join-by-token>

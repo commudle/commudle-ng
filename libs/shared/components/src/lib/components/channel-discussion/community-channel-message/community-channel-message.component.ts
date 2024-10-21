@@ -1,5 +1,5 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { SeoService } from '@commudle/shared-services';
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { AfterViewInit, Component, ElementRef, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IEditorValidator } from '@commudle/editor';
 import { EUserRoles, ICommunityChannel, IUserMessage } from '@commudle/shared-models';
@@ -12,13 +12,13 @@ import {
 } from '@commudle/shared-services';
 import * as moment from 'moment';
 import { BehaviorSubject } from 'rxjs';
-import { UserMessageReceiptHandlerService } from '../../../services/user-message-receipt-handler.service';
 import { CommunityChannelHandlerService } from 'libs/shared/components/src/lib/services/community-channel-handler.service';
 import { NbDialogRef, NbDialogService, NbMenuService } from '@commudle/theme';
 import { environment } from '@commudle/shared-environments';
 import { filter } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { faThumbtack } from '@fortawesome/free-solid-svg-icons';
+import { UserMessageReceiptHandlerService } from 'libs/shared/components/src/lib/services/user-message-receipt-handler.service';
 
 @Component({
   selector: 'commudle-community-channel-message',
@@ -31,6 +31,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   @Input() canReply = true;
   @Input() messagePinned = false;
   @Input() channelOrForum: ICommunityChannel;
+  @Input() shareMessageUrl: string;
 
   EUserRoles = EUserRoles;
 
@@ -156,7 +157,7 @@ export class CommunityChannelMessageComponent implements OnInit, AfterViewInit {
   }
 
   share(): void {
-    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
+    const shareLink = `${this.environment.app_url}/${this.shareMessageUrl}/${this.channelOrForumId}?after=${this.cursor}`;
     this.shareService.shareContent(
       `${shareLink}`,
       'Hey, check out this discussion on Commudle',

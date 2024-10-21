@@ -34,6 +34,7 @@ export class ChannelDiscussionComponent implements OnInit, AfterViewInit, OnDest
   @Input() fromLastRead = false;
   @Input() discussionType: string;
   @Input() channelOrForum: ICommunityChannel;
+  @Input() shareMessageUrl: string;
   pinnedMessages: IUserMessage[];
   EUserRoles = EUserRoles;
   isCommunityChannelForumAdmin = false;

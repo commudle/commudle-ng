@@ -29,6 +29,8 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
   @Input() cursor!: string;
   @Input() canReply = true;
   @Input() channelOrForum: ICommunityChannel;
+  @Input() shareMessageUrl: string;
+
   showReplies = false;
   environment = environment;
   faReply = faReply;
@@ -146,12 +148,12 @@ export class CommunityForumMessageComponent implements OnInit, AfterViewInit {
   }
 
   share(): void {
-    const shareLink = `${this.environment.app_url}${window.location.pathname}?after=${this.cursor}`;
-
+    const shareLink = `${this.environment.app_url}/${this.shareMessageUrl}/${this.channelOrForumId}?after=${this.cursor}`;
     this.shareService.shareContent(
-      shareLink,
+      `${shareLink}`,
       'Hey, check out this discussion on Commudle',
       this.message.content.length > 40 ? `${this.message.content.substring(0, 40)}...` : this.message.content,
+      shareLink,
       'Copied message link successfully!',
       'Shared message successfully!',
     );

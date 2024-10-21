@@ -15,7 +15,11 @@
         ></commudle-edit-channel>
       </nb-tab>
       <nb-tab tabTitle="invite" [active]="invite">
-        <app-invite-form [channelId]="channel.id" (updateForm)="updateChannelForm()"></app-invite-form>
+        <app-invite-form
+          [channelId]="channel.id"
+          (updateForm)="updateChannelForm()"
+          [redirectUrl]="redirectUrl"
+        ></app-invite-form>
       </nb-tab>
       <nb-tab tabTitle="delete">
         <app-delete-channel

@@ -1,12 +1,11 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { Component, EventEmitter, Inject, Input, OnDestroy, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
 import { environment } from 'apps/commudle-admin/src/environments/environment';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { EUserRoles } from 'apps/shared-models/enums/user_roles.enum';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { CommunityChannelManagerService } from '../../../services/community-channel-manager.service';
-import { CommunityChannelsService } from '../../../services/community-channels.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class InviteFormComponent implements OnInit, OnDestroy {
   @Input() channelId: number;
   @Input() forum: ICommunityChannel;
+  @Input() redirectUrl: string;
   @Output() updateForm = new EventEmitter<string>();
   communityChannel: ICommunityChannel;
   joinToken: string;
