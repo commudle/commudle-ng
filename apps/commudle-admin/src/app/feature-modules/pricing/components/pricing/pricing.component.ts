@@ -163,7 +163,6 @@ export class PricingComponent implements OnInit, OnDestroy {
   getDevrelData(): void {
     this.cmsService.getDataBySlug('pp-commudle-for-devrel-agencies').subscribe((value) => {
       this.devrel = value;
-      this.setSchema(this.devrel);
     });
   }
 
@@ -194,10 +193,17 @@ export class PricingComponent implements OnInit, OnDestroy {
       brand: 'Commudle',
       offers: {
         '@type': 'Offer',
+        url: 'https://www.commudle.com/pricing',
         price: this.isMonthly
-          ? this.enterprise.priceDetails[1]?.price_after_discount || this.enterprise.priceDetails[1]?.price
-          : this.enterprise.priceDetails[0]?.price_after_discount || this.enterprise.priceDetails[0]?.price,
-        priceCurrency: 'USD',
+          ? this.enterprise?.priceDetails[1]?.price_after_discount || this.enterprise?.priceDetails[1]?.price
+          : this.enterprise?.priceDetails[0]?.price_after_discount || this.enterprise?.priceDetails[0]?.price,
+        priceCurrency: this.isMonthly
+          ? this.enterprise?.priceDetails[1]?.currencyType === '$'
+            ? 'USD'
+            : 'INR'
+          : this.enterprise?.priceDetails[0]?.currencyType === '$'
+          ? 'USD'
+          : 'INR',
       },
     });
   }
