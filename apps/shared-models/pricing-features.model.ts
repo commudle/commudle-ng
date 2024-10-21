@@ -26,4 +26,5 @@ export interface IPricingPlan {
   price: string;
   discount_percentage?: string;
   url: string;
+  currencyType: string;
 }

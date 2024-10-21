@@ -29,20 +29,22 @@
                     <div *ngIf="enterprise.priceDetails" class="price">
                       <ng-container *ngIf="isMonthly">
                         <p class="current-price">
-                          {{
+                          <span>{{ enterprise.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                          <span>{{
                             enterprise.priceDetails[1]?.price_after_discount
                               ? enterprise.priceDetails[1].price_after_discount
                               : enterprise.priceDetails[1].price
-                          }}
+                          }}</span>
                         </p>
                       </ng-container>
                       <ng-container *ngIf="isAnually">
                         <p class="current-price">
-                          {{
+                          <span>{{ enterprise.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                          <span>{{
                             enterprise.priceDetails[0]?.price_after_discount
                               ? enterprise.priceDetails[0].price_after_discount
                               : enterprise.priceDetails[0].price
-                          }}
+                          }}</span>
                         </p>
                       </ng-container>
                       <ng-container *ngIf="enterprise.priceDetails[1]?.price_after_discount && isMonthly">
@@ -51,7 +53,8 @@
                             {{ enterprise.priceDetails[1].discount_percentage }}
                           </p>
                           <p class="discount-price">
-                            {{ enterprise.priceDetails[1].price }}
+                            <span>{{ enterprise.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                            <span>{{ enterprise.priceDetails[1].price }}</span>
                           </p>
                         </div>
                       </ng-container>
@@ -61,7 +64,8 @@
                             {{ enterprise.priceDetails[0].discount_percentage }}
                           </p>
                           <p class="discount-price">
-                            {{ enterprise.priceDetails[0].price }}
+                            <span>{{ enterprise.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                            <span>{{ enterprise.priceDetails[0].price }}</span>
                           </p>
                         </div>
                       </ng-container>
@@ -98,20 +102,22 @@
                     <div *ngIf="startup.priceDetails" class="price">
                       <ng-container *ngIf="isMonthly">
                         <p class="current-price">
-                          {{
+                          <span>{{ startup.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                          <span>{{
                             startup.priceDetails[1]?.price_after_discount
                               ? startup.priceDetails[1].price_after_discount
                               : startup.priceDetails[1].price
-                          }}
+                          }}</span>
                         </p>
                       </ng-container>
                       <ng-container *ngIf="isAnually">
                         <p class="current-price">
-                          {{
+                          <span>{{ startup.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                          <span>{{
                             startup.priceDetails[0]?.price_after_discount
                               ? startup.priceDetails[0].price_after_discount
                               : startup.priceDetails[0].price
-                          }}
+                          }}</span>
                         </p>
                       </ng-container>
                       <ng-container *ngIf="startup.priceDetails[1]?.price_after_discount && isMonthly">
@@ -120,7 +126,8 @@
                             {{ startup.priceDetails[1].discount_percentage }}
                           </p>
                           <p class="discount-price">
-                            {{ startup.priceDetails[1].price }}
+                            <span>{{ startup.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                            <span>{{ startup.priceDetails[1].price }}</span>
                           </p>
                         </div>
                       </ng-container>
@@ -130,7 +137,8 @@
                             {{ startup.priceDetails[0].discount_percentage }}
                           </p>
                           <p class="discount-price">
-                            {{ startup.priceDetails[0].price }}
+                            <span>{{ startup.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                            <span>{{ startup.priceDetails[0].price }}</span>
                           </p>
                         </div>
                       </ng-container>
@@ -252,29 +260,35 @@
                 <span *ngIf="enterprise?.priceDetails">
                   <ng-container *ngIf="isMonthly">
                     <p class="discounted-price">
-                      {{
+                      <span>{{ enterprise.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{
                         enterprise.priceDetails[1]?.price_after_discount
                           ? enterprise.priceDetails[1].price_after_discount + '/m'
                           : enterprise.priceDetails[1].price + '/m'
-                      }}
+                      }}</span>
                     </p>
                   </ng-container>
                   <ng-container *ngIf="isAnually">
                     <p class="discounted-price">
-                      {{
+                      <span>{{ enterprise.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{
                         enterprise.priceDetails[0]?.price_after_discount
                           ? enterprise.priceDetails[0].price_after_discount + '/a'
                           : enterprise.priceDetails[0].price + '/a'
-                      }}
+                      }}</span>
                     </p>
                   </ng-container>
                 </span>
                 <span
                   ><ng-container *ngIf="enterprise.priceDetails[1]?.price_after_discount && isMonthly">
-                    <p class="earlier-price">{{ enterprise.priceDetails[1].price }}</p> </ng-container
+                    <p class="earlier-price">
+                      <span>{{ enterprise.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{ enterprise.priceDetails[1].price }}</span>
+                    </p> </ng-container
                   ><ng-container *ngIf="enterprise.priceDetails[0]?.price_after_discount && isAnually">
                     <p class="earlier-price">
-                      {{ enterprise.priceDetails[0].price }}
+                      <span>{{ enterprise.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{ enterprise.priceDetails[0].price }}</span>
                     </p>
                   </ng-container>
                 </span>
@@ -293,29 +307,35 @@
                 <span *ngIf="startup?.priceDetails">
                   <ng-container *ngIf="isMonthly">
                     <p class="discounted-price">
-                      {{
+                      <span>{{ startup.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{
                         startup.priceDetails[1]?.price_after_discount
                           ? startup.priceDetails[1].price_after_discount + '/m'
                           : startup.priceDetails[1].price + '/m'
-                      }}
+                      }}</span>
                     </p>
                   </ng-container>
                   <ng-container *ngIf="isAnually">
                     <p class="discounted-price">
-                      {{
+                      <span>{{ startup.priceDetails[0].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{
                         startup.priceDetails[0]?.price_after_discount
                           ? startup.priceDetails[0].price_after_discount + '/a'
                           : startup.priceDetails[0].price + '/a'
-                      }}
+                      }}</span>
                     </p>
                   </ng-container>
                 </span>
                 <span
                   ><ng-container *ngIf="startup.priceDetails[1]?.price_after_discount && isMonthly">
-                    <p class="earlier-price">{{ startup.priceDetails[1].price }}</p> </ng-container
+                    <p class="earlier-price">
+                      <span>{{ enterprise.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{ startup.priceDetails[1].price }}</span>
+                    </p> </ng-container
                   ><ng-container *ngIf="startup.priceDetails[0]?.price_after_discount && isAnually">
                     <p class="earlier-price">
-                      {{ startup.priceDetails[0].price }}
+                      <span>{{ enterprise.priceDetails[1].currencyType === '$' ? '$' : '₹' }}</span>
+                      <span>{{ startup.priceDetails[0].price }}</span>
                     </p>
                   </ng-container>
                 </span>
