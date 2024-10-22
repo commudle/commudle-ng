@@ -9,6 +9,9 @@ import { CmsService } from 'apps/shared-services/cms.service';
 import { faArrowDown, faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { IPricing, IPricingFeatures } from 'apps/shared-models/pricing-features.model';
 import { ECmsType } from 'apps/shared-models/enums/cms.enum';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { countries_details } from '@commudle/shared-services';
+import * as momentTimezone from 'moment-timezone';
 @Component({
   selector: 'app-pricing',
   templateUrl: './pricing.component.html',
@@ -29,6 +32,9 @@ export class PricingComponent implements OnInit, OnDestroy {
   faArrowDown = faArrowDown;
   faCircleXmark = faCircleXmark;
   ECmsType = ECmsType;
+  selectedCurrency = '';
+  countryForm: FormGroup;
+  countries = countries_details;
 
   logoCloud: { image: string; name: string; slug: string; description: string }[] = [
     {
@@ -96,7 +102,18 @@ export class PricingComponent implements OnInit, OnDestroy {
     private footerService: FooterService,
     private darkModeService: DarkModeService,
     private cmsService: CmsService,
-  ) {}
+    private fb: FormBuilder,
+  ) {
+    const userTimeZone = momentTimezone.tz.guess();
+    if (userTimeZone === 'Asia/Calcutta') {
+      this.selectedCurrency = this.countries[0].currency;
+    } else {
+      this.selectedCurrency = this.countries[1].currency;
+    }
+    this.countryForm = this.fb.group({
+      currency: [this.selectedCurrency, Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.isMobileView = window.innerWidth <= 1024;
@@ -183,7 +200,15 @@ export class PricingComponent implements OnInit, OnDestroy {
     this.showAllFeatures = !this.showAllFeatures;
   }
 
+  onCountryChange() {
+    this.selectedCurrency = this.countryForm.get('currency').value;
+  }
+
   setSchema(planType) {
+    const priceDetails = this.isMonthly ? planType.priceDetails[1] : planType.priceDetails[0];
+
+    const selectedPriceDetail = priceDetails.details.find((item) => item.currencyType === this.selectedCurrency);
+
     this.seoService.setSchema({
       '@context': 'https://schema.org',
       '@type': 'Product',
@@ -194,16 +219,8 @@ export class PricingComponent implements OnInit, OnDestroy {
       offers: {
         '@type': 'Offer',
         url: 'https://www.commudle.com/pricing',
-        price: this.isMonthly
-          ? this.enterprise?.priceDetails[1]?.price_after_discount || this.enterprise?.priceDetails[1]?.price
-          : this.enterprise?.priceDetails[0]?.price_after_discount || this.enterprise?.priceDetails[0]?.price,
-        priceCurrency: this.isMonthly
-          ? this.enterprise?.priceDetails[1]?.currencyType === '$'
-            ? 'USD'
-            : 'INR'
-          : this.enterprise?.priceDetails[0]?.currencyType === '$'
-          ? 'USD'
-          : 'INR',
+        price: selectedPriceDetail?.price_after_discount || selectedPriceDetail?.price,
+        priceCurrency: selectedPriceDetail?.currencyType === 'USD' ? 'USD' : 'INR',
       },
     });
   }
