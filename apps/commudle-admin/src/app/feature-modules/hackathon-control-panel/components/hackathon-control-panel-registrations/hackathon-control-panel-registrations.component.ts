@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { EDbModels } from '@commudle/shared-models';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -8,7 +9,7 @@ import { HackathonResponseGroupService } from 'apps/commudle-admin/src/app/servi
 import { HackathonService } from 'apps/commudle-admin/src/app/services/hackathon.service';
 import { IHackathonResponseGroup } from 'apps/shared-models/hackathon-response-group.model';
 import { IHackathon } from 'apps/shared-models/hackathon.model';
-
+import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'commudle-hackathon-control-panel-registrations',
   templateUrl: './hackathon-control-panel-registrations.component.html',
@@ -23,6 +24,9 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
   hackathonResponseGroupDetails: IHackathonResponseGroup;
   communityId: string | number;
   filled_by_only_team_lead = true;
+  icons = {
+    faUpRightFromSquare,
+  };
   constructor(
     private fb: FormBuilder,
     private hrgService: HackathonResponseGroupService,
@@ -60,6 +64,7 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
       this.communityId = params['community_id'];
     });
   }
+
   fetchHackathonDetails(hackathonId) {
     this.hackathonService.showHackathon(hackathonId).subscribe((data) => {
       this.hackathon = data;
@@ -130,7 +135,10 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         data ? data.id : '',
       )
       .subscribe((data) => {
-        if (data) this.toastrService.successDialog('Information Updated');
+        if (data) {
+          this.hackathonResponseGroupDetails = data;
+          this.toastrService.successDialog('Information Updated');
+        }
       });
   }
 
@@ -143,7 +151,10 @@ export class HackathonControlPanelRegistrationsComponent implements OnInit {
         data ? data.id : '',
       )
       .subscribe((data) => {
-        if (data) this.toastrService.successDialog('Information Updated');
+        if (data) {
+          this.hackathonResponseGroupDetails = data;
+          this.toastrService.successDialog('Information Updated');
+        }
       });
   }
 }
