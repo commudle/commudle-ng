@@ -503,6 +503,10 @@
       </button>
     </nb-card-header>
     <nb-card-body>
+      <commudle-alert
+        [error]="true"
+        errorMessage="Bulk status does not work on the filters applied in the table below"
+      ></commudle-alert>
       <div class="com-flex com-gap-4">
         <div class="dropdown">
           <select
