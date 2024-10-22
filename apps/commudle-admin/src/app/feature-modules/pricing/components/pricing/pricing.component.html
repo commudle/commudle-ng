@@ -22,7 +22,7 @@
               <form class="select" [formGroup]="countryForm">
                 <select formControlName="currency" (change)="onCountryChange()">
                   <option [value]="countries[0].currency" selected>{{ countries[0].name }}</option>
-                  <option [value]="countries[1].currency">{{ countries[1].name }}</option>
+                  <option [value]="countries[1].currency">Global</option>
                 </select>
               </form>
             </div>
@@ -213,7 +213,7 @@
 
                       <!-- ANUALLY -->
                       <ng-container *ngIf="isAnually">
-                        <ng-container *ngFor="let item of enterprise.priceDetails[0].details">
+                        <ng-container *ngFor="let item of devrel.priceDetails[0].details">
                           <ng-container *ngIf="item.currencyType === selectedCurrency">
                             <span class="current-price">{{
                               item.price_after_discount ? item.price_after_discount : item.price
