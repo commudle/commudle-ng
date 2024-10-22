@@ -1,13 +1,14 @@
 <div class="join-by-token">
-  <h1 *ngIf="!joined" class="lh-fw">
-    Verifying...
-  </h1>
+  <h1 *ngIf="!joined && !declined" class="lh-fw">Verifying...</h1>
 
   <div *ngIf="joined">
-    <h1 class="lh-fw">
+    <h3 class="lh-fw">
       <nb-icon icon="checkmark-circle-2" status="success"></nb-icon>
       Verified!
-    </h1>
+    </h3>
     <p>Redirecting you to the channel...</p>
+  </div>
+  <div *ngIf="declined">
+    <h3 class="lh-fw">OOPS!, You decline the invitation</h3>
   </div>
 </div>

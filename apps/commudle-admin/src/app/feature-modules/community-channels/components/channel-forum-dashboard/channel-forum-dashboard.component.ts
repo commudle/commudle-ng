@@ -27,6 +27,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   @Input() showCommunityList = false;
   @Input() parent: ICommunity | ICommunityGroup | IHackathon;
   @Input() parentType: EDbModels;
+  @Input() showForum = true;
 
   communityForums: IGroupedChannels;
   currentUser: IUser;
@@ -66,7 +67,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   ESidebarWidth = ESidebarWidth;
   isSuperAdmin = false;
   sidebarEventName = 'channelForum';
-  shareMessageUrl: string;
+  redirectUrl: string;
   constructor(
     private authWatchService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -134,16 +135,16 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     switch (this.parentType) {
       case EDbModels.KOMMUNITY:
         this.checkCommunityOrganizer();
-        this.shareMessageUrl = `communities/${this.parent.slug}/channels`;
+        this.redirectUrl = `communities/${this.parent.slug}/channels`;
         break;
       case EDbModels.COMMUNITY_GROUP:
-        this.shareMessageUrl = `orgs/${this.parent.slug}/channels`;
+        this.redirectUrl = `orgs/${this.parent.slug}/channels`;
         this.checkCommunityGroupOrganizer();
         break;
       case EDbModels.HACKATHON:
         // eslint-disable-next-line no-case-declarations
         const hackathon = this.parent as IHackathon; // Cast parent to IHackathon
-        this.shareMessageUrl = `communities/${hackathon.community.slug}/hackathons/${hackathon.slug}/channels`;
+        this.redirectUrl = `communities/${hackathon.community.slug}/hackathons/${hackathon.slug}/channels`;
         this.checkHackathonAdminRoles();
         break;
       default:
