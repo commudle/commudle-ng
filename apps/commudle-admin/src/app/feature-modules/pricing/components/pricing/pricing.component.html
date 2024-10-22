@@ -489,17 +489,18 @@
                   </button></a
                 >
               </div>
-              <button
-                nbButton
-                status="primary"
-                shape="semi-round"
-                *ngIf="!showAllFeatures"
-                (click)="toggleShowAllFeatures()"
-                class="show-all-features-btn"
-              >
-                <p><span>Compare All Features</span><fa-icon [icon]="faArrowDown"></fa-icon></p>
-              </button>
             </div>
+            <button
+              nbButton
+              status="primary"
+              shape="semi-round"
+              *ngIf="!showAllFeatures"
+              (click)="toggleShowAllFeatures()"
+              class="show-all-features-btn"
+            >
+              <p><span>Compare All Features</span><fa-icon [icon]="faArrowDown"></fa-icon></p>
+            </button>
+
             <div class="student-section">
               <div class="student-section-details">
                 <p class="heading">Commudle for Students</p>
