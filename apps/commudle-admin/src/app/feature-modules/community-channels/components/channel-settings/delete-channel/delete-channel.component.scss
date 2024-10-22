@@ -1,9 +1,8 @@
 .delete-channel {
-  padding: 0 1rem;
-  p {
-    margin: 0;
+  .heading {
+    @apply com-text-red-500 com-text-lg com-font-bold com-pb-4 com-my-0;
   }
-  h6 {
-    margin: 1rem 0;
+  div {
+    @apply com-flex com-gap-3 com-items-end;
   }
 }
