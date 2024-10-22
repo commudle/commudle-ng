@@ -12,7 +12,9 @@
           <br />
           <input nbInput formControlName="confirmation" type="text" />
         </form>
-        <button nbButton [disabled]="!deleteForm.valid" outline status="danger" type="submit">Delete</button>
+        <button (click)="submitForm()" nbButton [disabled]="!deleteForm.valid" outline status="danger" type="submit">
+          Delete
+        </button>
       </div>
     </div>
   </nb-card-body>
