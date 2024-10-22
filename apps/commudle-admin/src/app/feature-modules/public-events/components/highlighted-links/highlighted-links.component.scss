@@ -16,6 +16,9 @@
 
     a {
       @apply com-w-full com-overflow-hidden;
+      span {
+        @apply com-truncate;
+      }
     }
 
     @media screen and (min-width: 800px) {
