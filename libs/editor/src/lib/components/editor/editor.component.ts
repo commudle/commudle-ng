@@ -5,11 +5,13 @@ import {
   inject,
   Injector,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
 } from '@angular/core';
-import { maxLength, minLength, noWhitespace, required } from '@commudle/shared-validators';
+import { minLength, noWhitespace, required } from '@commudle/shared-validators';
 import { Editor, Extensions } from '@tiptap/core';
 import { CharacterCount } from '@tiptap/extension-character-count';
 import { Document } from '@tiptap/extension-document';
@@ -30,7 +32,7 @@ import { NbButtonAppearance, NbComponentStatus } from '@commudle/theme';
   styleUrls: ['./editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditorComponent implements OnInit, OnDestroy {
+export class EditorComponent implements OnInit, OnDestroy, OnChanges {
   @Input() showMenu = false;
   @Input() editable = true;
   @Input() clearOnSubmit = true;
@@ -67,6 +69,15 @@ export class EditorComponent implements OnInit, OnDestroy {
 
     if (this.editable && this.validators) {
       this.editor.on('update', () => this.validate());
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['content'] && !changes['content'].isFirstChange()) {
+      // Update the content of the editor if content input changes dynamically
+      if (this.editor) {
+        this.editor.commands.setContent(this.content);
+      }
     }
   }
 
