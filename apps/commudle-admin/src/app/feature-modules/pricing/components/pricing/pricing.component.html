@@ -402,7 +402,7 @@
                     <ng-container *ngIf="isAnually">
                       <ng-container *ngFor="let item of devrel.priceDetails[0].details">
                         <ng-container *ngIf="item.currencyType === selectedCurrency">
-                          <span class="current-price">{{
+                          <span class="discounted-price">{{
                             item.price_after_discount ? item.price_after_discount : item.price
                           }}</span>
 
