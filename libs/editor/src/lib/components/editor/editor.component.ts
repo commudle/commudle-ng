@@ -43,6 +43,7 @@ export class EditorComponent implements OnInit, OnDestroy, OnChanges {
   @Input() status: NbComponentStatus = 'basic';
   @Input() appearance: NbButtonAppearance = 'filled';
   @Input() addAttachment = false;
+  @Input() mentionParams: { parent_type: string; parent_id: number } = { parent_type: '', parent_id: 0 };
 
   @Output() contentChange = new EventEmitter<string>();
   @Output() uploadImages = new EventEmitter<any>();
@@ -98,9 +99,9 @@ export class EditorComponent implements OnInit, OnDestroy, OnChanges {
         History,
         Link,
         KeyboardHandler,
-        CustomMention(this.injector),
+        CustomMention(this.injector, this.mentionParams),
       ],
-      viewer: [Document, Text, Paragraph, Link, CustomMention(this.injector)],
+      viewer: [Document, Text, Paragraph, Link, CustomMention(this.injector, this.mentionParams)],
     };
   }
 

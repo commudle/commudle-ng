@@ -39,6 +39,7 @@
         [addAttachment]="true"
         (contentChange)="createEventUpdate($event)"
         (uploadImages)="uploadImages($event)"
+        [mentionParams]="{ parent_type: 'Event', parent_id: event.id }"
       ></commudle-editor>
 
       <div *ngIf="showPreviewImages" class="image-preview-section">
