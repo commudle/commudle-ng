@@ -26,6 +26,7 @@
             <span class="text">Channels</span>
           </div>
           <div
+            *ngIf="showForum"
             class="icons !com-bg-[#EFF9FF]"
             (click)="openChannelOrForums(discussionType.FORUM)"
             title="Forums"
@@ -42,6 +43,7 @@
               [groupedChannels]="channels"
               (updateSelectedChannel)="updateSelectedChannelOrForum($event)"
               [isCommunityOrganizer]="isCommunityOrganizer || isSuperAdmin"
+              [redirectUrl]="redirectUrl"
             ></app-community-channel-list>
           </div>
 
@@ -73,10 +75,13 @@
 
     <!-- //Channel message Component -->
     <div *ngIf="channelMessage && !forumMessage">
-      <app-community-channel [selectedChannelId]="selectedChannelOrFormId"></app-community-channel>
+      <app-community-channel
+        [selectedChannelId]="selectedChannelOrFormId"
+        [shareMessageUrl]="redirectUrl"
+      ></app-community-channel>
     </div>
     <div *ngIf="token">
-      <app-join-by-token></app-join-by-token>
+      <commudle-join-by-token [redirectUrl]="redirectUrl"></commudle-join-by-token>
     </div>
     <div *ngIf="emailToken">
       <app-email-join></app-email-join>

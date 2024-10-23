@@ -1,11 +1,11 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { LibToastLogService } from 'apps/shared-services/lib-toastlog.service';
-import { CommunityChannelManagerService } from '../../services/community-channel-manager.service';
-import { CommunityChannelsService } from '../../services/community-channels.service';
 import { EDiscussionType } from 'apps/commudle-admin/src/app/feature-modules/community-channels/model/discussion-type.enum';
 import { Subscription } from 'rxjs';
+import { CommunityChannelManagerService, CommunityChannelsService } from '@commudle/shared-services';
 
 @Component({
   selector: 'commudle-community-channel-form',
@@ -88,13 +88,25 @@ export class CommunityChannelFormComponent implements OnInit {
       this.updateChannel(formData);
     } else {
       if (this.discussionType === EDiscussionType.FORUM) {
-        this.cmService.createForum(formData);
+        this.createForum(formData);
       } else if (this.discussionType === EDiscussionType.CHANNEL) {
-        this.cmService.createChannel(formData);
+        this.createChannel(formData);
       }
     }
+  }
 
-    this.saved.emit();
+  async createChannel(formData) {
+    const isCreated = await this.cmService.createChannel(formData);
+    if (isCreated) {
+      this.saved.emit(); //help to close the popup
+    }
+  }
+
+  async createForum(formData) {
+    const isCreated = await this.cmService.createChannel(formData);
+    if (isCreated) {
+      this.saved.emit(); //help to close the popup
+    }
   }
 
   displaySelectedLogo(event: any) {
@@ -131,10 +143,13 @@ export class CommunityChannelFormComponent implements OnInit {
 
   updateChannel(formData) {
     this.communityChannelsService.updateChannelForum(this.existingChannel.id, formData).subscribe((data) => {
-      this.existingChannel = data;
-      this.cmService.findAndUpdateChannel(data);
-      this.cmService.updateChannel(data);
-      this.toastLogService.successDialog('Updated', 3000);
+      if (data) {
+        this.existingChannel = data;
+        this.cmService.findAndUpdateChannel(data);
+        this.cmService.updateChannel(data);
+        this.toastLogService.successDialog('Updated');
+        this.saved.emit(); //help to close the popup
+      }
     });
   }
 }

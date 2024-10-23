@@ -5,6 +5,7 @@
     ></span>
     <a
       *ngIf="communityId && hackathon && hackathonResponseGroupDetails"
+      target="_blank"
       [routerLink]="[
         '/communities',
         communityId,
@@ -14,7 +15,9 @@
         hackathonResponseGroupDetails.id
       ]"
     >
-      <button nbButton status="primary" size="tiny">Link to register</button></a
+      <button nbButton status="primary" size="tiny">
+        <fa-icon [icon]="icons.faUpRightFromSquare"></fa-icon> &nbsp; Link to register
+      </button></a
     >
   </nb-card-header>
   <nb-card-body>

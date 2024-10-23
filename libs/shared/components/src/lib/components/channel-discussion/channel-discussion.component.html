@@ -7,6 +7,7 @@
         [canReply]="false"
         [messagePinned]="true"
         [channelOrForum]="channelOrForum"
+        [shareMessageUrl]="shareMessageUrl"
       ></commudle-community-channel-message>
     </div>
   </div>
@@ -48,6 +49,7 @@
           (channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_MEMBER) ||
             channelsRoles[channelOrForum.id].includes(EUserRoles.COMMUNITY_CHANNEL_ADMIN))
         "
+        [shareMessageUrl]="shareMessageUrl"
       ></commudle-community-channel-message>
     </div>
     <div *ngIf="discussionType === 'forum'" class="messages">
@@ -56,6 +58,7 @@
         [cursor]="message.cursor"
         [message]="message.data"
         [channelOrForum]="channelOrForum"
+        [shareMessageUrl]="shareMessageUrl"
       ></commudle-community-forum-message>
     </div>
   </div>

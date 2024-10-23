@@ -1,5 +1,9 @@
 <nb-card *ngIf="hackathon">
   <nb-card-body>
-    <commudle-channel-forum-dashboard [parent]="hackathon" [parentType]="parentType"></commudle-channel-forum-dashboard>
+    <commudle-channel-forum-dashboard
+      [parent]="hackathon"
+      [parentType]="parentType"
+      [showForum]="false"
+    ></commudle-channel-forum-dashboard>
   </nb-card-body>
 </nb-card>
