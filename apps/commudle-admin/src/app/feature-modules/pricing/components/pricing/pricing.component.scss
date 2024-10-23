@@ -61,6 +61,10 @@ p {
               @apply md:com-text-[40px] com-text-[28px] com-font-bold com-text-Yankees-Blue com-m-0 com-mr-2;
             }
 
+            .currency-symbol {
+              @apply md:com-text-[40px] com-text-[28px] com-font-bold com-text-Yankees-Blue com-m-0;
+            }
+
             .discount {
               @apply com-flex com-flex-col;
 
@@ -134,7 +138,7 @@ p {
       .header-price {
         @apply com-flex com-flex-row com-mb-3 com-justify-center;
         .earlier-price {
-          @apply com-text-lg com-font-normal com-text-gray-500 com-line-through com-ml-2;
+          @apply com-text-lg com-font-normal com-text-gray-500 com-line-through;
         }
 
         .discounted-price {
@@ -153,7 +157,7 @@ p {
       .enterprise-title,
       .startup-title,
       .devrel-title {
-        @apply com-flex com-justify-center com-text-sm com-font-normal com-text-gray-500 md:com-pt-7 com-pt-8 com-px-0 com-pb-2;
+        @apply com-flex com-justify-center com-text-sm com-font-normal com-text-gray-500 md:com-pt-7 com-pt-8 com-px-0 com-pb-2 com-text-center;
       }
 
       .sub-features {
@@ -169,10 +173,6 @@ p {
 
         .cross-mark {
           @apply com-flex com-justify-center com-items-center com-text-xl com-text-gray-400 md:com-py-4 com-py-2 md:com-px-0 com-px-6px;
-        }
-
-        .check-mark-devrel {
-          @apply com-flex com-justify-center com-items-center com-text-xl com-text-black md:com-py-4 com-py-2 md:com-px-0 com-px-6px;
         }
 
         .enterprise-highlight {
@@ -244,6 +244,10 @@ p {
 }
 
 .toggle-btn {
+  @apply com-flex com-flex-row com-items-center com-gap-5;
+}
+
+.toggle-btn-month-annual {
   @apply com-flex com-justify-center com-p-1 com-bg-white com-w-fit com-rounded-[30px] com-cursor-pointer;
 
   .monthly,
@@ -256,16 +260,19 @@ p {
   }
 }
 
+.select {
+  @apply com-flex com-items-center com-gap-1 com-h-8 com-p-1 com-rounded-[30px] com-cursor-pointer com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50  com-border com-border-solid com-border-[#E4E9F2]  com-w-full;
+  select {
+    @apply com-bg-[#F6F9FC] hover:com-bg-[#eef2f7]/50 com-text-Yankees-Blue com-text-base com-font-semibold com-cursor-pointer com-border-0 com-w-full;
+  }
+}
+
 .subscription-cards {
   @apply com-flex com-flex-col com-justify-center com-items-center;
 }
 
 .active-border {
   @apply com-border-3 com-border-solid com-border-primary-500 #{!important};
-}
-
-.devrel-btn {
-  @apply com-bg-black com-text-white #{!important};
 }
 
 .enterprise-btn {
