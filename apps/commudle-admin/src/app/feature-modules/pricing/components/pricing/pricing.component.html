@@ -44,14 +44,16 @@
                             <span class="current-price">{{
                               item.price_after_discount ? item.price_after_discount : item.price
                             }}</span>
-                            <ng-container class="discount" *ngIf="item.price_after_discount">
-                              <p class="discount-percentage">
-                                {{ item.discount_percentage }}
-                              </p>
-                              <ng-container>
-                                <span class="discount-price">{{ item.currencyType === 'USD' ? '$' : '₹' }}</span>
-                                <span class="discount-price">{{ item.price }}</span>
-                              </ng-container>
+                            <ng-container *ngIf="item.price_after_discount">
+                              <div class="discount">
+                                <p class="discount-percentage">
+                                  {{ item.discount_percentage }}
+                                </p>
+                                <div>
+                                  <span class="discount-price">{{ item.currencyType === 'USD' ? '$' : '₹' }}</span>
+                                  <span class="discount-price">{{ item.price }}</span>
+                                </div>
+                              </div>
                             </ng-container>
                           </ng-container>
                         </ng-container>
@@ -123,14 +125,16 @@
                             <span class="current-price">{{
                               item.price_after_discount ? item.price_after_discount : item.price
                             }}</span>
-                            <ng-container class="discount" *ngIf="item.price_after_discount">
-                              <p class="discount-percentage">
-                                {{ item.discount_percentage }}
-                              </p>
-                              <ng-container>
-                                <span class="discount-price">{{ item.currencyType === 'USD' ? '$' : '₹' }}</span>
-                                <span class="discount-price">{{ item.price }}</span>
-                              </ng-container>
+                            <ng-container *ngIf="item.price_after_discount">
+                              <div class="discount">
+                                <p class="discount-percentage">
+                                  {{ item.discount_percentage }}
+                                </p>
+                                <div>
+                                  <span class="discount-price">{{ item.currencyType === 'USD' ? '$' : '₹' }}</span>
+                                  <span class="discount-price">{{ item.price }}</span>
+                                </div>
+                              </div>
                             </ng-container>
                           </ng-container>
                         </ng-container>
@@ -199,13 +203,16 @@
                             <span class="current-price">{{
                               item.price_after_discount ? item.price_after_discount : item.price
                             }}</span>
-                            <ng-container class="discount" *ngIf="item.price_after_discount">
-                              <p class="discount-percentage">
-                                {{ item.discount_percentage }}
-                              </p>
-                              <ng-container>
-                                <span class="discount-price">{{ item.price }}</span>
-                              </ng-container>
+                            <ng-container *ngIf="item.price_after_discount">
+                              <div class="discount">
+                                <p class="discount-percentage">
+                                  {{ item.discount_percentage }}
+                                </p>
+                                <div>
+                                  <span class="discount-price">{{ item.currencyType === 'USD' ? '$' : '₹' }}</span>
+                                  <span class="discount-price">{{ item.price }}</span>
+                                </div>
+                              </div>
                             </ng-container>
                           </ng-container>
                         </ng-container>
