@@ -1,4 +1,4 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { CommunityChannelManagerService } from 'apps/commudle-admin/src/app/feature-modules/community-channels/services/community-channel-manager.service';
 import { DiscussionsService } from 'apps/commudle-admin/src/app/services/discussions.service';
@@ -6,18 +6,17 @@ import { ICommunityChannel } from 'apps/shared-models/community-channel.model';
 import { IDiscussion } from 'apps/shared-models/discussion.model';
 import { Subscription } from 'rxjs';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
-import { ICommunity } from '@commudle/shared-models';
-import { ICommunityGroup } from 'apps/shared-models/community-group.model';
 import { NbDialogService } from '@commudle/theme';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app-community-channel',
   templateUrl: './community-channel.component.html',
   styleUrls: ['./community-channel.component.scss'],
 })
 export class CommunityChannelComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() parent: ICommunity | ICommunityGroup;
   @Input() selectedChannelId: number;
+  @Input() shareMessageUrl: string;
   selectedChannel: ICommunityChannel;
   subscriptions: Subscription[] = [];
   discussion: IDiscussion;

@@ -48,34 +48,18 @@ const routes: Routes = [
             path: 'channels',
             component: PublicHackathonChannelsComponent,
           },
-          // {
-          //   path: 'channels',
-          //   component: CommunityChannelsListComponent,
-          // },
           {
             path: 'channels/:community_channel_id',
             component: PublicHackathonChannelsComponent,
           },
-          // {
-          //   path: 'channels/join/:token',
-          //   component: CommunityChannelsListComponent,
-          // },
-          // {
-          //   path: 'channels/email-join/:email_token',
-          //   component: CommunityChannelsListComponent,
-          // },
           {
-            path: 'forums',
+            path: 'channels/join/:token',
             component: PublicHackathonChannelsComponent,
           },
           {
-            path: 'forums/:community_channel_id',
+            path: 'channels/email-join/:email_token',
             component: PublicHackathonChannelsComponent,
           },
-          // {
-          //   path: 'forums/join/:token',
-          //   component: CommunityChannelsListComponent,
-          // },
           {
             path: 'user-dashboard',
             component: PublicHackathonUserDashboardComponent,

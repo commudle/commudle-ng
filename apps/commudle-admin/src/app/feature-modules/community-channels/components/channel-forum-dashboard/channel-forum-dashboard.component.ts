@@ -27,6 +27,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   @Input() showCommunityList = false;
   @Input() parent: ICommunity | ICommunityGroup | IHackathon;
   @Input() parentType: EDbModels;
+  @Input() showForum = true;
 
   communityForums: IGroupedChannels;
   currentUser: IUser;
@@ -66,6 +67,7 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   ESidebarWidth = ESidebarWidth;
   isSuperAdmin = false;
   sidebarEventName = 'channelForum';
+  redirectUrl: string;
   constructor(
     private authWatchService: AuthService,
     private activatedRoute: ActivatedRoute,
@@ -85,20 +87,6 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
     this.getCurrentUser();
     this.sidebarService.setSidebarVisibility(this.sidebarEventName, true);
     this.setParent();
-
-    switch (this.parentType) {
-      case EDbModels.KOMMUNITY:
-        this.checkCommunityOrganizer();
-        break;
-      case EDbModels.COMMUNITY_GROUP:
-        this.checkCommunityGroupOrganizer();
-        break;
-      case EDbModels.HACKATHON:
-        this.checkHackathonAdminRoles();
-        break;
-      default:
-        break;
-    }
 
     if (this.discussionTypeForum && this.selectedChannelOrFormId) {
       this.checkSelectedForum();
@@ -144,6 +132,24 @@ export class ChannelForumDashboardComponent implements OnInit, OnDestroy {
   }
 
   setParent() {
+    switch (this.parentType) {
+      case EDbModels.KOMMUNITY:
+        this.checkCommunityOrganizer();
+        this.redirectUrl = `communities/${this.parent.slug}/channels`;
+        break;
+      case EDbModels.COMMUNITY_GROUP:
+        this.redirectUrl = `orgs/${this.parent.slug}/channels`;
+        this.checkCommunityGroupOrganizer();
+        break;
+      case EDbModels.HACKATHON:
+        // eslint-disable-next-line no-case-declarations
+        const hackathon = this.parent as IHackathon; // Cast parent to IHackathon
+        this.redirectUrl = `communities/${hackathon.community.slug}/hackathons/${hackathon.slug}/channels`;
+        this.checkHackathonAdminRoles();
+        break;
+      default:
+        break;
+    }
     this.communityChannelManagerService.setParent(this.parent, this.parentType);
   }
 

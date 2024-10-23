@@ -14,6 +14,7 @@ export class ChannelSettingsComponent implements OnInit, OnDestroy {
   @Input() invite = false;
   @Input() discussionType: EDiscussionType;
   @Input() currentUrl: string; //After updates it will redirect to that url
+  @Input() redirectUrl: string; //After updates it will redirect to that url
   @Output() updateForm = new EventEmitter<string>();
 
   constructor(private seoService: SeoService, private dialogRef: NbDialogRef<ChannelSettingsComponent>) {}

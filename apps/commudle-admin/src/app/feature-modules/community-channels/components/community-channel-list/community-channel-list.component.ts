@@ -29,6 +29,7 @@ interface EGroupedCommunityChannels {
 export class CommunityChannelListComponent implements OnInit, OnDestroy {
   @Input() groupedChannels: EGroupedCommunityChannels;
   @Input() isCommunityOrganizer = false;
+  @Input() redirectUrl: string;
   parent: ICommunity | ICommunityGroup | IHackathon;
   parentType: EDbModels;
   selectedChannel: ICommunityChannel;
@@ -133,6 +134,7 @@ export class CommunityChannelListComponent implements OnInit, OnDestroy {
       context: {
         channel: channel,
         invite: true,
+        redirectUrl: this.redirectUrl,
         // currentUrl: 'communities/' + this.parent.slug + '/channels',
       },
     });
