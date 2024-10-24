@@ -11,7 +11,7 @@ p {
     @apply com-relative com-mx-auto md:com-pt-[100px] com-pt-[60px] md:com-px-4 com-px-3 com-text-center;
 
     .heading {
-      @apply com-my-0 md:com-text-[52px] com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
+      @apply com-m-0 com-my-0 md:com-text-[52px] com-text-3xl com-font-extrabold com-tracking-tight com-text-gray-900 sm:com-text-6xl;
 
       //TODO: Convert style css to tailwindCss
       span {
@@ -45,7 +45,7 @@ p {
       .title-cards {
         @apply com-p-0 md:com-pb-4 com-pb-3 com-border-0 com-border-b com-border-solid com-border-Bright-Gray com-flex com-flex-col com-items-start;
         .heading {
-          @apply md:com-text-2xl com-text-xl com-font-semibold md:com-mb-3 com-mb-2 com-text-Yankees-Blue com-tracking-[-1px];
+          @apply com-m-0 md:com-text-2xl com-text-xl com-font-semibold md:com-mb-3 com-mb-2 com-text-Yankees-Blue com-tracking-[-1px];
         }
         .sub-heading {
           @apply com-text-sm md:com-font-normal com-font-medium md:com-pb-6 com-pb-4 com-text-gray-500 com-line-clamp-3;
@@ -118,11 +118,11 @@ p {
     @apply com-flex com-flex-col com-justify-center md:com-pt-20 com-pt-10 md:com-mx-auto md:com-px-[130px] md:com-m-0 com-px-3 md:com-bg-transparent com-bg-white;
 
     .pricing-features-heading {
-      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue com-mb-4 com-text-center;
+      @apply md:com-text-4xl com-text-2xl com-font-bold com-text-Yankees-Blue com-m-0 com-mb-4 com-text-center;
     }
 
     .pricing-features-subheading {
-      @apply md:com-text-xl com-text-sm com-font-normal com-text-gray-500 md:com-mb-[60px] com-mb-0 com-text-center;
+      @apply md:com-text-xl com-text-sm com-font-normal com-text-gray-500 com-m-0 md:com-mb-[60px] com-mb-0 com-text-center;
     }
 
     .subscription-container {
@@ -286,11 +286,11 @@ p {
     @apply com-flex com-flex-col md:com-py-8 com-p-4 md:com-pl-8 md:com-pr-10 md:com-w-[616px] com-w-full com-flex-shrink-0;
 
     .heading {
-      @apply md:com-text-2xl com-text-xl com-font-semibold com-text-Yankees-Blue md:com-mb-3 com-mb-2;
+      @apply com-m-0 md:com-text-2xl com-text-xl com-font-semibold com-text-Yankees-Blue md:com-mb-3 com-mb-2;
     }
 
     .sub-heading {
-      @apply md:com-text-sm com-text-xs com-font-normal com-text-gray-500 md:com-mb-8 com-mb-4;
+      @apply com-m-0 md:com-text-sm com-text-xs com-font-normal com-text-gray-500 md:com-mb-8 com-mb-4;
     }
 
     .features-heading-students {
@@ -302,7 +302,7 @@ p {
     }
 
     li {
-      @apply md:com-mb-[14px] com-mb-2 com-list-none;
+      @apply com-flex md:com-mb-3 com-mb-2 com-list-none;
 
       nb-icon {
         @apply com-h-6 com-w-6 md:com-mr-3 com-mr-2 com-text-primary-500;
@@ -316,9 +316,9 @@ p {
 }
 
 .student-startup-iamge {
-  @apply md:com-w-[664px] md:com-h-[468px] com-w-full com-h-full;
+  @apply md:com-w-[664px] md:com-h-[476px] com-w-full com-h-full;
   img {
-    @apply com-w-full com-h-full md:com-rounded-r-[32px] com-rounded-r-none com-rounded-t-[32px] md:com-rounded-t-none;
+    @apply com-w-full com-h-full md:com-rounded-r-[32px] com-rounded-r-none com-rounded-t-[32px] md:com-rounded-t-none com-object-fill;
   }
 }
 
