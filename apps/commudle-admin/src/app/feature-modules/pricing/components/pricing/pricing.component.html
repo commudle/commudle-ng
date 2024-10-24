@@ -30,7 +30,7 @@
               <!-- ENTERPRISE -->
               <div *ngIf="enterprise" class="enterprise-card active-border">
                 <div class="title-cards">
-                  <p class="heading">{{ enterprise.name }}</p>
+                  <h2 class="heading">{{ enterprise.name }}</h2>
                   <p class="sub-heading">
                     {{ enterprise.description }}
                   </p>
@@ -111,7 +111,7 @@
               <!-- STARTUP -->
               <div *ngIf="startup" class="startup-card">
                 <div class="title-cards">
-                  <p class="heading">{{ startup.name }}</p>
+                  <h2 class="heading">{{ startup.name }}</h2>
                   <p class="sub-heading">
                     {{ startup.description }}
                   </p>
@@ -190,7 +190,7 @@
               <!-- DEVREL -->
               <div *ngIf="devrel" class="devrel-card">
                 <div class="title-cards">
-                  <p class="heading">{{ devrel.name }}</p>
+                  <h2 class="heading">{{ devrel.name }}</h2>
                   <p class="sub-heading">
                     {{ devrel.description }}
                   </p>
@@ -277,8 +277,8 @@
 
         <div class="base-layout com-min-h-full">
           <div class="pricing-features">
-            <p class="pricing-features-heading">Discover the Plan That's Right for You</p>
-            <p class="pricing-features-subheading">Here are all the amazing features included in our plans</p>
+            <h2 class="pricing-features-heading">Discover the Plan That's Right for You</h2>
+            <h3 class="pricing-features-subheading">Here are all the amazing features included in our plans</h3>
             <div *appBreakpoints="'>lg'" class="subscription-container">
               <div></div>
               <div *ngIf="enterprise" class="subscription-header">
@@ -506,104 +506,103 @@
             >
               <p><span>Compare All Features</span><fa-icon [icon]="faArrowDown"></fa-icon></p>
             </button>
+          </div>
+          <div class="student-section">
+            <div class="student-section-details">
+              <h2 class="heading">Commudle for Students</h2>
+              <h3 class="sub-heading">
+                Commudle for Students Get a dedicated community space for all your members, their content, profiles &
+                multiple engagement options to share knowledge and build recognition.
+              </h3>
+              <p class="features-heading-students">For The Tech Community Leaders</p>
+              <ul class="student-features-list">
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Community and events dashboard</span>
+                </li>
 
-            <div class="student-section">
-              <div class="student-section-details">
-                <p class="heading">Commudle for Students</p>
-                <p class="sub-heading">
-                  Commudle for Students Get a dedicated community space for all your members, their content, profiles &
-                  multiple engagement options to share knowledge and build recognition.
-                </p>
-                <p class="features-heading-students">For The Tech Community Leaders</p>
-                <ul class="student-features-list">
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community and events dashboard</span>
-                  </li>
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Member management</span>
+                </li>
 
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Member management</span>
-                  </li>
-
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community & Event Analytics</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Community newsletters</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Generative member growth</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Channels and forums</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Online & Offline events with smart shortlisting</span>
-                  </li>
-                  <li>
-                    <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
-                    <span class="feature">Networking with experts and community leaders</span>
-                  </li>
-                </ul>
-                <a
-                  [routerLink]="['/student-non-profit-community-support']"
-                  (click)="gtmDatalayerPush('pricing_plan_non_profit')"
-                  ><button
-                    nbButton
-                    fullWidth
-                    shape="semi-round"
-                    size="large"
-                    status="primary"
-                    class="md:com-mt-7 com-mt-6"
-                  >
-                    Apply Now
-                  </button></a
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Community & Event Analytics</span>
+                </li>
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Community newsletters</span>
+                </li>
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Generative member growth</span>
+                </li>
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Channels and forums</span>
+                </li>
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Online & Offline events with smart shortlisting</span>
+                </li>
+                <li>
+                  <nb-icon icon="checkmark-circle-2-outline"></nb-icon>
+                  <span class="feature">Networking with experts and community leaders</span>
+                </li>
+              </ul>
+              <a
+                [routerLink]="['/student-non-profit-community-support']"
+                (click)="gtmDatalayerPush('pricing_plan_non_profit')"
+                ><button
+                  nbButton
+                  fullWidth
+                  shape="semi-round"
+                  size="large"
+                  status="primary"
+                  class="md:com-mt-7 com-mt-6"
                 >
-              </div>
-              <div class="student-startup-iamge">
-                <img [src]="staticAssets.pricing_students" alt="Commudle for Students and Individuals" />
-              </div>
+                  Apply Now
+                </button></a
+              >
             </div>
-            <div class="avenues">
-              <div class="heading">More avenues to interact with Developers on Commudle</div>
-              <p class="sub-heading">
-                Sponsor badges, sessions, run content campaigns with labs & builds, get a sponsored slot in our
-                sponsored emailers through community organizers
-              </p>
+            <div class="student-startup-iamge">
+              <img [src]="staticAssets.pricing_students" alt="Commudle for Students and Individuals" />
             </div>
+          </div>
+          <div class="avenues">
+            <div class="heading">More avenues to interact with Developers on Commudle</div>
+            <p class="sub-heading">
+              Sponsor badges, sessions, run content campaigns with labs & builds, get a sponsored slot in our sponsored
+              emailers through community organizers
+            </p>
+          </div>
 
-            <!-- Logo cloud -->
-            <div class="background-container-community" [ngStyle]="{ 'background-image': getCommunityLogoCardsUrl() }">
-              <div class="base-layout">
-                <div class="pricing-logo-cloud">
-                  <p class="subheading">Communities already on Commudle</p>
-                  <div class="communities">
-                    <a *ngFor="let logo of logoCloud" [routerLink]="['/search', logo.slug]">
-                      <div class="communities-card">
-                        <div class="logo">
-                          <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
-                        </div>
-                        <div class="communities-card-text">
-                          <p class="name">{{ logo.name }}</p>
-                          <p class="description">{{ logo.description }}</p>
-                        </div>
+          <!-- Logo cloud -->
+          <div class="background-container-community" [ngStyle]="{ 'background-image': getCommunityLogoCardsUrl() }">
+            <div class="base-layout">
+              <div class="pricing-logo-cloud">
+                <p class="subheading">Communities already on Commudle</p>
+                <div class="communities">
+                  <a *ngFor="let logo of logoCloud" [routerLink]="['/search', logo.slug]">
+                    <div class="communities-card">
+                      <div class="logo">
+                        <img [alt]="logo.name" [nbTooltip]="logo.name" [src]="logo.image" />
                       </div>
-                    </a>
-                  </div>
+                      <div class="communities-card-text">
+                        <p class="name">{{ logo.name }}</p>
+                        <p class="description">{{ logo.description }}</p>
+                      </div>
+                    </div>
+                  </a>
                 </div>
               </div>
+            </div>
 
-              <!-- FAQs -->
-              <div class="base-layout">
-                <div class="faq">
-                  <commudle-faq [answers]="answers"></commudle-faq>
-                </div>
+            <!-- FAQs -->
+            <div class="base-layout">
+              <div class="faq">
+                <commudle-faq [answers]="answers"></commudle-faq>
               </div>
             </div>
           </div>
